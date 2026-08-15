@@ -11,7 +11,13 @@ jobs:
       - name: Get project
         uses: actions/checkout@v4
 
-      - name: Run Gemini test
+      - name: Run research worker
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python research.py
+
+      - name: Save research report
+        uses: actions/upload-artifact@v4
+        with:
+          name: leverage-market-report
+          path: market_report.md
