@@ -1,15 +1,15 @@
-name: Leverage Worker Test
+name: Leverage Research Worker
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  research:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test cloud worker
-        run: |
-          echo "LEVERAGE WORKER ONLINE"
-          python --version
-          echo "Cloud worker is operational."
+      - name: Get project
+        uses: actions/checkout@v4
+
+      - name: Run research worker
+        run: python research.py
