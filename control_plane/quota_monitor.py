@@ -10,7 +10,7 @@ import os
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-from leverage_core import ResourceManager, ResourceState
+from control_plane.leverage_core import ResourceManager, ResourceState
 
 OUT = Path("dashboard/resource_limits.json")
 
