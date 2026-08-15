@@ -1,0 +1,21 @@
+{
+  "project": "FCPO Trading Research",
+  "instrument": "FCPO",
+  "exchange": "Bursa Malaysia Derivatives",
+  "mode": "research_and_paper_trading_only",
+  "live_trading_enabled": false,
+  "zero_cost_core": true,
+  "primary_public_market_reference": "TradingView FCPO1!",
+  "fundamental_sources": [
+    "Bursa Malaysia",
+    "MPOB",
+    "FRED/IMF palm oil benchmark"
+  ],
+  "paid_live_feed_required": false,
+  "notes": [
+    "Do not assume unlimited free real-time exchange data.",
+    "Do not scrape private broker platforms.",
+    "Use public/authorized data only.",
+    "Validate strategies with historical data and paper trading before any live-money decision."
+  ]
+}
