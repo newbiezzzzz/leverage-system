@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T06:58:00+08:00",
+  "generated_at":"2026-08-16T07:00:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -8,15 +8,16 @@
   "focus":"Technical analysis and strategy discovery",
   "capital_deployed":0,
   "currency":"RM",
-  "current_phase":"Exploratory FCPO dataset loaded + screening engine ready",
+  "current_phase":"Exploratory FCPO dataset loaded + technical smoke test",
   "next_phase":"Acquire a larger permitted historical dataset, then run out-of-sample and walk-forward backtests",
   "risk_gate":"REAL MONEY BLOCKED",
-  "progress":32,
+  "progress":35,
   "data_policy":"RM0 research stack; use permitted free/public historical data, cache locally, avoid unnecessary API calls, no paid real-time feed dependency",
   "research_targets":["Trend-following","Momentum","Breakout","Mean reversion","Volatility","Price action","Volume confirmation","Multi-timeframe combinations"],
   "validation_rules":["Include realistic fees and conservative slippage","Separate in-sample and out-of-sample periods","Use walk-forward validation","Reject unstable or overfit strategies","Require parameter sensitivity checks","Evaluate different market regimes","Rank by risk-adjusted robustness, not raw profit"],
   "data_sources":["Investing.com FCPOc1 public historical view/export where permitted","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data","Bursa Malaysia FCPO contract specifications"],
-  "dataset_status":"20-session daily FCPO OHLCV seed sample cached locally; insufficient for robust strategy claims",
-  "latest_result":"Exploratory FCPO dataset successfully loaded and pipeline verified. No trading strategy is validated. Larger historical coverage is required before any performance conclusion.",
+  "dataset_status":"20-session daily FCPO OHLCV exploratory sample cached locally; insufficient for robust strategy claims",
+  "smoke_test":"SMA 3/5, 3/8 and 5/10 long-only screening completed on exploratory sample; results are development-only and not validated",
+  "latest_result":"Technical pipeline verified on real public FCPO observations. No strategy is validated; larger historical coverage and out-of-sample/walk-forward testing remain mandatory.",
   "updated_by":"Leverage AI Manager"
 }
