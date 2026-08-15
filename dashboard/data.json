@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-15T21:50:48.066996+00:00",
+  "generated_at": "2026-08-15T22:29:31.706986+00:00",
   "project": {
     "name": "Project Leverage",
-    "overall_progress": 34,
+    "overall_progress": 42,
     "goal": "Build a zero-cost, reusable AI/data/automation platform that can research opportunities, test ideas, and automate execution with minimal Boss involvement.",
     "phases": [
       {
@@ -11,42 +11,42 @@
         "status": "complete"
       },
       {
-        "name": "Research Worker",
-        "progress": 80,
-        "status": "active"
+        "name": "Core worker fleet",
+        "progress": 100,
+        "status": "complete"
       },
       {
         "name": "Control Plane",
-        "progress": 45,
+        "progress": 65,
         "status": "active"
       },
       {
         "name": "Command Center",
-        "progress": 70,
+        "progress": 85,
         "status": "active"
       },
       {
-        "name": "Automatic worker triggering",
-        "progress": 10,
-        "status": "planned"
+        "name": "FCPO trading research engine",
+        "progress": 30,
+        "status": "active"
       },
       {
-        "name": "Worker-to-worker communication",
+        "name": "FCPO paper-trading validation",
         "progress": 0,
         "status": "planned"
       },
       {
-        "name": "AI Manager",
+        "name": "FCPO strategy validation",
         "progress": 0,
         "status": "planned"
       },
       {
-        "name": "Opportunity research engine",
-        "progress": 5,
+        "name": "FCPO live-trading safety gate",
+        "progress": 0,
         "status": "planned"
       },
       {
-        "name": "Validated income opportunity",
+        "name": "Validated FCPO trading income opportunity",
         "progress": 0,
         "status": "planned"
       }
@@ -57,6 +57,7 @@
       "id": "research-worker",
       "role": "market and opportunity research",
       "status": "online",
+      "activation": "verified",
       "entrypoint": "research.py",
       "projects": [
         "leverage"
@@ -66,8 +67,9 @@
     {
       "id": "code-worker",
       "role": "code implementation and testing",
-      "status": "planned",
-      "entrypoint": null,
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/code_worker.py",
       "projects": [
         "*"
       ],
@@ -76,8 +78,9 @@
     {
       "id": "data-worker",
       "role": "data collection and preparation",
-      "status": "planned",
-      "entrypoint": null,
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/data_worker.py",
       "projects": [
         "*"
       ],
@@ -113,6 +116,6 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-15T21:50:48.066996+00:00"
+    "synced_at": "2026-08-15T22:29:31.706986+00:00"
   }
 }
