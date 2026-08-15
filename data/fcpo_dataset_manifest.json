@@ -1,0 +1,22 @@
+{
+  "instrument":"FCPO",
+  "exchange":"Bursa Malaysia Derivatives",
+  "primary_reference":"TradingView MYX:FCPO1!",
+  "status":"awaiting_larger_validated_dataset",
+  "current_seed_rows":20,
+  "minimum_research_rows":250,
+  "preferred_research_rows":750,
+  "required_columns":["timestamp","open","high","low","close","volume"],
+  "validation":[
+    "timestamps must be ordered and parseable",
+    "OHLC relationships must be valid",
+    "no negative prices",
+    "duplicate timestamps rejected",
+    "missing-session gaps reported",
+    "source must identify Bursa FCPO rather than unrelated CPO instruments",
+    "contract-roll handling must be documented before continuous-series backtests"
+  ],
+  "research_policy":"RM0; cache imported data locally; no scraping bypass; no paid real-time dependency",
+  "backtest_gate":"Do not publish strategy performance until >=250 valid rows are loaded and out-of-sample/walk-forward checks are available",
+  "notes":"TradingView chart-data export is the cleanest verified path for the Boss to provide a larger FCPO1! dataset without buying another feed. The system is ready to ingest it automatically."
+}
