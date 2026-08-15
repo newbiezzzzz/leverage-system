@@ -1,0 +1,34 @@
+{
+  "project": "fcpo-trading-research",
+  "instrument": "Bursa Malaysia FCPO",
+  "mode": "research_only",
+  "capital_at_risk": 0,
+  "data_policy": {
+    "prefer_public_free_sources": true,
+    "cache_before_analysis": true,
+    "max_external_requests_per_source_per_day": 2,
+    "no_paid_realtime_feed_dependency": true,
+    "no_private_feed_scraping": true
+  },
+  "strategy_families": {
+    "trend": ["sma_cross", "ema_cross", "adx_filter", "donchian_breakout"],
+    "momentum": ["rsi", "stochastic", "roc"],
+    "volatility": ["atr_filter", "bollinger", "keltner"],
+    "price_action": ["previous_day_breakout", "opening_range_breakout", "breakout_retest"],
+    "volume": ["volume_expansion", "volume_confirmation"],
+    "multi_timeframe": ["15m_vs_1h_trend", "15m_signal_1h_filter"]
+  },
+  "validation": {
+    "include_transaction_costs": true,
+    "include_slippage": true,
+    "out_of_sample": true,
+    "walk_forward": true,
+    "parameter_stability": true,
+    "minimum_trades_required": 100,
+    "rank_by": ["expectancy", "max_drawdown", "profit_factor", "out_of_sample_return", "stability"]
+  },
+  "live_gate": {
+    "paper_trading_required": true,
+    "real_money_allowed": false
+  }
+}
