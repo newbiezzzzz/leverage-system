@@ -4,6 +4,8 @@ on:
   workflow_run:
     workflows: ["Leverage Research Worker"]
     types: [completed]
+  schedule:
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -16,9 +18,14 @@ jobs:
       - name: Get project
         uses: actions/checkout@v4
 
+      - name: Collect live resource state
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -m control_plane.quota_monitor
+
       - name: Build authoritative dashboard state
         env:
-          WORKFLOW_CONCLUSION: ${{ github.event.workflow_run.conclusion || 'manual' }}
+          WORKFLOW_CONCLUSION: ${{ github.event.workflow_run.conclusion || 'scheduled' }}
           WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id || '' }}
         run: |
           python - <<'PY'
@@ -39,7 +46,6 @@ jobs:
           workers = json.loads(workers_path.read_text()).get('workers', [])
           tasks = json.loads(tasks_path.read_text()).get('tasks', [])
 
-          # Progress is calculated from the authoritative milestone file.
           if milestones:
               overall = round(sum(float(m.get('progress', 0)) for m in milestones) / len(milestones))
           else:
@@ -58,33 +64,18 @@ jobs:
               except json.JSONDecodeError:
                   research = None
 
-          conclusion = os.environ.get('WORKFLOW_CONCLUSION', 'manual')
+          conclusion = os.environ.get('WORKFLOW_CONCLUSION', 'scheduled')
           run_id = os.environ.get('WORKFLOW_RUN_ID', '')
           synced_at = datetime.now(timezone.utc).isoformat()
-          successful = conclusion in ('success', 'manual')
+          successful = conclusion in ('success', 'manual', 'scheduled')
 
           data['generated_at'] = synced_at
           data['project']['overall_progress'] = overall
-          data['project']['phases'] = [
-              {k: m[k] for k in ('name', 'progress', 'status')}
-              for m in milestones
-          ]
+          data['project']['phases'] = [{k: m[k] for k in ('name', 'progress', 'status')} for m in milestones]
           data['workers'] = workers
           data['tasks'] = counts
-          data['cost'] = {
-              'amount': 0,
-              'currency': 'RM',
-              'target': 'zero-cost',
-              'tracked': True
-          }
-          data['sync'] = {
-              'source': 'github-actions',
-              'workflow': 'Leverage Research Worker',
-              'run_id': run_id,
-              'conclusion': conclusion,
-              'fresh': successful,
-              'synced_at': synced_at
-          }
+          data['cost'] = {'amount': 0, 'currency': 'RM', 'target': 'zero-cost', 'tracked': True}
+          data['sync'] = {'source': 'github-actions', 'workflow': 'Leverage Resource & Dashboard Sync', 'run_id': run_id, 'conclusion': conclusion, 'fresh': successful, 'synced_at': synced_at}
 
           if research:
               data['latest_research'] = {
@@ -101,10 +92,10 @@ jobs:
           data_path.write_text(json.dumps(data, indent=2) + '\n')
           PY
 
-      - name: Commit dashboard state
+      - name: Commit dashboard and resource state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dashboard/data.json
-          git diff --cached --quiet || git commit -m "chore: sync authoritative dashboard state"
+          git add dashboard/data.json dashboard/resource_limits.json control_plane/resource_state.json
+          git diff --cached --quiet || git commit -m "chore: sync dashboard and live resource state"
           git push
