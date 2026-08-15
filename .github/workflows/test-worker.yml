@@ -1,0 +1,15 @@
+name: Leverage Worker Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test cloud worker
+        run: |
+          echo "LEVERAGE WORKER ONLINE"
+          python --version
+          echo "Cloud worker is operational."
