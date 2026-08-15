@@ -1,0 +1,41 @@
+name: Leverage Worker Fleet Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "workers/**"
+      - "research.py"
+      - "control_plane/workers.json"
+      - ".github/workflows/worker-fleet-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Verify worker registry
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('control_plane/workers.json').read_text())
+          workers=data.get('workers', [])
+          assert len(workers) == 3, f'expected 3 workers, got {len(workers)}'
+          for w in workers:
+              assert w.get('status') == 'online', f"{w.get('id')} not online"
+              assert w.get('activation') == 'verified', f"{w.get('id')} not verified"
+              assert w.get('entrypoint'), f"{w.get('id')} missing entrypoint"
+          print('Worker registry: OK')
+          PY
+      - name: Compile research worker
+        run: python -m py_compile research.py
+      - name: Smoke test code worker
+        run: python workers/code_worker.py
+      - name: Smoke test data worker
+        run: python workers/data_worker.py
