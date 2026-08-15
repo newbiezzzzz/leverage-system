@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T07:20:00+08:00",
+  "generated_at":"2026-08-16T07:25:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -8,8 +8,8 @@
   "focus":"Technical analysis and strategy discovery",
   "capital_deployed":0,
   "currency":"RM",
-  "current_phase":"FCPO data validation + historical ingestion gate",
-  "next_phase":"Load larger validated MYX:FCPO1! history, then run out-of-sample and walk-forward backtests",
+  "current_phase":"FCPO historical-data acquisition",
+  "next_phase":"Validate imported MYX:FCPO1! dataset, then run out-of-sample and walk-forward backtests",
   "risk_gate":"REAL MONEY BLOCKED",
   "progress":39,
   "data_policy":"RM0 research stack; use permitted free/public data; cache locally; no scraping bypasses; no paid real-time feed dependency",
@@ -19,6 +19,8 @@
   "rejected_sources":["Investing.com CPOc1/CME reference — not Bursa MYX:FCPO1!"],
   "dataset_status":"20-session FCPO exploratory sample retained only as a development fixture; larger clean history still required",
   "validation_gate":"Dataset must pass schema/OHLCV integrity, timestamp ordering, minimum depth and source identity checks before strategy results can be published.",
-  "latest_result":"FCPO dataset validation gate added. The system now automatically rejects malformed, non-monotonic or insufficient history and prevents unverified/non-Bursa data from entering strategy evaluation.",
+  "boss_action_required":"Export daily MYX:FCPO1! chart history from TradingView to CSV and place the untouched file at data/incoming/fcpo_tradingview.csv",
+  "automation_after_upload":"Data Worker validates, normalizes, caches and feeds the backtest engine automatically",
+  "latest_result":"TradingView CSV ingestion path is ready. No repeated external API usage is required after the raw export is supplied. No strategy-performance claim is permitted before dataset validation.",
   "updated_by":"Leverage AI Manager"
 }
