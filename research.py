@@ -1,9 +1,6 @@
 import requests
 from datetime import datetime, timezone
-
-print("=" * 60)
-print("LEVERAGE MARKET DATA WORKER")
-print("=" * 60)
+from pathlib import Path
 
 url = "https://api.coingecko.com/api/v3/simple/price"
 
@@ -13,21 +10,32 @@ params = {
 }
 
 response = requests.get(url, params=params, timeout=30)
-
-if response.status_code != 200:
-    raise RuntimeError(
-        f"Market data request failed: {response.status_code}"
-    )
+response.raise_for_status()
 
 data = response.json()
 price = data["bitcoin"]["usd"]
 
-print("Worker status: ONLINE")
-print("Time:", datetime.now(timezone.utc).isoformat())
-print("BTC price:", f"${price:,.2f}")
-print("Data source: CoinGecko")
-print("Capital deployed: RM0")
+now = datetime.now(timezone.utc)
 
-print("=" * 60)
-print("Market data retrieved successfully.")
-print("=" * 60)
+report = f"""# Leverage Market Report
+
+Time: {now.isoformat()}
+
+## Market
+
+Bitcoin: ${price:,.2f}
+
+## System
+
+Worker: ONLINE
+Data source: CoinGecko
+Capital deployed: RM0
+
+## Status
+
+Market data retrieved successfully.
+"""
+
+Path("market_report.md").write_text(report)
+
+print(report)
