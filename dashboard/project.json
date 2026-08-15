@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T06:50:00+08:00",
+  "generated_at":"2026-08-16T06:55:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -8,15 +8,14 @@
   "focus":"Technical analysis and strategy discovery",
   "capital_deployed":0,
   "currency":"RM",
-  "current_phase":"Historical-data acquisition architecture",
-  "next_phase":"Load cached FCPO OHLCV dataset and run first backtest batch",
+  "current_phase":"Historical-data acquisition + multi-strategy screening",
+  "next_phase":"First FCPO out-of-sample and walk-forward backtest batch",
   "risk_gate":"REAL MONEY BLOCKED",
-  "progress":25,
-  "data_policy":"RM0 research stack; cache external data; one controlled acquisition then reuse locally; no paid real-time feed dependency",
+  "progress":30,
+  "data_policy":"RM0 research stack; use permitted free/public historical data, cache locally, avoid unnecessary API calls, no paid real-time feed dependency",
   "research_targets":["Trend-following","Momentum","Breakout","Mean reversion","Volatility","Price action","Volume confirmation","Multi-timeframe combinations"],
   "validation_rules":["Include realistic fees and conservative slippage","Separate in-sample and out-of-sample periods","Use walk-forward validation","Reject unstable or overfit strategies","Require parameter sensitivity checks","Evaluate different market regimes","Rank by risk-adjusted robustness, not raw profit"],
-  "latest_result":"Historical-data acquisition path identified: free public FCPO historical reference data plus MPOB fundamentals. Research worker now uses cached local data only; no strategy result is claimed until a real dataset is loaded.",
-  "official_context_sources":["Bursa Malaysia FCPO contract specifications","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data"],
-  "public_market_reference":"Investing.com FCPOc1 historical OHLCV is publicly viewable; treat it as a reference/import source and cache any acquired dataset for reuse.",
+  "data_sources":["Investing.com FCPOc1 public historical view/export where permitted","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data","Bursa Malaysia FCPO contract specifications"],
+  "latest_result":"FCPO historical-data source and cost policy documented; cached-data input template and multi-strategy screening engine are ready. No strategy is validated yet because the full historical dataset has not been loaded.",
   "updated_by":"Leverage AI Manager"
 }
