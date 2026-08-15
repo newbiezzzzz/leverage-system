@@ -14,14 +14,17 @@ jobs:
       - name: Run research worker
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python research.py
-
-      - name: Publish research report
-        if: always()
         run: |
-          if [ -f market_report.md ]; then
-            cat market_report.md >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "# Research Report" >> "$GITHUB_STEP_SUMMARY"
-            echo "market_report.md was not generated." >> "$GITHUB_STEP_SUMMARY"
-          fi
+          set +e
+          python research.py > worker_output.txt 2>&1
+          EXIT_CODE=$?
+
+          echo "# LEVERAGE WORKER DIAGNOSTIC" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo '```text' >> "$GITHUB_STEP_SUMMARY"
+          cat worker_output.txt >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Worker exit code: $EXIT_CODE" >> "$GITHUB_STEP_SUMMARY"
+
+          exit $EXIT_CODE
