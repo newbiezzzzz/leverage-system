@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T06:39:00+08:00",
+  "generated_at": "2026-08-16T06:45:00+08:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 30,
@@ -17,9 +17,9 @@
     ]
   },
   "workers": [
-    {"id":"research-worker","role":"market and opportunity research","status":"online","activation":"verified","entrypoint":"research.py","projects":["leverage"],"risk_level":"analysis-only"},
-    {"id":"code-worker","role":"code implementation and testing","status":"online","activation":"verified","entrypoint":"workers/code_worker.py","projects":["*"],"risk_level":"code-only"},
-    {"id":"data-worker","role":"data collection and preparation","status":"online","activation":"verified","entrypoint":"workers/data_worker.py","projects":["*"],"risk_level":"data-only"}
+    {"id":"research-worker","role":"FCPO market, technical and opportunity research","status":"online","activation":"verified","entrypoint":"research.py","projects":["fcpo-trading-research"],"risk_level":"analysis-only"},
+    {"id":"code-worker","role":"technical strategy implementation, backtesting and testing","status":"online","activation":"verified","entrypoint":"workers/code_worker.py","projects":["*"],"risk_level":"code-only"},
+    {"id":"data-worker","role":"FCPO data collection, cleaning and preparation","status":"online","activation":"verified","entrypoint":"workers/data_worker.py","projects":["*"],"risk_level":"data-only"}
   ],
   "tasks":{"queued":0,"running":0,"completed":0,"failed":0,"blocked":0,"cancelled":0},
   "cost":{"amount":0,"currency":"RM","target":"zero-cost","tracked":true},
@@ -27,13 +27,13 @@
     "asset":"FCPO",
     "project":"FCPO Trading Research",
     "observations":0,
-    "period":"research initialized",
+    "period":"Historical data + technical strategy discovery",
     "hourly_volatility":null,
     "large_movement_events":0,
-    "status":"FCPO technical-analysis research initialized",
-    "summary":"No validated strategy yet. Historical FCPO data acquisition and technical strategy discovery are in progress.",
+    "status":"Research in progress",
+    "summary":"FCPO research engine initialized. Historical FCPO data acquisition and technical strategy discovery are in progress. No strategy has been validated yet.",
     "risk_gate":"REAL MONEY BLOCKED"
   },
   "approvals":[],
-  "sync":{"source":"github","workflow":"live-project-state","run_id":"","conclusion":"updated","fresh":true,"synced_at":"2026-08-16T06:39:00+08:00"}
+  "sync":{"source":"github","workflow":"live-project-state","run_id":"","conclusion":"updated","fresh":true,"synced_at":"2026-08-16T06:45:00+08:00"}
 }
