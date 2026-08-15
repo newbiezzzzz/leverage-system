@@ -16,27 +16,89 @@ jobs:
       - name: Get project
         uses: actions/checkout@v4
 
-      - name: Build dashboard state
+      - name: Build authoritative dashboard state
         env:
           WORKFLOW_CONCLUSION: ${{ github.event.workflow_run.conclusion || 'manual' }}
           WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id || '' }}
         run: |
           python - <<'PY'
           import json
-          from pathlib import Path
+          import os
           from datetime import datetime, timezone
+          from pathlib import Path
 
-          p = Path('dashboard/data.json')
-          data = json.loads(p.read_text())
-          data['generated_at'] = datetime.now(timezone.utc).isoformat()
+          root = Path('.')
+          data_path = root / 'dashboard' / 'data.json'
+          milestones_path = root / 'control_plane' / 'milestones.json'
+          workers_path = root / 'control_plane' / 'workers.json'
+          tasks_path = root / 'control_plane' / 'tasks.json'
+          research_path = root / 'dashboard' / 'research.json'
+
+          data = json.loads(data_path.read_text())
+          milestones = json.loads(milestones_path.read_text()).get('milestones', [])
+          workers = json.loads(workers_path.read_text()).get('workers', [])
+          tasks = json.loads(tasks_path.read_text()).get('tasks', [])
+
+          # Progress is calculated from the authoritative milestone file.
+          if milestones:
+              overall = round(sum(float(m.get('progress', 0)) for m in milestones) / len(milestones))
+          else:
+              overall = 0
+
+          counts = {status: 0 for status in ['queued', 'running', 'completed', 'failed', 'blocked', 'cancelled']}
+          for task in tasks:
+              status = task.get('status')
+              if status in counts:
+                  counts[status] += 1
+
+          research = None
+          if research_path.exists():
+              try:
+                  research = json.loads(research_path.read_text())
+              except json.JSONDecodeError:
+                  research = None
+
+          conclusion = os.environ.get('WORKFLOW_CONCLUSION', 'manual')
+          run_id = os.environ.get('WORKFLOW_RUN_ID', '')
+          synced_at = datetime.now(timezone.utc).isoformat()
+          successful = conclusion in ('success', 'manual')
+
+          data['generated_at'] = synced_at
+          data['project']['overall_progress'] = overall
+          data['project']['phases'] = [
+              {k: m[k] for k in ('name', 'progress', 'status')}
+              for m in milestones
+          ]
+          data['workers'] = workers
+          data['tasks'] = counts
+          data['cost'] = {
+              'amount': 0,
+              'currency': 'RM',
+              'target': 'zero-cost',
+              'tracked': True
+          }
           data['sync'] = {
               'source': 'github-actions',
               'workflow': 'Leverage Research Worker',
-              'run_id': '${WORKFLOW_RUN_ID}',
-              'conclusion': '${WORKFLOW_CONCLUSION}',
-              'fresh': True
+              'run_id': run_id,
+              'conclusion': conclusion,
+              'fresh': successful,
+              'synced_at': synced_at
           }
-          p.write_text(json.dumps(data, indent=2) + '\\n')
+
+          if research:
+              data['latest_research'] = {
+                  'asset': research.get('asset'),
+                  'observations': research.get('observations'),
+                  'period': research.get('period'),
+                  'hourly_volatility': research.get('hourly_volatility'),
+                  'large_movement_events': research.get('large_movement_events'),
+                  'generated_at': research.get('generated_at'),
+                  'status': research.get('status'),
+                  'ai_analysis': research.get('ai_analysis')
+              }
+
+          data_path.write_text(json.dumps(data, indent=2) + '\n')
           PY
 
       - name: Commit dashboard state
@@ -44,5 +106,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dashboard/data.json
-          git diff --cached --quiet || git commit -m "chore: sync dashboard state"
+          git diff --cached --quiet || git commit -m "chore: sync authoritative dashboard state"
           git push
