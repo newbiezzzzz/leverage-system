@@ -1,286 +1,150 @@
+import csv
 import json
-import os
-import requests
-import statistics
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 
-# ============================================================
-# LEVERAGE RESEARCH WORKER
-# ============================================================
+"""FCPO research worker.
 
-API_KEY = os.environ.get("GEMINI_API_KEY")
-
-if not API_KEY:
-    raise RuntimeError("GEMINI_API_KEY is missing")
-
-print("LEVERAGE RESEARCH WORKER")
-print("=" * 60)
-
-# ============================================================
-# 1. GET BTC MARKET DATA
-# ============================================================
-
-url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
-params = {"vs_currency": "usd", "days": "30", "interval": "hourly"}
-
-response = requests.get(url, params=params, timeout=60)
-response.raise_for_status()
-market = response.json()
-prices = market["prices"]
-volumes = market["total_volumes"]
-
-print(f"Market observations: {len(prices)}")
-
-# ============================================================
-# 2. PREPARE PRICE DATA
-# ============================================================
-
-price_values = [item[1] for item in prices]
-volume_values = [item[1] for item in volumes]
-returns = []
-
-for i in range(1, len(price_values)):
-    previous_price = price_values[i - 1]
-    current_price = price_values[i]
-    returns.append((current_price / previous_price) - 1)
-
-# ============================================================
-# 3. BASIC STATISTICS
-# ============================================================
-
-average_return = statistics.mean(returns)
-volatility = statistics.stdev(returns) if len(returns) > 1 else 0
-positive_hours = sum(1 for r in returns if r > 0)
-negative_hours = sum(1 for r in returns if r < 0)
-largest_gain = max(returns)
-largest_loss = min(returns)
-
-# ============================================================
-# 4. LARGE PRICE MOVEMENTS
-# ============================================================
-
-large_events = []
-for i, hourly_return in enumerate(returns):
-    if abs(hourly_return) >= 0.005:
-        large_events.append({
-            "hour_index": i + 1,
-            "return": hourly_return,
-            "price": price_values[i + 1]
-        })
-
-# ============================================================
-# 5. CREATE RESEARCH DATA
-# ============================================================
-
-research_data = f"""
-PROJECT: LEVERAGE
-
-ASSET:
-Bitcoin (BTC)
-
-DATA PERIOD:
-30 days
-
-OBSERVATIONS:
-{len(price_values)}
-
-AVERAGE HOURLY RETURN:
-{average_return:.6f}
-
-HOURLY VOLATILITY:
-{volatility:.6f}
-
-POSITIVE HOURS:
-{positive_hours}
-
-NEGATIVE HOURS:
-{negative_hours}
-
-LARGEST HOURLY GAIN:
-{largest_gain:.4%}
-
-LARGEST HOURLY LOSS:
-{largest_loss:.4%}
-
-LARGE MOVEMENT EVENTS (>= 0.5% hourly):
-{len(large_events)}
-
-RECENT LARGE EVENTS:
-{large_events[-15:]}
+Research-only: no live orders, no paid real-time feed, no external API calls.
+Uses a cached local OHLCV dataset when available and performs deterministic
+technical-strategy screening with conservative transaction-cost/slippage inputs.
 """
 
-print()
-print("STATISTICS")
-print("=" * 60)
-print(research_data)
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT / "data" / "fcpo_ohlcv.csv"
+DASH = ROOT / "dashboard"
+DASH.mkdir(exist_ok=True)
+TIMESTAMP = datetime.now(timezone.utc).isoformat()
 
-# ============================================================
-# 6. SEND RESEARCH TO GEMINI
-# ============================================================
-
-prompt = f"""
-You are the AI research analyst for Project Leverage.
-
-Your job is NOT to blindly recommend trades.
-
-Analyze the evidence objectively.
-
-IMPORTANT RULES:
-
-1. Do not claim a profitable strategy exists unless the data
-   actually demonstrates it.
-2. Do not invent statistics or missing information.
-3. Clearly separate FACTS from HYPOTHESES.
-4. Identify weaknesses and possible biases.
-5. Do not recommend risking real money.
-6. Suggest the next experiment that would produce stronger evidence.
-7. Look for useful patterns that could potentially be automated.
-8. Remember that trading is a vehicle, not the final destination.
-9. Consider whether the technology could be reused for other
-   income-generating opportunities.
-
-MARKET RESEARCH DATA:
-
-{research_data}
-
-Produce a concise research report using exactly these sections:
-
-1. EXECUTIVE SUMMARY
-
-2. WHAT THE DATA SHOWS
-
-3. INTERESTING PATTERNS
-
-4. WHAT WE CANNOT CONCLUDE
-
-5. POSSIBLE RESEARCH HYPOTHESES
-
-6. NEXT EXPERIMENT
-
-7. NON-TRADING OPPORTUNITIES
-
-8. RESEARCHER CONFIDENCE
-
-For the confidence section, explain whether the current evidence
-is weak, moderate, or strong and why.
-"""
-
-gemini_url = (
-    "https://generativelanguage.googleapis.com/v1beta/"
-    "models/gemini-3.6-flash:generateContent"
-)
-
-payload = {"contents": [{"parts": [{"text": prompt}]}]}
-
-gemini_response = requests.post(
-    gemini_url,
-    headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY},
-    json=payload,
-    timeout=120
-)
-
-print()
-print("GEMINI HTTP STATUS:", gemini_response.status_code)
-
-if gemini_response.status_code != 200:
-    print("GEMINI API ERROR:")
-    print(gemini_response.text)
-    raise RuntimeError("Gemini API request failed")
-
-result = gemini_response.json()
-
-try:
-    analysis = result["candidates"][0]["content"]["parts"][0]["text"]
-except (KeyError, IndexError, TypeError):
-    print("Unexpected Gemini response:")
-    print(result)
-    raise RuntimeError("Could not extract Gemini response")
-
-# ============================================================
-# 7. WRITE AUTHORITATIVE MACHINE-READABLE RESULT
-# ============================================================
-
-timestamp = datetime.now(timezone.utc).isoformat()
-root = Path(__file__).resolve().parent
-
-dashboard_dir = root / "dashboard"
-dashboard_dir.mkdir(exist_ok=True)
-
-research_state = {
-    "generated_at": timestamp,
-    "worker": "research-worker",
-    "status": "success",
-    "asset": "Bitcoin (BTC)",
-    "period": "30 days",
-    "observations": len(price_values),
-    "average_hourly_return": average_return,
-    "hourly_volatility": volatility,
-    "positive_hours": positive_hours,
-    "negative_hours": negative_hours,
-    "largest_hourly_gain": largest_gain,
-    "largest_hourly_loss": largest_loss,
-    "large_movement_events": len(large_events),
-    "recent_large_events": large_events[-15:],
-    "ai_analysis": analysis
+CONFIG = {
+    "instrument": "FCPO",
+    "timeframes": ["5m", "15m", "1h", "4h", "1d"],
+    "strategy_families": [
+        "trend-following", "momentum", "breakout", "volatility",
+        "price-action", "volume-confirmation", "multi-timeframe"
+    ],
+    "validation": [
+        "realistic fees and slippage",
+        "in-sample versus out-of-sample split",
+        "walk-forward validation",
+        "parameter-stability checks",
+        "risk-adjusted ranking",
+        "reject overfit candidates"
+    ],
+    "risk_gate": "REAL MONEY BLOCKED",
+    "cost_policy": "RM0; cached data; no unnecessary API calls; no paid real-time dependency"
 }
 
-(dashboard_dir / "research.json").write_text(
-    json.dumps(research_state, indent=2),
-    encoding="utf-8"
-)
 
-# ============================================================
-# 8. CREATE HUMAN-READABLE REPORT
-# ============================================================
+def sma(values, n):
+    out = [math.nan] * len(values)
+    if len(values) < n:
+        return out
+    s = sum(values[:n])
+    out[n - 1] = s / n
+    for i in range(n, len(values)):
+        s += values[i] - values[i - n]
+        out[i] = s / n
+    return out
 
-report = f"""# LEVERAGE RESEARCH REPORT
 
-Generated:
-{timestamp}
+def load_ohlcv():
+    if not DATA.exists():
+        return []
+    with DATA.open("r", encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    out = []
+    for r in rows:
+        try:
+            out.append({
+                "timestamp": r.get("timestamp", ""),
+                "open": float(r["open"]),
+                "high": float(r["high"]),
+                "low": float(r["low"]),
+                "close": float(r["close"]),
+                "volume": float(r.get("volume", 0) or 0),
+            })
+        except (KeyError, TypeError, ValueError):
+            continue
+    return out
 
----
 
-## MARKET RESEARCH
+def simple_ma_cross(closes, fast, slow):
+    sf, ss = sma(closes, fast), sma(closes, slow)
+    equity = 1.0
+    peak = 1.0
+    max_dd = 0.0
+    trades = 0
+    pos = 0
+    entry = None
+    for i in range(len(closes)):
+        if math.isnan(sf[i]) or math.isnan(ss[i]):
+            continue
+        signal = 1 if sf[i] > ss[i] else 0
+        if signal != pos:
+            if pos and entry is not None:
+                equity *= max(0.0, 1.0 + (closes[i] / entry - 1.0) - 0.0008)
+                trades += 1
+            if signal:
+                entry = closes[i]
+            pos = signal
+        peak = max(peak, equity)
+        max_dd = max(max_dd, 1 - equity / peak)
+    if pos and entry is not None:
+        equity *= max(0.0, 1.0 + (closes[-1] / entry - 1.0) - 0.0008)
+        trades += 1
+    return {"return": equity - 1, "max_drawdown": max_dd, "trades": trades}
 
-{research_data}
 
----
+def main():
+    rows = load_ohlcv()
+    result = {
+        "generated_at": TIMESTAMP,
+        "worker": "research-worker",
+        "project": "FCPO Trading Research",
+        "instrument": "FCPO",
+        "status": "research_in_progress",
+        "mode": "research_only",
+        "observations": len(rows),
+        "strategy_candidates_tested": 0,
+        "validated_strategies": 0,
+        "strategy_results": [],
+        "data_source": "cached local dataset (no live feed)",
+        "data_policy": CONFIG["cost_policy"],
+        "risk_gate": CONFIG["risk_gate"],
+    }
 
-# AI ANALYSIS
+    if not rows:
+        result["latest_result"] = "FCPO dataset not yet available. Research worker is ready and waiting for cached OHLCV data."
+    else:
+        closes = [r["close"] for r in rows]
+        candidates = [(10, 30), (20, 50), (20, 100), (50, 200)]
+        scored = []
+        for fast, slow in candidates:
+            stats = simple_ma_cross(closes, fast, slow)
+            scored.append({"family": "trend-following", "name": f"SMA {fast}/{slow}", **stats})
+        result["strategy_candidates_tested"] = len(scored)
+        result["strategy_results"] = scored
+        result["latest_result"] = "Initial FCPO technical screen complete; candidates require out-of-sample and walk-forward validation."
+        result["status"] = "research_complete_initial_screen"
 
-{analysis}
+    (DASH / "research.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+    report = {
+        "project": "FCPO Trading Research",
+        "generated_at": TIMESTAMP,
+        "instrument": "FCPO",
+        "status": result["status"],
+        "observations": result["observations"],
+        "strategy_candidates_tested": result["strategy_candidates_tested"],
+        "strategy_results": result["strategy_results"],
+        "next_step": "Acquire/cache a permitted FCPO OHLCV dataset, then run technical strategy screening and walk-forward validation.",
+        "risk_gate": CONFIG["risk_gate"],
+        "cost_policy": CONFIG["cost_policy"]
+    }
+    (ROOT / "market_report.md").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    print(json.dumps(result, indent=2))
 
----
 
-# SYSTEM STATUS
-
-Market data: SUCCESS
-Statistics: SUCCESS
-AI analysis: SUCCESS
-
-Capital deployed: RM0
-
----
-
-Generated automatically by the
-Leverage Research Worker.
-"""
-
-(root / "market_report.md").write_text(report, encoding="utf-8")
-
-# ============================================================
-# 9. PRINT RESULT
-# ============================================================
-
-print()
-print("=" * 60)
-print("RESEARCH COMPLETE")
-print("=" * 60)
-print("AI analysis generated successfully.")
-print()
-print("Report saved as:")
-print("market_report.md")
-print("dashboard/research.json")
-print()
-print("LEVERAGE WORKER STATUS: ONLINE")
+if __name__ == "__main__":
+    main()
