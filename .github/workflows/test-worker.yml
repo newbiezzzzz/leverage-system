@@ -13,3 +13,9 @@ jobs:
 
       - name: Run research worker
         run: python research.py
+
+      - name: Save research report
+        uses: actions/upload-artifact@v4
+        with:
+          name: leverage-market-report
+          path: market_report.md
