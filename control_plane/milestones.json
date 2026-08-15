@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "milestones": [
+    {"id":"foundation","name":"Foundation & architecture","weight":1,"status":"complete"},
+    {"id":"research-worker","name":"Research Worker","weight":1,"status":"active"},
+    {"id":"control-plane","name":"Control Plane","weight":1,"status":"active"},
+    {"id":"dashboard","name":"Command Center","weight":1,"status":"active"},
+    {"id":"worker-automation","name":"Automatic worker triggering","weight":1,"status":"planned"},
+    {"id":"worker-communication","name":"Worker-to-worker communication","weight":1,"status":"planned"},
+    {"id":"ai-manager","name":"AI Manager","weight":1,"status":"planned"},
+    {"id":"opportunity-engine","name":"Opportunity research engine","weight":1,"status":"planned"},
+    {"id":"validated-income","name":"Validated income opportunity","weight":1,"status":"planned"}
+  ]
+}
