@@ -1,0 +1,15 @@
+{
+  "project":"FCPO Trading Research",
+  "instrument":"FCPO",
+  "status":"development_smoke_test_only",
+  "sample_rows":20,
+  "source":"Investing.com public FCPOc1 historical table",
+  "strategies":[
+    {"name":"SMA 3/5","long_only_return":0.012603690394204392,"note":"not statistically meaningful on this short sample"},
+    {"name":"SMA 3/8","long_only_return":0.02087649992744245,"note":"not statistically meaningful on this short sample"},
+    {"name":"SMA 5/10","long_only_return":0.01189961055819988,"note":"not statistically meaningful on this short sample"}
+  ],
+  "validated_strategies":0,
+  "real_money_allowed":false,
+  "next_step":"Acquire substantially larger historical FCPO dataset and repeat with in-sample, out-of-sample and walk-forward validation."
+}
