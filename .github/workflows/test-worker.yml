@@ -1,4 +1,4 @@
-name: Leverage Research Worker
+name: Leverage FCPO Research Worker
 
 on:
   workflow_dispatch:
@@ -14,15 +14,13 @@ jobs:
       - name: Get project
         uses: actions/checkout@v4
 
-      - name: Run research worker
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Run FCPO research worker
         run: |
           set +e
           python research.py > worker_output.txt 2>&1
           EXIT_CODE=$?
 
-          echo "# LEVERAGE WORKER DIAGNOSTIC" >> "$GITHUB_STEP_SUMMARY"
+          echo "# FCPO RESEARCH WORKER DIAGNOSTIC" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo '```text' >> "$GITHUB_STEP_SUMMARY"
           cat worker_output.txt >> "$GITHUB_STEP_SUMMARY"
@@ -34,10 +32,10 @@ jobs:
             exit "$EXIT_CODE"
           fi
 
-      - name: Publish research state
+      - name: Publish FCPO research state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add market_report.md dashboard/research.json
-          git diff --cached --quiet || git commit -m "chore: publish research result"
+          git diff --cached --quiet || git commit -m "chore: publish FCPO research state"
           git push
