@@ -1,0 +1,34 @@
+{
+  "generated_at":"2026-08-16T06:26:00+08:00",
+  "project_id":"fcpo-trading-research",
+  "name":"FCPO Trading Research",
+  "status":"active",
+  "mode":"research_only",
+  "instrument":"FCPO",
+  "focus":"Technical analysis and strategy discovery",
+  "capital_deployed":0,
+  "currency":"RM",
+  "current_phase":"Historical data + strategy research",
+  "next_phase":"Paper-trading validation",
+  "risk_gate":"REAL MONEY BLOCKED",
+  "progress":15,
+  "data_policy":"RM0 research stack; cache external data; avoid unnecessary API calls; no paid real-time feed dependency",
+  "research_targets":[
+    "Trend-following",
+    "Momentum",
+    "Breakout",
+    "Volatility",
+    "Price action",
+    "Volume confirmation",
+    "Multi-timeframe combinations"
+  ],
+  "validation_rules":[
+    "Include realistic fees and slippage",
+    "Separate in-sample and out-of-sample periods",
+    "Use walk-forward validation",
+    "Reject unstable or overfit strategies",
+    "Rank by risk-adjusted robustness, not raw profit"
+  ],
+  "latest_result":"Research engine initialized; no strategy has been validated yet.",
+  "updated_by":"Leverage AI Manager"
+}
