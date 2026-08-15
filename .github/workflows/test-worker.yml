@@ -16,8 +16,12 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python research.py
 
-      - name: Save research report
-        uses: actions/upload-artifact@v4
-        with:
-          name: leverage-market-report
-          path: market_report.md
+      - name: Publish research report
+        if: always()
+        run: |
+          if [ -f market_report.md ]; then
+            cat market_report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "# Research Report" >> "$GITHUB_STEP_SUMMARY"
+            echo "market_report.md was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
