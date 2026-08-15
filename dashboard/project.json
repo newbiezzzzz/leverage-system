@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T06:35:00+08:00",
+  "generated_at":"2026-08-16T06:50:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -8,31 +8,14 @@
   "focus":"Technical analysis and strategy discovery",
   "capital_deployed":0,
   "currency":"RM",
-  "current_phase":"FCPO data specification + strategy research engine",
-  "next_phase":"Historical-data acquisition and first backtest batch",
+  "current_phase":"FCPO data acquisition + technical strategy research",
+  "next_phase":"First FCPO historical-data backtest batch",
   "risk_gate":"REAL MONEY BLOCKED",
-  "progress":20,
+  "progress":25,
   "data_policy":"RM0 research stack; cache external data; avoid unnecessary API calls; no paid real-time feed dependency",
-  "research_targets":[
-    "Trend-following",
-    "Momentum",
-    "Breakout",
-    "Mean reversion",
-    "Volatility",
-    "Price action",
-    "Volume confirmation",
-    "Multi-timeframe combinations"
-  ],
-  "validation_rules":[
-    "Include realistic fees and conservative slippage",
-    "Separate in-sample and out-of-sample periods",
-    "Use walk-forward validation",
-    "Reject unstable or overfit strategies",
-    "Require parameter sensitivity checks",
-    "Evaluate different market regimes",
-    "Rank by risk-adjusted robustness, not raw profit"
-  ],
-  "latest_result":"FCPO research configuration completed; data acquisition and first technical-strategy backtest batch are next.",
+  "research_targets":["Trend-following","Momentum","Breakout","Mean reversion","Volatility","Price action","Volume confirmation","Multi-timeframe combinations"],
+  "validation_rules":["Include realistic fees and conservative slippage","Separate in-sample and out-of-sample periods","Use walk-forward validation","Reject unstable or overfit strategies","Require parameter sensitivity checks","Evaluate different market regimes","Rank by risk-adjusted robustness, not raw profit"],
+  "latest_result":"Dashboard and backend are aligned to FCPO. The former BTC/CoinGecko research worker has been replaced with an FCPO technical-research worker that uses cached local data and makes no external API calls during analysis. No trading strategy has been validated yet.",
   "official_context_sources":["Bursa Malaysia FCPO contract specifications","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data"],
   "updated_by":"Leverage AI Manager"
 }
