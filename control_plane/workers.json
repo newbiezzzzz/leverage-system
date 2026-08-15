@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "workers": [
+    {
+      "id": "research-worker",
+      "role": "market and opportunity research",
+      "status": "online",
+      "entrypoint": "research.py",
+      "projects": ["leverage"],
+      "risk_level": "analysis-only"
+    },
+    {
+      "id": "code-worker",
+      "role": "code implementation and testing",
+      "status": "planned",
+      "entrypoint": null,
+      "projects": ["*"],
+      "risk_level": "code-only"
+    },
+    {
+      "id": "data-worker",
+      "role": "data collection and preparation",
+      "status": "planned",
+      "entrypoint": null,
+      "projects": ["*"],
+      "risk_level": "data-only"
+    }
+  ]
+}
