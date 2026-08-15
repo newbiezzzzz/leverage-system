@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T06:55:00+08:00",
+  "generated_at":"2026-08-16T06:58:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -8,14 +8,15 @@
   "focus":"Technical analysis and strategy discovery",
   "capital_deployed":0,
   "currency":"RM",
-  "current_phase":"Historical-data acquisition + multi-strategy screening",
-  "next_phase":"First FCPO out-of-sample and walk-forward backtest batch",
+  "current_phase":"Exploratory FCPO dataset loaded + screening engine ready",
+  "next_phase":"Acquire a larger permitted historical dataset, then run out-of-sample and walk-forward backtests",
   "risk_gate":"REAL MONEY BLOCKED",
-  "progress":30,
+  "progress":32,
   "data_policy":"RM0 research stack; use permitted free/public historical data, cache locally, avoid unnecessary API calls, no paid real-time feed dependency",
   "research_targets":["Trend-following","Momentum","Breakout","Mean reversion","Volatility","Price action","Volume confirmation","Multi-timeframe combinations"],
   "validation_rules":["Include realistic fees and conservative slippage","Separate in-sample and out-of-sample periods","Use walk-forward validation","Reject unstable or overfit strategies","Require parameter sensitivity checks","Evaluate different market regimes","Rank by risk-adjusted robustness, not raw profit"],
   "data_sources":["Investing.com FCPOc1 public historical view/export where permitted","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data","Bursa Malaysia FCPO contract specifications"],
-  "latest_result":"FCPO historical-data source and cost policy documented; cached-data input template and multi-strategy screening engine are ready. No strategy is validated yet because the full historical dataset has not been loaded.",
+  "dataset_status":"20-session daily FCPO OHLCV seed sample cached locally; insufficient for robust strategy claims",
+  "latest_result":"Exploratory FCPO dataset successfully loaded and pipeline verified. No trading strategy is validated. Larger historical coverage is required before any performance conclusion.",
   "updated_by":"Leverage AI Manager"
 }
