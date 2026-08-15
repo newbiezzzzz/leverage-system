@@ -1,6 +1,12 @@
 name: Sync Leverage Dashboard
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "control_plane/quota_monitor.py"
+      - "control_plane/leverage_core.py"
+      - ".github/workflows/sync-dashboard.yml"
   workflow_run:
     workflows: ["Leverage Research Worker"]
     types: [completed]
@@ -46,23 +52,18 @@ jobs:
           workers = json.loads(workers_path.read_text()).get('workers', [])
           tasks = json.loads(tasks_path.read_text()).get('tasks', [])
 
-          if milestones:
-              overall = round(sum(float(m.get('progress', 0)) for m in milestones) / len(milestones))
-          else:
-              overall = 0
-
+          overall = round(sum(float(m.get('progress', 0)) for m in milestones) / len(milestones)) if milestones else 0
           counts = {status: 0 for status in ['queued', 'running', 'completed', 'failed', 'blocked', 'cancelled']}
           for task in tasks:
-              status = task.get('status')
-              if status in counts:
-                  counts[status] += 1
+              if task.get('status') in counts:
+                  counts[task['status']] += 1
 
           research = None
           if research_path.exists():
               try:
                   research = json.loads(research_path.read_text())
               except json.JSONDecodeError:
-                  research = None
+                  pass
 
           conclusion = os.environ.get('WORKFLOW_CONCLUSION', 'scheduled')
           run_id = os.environ.get('WORKFLOW_RUN_ID', '')
@@ -75,7 +76,7 @@ jobs:
           data['workers'] = workers
           data['tasks'] = counts
           data['cost'] = {'amount': 0, 'currency': 'RM', 'target': 'zero-cost', 'tracked': True}
-          data['sync'] = {'source': 'github-actions', 'workflow': 'Leverage Resource & Dashboard Sync', 'run_id': run_id, 'conclusion': conclusion, 'fresh': successful, 'synced_at': synced_at}
+          data['sync'] = {'source': 'github-actions', 'workflow': 'Sync Leverage Dashboard', 'run_id': run_id, 'conclusion': conclusion, 'fresh': successful, 'synced_at': synced_at}
 
           if research:
               data['latest_research'] = {
