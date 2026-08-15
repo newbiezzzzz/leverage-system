@@ -11,14 +11,15 @@
   "current_phase":"FCPO data-source validation + historical ingestion planning",
   "next_phase":"Load larger MYX:FCPO1! historical dataset, then run out-of-sample and walk-forward backtests",
   "risk_gate":"REAL MONEY BLOCKED",
-  "progress":36,
+  "progress":38,
   "data_policy":"RM0 research stack; use permitted free/public data; cache locally; no scraping bypasses; no paid real-time feed dependency",
   "research_targets":["Trend-following","Momentum","Breakout","Mean reversion","Volatility","Price action","Volume confirmation","Multi-timeframe combinations"],
   "validation_rules":["Include realistic fees and conservative slippage","Separate in-sample and out-of-sample periods","Use walk-forward validation","Reject unstable or overfit strategies","Require parameter sensitivity checks","Evaluate different market regimes","Rank by risk-adjusted robustness, not raw profit"],
   "data_sources":["TradingView MYX:FCPO1! continuous contract as primary market reference","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data","Bursa Malaysia FCPO contract specifications"],
   "rejected_sources":["Investing.com CPOc1/CME reference — rejected because it is not Bursa MYX:FCPO1!"],
   "dataset_status":"20-session FCPO exploratory sample retained only as a development fixture; not sufficient for research conclusions",
+  "dataset_gate":"Minimum 250 validated rows; preferred 750+; schema/provenance/contract-roll checks required before performance publication",
   "smoke_test":"SMA 3/5, 3/8 and 5/10 long-only screening completed on exploratory sample; development-only",
-  "latest_result":"Source audit completed. TradingView confirms chart data can be exported to CSV for the data visible on the chart; more historical data requires loading more history before export. No automated unrestricted data API is assumed. The project will only accept validated Bursa MYX:FCPO1! data and will not claim strategy performance from the seed sample.",
+  "latest_result":"FCPO dataset validation manifest added. The pipeline now explicitly rejects unrelated CPO instruments, requires provenance and contract-roll documentation, and blocks strategy-performance claims until a larger validated Bursa FCPO dataset is loaded.",
   "updated_by":"Leverage AI Manager"
 }
