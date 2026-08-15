@@ -1,5 +1,7 @@
 import os
 import requests
+from pathlib import Path
+from datetime import datetime, timezone
 
 api_key = os.environ.get("GEMINI_API_KEY")
 
@@ -38,15 +40,35 @@ response = requests.post(
     timeout=60
 )
 
-print("HTTP status:", response.status_code)
+report = f"""# Leverage AI Worker Test
+
+Time: {datetime.now(timezone.utc).isoformat()}
+
+HTTP Status: {response.status_code}
+
+"""
+
+if response.status_code == 200:
+    data = response.json()
+    text = data["candidates"][0]["content"]["parts"][0]["text"]
+
+    report += f"""Gemini Response:
+
+{text}
+
+STATUS: GEMINI CONNECTION SUCCESSFUL
+"""
+else:
+    report += f"""Gemini API Error:
+
+{response.text}
+
+STATUS: GEMINI CONNECTION FAILED
+"""
+
+Path("market_report.md").write_text(report)
+
+print(report)
 
 if response.status_code != 200:
-    print(response.text)
     raise RuntimeError("Gemini request failed")
-
-data = response.json()
-
-text = data["candidates"][0]["content"]["parts"][0]["text"]
-
-print("Gemini response:")
-print(text)
