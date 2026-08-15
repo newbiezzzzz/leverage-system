@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-16T00:00:00Z",
+  "policy": {
+    "target_cost": "RM 0.00",
+    "unknown_quota_action": "warn_and_do_not_assume_unlimited",
+    "thresholds": {"safe_max_percent":70,"watch_max_percent":85,"warning_max_percent":95}
+  },
+  "resources": [
+    {"id":"github-actions-public","provider":"GitHub Actions","metric":"standard runner usage","limit":"Free for standard runners in public repositories","reset":"not a monthly allowance; subject to GitHub limits","usage":"tracked from workflow runs where available","quota_verified":true,"status":"safe"},
+    {"id":"github-actions-private","provider":"GitHub Actions","metric":"included minutes","limit":"2,000 minutes/month on GitHub Free private repositories","reset":"billing-cycle monthly","usage":"not applicable while repository is public","quota_verified":true,"status":"not_applicable"},
+    {"id":"github-api","provider":"GitHub API","metric":"authenticated requests","limit":"5,000 requests/hour (general authenticated limit)","reset":"hourly rate-limit window","usage":"must be queried from API rate-limit headers/endpoints; not inferred","quota_verified":true,"status":"monitor"},
+    {"id":"github-token-api","provider":"GitHub API / GITHUB_TOKEN","metric":"requests","limit":"1,000 requests/hour per repository","reset":"hourly rate-limit window","usage":"must be queried from API rate-limit state; not inferred","quota_verified":true,"status":"monitor"},
+    {"id":"github-pages-storage","provider":"GitHub Pages","metric":"published site size","limit":"1 GB","reset":"none; persistent site limit","usage":"repository/site size must be measured","quota_verified":true,"status":"monitor"},
+    {"id":"github-pages-bandwidth","provider":"GitHub Pages","metric":"bandwidth","limit":"100 GB/month soft limit","reset":"monthly","usage":"not directly exposed as a simple live counter; estimate only when reliable","quota_verified":true,"status":"monitor"},
+    {"id":"gemini","provider":"Google Gemini API","metric":"RPM / TPM / RPD","limit":"model/project/tier dependent; exact active quota must be read from Google AI Studio/API metadata","reset":"RPD daily at midnight Pacific; RPM/TPM are rolling time-window limits","usage":"track Leverage requests/tokens; never treat observed usage as provider quota","quota_verified":false,"status":"unknown_quota_safe_mode"}
+  ]
+}
