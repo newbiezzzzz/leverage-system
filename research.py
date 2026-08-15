@@ -1,7 +1,9 @@
+import json
 import os
 import requests
 import statistics
 from datetime import datetime, timezone
+from pathlib import Path
 
 # ============================================================
 # LEVERAGE RESEARCH WORKER
@@ -20,23 +22,11 @@ print("=" * 60)
 # ============================================================
 
 url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
+params = {"vs_currency": "usd", "days": "30", "interval": "hourly"}
 
-params = {
-    "vs_currency": "usd",
-    "days": "30",
-    "interval": "hourly"
-}
-
-response = requests.get(
-    url,
-    params=params,
-    timeout=60
-)
-
+response = requests.get(url, params=params, timeout=60)
 response.raise_for_status()
-
 market = response.json()
-
 prices = market["prices"]
 volumes = market["total_volumes"]
 
@@ -48,39 +38,21 @@ print(f"Market observations: {len(prices)}")
 
 price_values = [item[1] for item in prices]
 volume_values = [item[1] for item in volumes]
-
 returns = []
 
 for i in range(1, len(price_values)):
     previous_price = price_values[i - 1]
     current_price = price_values[i]
-
-    hourly_return = (current_price / previous_price) - 1
-
-    returns.append(hourly_return)
+    returns.append((current_price / previous_price) - 1)
 
 # ============================================================
 # 3. BASIC STATISTICS
 # ============================================================
 
 average_return = statistics.mean(returns)
-
-volatility = (
-    statistics.stdev(returns)
-    if len(returns) > 1
-    else 0
-)
-
-positive_hours = sum(
-    1 for r in returns
-    if r > 0
-)
-
-negative_hours = sum(
-    1 for r in returns
-    if r < 0
-)
-
+volatility = statistics.stdev(returns) if len(returns) > 1 else 0
+positive_hours = sum(1 for r in returns if r > 0)
+negative_hours = sum(1 for r in returns if r < 0)
 largest_gain = max(returns)
 largest_loss = min(returns)
 
@@ -89,11 +61,8 @@ largest_loss = min(returns)
 # ============================================================
 
 large_events = []
-
 for i, hourly_return in enumerate(returns):
-
     if abs(hourly_return) >= 0.005:
-
         large_events.append({
             "hour_index": i + 1,
             "return": hourly_return,
@@ -202,24 +171,11 @@ gemini_url = (
     "models/gemini-3.6-flash:generateContent"
 )
 
-payload = {
-    "contents": [
-        {
-            "parts": [
-                {
-                    "text": prompt
-                }
-            ]
-        }
-    ]
-}
+payload = {"contents": [{"parts": [{"text": prompt}]}]}
 
 gemini_response = requests.post(
     gemini_url,
-    headers={
-        "Content-Type": "application/json",
-        "x-goog-api-key": API_KEY
-    },
+    headers={"Content-Type": "application/json", "x-goog-api-key": API_KEY},
     json=payload,
     timeout=120
 )
@@ -228,45 +184,55 @@ print()
 print("GEMINI HTTP STATUS:", gemini_response.status_code)
 
 if gemini_response.status_code != 200:
-
     print("GEMINI API ERROR:")
     print(gemini_response.text)
-
-    raise RuntimeError(
-        "Gemini API request failed"
-    )
+    raise RuntimeError("Gemini API request failed")
 
 result = gemini_response.json()
 
-# ============================================================
-# 7. EXTRACT AI RESPONSE
-# ============================================================
-
 try:
-
-    analysis = (
-        result["candidates"][0]
-        ["content"]
-        ["parts"][0]
-        ["text"]
-    )
-
+    analysis = result["candidates"][0]["content"]["parts"][0]["text"]
 except (KeyError, IndexError, TypeError):
-
     print("Unexpected Gemini response:")
     print(result)
-
-    raise RuntimeError(
-        "Could not extract Gemini response"
-    )
+    raise RuntimeError("Could not extract Gemini response")
 
 # ============================================================
-# 8. CREATE FINAL REPORT
+# 7. WRITE AUTHORITATIVE MACHINE-READABLE RESULT
 # ============================================================
 
-timestamp = datetime.now(
-    timezone.utc
-).isoformat()
+timestamp = datetime.now(timezone.utc).isoformat()
+root = Path(__file__).resolve().parent
+
+dashboard_dir = root / "dashboard"
+dashboard_dir.mkdir(exist_ok=True)
+
+research_state = {
+    "generated_at": timestamp,
+    "worker": "research-worker",
+    "status": "success",
+    "asset": "Bitcoin (BTC)",
+    "period": "30 days",
+    "observations": len(price_values),
+    "average_hourly_return": average_return,
+    "hourly_volatility": volatility,
+    "positive_hours": positive_hours,
+    "negative_hours": negative_hours,
+    "largest_hourly_gain": largest_gain,
+    "largest_hourly_loss": largest_loss,
+    "large_movement_events": len(large_events),
+    "recent_large_events": large_events[-15:],
+    "ai_analysis": analysis
+}
+
+(dashboard_dir / "research.json").write_text(
+    json.dumps(research_state, indent=2),
+    encoding="utf-8"
+)
+
+# ============================================================
+# 8. CREATE HUMAN-READABLE REPORT
+# ============================================================
 
 report = f"""# LEVERAGE RESEARCH REPORT
 
@@ -301,13 +267,7 @@ Generated automatically by the
 Leverage Research Worker.
 """
 
-with open(
-    "market_report.md",
-    "w",
-    encoding="utf-8"
-) as report_file:
-
-    report_file.write(report)
+(root / "market_report.md").write_text(report, encoding="utf-8")
 
 # ============================================================
 # 9. PRINT RESULT
@@ -317,12 +277,10 @@ print()
 print("=" * 60)
 print("RESEARCH COMPLETE")
 print("=" * 60)
-
 print("AI analysis generated successfully.")
-
 print()
 print("Report saved as:")
 print("market_report.md")
-
+print("dashboard/research.json")
 print()
 print("LEVERAGE WORKER STATUS: ONLINE")
