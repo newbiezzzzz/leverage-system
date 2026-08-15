@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>Leverage Command Center</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">L</span><div><strong>LEVERAGE</strong><small>COMMAND CENTER</small></div></div>
+      <div class="top-actions"><span class="live-dot"></span><span>System online</span><button id="refreshBtn" class="ghost">Refresh</button></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div><p class="eyebrow">OWNER DASHBOARD</p><h1>Good evening, Boss.</h1><p class="muted">One place to see what the company is doing, what it learned, and what needs your attention.</p></div>
+        <div class="hero-badge"><span>RM</span><strong id="cost">0.00</strong><small>tracked cost</small></div>
+      </section>
+
+      <section class="grid stats">
+        <article class="card stat"><span>System</span><strong class="green">ONLINE</strong><small id="lastUpdated">Loading...</small></article>
+        <article class="card stat"><span>Workers</span><strong id="workerCount">3</strong><small id="workerSummary">1 active · 2 planned</small></article>
+        <article class="card stat"><span>Active tasks</span><strong id="taskCount">0</strong><small>Across all projects</small></article>
+        <article class="card stat"><span>Projects</span><strong id="projectCount">1</strong><small>Reusable infrastructure</small></article>
+      </section>
+
+      <section class="grid main-grid">
+        <article class="card panel project-panel">
+          <div class="panel-head"><div><p class="eyebrow">PROJECTS</p><h2>Company overview</h2></div><span class="pill green-pill">ACTIVE</span></div>
+          <div class="project-row"><div class="project-icon">₿</div><div class="grow"><strong>BTC Research</strong><span>Market opportunity discovery</span></div><span class="status"><i></i>Running</span></div>
+          <div class="progress"><span style="width:25%"></span></div><div class="progress-label"><span>Leverage overall build</span><b>25%</b></div>
+          <div class="divider"></div>
+          <div class="project-row dim"><div class="project-icon">✦</div><div class="grow"><strong>AI SaaS</strong><span>Future project</span></div><span class="status neutral">Planned</span></div>
+          <div class="project-row dim"><div class="project-icon">◆</div><div class="grow"><strong>Digital Products</strong><span>Future project</span></div><span class="status neutral">Planned</span></div>
+        </article>
+
+        <article class="card panel workers-panel">
+          <div class="panel-head"><div><p class="eyebrow">EMPLOYEES</p><h2>Worker fleet</h2></div><span class="pill">3 registered</span></div>
+          <div class="worker"><div class="avatar research">R</div><div class="grow"><strong>Research Worker</strong><span>Market & opportunity research</span></div><span class="worker-state online">ONLINE</span></div>
+          <div class="worker"><div class="avatar code">C</div><div class="grow"><strong>Code Worker</strong><span>Implementation & testing</span></div><span class="worker-state planned">PLANNED</span></div>
+          <div class="worker"><div class="avatar data">D</div><div class="grow"><strong>Data Worker</strong><span>Collection & preparation</span></div><span class="worker-state planned">PLANNED</span></div>
+        </article>
+      </section>
+
+      <section class="grid lower-grid">
+        <article class="card panel result-panel">
+          <div class="panel-head"><div><p class="eyebrow">LATEST INTELLIGENCE</p><h2>Research result</h2></div><span class="pill green-pill">SUCCESS</span></div>
+          <div class="result-title"><span class="spark">⌁</span><div><strong>Bitcoin — 30 day hourly analysis</strong><span>Research Worker · latest completed run</span></div></div>
+          <div class="metrics"><div><b>721</b><span>observations</span></div><div><b>0.279%</b><span>hourly volatility</span></div><div><b>51</b><span>large events</span></div><div><b>−0.0033%</b><span>avg hourly return</span></div></div>
+          <div class="insight"><span>AI</span><div><strong>Current research position</strong><p>Large BTC movements are observable, but the current dataset does not establish a predictive trading edge yet. The next useful experiment is to test whether unusual volume and price movement predict future returns.</p></div></div>
+        </article>
+
+        <article class="card panel attention-panel">
+          <div class="panel-head"><div><p class="eyebrow">BOSS VIEW</p><h2>Attention</h2></div></div>
+          <div class="attention good"><span>✓</span><div><strong>No approval needed</strong><p>No live trading or money-moving action is authorized.</p></div></div>
+          <div class="attention"><span>→</span><div><strong>Next milestone</strong><p>Connect automatic worker triggering to the Control Plane.</p></div></div>
+          <div class="attention"><span>◎</span><div><strong>Cost guard</strong><p>Target remains RM0.00. Free-tier usage controls will be built in.</p></div></div>
+        </article>
+      </section>
+
+      <section class="card panel activity-panel">
+        <div class="panel-head"><div><p class="eyebrow">ACTIVITY</p><h2>What the company is doing</h2></div><span class="muted">Live data will connect here</span></div>
+        <div class="timeline"><div><span class="timeline-dot done"></span><div><strong>Research Worker completed BTC analysis</strong><small>30-day dataset · Gemini analysis successful</small></div><time>Latest</time></div><div><span class="timeline-dot done"></span><div><strong>Control Plane dispatcher created</strong><small>Task validation and worker routing enabled</small></div><time>Done</time></div><div><span class="timeline-dot next"></span><div><strong>Automatic worker triggering</strong><small>Next infrastructure milestone</small></div><time>Next</time></div></div>
+      </section>
+
+      <footer><span>LEVERAGE v0.1 · Zero-cost architecture</span><span>GitHub is the factory floor. This is the owner's view.</span></footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
