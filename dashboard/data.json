@@ -1,32 +1,118 @@
 {
-  "generated_at": "2026-08-16T00:00:00Z",
+  "generated_at": "2026-08-15T19:56:19.414973+00:00",
   "project": {
     "name": "Project Leverage",
-    "overall_progress": 25,
+    "overall_progress": 34,
     "goal": "Build a zero-cost, reusable AI/data/automation platform that can research opportunities, test ideas, and automate execution with minimal Boss involvement.",
     "phases": [
-      {"name":"Foundation & architecture","progress":100,"status":"complete"},
-      {"name":"Research Worker","progress":80,"status":"active"},
-      {"name":"Control Plane","progress":45,"status":"active"},
-      {"name":"Worker automation","progress":10,"status":"planned"},
-      {"name":"Opportunity engine","progress":5,"status":"planned"},
-      {"name":"Validated income opportunity","progress":0,"status":"future"}
+      {
+        "name": "Foundation & architecture",
+        "progress": 100,
+        "status": "complete"
+      },
+      {
+        "name": "Research Worker",
+        "progress": 80,
+        "status": "active"
+      },
+      {
+        "name": "Control Plane",
+        "progress": 45,
+        "status": "active"
+      },
+      {
+        "name": "Command Center",
+        "progress": 70,
+        "status": "active"
+      },
+      {
+        "name": "Automatic worker triggering",
+        "progress": 10,
+        "status": "planned"
+      },
+      {
+        "name": "Worker-to-worker communication",
+        "progress": 0,
+        "status": "planned"
+      },
+      {
+        "name": "AI Manager",
+        "progress": 0,
+        "status": "planned"
+      },
+      {
+        "name": "Opportunity research engine",
+        "progress": 5,
+        "status": "planned"
+      },
+      {
+        "name": "Validated income opportunity",
+        "progress": 0,
+        "status": "planned"
+      }
     ]
   },
   "workers": [
-    {"id":"research-worker","status":"online","role":"Market and opportunity research"},
-    {"id":"code-worker","status":"planned","role":"Code implementation and testing"},
-    {"id":"data-worker","status":"planned","role":"Data collection and preparation"}
+    {
+      "id": "research-worker",
+      "role": "market and opportunity research",
+      "status": "online",
+      "entrypoint": "research.py",
+      "projects": [
+        "leverage"
+      ],
+      "risk_level": "analysis-only"
+    },
+    {
+      "id": "code-worker",
+      "role": "code implementation and testing",
+      "status": "planned",
+      "entrypoint": null,
+      "projects": [
+        "*"
+      ],
+      "risk_level": "code-only"
+    },
+    {
+      "id": "data-worker",
+      "role": "data collection and preparation",
+      "status": "planned",
+      "entrypoint": null,
+      "projects": [
+        "*"
+      ],
+      "risk_level": "data-only"
+    }
   ],
-  "tasks": {"queued":0,"running":0,"completed":0,"failed":0,"blocked":0},
-  "cost": {"amount":0,"currency":"RM","target":"zero-cost"},
-  "latest_research": {
-    "asset":"Bitcoin (BTC)",
-    "observations":721,
-    "period":"30 days",
-    "hourly_volatility":0.00279,
-    "large_movement_events":51,
-    "status":"AI analysis generated successfully"
+  "tasks": {
+    "queued": 0,
+    "running": 0,
+    "completed": 0,
+    "failed": 0,
+    "blocked": 0,
+    "cancelled": 0
   },
-  "approvals": []
+  "cost": {
+    "amount": 0,
+    "currency": "RM",
+    "target": "zero-cost",
+    "tracked": true
+  },
+  "latest_research": {
+    "asset": "Bitcoin (BTC)",
+    "observations": 721,
+    "period": "30 days",
+    "hourly_volatility": 0.00279,
+    "large_movement_events": 51,
+    "status": "AI analysis generated successfully"
+  },
+  "approvals": [],
+  "sync": {
+    "source": "github-actions",
+    "workflow": "Leverage Research Worker",
+    "run_id": "31891980647",
+    "conclusion": "success",
+    "fresh": true,
+    "synced_at": "2026-08-15T19:56:19.414973+00:00"
+  }
 }
