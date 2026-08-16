@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T22:05:00+08:00",
+  "generated_at":"2026-08-16T22:12:00+08:00",
   "project_id":"technical-strategy-lab",
   "name":"Technical Strategy Lab",
   "status":"active",
@@ -16,8 +16,8 @@
   "progress_basis":"Execution progress across the Technical Strategy Lab, not trading profitability. System build and income validation are tracked separately.",
   "system_build_progress":94,
   "income_validation_progress":0,
-  "current_phase":"BTCUSDT acquisition workflow ready; dataset execution pending",
-  "next_phase":"Run the BTCUSDT acquisition workflow, validate 250+ rows, then complete XAUUSDT and CL source validation",
+  "current_phase":"BTCUSDT acquisition worker fixed; successful validation rerun pending",
+  "next_phase":"Rerun BTCUSDT acquisition, validate 250+ rows, then complete XAUUSDT and CL source validation",
   "risk_gate":"REAL MONEY BLOCKED",
   "data_policy":"RM0 research stack; permitted public/export access only; preserve raw files; no scraping bypass; no paid real-time feed dependency",
   "strategy_families":["Trend following","Momentum","Breakout","Mean reversion","Volatility/regime filters","Price action","Volume confirmation where meaningful","Multi-timeframe confirmation"],
@@ -26,11 +26,11 @@
   "data_sources":["BTCUSDT: Binance historical klines/downloadable market data","XAUUSDT: public historical XAU/USD daily dataset candidates, subject to source identity validation","CL: public WTI/CL historical futures candidates, subject to continuous-contract and roll validation","FCPO: legitimate public/authorized Bursa-related sources under active investigation"],
   "supporting_sources":["Kenanga Futures FCPO Daily Preview PDFs","TA Futures current-day FCPO market prices"],
   "rejected_sources":["Public QuantConnect-referenced Dropbox FCPO CSV candidate — rejected after sample values matched published NIFTY data rather than verified FCPO","TradingView MYX:FCPO1! CSV — paid-plan export, not RM0 core","Moomoo OpenAPI as production FCPO source — unsupported in current official API market-data matrix"],
-  "dataset_status":"BTCUSDT acquisition is executable via GitHub Actions; no dataset is marked approved until the workflow produces and validates >=250 rows",
+  "dataset_status":"BTCUSDT workflow previously reached the acquisition step but failed because the Worker lacked the CLI arguments required by the workflow. The Worker has now been fixed. No dataset is approved until a rerun produces and validates >=250 rows.",
   "dataset_gate":"Minimum 250 validated rows per instrument for initial benchmark; preferred 750+; provenance, instrument identity, schema, OHLCV integrity and contract/roll checks required",
-  "current_work":["Shared multi-market OHLCV validator committed","Canonical instrument specifications committed","Data-source matrix and ingestion plan committed","Projects page converted from FCPO-only to Technical Strategy Lab","BTCUSDT daily Binance ingestion adapter committed","GitHub Actions acquisition workflow committed (manual dispatch, 500-row target, 250-row validation gate, artifact retention)","Next: execute BTCUSDT workflow and publish validation result","XAUUSDT and CL source validation follow","FCPO remains parallel and does not block the research engine"],
-  "boss_action_required":"No payment required. No paid export is required. The BTCUSDT acquisition job is ready to run from GitHub Actions.",
+  "current_work":["Shared multi-market OHLCV validator committed","Canonical instrument specifications committed","Data-source matrix and ingestion plan committed","Projects page converted from FCPO-only to Technical Strategy Lab","BTCUSDT daily Binance ingestion adapter committed","Diagnosed failed BTCUSDT acquisition: workflow passed setup/dependencies but Worker exited at acquisition because --rows/--output CLI support was missing","Fixed BTCUSDT Worker CLI argument parsing and CSV output","Next: rerun BTCUSDT workflow and publish validation result","XAUUSDT and CL source validation follow","FCPO remains parallel and does not block the research engine"],
+  "boss_action_required":"No payment required. No paid export is required. The remaining blocker is successful execution of the corrected BTCUSDT GitHub Actions job.",
   "automation_after_acquisition":"The acquisition workflow downloads Binance BTCUSDT daily klines, normalizes them to the shared OHLCV schema, enforces the 250-row validation gate and preserves the approved CSV as a GitHub Actions artifact.",
-  "latest_result":"BTCUSDT acquisition is no longer a design-only task: the reusable adapter, validator and reproducible GitHub Actions workflow are committed. Actual row-count approval remains pending workflow execution; no false dataset result is published.",
+  "latest_result":"The first BTCUSDT workflow run failed at acquisition before validation. Root cause was identified in the Worker implementation: the workflow passed --rows and --output but the script did not parse CLI arguments. The Worker has been corrected. No false dataset result is published.",
   "updated_by":"Leverage AI Manager"
 }
