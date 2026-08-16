@@ -1,14 +1,15 @@
 {
-  "version": 4,
+  "version": 5,
   "milestones": [
     {"id":"foundation","name":"Foundation & architecture","progress":100,"status":"complete"},
     {"id":"worker-fleet","name":"Core worker fleet","progress":100,"status":"complete"},
     {"id":"control-plane","name":"Control Plane","progress":65,"status":"active"},
-    {"id":"dashboard","name":"Command Center","progress":85,"status":"active"},
-    {"id":"trading-research","name":"FCPO trading research engine","progress":30,"status":"active"},
-    {"id":"paper-trading","name":"FCPO paper-trading validation","progress":0,"status":"planned"},
-    {"id":"strategy-validation","name":"FCPO strategy validation","progress":0,"status":"planned"},
-    {"id":"live-trading-gate","name":"FCPO live-trading safety gate","progress":0,"status":"planned"},
-    {"id":"validated-income","name":"Validated FCPO trading income opportunity","progress":0,"status":"planned"}
+    {"id":"owner-command-center","name":"Owner Command Center","progress":90,"status":"active"},
+    {"id":"customer-workspace","name":"Customer Trading Workspace","progress":95,"status":"active"},
+    {"id":"strategy-testing","name":"Reusable Strategy Testing","progress":25,"status":"active"},
+    {"id":"market-data-expansion","name":"Multi-market data expansion","progress":30,"status":"active"},
+    {"id":"validation-gates","name":"Out-of-sample, walk-forward & sensitivity gates","progress":0,"status":"planned"},
+    {"id":"paper-trading","name":"Paper-trading validation","progress":0,"status":"planned"},
+    {"id":"income-asset","name":"Validated trading income asset","progress":0,"status":"planned"}
   ]
 }
