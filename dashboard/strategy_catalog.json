@@ -1,0 +1,33 @@
+{
+  "product":"Leverage Strategy Toolkit",
+  "purpose":"Give the customer the tools and building blocks to design, test, compare and refine their own trading strategy.",
+  "selection_policy":"The customer chooses the strategy, indicators, parameters and rules. Leverage provides research tools and evidence; it does not automatically declare a winning strategy.",
+  "strategy_blocks":{
+    "trend":["SMA","EMA","WMA","HMA","VWAP","Supertrend","MACD","ADX","Aroon","Parabolic SAR"],
+    "momentum":["RSI","Stochastic","Stochastic RSI","ROC","CCI","Williams %R","Momentum"],
+    "volatility":["ATR","Bollinger Bands","Keltner Channels","Donchian Channels","Historical Volatility","Standard Deviation"],
+    "volume":["Volume","OBV","CMF","MFI","VWMA","Volume Rate of Change"],
+    "market_structure":["Support/Resistance","Swing High/Low","Higher High / Higher Low","Lower High / Lower Low","Break of Structure","Range Detection"],
+    "price_action":["Candlestick patterns","Engulfing","Pin Bar","Inside Bar","Gap detection","Breakout / Retest"],
+    "regime":["Trend / Range classifier","High / Low volatility regime","Momentum regime","Session filter","Time-of-day filter"]
+  },
+  "strategy_templates":["Trend following","Momentum continuation","Breakout","Mean reversion","Pullback","Range trading","Price action","Multi-timeframe confirmation","Indicator combination","Custom rule strategy"],
+  "customer_tools":[
+    {"id":"chart","name":"Interactive Chart","purpose":"Inspect price, overlays, indicators and signals."},
+    {"id":"indicator_lab","name":"Indicator Lab","purpose":"Add, remove and configure indicators."},
+    {"id":"strategy_builder","name":"Strategy Builder","purpose":"Combine conditions into customer-defined entry, exit and filter rules."},
+    {"id":"parameter_lab","name":"Parameter Lab","purpose":"Compare parameter values without silently selecting a winner."},
+    {"id":"backtester","name":"Backtester","purpose":"Test customer-defined rules with fees and slippage."},
+    {"id":"oos","name":"Out-of-Sample Test","purpose":"Reserve unseen data to challenge a strategy after design."},
+    {"id":"walk_forward","name":"Walk-Forward Analysis","purpose":"Repeat train/test windows to test stability over time."},
+    {"id":"sensitivity","name":"Parameter Sensitivity","purpose":"See whether performance collapses when parameters move slightly."},
+    {"id":"risk","name":"Risk & Position Sizing","purpose":"Calculate position size, stop distance, risk per trade and exposure."},
+    {"id":"comparison","name":"Strategy Comparison","purpose":"Compare customer-created strategies using consistent metrics."},
+    {"id":"paper","name":"Paper Trading","purpose":"Run a selected customer strategy without real capital."},
+    {"id":"journal","name":"Trade Journal","purpose":"Record decisions, results and lessons."},
+    {"id":"export","name":"Research Export","purpose":"Export charts, metrics, trades and configurations."}
+  ],
+  "common_metrics":["Net return","Max drawdown","Profit factor","Sharpe ratio","Sortino ratio","Win rate","Average trade","Trade count","Exposure","Fees paid","Slippage cost","Equity curve"],
+  "customer_flow":["Choose instrument","Choose indicators / strategy template","Build rules","Backtest","Inspect risk","Run out-of-sample","Run walk-forward / sensitivity","Paper trade","Customer decides whether to use it"],
+  "automation_boundary":"Automation may calculate, visualize, compare and validate. It must not silently select or market a strategy as the best strategy for the customer."
+}
