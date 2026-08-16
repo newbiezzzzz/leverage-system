@@ -10,6 +10,10 @@ on:
         type: string
   push:
     branches: [main]
+    paths:
+      - 'workers/data_worker/binance_btcusdt_daily.py'
+      - 'workers/data_worker/multi_market_ohlcv.py'
+      - '.github/workflows/acquire-btcusdt.yml'
 
 jobs:
   acquire:
