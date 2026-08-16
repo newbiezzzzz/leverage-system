@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-16T14:30:23.235508+00:00",
+  "generated_at": "2026-08-16T15:28:39.543556+00:00",
   "project": {
     "name": "Project Leverage",
-    "overall_progress": 42,
+    "overall_progress": 50,
     "goal": "Build a zero-cost, reusable AI/data/automation platform that can research opportunities, test ideas, and automate execution with minimal Boss involvement.",
     "phases": [
       {
@@ -21,32 +21,37 @@
         "status": "active"
       },
       {
-        "name": "Command Center",
-        "progress": 85,
+        "name": "Owner Command Center",
+        "progress": 90,
         "status": "active"
       },
       {
-        "name": "FCPO trading research engine",
+        "name": "Customer Trading Workspace",
+        "progress": 95,
+        "status": "active"
+      },
+      {
+        "name": "Reusable Strategy Testing",
+        "progress": 25,
+        "status": "active"
+      },
+      {
+        "name": "Multi-market data expansion",
         "progress": 30,
         "status": "active"
       },
       {
-        "name": "FCPO paper-trading validation",
+        "name": "Out-of-sample, walk-forward & sensitivity gates",
         "progress": 0,
         "status": "planned"
       },
       {
-        "name": "FCPO strategy validation",
+        "name": "Paper-trading validation",
         "progress": 0,
         "status": "planned"
       },
       {
-        "name": "FCPO live-trading safety gate",
-        "progress": 0,
-        "status": "planned"
-      },
-      {
-        "name": "Validated FCPO trading income opportunity",
+        "name": "Validated trading income asset",
         "progress": 0,
         "status": "planned"
       }
@@ -102,13 +107,13 @@
     "tracked": true
   },
   "latest_research": {
-    "asset": "FCPO",
-    "observations": 20,
+    "asset": null,
+    "observations": null,
     "period": null,
     "hourly_volatility": null,
     "large_movement_events": null,
-    "generated_at": "2026-08-16T17:37:00+08:00",
-    "status": "data_source_research_active",
+    "generated_at": "2026-08-16T22:32:00+08:00",
+    "status": null,
     "ai_analysis": null
   },
   "approvals": [],
@@ -118,6 +123,6 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-16T14:30:23.235508+00:00"
+    "synced_at": "2026-08-16T15:28:39.543556+00:00"
   }
 }
