@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T17:50:00+08:00",
+  "generated_at":"2026-08-16T19:42:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -12,16 +12,17 @@
   "next_phase":"Load larger validated MYX:FCPO1! history, then run out-of-sample and walk-forward backtests",
   "risk_gate":"REAL MONEY BLOCKED",
   "progress":42,
-  "data_policy":"RM0 research stack; use permitted free/public data; cache locally; no scraping bypasses; no paid real-time feed dependency",
+  "data_policy":"RM0 research stack; use permitted free/public data; cache locally; no scraping bypass; no paid real-time feed dependency",
   "research_targets":["Trend-following","Momentum","Breakout","Mean reversion","Volatility","Price action","Volume confirmation","Multi-timeframe combinations"],
   "validation_rules":["Include realistic fees and conservative slippage","Separate in-sample and out-of-sample periods","Use walk-forward validation","Reject unstable or overfit strategies","Require parameter sensitivity checks","Evaluate different market regimes","Rank by risk-adjusted robustness"],
   "data_sources":["Legitimate public/authorized Bursa Malaysia FCPO historical data — under active investigation","TradingView MYX:FCPO1! — manual paid-plan fallback only, not RM0 core","MPOB daily CPO prices","MPOB monthly production/stocks/exports/imports/FFB data","Bursa Malaysia FCPO contract specifications"],
+  "supporting_sources":["Kenanga Futures FCPO Daily Preview PDFs — useful for contract identity, settlement/context and cross-checks; not promoted to primary OHLCV source because PDF text extraction does not reliably expose complete daily OHLCV for the target 3rd-month contract","TA Futures Market Prices — public current-day FCPO Last/Net Change/Open/High/Low/Volume/Settlement; historical archive path not yet established"],
   "experimental_sources":["Moomoo FCPOmain.BMD — app/product symbol observed, but current official OpenAPI documentation does not list Malaysian futures market data as supported; keep for periodic re-check only"],
   "rejected_sources":["Investing.com CPOc1/CME reference — not Bursa MYX:FCPO1!","Moomoo OpenAPI as production FCPO source — unsupported in current official market-data matrix"],
   "dataset_status":"20-session FCPO exploratory sample retained only as a development fixture; larger clean history still required",
   "dataset_gate":"Minimum 250 validated rows; preferred 750+; provenance, instrument identity, schema, OHLCV integrity and contract-roll checks required before strategy performance can be published",
   "boss_action_required":"No paid subscription is required yet. Continue with source discovery; TradingView CSV remains a manual fallback if later justified.",
   "automation_after_upload":"Data Worker validates, normalizes, caches and feeds the backtest engine automatically",
-  "latest_result":"Source research completed this pass: Bursa Historical Data Packages are legitimate but paid/request-based; MPOB provides valuable CPO context rather than FCPO OHLCV; Portara/CQG supplies FCPO historical data commercially and its free tier is unavailable; Moomoo remains unsupported for production FCPO API use under current official API documentation. Next objective is a legitimate RM0/authorized FCPO OHLCV source with at least 250 rows.",
+  "latest_result":"Kenanga public FCPO Daily Preview reports were tested as a supporting-source experiment. They clearly provide FCPO-specific daily reports and contract context, but their text layer does not safely reconstruct a complete 3rd-month OHLCV row without relying on ambiguous PDF layout. Leverage therefore keeps Kenanga for cross-check/context and continues searching for structured historical OHLCV. TA Futures was also confirmed as a public current-day OHLCV display source, but a historical backfill path is still unresolved.",
   "updated_by":"Leverage AI Manager"
 }
