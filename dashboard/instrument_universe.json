@@ -1,0 +1,16 @@
+{
+  "generated_at":"2026-08-16T20:10:00+08:00",
+  "lab_name":"Technical Strategy Lab",
+  "objective":"Find robust technical strategies that generalize across four instruments rather than optimizing one market.",
+  "owner_goal":"Boss becomes Customer #1 after the system proves robust and passes paper-trading and safety gates.",
+  "instruments":[
+    {"symbol":"BTCUSDT","label":"Bitcoin / USDT","status":"ACTIVE","role":"Crypto 24/7","priority":"P1"},
+    {"symbol":"XAUUSDT","label":"Gold / USDT","status":"ACTIVE","role":"Gold spot-style","priority":"P1"},
+    {"symbol":"CL","label":"WTI Crude Oil","status":"ACTIVE","role":"US crude-oil futures","priority":"P1"},
+    {"symbol":"FCPO","label":"Crude Palm Oil","status":"DATA LIMITED","role":"Bursa Malaysia futures","priority":"P2"}
+  ],
+  "strategy_benchmark":"Use the same primarily technical strategy library across all instruments wherever data is available. Rank candidates by robustness, not by single-market return.",
+  "strategy_families":["Trend","Momentum","Breakout","Mean Reversion","Volatility/Regime","Price Action","Volume Confirmation","Multi-Timeframe"],
+  "validation":"Fees + slippage, out-of-sample, walk-forward, parameter sensitivity, regime testing, drawdown and cross-instrument consistency.",
+  "real_money":"BLOCKED"
+}
