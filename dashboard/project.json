@@ -1,5 +1,5 @@
 {
-  "generated_at":"2026-08-16T17:38:00+08:00",
+  "generated_at":"2026-08-16T17:50:00+08:00",
   "project_id":"fcpo-trading-research",
   "name":"FCPO Trading Research",
   "status":"active",
@@ -22,6 +22,6 @@
   "dataset_gate":"Minimum 250 validated rows; preferred 750+; provenance, instrument identity, schema, OHLCV integrity and contract-roll checks required before strategy performance can be published",
   "boss_action_required":"No paid subscription is required yet. Continue with source discovery; TradingView CSV remains a manual fallback if later justified.",
   "automation_after_upload":"Data Worker validates, normalizes, caches and feeds the backtest engine automatically",
-  "latest_result":"Moomoo OpenAPI was re-checked against the current official documentation and is not suitable as the production FCPO API source under the documented market-data support matrix. Leverage will continue searching for a legitimate RM0/authorized Bursa FCPO historical source before strategy validation.",
+  "latest_result":"Source research completed this pass: Bursa Historical Data Packages are legitimate but paid/request-based; MPOB provides valuable CPO context rather than FCPO OHLCV; Portara/CQG supplies FCPO historical data commercially and its free tier is unavailable; Moomoo remains unsupported for production FCPO API use under current official API documentation. Next objective is a legitimate RM0/authorized FCPO OHLCV source with at least 250 rows.",
   "updated_by":"Leverage AI Manager"
 }
