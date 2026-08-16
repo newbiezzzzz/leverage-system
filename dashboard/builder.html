@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leverage Strategy Builder</title>
+<link rel="stylesheet" href="styles.css?v=26"><link rel="stylesheet" href="layout.css?v=5"><link rel="stylesheet" href="customer.css?v=3">
+<style>
+.builder-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.builder-list{display:grid;gap:10px}.rule{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:12px}.field{display:grid;gap:6px}.field label{font-size:12px;color:#9aa7bd}.field input,.field select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:#10172a;color:#eef3fb}.actions{display:flex;gap:8px;flex-wrap:wrap}.muted-box{padding:12px;border:1px dashed rgba(255,255,255,.12);border-radius:10px;color:#aab4c7}.spec{white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:12px;line-height:1.5;background:#09101f;padding:14px;border-radius:12px;overflow:auto;max-height:460px}.toolbar{display:flex;gap:10px;flex-wrap:wrap}.pillbtn{border:1px solid rgba(255,255,255,.12);background:#111a2e;color:#edf3fb;padding:8px 12px;border-radius:8px;cursor:pointer}.danger{color:#ff9c9c}.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tool-card{padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:10px}.tool-card strong{display:block}.tool-card small{color:#9aa7bd}.saved{display:grid;gap:8px}.saved button{text-align:left}
+@media(max-width:900px){.builder-grid{grid-template-columns:1fr}.rule{grid-template-columns:1fr 1fr}.tool-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="shell"><header class="topbar"><div class="brand"><span class="brand-mark">L</span><div><strong>LEVERAGE</strong><small>STRATEGY BUILDER</small></div></div>
+<nav class="nav"><a href="trading.html">Trading</a><a href="markets.html">Markets</a><a class="active" href="builder.html">Builder</a><a href="strategies.html">Strategy Lab</a><a href="workers.html">System</a></nav>
+<div class="top-actions"><span class="live-dot"></span><span>Customer tool</span><a class="ghost" href="trading.html">Back</a></div></header>
+<main>
+<section class="hero"><div><p class="eyebrow">CUSTOMER TOOL</p><h1>Build your own strategy.</h1><p class="muted">Choose the market, indicators, conditions and risk rules. Leverage records the configuration; you decide what deserves testing.</p></div><div class="hero-badge"><span>REAL MONEY</span><strong>BLOCKED</strong><small>Builder only</small></div></section>
+<section class="builder-grid">
+<article class="card panel"><div class="panel-head"><div><p class="eyebrow">1 · SETUP</p><h2>Strategy configuration</h2></div><span class="pill blue-pill">CUSTOM</span></div>
+<div class="field"><label>Strategy name</label><input id="name" value="My Strategy 01"></div>
+<div class="field" style="margin-top:10px"><label>Instrument</label><select id="instrument"><option>BTCUSDT</option><option>XAUUSDT</option><option>CL</option><option>FCPO</option></select></div>
+<div class="field" style="margin-top:10px"><label>Timeframe</label><select id="timeframe"><option>1d</option><option>4h</option><option>1h</option><option>15m</option><option>5m</option></select></div>
+</article>
+<article class="card panel"><div class="panel-head"><div><p class="eyebrow">TOOLS</p><h2>Indicator library</h2></div><a class="ghost" href="indicators.html">Open full library</a></div><div class="tool-grid" id="tools"></div></article>
+</section>
+<section class="card panel"><div class="panel-head"><div><p class="eyebrow">2 · RULES</p><h2>Entry conditions</h2></div><button class="pillbtn" id="addEntry">+ Add condition</button></div><div class="builder-list" id="entries"></div><div class="muted-box" style="margin-top:10px">Use AND/OR later as the rules engine grows. V1 stores each condition explicitly so it can be reproduced.</div></section>
+<section class="card panel"><div class="panel-head"><div><p class="eyebrow">3 · EXIT</p><h2>Exit conditions</h2></div><button class="pillbtn" id="addExit">+ Add condition</button></div><div class="builder-list" id="exits"></div></section>
+<section class="card panel"><div class="panel-head"><div><p class="eyebrow">4 · RISK</p><h2>Risk & execution</h2></div></div><div class="tool-grid"><div class="field"><label>Position size %</label><input id="size" type="number" value="10" step="0.5"></div><div class="field"><label>Stop loss %</label><input id="sl" type="number" value="2" step="0.1"></div><div class="field"><label>Take profit %</label><input id="tp" type="number" value="4" step="0.1"></div></div></section>
+<section class="builder-grid"><article class="card panel"><div class="panel-head"><div><p class="eyebrow">YOUR STRATEGY SPEC</p><h2>Reproducible configuration</h2></div><div class="actions"><button class="pillbtn" id="save">Save</button><button class="pillbtn" id="export">Copy JSON</button><button class="pillbtn" id="clear">Clear</button></div></div><div class="spec" id="spec"></div></article>
+<article class="card panel"><div class="panel-head"><div><p class="eyebrow">SAVED</p><h2>My strategies</h2></div></div><div class="saved" id="saved"></div><div class="muted-box" style="margin-top:10px">Saved strategies live in this browser in V1. Later versions can sync them to an account.</div></article></section>
+<footer><span>LEVERAGE v0.9 · Strategy Builder</span><span>Customer chooses. Leverage provides the tools.</span></footer>
+</main></div>
+<script src="builder.js?v=1"></script></body></html>
