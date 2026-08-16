@@ -1,21 +1,19 @@
 {
-  "project": "FCPO Trading Research",
-  "instrument": "FCPO",
-  "exchange": "Bursa Malaysia Derivatives",
+  "project": "Technical Strategy Lab",
+  "instruments": ["BTCUSDT", "XAUUSDT", "CL", "FCPO"],
+  "primary_instruments": ["BTCUSDT", "XAUUSDT", "CL"],
+  "parallel_instrument": "FCPO",
   "mode": "research_and_paper_trading_only",
   "live_trading_enabled": false,
   "zero_cost_core": true,
-  "primary_public_market_reference": "TradingView FCPO1!",
-  "fundamental_sources": [
-    "Bursa Malaysia",
-    "MPOB",
-    "FRED/IMF palm oil benchmark"
-  ],
-  "paid_live_feed_required": false,
+  "primary_chart_reference": "TradingView/public market references where appropriate",
+  "data_policy": "Use public or authorized historical/export data only; preserve raw files; do not bypass access controls; do not depend on paid real-time feeds for the core system.",
+  "validation_required": ["historical backtest", "out-of-sample", "walk-forward", "parameter sensitivity", "fees and slippage", "paper trading"],
+  "real_money_status": "BLOCKED",
   "notes": [
-    "Do not assume unlimited free real-time exchange data.",
-    "Do not scrape private broker platforms.",
-    "Use public/authorized data only.",
-    "Validate strategies with historical data and paper trading before any live-money decision."
+    "No instrument is allowed to block the others.",
+    "FCPO remains a parallel market rather than the definition of the project.",
+    "The toolkit provides evidence and testing; it does not silently select a winning strategy.",
+    "Any future controlled live-money decision must pass the safety gates first."
   ]
 }
