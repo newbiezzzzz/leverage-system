@@ -1,32 +1,28 @@
 # FCPO zero-cost data candidates — 2026-08-16
 
-## Candidate A — Public QuantConnect custom CSV reference
+## Candidate A — QuantConnect/Dropbox CSV: REJECTED
 
-A public QuantConnect FCPO custom-data example references an external CSV URL hosted on Dropbox and parses fields for `Open`, `High`, `Low`, `Close`, and `Volume`. The example includes an FCPO record dated 2011-09-13 and runs an FCPO strategy over 2019, demonstrating that the referenced dataset was intended for multi-year FCPO research. Source: QuantConnect embedded backtest / custom data example.
+A public QuantConnect FCPO custom-data example referenced an external Dropbox CSV and documented OHLCV parsing. Its example values were `7792.9 / 7799.9 / 7722.65 / 7748.7 / 116534670`.
 
-Reference URL mentioned by the public QuantConnect example:
-`https://www.dropbox.com/s/ivtywe3avc4m1mn/fcpo.csv?dl=1`
+Those exact OHLCV values are independently published as **NIFTY historical data**, not FCPO. This means the public example does not establish trustworthy FCPO instrument identity for the referenced file. Leverage therefore rejects this candidate rather than risking contamination of the FCPO research dataset.
 
-Status: **PUBLIC LEGACY DATASET CANDIDATE — NOT YET INGESTED**
+Evidence:
+- QuantConnect source: https://www.quantconnect.com/terminal/cache/embedded_backtest_13ef97bbe59e03f051b1dd23285f45bc.html
+- Independent historical NIFTY evidence with matching values: https://indianjournalofcomputerscience.com/index.php/ijrcm/article/download/103700/76866/241333
 
-Strengths:
-- Zero-cost/public link in a public research example.
-- Explicit OHLCV schema.
-- Contains historical FCPO data from at least 2011 and was used for a 2019 backtest.
+Decision: **REJECTED — likely mislabeled/non-FCPO data**
 
-Cautions:
-- The underlying Dropbox file could not be downloaded from the current worker environment, so coverage and current availability have not been independently verified.
-- The public example does not establish the original licensing/provenance of the CSV.
-- Do not promote to production/live-trading data until provenance, integrity, and coverage are verified.
+## Current status
+
+The zero-cost FCPO historical-data bottleneck remains open.
+
+Primary current candidate:
+- Investing.com FCPOc1 / Palm Oil (Kuala Lumpur, MYR), provisional research source. Free historical data and free-account export are documented, but Boss does not yet have a completed zero-cost acquisition path.
+
+Supporting sources:
+- Kenanga Futures FCPO Daily Preview PDFs — context/cross-check only.
+- TA Futures Market Prices — current-day structured FCPO fields; historical backfill not established.
 
 ## Research policy
 
-This candidate can be used only as a **legacy exploratory dataset** if the file can be obtained legally and its provenance is documented. It must not be mixed silently with current FCPOc1 data. Any strategy discovered on this dataset must later be re-tested on an independent, newer FCPO source before paper trading.
-
-## Next test
-
-1. Verify public file availability through an approved access path.
-2. Download without bypassing access controls.
-3. Compute row count/date coverage and validate OHLCV schema.
-4. Check several overlapping dates against independent FCPO references.
-5. If clean, load as `legacy_fcpo_ohlcv` and use for preliminary strategy research while current-data acquisition continues in parallel.
+No dataset enters the FCPO backtest engine until provenance, instrument identity, OHLCV integrity, date coverage and duplicate checks pass. No strategy-performance claim, paper trading, or live trading can proceed from a source that fails these gates.
