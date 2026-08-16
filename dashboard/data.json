@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:34:20.375700+00:00",
+  "generated_at": "2026-08-16T10:30:38.217470+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 42,
@@ -104,12 +104,12 @@
   "latest_research": {
     "asset": "FCPO",
     "observations": 20,
-    "period": "2026-07-06 to 2026-08-06",
+    "period": null,
     "hourly_volatility": null,
     "large_movement_events": null,
-    "generated_at": "2026-08-16T06:55:00+08:00",
-    "status": "exploratory_dataset_loaded",
-    "ai_analysis": "A 20-session FCPO daily OHLCV seed dataset is now cached. It is enough to verify the data pipeline, not enough to claim a strategy edge. The next step is a much larger historical dataset before backtesting candidates and walk-forward validation."
+    "generated_at": "2026-08-16T17:37:00+08:00",
+    "status": "data_source_research_active",
+    "ai_analysis": null
   },
   "approvals": [],
   "sync": {
@@ -118,6 +118,6 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-16T09:34:20.375700+00:00"
+    "synced_at": "2026-08-16T10:30:38.217470+00:00"
   }
 }
