@@ -20,7 +20,7 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             "ledger": root / "financial_ledger.json",
         }
         self.files["projects"].write_text(json.dumps({"version": 1, "projects": []}), encoding="utf-8")
-        self.files["tasks"].write_text(json.dumps({"version": 2, "tasks": []}), encoding="utf-8")
+        self.files["tasks"].write_text(json.dumps({"version": 3, "tasks": []}), encoding="utf-8")
         self.files["approvals"].write_text(json.dumps({"version": 1, "approvals": []}), encoding="utf-8")
         self.files["audit"].write_text(json.dumps({"version": 1, "events": []}), encoding="utf-8")
         self.files["ledger"].write_text(json.dumps({"version": 1, "entries": [], "payout_queue": [], "policy": {"live_money_movement": False}}), encoding="utf-8")
@@ -31,7 +31,6 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             patch.object(company_ops, "AUDIT_FILE", self.files["audit"]),
             patch.object(company_ops, "LEDGER_FILE", self.files["ledger"]),
         ]
-        # company_core / finance_core keep their own module constants.
         import control_plane.company_core as cc
         import control_plane.finance_core as fc
         self.patches += [
@@ -48,20 +47,31 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             p.stop()
         self.tmp.cleanup()
 
-    def test_full_project_to_payout_ready_flow(self):
+    def test_dependency_aware_project_to_payout_ready_flow(self):
         project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
         tasks = company_ops.create_project_plan(project.id)
-        self.assertEqual(len(tasks), 6)
-        self.assertEqual(company_ops.project_task_summary(project.id)["queued"], 6)
+        self.assertEqual(len(tasks), 7)
+        by_action = {task["action"]: task for task in tasks}
+        self.assertEqual(by_action["build"]["depends_on"], [by_action["research"]["id"], by_action["validate"]["id"]])
+        self.assertEqual(by_action["verify"]["depends_on"], [by_action["build"]["id"]])
+        self.assertEqual(by_action["reconcile"]["depends_on"], [by_action["verify"]["id"], by_action["intake"]["id"]])
 
-        for task in tasks:
+        with self.assertRaisesRegex(ValueError, "dependencies incomplete"):
+            company_ops.claim_task(by_action["build"]["id"], "code-worker")
+
+        execution_order = [
+            "plan", "research", "validate", "build", "verify", "intake", "reconcile"
+        ]
+        for action in execution_order:
+            task = by_action[action]
             claimed = company_ops.claim_task(task["id"], task["worker"])
             self.assertEqual(claimed["status"], "running")
-            company_ops.complete_task(task["id"], f"{task['action']} complete", task["worker"])
+            company_ops.complete_task(task["id"], f"{action} complete", task["worker"])
 
         summary = company_ops.project_task_summary(project.id)
-        self.assertEqual(summary["completed"], 6)
+        self.assertEqual(summary["completed"], 7)
         self.assertEqual(summary["progress"], 100.0)
+        self.assertEqual(summary["waiting_on_dependencies"], 6)
 
         revenue = company_ops.record_revenue(project.id, 100.0, "demo sale", "test-sale-001")
         self.assertTrue(revenue["verified"])
