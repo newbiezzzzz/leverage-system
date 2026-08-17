@@ -70,14 +70,14 @@ def evaluate_gate(project_id: str, stage: str) -> dict:
         else:
             reasons.append("project brief or starter workflow is incomplete")
     elif stage == "validation":
-        ready = {"research", "collect"}.issubset(completed)
-        for action in ("research", "collect"):
+        ready = {"research", "validate"}.issubset(completed)
+        for action in ("research", "validate"):
             if action in completed:
                 evidence.append(f"{action} evidence completed")
             else:
                 reasons.append(f"{action} task is not completed")
     elif stage == "build":
-        ready = "collect" in completed and "research" in completed
+        ready = "validate" in completed and "research" in completed
         if ready:
             evidence.append("research and data validation completed")
         else:
@@ -150,6 +150,8 @@ def next_stage(project_id: str) -> str:
 
 
 def save_gate_decision(project_id: str, stage: str, decision: str, note: str, decided_by: str = "Boss") -> dict:
+    if stage not in GATE_RULES:
+        raise ValueError(f"unknown gate: {stage}")
     if decision not in {"pass", "hold", "stop"}:
         raise ValueError("decision must be pass, hold or stop")
     if not note.strip():
