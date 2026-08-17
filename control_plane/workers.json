@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "workers": [
     {
       "id": "research-worker",
@@ -9,7 +9,7 @@
       "entrypoint": "research.py",
       "projects": ["*"],
       "risk_level": "analysis-only",
-      "capabilities": ["research", "market-analysis", "opportunity-screening"]
+      "capabilities": ["research", "analyze", "recommend", "report"]
     },
     {
       "id": "data-worker",
@@ -19,7 +19,7 @@
       "entrypoint": "workers/data_worker.py",
       "projects": ["*"],
       "risk_level": "data-only",
-      "capabilities": ["collect", "validate", "transform", "cache"]
+      "capabilities": ["collect", "validate", "transform", "cache", "report"]
     },
     {
       "id": "code-worker",
@@ -29,7 +29,7 @@
       "entrypoint": "workers/code_worker.py",
       "projects": ["*"],
       "risk_level": "code-only",
-      "capabilities": ["build", "test", "lint", "package"]
+      "capabilities": ["build", "test", "lint", "package", "report"]
     },
     {
       "id": "project-manager",
@@ -39,7 +39,7 @@
       "entrypoint": "workers/project_manager_worker.py",
       "projects": ["*"],
       "risk_level": "coordination-only",
-      "capabilities": ["project-intake", "lifecycle-planning", "task-routing", "status-reporting"]
+      "capabilities": ["plan", "schedule", "route", "report"]
     },
     {
       "id": "operations-worker",
@@ -49,7 +49,7 @@
       "entrypoint": "workers/operations_worker.py",
       "projects": ["*"],
       "risk_level": "operations-safe",
-      "capabilities": ["health-monitoring", "state-verification", "alerting", "safe-recovery"]
+      "capabilities": ["monitor", "verify", "alert", "recover_safe", "report"]
     },
     {
       "id": "customer-worker",
@@ -59,7 +59,7 @@
       "entrypoint": "workers/customer_worker.py",
       "projects": ["*"],
       "risk_level": "customer-safe",
-      "capabilities": ["customer-intake", "support-triage", "feedback-collection", "customer-reporting"]
+      "capabilities": ["intake", "support", "collect_feedback", "report"]
     },
     {
       "id": "finance-worker",
@@ -69,8 +69,8 @@
       "entrypoint": "workers/finance_worker.py",
       "projects": ["*"],
       "risk_level": "finance-guarded",
-      "capabilities": ["reconciliation", "revenue-reporting", "payout-preparation"],
-      "restricted_actions": ["approve_money", "move_money", "change_bank_details"]
+      "capabilities": ["reconcile", "prepare_payout", "report"],
+      "restricted_actions": ["approve_money", "move_money", "change_bank_details", "execute_payout"]
     }
   ]
 }
