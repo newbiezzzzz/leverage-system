@@ -1,7 +1,7 @@
 """Tests for guarded financial behavior."""
 import unittest
 
-from finance_core import can_execute_payout
+from control_plane.finance_core import can_execute_payout
 
 
 class FinanceCoreTests(unittest.TestCase):
