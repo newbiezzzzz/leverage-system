@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Run company OS tests
-        run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py
+        run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py control_plane/test_company_ops.py
       - name: Worker self-tests
         run: |
           python workers/code_worker.py
