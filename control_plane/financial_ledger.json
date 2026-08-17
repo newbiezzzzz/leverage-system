@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "currency": "MYR",
+  "accounts": {
+    "company": {"balance": 0, "verified": false},
+    "owner": {"balance": 0, "verified": false}
+  },
+  "entries": [],
+  "payout_queue": [],
+  "policy": {
+    "live_money_movement": false,
+    "worker_can_prepare_payout": true,
+    "worker_can_approve_payout": false,
+    "worker_can_execute_payout": false,
+    "owner_approval_required": true,
+    "never_assume_balance": true,
+    "never_mark_paid_without_external_confirmation": true
+  }
+}
