@@ -1,7 +1,7 @@
 """Operational company workflow for Leverage OS v1.
 
 Turns the company model into a reusable project lifecycle:
-intake -> plan -> validate -> build -> verify -> customer readiness -> finance
+intake -> plan -> validate -> build -> test -> verify -> customer readiness -> finance
 reporting -> revenue -> payout-ready -> owner approval.
 
 No external payment is performed here.
@@ -22,16 +22,18 @@ APPROVALS_FILE = ROOT / "approvals.json"
 AUDIT_FILE = ROOT / "audit_log.json"
 LEDGER_FILE = ROOT / "financial_ledger.json"
 
-# The workflow is intentionally dependency-aware. Work that can happen in
-# parallel does so; build/verify/finance stages cannot run ahead of evidence.
+# The workflow is intentionally dependency-aware. Research and data validation
+# must complete before build; build must pass code tests before operations
+# verification; customer readiness and verification must complete before finance.
 DEFAULT_PROJECT_WORKFLOW = [
     ("project-manager", "plan", "Create project execution plan", []),
     ("research-worker", "research", "Research demand, risks and opportunity", [0]),
     ("data-worker", "validate", "Collect and validate the core project data", [0]),
     ("code-worker", "build", "Build or configure the project deliverable", [1, 2]),
-    ("operations-worker", "verify", "Verify readiness and operational health", [3]),
+    ("code-worker", "test", "Test, lint and quality-check the project deliverable", [3]),
+    ("operations-worker", "verify", "Verify readiness and operational health", [4]),
     ("customer-worker", "intake", "Prepare customer intake, onboarding and feedback workflow", [0]),
-    ("finance-worker", "reconcile", "Prepare financial reporting and reconciliation workflow", [4, 5]),
+    ("finance-worker", "reconcile", "Prepare financial reporting and reconciliation workflow", [5, 6]),
 ]
 
 
@@ -64,7 +66,7 @@ def create_project_plan(project_id: str, workflow: list[tuple] | None = None) ->
 
     tasks = _load_tasks(); created = []; existing = {t["id"] for t in tasks.get("tasks", [])}
     task_ids: list[str] = []
-    for index, spec in enumerate(workflow):
+    for spec in workflow:
         worker, action, description, dependency_indexes = spec
         task_id = _id("task")
         while task_id in existing:
