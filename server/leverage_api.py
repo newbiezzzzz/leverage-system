@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT))
 from control_plane.company_core import Project, list_projects
 from control_plane.company_ops import intake_project, create_project_plan, system_snapshot
 from control_plane.gates import project_gate_report
+from control_plane.health import company_health
 
 HOST, PORT = "127.0.0.1", 8765
 
@@ -36,7 +37,7 @@ def safe_dashboard_path(request_path: str) -> Path | None:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "LeverageLocalAPI/1.3"
+    server_version = "LeverageLocalAPI/1.4"
 
     def log_message(self, *_args):
         pass
@@ -57,6 +58,9 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path == "/api/snapshot":
             self.send_json(200, {"ok": True, "snapshot": system_snapshot()})
+            return
+        if path == "/api/company-health":
+            self.send_json(200, {"ok": True, "health": company_health()})
             return
         if path == "/api/projects":
             self.send_json(200, {"ok": True, "projects": [p.__dict__ for p in list_projects()]})
