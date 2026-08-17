@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "workers": [
     {
       "id": "research-worker",
@@ -7,17 +7,9 @@
       "status": "online",
       "activation": "verified",
       "entrypoint": "research.py",
-      "projects": ["leverage"],
-      "risk_level": "analysis-only"
-    },
-    {
-      "id": "code-worker",
-      "role": "code implementation and testing",
-      "status": "online",
-      "activation": "verified",
-      "entrypoint": "workers/code_worker.py",
       "projects": ["*"],
-      "risk_level": "code-only"
+      "risk_level": "analysis-only",
+      "capabilities": ["research", "market-analysis", "opportunity-screening"]
     },
     {
       "id": "data-worker",
@@ -26,7 +18,59 @@
       "activation": "verified",
       "entrypoint": "workers/data_worker.py",
       "projects": ["*"],
-      "risk_level": "data-only"
+      "risk_level": "data-only",
+      "capabilities": ["collect", "validate", "transform", "cache"]
+    },
+    {
+      "id": "code-worker",
+      "role": "code implementation and testing",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/code_worker.py",
+      "projects": ["*"],
+      "risk_level": "code-only",
+      "capabilities": ["build", "test", "lint", "package"]
+    },
+    {
+      "id": "project-manager",
+      "role": "project intake, planning and lifecycle management",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/project_manager_worker.py",
+      "projects": ["*"],
+      "risk_level": "coordination-only",
+      "capabilities": ["project-intake", "lifecycle-planning", "task-routing", "status-reporting"]
+    },
+    {
+      "id": "operations-worker",
+      "role": "system operations, health and safe recovery",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/operations_worker.py",
+      "projects": ["*"],
+      "risk_level": "operations-safe",
+      "capabilities": ["health-monitoring", "state-verification", "alerting", "safe-recovery"]
+    },
+    {
+      "id": "customer-worker",
+      "role": "customer intake, support and feedback",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/customer_worker.py",
+      "projects": ["*"],
+      "risk_level": "customer-safe",
+      "capabilities": ["customer-intake", "support-triage", "feedback-collection", "customer-reporting"]
+    },
+    {
+      "id": "finance-worker",
+      "role": "financial reconciliation, revenue reporting and payout preparation",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/finance_worker.py",
+      "projects": ["*"],
+      "risk_level": "finance-guarded",
+      "capabilities": ["reconciliation", "revenue-reporting", "payout-preparation"],
+      "restricted_actions": ["approve_money", "move_money", "change_bank_details"]
     }
   ]
 }
