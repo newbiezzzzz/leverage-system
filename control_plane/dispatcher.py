@@ -1,9 +1,9 @@
 """Leverage Control Plane task dispatcher.
 
 The dispatcher is the safety boundary between company tasks and workers. It
-validates project scope, worker capability and approval requirements before a
-task becomes READY. It never performs money movement or destructive external
-actions itself.
+validates project scope, worker capability, task dependencies and approval
+requirements before a task becomes READY. It never performs money movement or
+destructive external actions itself.
 """
 from __future__ import annotations
 
@@ -52,6 +52,11 @@ def project_index():
     return {project["id"]: project for project in registry.get("projects", [])}
 
 
+def task_index():
+    registry = load_json(TASKS_FILE)
+    return {task["id"]: task for task in registry.get("tasks", [])}
+
+
 def has_owner_approval(action: str, target: str) -> bool:
     approvals = load_json(APPROVALS_FILE).get("approvals", [])
     return any(
@@ -62,7 +67,18 @@ def has_owner_approval(action: str, target: str) -> bool:
     )
 
 
-def validate_task(task: dict, workers: dict, projects: dict) -> list[str]:
+def dependency_errors(task: dict, tasks: dict) -> list[str]:
+    errors: list[str] = []
+    for dependency_id in task.get("depends_on", []):
+        dependency = tasks.get(dependency_id)
+        if dependency is None:
+            errors.append(f"unknown dependency: {dependency_id}")
+        elif dependency.get("status") != "completed":
+            errors.append(f"dependency incomplete: {dependency_id}")
+    return errors
+
+
+def validate_task(task: dict, workers: dict, projects: dict, tasks: dict | None = None) -> list[str]:
     errors: list[str] = []
     required = {"id", "project", "worker", "description", "status"}
     missing = required - task.keys()
@@ -104,6 +120,9 @@ def validate_task(task: dict, workers: dict, projects: dict) -> list[str]:
     elif capabilities and action not in capabilities and action not in {"report", "plan", "route"}:
         errors.append(f"worker lacks capability: {action}")
 
+    if tasks is not None:
+        errors.extend(dependency_errors(task, tasks))
+
     return errors
 
 
@@ -112,6 +131,7 @@ def dispatch() -> int:
     projects = project_index()
     task_store = load_json(TASKS_FILE)
     tasks = task_store.get("tasks", [])
+    indexed_tasks = {task.get("id"): task for task in tasks}
 
     print("LEVERAGE CONTROL PLANE")
     print("=" * 60)
@@ -124,10 +144,14 @@ def dispatch() -> int:
         if task.get("status") != "queued":
             continue
 
-        errors = validate_task(task, workers, projects)
+        errors = validate_task(task, workers, projects, indexed_tasks)
         if errors:
-            task["status"] = "blocked"
             task["validation_errors"] = errors
+            # Dependency waits remain queued; genuine safety/scope failures block.
+            if all(error.startswith("dependency incomplete:") for error in errors):
+                print(f"WAIT    {task.get('id', '<unknown>')}: {'; '.join(errors)}")
+                continue
+            task["status"] = "blocked"
             failures += 1
             print(f"BLOCKED {task.get('id', '<unknown>')}: {'; '.join(errors)}")
             continue
@@ -137,6 +161,7 @@ def dispatch() -> int:
             "action": task.get("action", "report"),
             "validated": True,
             "execution": "worker-controlled",
+            "dependencies_satisfied": True,
         }
         print(f"READY   {task['id']} -> {task['worker']} ({task.get('action', 'report')})")
 
