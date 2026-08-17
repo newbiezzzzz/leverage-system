@@ -1,7 +1,9 @@
 """Operational company workflow for Leverage OS v1.
 
 Turns the company model into a reusable project lifecycle:
-intake -> plan -> execute/record work -> revenue -> payout-ready -> owner approval.
+intake -> plan -> validate -> build -> verify -> customer readiness -> finance
+reporting -> revenue -> payout-ready -> owner approval.
+
 No external payment is performed here.
 """
 from __future__ import annotations
@@ -19,66 +21,129 @@ PROJECTS_FILE = ROOT / "projects.json"
 APPROVALS_FILE = ROOT / "approvals.json"
 AUDIT_FILE = ROOT / "audit_log.json"
 LEDGER_FILE = ROOT / "financial_ledger.json"
+
+# The workflow is intentionally dependency-aware. Work that can happen in
+# parallel does so; build/verify/finance stages cannot run ahead of evidence.
 DEFAULT_PROJECT_WORKFLOW = [
-    ("project-manager", "plan", "Create project execution plan"),
-    ("research-worker", "research", "Research demand, risks and opportunity"),
-    ("code-worker", "build", "Build or configure the project deliverable"),
-    ("operations-worker", "verify", "Verify readiness and operational health"),
-    ("customer-worker", "intake", "Prepare customer intake and support workflow"),
-    ("finance-worker", "reconcile", "Prepare revenue and financial reporting workflow"),
+    ("project-manager", "plan", "Create project execution plan", []),
+    ("research-worker", "research", "Research demand, risks and opportunity", [0]),
+    ("data-worker", "validate", "Collect and validate the core project data", [0]),
+    ("code-worker", "build", "Build or configure the project deliverable", [1, 2]),
+    ("operations-worker", "verify", "Verify readiness and operational health", [3]),
+    ("customer-worker", "intake", "Prepare customer intake, onboarding and feedback workflow", [0]),
+    ("finance-worker", "reconcile", "Prepare financial reporting and reconciliation workflow", [4, 5]),
 ]
+
 
 def _now() -> str: return datetime.now(timezone.utc).isoformat()
 def _id(prefix: str) -> str: return f"{prefix}-{uuid.uuid4().hex[:10]}"
+
 
 def audit(event_type: str, project_id: str | None, actor: str, details: dict | None = None) -> dict:
     data = load_json(AUDIT_FILE)
     event = {"id": _id("evt"), "timestamp": _now(), "event_type": event_type, "project_id": project_id, "actor": actor, "details": details or {}}
     data.setdefault("events", []).append(event); data["last_event_at"] = event["timestamp"]; save_json(AUDIT_FILE, data); return event
 
+
 def _load_tasks() -> dict: return load_json(TASKS_FILE)
 def _save_tasks(data: dict) -> None: data["last_modified_at"] = _now(); save_json(TASKS_FILE, data)
 
-def intake_project(project: Project) -> Project:
-    created = create_project(project); audit("project_created", created.id, "project-manager", {"name": created.name, "type": created.type}); return created
 
-def create_project_plan(project_id: str, workflow: list[tuple[str, str, str]] | None = None) -> list[dict]:
+def intake_project(project: Project) -> Project:
+    created = create_project(project)
+    audit("project_created", created.id, "project-manager", {"name": created.name, "type": created.type})
+    return created
+
+
+def create_project_plan(project_id: str, workflow: list[tuple] | None = None) -> list[dict]:
     workflow = workflow or DEFAULT_PROJECT_WORKFLOW
     projects = load_json(PROJECTS_FILE).get("projects", [])
     project = next((p for p in projects if p["id"] == project_id), None)
-    if project is None: raise KeyError(f"project not found: {project_id}")
+    if project is None:
+        raise KeyError(f"project not found: {project_id}")
+
     tasks = _load_tasks(); created = []; existing = {t["id"] for t in tasks.get("tasks", [])}
-    for worker, action, description in workflow:
-        task = {"id": _id("task"), "project": project_id, "worker": worker, "description": description, "action": action, "status": "queued", "priority": "normal", "created_at": _now()}
-        while task["id"] in existing: task["id"] = _id("task")
-        tasks.setdefault("tasks", []).append(task); created.append(task); existing.add(task["id"])
+    task_ids: list[str] = []
+    for index, spec in enumerate(workflow):
+        worker, action, description, dependency_indexes = spec
+        task_id = _id("task")
+        while task_id in existing:
+            task_id = _id("task")
+        dependencies = [task_ids[i] for i in dependency_indexes]
+        task = {
+            "id": task_id,
+            "project": project_id,
+            "worker": worker,
+            "description": description,
+            "action": action,
+            "status": "queued",
+            "priority": "normal",
+            "depends_on": dependencies,
+            "created_at": _now(),
+        }
+        tasks.setdefault("tasks", []).append(task)
+        created.append(task); existing.add(task_id); task_ids.append(task_id)
+
     _save_tasks(tasks)
-    if project.get("lifecycle_stage") == "intake": change_stage(project_id, "validation", "Complete initial project validation before build")
-    audit("project_plan_created", project_id, "project-manager", {"task_count": len(created)}); return created
+    if project.get("lifecycle_stage") == "intake":
+        change_stage(project_id, "validation", "Complete research and data validation before build")
+    audit("project_plan_created", project_id, "project-manager", {"task_count": len(created), "dependency_aware": True})
+    return created
+
+
+def _dependency_state(data: dict, task: dict) -> tuple[bool, list[str]]:
+    by_id = {item.get("id"): item for item in data.get("tasks", [])}
+    missing: list[str] = []
+    for dep_id in task.get("depends_on", []):
+        dep = by_id.get(dep_id)
+        if dep is None or dep.get("status") != "completed":
+            missing.append(dep_id)
+    return not missing, missing
+
 
 def claim_task(task_id: str, worker_id: str) -> dict:
     data = _load_tasks()
     for task in data.get("tasks", []):
         if task["id"] == task_id:
-            if task["status"] != "queued": raise ValueError(f"task is not queued: {task_id}")
-            if task["worker"] != worker_id: raise ValueError("worker not assigned to task")
+            if task["status"] != "queued":
+                raise ValueError(f"task is not queued: {task_id}")
+            if task["worker"] != worker_id:
+                raise ValueError("worker not assigned to task")
+            ready, missing = _dependency_state(data, task)
+            if not ready:
+                raise ValueError(f"dependencies incomplete: {', '.join(missing)}")
             task["status"] = "running"; task["started_at"] = _now(); task["claimed_by"] = worker_id; _save_tasks(data)
-            audit("task_claimed", task["project"], worker_id, {"task_id": task_id}); return task
+            audit("task_claimed", task["project"], worker_id, {"task_id": task_id, "dependencies": task.get("depends_on", [])})
+            return task
     raise KeyError(f"task not found: {task_id}")
+
 
 def complete_task(task_id: str, result: str, worker_id: str, success: bool = True) -> dict:
     data = _load_tasks()
     for task in data.get("tasks", []):
         if task["id"] == task_id:
-            if task["status"] not in {"running", "queued"}: raise ValueError(f"task cannot be completed from status {task['status']}")
-            task["status"] = "completed" if success else "failed"; task["result"] = result; task["completed_at"] = _now(); task["worker"] = worker_id; _save_tasks(data)
-            audit("task_completed" if success else "task_failed", task["project"], worker_id, {"task_id": task_id, "result": result}); return task
+            if task["status"] not in {"running", "queued"}:
+                raise ValueError(f"task cannot be completed from status {task['status']}")
+            if task["status"] == "queued":
+                ready, missing = _dependency_state(data, task)
+                if not ready:
+                    raise ValueError(f"dependencies incomplete: {', '.join(missing)}")
+            if task.get("worker") != worker_id:
+                raise ValueError("worker not assigned to task")
+            task["status"] = "completed" if success else "failed"; task["result"] = result; task["completed_at"] = _now(); _save_tasks(data)
+            audit("task_completed" if success else "task_failed", task["project"], worker_id, {"task_id": task_id, "result": result})
+            return task
     raise KeyError(f"task not found: {task_id}")
+
 
 def project_task_summary(project_id: str) -> dict:
     tasks = [t for t in _load_tasks().get("tasks", []) if t.get("project") == project_id]
     counts = {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "blocked", "completed", "failed", "cancelled"]}
-    counts["total"] = len(tasks); counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0; return counts
+    waiting = sum(1 for t in tasks if t.get("status") == "queued" and t.get("depends_on"))
+    counts["waiting_on_dependencies"] = waiting
+    counts["total"] = len(tasks); counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0
+    return counts
+
 
 def record_revenue(project_id: str, amount: float, description: str, external_reference: str) -> dict:
     if amount <= 0: raise ValueError("revenue amount must be positive")
@@ -91,6 +156,7 @@ def record_revenue(project_id: str, amount: float, description: str, external_re
     change_stage(project_id, "revenue", "Revenue recorded; reconcile and verify before payout")
     audit("revenue_recorded", project_id, "finance-worker", {"entry_id": entry["id"], "amount": amount, "external_reference": external_reference}); return entry
 
+
 def prepare_payout(project_id: str, amount: float, destination: str, purpose: str) -> dict:
     if not any(p.get("id") == project_id for p in load_json(PROJECTS_FILE).get("projects", [])): raise KeyError(f"project not found: {project_id}")
     request = prepare_owner_payout(amount, destination, f"{project_id}: {purpose}")
@@ -100,6 +166,7 @@ def prepare_payout(project_id: str, amount: float, destination: str, purpose: st
     ledger["last_modified_at"] = _now(); save_json(LEDGER_FILE, ledger)
     change_stage(project_id, "payout-ready", "Owner approval required before any payout execution")
     audit("payout_prepared", project_id, "finance-worker", {"payout_id": request.id, "amount": request.amount}); return asdict(request)
+
 
 def approve_payout(payout_id: str, owner: str = "Boss") -> dict:
     ledger = load_json(LEDGER_FILE)
@@ -111,6 +178,15 @@ def approve_payout(payout_id: str, owner: str = "Boss") -> dict:
     request["status"] = "approved"; request["owner_approval_id"] = approval["id"]; ledger["last_modified_at"] = _now(); save_json(LEDGER_FILE, ledger)
     audit("owner_payout_approved", request.get("project_id"), owner, {"payout_id": payout_id, "approval_id": approval["id"]}); return approval
 
+
 def system_snapshot() -> dict:
     projects = load_json(PROJECTS_FILE).get("projects", []); tasks = load_json(TASKS_FILE).get("tasks", []); ledger = load_json(LEDGER_FILE)
-    return {"generated_at": _now(), "projects": len(projects), "active_projects": sum(1 for p in projects if p.get("status") not in {"paused", "retired"}), "tasks": {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "completed", "failed", "blocked"]}, "revenue_entries": len([e for e in ledger.get("entries", []) if e.get("direction") == "income"]), "payouts_prepared": len(ledger.get("payout_queue", [])), "live_money_movement": bool(ledger.get("policy", {}).get("live_money_movement", False))}
+    return {
+        "generated_at": _now(),
+        "projects": len(projects),
+        "active_projects": sum(1 for p in projects if p.get("status") not in {"paused", "retired"}),
+        "tasks": {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "completed", "failed", "blocked"]},
+        "revenue_entries": len([e for e in ledger.get("entries", []) if e.get("direction") == "income"]),
+        "payouts_prepared": len(ledger.get("payout_queue", [])),
+        "live_money_movement": bool(ledger.get("policy", {}).get("live_money_movement", False)),
+    }
