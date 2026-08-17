@@ -1,0 +1,38 @@
+name: Leverage Company OS Tests
+
+on:
+  push:
+    paths:
+      - 'control_plane/**'
+      - 'workers/**'
+      - '.github/workflows/test-company-os.yml'
+  pull_request:
+    paths:
+      - 'control_plane/**'
+      - 'workers/**'
+      - '.github/workflows/test-company-os.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run company OS tests
+        run: python -m pytest -q control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py
+      - name: Worker self-tests
+        run: |
+          python workers/code_worker.py
+          python workers/data_worker.py
+          python workers/project_manager_worker.py
+          python workers/operations_worker.py
+          python workers/customer_worker.py
+          python workers/finance_worker.py
