@@ -15,7 +15,11 @@ class ApiTests(unittest.TestCase):
         self.assertEqual("command.html", target.name)
 
     def test_money_protection_is_explicit(self):
-        self.assertEqual("LeverageLocalAPI/1.2", leverage_api.Handler.server_version)
+        self.assertEqual("LeverageLocalAPI/1.3", leverage_api.Handler.server_version)
+
+    def test_projects_and_gate_routes_exist(self):
+        self.assertTrue(callable(leverage_api.project_gate_report))
+        self.assertTrue(callable(leverage_api.list_projects))
 
 
 if __name__ == "__main__":
