@@ -1,6 +1,6 @@
 import unittest
 
-import dispatcher
+from control_plane import dispatcher
 
 
 PROJECTS = {
