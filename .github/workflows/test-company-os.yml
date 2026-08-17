@@ -44,3 +44,6 @@ jobs:
           python workers/operations_worker.py
           python workers/customer_worker.py
           python workers/finance_worker.py
+      - name: Local API startup smoke test
+        run: |
+          python -c "from server.leverage_api import HOST, PORT, system_snapshot; print(f'API import OK: {HOST}:{PORT}'); print(system_snapshot())"
