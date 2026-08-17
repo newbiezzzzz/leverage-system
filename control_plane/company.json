@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "company": {
+    "id": "leverage",
+    "name": "Leverage",
+    "type": "owner-operated technology company",
+    "mission": "Build reusable technology systems that discover, launch and operate income-producing projects with strong owner control.",
+    "owner": "Boss",
+    "base_currency": "MYR",
+    "stage": "system-build",
+    "money_movement_enabled": false,
+    "default_project_status": "intake",
+    "operating_principles": [
+      "Build reusable infrastructure before duplicating project infrastructure.",
+      "Separate company, system and project responsibilities.",
+      "Automate research and execution where safe; require approval for consequential external actions.",
+      "Never invent financial balances, quotas, revenue or payout confirmations.",
+      "Keep new projects reversible until evidence supports continued investment.",
+      "Prefer low-cost and replaceable providers."
+    ]
+  },
+  "lifecycle": [
+    "intake",
+    "validation",
+    "build",
+    "launch",
+    "operate",
+    "revenue",
+    "payout-ready",
+    "paused",
+    "retired"
+  ]
+}
