@@ -14,8 +14,8 @@ class ApiTests(unittest.TestCase):
         self.assertIsNotNone(target)
         self.assertEqual("command.html", target.name)
 
-    def test_api_is_money_protected(self):
-        self.assertEqual("Leverage Local API", leverage_api.Handler.server_version.replace("LeverageLocalAPI/", "Leverage Local API") if False else "Leverage Local API")
+    def test_money_protection_is_explicit(self):
+        self.assertEqual("LeverageLocalAPI/1.2", leverage_api.Handler.server_version)
 
 
 if __name__ == "__main__":
