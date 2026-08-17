@@ -2,7 +2,13 @@
 from __future__ import annotations
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
+from pathlib import Path
+import sys
 from urllib.parse import urlparse
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
 from control_plane.company_core import Project
 from control_plane.company_ops import intake_project, create_project_plan, system_snapshot
 
