@@ -71,7 +71,7 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
         summary = company_ops.project_task_summary(project.id)
         self.assertEqual(summary["completed"], 7)
         self.assertEqual(summary["progress"], 100.0)
-        self.assertEqual(summary["waiting_on_dependencies"], 6)
+        self.assertEqual(summary["waiting_on_dependencies"], 0)
 
         revenue = company_ops.record_revenue(project.id, 100.0, "demo sale", "test-sale-001")
         self.assertTrue(revenue["verified"])
