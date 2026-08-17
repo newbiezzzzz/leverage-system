@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-17T12:58:19.269079+00:00",
+  "generated_at": "2026-08-17T13:48:26.095030+00:00",
   "project": {
     "name": "Project Leverage",
-    "overall_progress": 50,
+    "overall_progress": 51,
     "goal": "Build a zero-cost, reusable AI/data/automation platform that can research opportunities, test ideas, and automate execution with minimal Boss involvement.",
     "phases": [
       {
@@ -12,33 +12,38 @@
       },
       {
         "name": "Core worker fleet",
-        "progress": 100,
-        "status": "complete"
+        "progress": 85,
+        "status": "active"
       },
       {
         "name": "Control Plane",
-        "progress": 65,
+        "progress": 80,
+        "status": "active"
+      },
+      {
+        "name": "Company Operating System v1",
+        "progress": 55,
         "status": "active"
       },
       {
         "name": "Owner Command Center",
-        "progress": 90,
+        "progress": 95,
         "status": "active"
       },
       {
         "name": "Customer Trading Workspace",
         "progress": 95,
-        "status": "active"
+        "status": "paused"
       },
       {
         "name": "Reusable Strategy Testing",
         "progress": 25,
-        "status": "active"
+        "status": "paused"
       },
       {
         "name": "Multi-market data expansion",
         "progress": 30,
-        "status": "active"
+        "status": "paused"
       },
       {
         "name": "Out-of-sample, walk-forward & sensitivity gates",
@@ -53,7 +58,7 @@
       {
         "name": "Validated trading income asset",
         "progress": 0,
-        "status": "planned"
+        "status": "paused"
       }
     ]
   },
@@ -65,20 +70,15 @@
       "activation": "verified",
       "entrypoint": "research.py",
       "projects": [
-        "leverage"
-      ],
-      "risk_level": "analysis-only"
-    },
-    {
-      "id": "code-worker",
-      "role": "code implementation and testing",
-      "status": "online",
-      "activation": "verified",
-      "entrypoint": "workers/code_worker.py",
-      "projects": [
         "*"
       ],
-      "risk_level": "code-only"
+      "risk_level": "analysis-only",
+      "capabilities": [
+        "research",
+        "analyze",
+        "recommend",
+        "report"
+      ]
     },
     {
       "id": "data-worker",
@@ -89,7 +89,106 @@
       "projects": [
         "*"
       ],
-      "risk_level": "data-only"
+      "risk_level": "data-only",
+      "capabilities": [
+        "collect",
+        "validate",
+        "transform",
+        "cache",
+        "report"
+      ]
+    },
+    {
+      "id": "code-worker",
+      "role": "code implementation and testing",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/code_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "code-only",
+      "capabilities": [
+        "build",
+        "test",
+        "lint",
+        "package",
+        "report"
+      ]
+    },
+    {
+      "id": "project-manager",
+      "role": "project intake, planning and lifecycle management",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/project_manager_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "coordination-only",
+      "capabilities": [
+        "plan",
+        "schedule",
+        "route",
+        "report"
+      ]
+    },
+    {
+      "id": "operations-worker",
+      "role": "system operations, health and safe recovery",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/operations_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "operations-safe",
+      "capabilities": [
+        "monitor",
+        "verify",
+        "alert",
+        "recover_safe",
+        "report"
+      ]
+    },
+    {
+      "id": "customer-worker",
+      "role": "customer intake, support and feedback",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/customer_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "customer-safe",
+      "capabilities": [
+        "intake",
+        "support",
+        "collect_feedback",
+        "report"
+      ]
+    },
+    {
+      "id": "finance-worker",
+      "role": "financial reconciliation, revenue reporting and payout preparation",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/finance_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "finance-guarded",
+      "capabilities": [
+        "reconcile",
+        "prepare_payout",
+        "report"
+      ],
+      "restricted_actions": [
+        "approve_money",
+        "move_money",
+        "change_bank_details",
+        "execute_payout"
+      ]
     }
   ],
   "tasks": {
@@ -123,6 +222,6 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-17T12:58:19.269079+00:00"
+    "synced_at": "2026-08-17T13:48:26.095030+00:00"
   }
 }
