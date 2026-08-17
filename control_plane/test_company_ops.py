@@ -1,0 +1,89 @@
+import json
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+from control_plane.company_core import Project
+from control_plane import company_ops
+
+
+class CompanyOpsEndToEndTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        root = Path(self.tmp.name)
+        self.files = {
+            "projects": root / "projects.json",
+            "tasks": root / "tasks.json",
+            "approvals": root / "approvals.json",
+            "audit": root / "audit_log.json",
+            "ledger": root / "financial_ledger.json",
+        }
+        self.files["projects"].write_text(json.dumps({"version": 1, "projects": []}), encoding="utf-8")
+        self.files["tasks"].write_text(json.dumps({"version": 2, "tasks": []}), encoding="utf-8")
+        self.files["approvals"].write_text(json.dumps({"version": 1, "approvals": []}), encoding="utf-8")
+        self.files["audit"].write_text(json.dumps({"version": 1, "events": []}), encoding="utf-8")
+        self.files["ledger"].write_text(json.dumps({"version": 1, "entries": [], "payout_queue": [], "policy": {"live_money_movement": False}}), encoding="utf-8")
+        self.patches = [
+            patch.object(company_ops, "PROJECTS_FILE", self.files["projects"]),
+            patch.object(company_ops, "TASKS_FILE", self.files["tasks"]),
+            patch.object(company_ops, "APPROVALS_FILE", self.files["approvals"]),
+            patch.object(company_ops, "AUDIT_FILE", self.files["audit"]),
+            patch.object(company_ops, "LEDGER_FILE", self.files["ledger"]),
+        ]
+        # company_core / finance_core keep their own module constants.
+        import control_plane.company_core as cc
+        import control_plane.finance_core as fc
+        self.patches += [
+            patch.object(cc, "PROJECTS_FILE", self.files["projects"]),
+            patch.object(cc, "APPROVALS_FILE", self.files["approvals"]),
+            patch.object(fc, "LEDGER_FILE", self.files["ledger"]),
+            patch.object(fc, "APPROVALS_FILE", self.files["approvals"]),
+        ]
+        for p in self.patches:
+            p.start()
+
+    def tearDown(self):
+        for p in reversed(self.patches):
+            p.stop()
+        self.tmp.cleanup()
+
+    def test_full_project_to_payout_ready_flow(self):
+        project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
+        tasks = company_ops.create_project_plan(project.id)
+        self.assertEqual(len(tasks), 6)
+        self.assertEqual(company_ops.project_task_summary(project.id)["queued"], 6)
+
+        for task in tasks:
+            claimed = company_ops.claim_task(task["id"], task["worker"])
+            self.assertEqual(claimed["status"], "running")
+            company_ops.complete_task(task["id"], f"{task['action']} complete", task["worker"])
+
+        summary = company_ops.project_task_summary(project.id)
+        self.assertEqual(summary["completed"], 6)
+        self.assertEqual(summary["progress"], 100.0)
+
+        revenue = company_ops.record_revenue(project.id, 100.0, "demo sale", "test-sale-001")
+        self.assertTrue(revenue["verified"])
+        payout = company_ops.prepare_payout(project.id, 50.0, "owner-destination", "owner profit share")
+        self.assertEqual(payout["status"], "prepared")
+        self.assertEqual(json.loads(self.files["projects"].read_text())["projects"][0]["status"], "payout-ready")
+
+        approval = company_ops.approve_payout(payout["id"])
+        self.assertEqual(approval["type"], "owner_payout")
+        ledger = json.loads(self.files["ledger"].read_text())
+        request = ledger["payout_queue"][0]
+        self.assertEqual(request["status"], "approved")
+        self.assertFalse(ledger["policy"]["live_money_movement"])
+
+        audit = json.loads(self.files["audit"].read_text())
+        event_types = [e["event_type"] for e in audit["events"]]
+        self.assertIn("project_created", event_types)
+        self.assertIn("project_plan_created", event_types)
+        self.assertIn("revenue_recorded", event_types)
+        self.assertIn("payout_prepared", event_types)
+        self.assertIn("owner_payout_approved", event_types)
+
+
+if __name__ == "__main__":
+    unittest.main()
