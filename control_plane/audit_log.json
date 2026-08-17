@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "events": [],
+  "policy": {
+    "append_only": true,
+    "record_state_changes": true,
+    "record_financial_events": true,
+    "record_owner_approvals": true
+  }
+}
