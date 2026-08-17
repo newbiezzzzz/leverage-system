@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "trading-toolkit",
+      "name": "Trading Strategy Toolkit",
+      "type": "research",
+      "status": "paused",
+      "lifecycle_stage": "paused",
+      "revenue_status": "none",
+      "capital_deployed": 0,
+      "currency": "MYR",
+      "owner_approval_required_for_spend": true,
+      "description": "Exploratory trading research project. Frozen while Leverage Operating System v1 is built.",
+      "next_gate": "Re-evaluate after company operating system is solid"
+    }
+  ],
+  "allowed_statuses": [
+    "intake",
+    "validation",
+    "build",
+    "launch",
+    "operate",
+    "revenue",
+    "payout-ready",
+    "paused",
+    "retired"
+  ]
+}
