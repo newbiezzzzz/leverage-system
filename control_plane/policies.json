@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "company_policy": {
+    "default_mode": "owner-controlled",
+    "spend_requires_approval": true,
+    "external_side_effects_require_approval": true,
+    "financial_actions_require_owner_approval": true,
+    "unknown_provider_state": "safe_mode",
+    "unknown_balance_state": "blocked",
+    "audit_every_state_change": true
+  },
+  "worker_action_matrix": {
+    "research-worker": ["research", "analyze", "recommend"],
+    "data-worker": ["collect", "validate", "transform", "cache"],
+    "code-worker": ["build", "test", "lint", "package"],
+    "project-manager": ["plan", "schedule", "route", "report"],
+    "finance-worker": ["reconcile", "prepare_payout", "report"],
+    "operations-worker": ["monitor", "verify", "alert", "recover_safe"],
+    "customer-worker": ["intake", "support", "collect_feedback", "report"]
+  },
+  "restricted_actions": [
+    "move_money",
+    "approve_money",
+    "open_financial_account",
+    "change_bank_details",
+    "publish_irreversible_contract",
+    "delete_production_data",
+    "deploy_unreviewed_external_change"
+  ]
+}
