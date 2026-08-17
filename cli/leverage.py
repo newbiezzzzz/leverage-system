@@ -1,7 +1,7 @@
-"""Simple Leverage CLI for Boss.
+"""Boss-friendly command interface for Leverage.
 
-Designed for everyday management, not developer administration.
-Run from the repository root with: python cli/leverage.py <command>
+The CLI is intentionally simple. Boss normally gives instructions to the AI
+manager; this interface is a lightweight backup/direct control surface.
 """
 from __future__ import annotations
 
@@ -30,11 +30,11 @@ def money(value: float) -> str:
     return f"RM {value:,.2f}"
 
 
-def cmd_status(_: argparse.Namespace) -> int:
+def _print_company_report() -> None:
     snapshot = system_snapshot()
     resources = ResourceManager().snapshot()["resources"]
-    online = sum(1 for r in resources if r.get("status") in {"safe", "warning"})
-    print("\nLEVERAGE\n========")
+    usable = sum(1 for r in resources if r.get("status") in {"safe", "warning"})
+    print("\nLEVERAGE COMPANY\n================")
     print(f"Projects        : {snapshot['projects']} ({snapshot['active_projects']} active)")
     print(f"Tasks           : {sum(snapshot['tasks'].values())}")
     print(f"  queued        : {snapshot['tasks']['queued']}")
@@ -45,11 +45,23 @@ def cmd_status(_: argparse.Namespace) -> int:
     print(f"Revenue entries : {snapshot['revenue_entries']}")
     print(f"Payout queue    : {snapshot['payouts_prepared']}")
     print(f"Money movement  : {'ENABLED' if snapshot['live_money_movement'] else 'PROTECTED'}")
-    print(f"Resources known : {online}/{len(resources) if resources else 0}")
+    print(f"Resources known : {usable}/{len(resources) if resources else 0}")
+
+
+def cmd_status(_: argparse.Namespace) -> int:
+    _print_company_report()
     return 0
 
 
-def cmd_projects(args: argparse.Namespace) -> int:
+def cmd_report(_: argparse.Namespace) -> int:
+    print("\nOWNER REPORT")
+    print("============")
+    _print_company_report()
+    print("\nTrading project remains PAUSED. No new project is currently active.")
+    return 0
+
+
+def cmd_projects(_: argparse.Namespace) -> int:
     projects = list_projects()
     if not projects:
         print("No projects registered.")
@@ -78,12 +90,35 @@ def cmd_project_create(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_project_new(_: argparse.Namespace) -> int:
+    print("\nNEW LEVERAGE PROJECT\n====================")
+    print("Press Enter to accept the suggested value.\n")
+    name = input("Project name: ").strip()
+    while not name:
+        print("Project name is required.")
+        name = input("Project name: ").strip()
+    project_type = input("Type [general]: ").strip() or "general"
+    description = input("What is the project supposed to achieve? ").strip()
+    project_id = input("Short ID [auto]: ").strip().lower().replace(" ", "-")
+    if not project_id:
+        project_id = "-".join(name.lower().split())
+    return cmd_project_create(argparse.Namespace(id=project_id, name=name, type=project_type, description=description))
+
+
 def cmd_project_status(args: argparse.Namespace) -> int:
     summary = project_task_summary(args.project)
     print(f"Project: {args.project}")
     for key in ("progress", "queued", "running", "completed", "failed", "blocked", "total"):
         value = f"{summary[key]}%" if key == "progress" else summary[key]
         print(f"{key.replace('_', ' ').title():12}: {value}")
+    return 0
+
+
+def cmd_system_workers(_: argparse.Namespace) -> int:
+    data = json.loads((ROOT / "control_plane" / "workers.json").read_text(encoding="utf-8"))
+    print("\nWORKERS\n=======")
+    for worker in data.get("workers", []):
+        print(f"{worker['id']:20} {worker.get('status', 'unknown'):10} {worker.get('role', '')}")
     return 0
 
 
@@ -106,16 +141,23 @@ def cmd_payout_approve(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_system_workers(_: argparse.Namespace) -> int:
-    data = json.loads((ROOT / "control_plane" / "workers.json").read_text(encoding="utf-8"))
-    print("\nWORKERS\n=======")
-    for worker in data.get("workers", []):
-        print(f"{worker['id']:20} {worker.get('status', 'unknown'):10} {worker.get('role', '')}")
-    return 0
-
-
 def cmd_help(_: argparse.Namespace) -> int:
-    print("""\nLeverage commands\n\n  status                         Company health at a glance\n  project list                   Show all projects\n  project create                Create a project and its starter workflow\n  project status <id>           Show project task progress\n  workers                       Show worker fleet\n  payout prepare                Prepare an owner payout (no transfer)\n  payout approve <id>           Record Boss approval (no transfer)\n  help                          Show this guide\n""")
+    print("""
+Leverage — Boss commands
+
+  status                       Quick company health
+  report                       Simple owner report
+  workers                      Show the worker fleet
+  project list                 Show all projects
+  project new                  Create a project with simple questions
+  project status <id>          Show project progress
+  payout prepare ...           Prepare a payout (never transfers money)
+  payout approve <id>         Record Boss approval (never transfers money)
+  help                        Show this guide
+
+You normally do NOT need this CLI; natural-language instructions to the AI
+manager are the preferred interface.
+""")
     return 0
 
 
@@ -124,12 +166,14 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command")
 
     sub.add_parser("status").set_defaults(func=cmd_status)
+    sub.add_parser("report").set_defaults(func=cmd_report)
     sub.add_parser("workers").set_defaults(func=cmd_system_workers)
     sub.add_parser("help").set_defaults(func=cmd_help)
 
     project = sub.add_parser("project")
     project_sub = project.add_subparsers(dest="project_command")
     project_sub.add_parser("list").set_defaults(func=cmd_projects)
+    project_sub.add_parser("new").set_defaults(func=cmd_project_new)
     create = project_sub.add_parser("create")
     create.add_argument("--id", required=True)
     create.add_argument("--name", required=True)
@@ -162,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_help(args)
     try:
         return int(func(args))
-    except (KeyError, ValueError) as exc:
+    except (KeyError, ValueError, EOFError, KeyboardInterrupt) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
 
