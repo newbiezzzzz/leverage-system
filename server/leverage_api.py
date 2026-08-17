@@ -15,7 +15,6 @@ from control_plane.company_core import Project
 from control_plane.company_ops import intake_project, create_project_plan, system_snapshot
 
 HOST, PORT = "127.0.0.1", 8765
-ALLOWED = {"http://localhost", "http://127.0.0.1"}
 
 
 def body(data: dict) -> bytes:
@@ -24,11 +23,10 @@ def body(data: dict) -> bytes:
 
 def safe_dashboard_path(request_path: str) -> Path | None:
     raw = unquote(urlparse(request_path).path)
-    if raw == "/" or raw == "/index.html":
-        target = DASHBOARD / "index.html"
+    if raw in {"/", "/index.html"}:
+        target = DASHBOARD / "command.html"
     else:
-        relative = raw.removeprefix("/")
-        target = (DASHBOARD / relative).resolve()
+        target = (DASHBOARD / raw.removeprefix("/")).resolve()
     try:
         target.relative_to(DASHBOARD.resolve())
     except ValueError:
@@ -37,7 +35,7 @@ def safe_dashboard_path(request_path: str) -> Path | None:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "LeverageLocalAPI/1.1"
+    server_version = "LeverageLocalAPI/1.2"
 
     def log_message(self, *_args):
         pass
@@ -50,12 +48,6 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(raw)
-
-    def do_OPTIONS(self):
-        self.send_response(204)
-        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
-        self.end_headers()
 
     def do_GET(self):
         path = urlparse(self.path).path
