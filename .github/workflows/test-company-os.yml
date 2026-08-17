@@ -5,11 +5,15 @@ on:
     paths:
       - 'control_plane/**'
       - 'workers/**'
+      - 'cli/**'
+      - 'leverage.cmd'
       - '.github/workflows/test-company-os.yml'
   pull_request:
     paths:
       - 'control_plane/**'
       - 'workers/**'
+      - 'cli/**'
+      - 'leverage.cmd'
       - '.github/workflows/test-company-os.yml'
   workflow_dispatch:
 
@@ -27,7 +31,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Run company OS tests
-        run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py control_plane/test_company_ops.py
+        run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py control_plane/test_company_ops.py control_plane/test_cli.py
       - name: Worker self-tests
         run: |
           python workers/code_worker.py
