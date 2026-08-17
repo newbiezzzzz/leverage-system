@@ -1,10 +1,12 @@
-import json
-import tempfile
 import unittest
-from pathlib import Path
-from unittest.mock import patch
 
 import dispatcher
+
+
+PROJECTS = {
+    "leverage": {"id": "leverage", "status": "operate"},
+    "other-project": {"id": "other-project", "status": "operate"},
+}
 
 
 class DispatcherTests(unittest.TestCase):
@@ -14,6 +16,7 @@ class DispatcherTests(unittest.TestCase):
                 "status": "online",
                 "projects": ["leverage"],
                 "risk_level": "analysis-only",
+                "capabilities": ["research", "report"],
             }
         }
         task = {
@@ -21,9 +24,10 @@ class DispatcherTests(unittest.TestCase):
             "project": "leverage",
             "worker": "research-worker",
             "description": "Analyze BTC event outcomes",
+            "action": "research",
             "status": "queued",
         }
-        self.assertEqual(dispatcher.validate_task(task, workers), [])
+        self.assertEqual(dispatcher.validate_task(task, workers, PROJECTS), [])
 
     def test_unknown_worker_is_rejected(self):
         task = {
@@ -33,14 +37,15 @@ class DispatcherTests(unittest.TestCase):
             "description": "test",
             "status": "queued",
         }
-        self.assertIn("unknown worker: missing-worker", dispatcher.validate_task(task, {}))
+        self.assertIn("unknown worker: missing-worker", dispatcher.validate_task(task, {}, PROJECTS))
 
-    def test_non_analysis_worker_is_blocked(self):
+    def test_non_capability_action_is_blocked(self):
         workers = {
             "code-worker": {
                 "status": "online",
                 "projects": ["*"],
                 "risk_level": "code-only",
+                "capabilities": ["build", "test"],
             }
         }
         task = {
@@ -48,12 +53,12 @@ class DispatcherTests(unittest.TestCase):
             "project": "leverage",
             "worker": "code-worker",
             "description": "test",
+            "action": "move_money",
             "status": "queued",
         }
-        self.assertIn(
-            "phase 1 dispatcher only routes analysis-safe workers",
-            dispatcher.validate_task(task, workers),
-        )
+        errors = dispatcher.validate_task(task, workers, PROJECTS)
+        self.assertTrue(any("owner approval required" in error for error in errors))
+        self.assertTrue(any("live money movement is disabled" in error for error in errors))
 
     def test_wrong_project_is_rejected(self):
         workers = {
@@ -61,6 +66,7 @@ class DispatcherTests(unittest.TestCase):
                 "status": "online",
                 "projects": ["leverage"],
                 "risk_level": "analysis-only",
+                "capabilities": ["research"],
             }
         }
         task = {
@@ -68,12 +74,11 @@ class DispatcherTests(unittest.TestCase):
             "project": "other-project",
             "worker": "research-worker",
             "description": "test",
+            "action": "research",
             "status": "queued",
         }
-        self.assertIn(
-            "worker not authorized for project: other-project",
-            dispatcher.validate_task(task, workers),
-        )
+        errors = dispatcher.validate_task(task, workers, PROJECTS)
+        self.assertIn("worker not authorized for project: other-project", errors)
 
 
 if __name__ == "__main__":
