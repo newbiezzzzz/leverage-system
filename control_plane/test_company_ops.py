@@ -20,7 +20,7 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             "ledger": root / "financial_ledger.json",
         }
         self.files["projects"].write_text(json.dumps({"version": 1, "projects": []}), encoding="utf-8")
-        self.files["tasks"].write_text(json.dumps({"version": 3, "tasks": []}), encoding="utf-8")
+        self.files["tasks"].write_text(json.dumps({"version": 4, "tasks": []}), encoding="utf-8")
         self.files["approvals"].write_text(json.dumps({"version": 1, "approvals": []}), encoding="utf-8")
         self.files["audit"].write_text(json.dumps({"version": 1, "events": []}), encoding="utf-8")
         self.files["ledger"].write_text(json.dumps({"version": 1, "entries": [], "payout_queue": [], "policy": {"live_money_movement": False}}), encoding="utf-8")
@@ -50,17 +50,18 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
     def test_dependency_aware_project_to_payout_ready_flow(self):
         project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
         tasks = company_ops.create_project_plan(project.id)
-        self.assertEqual(len(tasks), 7)
+        self.assertEqual(len(tasks), 8)
         by_action = {task["action"]: task for task in tasks}
         self.assertEqual(by_action["build"]["depends_on"], [by_action["research"]["id"], by_action["validate"]["id"]])
-        self.assertEqual(by_action["verify"]["depends_on"], [by_action["build"]["id"]])
+        self.assertEqual(by_action["test"]["depends_on"], [by_action["build"]["id"]])
+        self.assertEqual(by_action["verify"]["depends_on"], [by_action["test"]["id"]])
         self.assertEqual(by_action["reconcile"]["depends_on"], [by_action["verify"]["id"], by_action["intake"]["id"]])
 
         with self.assertRaisesRegex(ValueError, "dependencies incomplete"):
             company_ops.claim_task(by_action["build"]["id"], "code-worker")
 
         execution_order = [
-            "plan", "research", "validate", "build", "verify", "intake", "reconcile"
+            "plan", "research", "validate", "build", "test", "verify", "intake", "reconcile"
         ]
         for action in execution_order:
             task = by_action[action]
@@ -69,7 +70,7 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             company_ops.complete_task(task["id"], f"{action} complete", task["worker"])
 
         summary = company_ops.project_task_summary(project.id)
-        self.assertEqual(summary["completed"], 7)
+        self.assertEqual(summary["completed"], 8)
         self.assertEqual(summary["progress"], 100.0)
         self.assertEqual(summary["waiting_on_dependencies"], 0)
 
