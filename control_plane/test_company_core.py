@@ -1,7 +1,7 @@
 """Tests for company/project lifecycle validation."""
 import unittest
 
-from company_core import Project, approval_required, validate_project
+from control_plane.company_core import Project, approval_required, validate_project
 
 
 class CompanyCoreTests(unittest.TestCase):
