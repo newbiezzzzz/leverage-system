@@ -1,11 +1,12 @@
 {
-  "version": 2,
+  "version": 3,
   "tasks": [],
   "statuses": ["queued", "running", "blocked", "completed", "failed", "cancelled"],
   "task_contract": {
     "required_fields": ["id", "project", "worker", "description", "status"],
-    "recommended_fields": ["action", "target", "priority", "created_at", "due_at"],
+    "recommended_fields": ["action", "target", "priority", "depends_on", "created_at", "due_at"],
     "action_rule": "action must match a registered worker capability or be a controlled report/plan/route action",
+    "dependency_rule": "depends_on must reference tasks in the same project and every dependency must be completed before a dependent task can run",
     "safety_rule": "restricted actions remain blocked without owner approval and enabled external integration"
   }
 }
