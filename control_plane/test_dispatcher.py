@@ -27,7 +27,59 @@ class DispatcherTests(unittest.TestCase):
             "action": "research",
             "status": "queued",
         }
-        self.assertEqual(dispatcher.validate_task(task, workers, PROJECTS), [])
+        self.assertEqual(dispatcher.validate_task(task, workers, PROJECTS, {"T001": task}), [])
+
+    def test_dependency_is_waiting_until_completed(self):
+        workers = {
+            "code-worker": {
+                "status": "online",
+                "projects": ["leverage"],
+                "risk_level": "code-only",
+                "capabilities": ["build", "report"],
+            }
+        }
+        dependency = {
+            "id": "T010",
+            "project": "leverage",
+            "worker": "research-worker",
+            "description": "research",
+            "action": "research",
+            "status": "queued",
+        }
+        task = {
+            "id": "T011",
+            "project": "leverage",
+            "worker": "code-worker",
+            "description": "build",
+            "action": "build",
+            "status": "queued",
+            "depends_on": ["T010"],
+        }
+        errors = dispatcher.validate_task(task, workers, PROJECTS, {"T010": dependency, "T011": task})
+        self.assertIn("dependency incomplete: T010", errors)
+        dependency["status"] = "completed"
+        self.assertEqual(dispatcher.validate_task(task, workers, PROJECTS, {"T010": dependency, "T011": task}), [])
+
+    def test_unknown_dependency_is_rejected(self):
+        workers = {
+            "code-worker": {
+                "status": "online",
+                "projects": ["leverage"],
+                "risk_level": "code-only",
+                "capabilities": ["build"],
+            }
+        }
+        task = {
+            "id": "T012",
+            "project": "leverage",
+            "worker": "code-worker",
+            "description": "build",
+            "action": "build",
+            "status": "queued",
+            "depends_on": ["missing"],
+        }
+        errors = dispatcher.validate_task(task, workers, PROJECTS, {"T012": task})
+        self.assertIn("unknown dependency: missing", errors)
 
     def test_unknown_worker_is_rejected(self):
         task = {
