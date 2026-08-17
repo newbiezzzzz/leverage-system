@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "approvals": [],
+  "types": [
+    "project_acceptance",
+    "project_budget",
+    "external_account_change",
+    "customer_refund",
+    "owner_payout",
+    "provider_change",
+    "destructive_action"
+  ],
+  "rule": "No worker may execute an approval-required action without a matching owner-approved record."
+}
