@@ -54,7 +54,12 @@ def create_project_plan(project_id: str, workflow: list[tuple] | None = None) ->
     workflow = workflow or DEFAULT_PROJECT_WORKFLOW
     projects = load_json(PROJECTS_FILE).get("projects", []); project = next((p for p in projects if p["id"] == project_id), None)
     if project is None: raise KeyError(f"project not found: {project_id}")
-    tasks = _load_tasks(); created = []; existing = {t["id"] for t in tasks.get("tasks", [])}; task_ids: list[str] = []
+    tasks = _load_tasks()
+    existing_tasks = [t for t in tasks.get("tasks", []) if t.get("project") == project_id]
+    if existing_tasks:
+        audit("project_plan_reused", project_id, "project-manager", {"task_count": len(existing_tasks), "idempotent": True})
+        return existing_tasks
+    created = []; existing = {t["id"] for t in tasks.get("tasks", [])}; task_ids: list[str] = []
     for worker, action, description, dependency_indexes in workflow:
         task_id = _id("task")
         while task_id in existing: task_id = _id("task")
@@ -96,7 +101,21 @@ def complete_task(task_id: str, result: str, worker_id: str, success: bool = Tru
 
 def project_task_summary(project_id: str) -> dict:
     tasks = [t for t in _load_tasks().get("tasks", []) if t.get("project") == project_id]
-    counts = {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "blocked", "completed", "failed", "cancelled"]}; counts["waiting_on_dependencies"] = sum(1 for t in tasks if t.get("status") == "queued" and t.get("depends_on")); counts["total"] = len(tasks); counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0; return counts
+    counts = {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "blocked", "completed", "failed", "cancelled"]}
+    by_id = {t.get("id"): t for t in tasks}
+    counts["waiting_on_dependencies"] = sum(
+        1 for t in tasks
+        if t.get("status") == "queued"
+        and any(by_id.get(dep_id, {}).get("status") != "completed" for dep_id in t.get("depends_on", []))
+    )
+    counts["ready_to_claim"] = sum(
+        1 for t in tasks
+        if t.get("status") == "queued"
+        and all(by_id.get(dep_id, {}).get("status") == "completed" for dep_id in t.get("depends_on", []))
+    )
+    counts["total"] = len(tasks)
+    counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0
+    return counts
 
 def record_revenue(project_id: str, amount: float, description: str, external_reference: str) -> dict:
     if amount <= 0: raise ValueError("revenue amount must be positive")
