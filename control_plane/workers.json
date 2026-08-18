@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "workers": [
     {
       "id": "research-worker",
@@ -60,6 +60,17 @@
       "projects": ["*"],
       "risk_level": "customer-safe",
       "capabilities": ["intake", "support", "collect_feedback", "report"]
+    },
+    {
+      "id": "acquisition-worker",
+      "role": "customer acquisition and prospect qualification",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/acquisition_worker.py",
+      "projects": ["*"],
+      "risk_level": "acquisition-guarded",
+      "capabilities": ["discover_prospects", "qualify_prospects", "prepare_outreach", "track_responses", "report"],
+      "restricted_actions": ["mass_spam", "impersonate", "sign_contract", "publish_binding_offer", "move_money", "bypass_platform_rules"]
     },
     {
       "id": "finance-worker",
