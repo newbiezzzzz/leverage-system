@@ -63,7 +63,7 @@ def cmd_report(_: argparse.Namespace) -> int:
     print(f"Company health  : {health['status'].upper()} ({health['summary']['total']} alert(s))")
     readiness = company_os_readiness()
     print(f"OS readiness    : {'READY' if readiness['ready'] else 'NOT READY'}")
-    print("Trading project remains PAUSED. No new project is currently active.")
+    print("No new project is currently active.")
     return 0
 
 
