@@ -15,12 +15,12 @@ REQUIRED_RUNTIME = (
     "projects.json", "tasks.json", "approvals.json", "audit_log.json",
     "financial_ledger.json", "gates.json", "resource_state.json", "customer_orders.json",
 )
-REQUIRED_FILES = ("company.json", "workers.json", "policies.json", "resource_limits.json")
+REQUIRED_FILES = ("company.json", "workers.json", "policies.json", "resource_limits.json", "channel_adapter.py")
 REQUIRED_TESTS = (
     "test_company_core.py", "test_finance_core.py", "test_dispatcher.py",
     "test_company_ops.py", "test_gates.py", "test_cli.py", "test_readiness.py",
     "test_project_admin.py", "test_local_sync.py", "test_acquisition_worker.py",
-    "test_delivery_gateway.py", "../server/test_api.py",
+    "test_delivery_gateway.py", "test_channel_adapter.py", "../server/test_api.py",
 )
 EXPECTED_WORKERS = {
     "research-worker": "research", "data-worker": "validate", "code-worker": "build",
