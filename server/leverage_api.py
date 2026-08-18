@@ -15,6 +15,7 @@ from control_plane.company_core import Project, list_projects
 from control_plane.company_ops import intake_project, create_project_plan, system_snapshot
 from control_plane.gates import project_gate_report
 from control_plane.health import company_health
+from control_plane.readiness import company_os_readiness
 
 HOST, PORT = "127.0.0.1", 8765
 
@@ -37,7 +38,7 @@ def safe_dashboard_path(request_path: str) -> Path | None:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "LeverageLocalAPI/1.4"
+    server_version = "LeverageLocalAPI/1.5"
 
     def log_message(self, *_args):
         pass
@@ -55,6 +56,10 @@ class Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         if path == "/api/health":
             self.send_json(200, {"ok": True, "service": "Leverage Local API", "dashboard": True, "money_movement": "protected"})
+            return
+        if path == "/api/readiness":
+            result = company_os_readiness()
+            self.send_json(200 if result["ready"] else 503, {"ok": result["ready"], "readiness": result})
             return
         if path == "/api/snapshot":
             self.send_json(200, {"ok": True, "snapshot": system_snapshot()})
