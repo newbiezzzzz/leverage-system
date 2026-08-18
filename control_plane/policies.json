@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "company_policy": {
     "default_mode": "owner-controlled",
     "spend_requires_approval": true,
@@ -14,9 +14,10 @@
     "data-worker": ["collect", "validate", "transform", "cache"],
     "code-worker": ["build", "test", "lint", "package"],
     "project-manager": ["plan", "schedule", "route", "report"],
-    "finance-worker": ["reconcile", "prepare_payout", "report"],
     "operations-worker": ["monitor", "verify", "alert", "recover_safe"],
-    "customer-worker": ["intake", "support", "collect_feedback", "report"]
+    "customer-worker": ["intake", "support", "collect_feedback", "report"],
+    "acquisition-worker": ["discover_prospects", "qualify_prospects", "prepare_outreach", "track_responses", "report"],
+    "finance-worker": ["reconcile", "prepare_payout", "report"]
   },
   "restricted_actions": [
     "move_money",
@@ -25,6 +26,11 @@
     "change_bank_details",
     "publish_irreversible_contract",
     "delete_production_data",
-    "deploy_unreviewed_external_change"
+    "deploy_unreviewed_external_change",
+    "mass_spam",
+    "impersonate",
+    "sign_contract",
+    "publish_binding_offer",
+    "bypass_platform_rules"
   ]
 }
