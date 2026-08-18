@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T13:52:16.076643+00:00",
+  "generated_at": "2026-08-18T14:41:02.299332+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 83,
@@ -139,6 +139,32 @@
       ]
     },
     {
+      "id": "acquisition-worker",
+      "role": "customer acquisition and prospect qualification",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/acquisition_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "acquisition-guarded",
+      "capabilities": [
+        "discover_prospects",
+        "qualify_prospects",
+        "prepare_outreach",
+        "track_responses",
+        "report"
+      ],
+      "restricted_actions": [
+        "mass_spam",
+        "impersonate",
+        "sign_contract",
+        "publish_binding_offer",
+        "move_money",
+        "bypass_platform_rules"
+      ]
+    },
+    {
       "id": "finance-worker",
       "role": "financial reconciliation, revenue reporting and payout preparation",
       "status": "online",
@@ -192,6 +218,6 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-18T13:52:16.076643+00:00"
+    "synced_at": "2026-08-18T14:41:02.299332+00:00"
   }
 }
