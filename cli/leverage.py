@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -26,6 +27,7 @@ from control_plane.leverage_core import ResourceManager
 from control_plane.finance_core import can_execute_payout
 from control_plane.health import company_health
 from control_plane.readiness import company_os_readiness
+from control_plane.local_sync import sync as sync_local_state
 
 
 def money(value: float) -> str:
@@ -83,6 +85,47 @@ def cmd_readiness(_: argparse.Namespace) -> int:
     print(f"\nRelease gate: {result['release_gate']}")
     print(f"Status      : {'READY' if result['ready'] else 'NOT READY'}")
     return 0 if result["ready"] else 1
+
+
+def cmd_sync(_: argparse.Namespace) -> int:
+    return sync_local_state(push=True)
+
+
+def cmd_install_sync(_: argparse.Namespace) -> int:
+    task_name = "Leverage Local State Sync"
+    python_exe = Path(sys.executable).resolve()
+    cli_path = (ROOT / "cli" / "leverage.py").resolve()
+    task_command = f'"{python_exe}" "{cli_path}" sync'
+    result = subprocess.run(
+        ["schtasks", "/Create", "/TN", task_name, "/TR", task_command, "/SC", "MINUTE", "/MO", "5", "/F", "/RL", "LIMITED"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        print("Could not install automatic sync.")
+        print(result.stderr.strip() or result.stdout.strip())
+        return 2
+    print(f"Automatic sync installed: {task_name} (every 5 minutes)")
+    print("It publishes only sanitized company/project/worker/readiness state.")
+    return 0
+
+
+def cmd_uninstall_sync(_: argparse.Namespace) -> int:
+    task_name = "Leverage Local State Sync"
+    result = subprocess.run(
+        ["schtasks", "/Delete", "/TN", task_name, "/F"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        print(result.stderr.strip() or result.stdout.strip() or "Scheduled task not found.")
+        return 2
+    print(f"Automatic sync removed: {task_name}")
+    return 0
 
 
 def cmd_projects(_: argparse.Namespace) -> int:
@@ -173,13 +216,16 @@ Leverage — Boss commands
   report                       Owner report + OS readiness
   health                       Show company health alerts
   readiness                    Check whether Leverage is ready for the next income project
+  sync                         Publish sanitized local state to GitHub
+  install-sync                Install automatic 5-minute local-state sync
+  uninstall-sync              Remove automatic local-state sync
   workers                      Show the worker fleet
   project list                 Show all projects
   project new                  Create a project with simple questions
   project status <id>          Show project progress
   payout prepare ...           Prepare a payout (never transfers money)
-  payout approve <id>         Record Boss approval (never transfers money)
-  help                        Show this guide
+  payout approve <id>          Record Boss approval (never transfers money)
+  help                         Show this guide
 
 Natural-language instructions to the AI manager remain the preferred interface.
 """)
@@ -194,6 +240,9 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("report").set_defaults(func=cmd_report)
     sub.add_parser("health").set_defaults(func=cmd_health)
     sub.add_parser("readiness").set_defaults(func=cmd_readiness)
+    sub.add_parser("sync").set_defaults(func=cmd_sync)
+    sub.add_parser("install-sync").set_defaults(func=cmd_install_sync)
+    sub.add_parser("uninstall-sync").set_defaults(func=cmd_uninstall_sync)
     sub.add_parser("workers").set_defaults(func=cmd_system_workers)
     sub.add_parser("help").set_defaults(func=cmd_help)
 
