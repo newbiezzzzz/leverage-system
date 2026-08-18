@@ -19,12 +19,12 @@ REQUIRED_FILES = ("company.json", "workers.json", "policies.json", "resource_lim
 REQUIRED_TESTS = (
     "test_company_core.py", "test_finance_core.py", "test_dispatcher.py",
     "test_company_ops.py", "test_gates.py", "test_cli.py", "test_readiness.py",
-    "test_project_admin.py", "test_local_sync.py", "../server/test_api.py",
+    "test_project_admin.py", "test_local_sync.py", "test_acquisition_worker.py", "../server/test_api.py",
 )
 EXPECTED_WORKERS = {
     "research-worker": "research", "data-worker": "validate", "code-worker": "build",
     "project-manager": "plan", "operations-worker": "verify", "customer-worker": "intake",
-    "finance-worker": "reconcile",
+    "acquisition-worker": "discover_prospects", "finance-worker": "reconcile",
 }
 
 
@@ -51,7 +51,7 @@ def company_os_readiness() -> dict:
         unverified = [wid for wid, w in by_id.items() if wid in EXPECTED_WORKERS and w.get("activation") != "verified"]
         bad_capabilities = [wid for wid, action in EXPECTED_WORKERS.items() if wid in by_id and action not in set(by_id[wid].get("capabilities", []))]
         worker_ok = not (missing_workers or offline or unverified or bad_capabilities)
-        detail = "7/7 required workers online, verified, and capability-aligned."
+        detail = f"{len(EXPECTED_WORKERS)}/{len(EXPECTED_WORKERS)} required workers online, verified, and capability-aligned."
         if not worker_ok:
             detail = f"Worker contract problems: {', '.join(sorted(set(missing_workers + offline + unverified + bad_capabilities)))}"
         checks.append(_check("worker_fleet", worker_ok, detail))
