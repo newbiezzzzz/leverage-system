@@ -47,6 +47,16 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             p.stop()
         self.tmp.cleanup()
 
+    def test_project_plan_is_idempotent(self):
+        project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
+        first = company_ops.create_project_plan(project.id)
+        second = company_ops.create_project_plan(project.id)
+        self.assertEqual([task["id"] for task in first], [task["id"] for task in second])
+        stored = json.loads(self.files["tasks"].read_text())["tasks"]
+        self.assertEqual(len(stored), 8)
+        audit = json.loads(self.files["audit"].read_text())
+        self.assertIn("project_plan_reused", [e["event_type"] for e in audit["events"]])
+
     def test_dependency_aware_project_to_payout_ready_flow(self):
         project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
         tasks = company_ops.create_project_plan(project.id)
