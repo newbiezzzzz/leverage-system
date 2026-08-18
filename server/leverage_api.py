@@ -16,6 +16,7 @@ from control_plane.company_ops import intake_project, create_project_plan, syste
 from control_plane.gates import project_gate_report
 from control_plane.health import company_health
 from control_plane.readiness import company_os_readiness
+from control_plane.delivery_gateway import create_order, get_order, list_orders
 
 HOST, PORT = "127.0.0.1", 8765
 
@@ -38,7 +39,7 @@ def safe_dashboard_path(request_path: str) -> Path | None:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "LeverageLocalAPI/1.5"
+    server_version = "LeverageLocalAPI/1.6"
 
     def log_message(self, *_args):
         pass
@@ -70,6 +71,16 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/projects":
             self.send_json(200, {"ok": True, "projects": [p.__dict__ for p in list_projects()]})
             return
+        if path == "/api/customer-orders":
+            self.send_json(200, {"ok": True, "orders": list_orders()})
+            return
+        if path.startswith("/api/customer-orders/"):
+            order_id = unquote(path[len("/api/customer-orders/"):]).strip("/")
+            try:
+                self.send_json(200, {"ok": True, "order": get_order(order_id)})
+            except KeyError as exc:
+                self.send_json(404, {"ok": False, "error": str(exc)})
+            return
         if path.startswith("/api/projects/") and path.endswith("/gates"):
             project_id = unquote(path[len("/api/projects/"):-len("/gates")]).strip("/")
             try:
@@ -92,25 +103,38 @@ class Handler(BaseHTTPRequestHandler):
         self.send_json(404, {"ok": False, "error": "not_found"})
 
     def do_POST(self):
-        if urlparse(self.path).path != "/api/projects":
-            self.send_json(404, {"ok": False, "error": "not_found"})
-            return
+        path = urlparse(self.path).path
         try:
             length = int(self.headers.get("Content-Length", "0"))
             if length > 65536:
                 raise ValueError("request body too large")
             data = json.loads(self.rfile.read(length) or b"{}")
-            project = Project(
-                id=str(data.get("project_id", "")).strip(),
-                name=str(data.get("name", "")).strip(),
-                type=str(data.get("type", "general")).strip() or "general",
-                description=str(data.get("goal", "")).strip(),
-            )
-            if not project.id or not project.name or not project.description:
-                raise ValueError("project_id, name and goal are required")
-            created = intake_project(project)
-            tasks = create_project_plan(created.id)
-            self.send_json(201, {"ok": True, "project": created.__dict__, "tasks_created": len(tasks)})
+
+            if path == "/api/projects":
+                project = Project(
+                    id=str(data.get("project_id", "")).strip(),
+                    name=str(data.get("name", "")).strip(),
+                    type=str(data.get("type", "general")).strip() or "general",
+                    description=str(data.get("goal", "")).strip(),
+                )
+                if not project.id or not project.name or not project.description:
+                    raise ValueError("project_id, name and goal are required")
+                created = intake_project(project)
+                tasks = create_project_plan(created.id)
+                self.send_json(201, {"ok": True, "project": created.__dict__, "tasks_created": len(tasks)})
+                return
+
+            if path == "/api/customer-orders":
+                order = create_order(
+                    customer_ref=str(data.get("customer_ref", "")),
+                    service=str(data.get("service", "")),
+                    project_id=str(data.get("project_id", "")),
+                    input_manifest=data.get("input_manifest") or [],
+                )
+                self.send_json(201, {"ok": True, "order": order})
+                return
+
+            self.send_json(404, {"ok": False, "error": "not_found"})
         except (ValueError, KeyError, json.JSONDecodeError) as exc:
             self.send_json(400, {"ok": False, "error": str(exc)})
 
