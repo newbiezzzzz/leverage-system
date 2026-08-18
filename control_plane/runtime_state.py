@@ -21,6 +21,7 @@ LEGACY_FILES = {
     "financial_ledger.json": {"version": 1, "entries": [], "payout_queue": [], "policy": {"live_money_movement": False}},
     "gates.json": {"version": 1, "decisions": []},
     "resource_state.json": {"version": 1, "resources": []},
+    "customer_orders.json": {"version": 1, "orders": []},
 }
 
 
