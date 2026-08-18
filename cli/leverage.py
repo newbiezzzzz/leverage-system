@@ -24,6 +24,8 @@ from control_plane.company_ops import (
 )
 from control_plane.leverage_core import ResourceManager
 from control_plane.finance_core import can_execute_payout
+from control_plane.health import company_health
+from control_plane.readiness import company_os_readiness
 
 
 def money(value: float) -> str:
@@ -57,8 +59,30 @@ def cmd_report(_: argparse.Namespace) -> int:
     print("\nOWNER REPORT")
     print("============")
     _print_company_report()
-    print("\nTrading project remains PAUSED. No new project is currently active.")
+    health = company_health()
+    print(f"Company health  : {health['status'].upper()} ({health['summary']['total']} alert(s))")
+    readiness = company_os_readiness()
+    print(f"OS readiness    : {'READY' if readiness['ready'] else 'NOT READY'}")
+    print("Trading project remains PAUSED. No new project is currently active.")
     return 0
+
+
+def cmd_health(_: argparse.Namespace) -> int:
+    result = company_health()
+    print(f"Company health: {result['status'].upper()}")
+    for alert in result.get("alerts", []):
+        print(f"- {alert['severity'].upper()}: {alert['message']}")
+    return 0
+
+
+def cmd_readiness(_: argparse.Namespace) -> int:
+    result = company_os_readiness()
+    print("\nLEVERAGE OS READINESS\n=====================")
+    for check in result["checks"]:
+        print(f"{check['status'].upper():4} {check['name']:18} {check['detail']}")
+    print(f"\nRelease gate: {result['release_gate']}")
+    print(f"Status      : {'READY' if result['ready'] else 'NOT READY'}")
+    return 0 if result["ready"] else 1
 
 
 def cmd_projects(_: argparse.Namespace) -> int:
@@ -145,8 +169,10 @@ def cmd_help(_: argparse.Namespace) -> int:
     print("""
 Leverage — Boss commands
 
-  status                       Quick company health
-  report                       Simple owner report
+  status                       Quick company status
+  report                       Owner report + OS readiness
+  health                       Show company health alerts
+  readiness                    Check whether Leverage is ready for the next income project
   workers                      Show the worker fleet
   project list                 Show all projects
   project new                  Create a project with simple questions
@@ -155,8 +181,7 @@ Leverage — Boss commands
   payout approve <id>         Record Boss approval (never transfers money)
   help                        Show this guide
 
-You normally do NOT need this CLI; natural-language instructions to the AI
-manager are the preferred interface.
+Natural-language instructions to the AI manager remain the preferred interface.
 """)
     return 0
 
@@ -167,6 +192,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("status").set_defaults(func=cmd_status)
     sub.add_parser("report").set_defaults(func=cmd_report)
+    sub.add_parser("health").set_defaults(func=cmd_health)
+    sub.add_parser("readiness").set_defaults(func=cmd_readiness)
     sub.add_parser("workers").set_defaults(func=cmd_system_workers)
     sub.add_parser("help").set_defaults(func=cmd_help)
 
