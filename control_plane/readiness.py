@@ -10,6 +10,7 @@ from __future__ import annotations
 from pathlib import Path
 import json
 from .runtime_state import ensure_runtime_state, state_path
+from .company_ops import DEFAULT_PROJECT_WORKFLOW
 
 ROOT = Path(__file__).resolve().parent
 WORKERS_FILE = ROOT / "workers.json"
@@ -31,6 +32,17 @@ REQUIRED_FILES = (
     "workers.json",
     "policies.json",
     "resource_limits.json",
+)
+
+REQUIRED_TESTS = (
+    "test_company_core.py",
+    "test_finance_core.py",
+    "test_dispatcher.py",
+    "test_company_ops.py",
+    "test_gates.py",
+    "test_cli.py",
+    "test_readiness.py",
+    "../server/test_api.py",
 )
 
 EXPECTED_WORKERS = {
@@ -77,6 +89,35 @@ def company_os_readiness() -> dict:
         checks.append(_check("worker_fleet", worker_ok, detail))
     except (OSError, json.JSONDecodeError, AttributeError):
         checks.append(_check("worker_fleet", False, "Worker registry could not be read."))
+
+    try:
+        workers = _load(WORKERS_FILE).get("workers", [])
+        by_id = {worker.get("id"): worker for worker in workers}
+        workflow_ok = True
+        problems: list[str] = []
+        actions_seen: set[str] = set()
+        for worker_id, action, _description, _dependencies in DEFAULT_PROJECT_WORKFLOW:
+            if worker_id not in by_id:
+                workflow_ok = False
+                problems.append(f"missing worker {worker_id}")
+                continue
+            if action in actions_seen:
+                workflow_ok = False
+                problems.append(f"duplicate workflow action {action}")
+            actions_seen.add(action)
+            if action not in set(by_id[worker_id].get("capabilities", [])):
+                workflow_ok = False
+                problems.append(f"{worker_id} lacks {action}")
+        workflow_ok = workflow_ok and actions_seen == {item[1] for item in DEFAULT_PROJECT_WORKFLOW}
+        detail = "Default 8-step project workflow is unique, dependency-defined, and capability-aligned."
+        if not workflow_ok:
+            detail = f"Workflow contract problems: {', '.join(problems)}"
+        checks.append(_check("workflow_contract", workflow_ok, detail))
+    except (OSError, json.JSONDecodeError, AttributeError):
+        checks.append(_check("workflow_contract", False, "Default project workflow could not be validated."))
+
+    missing_tests = [name for name in REQUIRED_TESTS if not (ROOT / name).is_file()]
+    checks.append(_check("test_surface", not missing_tests, "Core OS regression tests are present." if not missing_tests else f"Missing tests: {', '.join(missing_tests)}"))
 
     try:
         policy = _load(POLICIES_FILE).get("company_policy", {})
