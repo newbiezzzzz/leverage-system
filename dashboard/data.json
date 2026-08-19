@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T13:42:48.136946+00:00",
+  "generated_at": "2026-08-19T13:44:25.192950+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 97,
@@ -90,6 +90,24 @@
         "package",
         "report"
       ]
+    },
+    {
+      "id": "digital-product-worker",
+      "role": "digital product creation and packaging",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/digital_product_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "product-safe",
+      "capabilities": [
+        "build",
+        "package",
+        "report"
+      ],
+      "external_dependencies": [],
+      "cost_rm": 0
     },
     {
       "id": "project-manager",
@@ -214,7 +232,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-19T13:42:48.136946+00:00"
+    "synced_at": "2026-08-19T13:44:25.192950+00:00"
   },
   "projects": []
 }
