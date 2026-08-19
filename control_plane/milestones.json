@@ -1,10 +1,10 @@
 {
-  "version": 7,
+  "version": 8,
   "milestones": [
     {"id":"foundation","name":"Foundation & architecture","progress":100,"status":"complete"},
-    {"id":"worker-fleet","name":"Core worker fleet","progress":85,"status":"active"},
-    {"id":"control-plane","name":"Control Plane","progress":80,"status":"active"},
-    {"id":"company-operating-system","name":"Company Operating System v1","progress":55,"status":"active"},
-    {"id":"owner-command-center","name":"Owner Command Center","progress":95,"status":"active"}
+    {"id":"worker-fleet","name":"Core worker fleet","progress":100,"status":"complete"},
+    {"id":"control-plane","name":"Control Plane","progress":95,"status":"active","note":"Lifecycle gates, task dependencies, dispatch readiness, worker queues, audit and guarded finance are complete; external worker execution adapters remain project-specific."},
+    {"id":"company-operating-system","name":"Company Operating System v1","progress":95,"status":"active","note":"Reusable project intake, planning, lifecycle, task orchestration, health, readiness, resource and revenue tracking are ready for the first income project."},
+    {"id":"owner-command-center","name":"Owner Command Center","progress":100,"status":"complete","note":"Company health, project portfolio, worker queues, readiness, revenue KPIs and project intake are surfaced in the dashboard."}
   ]
 }
