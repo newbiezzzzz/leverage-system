@@ -85,7 +85,7 @@ def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], 
     )
     workbook_rels = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        f'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
         + ''.join(rel_entries) + '</Relationships>'
     )
     with ZipFile(target, "w", compression=ZIP_DEFLATED) as archive:
@@ -104,43 +104,37 @@ def build_quote_workbook(output_path: str) -> dict:
 
     quote_rows = [
         ["ENGINEERING JOB QUOTATION TOOLKIT"],
-        ["Enter the yellow/input cells in Excel. Formula cells calculate automatically."],
+        ["Enter customer/job details and line costs. Formula cells calculate automatically."],
         ["Quote ID", "Q-0001", "Customer", "", "Job", ""],
         ["Quantity", 1, "Target Margin %", 30, "Status", "Draft"],
         [],
         ["Category", "Description", "Qty", "Unit", "Rate (RM)", "Markup %", "Line Cost (RM)", "Sell Price (RM)"],
-    ]
-    quote_rows += [
         ["Material", "", 1, "kg", 0, 15, 0, 0],
         ["Labour", "", 1, "hr", 0, 0, 0, 0],
         ["Outside", "", 1, "job", 0, 10, 0, 0],
     ]
-    for _ in range(17):
-        quote_rows.append(["", "", "", "", "", "", "", ""])
+    quote_rows += [["", "", "", "", "", "", 0, 0] for _ in range(17)]
     quote_rows += [
         [],
         ["SUMMARY"],
-        ["Direct Cost", ""],
+        ["Direct Cost", 0],
         ["Overhead %", 8],
-        ["Overhead", ""],
-        ["Target Quote", ""],
-        ["Gross Profit", ""],
-        ["Gross Margin %", ""],
+        ["Overhead", 0],
+        ["Target Quote", 0],
+        ["Gross Profit", 0],
+        ["Gross Margin %", 0],
     ]
-    quote_formulas = {
-        "G7": "C7*E7", "H7": "G7*(1+F7/100)",
-        "G8": "C8*E8", "H8": "G8*(1+F8/100)",
-        "G9": "C9*E9", "H9": "G9*(1+F9/100)",
-        "B24": "SUM(G7:G26)",
-        "B26": "B24*B25/100",
-        "B27": "(B24+B26)/(1-D4/100)",
-        "B28": "B27-B24-B26",
-        "B29": "IF(B27=0,0,B28/B27)",
-    }
-    # Formula cells for blank line rows 10:26.
-    for row in range(10, 27):
+    quote_formulas = {}
+    for row in range(7, 27):
         quote_formulas[f"G{row}"] = f"C{row}*E{row}"
         quote_formulas[f"H{row}"] = f"G{row}*(1+F{row}/100)"
+    quote_formulas.update({
+        "B29": "SUM(G7:G26)",
+        "B31": "B29*B30/100",
+        "B32": "(B29+B31)/(D4/100*-1+1)",
+        "B33": "B32-B29-B31",
+        "B34": "IF(B32=0,0,B33/B32)",
+    })
 
     rates_rows = [
         ["RATES & ASSUMPTIONS"],
