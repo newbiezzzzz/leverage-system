@@ -1,0 +1,41 @@
+{
+  "project_id": "engineering-quote-toolkit",
+  "validated_at": "2026-08-19T14:10:00+00:00",
+  "decision": "proceed_to_build",
+  "market_signals": {
+    "machine_shop_quoting_pack_usd": 34,
+    "planovate_pro_usd": 19.97,
+    "cnc_quoting_calculator_usd": 249,
+    "job_costing_template_usd": 29
+  },
+  "evidence": [
+    {
+      "source": "Gumroad Machine Shop Quoting Pack",
+      "url": "https://morganscape314.gumroad.com/l/rhnbp",
+      "signal": "Paid niche quoting/job-costing pack with quote, shop-rate and job-cost recap workflows."
+    },
+    {
+      "source": "Planovate Pro",
+      "url": "https://planovatehq.gumroad.com/l/planovatepro",
+      "signal": "Paid Excel estimating/planning toolkit with labour/materials and job planning."
+    },
+    {
+      "source": "Excel-A-Rate CNC Job Shop Quoting Calculator",
+      "url": "https://shopcalcs.gumroad.com/l/xccbw",
+      "signal": "Specialised quoting calculator at a materially higher price point, indicating commercial value for niche quoting tools."
+    },
+    {
+      "source": "Etsy Excel Job Costing Template",
+      "url": "https://www.etsy.com/ca/listing/4319688997/excel-job-costing-template-materials",
+      "signal": "Digital workbook category explicitly targets fabricators, welders and engineers with automated cost/markup/profit calculations."
+    }
+  ],
+  "validation_limits": [
+    "Competitor listings demonstrate category existence, not guaranteed demand for Leverage v1.",
+    "No customer has purchased this product yet.",
+    "No revenue is recorded."
+  ],
+  "launch_price_usd": 9.99,
+  "launch_channel": "digital-download marketplace or storefront; external account connection still required",
+  "next_gate": "build-and-test-artifact"
+}
