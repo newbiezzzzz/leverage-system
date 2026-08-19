@@ -1,6 +1,7 @@
-"""Leverage Control Plane task dispatcher."""
+"""Leverage Control Plane task dispatcher and worker queue planner."""
 from __future__ import annotations
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from .runtime_state import state_path
 
@@ -8,9 +9,8 @@ ROOT = Path(__file__).resolve().parent
 WORKERS_FILE = ROOT / "workers.json"
 TASKS_FILE = state_path("tasks.json")
 PROJECTS_FILE = state_path("projects.json")
-POLICIES_FILE = ROOT / "policies.json"
 APPROVALS_FILE = state_path("approvals.json")
-ALLOWED_STATUSES = {"queued", "running", "blocked", "completed", "failed", "cancelled"}
+ALLOWED_STATUSES = {"queued", "ready", "running", "blocked", "completed", "failed", "cancelled"}
 SAFE_ACTIONS = {"research","analyze","recommend","collect","validate","transform","cache","build","test","lint","package","plan","schedule","route","report","monitor","verify","alert","recover_safe","intake","support","collect_feedback","reconcile","prepare_payout"}
 RESTRICTED_ACTIONS = {"move_money","approve_money","open_financial_account","change_bank_details","publish_irreversible_contract","delete_production_data","deploy_unreviewed_external_change","execute_payout"}
 
@@ -50,16 +50,34 @@ def validate_task(task: dict, workers: dict, projects: dict, tasks: dict | None 
     if tasks is not None: errors.extend(dependency_errors(task,tasks))
     return errors
 
+def readiness(task: dict, workers: dict, projects: dict, tasks: dict) -> tuple[bool,list[str]]:
+    errors=validate_task(task,workers,projects,tasks)
+    return (not errors, errors)
+
 def dispatch() -> int:
-    workers=worker_index(); projects=project_index(); task_store=load_json(TASKS_FILE); tasks=task_store.get("tasks",[]); indexed_tasks={task.get("id"):task for task in tasks}; print("LEVERAGE CONTROL PLANE"); print("="*60); print(f"Workers registered: {len(workers)}"); print(f"Projects registered: {len(projects)}"); print(f"Tasks queued: {sum(task.get('status') == 'queued' for task in tasks)}"); failures=0
+    workers=worker_index(); projects=project_index(); task_store=load_json(TASKS_FILE); tasks=task_store.get("tasks",[]); indexed_tasks={task.get("id"):task for task in tasks}; failures=0
+    print("LEVERAGE CONTROL PLANE"); print("="*60); print(f"Workers registered: {len(workers)}"); print(f"Projects registered: {len(projects)}"); print(f"Tasks queued: {sum(task.get('status') == 'queued' for task in tasks)}")
     for task in tasks:
-        if task.get("status") != "queued": continue
+        if task.get("status") not in {"queued","ready"}: continue
         errors=validate_task(task,workers,projects,indexed_tasks)
+        dependency_only=errors and all(error.startswith("dependency incomplete:") for error in errors)
+        if dependency_only: task["readiness"]={"ready":False,"reason":"dependencies","errors":errors}; print(f"WAIT    {task.get('id','<unknown>')}: {'; '.join(errors)}"); continue
         if errors:
-            task["validation_errors"]=errors
-            if all(error.startswith("dependency incomplete:") for error in errors): print(f"WAIT    {task.get('id','<unknown>')}: {'; '.join(errors)}"); continue
-            task["status"]="blocked"; failures+=1; print(f"BLOCKED {task.get('id','<unknown>')}: {'; '.join(errors)}"); continue
-        task["routing"]={"worker":task["worker"],"action":task.get("action","report"),"validated":True,"execution":"worker-controlled","dependencies_satisfied":True}; print(f"READY   {task['id']} -> {task['worker']} ({task.get('action','report')})")
-    save_json(TASKS_FILE,task_store); print(f"Dispatcher completed with {failures} blocked task(s)."); return 1 if failures else 0
+            task["readiness"]={"ready":False,"reason":"validation","errors":errors}; task["status"]="blocked"; failures+=1; print(f"BLOCKED {task.get('id','<unknown>')}: {'; '.join(errors)}"); continue
+        task["status"]="ready"; task["readiness"]={"ready":True,"reason":"validated","errors":[]}; task["routing"]={"worker":task["worker"],"action":task.get("action","report"),"validated":True,"execution":"worker-controlled","dependencies_satisfied":True}; print(f"READY   {task['id']} -> {task['worker']} ({task.get('action','report')})")
+    task_store["last_modified_at"] = datetime.now(timezone.utc).isoformat(); save_json(TASKS_FILE,task_store); print(f"Dispatcher completed with {failures} blocked task(s)."); return 1 if failures else 0
+
+def worker_queue(worker_id: str) -> list[dict]:
+    workers=worker_index(); worker=workers.get(worker_id)
+    if worker is None: raise KeyError(f"worker not found: {worker_id}")
+    projects=project_index(); data=load_json(TASKS_FILE); tasks=data.get("tasks",[]); indexed={t.get("id"):t for t in tasks}; queue=[]
+    for task in tasks:
+        if task.get("worker") != worker_id or task.get("status") not in {"queued","ready"}: continue
+        ok,errors=readiness(task,workers,projects,indexed)
+        if ok: queue.append({**task,"status":"ready","readiness":{"ready":True,"errors":[]}})
+    return queue
+
+def queues() -> dict[str,list[dict]]:
+    return {worker_id: worker_queue(worker_id) for worker_id in worker_index()}
 
 if __name__ == "__main__": raise SystemExit(dispatch())
