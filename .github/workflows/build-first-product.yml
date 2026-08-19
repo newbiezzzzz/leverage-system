@@ -1,0 +1,53 @@
+name: Leverage First Product Build
+
+on:
+  push:
+    paths:
+      - 'workers/digital_product_worker.py'
+      - 'control_plane/product_specs/**'
+      - '.github/workflows/build-first-product.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-first-product:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Build first digital product
+        run: |
+          mkdir -p artifacts
+          python - <<'PY'
+          from pathlib import Path
+          from workers.digital_product_worker import build_quote_workbook, build_job_log_csv
+          print(build_quote_workbook('artifacts/Leverage_Engineering_Quote_Toolkit_v1.xlsx'))
+          print(build_job_log_csv('artifacts/Leverage_Engineering_Job_Log_v1.csv', rows=20))
+          PY
+      - name: Validate artifact package
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          p = Path('artifacts/Leverage_Engineering_Quote_Toolkit_v1.xlsx')
+          assert p.exists() and p.stat().st_size > 0
+          with ZipFile(p) as z:
+              names = set(z.namelist())
+              required = {'[Content_Types].xml','_rels/.rels','xl/workbook.xml','xl/_rels/workbook.xml.rels','xl/worksheets/sheet1.xml'}
+              missing = required - names
+              assert not missing, f'missing XLSX parts: {sorted(missing)}'
+          print(f'Validated {p} ({p.stat().st_size} bytes)')
+          PY
+      - name: Upload first product artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: leverage-engineering-quote-toolkit-v1
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 30
