@@ -15,6 +15,7 @@ import uuid
 from .company_core import Project, create_project, change_stage, load_json, save_json
 from .finance_core import prepare_owner_payout, reconcile_entry
 from .runtime_state import state_path
+from .dispatcher import queue_summary
 
 ROOT = Path(__file__).resolve().parent
 TASKS_FILE = state_path("tasks.json")
@@ -33,7 +34,6 @@ DEFAULT_PROJECT_WORKFLOW = [
     ("customer-worker", "intake", "Prepare customer intake, onboarding and feedback workflow", [0]),
     ("finance-worker", "reconcile", "Prepare financial reporting and reconciliation workflow", [5, 6]),
 ]
-
 
 def _now() -> str: return datetime.now(timezone.utc).isoformat()
 def _id(prefix: str) -> str: return f"{prefix}-{uuid.uuid4().hex[:10]}"
@@ -74,31 +74,23 @@ def _dependency_state(data: dict, task: dict) -> tuple[bool, list[str]]:
     return not missing, missing
 
 def _sync_project_stage(project_id: str, tasks: list[dict]) -> None:
-    """Advance lifecycle only when the corresponding gate is actually complete."""
     project = next((p for p in load_json(PROJECTS_FILE).get("projects", []) if p.get("id") == project_id), None)
     if project is None or project.get("status") in {"paused", "retired", "revenue", "payout-ready"}: return
     project_tasks = [t for t in tasks if t.get("project") == project_id]
     completed = {t.get("action") for t in project_tasks if t.get("status") == "completed"}
-    stage = project.get("lifecycle_stage")
-    target = None
-    reason = None
-    if "research" in completed and "validate" in completed and stage == "validation":
-        target, reason = "build", "Research and data validation gates completed; build is authorized"
-    elif "build" in completed and "test" in completed and stage == "build":
-        target, reason = "launch", "Build and quality gates completed; launch verification is authorized"
-    elif "verify" in completed and "intake" in completed and stage == "launch":
-        target, reason = "operate", "Operational and customer-readiness gates completed; project may operate"
-    elif "reconcile" in completed and stage == "operate":
-        target, reason = "operate", "Financial reconciliation completed; project remains operational until revenue is recorded"
+    stage = project.get("lifecycle_stage"); target = None; reason = None
+    if "research" in completed and "validate" in completed and stage == "validation": target, reason = "build", "Research and data validation gates completed; build is authorized"
+    elif "build" in completed and "test" in completed and stage == "build": target, reason = "launch", "Build and quality gates completed; launch verification is authorized"
+    elif "verify" in completed and "intake" in completed and stage == "launch": target, reason = "operate", "Operational and customer-readiness gates completed; project may operate"
+    elif "reconcile" in completed and stage == "operate": target, reason = "operate", "Financial reconciliation completed; project remains operational until revenue is recorded"
     if target and target != stage:
-        change_stage(project_id, target, reason)
-        audit("project_stage_advanced", project_id, "project-manager", {"from": stage, "to": target, "reason": reason})
+        change_stage(project_id, target, reason); audit("project_stage_advanced", project_id, "project-manager", {"from": stage, "to": target, "reason": reason})
 
 def claim_task(task_id: str, worker_id: str) -> dict:
     data = _load_tasks()
     for task in data.get("tasks", []):
         if task["id"] == task_id:
-            if task["status"] != "queued": raise ValueError(f"task is not queued: {task_id}")
+            if task["status"] not in {"queued", "ready"}: raise ValueError(f"task is not claimable: {task_id}")
             if task["worker"] != worker_id: raise ValueError("worker not assigned to task")
             ready, missing = _dependency_state(data, task)
             if not ready: raise ValueError(f"dependencies incomplete: {', '.join(missing)}")
@@ -109,9 +101,9 @@ def complete_task(task_id: str, result: str, worker_id: str, success: bool = Tru
     data = _load_tasks()
     for task in data.get("tasks", []):
         if task["id"] == task_id:
-            if task["status"] not in {"running", "queued"}: raise ValueError(f"task cannot be completed from status {task['status']}")
+            if task["status"] not in {"running", "queued", "ready"}: raise ValueError(f"task cannot be completed from status {task['status']}")
             if task.get("worker") != worker_id: raise ValueError("worker not assigned to task")
-            if task["status"] == "queued":
+            if task["status"] != "running":
                 ready, missing = _dependency_state(data, task)
                 if not ready: raise ValueError(f"dependencies incomplete: {', '.join(missing)}")
             task["status"] = "completed" if success else "failed"; task["result"] = result; task["completed_at"] = _now(); _save_tasks(data); audit("task_completed" if success else "task_failed", task["project"], worker_id, {"task_id": task_id, "result": result})
@@ -121,10 +113,10 @@ def complete_task(task_id: str, result: str, worker_id: str, success: bool = Tru
 
 def project_task_summary(project_id: str) -> dict:
     tasks = [t for t in _load_tasks().get("tasks", []) if t.get("project") == project_id]
-    counts = {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "blocked", "completed", "failed", "cancelled"]}
+    counts = {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "ready", "running", "blocked", "completed", "failed", "cancelled"]}
     by_id = {t.get("id"): t for t in tasks}
-    counts["waiting_on_dependencies"] = sum(1 for t in tasks if t.get("status") == "queued" and any(by_id.get(dep_id, {}).get("status") != "completed" for dep_id in t.get("depends_on", [])))
-    counts["ready_to_claim"] = sum(1 for t in tasks if t.get("status") == "queued" and all(by_id.get(dep_id, {}).get("status") == "completed" for dep_id in t.get("depends_on", [])))
+    counts["waiting_on_dependencies"] = sum(1 for t in tasks if t.get("status") in {"queued","ready"} and any(by_id.get(dep_id, {}).get("status") != "completed" for dep_id in t.get("depends_on", [])))
+    counts["ready_to_claim"] = sum(1 for t in tasks if t.get("status") in {"queued","ready"} and all(by_id.get(dep_id, {}).get("status") == "completed" for dep_id in t.get("depends_on", [])))
     counts["total"] = len(tasks); counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0
     return counts
 
@@ -151,4 +143,4 @@ def approve_payout(payout_id: str, owner: str = "Boss") -> dict:
 
 def system_snapshot() -> dict:
     projects = load_json(PROJECTS_FILE).get("projects", []); tasks = load_json(TASKS_FILE).get("tasks", []); ledger = load_json(LEDGER_FILE)
-    return {"generated_at": _now(), "projects": len(projects), "active_projects": sum(1 for p in projects if p.get("status") not in {"paused", "retired"}), "tasks": {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "completed", "failed", "blocked"]}, "revenue_entries": len([e for e in ledger.get("entries", []) if e.get("direction") == "income"]), "payouts_prepared": len(ledger.get("payout_queue", [])), "live_money_movement": bool(ledger.get("policy", {}).get("live_money_movement", False))}
+    return {"generated_at": _now(), "projects": len(projects), "active_projects": sum(1 for p in projects if p.get("status") not in {"paused", "retired"}), "tasks": {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "ready", "running", "completed", "failed", "blocked"]}, "revenue_entries": len([e for e in ledger.get("entries", []) if e.get("direction") == "income"]), "payouts_prepared": len(ledger.get("payout_queue", [])), "live_money_movement": bool(ledger.get("policy", {}).get("live_money_movement", False)), "worker_queues": queue_summary()}
