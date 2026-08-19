@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T13:52:40.307914+00:00",
+  "generated_at": "2026-08-19T14:01:59.333221+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -232,7 +232,22 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-19T13:52:40.307914+00:00"
+    "synced_at": "2026-08-19T14:01:59.333221+00:00"
   },
-  "projects": []
+  "projects": [
+    {
+      "id": "engineering-quote-toolkit",
+      "name": "Engineering Quote & Job-Costing Toolkit",
+      "type": "digital-product",
+      "status": "validation",
+      "lifecycle_stage": "validation",
+      "revenue_status": "none",
+      "capital_deployed": 0.0,
+      "currency": "MYR",
+      "owner_approval_required_for_spend": true,
+      "description": "First Leverage digital-product experiment: a macro-free engineering quotation and job-costing workbook for small engineering, fabrication and machine-shop businesses.",
+      "next_gate": "Validate demand, product usefulness and buyer willingness before launch",
+      "created_at": "2026-08-19T14:00:00+00:00"
+    }
+  ]
 }
