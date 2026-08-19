@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "last_discovered_at": "2026-08-19",
+  "status_definition": "discovered prospects are candidates only; no outreach or customer claim is implied",
+  "prospects": [
+    {
+      "id": "prospect-xtreme-performance-automotive",
+      "name": "Xtreme Performance Automotive",
+      "category": "automotive workshop",
+      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
+      "fit": 84,
+      "candidate_workflow": "customer enquiry intake, appointment/status follow-up, FAQ handling",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "validation_status": "unvalidated"
+    },
+    {
+      "id": "prospect-excom-management",
+      "name": "Excom Management",
+      "category": "accounting firm",
+      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
+      "fit": 80,
+      "candidate_workflow": "client intake, document/request tracking, repetitive status enquiries",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "validation_status": "unvalidated",
+      "restriction": "do not provide tax/accounting advice; automation must remain administrative"
+    },
+    {
+      "id": "prospect-vestcom",
+      "name": "Vestcom",
+      "category": "property management",
+      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
+      "fit": 86,
+      "candidate_workflow": "tenant enquiry intake, maintenance request routing, status updates",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "validation_status": "unvalidated"
+    },
+    {
+      "id": "prospect-printer-repair-kuchai",
+      "name": "Kedai Repair Printer KL Dan Selangor • Kuchai Lama",
+      "category": "printer repair service",
+      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
+      "fit": 82,
+      "candidate_workflow": "repair enquiry intake, issue classification, quotation/status follow-up",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "validation_status": "unvalidated"
+    },
+    {
+      "id": "prospect-malsoothanan-enterprise",
+      "name": "Malsoothanan Enterprise",
+      "category": "plumber / transport service",
+      "location": "Puchong, Selangor",
+      "fit": 78,
+      "candidate_workflow": "service request intake, job triage, scheduling/status communication",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "validation_status": "unvalidated"
+    },
+    {
+      "id": "prospect-towing-puchong-kinrara",
+      "name": "TOWING SERVICES PUCHONG KINRARA",
+      "category": "towing service",
+      "location": "Puchong, Selangor",
+      "fit": 81,
+      "candidate_workflow": "urgent enquiry intake, location/details collection, dispatch/status communication",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "validation_status": "unvalidated"
+    }
+  ]
+}
