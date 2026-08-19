@@ -67,24 +67,25 @@ def _code_inspect(task: dict[str, Any]) -> dict[str, Any]:
     return {"type": "python_inspection", **inspect_python(task["input_path"])}
 
 
-def _digital_product(task: dict[str, Any]) -> dict[str, Any]:
+def _build_product(task: dict[str, Any]) -> dict[str, Any]:
     try:
         from .digital_product_worker import build_quote_workbook, build_job_log_csv
     except ImportError:
         from digital_product_worker import build_quote_workbook, build_job_log_csv
-    artifact_type = task.get("artifact_type", "quote_workbook")
-    if artifact_type == "quote_workbook":
-        return {"type": artifact_type, **build_quote_workbook(task["output_path"])}
-    if artifact_type == "job_log_csv":
-        return {"type": artifact_type, **build_job_log_csv(task["output_path"], int(task.get("rows", 20)))}
-    raise ValueError(f"unknown digital product artifact type: {artifact_type}")
+    output_dir = Path(task.get("output_dir", "."))
+    output_dir.mkdir(parents=True, exist_ok=True)
+    quote_path = output_dir / task.get("quote_filename", "engineering_quote_toolkit.xlsx")
+    log_path = output_dir / task.get("job_log_filename", "job_log_template.csv")
+    quote = build_quote_workbook(str(quote_path))
+    job_log = build_job_log_csv(str(log_path), int(task.get("job_log_rows", 20)))
+    return {"type": "digital_product", "quote": quote, "job_log": job_log}
 
 
 def build_default_registry() -> ExecutorRegistry:
     registry = ExecutorRegistry()
     registry.register("data-worker", "local-python", _data_summary)
     registry.register("code-worker", "local-python", _code_inspect)
-    registry.register("digital-product-worker", "local-python", _digital_product)
+    registry.register("digital-product-worker", "local-python", _build_product)
     return registry
 
 
