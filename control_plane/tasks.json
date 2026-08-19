@@ -1,51 +1,74 @@
 {
-  "version": 4,
+  "version": 5,
   "tasks": [
+    {
+      "id": "eqt-selection-001",
+      "project": "engineering-quote-toolkit",
+      "worker": "research-worker",
+      "description": "Finalize the first digital-product selection using demand, competition, zero-cost feasibility, buyer accessibility, automation potential and first-sale speed.",
+      "action": "research",
+      "status": "completed",
+      "priority": "critical",
+      "depends_on": [],
+      "created_at": "2026-08-19T14:20:00+00:00",
+      "completed_at": "2026-08-19T14:30:00+00:00",
+      "result": "Winner selected: Fabrication Shop Quote & Profit Toolkit. Original generic engineering quote sheet downgraded to candidate and build paused until the stronger product specification is finalized."
+    },
     {
       "id": "eqt-research-001",
       "project": "engineering-quote-toolkit",
       "worker": "research-worker",
-      "description": "Validate target customer, pain point, competitor evidence and willingness-to-pay signals for the engineering quote/job-costing toolkit.",
+      "description": "Validate target customer, pain point, competitor evidence and willingness-to-pay signals for the fabrication-shop toolkit.",
       "action": "research",
       "status": "completed",
       "priority": "high",
-      "depends_on": [],
+      "depends_on": ["eqt-selection-001"],
       "created_at": "2026-08-19T14:00:00+00:00",
       "completed_at": "2026-08-19T14:12:00+00:00",
-      "result": "Evidence-backed category validation completed; proceed to build at an introductory US$9.99 price, with first-sale validation still required."
+      "result": "Current evidence shows paid demand for welding/fabrication quote calculators and job-costing toolkits, including recent Etsy listings with sales and reviews."
     },
     {
       "id": "eqt-data-001",
       "project": "engineering-quote-toolkit",
       "worker": "data-worker",
-      "description": "Prepare structured evidence dataset for the first product decision.",
+      "description": "Prepare structured comparison dataset for competing product categories and distribution options.",
       "action": "validate",
       "status": "completed",
       "priority": "high",
-      "depends_on": [],
+      "depends_on": ["eqt-selection-001"],
       "created_at": "2026-08-19T14:00:00+00:00",
       "completed_at": "2026-08-19T14:12:30+00:00",
-      "result": "Comparable product prices and product-feature evidence were structured in control_plane/product_specs/engineering-quote-toolkit-validation.json."
+      "result": "Category comparison completed; broad inventory/productivity templates are crowded, while narrow fabrication/welding tools show clear paid demand and fit with Leverage capabilities."
     },
     {
       "id": "eqt-build-001",
       "project": "engineering-quote-toolkit",
       "worker": "digital-product-worker",
-      "description": "Generate the final macro-free XLSX quotation and job-costing product artifact from the approved specification.",
+      "description": "Generate the final Fabrication Shop Quote & Profit Toolkit artifact from the approved specification.",
       "action": "build",
-      "status": "running",
+      "status": "cancelled",
       "priority": "high",
       "depends_on": ["eqt-research-001", "eqt-data-001"],
       "created_at": "2026-08-19T14:00:00+00:00",
-      "started_at": "2026-08-19T14:04:00+00:00",
-      "execution_backend": "github-actions",
-      "execution_note": "Build workflow committed; hosted runner is responsible for artifact generation and validation."
+      "cancelled_at": "2026-08-19T14:30:00+00:00",
+      "cancellation_reason": "Build was started before the first-project selection gate was fully finalized; reset intentionally to prevent premature commitment."
+    },
+    {
+      "id": "eqt-spec-001",
+      "project": "engineering-quote-toolkit",
+      "worker": "project-manager",
+      "description": "Finalize product specification, differentiation, pricing hypothesis and RM0 distribution plan for the selected winner.",
+      "action": "plan",
+      "status": "ready",
+      "priority": "critical",
+      "depends_on": ["eqt-selection-001", "eqt-research-001", "eqt-data-001"],
+      "created_at": "2026-08-19T14:30:00+00:00"
     },
     {
       "id": "eqt-test-001",
       "project": "engineering-quote-toolkit",
       "worker": "code-worker",
-      "description": "Quality-check the generated product artifact, formulas, structure and packaging.",
+      "description": "Quality-check the generated product artifact, formulas, structure and packaging after spec approval and build.",
       "action": "test",
       "status": "queued",
       "priority": "high",
@@ -71,8 +94,8 @@
       "action": "intake",
       "status": "queued",
       "priority": "normal",
-      "depends_on": [],
-      "created_at": "2026-08-19T14:00:00+00:00"
+      "depends_on": ["eqt-spec-001"],
+      "created_at": "2026-08-19T14:30:00+00:00"
     },
     {
       "id": "eqt-finance-001",
@@ -94,5 +117,5 @@
     "dependency_rule": "depends_on must reference tasks in the same project and every dependency must be completed before a dependent task can run",
     "safety_rule": "restricted actions remain blocked without owner approval and enabled external integration"
   },
-  "last_modified_at": "2026-08-19T14:04:00+00:00"
+  "last_modified_at": "2026-08-19T14:30:00+00:00"
 }
