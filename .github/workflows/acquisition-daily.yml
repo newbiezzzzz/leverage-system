@@ -1,0 +1,30 @@
+name: Leverage Daily Acquisition Planner
+
+on:
+  schedule:
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  plan-acquisition:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Generate daily acquisition queue
+        run: python -m control_plane.acquisition_campaign
+      - name: Commit acquisition queue
+        run: |
+          git config user.name 'leverage-bot'
+          git config user.email 'leverage-bot@users.noreply.github.com'
+          git add control_plane/acquisition_queue.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'ops: refresh daily acquisition queue'
+          git push
