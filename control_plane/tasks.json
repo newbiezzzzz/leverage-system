@@ -1,121 +1,18 @@
 {
-  "version": 5,
+  "version": 6,
   "tasks": [
-    {
-      "id": "eqt-selection-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "research-worker",
-      "description": "Finalize the first digital-product selection using demand, competition, zero-cost feasibility, buyer accessibility, automation potential and first-sale speed.",
-      "action": "research",
-      "status": "completed",
-      "priority": "critical",
-      "depends_on": [],
-      "created_at": "2026-08-19T14:20:00+00:00",
-      "completed_at": "2026-08-19T14:30:00+00:00",
-      "result": "Winner selected: Fabrication Shop Quote & Profit Toolkit. Original generic engineering quote sheet downgraded to candidate and build paused until the stronger product specification is finalized."
-    },
-    {
-      "id": "eqt-research-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "research-worker",
-      "description": "Validate target customer, pain point, competitor evidence and willingness-to-pay signals for the fabrication-shop toolkit.",
-      "action": "research",
-      "status": "completed",
-      "priority": "high",
-      "depends_on": ["eqt-selection-001"],
-      "created_at": "2026-08-19T14:00:00+00:00",
-      "completed_at": "2026-08-19T14:12:00+00:00",
-      "result": "Current evidence shows paid demand for welding/fabrication quote calculators and job-costing toolkits, including recent Etsy listings with sales and reviews."
-    },
-    {
-      "id": "eqt-data-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "data-worker",
-      "description": "Prepare structured comparison dataset for competing product categories and distribution options.",
-      "action": "validate",
-      "status": "completed",
-      "priority": "high",
-      "depends_on": ["eqt-selection-001"],
-      "created_at": "2026-08-19T14:00:00+00:00",
-      "completed_at": "2026-08-19T14:12:30+00:00",
-      "result": "Category comparison completed; broad inventory/productivity templates are crowded, while narrow fabrication/welding tools show clear paid demand and fit with Leverage capabilities."
-    },
-    {
-      "id": "eqt-build-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "digital-product-worker",
-      "description": "Generate the final Fabrication Shop Quote & Profit Toolkit artifact from the approved specification.",
-      "action": "build",
-      "status": "cancelled",
-      "priority": "high",
-      "depends_on": ["eqt-research-001", "eqt-data-001"],
-      "created_at": "2026-08-19T14:00:00+00:00",
-      "cancelled_at": "2026-08-19T14:30:00+00:00",
-      "cancellation_reason": "Build was started before the first-project selection gate was fully finalized; reset intentionally to prevent premature commitment."
-    },
-    {
-      "id": "eqt-spec-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "project-manager",
-      "description": "Finalize product specification, differentiation, pricing hypothesis and RM0 distribution plan for the selected winner.",
-      "action": "plan",
-      "status": "ready",
-      "priority": "critical",
-      "depends_on": ["eqt-selection-001", "eqt-research-001", "eqt-data-001"],
-      "created_at": "2026-08-19T14:30:00+00:00"
-    },
-    {
-      "id": "eqt-test-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "code-worker",
-      "description": "Quality-check the generated product artifact, formulas, structure and packaging after spec approval and build.",
-      "action": "test",
-      "status": "queued",
-      "priority": "high",
-      "depends_on": ["eqt-build-001"],
-      "created_at": "2026-08-19T14:00:00+00:00"
-    },
-    {
-      "id": "eqt-verify-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "operations-worker",
-      "description": "Verify product readiness and delivery integrity before launch.",
-      "action": "verify",
-      "status": "queued",
-      "priority": "normal",
-      "depends_on": ["eqt-test-001"],
-      "created_at": "2026-08-19T14:00:00+00:00"
-    },
-    {
-      "id": "eqt-customer-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "customer-worker",
-      "description": "Prepare buyer-facing product description, onboarding notes and feedback capture.",
-      "action": "intake",
-      "status": "queued",
-      "priority": "normal",
-      "depends_on": ["eqt-spec-001"],
-      "created_at": "2026-08-19T14:30:00+00:00"
-    },
-    {
-      "id": "eqt-finance-001",
-      "project": "engineering-quote-toolkit",
-      "worker": "finance-worker",
-      "description": "Prepare revenue tracking, pricing economics and post-sale reconciliation structure.",
-      "action": "reconcile",
-      "status": "queued",
-      "priority": "normal",
-      "depends_on": ["eqt-verify-001", "eqt-customer-001"],
-      "created_at": "2026-08-19T14:00:00+00:00"
-    }
+    {"id":"eqt-selection-001","project":"engineering-quote-toolkit","worker":"research-worker","description":"Finalize the first digital-product selection using demand, competition, zero-cost feasibility, buyer accessibility, automation potential and first-sale speed.","action":"research","status":"completed","priority":"critical","depends_on":[],"created_at":"2026-08-19T14:20:00+00:00","completed_at":"2026-08-19T14:30:00+00:00","result":"Winner selected: Fabrication Shop Profit & Quote System. Generic engineering quote sheet downgraded to candidate."},
+    {"id":"eqt-research-001","project":"engineering-quote-toolkit","worker":"research-worker","description":"Validate target customer, pain point, competitor evidence and willingness-to-pay signals for the fabrication-shop product.","action":"research","status":"completed","priority":"high","depends_on":["eqt-selection-001"],"created_at":"2026-08-19T14:00:00+00:00","completed_at":"2026-08-19T14:12:00+00:00","result":"Current 2026 market evidence confirms paid demand for welding/fabrication quote calculators and shop-rate/job-costing tools; supply is active and competition is meaningful."},
+    {"id":"eqt-data-001","project":"engineering-quote-toolkit","worker":"data-worker","description":"Prepare structured comparison dataset for competing product categories and distribution options.","action":"validate","status":"completed","priority":"high","depends_on":["eqt-selection-001"],"created_at":"2026-08-19T14:00:00+00:00","completed_at":"2026-08-19T14:12:30+00:00","result":"Broad generic spreadsheets remain crowded; narrow fabrication/welding pricing tools show a better first-product fit."},
+    {"id":"eqt-build-001","project":"engineering-quote-toolkit","worker":"digital-product-worker","description":"Generate the final Fabrication Shop Profit & Quote System artifact from the approved specification.","action":"build","status":"queued","priority":"high","depends_on":["eqt-spec-001","eqt-market-001"],"created_at":"2026-08-19T14:00:00+00:00"},
+    {"id":"eqt-spec-001","project":"engineering-quote-toolkit","worker":"project-manager","description":"Finalize workbook UX, modules, sample job, quick-start PDF requirements, pricing hypothesis and differentiated positioning.","action":"plan","status":"completed","priority":"critical","depends_on":["eqt-selection-001","eqt-research-001","eqt-data-001"],"created_at":"2026-08-19T14:30:00+00:00","completed_at":"2026-08-19T15:10:00+00:00","result":"Approved specification: Shop Rate Solver, Fabrication Quote Builder, Material/Consumables Costing, Expected Profit, Actual vs Estimate, Change Orders, Profit Leak Review and Client Quote Output. Macro-free XLSX + quick-start PDF + sample job. Intro price hypothesis US$19."},
+    {"id":"eqt-market-001","project":"engineering-quote-toolkit","worker":"research-worker","description":"Run the current-market distribution gate: confirm buyer search language, competitor positioning and organic acquisition channels before build.","action":"research","status":"completed","priority":"critical","depends_on":["eqt-spec-001"],"created_at":"2026-08-19T23:00:00+08:00","completed_at":"2026-08-19T23:10:00+08:00","result":"Distribution gate passed for an RM0 test: Gumroad direct storefront plus search-driven content and permitted niche communities. Gumroad Discover is not required for first-sale validation."},
+    {"id":"eqt-test-001","project":"engineering-quote-toolkit","worker":"code-worker","description":"Quality-check the generated product artifact, formulas, structure and packaging after build.","action":"test","status":"queued","priority":"high","depends_on":["eqt-build-001"],"created_at":"2026-08-19T14:00:00+00:00"},
+    {"id":"eqt-verify-001","project":"engineering-quote-toolkit","worker":"operations-worker","description":"Verify product readiness and delivery integrity before launch.","action":"verify","status":"queued","priority":"normal","depends_on":["eqt-test-001"],"created_at":"2026-08-19T14:00:00+00:00"},
+    {"id":"eqt-customer-001","project":"engineering-quote-toolkit","worker":"customer-worker","description":"Prepare buyer-facing product description, onboarding notes, FAQ and feedback capture.","action":"intake","status":"queued","priority":"normal","depends_on":["eqt-spec-001","eqt-market-001"],"created_at":"2026-08-19T14:30:00+00:00"},
+    {"id":"eqt-finance-001","project":"engineering-quote-toolkit","worker":"finance-worker","description":"Prepare Gumroad revenue tracking, pricing economics and post-sale reconciliation structure.","action":"reconcile","status":"queued","priority":"normal","depends_on":["eqt-verify-001","eqt-customer-001"],"created_at":"2026-08-19T14:00:00+00:00"}
   ],
-  "statuses": ["queued", "running", "blocked", "completed", "failed", "cancelled"],
-  "task_contract": {
-    "required_fields": ["id", "project", "worker", "description", "status"],
-    "recommended_fields": ["action", "target", "priority", "depends_on", "created_at", "due_at"],
-    "action_rule": "action must match a registered worker capability or be a controlled report/plan/route action",
-    "dependency_rule": "depends_on must reference tasks in the same project and every dependency must be completed before a dependent task can run",
-    "safety_rule": "restricted actions remain blocked without owner approval and enabled external integration"
-  },
-  "last_modified_at": "2026-08-19T14:30:00+00:00"
+  "statuses":["queued","running","blocked","completed","failed","cancelled"],
+  "task_contract":{"required_fields":["id","project","worker","description","status"],"recommended_fields":["action","target","priority","depends_on","created_at","due_at"],"action_rule":"action must match a registered worker capability or be a controlled report/plan/route action","dependency_rule":"depends_on must reference tasks in the same project and every dependency must be completed before a dependent task can run","safety_rule":"restricted actions remain blocked without owner approval and enabled external integration"},
+  "last_modified_at":"2026-08-19T23:10:00+08:00"
 }
