@@ -39,12 +39,10 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             patch.object(fc, "LEDGER_FILE", self.files["ledger"]),
             patch.object(fc, "APPROVALS_FILE", self.files["approvals"]),
         ]
-        for p in self.patches:
-            p.start()
+        for p in self.patches: p.start()
 
     def tearDown(self):
-        for p in reversed(self.patches):
-            p.stop()
+        for p in reversed(self.patches): p.stop()
         self.tmp.cleanup()
 
     def test_project_plan_is_idempotent(self):
@@ -56,6 +54,24 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
         self.assertEqual(len(stored), 8)
         audit = json.loads(self.files["audit"].read_text())
         self.assertIn("project_plan_reused", [e["event_type"] for e in audit["events"]])
+
+    def test_task_completion_advances_project_gates(self):
+        project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
+        tasks = company_ops.create_project_plan(project.id)
+        by_action = {task["action"]: task for task in tasks}
+        for action in ["plan", "research", "validate"]:
+            task = by_action[action]
+            company_ops.claim_task(task["id"], task["worker"])
+            company_ops.complete_task(task["id"], f"{action} complete", task["worker"])
+        stored_project = json.loads(self.files["projects"].read_text())["projects"][0]
+        self.assertEqual(stored_project["lifecycle_stage"], "build")
+
+        for action in ["build", "test"]:
+            task = by_action[action]
+            company_ops.claim_task(task["id"], task["worker"])
+            company_ops.complete_task(task["id"], f"{action} complete", task["worker"])
+        stored_project = json.loads(self.files["projects"].read_text())["projects"][0]
+        self.assertEqual(stored_project["lifecycle_stage"], "launch")
 
     def test_dependency_aware_project_to_payout_ready_flow(self):
         project = company_ops.intake_project(Project(id="demo", name="Demo Income Project", type="saas"))
@@ -70,9 +86,7 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "dependencies incomplete"):
             company_ops.claim_task(by_action["build"]["id"], "code-worker")
 
-        execution_order = [
-            "plan", "research", "validate", "build", "test", "verify", "intake", "reconcile"
-        ]
+        execution_order = ["plan", "research", "validate", "build", "test", "verify", "intake", "reconcile"]
         for action in execution_order:
             task = by_action[action]
             claimed = company_ops.claim_task(task["id"], task["worker"])
@@ -101,6 +115,7 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
         event_types = [e["event_type"] for e in audit["events"]]
         self.assertIn("project_created", event_types)
         self.assertIn("project_plan_created", event_types)
+        self.assertIn("project_stage_advanced", event_types)
         self.assertIn("revenue_recorded", event_types)
         self.assertIn("payout_prepared", event_types)
         self.assertIn("owner_payout_approved", event_types)
