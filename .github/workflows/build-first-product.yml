@@ -27,27 +27,41 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from workers.digital_product_worker import build_quote_workbook, build_job_log_csv
-          print(build_quote_workbook('artifacts/Leverage_Engineering_Quote_Toolkit_v1.xlsx'))
-          print(build_job_log_csv('artifacts/Leverage_Engineering_Job_Log_v1.csv', rows=20))
+          print(build_quote_workbook('artifacts/Fabrication_Shop_Profit_Quote_System_v1.xlsx'))
+          print(build_job_log_csv('artifacts/Sample_Job_Data.csv', rows=20))
+          Path('artifacts/Quick_Start_Guide.md').write_text(
+              '# Fabrication Shop Profit & Quote System v1\n\n'
+              'Use Quote for the selling price, Shop_Rates for assumptions, Job_Log to compare quoted vs actual, and Change_Orders to track approved scope changes.\n\n'
+              'Replace sample rates and assumptions with your own verified business inputs before commercial use.\n',
+              encoding='utf-8'
+          )
           PY
       - name: Validate artifact package
         run: |
           python - <<'PY'
           from pathlib import Path
           from zipfile import ZipFile
-          p = Path('artifacts/Leverage_Engineering_Quote_Toolkit_v1.xlsx')
+          p = Path('artifacts/Fabrication_Shop_Profit_Quote_System_v1.xlsx')
           assert p.exists() and p.stat().st_size > 0
           with ZipFile(p) as z:
               names = set(z.namelist())
-              required = {'[Content_Types].xml','_rels/.rels','xl/workbook.xml','xl/_rels/workbook.xml.rels','xl/worksheets/sheet1.xml'}
+              required = {
+                  '[Content_Types].xml','_rels/.rels','xl/workbook.xml',
+                  'xl/_rels/workbook.xml.rels','xl/worksheets/sheet1.xml',
+                  'xl/worksheets/sheet2.xml','xl/worksheets/sheet3.xml',
+                  'xl/worksheets/sheet4.xml'
+              }
               missing = required - names
               assert not missing, f'missing XLSX parts: {sorted(missing)}'
           print(f'Validated {p} ({p.stat().st_size} bytes)')
+          for name in ('Sample_Job_Data.csv', 'Quick_Start_Guide.md'):
+              q = Path('artifacts') / name
+              assert q.exists() and q.stat().st_size > 0
           PY
       - name: Upload first product artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: leverage-engineering-quote-toolkit-v1
+          name: leverage-fabrication-profit-quote-system-v1
           path: artifacts/
           if-no-files-found: error
           retention-days: 30
