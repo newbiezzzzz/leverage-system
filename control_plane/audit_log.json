@@ -1,10 +1,25 @@
 {
   "version": 1,
-  "events": [],
+  "events": [
+    {
+      "id": "evt-eqt-validation",
+      "timestamp": "2026-08-19T14:12:30+00:00",
+      "event_type": "project_validation_completed",
+      "project_id": "engineering-quote-toolkit",
+      "actor": "research-worker + data-worker",
+      "details": {
+        "decision": "proceed_to_build",
+        "launch_price_usd": 9.99,
+        "evidence_file": "control_plane/product_specs/engineering-quote-toolkit-validation.json",
+        "next_task": "eqt-build-001"
+      }
+    }
+  ],
   "policy": {
     "append_only": true,
     "record_state_changes": true,
     "record_financial_events": true,
     "record_owner_approvals": true
-  }
+  },
+  "last_event_at": "2026-08-19T14:12:30+00:00"
 }
