@@ -6,10 +6,11 @@ on:
     paths:
       - "control_plane/quota_monitor.py"
       - "control_plane/leverage_core.py"
+      - "control_plane/milestones.json"
+      - "control_plane/workers.json"
+      - "control_plane/tasks.json"
+      - "control_plane/projects.json"
       - ".github/workflows/sync-dashboard.yml"
-  workflow_run:
-    workflows: ["Leverage Research Worker"]
-    types: [completed]
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
@@ -30,13 +31,9 @@ jobs:
         run: python -m control_plane.quota_monitor
 
       - name: Build authoritative dashboard state
-        env:
-          WORKFLOW_CONCLUSION: ${{ github.event.workflow_run.conclusion || 'scheduled' }}
-          WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id || '' }}
         run: |
           python - <<'PY'
           import json
-          import os
           from datetime import datetime, timezone
           from pathlib import Path
 
@@ -45,12 +42,13 @@ jobs:
           milestones_path = root / 'control_plane' / 'milestones.json'
           workers_path = root / 'control_plane' / 'workers.json'
           tasks_path = root / 'control_plane' / 'tasks.json'
-          research_path = root / 'dashboard' / 'research.json'
+          projects_path = root / 'control_plane' / 'projects.json'
 
           data = json.loads(data_path.read_text())
           milestones = json.loads(milestones_path.read_text()).get('milestones', [])
           workers = json.loads(workers_path.read_text()).get('workers', [])
           tasks = json.loads(tasks_path.read_text()).get('tasks', [])
+          projects = json.loads(projects_path.read_text()).get('projects', [])
 
           overall = round(sum(float(m.get('progress', 0)) for m in milestones) / len(milestones)) if milestones else 0
           counts = {status: 0 for status in ['queued', 'running', 'completed', 'failed', 'blocked', 'cancelled']}
@@ -58,37 +56,24 @@ jobs:
               if task.get('status') in counts:
                   counts[task['status']] += 1
 
-          research = None
-          if research_path.exists():
-              try:
-                  research = json.loads(research_path.read_text())
-              except json.JSONDecodeError:
-                  pass
-
-          conclusion = os.environ.get('WORKFLOW_CONCLUSION', 'scheduled')
-          run_id = os.environ.get('WORKFLOW_RUN_ID', '')
           synced_at = datetime.now(timezone.utc).isoformat()
-          successful = conclusion in ('success', 'manual', 'scheduled')
-
           data['generated_at'] = synced_at
+          data['project']['name'] = 'Project Leverage'
           data['project']['overall_progress'] = overall
           data['project']['phases'] = [{k: m[k] for k in ('name', 'progress', 'status')} for m in milestones]
           data['workers'] = workers
           data['tasks'] = counts
           data['cost'] = {'amount': 0, 'currency': 'RM', 'target': 'zero-cost', 'tracked': True}
-          data['sync'] = {'source': 'github-actions', 'workflow': 'Sync Leverage Dashboard', 'run_id': run_id, 'conclusion': conclusion, 'fresh': successful, 'synced_at': synced_at}
-
-          if research:
-              data['latest_research'] = {
-                  'asset': research.get('asset'),
-                  'observations': research.get('observations'),
-                  'period': research.get('period'),
-                  'hourly_volatility': research.get('hourly_volatility'),
-                  'large_movement_events': research.get('large_movement_events'),
-                  'generated_at': research.get('generated_at'),
-                  'status': research.get('status'),
-                  'ai_analysis': research.get('ai_analysis')
-              }
+          data['projects'] = projects
+          data['latest_research'] = None
+          data['sync'] = {
+              'source': 'github-actions',
+              'workflow': 'Sync Leverage Dashboard',
+              'run_id': '',
+              'conclusion': 'scheduled',
+              'fresh': True,
+              'synced_at': synced_at
+          }
 
           data_path.write_text(json.dumps(data, indent=2) + '\n')
           PY
