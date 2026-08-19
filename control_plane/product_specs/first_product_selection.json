@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "decision": "Fabrication Shop Quote & Profit Toolkit",
+  "decision_status": "selected",
+  "selected_on": "2026-08-19",
+  "rules": {
+    "startup_capital_rm": 0,
+    "boss_manual_work_target": "near-zero",
+    "delivery": "digital and repeatable",
+    "custom_service_required": false,
+    "distribution_priority": "existing marketplace or free direct channel"
+  },
+  "candidates": [
+    {
+      "name": "Fabrication Shop Quote & Profit Toolkit",
+      "score": 88,
+      "reason": "Strong niche demand evidence, direct fit with Leverage/product worker, high automation and repeatability, clear paid competition, and practical first-sale positioning."
+    },
+    {
+      "name": "Welding Business Toolkit",
+      "score": 84,
+      "reason": "Strong recent sales evidence and good fit, but narrower and more crowded around complete shop-management bundles."
+    },
+    {
+      "name": "CNC Feeds & Speeds Helper",
+      "score": 81,
+      "reason": "Clear recurring technical problem and existing reviews, but greater technical accuracy burden and stronger incumbent specialization."
+    },
+    {
+      "name": "Generic Manufacturing Job Costing Spreadsheet",
+      "score": 78,
+      "reason": "Demand exists, but generic positioning is easier to copy and crowded by low-price listings."
+    },
+    {
+      "name": "Small-business Inventory Tracker",
+      "score": 67,
+      "reason": "Large market and clear demand, but extremely crowded and weak differentiation for Leverage's first product."
+    },
+    {
+      "name": "Generic Business / Productivity Template",
+      "score": 58,
+      "reason": "Existing demand is broad, but competition and commoditization make the first-sale path less attractive."
+    }
+  ],
+  "evidence": [
+    {
+      "source": "Etsy — Excel Job Costing Template",
+      "url": "https://www.etsy.com/ca/listing/4319688997/excel-job-costing-template-materials",
+      "finding": "101 reviews on a current job-costing template listing; product targets fabricators, welders, engineers and trades."
+    },
+    {
+      "source": "Gumroad — Machine Shop Quoting Pack",
+      "url": "https://morganscape314.gumroad.com/l/rhnbp",
+      "finding": "$34 product combining RFQ, quote worksheet, shop rate, job costing and change order control."
+    },
+    {
+      "source": "Etsy — Welding Business Toolkit",
+      "url": "https://www.etsy.com/listing/4519330716/welding-business-spreadsheet-metal",
+      "finding": "139 sales shown on a recent niche welding/fabrication toolkit listing, demonstrating current paid demand."
+    },
+    {
+      "source": "Etsy — Welding Estimate Calculator",
+      "url": "https://www.etsy.com/listing/4474230839/welding-estimate-calculator-welder",
+      "finding": "$4.99 niche estimator; 11 sales shown, listed Jul 2026."
+    },
+    {
+      "source": "Etsy — CNC Quote Calculator",
+      "url": "https://www.etsy.com/listing/4469106868/cnc-machining-quote-calculator-machine",
+      "finding": "Current paid CNC quote calculator listing confirms the same broader manufacturing pricing problem."
+    },
+    {
+      "source": "Gumroad pricing",
+      "url": "https://gumroad.com/pricing",
+      "finding": "No monthly fee; direct-link sales are 10% + $0.50, and marketplace discovery sales are 30%. This supports an RM0-upfront launch path."
+    },
+    {
+      "source": "Etsy seller fees",
+      "url": "https://help.etsy.com/hc/en-gb/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy",
+      "finding": "$0.20 listing fee plus transaction/payment fees, so Etsy is not the first strict RM0 launch channel."
+    }
+  ],
+  "next_gate": "Finalize the selected product specification and RM0 distribution test before build."
+}
