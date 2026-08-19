@@ -3,18 +3,18 @@
   "projects": [
     {
       "id": "engineering-quote-toolkit",
-      "name": "Fabrication Shop Quote & Profit Toolkit",
+      "name": "Fabrication Shop Profit & Quote System",
       "type": "digital-product",
-      "status": "validation",
-      "lifecycle_stage": "validation",
+      "status": "build",
+      "lifecycle_stage": "build",
       "revenue_status": "none",
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "First Leverage digital-product experiment: a focused, no-macro Excel/Google-Sheets-oriented toolkit for small fabrication, welding and machine shops covering shop-rate calculation, job quoting, job costing, margin protection and change-order control.",
-      "next_gate": "Finalize product specification and distribution path before build",
+      "description": "First Leverage digital-product experiment: a no-macro workbook for small fabrication, welding and machine shops covering shop-rate calculation, quoting, job costing, profit protection and change-order control.",
+      "next_gate": "Generate and verify the first distributable artifact, then prepare the Gumroad listing and launch assets",
       "created_at": "2026-08-19T14:00:00+00:00"
     }
   ],
-  "last_modified_at": "2026-08-19T14:30:00+00:00"
+  "last_modified_at": "2026-08-19T23:10:00+08:00"
 }
