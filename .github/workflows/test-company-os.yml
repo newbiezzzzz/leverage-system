@@ -36,6 +36,8 @@ jobs:
           python-version: '3.x'
       - name: Run company OS tests
         run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py control_plane/test_company_ops.py control_plane/test_gates.py control_plane/test_cli.py control_plane/test_readiness.py control_plane/test_project_admin.py control_plane/test_local_sync.py control_plane/test_acquisition_worker.py control_plane/test_delivery_gateway.py control_plane/test_channel_adapter.py server/test_api.py
+      - name: Worker runtime tests
+        run: python -m unittest -v workers.test_runtime
       - name: Company OS release gate
         run: python -m control_plane.readiness
       - name: Worker self-tests
