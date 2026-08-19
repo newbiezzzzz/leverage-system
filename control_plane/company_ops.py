@@ -23,9 +23,6 @@ APPROVALS_FILE = state_path("approvals.json")
 AUDIT_FILE = state_path("audit_log.json")
 LEDGER_FILE = state_path("financial_ledger.json")
 
-# The workflow is intentionally dependency-aware. Research and data validation
-# must complete before build; build must pass code tests before operations
-# verification; customer readiness and verification must complete before finance.
 DEFAULT_PROJECT_WORKFLOW = [
     ("project-manager", "plan", "Create project execution plan", []),
     ("research-worker", "research", "Research demand, risks and opportunity", [0]),
@@ -37,11 +34,13 @@ DEFAULT_PROJECT_WORKFLOW = [
     ("finance-worker", "reconcile", "Prepare financial reporting and reconciliation workflow", [5, 6]),
 ]
 
+
 def _now() -> str: return datetime.now(timezone.utc).isoformat()
 def _id(prefix: str) -> str: return f"{prefix}-{uuid.uuid4().hex[:10]}"
 
 def audit(event_type: str, project_id: str | None, actor: str, details: dict | None = None) -> dict:
-    data = load_json(AUDIT_FILE); event = {"id": _id("evt"), "timestamp": _now(), "event_type": event_type, "project_id": project_id, "actor": actor, "details": details or {}}
+    data = load_json(AUDIT_FILE)
+    event = {"id": _id("evt"), "timestamp": _now(), "event_type": event_type, "project_id": project_id, "actor": actor, "details": details or {}}
     data.setdefault("events", []).append(event); data["last_event_at"] = event["timestamp"]; save_json(AUDIT_FILE, data); return event
 
 def _load_tasks() -> dict: return load_json(TASKS_FILE)
@@ -54,11 +53,9 @@ def create_project_plan(project_id: str, workflow: list[tuple] | None = None) ->
     workflow = workflow or DEFAULT_PROJECT_WORKFLOW
     projects = load_json(PROJECTS_FILE).get("projects", []); project = next((p for p in projects if p["id"] == project_id), None)
     if project is None: raise KeyError(f"project not found: {project_id}")
-    tasks = _load_tasks()
-    existing_tasks = [t for t in tasks.get("tasks", []) if t.get("project") == project_id]
+    tasks = _load_tasks(); existing_tasks = [t for t in tasks.get("tasks", []) if t.get("project") == project_id]
     if existing_tasks:
-        audit("project_plan_reused", project_id, "project-manager", {"task_count": len(existing_tasks), "idempotent": True})
-        return existing_tasks
+        audit("project_plan_reused", project_id, "project-manager", {"task_count": len(existing_tasks), "idempotent": True}); return existing_tasks
     created = []; existing = {t["id"] for t in tasks.get("tasks", [])}; task_ids: list[str] = []
     for worker, action, description, dependency_indexes in workflow:
         task_id = _id("task")
@@ -76,6 +73,27 @@ def _dependency_state(data: dict, task: dict) -> tuple[bool, list[str]]:
         if dep is None or dep.get("status") != "completed": missing.append(dep_id)
     return not missing, missing
 
+def _sync_project_stage(project_id: str, tasks: list[dict]) -> None:
+    """Advance lifecycle only when the corresponding gate is actually complete."""
+    project = next((p for p in load_json(PROJECTS_FILE).get("projects", []) if p.get("id") == project_id), None)
+    if project is None or project.get("status") in {"paused", "retired", "revenue", "payout-ready"}: return
+    project_tasks = [t for t in tasks if t.get("project") == project_id]
+    completed = {t.get("action") for t in project_tasks if t.get("status") == "completed"}
+    stage = project.get("lifecycle_stage")
+    target = None
+    reason = None
+    if "research" in completed and "validate" in completed and stage == "validation":
+        target, reason = "build", "Research and data validation gates completed; build is authorized"
+    elif "build" in completed and "test" in completed and stage == "build":
+        target, reason = "launch", "Build and quality gates completed; launch verification is authorized"
+    elif "verify" in completed and "intake" in completed and stage == "launch":
+        target, reason = "operate", "Operational and customer-readiness gates completed; project may operate"
+    elif "reconcile" in completed and stage == "operate":
+        target, reason = "operate", "Financial reconciliation completed; project remains operational until revenue is recorded"
+    if target and target != stage:
+        change_stage(project_id, target, reason)
+        audit("project_stage_advanced", project_id, "project-manager", {"from": stage, "to": target, "reason": reason})
+
 def claim_task(task_id: str, worker_id: str) -> dict:
     data = _load_tasks()
     for task in data.get("tasks", []):
@@ -92,29 +110,22 @@ def complete_task(task_id: str, result: str, worker_id: str, success: bool = Tru
     for task in data.get("tasks", []):
         if task["id"] == task_id:
             if task["status"] not in {"running", "queued"}: raise ValueError(f"task cannot be completed from status {task['status']}")
+            if task.get("worker") != worker_id: raise ValueError("worker not assigned to task")
             if task["status"] == "queued":
                 ready, missing = _dependency_state(data, task)
                 if not ready: raise ValueError(f"dependencies incomplete: {', '.join(missing)}")
-            if task.get("worker") != worker_id: raise ValueError("worker not assigned to task")
-            task["status"] = "completed" if success else "failed"; task["result"] = result; task["completed_at"] = _now(); _save_tasks(data); audit("task_completed" if success else "task_failed", task["project"], worker_id, {"task_id": task_id, "result": result}); return task
+            task["status"] = "completed" if success else "failed"; task["result"] = result; task["completed_at"] = _now(); _save_tasks(data); audit("task_completed" if success else "task_failed", task["project"], worker_id, {"task_id": task_id, "result": result})
+            if success: _sync_project_stage(task["project"], data.get("tasks", []))
+            return task
     raise KeyError(f"task not found: {task_id}")
 
 def project_task_summary(project_id: str) -> dict:
     tasks = [t for t in _load_tasks().get("tasks", []) if t.get("project") == project_id]
     counts = {s: sum(1 for t in tasks if t.get("status") == s) for s in ["queued", "running", "blocked", "completed", "failed", "cancelled"]}
     by_id = {t.get("id"): t for t in tasks}
-    counts["waiting_on_dependencies"] = sum(
-        1 for t in tasks
-        if t.get("status") == "queued"
-        and any(by_id.get(dep_id, {}).get("status") != "completed" for dep_id in t.get("depends_on", []))
-    )
-    counts["ready_to_claim"] = sum(
-        1 for t in tasks
-        if t.get("status") == "queued"
-        and all(by_id.get(dep_id, {}).get("status") == "completed" for dep_id in t.get("depends_on", []))
-    )
-    counts["total"] = len(tasks)
-    counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0
+    counts["waiting_on_dependencies"] = sum(1 for t in tasks if t.get("status") == "queued" and any(by_id.get(dep_id, {}).get("status") != "completed" for dep_id in t.get("depends_on", [])))
+    counts["ready_to_claim"] = sum(1 for t in tasks if t.get("status") == "queued" and all(by_id.get(dep_id, {}).get("status") == "completed" for dep_id in t.get("depends_on", [])))
+    counts["total"] = len(tasks); counts["progress"] = round((counts["completed"] / counts["total"]) * 100, 1) if counts["total"] else 0
     return counts
 
 def record_revenue(project_id: str, amount: float, description: str, external_reference: str) -> dict:
