@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T14:04:44.787175+00:00",
+  "generated_at": "2026-08-19T14:08:19.329086+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -232,21 +232,21 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-19T14:04:44.787175+00:00"
+    "synced_at": "2026-08-19T14:08:19.329086+00:00"
   },
   "projects": [
     {
       "id": "engineering-quote-toolkit",
-      "name": "Engineering Quote & Job-Costing Toolkit",
+      "name": "Fabrication Shop Quote & Profit Toolkit",
       "type": "digital-product",
-      "status": "build",
-      "lifecycle_stage": "build",
+      "status": "validation",
+      "lifecycle_stage": "validation",
       "revenue_status": "none",
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "First Leverage digital-product experiment: a macro-free engineering quotation and job-costing workbook for small engineering, fabrication and machine-shop businesses.",
-      "next_gate": "Generate, test and verify the first distributable XLSX artifact before launch",
+      "description": "First Leverage digital-product experiment: a focused, no-macro Excel/Google-Sheets-oriented toolkit for small fabrication, welding and machine shops covering shop-rate calculation, job quoting, job costing, margin protection and change-order control.",
+      "next_gate": "Finalize product specification and distribution path before build",
       "created_at": "2026-08-19T14:00:00+00:00"
     }
   ]
