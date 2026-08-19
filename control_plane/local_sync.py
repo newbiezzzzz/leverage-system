@@ -16,6 +16,7 @@ from .company_core import list_projects
 from .company_ops import system_snapshot
 from .health import company_health
 from .readiness import company_os_readiness
+from .dispatcher import queue_summary
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "dashboard" / "local_state.json"
@@ -50,6 +51,7 @@ def build_snapshot() -> dict:
             "tasks": snapshot["tasks"],
             "money_movement_protected": not snapshot["live_money_movement"],
         },
+        "workers": queue_summary(),
         "projects": [
             {
                 "id": p.id,
@@ -78,8 +80,7 @@ def sync(push: bool = True) -> int:
         unexpected = changed - allowed
         if unexpected:
             print("SYNC BLOCKED: unexpected local changes detected:")
-            for path in sorted(unexpected):
-                print(f"  {path}")
+            for path in sorted(unexpected): print(f"  {path}")
             return 2
         pull = _run("git", "pull", "--ff-only")
         if pull.returncode != 0:
