@@ -5,6 +5,7 @@ The artifact is a macro-free XLSX profit-and-quoting toolkit for small
 fabrication, welding and machine/job shops.
 """
 from __future__ import annotations
+
 import csv
 import json
 from pathlib import Path
@@ -78,7 +79,7 @@ def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], 
     workbook = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         f'<workbook xmlns="{NS_MAIN}" xmlns:r="{NS_REL}">'
-        '<calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/>'
+        '<calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/> '
         '<sheets>' + "".join(sheet_entries) + '</sheets></workbook>'
     )
     workbook_rels = (
@@ -107,8 +108,6 @@ def build_quote_workbook(output_path: str) -> dict:
         [],
         ["QUOTE LINES", "", "", "", "", "", "", ""],
         ["Category", "Description", "Qty", "Unit", "Rate (RM)", "Markup %", "Line Cost (RM)", "Sell Price (RM)"],
-    ]
-    quote_rows += [
         ["Material", "", 1, "kg", 0, 15, 0, 0],
         ["Labour", "", 1, "hr", 0, 0, 0, 0],
         ["Consumable", "", 1, "job", 0, 10, 0, 0],
@@ -139,30 +138,51 @@ def build_quote_workbook(output_path: str) -> dict:
 
     rate_rows = [
         ["SHOP RATE CALCULATOR"],
+        ["Enter your actual monthly costs and realistic productive hours. The sheet calculates an indicative burdened shop rate."],
         ["Parameter", "Value", "Unit", "Notes"],
-        ["Loaded labour rate", 45, "RM/hour", "Wages + relevant employer cost"],
-        ["Machine rate", 80, "RM/hour", "Machine/equipment recovery"],
+        ["Monthly direct labour cost", 5000, "RM/month", "Wages attributable to production"],
+        ["Monthly machine/equipment cost", 2000, "RM/month", "Recovery/lease/depreciation allowance"],
+        ["Monthly shop overhead", 1500, "RM/month", "Rent, utilities, admin, software, etc."],
+        ["Productive labour hours/month", 160, "hours", "Realistic billable/production hours"],
+        ["Productive machine hours/month", 100, "hours", "Realistic machine utilisation"],
+        ["Labour burden rate", 0, "RM/hour", "Calculated"],
+        ["Machine recovery rate", 0, "RM/hour", "Calculated"],
+        ["Overhead rate per labour hour", 0, "RM/hour", "Calculated"],
+        ["Indicative loaded labour shop rate", 0, "RM/hour", "Labour + overhead burden"],
+        ["Target gross margin", 30, "%", "Default quote target"],
         ["Material markup", 15, "%", "Default quote markup"],
         ["Consumable markup", 10, "%", "Default quote markup"],
         ["Outside-service markup", 10, "%", "Default quote markup"],
-        ["Target gross margin", 30, "%", "Target selling margin"],
-        ["Overhead allowance", 8, "%", "Allowance on direct cost"],
-        ["Waste allowance", 5, "%", "Optional fabrication/material waste allowance"],
+        ["Overhead allowance on direct cost", 8, "%", "Quote fallback allowance"],
     ]
+    rate_formulas = {
+        "B11": "IF(B7=0,0,B4/B7)",
+        "B12": "IF(B8=0,0,B5/B8)",
+        "B13": "IF(B7=0,0,B6/B7)",
+        "B14": "B11+B13",
+    }
 
     actual_rows = [["JOB LOG — QUOTED VS ACTUAL"], ["Job ID", "Customer", "Job", "Qty", "Quoted Sales", "Actual Material", "Actual Labour", "Actual Consumables", "Actual Outside", "Actual Overhead", "Actual Total Cost", "Actual Profit", "Actual Margin %", "Status"]]
+    actual_formulas = {}
     for i in range(1, 21):
-        actual_rows.append([f"JOB-{i:03d}", "", "", "", "", "", "", "", "", "", "", "", "", "Open"])
+        row = i + 2
+        actual_rows.append([f"JOB-{i:03d}", "", "", "", "", "", "", "", "", "", 0, 0, 0, "Open"])
+        actual_formulas[f"K{row}"] = f"SUM(F{row}:J{row})"
+        actual_formulas[f"L{row}"] = f"E{row}-K{row}"
+        actual_formulas[f"M{row}"] = f"IF(E{row}=0,0,L{row}/E{row})"
 
     change_rows = [["CHANGE ORDER REGISTER"], ["Job ID", "Change ID", "Description", "Added Sales", "Added Cost", "Added Profit", "Approved?", "Notes"]]
+    change_formulas = {}
     for i in range(1, 16):
-        change_rows.append(["", f"CHG-{i:03d}", "", "", "", "", "No", ""])
+        row = i + 2
+        change_rows.append(["", f"CHG-{i:03d}", "", 0, 0, 0, "No", ""])
+        change_formulas[f"F{row}"] = f"D{row}-E{row}"
 
     sheets = {
         "Quote": (quote_rows, quote_formulas),
-        "Shop_Rates": (rate_rows, {}),
-        "Job_Log": (actual_rows, {}),
-        "Change_Orders": (change_rows, {}),
+        "Shop_Rates": (rate_rows, rate_formulas),
+        "Job_Log": (actual_rows, actual_formulas),
+        "Change_Orders": (change_rows, change_formulas),
     }
     _xlsx_package(sheets, target)
     return {
@@ -170,6 +190,7 @@ def build_quote_workbook(output_path: str) -> dict:
         "format": "xlsx",
         "product_name": "Fabrication Shop Profit & Quote System",
         "sheets": list(sheets),
+        "formula_count": sum(len(formulas) for _, formulas in sheets.values()),
         "external_dependencies": [],
         "cost_rm": 0,
     }
