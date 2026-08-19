@@ -46,18 +46,24 @@ class ExecutorRegistry:
             try:
                 result = fn(task)
                 return WorkerResult(task.get("id", str(uuid.uuid4())), worker, "completed", executor_name, started, time.time(), result)
-            except Exception as exc:  # fallback to the next executor
+            except Exception as exc:
                 last_error = f"{type(exc).__name__}: {exc}"
         return WorkerResult(task.get("id", str(uuid.uuid4())), worker, "failed", candidates[-1][0], started, time.time(), {}, last_error)
 
 
 def _data_summary(task: dict[str, Any]) -> dict[str, Any]:
-    from data_worker import summarize_numeric_column
+    try:
+        from .data_worker import summarize_numeric_column
+    except ImportError:
+        from data_worker import summarize_numeric_column
     return {"type": "data_summary", **summarize_numeric_column(task["input_path"], task["column"])}
 
 
 def _code_inspect(task: dict[str, Any]) -> dict[str, Any]:
-    from code_worker import inspect_python
+    try:
+        from .code_worker import inspect_python
+    except ImportError:
+        from code_worker import inspect_python
     return {"type": "python_inspection", **inspect_python(task["input_path"])}
 
 
