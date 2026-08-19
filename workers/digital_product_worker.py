@@ -1,8 +1,8 @@
 """Leverage Digital Product Worker.
 
-Builds deterministic digital-product artifacts without ChatGPT or external APIs.
-The first product path creates a macro-free .xlsx quotation/job-costing toolkit
-using Python's standard library only.
+Builds the selected first digital product without ChatGPT or external APIs.
+The artifact is a macro-free XLSX profit-and-quoting toolkit for small
+fabrication, welding and machine/job shops.
 """
 from __future__ import annotations
 import csv
@@ -25,7 +25,7 @@ def _column_name(number: int) -> str:
     while number:
         number, remainder = divmod(number - 1, 26)
         letters.append(chr(65 + remainder))
-    return ''.join(reversed(letters))
+    return "".join(reversed(letters))
 
 
 def _cell(ref: str, value: object = None, formula: str | None = None) -> str:
@@ -46,18 +46,16 @@ def _sheet_xml(rows: list[list[object]], formulas: dict[str, str] | None = None)
         for col_index, value in enumerate(row, 1):
             ref = _column_name(col_index) + str(row_index)
             cells.append(_cell(ref, value, formulas.get(ref)))
-        body.append(f'<row r="{row_index}">' + ''.join(cells) + '</row>')
+        body.append(f'<row r="{row_index}">' + "".join(cells) + "</row>")
     return (
         f'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         f'<worksheet xmlns="{NS_MAIN}" xmlns:r="{NS_REL}">'
-        '<sheetData>' + ''.join(body) + '</sheetData></worksheet>'
+        '<sheetData>' + "".join(body) + '</sheetData></worksheet>'
     )
 
 
 def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], target: Path) -> None:
-    sheet_entries = []
-    rel_entries = []
-    override_entries = []
+    sheet_entries, rel_entries, override_entries = [], [], []
     for index, (name, _content) in enumerate(sheets.items(), 1):
         sheet_entries.append(f'<sheet name="{_escape(name)}" sheetId="{index}" r:id="rId{index}"/>')
         rel_entries.append(f'<Relationship Id="rId{index}" Type="{NS_REL}/worksheet" Target="worksheets/sheet{index}.xml"/>')
@@ -69,7 +67,7 @@ def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], 
         '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
         '<Default Extension="xml" ContentType="application/xml"/>'
         '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
-        + ''.join(override_entries) + '</Types>'
+        + "".join(override_entries) + '</Types>'
     )
     root_rels = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
@@ -81,12 +79,12 @@ def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], 
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         f'<workbook xmlns="{NS_MAIN}" xmlns:r="{NS_REL}">'
         '<calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/>'
-        '<sheets>' + ''.join(sheet_entries) + '</sheets></workbook>'
+        '<sheets>' + "".join(sheet_entries) + '</sheets></workbook>'
     )
     workbook_rels = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
         '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
-        + ''.join(rel_entries) + '</Relationships>'
+        + "".join(rel_entries) + '</Relationships>'
     )
     with ZipFile(target, "w", compression=ZIP_DEFLATED) as archive:
         archive.writestr("[Content_Types].xml", content_types)
@@ -98,25 +96,28 @@ def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], 
 
 
 def build_quote_workbook(output_path: str) -> dict:
-    """Create a usable macro-free quotation and job-costing .xlsx toolkit."""
     target = Path(output_path)
     target.parent.mkdir(parents=True, exist_ok=True)
 
     quote_rows = [
-        ["ENGINEERING JOB QUOTATION TOOLKIT"],
-        ["Enter customer/job details and line costs. Formula cells calculate automatically."],
+        ["FABRICATION SHOP PROFIT & QUOTE SYSTEM"],
+        ["Calculate shop rate, job cost, quote, expected profit and learn from actual results."],
         ["Quote ID", "Q-0001", "Customer", "", "Job", ""],
         ["Quantity", 1, "Target Margin %", 30, "Status", "Draft"],
         [],
+        ["QUOTE LINES", "", "", "", "", "", "", ""],
         ["Category", "Description", "Qty", "Unit", "Rate (RM)", "Markup %", "Line Cost (RM)", "Sell Price (RM)"],
+    ]
+    quote_rows += [
         ["Material", "", 1, "kg", 0, 15, 0, 0],
         ["Labour", "", 1, "hr", 0, 0, 0, 0],
+        ["Consumable", "", 1, "job", 0, 10, 0, 0],
         ["Outside", "", 1, "job", 0, 10, 0, 0],
     ]
-    quote_rows += [["", "", "", "", "", "", 0, 0] for _ in range(17)]
+    quote_rows += [["", "", "", "", "", "", 0, 0] for _ in range(16)]
     quote_rows += [
         [],
-        ["SUMMARY"],
+        ["PROFIT SUMMARY"],
         ["Direct Cost", 0],
         ["Overhead %", 8],
         ["Overhead", 0],
@@ -125,43 +126,50 @@ def build_quote_workbook(output_path: str) -> dict:
         ["Gross Margin %", 0],
     ]
     quote_formulas = {}
-    for row in range(7, 27):
+    for row in range(8, 28):
         quote_formulas[f"G{row}"] = f"C{row}*E{row}"
         quote_formulas[f"H{row}"] = f"G{row}*(1+F{row}/100)"
     quote_formulas.update({
-        "B29": "SUM(G7:G26)",
-        "B31": "B29*B30/100",
-        "B32": "(B29+B31)/(D4/100*-1+1)",
-        "B33": "B32-B29-B31",
-        "B34": "IF(B32=0,0,B33/B32)",
+        "B30": "SUM(G8:G27)",
+        "B32": "B30*B31/100",
+        "B33": "(B30+B32)/(1-D4/100)",
+        "B34": "B33-B30-B32",
+        "B35": "IF(B33=0,0,B34/B33)",
     })
 
-    rates_rows = [
-        ["RATES & ASSUMPTIONS"],
-        ["Parameter", "Value", "Unit"],
-        ["Default labour rate", 45, "RM/hour"],
-        ["Default machine rate", 80, "RM/hour"],
-        ["Material markup", 15, "%"],
-        ["Outside-service markup", 10, "%"],
-        ["Target gross margin", 30, "%"],
-        ["Overhead allowance", 8, "%"],
+    rate_rows = [
+        ["SHOP RATE CALCULATOR"],
+        ["Parameter", "Value", "Unit", "Notes"],
+        ["Loaded labour rate", 45, "RM/hour", "Wages + relevant employer cost"],
+        ["Machine rate", 80, "RM/hour", "Machine/equipment recovery"],
+        ["Material markup", 15, "%", "Default quote markup"],
+        ["Consumable markup", 10, "%", "Default quote markup"],
+        ["Outside-service markup", 10, "%", "Default quote markup"],
+        ["Target gross margin", 30, "%", "Target selling margin"],
+        ["Overhead allowance", 8, "%", "Allowance on direct cost"],
+        ["Waste allowance", 5, "%", "Optional fabrication/material waste allowance"],
     ]
 
-    job_rows = [["JOB LOG — QUOTED VS ACTUAL"], ["Job ID", "Customer", "Job", "Qty", "Quoted Sales", "Actual Cost", "Actual Profit", "Actual Margin %", "Status"]]
+    actual_rows = [["JOB LOG — QUOTED VS ACTUAL"], ["Job ID", "Customer", "Job", "Qty", "Quoted Sales", "Actual Material", "Actual Labour", "Actual Consumables", "Actual Outside", "Actual Overhead", "Actual Total Cost", "Actual Profit", "Actual Margin %", "Status"]]
     for i in range(1, 21):
-        job_rows.append([f"JOB-{i:03d}", "", "", "", "", "", "", "", "Open"])
+        actual_rows.append([f"JOB-{i:03d}", "", "", "", "", "", "", "", "", "", "", "", "", "Open"])
+
+    change_rows = [["CHANGE ORDER REGISTER"], ["Job ID", "Change ID", "Description", "Added Sales", "Added Cost", "Added Profit", "Approved?", "Notes"]]
+    for i in range(1, 16):
+        change_rows.append(["", f"CHG-{i:03d}", "", "", "", "", "No", ""])
 
     sheets = {
         "Quote": (quote_rows, quote_formulas),
-        "Rates": (rates_rows, {}),
-        "Job_Log": (job_rows, {}),
+        "Shop_Rates": (rate_rows, {}),
+        "Job_Log": (actual_rows, {}),
+        "Change_Orders": (change_rows, {}),
     }
     _xlsx_package(sheets, target)
     return {
         "artifact": str(target),
         "format": "xlsx",
+        "product_name": "Fabrication Shop Profit & Quote System",
         "sheets": list(sheets),
-        "rows": {name: len(content[0]) for name, content in sheets.items()},
         "external_dependencies": [],
         "cost_rm": 0,
     }
@@ -179,7 +187,15 @@ def build_job_log_csv(output_path: str, rows: int = 20) -> dict:
 
 
 def self_test() -> dict:
-    return {"worker": "digital-product-worker", "role": ROLE, "status": "healthy", "capabilities": ["xlsx-workbook", "csv-template", "artifact-packaging"], "external_dependencies": [], "cost": {"amount": 0, "currency": "RM"}}
+    return {
+        "worker": "digital-product-worker",
+        "role": ROLE,
+        "status": "healthy",
+        "product": "Fabrication Shop Profit & Quote System",
+        "capabilities": ["xlsx-workbook", "csv-template", "artifact-packaging"],
+        "external_dependencies": [],
+        "cost": {"amount": 0, "currency": "RM"},
+    }
 
 
 if __name__ == "__main__":
