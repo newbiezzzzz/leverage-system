@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-19T11:32:48.306630+00:00",
+  "generated_at": "2026-08-19T12:22:59.040632+00:00",
   "project": {
     "name": "Project Leverage",
-    "overall_progress": 83,
+    "overall_progress": 100,
     "goal": "Build a zero-cost, reusable AI/data/automation platform that can research opportunities, test ideas, and automate execution with minimal Boss involvement.",
     "phases": [
       {
@@ -12,23 +12,23 @@
       },
       {
         "name": "Core worker fleet",
-        "progress": 85,
-        "status": "active"
+        "progress": 100,
+        "status": "complete"
       },
       {
-        "name": "Control Plane",
-        "progress": 80,
-        "status": "active"
+        "name": "Control Plane v1",
+        "progress": 100,
+        "status": "complete"
       },
       {
         "name": "Company Operating System v1",
-        "progress": 55,
-        "status": "active"
+        "progress": 100,
+        "status": "complete"
       },
       {
         "name": "Owner Command Center",
-        "progress": 95,
-        "status": "active"
+        "progress": 100,
+        "status": "complete"
       }
     ]
   },
@@ -209,7 +209,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-19T11:32:48.306630+00:00"
+    "synced_at": "2026-08-19T12:22:59.040632+00:00"
   },
   "projects": []
 }
