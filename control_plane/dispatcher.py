@@ -11,7 +11,7 @@ TASKS_FILE = state_path("tasks.json")
 PROJECTS_FILE = state_path("projects.json")
 APPROVALS_FILE = state_path("approvals.json")
 ALLOWED_STATUSES = {"queued", "ready", "running", "blocked", "completed", "failed", "cancelled"}
-SAFE_ACTIONS = {"research","analyze","recommend","collect","validate","transform","cache","build","test","lint","package","plan","schedule","route","report","monitor","verify","alert","recover_safe","intake","support","collect_feedback","reconcile","prepare_payout"}
+SAFE_ACTIONS = {"research","analyze","recommend","collect","validate","transform","cache","build","test","lint","package","plan","schedule","route","report","monitor","verify","alert","recover_safe","intake","support","collect_feedback","reconcile","prepare_payout","discover_prospects","qualify_prospects","prepare_outreach","track_responses"}
 RESTRICTED_ACTIONS = {"move_money","approve_money","open_financial_account","change_bank_details","publish_irreversible_contract","delete_production_data","deploy_unreviewed_external_change","execute_payout"}
 
 def load_json(path: Path): return json.loads(path.read_text(encoding="utf-8"))
@@ -79,5 +79,23 @@ def worker_queue(worker_id: str) -> list[dict]:
 
 def queues() -> dict[str,list[dict]]:
     return {worker_id: worker_queue(worker_id) for worker_id in worker_index()}
+
+def queue_summary() -> list[dict]:
+    workers=worker_index(); projects=project_index(); tasks=load_json(TASKS_FILE).get("tasks",[]); indexed={t.get("id"):t for t in tasks}; result=[]
+    for worker_id, worker in workers.items():
+        assigned=[t for t in tasks if t.get("worker")==worker_id]
+        ready=waiting=blocked=running=completed=0
+        for task in assigned:
+            status=task.get("status")
+            if status=="running": running+=1
+            elif status=="completed": completed+=1
+            elif status=="blocked": blocked+=1
+            elif status in {"queued","ready"}:
+                ok,errors=readiness(task,workers,projects,indexed)
+                if ok: ready+=1
+                elif errors and all(e.startswith("dependency incomplete:") for e in errors): waiting+=1
+                else: blocked+=1
+        result.append({"worker":worker_id,"role":worker.get("role"),"status":worker.get("status"),"ready":ready,"waiting":waiting,"running":running,"blocked":blocked,"completed":completed,"total":len(assigned)})
+    return result
 
 if __name__ == "__main__": raise SystemExit(dispatch())
