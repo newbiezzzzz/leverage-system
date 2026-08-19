@@ -33,11 +33,13 @@
       "worker": "digital-product-worker",
       "description": "Generate the final macro-free XLSX quotation and job-costing product artifact from the approved specification.",
       "action": "build",
-      "status": "ready",
+      "status": "running",
       "priority": "high",
       "depends_on": ["eqt-research-001", "eqt-data-001"],
       "created_at": "2026-08-19T14:00:00+00:00",
-      "readiness": {"ready": true, "reason": "research and data validation completed", "errors": []}
+      "started_at": "2026-08-19T14:04:00+00:00",
+      "execution_backend": "github-actions",
+      "execution_note": "Build workflow committed; hosted runner is responsible for artifact generation and validation."
     },
     {
       "id": "eqt-test-001",
@@ -84,7 +86,7 @@
       "created_at": "2026-08-19T14:00:00+00:00"
     }
   ],
-  "statuses": ["queued", "ready", "running", "blocked", "completed", "failed", "cancelled"],
+  "statuses": ["queued", "running", "blocked", "completed", "failed", "cancelled"],
   "task_contract": {
     "required_fields": ["id", "project", "worker", "description", "status"],
     "recommended_fields": ["action", "target", "priority", "depends_on", "created_at", "due_at"],
@@ -92,5 +94,5 @@
     "dependency_rule": "depends_on must reference tasks in the same project and every dependency must be completed before a dependent task can run",
     "safety_rule": "restricted actions remain blocked without owner approval and enabled external integration"
   },
-  "last_modified_at": "2026-08-19T14:12:30+00:00"
+  "last_modified_at": "2026-08-19T14:04:00+00:00"
 }
