@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T10:36:01.295893+00:00",
+  "generated_at": "2026-08-19T11:08:51.559048+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 83,
@@ -201,16 +201,7 @@
     "target": "zero-cost",
     "tracked": true
   },
-  "latest_research": {
-    "asset": null,
-    "observations": null,
-    "period": null,
-    "hourly_volatility": null,
-    "large_movement_events": null,
-    "generated_at": "2026-08-16T22:32:00+08:00",
-    "status": null,
-    "ai_analysis": null
-  },
+  "latest_research": null,
   "approvals": [],
   "sync": {
     "source": "github-actions",
@@ -218,6 +209,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-19T10:36:01.295893+00:00"
-  }
+    "synced_at": "2026-08-19T11:08:51.559048+00:00"
+  },
+  "projects": []
 }
