@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "objective": "maximize Owner-free routine execution while preserving high-impact gates",
+  "autonomous": {
+    "discover_opportunities": true,
+    "score_opportunities": true,
+    "research": true,
+    "find_and_qualify_prospects": true,
+    "prepare_outreach": true,
+    "track_responses": true,
+    "prepare_offers": true,
+    "build_and_test": true,
+    "routine_delivery": true,
+    "customer_support": true,
+    "measure_revenue_and_profit": true,
+    "recommend_scale_or_retire": true
+  },
+  "owner_gate": {
+    "select_business_to_pursue": true,
+    "launch_new_offer": true,
+    "binding_contract": true,
+    "paid_external_commitment": true,
+    "live_money_movement": true,
+    "payout": true,
+    "material_risk_change": true
+  },
+  "customer_rules": {
+    "no_unsolicited_mass_spam": true,
+    "no_impersonation": true,
+    "respect_platform_rules": true,
+    "honest_ai_disclosure_when_required": true,
+    "human_escalation_for_disputes": true
+  }
+}
