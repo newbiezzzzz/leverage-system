@@ -1,83 +1,107 @@
 {
-  "version": 1,
-  "decision": "Fabrication Shop Quote & Profit Toolkit",
+  "version": 2,
+  "decision": "Fabrication Shop Profit & Quote System",
   "decision_status": "selected",
   "selected_on": "2026-08-19",
+  "market_position": "Niche digital product for solo fabricators, welders and small fabrication shops; not a generic quote template.",
   "rules": {
     "startup_capital_rm": 0,
     "boss_manual_work_target": "near-zero",
     "delivery": "digital and repeatable",
     "custom_service_required": false,
-    "distribution_priority": "existing marketplace or free direct channel"
+    "distribution_priority": "Gumroad direct sales plus free search/community/content distribution",
+    "build_gate": "No build until product specification and distribution test are documented."
+  },
+  "product_spec": {
+    "core_promise": "Know your real shop rate, price fabrication work consistently, and see expected versus actual profit on every job.",
+    "modules": [
+      "Shop Rate Solver",
+      "Fabrication Quote Builder",
+      "Material and Consumables Costing",
+      "Expected Profit and Margin Check",
+      "Actual vs Estimated Job Cost",
+      "Change Order Tracker",
+      "Profit Leak / Underquote Review",
+      "Client-ready Quote Output"
+    ],
+    "format": ["macro-free XLSX", "quick-start PDF", "sample job"],
+    "target_buyer": "solo fabricators, welders, mobile welders and small fabrication shops",
+    "non_target": ["large ERP buyers", "full accounting", "engineering code/compliance calculation"],
+    "introductory_price_usd": 19.0
   },
   "candidates": [
     {
-      "name": "Fabrication Shop Quote & Profit Toolkit",
-      "score": 88,
-      "reason": "Strong niche demand evidence, direct fit with Leverage/product worker, high automation and repeatability, clear paid competition, and practical first-sale positioning."
+      "name": "Fabrication Shop Profit & Quote System",
+      "score": 90,
+      "reason": "Proven paid demand, clear pricing pain, strong automation fit, and a differentiated profit-focused workflow instead of a generic quote sheet."
     },
     {
       "name": "Welding Business Toolkit",
       "score": 84,
-      "reason": "Strong recent sales evidence and good fit, but narrower and more crowded around complete shop-management bundles."
+      "reason": "Strong paid demand but more crowded around broad all-in-one welding bundles."
     },
     {
       "name": "CNC Feeds & Speeds Helper",
       "score": 81,
-      "reason": "Clear recurring technical problem and existing reviews, but greater technical accuracy burden and stronger incumbent specialization."
+      "reason": "Clear technical problem and paid market, but higher accuracy/liability burden and stronger specialist incumbents."
     },
     {
       "name": "Generic Manufacturing Job Costing Spreadsheet",
-      "score": 78,
-      "reason": "Demand exists, but generic positioning is easier to copy and crowded by low-price listings."
-    },
-    {
-      "name": "Small-business Inventory Tracker",
-      "score": 67,
-      "reason": "Large market and clear demand, but extremely crowded and weak differentiation for Leverage's first product."
-    },
-    {
-      "name": "Generic Business / Productivity Template",
-      "score": 58,
-      "reason": "Existing demand is broad, but competition and commoditization make the first-sale path less attractive."
+      "score": 75,
+      "reason": "Demand exists, but generic positioning is easier to copy and price-competes with low-cost listings."
     }
   ],
-  "evidence": [
+  "current_market_evidence": [
     {
-      "source": "Etsy — Excel Job Costing Template",
-      "url": "https://www.etsy.com/ca/listing/4319688997/excel-job-costing-template-materials",
-      "finding": "101 reviews on a current job-costing template listing; product targets fabricators, welders, engineers and trades."
+      "source": "Etsy — Welding & Fabrication Estimate Calculator",
+      "url": "https://www.etsy.com/uk/listing/4521082843/quote-calculator-excel-google-sheets",
+      "finding": "Current 2026 listing offers a 5-tab welding/fabrication estimate calculator with materials, labour, markup, consumables, tax and client quote output; listed at £3.31 and shows 1 sale after about one month."
     },
     {
-      "source": "Gumroad — Machine Shop Quoting Pack",
-      "url": "https://morganscape314.gumroad.com/l/rhnbp",
-      "finding": "$34 product combining RFQ, quote worksheet, shop rate, job costing and change order control."
+      "source": "Etsy — Welding Shop Hourly Rate Calculator",
+      "url": "https://www.etsy.com/listing/4538944188/welding-shop-hourly-rate-calculator-weld",
+      "finding": "Current listing priced at $38.28; combines break-even/target shop rate, per-weld costing, quote builder, material price DB, job log and monthly P&L."
     },
     {
-      "source": "Etsy — Welding Business Toolkit",
-      "url": "https://www.etsy.com/listing/4519330716/welding-business-spreadsheet-metal",
-      "finding": "139 sales shown on a recent niche welding/fabrication toolkit listing, demonstrating current paid demand."
+      "source": "Etsy — Fabrication Quoting Calculator UK",
+      "url": "https://www.etsy.com/listing/4432728437/fabrication-quoting-calculator-uk",
+      "finding": "Current listing bundles fabrication quote calculation with materials, labour, overhead, profit, add-ons and a bonus hourly-rate calculator."
     },
     {
       "source": "Etsy — Welding Estimate Calculator",
       "url": "https://www.etsy.com/listing/4474230839/welding-estimate-calculator-welder",
-      "finding": "$4.99 niche estimator; 11 sales shown, listed Jul 2026."
+      "finding": "Current $4.99 welding estimator covers metal, consumables, labour, travel, equipment and markup."
     },
     {
-      "source": "Etsy — CNC Quote Calculator",
-      "url": "https://www.etsy.com/listing/4469106868/cnc-machining-quote-calculator-machine",
-      "finding": "Current paid CNC quote calculator listing confirms the same broader manufacturing pricing problem."
+      "source": "Quotara",
+      "url": "https://www.getquotara.com/",
+      "finding": "Current quoting/job-costing software explicitly targets small shops still using calculators and spreadsheets, confirming the underlying business pain and willingness to evaluate quoting tools."
+    },
+    {
+      "source": "PriceFab",
+      "url": "https://www.pricefab.com/",
+      "finding": "Current AI quoting software targets custom fabricators and CNC shops, indicating an active market for faster and more accurate quoting."
     },
     {
       "source": "Gumroad pricing",
       "url": "https://gumroad.com/pricing",
-      "finding": "No monthly fee; direct-link sales are 10% + $0.50, and marketplace discovery sales are 30%. This supports an RM0-upfront launch path."
-    },
-    {
-      "source": "Etsy seller fees",
-      "url": "https://help.etsy.com/hc/en-gb/articles/115014483627-What-are-the-Fees-and-Taxes-for-Selling-on-Etsy",
-      "finding": "$0.20 listing fee plus transaction/payment fees, so Etsy is not the first strict RM0 launch channel."
+      "finding": "No monthly fee; direct-link sales currently incur 10% + $0.50, supporting an RM0-upfront storefront."
     }
   ],
-  "next_gate": "Finalize the selected product specification and RM0 distribution test before build."
+  "supply_demand_assessment": {
+    "demand": 7,
+    "supply": 7,
+    "competition": 7,
+    "buyer_pain": 8,
+    "automation_fit": 9,
+    "first_sale_potential": 7,
+    "interpretation": "Not the largest market and not low-competition. It is the strongest first-product fit under Leverage's RM0, near-zero-owner-work and repeatable-delivery constraints."
+  },
+  "distribution_test": {
+    "primary_store": "Gumroad",
+    "initial_channels": ["search-driven content", "relevant communities where promotion is allowed", "free educational posts", "direct Gumroad link"],
+    "discover_marketplace_dependency": false,
+    "success_gate": "Generate qualified traffic and at least one buyer before broad product expansion."
+  },
+  "next_gate": "Finalize workbook UX/content, quick-start guide, Gumroad listing copy, and first 10 organic distribution assets before full build release."
 }
