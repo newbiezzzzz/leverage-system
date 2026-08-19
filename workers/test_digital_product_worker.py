@@ -11,9 +11,9 @@ class DigitalProductWorkerTests(unittest.TestCase):
         result = self_test()
         self.assertEqual(result["status"], "healthy")
         self.assertEqual(result["cost"]["amount"], 0)
-        self.assertEqual(result["format"] if "format" in result else "xlsx-workbook", "xlsx-workbook")
+        self.assertIn("xlsx-workbook", result["capabilities"])
 
-    def test_build_quote_workbook_is_real_xlsx(self):
+    def test_build_quote_workbook_is_real_xlsx_with_formulas(self):
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp) / "quote.xlsx"
             result = build_quote_workbook(str(target))
@@ -26,7 +26,11 @@ class DigitalProductWorkerTests(unittest.TestCase):
                 self.assertIn("xl/workbook.xml", names)
                 self.assertIn("xl/worksheets/sheet1.xml", names)
                 workbook_xml = archive.read("xl/workbook.xml").decode("utf-8")
+                quote_xml = archive.read("xl/worksheets/sheet1.xml").decode("utf-8")
                 self.assertIn("Quote", workbook_xml)
+                self.assertIn("C7*E7", quote_xml)
+                self.assertIn("SUM(G7:G26)", quote_xml)
+                self.assertIn("(B29+B31)", quote_xml)
 
     def test_build_job_log_csv(self):
         with tempfile.TemporaryDirectory() as tmp:
