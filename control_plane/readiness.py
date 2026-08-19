@@ -14,6 +14,7 @@ LEDGER_FILE = state_path("financial_ledger.json")
 REQUIRED_RUNTIME = (
     "projects.json", "tasks.json", "approvals.json", "audit_log.json",
     "financial_ledger.json", "gates.json", "resource_state.json", "customer_orders.json",
+    "opportunities.json", "prospects.json", "business_pipelines.json",
 )
 REQUIRED_FILES = ("company.json", "workers.json", "policies.json", "resource_limits.json", "channel_adapter.py")
 REQUIRED_TESTS = (
@@ -21,11 +22,12 @@ REQUIRED_TESTS = (
     "test_company_ops.py", "test_gates.py", "test_cli.py", "test_readiness.py",
     "test_project_admin.py", "test_local_sync.py", "test_acquisition_worker.py",
     "test_delivery_gateway.py", "test_channel_adapter.py", "../server/test_api.py",
+    "../workers/test_runtime.py", "../workers/test_digital_product_worker.py",
 )
 EXPECTED_WORKERS = {
     "research-worker": "research", "data-worker": "validate", "code-worker": "build",
-    "project-manager": "plan", "operations-worker": "verify", "customer-worker": "intake",
-    "acquisition-worker": "discover_prospects", "finance-worker": "reconcile",
+    "digital-product-worker": "build", "project-manager": "plan", "operations-worker": "verify",
+    "customer-worker": "intake", "acquisition-worker": "discover_prospects", "finance-worker": "reconcile",
 }
 
 
@@ -75,7 +77,7 @@ def company_os_readiness() -> dict:
         checks.append(_check("workflow_contract", False, "Default project workflow could not be validated."))
 
     missing_tests = [name for name in REQUIRED_TESTS if not (ROOT / name).is_file()]
-    checks.append(_check("test_surface", not missing_tests, "Core OS regression tests are present." if not missing_tests else f"Missing tests: {', '.join(missing_tests)}"))
+    checks.append(_check("test_surface", not missing_tests, "Core OS and worker regression tests are present." if not missing_tests else f"Missing tests: {', '.join(missing_tests)}"))
 
     try:
         policy = _load(POLICIES_FILE).get("company_policy", {})
