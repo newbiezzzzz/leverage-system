@@ -1,14 +1,15 @@
 """Autonomous, policy-safe acquisition campaign planner.
 
 Runs without ChatGPT. It creates fresh organic-content/outreach tasks for the
-live Gumroad product, deduplicates the queue, and keeps actual sending behind
-channel-specific authorization/policy gates.
+live Gumroad product, gives each channel a distinct UTM link, deduplicates the
+queue, and keeps actual sending behind channel-specific authorization/policy gates.
 """
 from __future__ import annotations
 
 import json
 from pathlib import Path
 from datetime import datetime, timezone
+from urllib.parse import urlencode
 
 PRODUCT = "Fabrication Shop Profit & Quote System"
 PRODUCT_URL = "https://newbiezz.gumroad.com/l/neiqwz"
@@ -26,7 +27,7 @@ CHANNELS = ["seo_content", "linkedin", "niche_community", "direct_outreach"]
 
 def _load() -> dict:
     if not QUEUE_PATH.exists():
-        return {"version": 1, "items": []}
+        return {"version": 2, "items": []}
     return json.loads(QUEUE_PATH.read_text(encoding="utf-8"))
 
 
@@ -35,36 +36,54 @@ def _save(data: dict) -> None:
     QUEUE_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
 
+def tracked_url(channel: str, date_key: str) -> str:
+    params = {
+        "utm_source": channel,
+        "utm_medium": "organic",
+        "utm_campaign": f"first-product-{date_key}",
+        "utm_content": channel,
+    }
+    return f"{PRODUCT_URL}?{urlencode(params)}"
+
+
 def generate_daily_queue(now: datetime | None = None) -> dict:
     now = now or datetime.now(timezone.utc)
     data = _load()
     existing_keys = {item["key"] for item in data.get("items", [])}
     created = []
+    date_key = now.date().isoformat()
     for index, pillar in enumerate(CONTENT_PILLARS):
         channel = CHANNELS[index % len(CHANNELS)]
-        key = f"{now.date().isoformat()}::{channel}::{pillar}"
+        key = f"{date_key}::{channel}::{pillar}"
         if key in existing_keys:
             continue
+        destination = tracked_url(channel, date_key)
         created.append({
             "key": key,
             "created_at": now.isoformat(),
             "project": "engineering-quote-toolkit",
             "product": PRODUCT,
-            "destination": PRODUCT_URL,
+            "destination": destination,
             "channel": channel,
             "topic": pillar,
-            "call_to_action": PRODUCT_URL,
+            "call_to_action": destination,
             "status": "draft",
             "requires_channel_authorization": True,
             "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"],
         })
     data.setdefault("items", []).extend(created)
     data["last_generated_at"] = now.isoformat()
+    data["tracking"] = {
+        "base_product_url": PRODUCT_URL,
+        "utm_enabled": True,
+        "utm_note": "Gumroad Analytics can attribute clicks, sales, revenue and conversion to UTM links.",
+    }
     _save(data)
     return {"created": len(created), "queue_size": len(data["items"]), "queue": created}
 
 
 def self_test() -> dict:
+    sample = tracked_url("linkedin", "2026-08-20")
     return {
         "worker": "acquisition-campaign-planner",
         "status": "healthy",
@@ -72,6 +91,7 @@ def self_test() -> dict:
         "channels": CHANNELS,
         "autonomous": True,
         "sending": "gated",
+        "utm_tracking": sample,
         "cost_rm": 0,
     }
 
