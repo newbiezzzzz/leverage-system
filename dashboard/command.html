@@ -6,7 +6,7 @@
   <title>Leverage | Boss Command Center</title>
   <link rel="stylesheet" href="styles.css?v=31">
   <link rel="stylesheet" href="layout.css?v=9">
-  <link rel="stylesheet" href="command.css?v=1">
+  <link rel="stylesheet" href="command.css?v=2">
 </head>
 <body>
   <div class="shell">
@@ -21,7 +21,7 @@
         <div>
           <p class="eyebrow">COMMAND CENTER</p>
           <h1>Tell Leverage what you want done.</h1>
-          <p class="muted">Use this page as the company intake and decision center. Actual execution remains protected by the Control Plane.</p>
+          <p class="muted">Company control, project intake and worker execution in one place. The Control Plane remains the execution authority.</p>
         </div>
         <div class="hero-badge"><span>SYSTEM SAFETY</span><strong>PROTECTED</strong><small>Consequential actions stay approval-gated</small></div>
       </section>
@@ -37,6 +37,11 @@
         <div class="panel-head"><div><p class="eyebrow">COMPANY HEALTH</p><h2>What needs Boss attention?</h2></div><span class="pill blue-pill" id="healthStatus">CHECKING</span></div>
         <div id="healthSummary" class="muted">Checking projects, workers and financial safety…</div>
         <div id="healthAlerts" class="strategy-summary"></div>
+      </section>
+
+      <section class="card panel">
+        <div class="panel-head"><div><p class="eyebrow">WORKER CONTROL</p><h2>Who is ready to work?</h2></div><span class="pill green-pill" id="workerStatus">CHECKING</span></div>
+        <div id="workerQueues" class="worker-list"><p class="muted">Loading worker queues…</p></div>
       </section>
 
       <section class="card panel">
@@ -69,12 +74,12 @@
       </section>
 
       <section class="card panel">
-        <div class="panel-head"><div><p class="eyebrow">IMPORTANT</p><h2>This is not a second CLI</h2></div></div>
-        <p class="muted">The dashboard is your visual control room. ChatGPT remains the natural-language manager; the Control Plane remains the execution authority. This keeps the Boss experience simple without exposing secrets or giving a browser page unrestricted system access.</p>
+        <div class="panel-head"><div><p class="eyebrow">IMPORTANT</p><h2>Leverage is a company system, not a trading system</h2></div></div>
+        <p class="muted">Projects are replaceable workloads. Workers and Control Plane rules are reusable company infrastructure. Trading is currently parked; future projects use the same intake, validation, execution, measurement and revenue pipeline.</p>
       </section>
     </main>
   </div>
-  <script src="command.js?v=3"></script>
+  <script src="command.js?v=4"></script>
   <script src="dashboard-menu.js?v=6"></script>
 </body>
 </html>
