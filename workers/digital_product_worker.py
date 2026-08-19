@@ -1,8 +1,8 @@
 """Leverage Digital Product Worker.
 
 Builds deterministic digital-product artifacts without ChatGPT or external APIs.
-The first product path creates a real macro-free .xlsx workbook using Python's
-standard library only. No external provider or paid service is required.
+The first product path creates a macro-free .xlsx quotation/job-costing toolkit
+using Python's standard library only.
 """
 from __future__ import annotations
 import csv
@@ -12,31 +12,12 @@ from zipfile import ZIP_DEFLATED, ZipFile
 import xml.sax.saxutils as xml
 
 ROLE = "digital product creation and packaging"
+NS_MAIN = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+NS_REL = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 
 
 def _escape(value: object) -> str:
     return xml.escape("" if value is None else str(value))
-
-
-def _sheet_xml(rows: list[list[object]]) -> str:
-    body = []
-    for row_index, row in enumerate(rows, 1):
-        cells = []
-        for col_index, value in enumerate(row, 1):
-            if value in (None, ""):
-                continue
-            cell_ref = _column_name(col_index) + str(row_index)
-            if isinstance(value, (int, float)) and not isinstance(value, bool):
-                cells.append(f'<c r="{cell_ref}"><v>{value}</v></c>')
-            else:
-                cells.append(f'<c r="{cell_ref}" t="inlineStr"><is><t>{_escape(value)}</t></is></c>')
-        body.append(f'<row r="{row_index}">' + ''.join(cells) + '</row>')
-    return (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"'
-        ' xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
-        '<sheetData>' + ''.join(body) + '</sheetData></worksheet>'
-    )
 
 
 def _column_name(number: int) -> str:
@@ -47,41 +28,149 @@ def _column_name(number: int) -> str:
     return ''.join(reversed(letters))
 
 
+def _cell(ref: str, value: object = None, formula: str | None = None) -> str:
+    if formula is not None:
+        return f'<c r="{ref}"><f>{_escape(formula)}</f><v>0</v></c>'
+    if value in (None, ""):
+        return f'<c r="{ref}"/>'
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return f'<c r="{ref}"><v>{value}</v></c>'
+    return f'<c r="{ref}" t="inlineStr"><is><t>{_escape(value)}</t></is></c>'
+
+
+def _sheet_xml(rows: list[list[object]], formulas: dict[str, str] | None = None) -> str:
+    formulas = formulas or {}
+    body = []
+    for row_index, row in enumerate(rows, 1):
+        cells = []
+        for col_index, value in enumerate(row, 1):
+            ref = _column_name(col_index) + str(row_index)
+            cells.append(_cell(ref, value, formulas.get(ref)))
+        body.append(f'<row r="{row_index}">' + ''.join(cells) + '</row>')
+    return (
+        f'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        f'<worksheet xmlns="{NS_MAIN}" xmlns:r="{NS_REL}">'
+        '<sheetData>' + ''.join(body) + '</sheetData></worksheet>'
+    )
+
+
+def _xlsx_package(sheets: dict[str, tuple[list[list[object]], dict[str, str]]], target: Path) -> None:
+    sheet_entries = []
+    rel_entries = []
+    override_entries = []
+    for index, (name, _content) in enumerate(sheets.items(), 1):
+        sheet_entries.append(f'<sheet name="{_escape(name)}" sheetId="{index}" r:id="rId{index}"/>')
+        rel_entries.append(f'<Relationship Id="rId{index}" Type="{NS_REL}/worksheet" Target="worksheets/sheet{index}.xml"/>')
+        override_entries.append(f'<Override PartName="/xl/worksheets/sheet{index}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>')
+
+    content_types = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+        '<Default Extension="xml" ContentType="application/xml"/>'
+        '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+        + ''.join(override_entries) + '</Types>'
+    )
+    root_rels = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'
+        '</Relationships>'
+    )
+    workbook = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        f'<workbook xmlns="{NS_MAIN}" xmlns:r="{NS_REL}">'
+        '<calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/>'
+        '<sheets>' + ''.join(sheet_entries) + '</sheets></workbook>'
+    )
+    workbook_rels = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        f'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        + ''.join(rel_entries) + '</Relationships>'
+    )
+    with ZipFile(target, "w", compression=ZIP_DEFLATED) as archive:
+        archive.writestr("[Content_Types].xml", content_types)
+        archive.writestr("_rels/.rels", root_rels)
+        archive.writestr("xl/workbook.xml", workbook)
+        archive.writestr("xl/_rels/workbook.xml.rels", workbook_rels)
+        for index, (_name, (rows, formulas)) in enumerate(sheets.items(), 1):
+            archive.writestr(f"xl/worksheets/sheet{index}.xml", _sheet_xml(rows, formulas))
+
+
 def build_quote_workbook(output_path: str) -> dict:
-    """Create a genuine .xlsx quotation template with no external dependencies."""
+    """Create a usable macro-free quotation and job-costing .xlsx toolkit."""
     target = Path(output_path)
     target.parent.mkdir(parents=True, exist_ok=True)
-    rows = [
+
+    quote_rows = [
         ["ENGINEERING JOB QUOTATION TOOLKIT"],
-        [],
+        ["Enter the yellow/input cells in Excel. Formula cells calculate automatically."],
         ["Quote ID", "Q-0001", "Customer", "", "Job", ""],
-        ["Quantity", "", "Target Margin %", 30, "Status", "Draft"],
+        ["Quantity", 1, "Target Margin %", 30, "Status", "Draft"],
         [],
         ["Category", "Description", "Qty", "Unit", "Rate (RM)", "Markup %", "Line Cost (RM)", "Sell Price (RM)"],
-        ["Material", "", "", "kg", "", 15, "", ""],
-        ["Labour", "", "", "hr", "", 0, "", ""],
-        ["Outside", "", "", "job", "", 10, "", ""],
+    ]
+    quote_rows += [
+        ["Material", "", 1, "kg", 0, 15, 0, 0],
+        ["Labour", "", 1, "hr", 0, 0, 0, 0],
+        ["Outside", "", 1, "job", 0, 10, 0, 0],
+    ]
+    for _ in range(17):
+        quote_rows.append(["", "", "", "", "", "", "", ""])
+    quote_rows += [
         [],
         ["SUMMARY"],
         ["Direct Cost", ""],
+        ["Overhead %", 8],
+        ["Overhead", ""],
         ["Target Quote", ""],
         ["Gross Profit", ""],
         ["Gross Margin %", ""],
-        [],
-        ["Instructions"],
-        ["Enter customer/job details and line costs. Verify supplier and labour rates before sending any commercial quote."],
     ]
-    content_types = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>'''
-    rels = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'''
-    workbook = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Quote" sheetId="1" r:id="rId1"/></sheets></workbook>'''
-    workbook_rels = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>'''
-    with ZipFile(target, "w", compression=ZIP_DEFLATED) as archive:
-        archive.writestr("[Content_Types].xml", content_types)
-        archive.writestr("_rels/.rels", rels)
-        archive.writestr("xl/workbook.xml", workbook)
-        archive.writestr("xl/_rels/workbook.xml.rels", workbook_rels)
-        archive.writestr("xl/worksheets/sheet1.xml", _sheet_xml(rows))
-    return {"artifact": str(target), "format": "xlsx", "rows": len(rows), "external_dependencies": [], "cost_rm": 0}
+    quote_formulas = {
+        "G7": "C7*E7", "H7": "G7*(1+F7/100)",
+        "G8": "C8*E8", "H8": "G8*(1+F8/100)",
+        "G9": "C9*E9", "H9": "G9*(1+F9/100)",
+        "B24": "SUM(G7:G26)",
+        "B26": "B24*B25/100",
+        "B27": "(B24+B26)/(1-D4/100)",
+        "B28": "B27-B24-B26",
+        "B29": "IF(B27=0,0,B28/B27)",
+    }
+    # Formula cells for blank line rows 10:26.
+    for row in range(10, 27):
+        quote_formulas[f"G{row}"] = f"C{row}*E{row}"
+        quote_formulas[f"H{row}"] = f"G{row}*(1+F{row}/100)"
+
+    rates_rows = [
+        ["RATES & ASSUMPTIONS"],
+        ["Parameter", "Value", "Unit"],
+        ["Default labour rate", 45, "RM/hour"],
+        ["Default machine rate", 80, "RM/hour"],
+        ["Material markup", 15, "%"],
+        ["Outside-service markup", 10, "%"],
+        ["Target gross margin", 30, "%"],
+        ["Overhead allowance", 8, "%"],
+    ]
+
+    job_rows = [["JOB LOG — QUOTED VS ACTUAL"], ["Job ID", "Customer", "Job", "Qty", "Quoted Sales", "Actual Cost", "Actual Profit", "Actual Margin %", "Status"]]
+    for i in range(1, 21):
+        job_rows.append([f"JOB-{i:03d}", "", "", "", "", "", "", "", "Open"])
+
+    sheets = {
+        "Quote": (quote_rows, quote_formulas),
+        "Rates": (rates_rows, {}),
+        "Job_Log": (job_rows, {}),
+    }
+    _xlsx_package(sheets, target)
+    return {
+        "artifact": str(target),
+        "format": "xlsx",
+        "sheets": list(sheets),
+        "rows": {name: len(content[0]) for name, content in sheets.items()},
+        "external_dependencies": [],
+        "cost_rm": 0,
+    }
 
 
 def build_job_log_csv(output_path: str, rows: int = 20) -> dict:
