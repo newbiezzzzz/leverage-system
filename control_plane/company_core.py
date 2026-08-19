@@ -22,6 +22,21 @@ LIFECYCLE = [
     "revenue", "payout-ready", "paused", "retired"
 ]
 
+# Explicit transitions keep the Control Plane from accidentally jumping a
+# project over a required gate. Pause is available from every non-terminal
+# stage; a paused project can safely re-enter validation for a fresh review.
+ALLOWED_TRANSITIONS = {
+    "intake": {"validation", "paused", "retired"},
+    "validation": {"build", "paused", "retired"},
+    "build": {"launch", "paused", "retired"},
+    "launch": {"operate", "paused", "retired"},
+    "operate": {"revenue", "paused", "retired"},
+    "revenue": {"payout-ready", "operate", "paused", "retired"},
+    "payout-ready": {"operate", "paused", "retired"},
+    "paused": {"validation", "retired"},
+    "retired": set(),
+}
+
 @dataclass
 class Project:
     id: str
@@ -58,6 +73,7 @@ def validate_project(project: Project) -> list[str]:
     if project.status not in LIFECYCLE: errors.append(f"invalid project status: {project.status}")
     if project.capital_deployed < 0: errors.append("capital_deployed cannot be negative")
     if project.currency != "MYR": errors.append("default company currency is MYR")
+    if project.status != project.lifecycle_stage: errors.append("project status and lifecycle_stage must match")
     return errors
 
 
@@ -75,11 +91,19 @@ def create_project(project: Project) -> Project:
     return project
 
 
+def can_change_stage(current_stage: str, next_stage: str) -> bool:
+    """Return whether a project may move between lifecycle gates."""
+    return next_stage in ALLOWED_TRANSITIONS.get(current_stage, set())
+
+
 def change_stage(project_id: str, stage: str, reason: str) -> Project:
     if stage not in LIFECYCLE: raise ValueError(f"invalid lifecycle stage: {stage}")
     data = load_json(PROJECTS_FILE)
     for item in data.get("projects", []):
         if item["id"] == project_id:
+            current = item.get("lifecycle_stage", item.get("status", "intake"))
+            if current != stage and not can_change_stage(current, stage):
+                raise ValueError(f"invalid lifecycle transition: {current} -> {stage}")
             item["lifecycle_stage"] = stage; item["status"] = stage; item["next_gate"] = reason; data["last_modified_at"] = utc_now(); save_json(PROJECTS_FILE, data); return Project(**item)
     raise KeyError(f"project not found: {project_id}")
 
