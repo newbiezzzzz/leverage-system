@@ -1,10 +1,11 @@
 {
-  "version": 9,
+  "version": 10,
   "milestones": [
     {"id":"foundation","name":"Foundation & architecture","progress":100,"status":"complete"},
     {"id":"worker-fleet","name":"Core worker fleet","progress":100,"status":"complete"},
     {"id":"control-plane","name":"Control Plane v1","progress":100,"status":"complete","note":"Lifecycle gates, task dependencies, dispatch readiness, worker queues, audit and guarded finance are complete."},
     {"id":"company-operating-system","name":"Company Operating System v1","progress":100,"status":"complete","note":"Reusable project intake, planning, lifecycle, task orchestration, health, readiness, resource and verified revenue tracking are ready for income projects."},
-    {"id":"owner-command-center","name":"Owner Command Center","progress":100,"status":"complete","note":"Company health, project portfolio, worker queues, readiness, revenue KPIs and project intake are surfaced in the dashboard."}
+    {"id":"owner-command-center","name":"Owner Command Center","progress":100,"status":"complete","note":"Company health, project portfolio, worker queues, readiness, revenue KPIs and project intake are surfaced in the dashboard."},
+    {"id":"worker-runtime","name":"Quota-independent worker runtime","progress":80,"status":"active","note":"Local deterministic executors are available for data and code tasks with fallback routing; additional worker adapters and artifact-producing executors remain to be connected."}
   ]
 }
