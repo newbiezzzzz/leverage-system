@@ -2,47 +2,11 @@
   "version": 2,
   "principle": "Leverage core is project-type agnostic; project-specific build, channel, delivery and revenue behavior is selected through adapters.",
   "types": {
-    "digital_product": {
-      "label": "Digital Product",
-      "build_capabilities": ["digital-product-worker"],
-      "channels": ["marketplace", "direct"],
-      "delivery": ["digital_download", "access_grant"],
-      "revenue_events": ["purchase", "refund"]
-    },
-    "software": {
-      "label": "Software / Micro-SaaS",
-      "build_capabilities": ["code-worker", "data-worker", "operations-worker"],
-      "channels": ["direct", "marketplace", "web", "subscription"],
-      "delivery": ["account_access", "license", "hosted_service"],
-      "revenue_events": ["subscription", "purchase", "refund", "churn"]
-    },
-    "automation_service": {
-      "label": "Automation Service",
-      "build_capabilities": ["code-worker", "research-worker", "operations-worker"],
-      "channels": ["direct", "lead_generation"],
-      "delivery": ["service_execution", "report_delivery"],
-      "revenue_events": ["contract", "invoice", "payment", "refund"]
-    },
-    "data_product": {
-      "label": "Data Product",
-      "build_capabilities": ["research-worker", "data-worker", "code-worker"],
-      "channels": ["direct", "marketplace", "subscription"],
-      "delivery": ["dataset", "report", "api_access"],
-      "revenue_events": ["purchase", "subscription", "refund", "churn"]
-    },
-    "content_media": {
-      "label": "Content / Media",
-      "build_capabilities": ["research-worker", "code-worker", "digital-product-worker"],
-      "channels": ["search", "social", "video", "newsletter"],
-      "delivery": ["content", "audience_access"],
-      "revenue_events": ["advertising", "affiliate", "sponsorship", "purchase"]
-    },
-    "lead_generation": {
-      "label": "Lead Generation",
-      "build_capabilities": ["research-worker", "data-worker", "acquisition-worker"],
-      "channels": ["search", "social", "direct"],
-      "delivery": ["qualified_lead", "appointment"],
-      "revenue_events": ["lead_sale", "appointment_fee", "commission"]
-    }
+    "digital_product": {"label":"Digital Product","build_capabilities":["digital-product-worker"],"channels":["marketplace","direct"],"delivery":["digital_download","access_grant"],"revenue_events":["purchase","refund"]},
+    "software": {"label":"Software / Micro-SaaS","build_capabilities":["code-worker","data-worker","operations-worker"],"channels":["direct","marketplace","web","subscription"],"delivery":["account_access","license","hosted_service"],"revenue_events":["subscription","purchase","refund","churn"]},
+    "automation_service": {"label":"Automation Service","build_capabilities":["code-worker","research-worker","operations-worker"],"channels":["direct","lead_generation"],"delivery":["service_execution","report_delivery"],"revenue_events":["contract","invoice","payment","refund"]},
+    "data_product": {"label":"Data Product","build_capabilities":["research-worker","data-worker","code-worker"],"channels":["direct","marketplace","subscription"],"delivery":["dataset","report","api_access"],"revenue_events":["purchase","subscription","refund","churn"]},
+    "content_media": {"label":"Content / Media","build_capabilities":["research-worker","code-worker","digital-product-worker"],"channels":["search","social","video","newsletter"],"delivery":["content","audience_access"],"revenue_events":["advertising","affiliate","sponsorship","purchase"]},
+    "lead_generation": {"label":"Lead Generation","build_capabilities":["research-worker","data-worker","acquisition-worker"],"channels":["search","social","direct"],"delivery":["qualified_lead","appointment"],"revenue_events":["lead_sale","appointment_fee","commission"]}
   }
 }
