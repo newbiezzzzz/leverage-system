@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "projects": {
+    "engineering-quote-toolkit": {
+      "name": "Fabrication Shop Profit & Quote System",
+      "store": "Gumroad",
+      "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
+      "price_usd": 19,
+      "traffic": {
+        "status": "not_connected",
+        "product_page_views": null,
+        "unique_visitors": null,
+        "sources": [],
+        "measurement_source": null,
+        "last_verified_at": null
+      },
+      "funnel": {
+        "product_page_views": null,
+        "verified_sales": 0,
+        "conversion_rate": null
+      },
+      "revenue": {
+        "verified_revenue_usd": 0,
+        "capital_deployed_rm": 0,
+        "verified_at": null
+      },
+      "interpretation": {
+        "traffic_unknown_is_not_zero": true,
+        "sales_zero_is_verified": true,
+        "next_gate": "Connect measurable traffic, acquire the first buyer, then evaluate conversion and iterate."
+      }
+    }
+  },
+  "rules": [
+    "Never replace unknown traffic with zero.",
+    "Only record sales or revenue as verified when supported by an authoritative source or explicit owner evidence.",
+    "Every future traffic source should record source name, date range, metric, and verification source.",
+    "No paid acquisition without explicit Owner approval and continued RM0 constraint."
+  ]
+}
