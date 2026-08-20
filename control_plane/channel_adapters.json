@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "principle": "Channel adapters implement platform-specific execution and evidence collection behind a stable Leverage interface.",
+  "interface": {
+    "prepare": "create an executable action payload without external side effects",
+    "validate": "check required fields, channel rules and approval state",
+    "execute": "perform an approved external action through the adapter",
+    "verify": "collect authoritative evidence of the action/result",
+    "measure": "map authoritative channel metrics into Leverage metrics",
+    "status": "report connection and execution capability"
+  },
+  "required_evidence": ["source", "action_id_or_reference", "timestamp", "status"],
+  "adapters": {
+    "marketplace": {"capabilities": ["publish", "measure", "verify"], "external_execution": "adapter_specific"},
+    "direct": {"capabilities": ["publish", "capture_lead", "measure", "verify"], "external_execution": "adapter_specific"},
+    "search": {"capabilities": ["publish", "measure", "verify"], "external_execution": "adapter_specific"},
+    "social": {"capabilities": ["publish", "measure", "verify"], "external_execution": "adapter_specific"},
+    "lead_generation": {"capabilities": ["publish", "capture_lead", "measure", "verify"], "external_execution": "adapter_specific"},
+    "video": {"capabilities": ["publish", "measure", "verify"], "external_execution": "adapter_specific"},
+    "newsletter": {"capabilities": ["publish", "measure", "verify"], "external_execution": "adapter_specific"},
+    "web": {"capabilities": ["publish", "measure", "verify", "deliver"], "external_execution": "adapter_specific"},
+    "subscription": {"capabilities": ["publish", "measure", "verify", "deliver"], "external_execution": "adapter_specific"}
+  },
+  "rules": [
+    "No adapter may bypass platform rules.",
+    "No adapter may move money unless an explicitly authorized money-movement capability exists outside this interface.",
+    "External actions remain approval-gated according to action risk.",
+    "Unknown metrics remain unknown until authoritative evidence is returned.",
+    "Adapters must remain replaceable; core lifecycle logic must not depend on one provider."
+  ]
+}
