@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T13:03:21.892721+00:00",
+  "generated_at": "2026-08-20T13:45:17.310140+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -146,7 +146,7 @@
     },
     {
       "id": "customer-worker",
-      "role": "customer intake, support and feedback",
+      "role": "customer intake and support",
       "status": "online",
       "activation": "verified",
       "entrypoint": "workers/customer_worker.py",
@@ -175,6 +175,8 @@
         "discover_prospects",
         "qualify_prospects",
         "prepare_outreach",
+        "plan_campaign",
+        "create_tracking_links",
         "track_responses",
         "report"
       ],
@@ -185,6 +187,50 @@
         "publish_binding_offer",
         "move_money",
         "bypass_platform_rules"
+      ]
+    },
+    {
+      "id": "conversion-worker",
+      "role": "conversion optimization and experiment planning",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/conversion_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "conversion-guarded",
+      "capabilities": [
+        "design_experiment",
+        "analyze_funnel",
+        "evaluate_conversion",
+        "report"
+      ],
+      "restricted_actions": [
+        "change_price",
+        "publish_offer",
+        "bind_customer",
+        "move_money"
+      ]
+    },
+    {
+      "id": "delivery-worker",
+      "role": "customer delivery and fulfillment orchestration",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/delivery_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "delivery-safe",
+      "capabilities": [
+        "prepare_fulfillment",
+        "verify_delivery",
+        "report"
+      ],
+      "restricted_actions": [
+        "move_money",
+        "change_customer_entitlement_without_evidence",
+        "issue_refund"
       ]
     },
     {
@@ -232,7 +278,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-20T13:03:21.892721+00:00"
+    "synced_at": "2026-08-20T13:45:17.310140+00:00"
   },
   "projects": [
     {
