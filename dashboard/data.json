@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T13:51:55.039470+00:00",
+  "generated_at": "2026-08-20T13:55:35.143023+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -274,6 +274,31 @@
       ]
     },
     {
+      "id": "external-action-worker",
+      "role": "external action preparation, approval routing and verification",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/external_action_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "external-action-guarded",
+      "capabilities": [
+        "prepare",
+        "route_for_approval",
+        "track",
+        "verify"
+      ],
+      "restricted_actions": [
+        "direct_external_send",
+        "mass_spam",
+        "impersonation",
+        "binding_commitment",
+        "money_movement",
+        "bypass_platform_rules"
+      ]
+    },
+    {
       "id": "finance-worker",
       "role": "financial reconciliation, revenue reporting and payout preparation",
       "status": "online",
@@ -318,7 +343,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-20T13:51:55.039470+00:00"
+    "synced_at": "2026-08-20T13:55:35.143023+00:00"
   },
   "projects": [
     {
