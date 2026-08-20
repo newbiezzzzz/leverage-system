@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "provider": "goatcounter",
+  "status": "connected_pending_deployment",
+  "site_code": "leverage",
+  "endpoint": "https://leverage.goatcounter.com/count",
+  "project_id": "engineering-quote-toolkit",
+  "channel": "web",
+  "source_artifact": "dashboard/project-launch/index.html",
+  "metrics": ["page_views", "unique_visitors", "referrers"],
+  "notes": [
+    "Site code was supplied by Owner.",
+    "No traffic value is considered verified until the deployed page records events in the provider dashboard.",
+    "Do not treat missing analytics as zero traffic."
+  ]
+}
