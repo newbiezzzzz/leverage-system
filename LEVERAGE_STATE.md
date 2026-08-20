@@ -40,7 +40,7 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - Quota-independent worker runtime: 90%, active
 - Project-type compatibility dry run: **passed** for software/micro-SaaS and the existing modeled project types
 - Channel adapter dry run: **passed** for marketplace, web and social contracts
-- First web-channel publishing test: **published, deployment verification pending**
+- First web-channel publishing test: **owner-verified live**
 - Controlled end-to-end business-loop execution: **not yet passed**
 
 ## Current Worker Fleet
@@ -59,8 +59,9 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - architecture-validator: online
 - external-action-worker: online
 - channel-adapter-worker: online
+- measurement-worker: online
 
-The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop, architecture-validation, external-action and channel-adapter workers are explicit bounded capabilities.
+The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop, architecture-validation, external-action, channel-adapter and measurement workers are explicit bounded capabilities.
 
 ## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
@@ -102,7 +103,7 @@ Current capability expansion:
 - Conversion experimentation: available, live offer/pricing changes remain approval gated.
 - Delivery orchestration: available, authoritative fulfillment evidence is required.
 - Customer support/feedback: available.
-- Measurement: traffic/funnel schema exists; authoritative channel data is not yet connected.
+- Measurement: provider-agnostic traffic/funnel adapter now exists; authoritative source still requires configuration.
 - Decisioning: project gates remain evidence-gated.
 - Project-type registry: available via `control_plane/project_types.json`.
 - Channel registry: available via `control_plane/channels.json`.
@@ -112,6 +113,7 @@ Current capability expansion:
 - Generic external-action queue: available via `control_plane/external_action_queue.json`.
 - External-action worker: prepares actions, routes approval, tracks status and verifies completion evidence; it does not directly publish, send, bind customers or move money.
 - Generic channel-adapter interface: available via `control_plane/channel_adapters.json` and `workers/channel_adapter_worker.py`.
+- Measurement adapter: available via `control_plane/measurement_adapters.json` and `workers/measurement_worker.py`.
 
 ## Controlled Execution Test
 A controlled execution test records an observable end-to-end run against Experiment A without adding capital or inventing external evidence.
@@ -131,19 +133,31 @@ Current result:
 Success criteria require every completed stage to have evidence, no paid acquisition, no fabricated metrics, and approval-gated external actions.
 
 ## First Web Channel Execution Test
-A public web landing page was added at `dashboard/project-launch/index.html` as a real Web Channel execution test for Experiment A. The existing GitHub Pages workflow is configured to publish the dashboard directory. The resulting execution is recorded in `control_plane/channel_execution.json`.
+A public web landing page was added at `dashboard/project-launch/index.html` as a real Web Channel execution test for Experiment A. The existing GitHub Pages workflow is configured to publish the dashboard directory. The Owner confirmed the public page is live, so deployment is now **owner-verified**. The resulting execution is recorded in `control_plane/channel_execution.json`.
 
 Current state:
 - Action: publish_public_landing_page
 - Capital: RM0
 - Approval: Owner proceed
-- Status: published by Git commit; **deployment verification pending**
+- Status: live / owner-verified
 - Page views: UNKNOWN
 - Unique visitors: UNKNOWN
 - Traffic source measurement: NOT CONNECTED
 - Downstream destination: marketplace product page
 
 This test is specifically a **web channel execution test**. It does not make Gumroad the Leverage architecture.
+
+## Measurement
+A provider-agnostic measurement layer is now available at `control_plane/measurement_adapters.json`.
+
+Current RM0 option:
+- GoatCounter hosted analytics: currently offered as a free hosted service for reasonable public usage and supports simple JavaScript integration on static sites. The provider is privacy-oriented and supports referrers/campaigns/page views. citeturn955167search0turn955167search4
+- Leverage status: **ready for configuration**, not yet connected.
+- Required external configuration: provider site code.
+- Credentials are never stored in the repository.
+
+Measurement rule:
+**UNKNOWN remains UNKNOWN until an authoritative provider returns evidence.**
 
 ## Channel Adapter Dry Run
 A dry-run contract is recorded at `control_plane/channel_adapter_dry_run.json`.
@@ -153,7 +167,7 @@ Validated adapter contracts without external side effects:
 - Web / generic web app: prepare + validate passed; execute skipped; measurement blocked without live source.
 - Social / generic social platform: prepare + validate passed; execute skipped; measurement blocked without live source.
 
-This proves the interface is platform-agnostic, but **does not prove real external execution**. The web publishing test above is the first actual external execution attempt; it must still be independently verified.
+This proves the interface is platform-agnostic, but **does not prove real external execution**. The web publishing test above is the first actual external execution attempt and is now owner-verified as live.
 
 ## Project-Type Agnostic Architecture
 The core engine must not contain marketplace-specific assumptions.
