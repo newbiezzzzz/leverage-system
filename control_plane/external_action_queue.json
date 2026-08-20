@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "principle": "Leverage separates preparation, authorization, execution and verification for external actions.",
+  "actions": [],
+  "statuses": ["draft", "ready_for_approval", "approved", "executing", "completed", "failed", "cancelled", "verification_required"],
+  "approval_rules": {
+    "external_publish": true,
+    "outreach": true,
+    "price_change": true,
+    "binding_customer_commitment": true,
+    "money_movement": true,
+    "internal_reversible_change": false
+  },
+  "required_evidence": ["action_type", "project_id", "channel", "target", "intended_effect", "verification_method"],
+  "safety_rules": [
+    "No execution without required approval.",
+    "No action may bypass platform rules or access controls.",
+    "No mass spam or impersonation.",
+    "No money movement through this queue.",
+    "Every completed action must have observable verification evidence."
+  ]
+}
