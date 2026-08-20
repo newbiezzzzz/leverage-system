@@ -40,6 +40,7 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - Quota-independent worker runtime: 90%, active
 - Project-type compatibility dry run: **passed** for software/micro-SaaS and the existing modeled project types
 - Channel adapter dry run: **passed** for marketplace, web and social contracts
+- First web-channel publishing test: **published, deployment verification pending**
 - Controlled end-to-end business-loop execution: **not yet passed**
 
 ## Current Worker Fleet
@@ -129,6 +130,21 @@ Current result:
 
 Success criteria require every completed stage to have evidence, no paid acquisition, no fabricated metrics, and approval-gated external actions.
 
+## First Web Channel Execution Test
+A public web landing page was added at `dashboard/project-launch/index.html` as a real Web Channel execution test for Experiment A. The existing GitHub Pages workflow is configured to publish the dashboard directory. The resulting execution is recorded in `control_plane/channel_execution.json`.
+
+Current state:
+- Action: publish_public_landing_page
+- Capital: RM0
+- Approval: Owner proceed
+- Status: published by Git commit; **deployment verification pending**
+- Page views: UNKNOWN
+- Unique visitors: UNKNOWN
+- Traffic source measurement: NOT CONNECTED
+- Downstream destination: marketplace product page
+
+This test is specifically a **web channel execution test**. It does not make Gumroad the Leverage architecture.
+
 ## Channel Adapter Dry Run
 A dry-run contract is recorded at `control_plane/channel_adapter_dry_run.json`.
 
@@ -137,7 +153,7 @@ Validated adapter contracts without external side effects:
 - Web / generic web app: prepare + validate passed; execute skipped; measurement blocked without live source.
 - Social / generic social platform: prepare + validate passed; execute skipped; measurement blocked without live source.
 
-This proves the interface is platform-agnostic, but **does not prove real external execution**.
+This proves the interface is platform-agnostic, but **does not prove real external execution**. The web publishing test above is the first actual external execution attempt; it must still be independently verified.
 
 ## Project-Type Agnostic Architecture
 The core engine must not contain marketplace-specific assumptions.
