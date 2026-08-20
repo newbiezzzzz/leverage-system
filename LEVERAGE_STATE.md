@@ -100,6 +100,7 @@ Current capability expansion:
 - Decisioning: project gates remain evidence-gated.
 - Project-type registry: available via `control_plane/project_types.json`.
 - Channel registry: available via `control_plane/channels.json`.
+- Project dashboard: now surfaces project type plus allowed channel, delivery and revenue-event adapters.
 
 ## Project-Type Agnostic Architecture
 The core engine must not contain marketplace-specific assumptions.
