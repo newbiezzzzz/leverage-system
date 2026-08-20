@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "workers": [
     {"id":"research-worker","role":"market and opportunity research","status":"online","activation":"verified","entrypoint":"research.py","projects":["*"],"risk_level":"analysis-only","capabilities":["research","analyze","recommend","report"]},
     {"id":"data-worker","role":"data collection and preparation","status":"online","activation":"verified","entrypoint":"workers/data_worker.py","projects":["*"],"risk_level":"data-only","capabilities":["collect","validate","transform","cache","report"]},
@@ -13,6 +13,7 @@
     {"id":"delivery-worker","role":"customer delivery and fulfillment orchestration","status":"online","activation":"verified","entrypoint":"workers/delivery_worker.py","projects":["*"],"risk_level":"delivery-safe","capabilities":["prepare_fulfillment","verify_delivery","report"],"restricted_actions":["move_money","change_customer_entitlement_without_evidence","issue_refund"]},
     {"id":"business-loop-worker","role":"end-to-end business loop orchestration and gate evaluation","status":"online","activation":"verified","entrypoint":"workers/business_loop_worker.py","projects":["*"],"risk_level":"orchestration-only","capabilities":["build_plan","evaluate_gate","report"],"restricted_actions":["external_outreach","binding_commitment","spend","money_movement"]},
     {"id":"architecture-validator","role":"project-type and channel compatibility validation","status":"online","activation":"verified","entrypoint":"workers/architecture_validator.py","projects":["*"],"risk_level":"analysis-only","capabilities":["validate_project_type","validate_channel","validate_delivery","validate_revenue_event","report"]},
+    {"id":"external-action-worker","role":"external action preparation, approval routing and verification","status":"online","activation":"verified","entrypoint":"workers/external_action_worker.py","projects":["*"],"risk_level":"external-action-guarded","capabilities":["prepare","route_for_approval","track","verify"],"restricted_actions":["direct_external_send","mass_spam","impersonation","binding_commitment","money_movement","bypass_platform_rules"]},
     {"id":"finance-worker","role":"financial reconciliation, revenue reporting and payout preparation","status":"online","activation":"verified","entrypoint":"workers/finance_worker.py","projects":["*"],"risk_level":"finance-guarded","capabilities":["reconcile","prepare_payout","report"],"restricted_actions":["approve_money","move_money","change_bank_details","execute_payout"]}
   ]
 }
