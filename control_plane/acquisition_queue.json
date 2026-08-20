@@ -11,7 +11,12 @@
       "topic": "how to calculate a fabrication shop hourly rate",
       "status": "draft",
       "requires_channel_authorization": true,
-      "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"]
+      "policy": [
+        "no_spam",
+        "no_impersonation",
+        "respect_platform_rules",
+        "no_fake_claims"
+      ]
     },
     {
       "key": "2026-08-20::linkedin::why fabrication jobs get underquoted",
@@ -23,7 +28,12 @@
       "topic": "why fabrication jobs get underquoted",
       "status": "draft",
       "requires_channel_authorization": true,
-      "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"]
+      "policy": [
+        "no_spam",
+        "no_impersonation",
+        "respect_platform_rules",
+        "no_fake_claims"
+      ]
     },
     {
       "key": "2026-08-20::niche_community::quoted vs actual job profit",
@@ -35,7 +45,12 @@
       "topic": "quoted vs actual job profit",
       "status": "draft",
       "requires_channel_authorization": true,
-      "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"]
+      "policy": [
+        "no_spam",
+        "no_impersonation",
+        "respect_platform_rules",
+        "no_fake_claims"
+      ]
     },
     {
       "key": "2026-08-20::direct_outreach::material and consumable markup",
@@ -47,7 +62,12 @@
       "topic": "material and consumable markup",
       "status": "draft",
       "requires_channel_authorization": true,
-      "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"]
+      "policy": [
+        "no_spam",
+        "no_impersonation",
+        "respect_platform_rules",
+        "no_fake_claims"
+      ]
     },
     {
       "key": "2026-08-20::seo_content::change-order profit protection",
@@ -59,14 +79,18 @@
       "topic": "change-order profit protection",
       "status": "draft",
       "requires_channel_authorization": true,
-      "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"]
+      "policy": [
+        "no_spam",
+        "no_impersonation",
+        "respect_platform_rules",
+        "no_fake_claims"
+      ]
     }
   ],
-  "last_generated_at": "2026-08-20T00:10:00+08:00",
+  "last_generated_at": "2026-08-20T15:33:19.842767+00:00",
   "tracking": {
     "base_product_url": "https://newbiezz.gumroad.com/l/neiqwz",
     "utm_enabled": true,
-    "metrics": ["clicks", "views", "purchases", "revenue", "conversion_rate"],
-    "source_of_truth": "Gumroad Analytics for UTM traffic; Gumroad API for product/sales state"
+    "utm_note": "Gumroad Analytics can attribute clicks, sales, revenue and conversion to UTM links."
   }
 }
