@@ -39,6 +39,7 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - Owner Command Center: 100% complete
 - Quota-independent worker runtime: 90%, active
 - Full end-to-end business-loop capability: **not yet validated**
+- Project-type compatibility dry run: **passed** for software/micro-SaaS and the existing modeled project types
 
 ## Current Worker Fleet
 - research-worker: online
@@ -53,8 +54,9 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - delivery-worker: online
 - finance-worker: online
 - business-loop-worker: online
+- architecture-validator: online
 
-The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery and business-loop workers are explicit bounded capabilities.
+The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop and architecture-validation workers are explicit bounded capabilities.
 
 ## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
@@ -101,6 +103,7 @@ Current capability expansion:
 - Project-type registry: available via `control_plane/project_types.json`.
 - Channel registry: available via `control_plane/channels.json`.
 - Project dashboard: now surfaces project type plus allowed channel, delivery and revenue-event adapters.
+- Architecture validator: available via `workers/architecture_validator.py`.
 
 ## Project-Type Agnostic Architecture
 The core engine must not contain marketplace-specific assumptions.
@@ -125,6 +128,21 @@ Channel adapters currently modeled:
 - subscription
 
 A specific platform such as Gumroad is an **instance of a channel adapter**, never the core business architecture.
+
+## Architecture Validation
+A dry-run scenario for a software/micro-SaaS project is recorded at `control_plane/architecture_validation.json`.
+
+Validated scenario:
+- Project type: software
+- Business model: subscription
+- Channel: web
+- Delivery: hosted service / account access
+- Revenue events: subscription / churn
+- Launch: false
+- Capital deployed: RM0
+- External actions: none
+
+The compatibility validator checks project type, channel, delivery and revenue-event compatibility without publishing, spending, or changing live projects.
 
 ## Dashboard Direction
 Keep Company and Project views separated.
