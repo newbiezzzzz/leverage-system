@@ -64,7 +64,15 @@ The first product already exists and is live. The immediate business problem is 
 
 Traffic -> product-page visits -> purchases -> revenue -> conversion analysis -> iteration.
 
-The next Leverage work should therefore connect the existing acquisition capability, measurable traffic, Gumroad/product performance, and dashboard reporting before expanding into another revenue project.
+A first-class traffic/funnel metrics schema now exists at `control_plane/project_metrics.json`.
+
+Current measurement state:
+- Verified sales: 0
+- Verified revenue: USD0
+- Traffic: NOT CONNECTED / UNKNOWN
+- Unknown traffic must never be treated as zero.
+
+The next implementation target is to connect a trustworthy traffic source and surface those verified metrics in the project dashboard. No paid acquisition is allowed under the current RM0 constraint without explicit Owner approval.
 
 ## Dashboard Direction
 Keep Company and Project views separated.
