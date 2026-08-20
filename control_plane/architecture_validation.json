@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "mode": "dry_run",
+  "purpose": "Validate that the reusable Leverage business engine can plan a non-Gumroad project type without launching or spending.",
+  "scenarios": [
+    {
+      "id": "micro-saas-dry-run",
+      "project_type": "software",
+      "business_model": "subscription",
+      "channel": "web",
+      "example_offer": "Small operations dashboard for a narrowly defined business workflow",
+      "build_capabilities": ["code-worker", "data-worker", "operations-worker"],
+      "delivery": ["account_access", "hosted_service"],
+      "revenue_events": ["subscription", "churn"],
+      "expected_loop": [
+        "discover",
+        "validate",
+        "build",
+        "publish",
+        "acquire",
+        "convert",
+        "deliver",
+        "support",
+        "measure",
+        "decide"
+      ],
+      "launch": false,
+      "capital_deployed_rm": 0,
+      "external_actions": "none"
+    }
+  ],
+  "validation_rules": [
+    "Project type must resolve from the project-type registry.",
+    "Channel must be valid for the selected project type.",
+    "Delivery mechanism must be valid for the selected project type.",
+    "Revenue events must be valid for the selected project type.",
+    "Dry runs cannot publish, spend money, create binding commitments, or change live projects."
+  ]
+}
