@@ -55,8 +55,9 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - finance-worker: online
 - business-loop-worker: online
 - architecture-validator: online
+- external-action-worker: online
 
-The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop and architecture-validation workers are explicit bounded capabilities.
+The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop, architecture-validation and external-action workers are explicit bounded capabilities.
 
 ## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
@@ -105,9 +106,11 @@ Current capability expansion:
 - Project dashboard: now surfaces project type plus allowed channel, delivery and revenue-event adapters.
 - Architecture validator: available via `workers/architecture_validator.py`.
 - Controlled execution test definition: available via `control_plane/execution_test.json`.
+- Generic external-action queue: available via `control_plane/external_action_queue.json`.
+- External-action worker: prepares actions, routes approval, tracks status and verifies completion evidence; it does not directly publish, send, bind customers or move money.
 
 ## Controlled Execution Test
-A controlled execution test now records an observable end-to-end run against Experiment A without adding capital or inventing external evidence.
+A controlled execution test records an observable end-to-end run against Experiment A without adding capital or inventing external evidence.
 
 Current result:
 - Discover: passed
