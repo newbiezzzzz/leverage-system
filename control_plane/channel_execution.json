@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "channel": "web",
+  "adapter": "github_pages",
+  "status": "published_by_git_commit_pending_deployment_verification",
+  "project_id": "engineering-quote-toolkit",
+  "artifact": "dashboard/project-launch/index.html",
+  "capital_deployed_rm": 0,
+  "external_action": "publish_public_landing_page",
+  "approval": "owner_proceed",
+  "measurement": {
+    "page_views": null,
+    "unique_visitors": null,
+    "source": "not_connected"
+  },
+  "destination": "marketplace product page",
+  "notes": [
+    "This is a web-channel execution test, not a Gumroad-only architecture change.",
+    "The GitHub Pages workflow is configured in .github/workflows/deploy-dashboard.yml.",
+    "Deployment must be independently verified before being marked completed.",
+    "No traffic, click, sale or revenue is claimed without evidence."
+  ]
+}
