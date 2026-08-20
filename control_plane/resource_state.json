@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T11:36:37.257821+00:00",
+  "generated_at": "2026-08-20T13:03:21.830915+00:00",
   "resources": [
     {
       "provider": "GitHub",
@@ -8,10 +8,10 @@
       "used": 0,
       "limit": 5000,
       "remaining": 5000,
-      "reset_at": "2026-08-20T12:36:37+00:00",
+      "reset_at": "2026-08-20T14:03:21+00:00",
       "quota_verified": true,
       "source": "github:/rate_limit",
-      "checked_at": "2026-08-20T11:36:37.189248+00:00"
+      "checked_at": "2026-08-20T13:03:21.830085+00:00"
     },
     {
       "provider": "Gemini",
@@ -23,7 +23,7 @@
       "reset_at": null,
       "quota_verified": false,
       "source": "provider_quota_not_exposed",
-      "checked_at": "2026-08-20T11:36:37.189275+00:00"
+      "checked_at": "2026-08-20T13:03:21.830097+00:00"
     },
     {
       "provider": "GitHub Actions",
@@ -35,7 +35,7 @@
       "reset_at": null,
       "quota_verified": false,
       "source": "provider_quota_not_exposed",
-      "checked_at": "2026-08-20T11:36:37.189282+00:00"
+      "checked_at": "2026-08-20T13:03:21.830101+00:00"
     },
     {
       "provider": "GitHub Pages",
@@ -47,7 +47,7 @@
       "reset_at": null,
       "quota_verified": false,
       "source": "provider_quota_not_exposed",
-      "checked_at": "2026-08-20T11:36:37.189288+00:00"
+      "checked_at": "2026-08-20T13:03:21.830104+00:00"
     }
   ],
   "policy": {
