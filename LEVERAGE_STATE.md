@@ -38,8 +38,8 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - Company Operating System v1: 100% complete
 - Owner Command Center: 100% complete
 - Quota-independent worker runtime: 90%, active
-- Full end-to-end business-loop capability: **not yet validated**
 - Project-type compatibility dry run: **passed** for software/micro-SaaS and the existing modeled project types
+- Controlled end-to-end business-loop execution: **not yet passed**
 
 ## Current Worker Fleet
 - research-worker: online
@@ -104,6 +104,24 @@ Current capability expansion:
 - Channel registry: available via `control_plane/channels.json`.
 - Project dashboard: now surfaces project type plus allowed channel, delivery and revenue-event adapters.
 - Architecture validator: available via `workers/architecture_validator.py`.
+- Controlled execution test definition: available via `control_plane/execution_test.json`.
+
+## Controlled Execution Test
+A controlled execution test now records an observable end-to-end run against Experiment A without adding capital or inventing external evidence.
+
+Current result:
+- Discover: passed
+- Validate: passed
+- Build: passed
+- Publish: passed
+- Acquire: blocked by missing authoritative channel measurement / approved external distribution execution
+- Convert: waiting
+- Deliver: ready
+- Support: ready
+- Measure: partial
+- Decide: waiting
+
+Success criteria require every completed stage to have evidence, no paid acquisition, no fabricated metrics, and approval-gated external actions.
 
 ## Project-Type Agnostic Architecture
 The core engine must not contain marketplace-specific assumptions.
