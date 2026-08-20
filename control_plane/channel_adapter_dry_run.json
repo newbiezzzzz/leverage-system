@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "mode": "dry_run",
+  "capital_policy": "RM0",
+  "external_side_effects": false,
+  "purpose": "Exercise the generic channel adapter lifecycle without touching an external platform.",
+  "scenarios": [
+    {
+      "adapter": "marketplace",
+      "instance": "gumroad",
+      "action": "publish_offer",
+      "prepare": "passed",
+      "validate": "passed",
+      "execute": "skipped_external_side_effect",
+      "verify": "skipped",
+      "measure": "blocked_without_authoritative_source"
+    },
+    {
+      "adapter": "web",
+      "instance": "generic_web_app",
+      "action": "publish_release",
+      "prepare": "passed",
+      "validate": "passed",
+      "execute": "skipped_external_side_effect",
+      "verify": "skipped",
+      "measure": "blocked_without_live_source"
+    },
+    {
+      "adapter": "social",
+      "instance": "generic_social_platform",
+      "action": "publish_post",
+      "prepare": "passed",
+      "validate": "passed",
+      "execute": "skipped_external_side_effect",
+      "verify": "skipped",
+      "measure": "blocked_without_live_source"
+    }
+  ],
+  "result": "adapter_contract_validated_without_external_execution",
+  "next_real_execution_gate": "connect one approved platform adapter with authoritative execution and measurement evidence"
+}
