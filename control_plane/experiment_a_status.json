@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "project_id": "engineering-quote-toolkit",
+  "experiment": "A",
+  "status": "active",
+  "current_stage": "acquire",
+  "loop_progress": {
+    "discover": "complete",
+    "validate": "complete",
+    "build": "complete",
+    "publish": "complete",
+    "acquire": "blocked_on_external_execution",
+    "convert": "waiting_for_traffic",
+    "deliver": "ready",
+    "support": "ready",
+    "measure": "partial",
+    "decide": "waiting_for_evidence"
+  },
+  "authoritative_metrics": {
+    "traffic": "unknown",
+    "verified_sales": 0,
+    "verified_revenue_usd": 0
+  },
+  "owner_work_required": [
+    "External distribution execution where platform policy requires a human.",
+    "Authoritative Gumroad analytics evidence until an approved data connection exists."
+  ],
+  "next_gate": "Connect measurable traffic and obtain the first buyer.",
+  "success_condition": "At least one buyer plus authoritative traffic, conversion, delivery and revenue evidence."
+}
