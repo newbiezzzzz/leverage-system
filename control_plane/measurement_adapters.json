@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "principle": "Measurement is provider-agnostic; providers are replaceable adapters and authoritative evidence must be retained.",
+  "providers": {
+    "goatcounter": {
+      "type": "privacy_friendly_web_analytics",
+      "cost_rm": 0,
+      "hosted": true,
+      "supports": ["page_views", "referrers", "campaigns", "paths"],
+      "integration": "script",
+      "status": "ready_for_configuration",
+      "configuration_required": ["site_code"],
+      "authority": "first_party_analytics_provider"
+    }
+  },
+  "rules": [
+    "Do not fabricate traffic or conversion metrics.",
+    "Do not treat missing data as zero.",
+    "Record provider, date range and verification source with imported measurements.",
+    "Keep provider-specific credentials out of the repository."
+  ]
+}
