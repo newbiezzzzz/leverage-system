@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T13:47:03.225717+00:00",
+  "generated_at": "2026-08-20T13:51:55.039470+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -256,6 +256,24 @@
       ]
     },
     {
+      "id": "architecture-validator",
+      "role": "project-type and channel compatibility validation",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/architecture_validator.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "analysis-only",
+      "capabilities": [
+        "validate_project_type",
+        "validate_channel",
+        "validate_delivery",
+        "validate_revenue_event",
+        "report"
+      ]
+    },
+    {
       "id": "finance-worker",
       "role": "financial reconciliation, revenue reporting and payout preparation",
       "status": "online",
@@ -300,7 +318,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-20T13:47:03.225717+00:00"
+    "synced_at": "2026-08-20T13:51:55.039470+00:00"
   },
   "projects": [
     {
