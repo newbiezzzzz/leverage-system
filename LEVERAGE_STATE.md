@@ -6,7 +6,7 @@ _Last aligned: 20 Aug 2026_
 Build a zero-cost, reusable AI/data/automation company that can discover opportunities, validate demand, launch projects, acquire customers, deliver outcomes, measure results, and scale evidence-backed winners with minimal Boss involvement.
 
 ## Core Identity
-Leverage is **not a digital-product generator**. Digital products are one project type. The reusable company capability is the full business loop:
+Leverage is **not a digital-product generator** and it is not a Gumroad company. Digital products are one project type; Gumroad is one possible marketplace channel. The reusable company capability is the full business loop:
 
 **Discover -> Validate -> Build -> Publish -> Acquire -> Convert -> Deliver -> Support -> Measure -> Decide**
 
@@ -52,8 +52,9 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - conversion-worker: online
 - delivery-worker: online
 - finance-worker: online
+- business-loop-worker: online
 
-The acquisition worker now supports campaign planning and traceable tracking-link preparation. Conversion and delivery workers are now explicit, bounded capabilities rather than implied responsibilities.
+The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery and business-loop workers are explicit bounded capabilities.
 
 ## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
@@ -61,7 +62,7 @@ The acquisition worker now supports campaign planning and traceable tracking-lin
 - Type: digital-product
 - Status: live
 - Lifecycle stage: launch
-- Store: Gumroad
+- Channel instance: Gumroad marketplace
 - Price: USD 19
 - Capital deployed: RM0
 - Verified sales: 0
@@ -81,7 +82,7 @@ Current measurement state:
 - Traffic: NOT CONNECTED / UNKNOWN
 - Unknown traffic must never be treated as zero.
 
-No new product should be created merely to avoid the current validation problem. We need to prove distribution/acquisition and end-to-end operation first.
+No new product should be created merely to avoid the current validation problem. We need to prove the reusable business engine first.
 
 ## Business Loop Validation Target
 The important Leverage milestone is no longer "create a digital product".
@@ -94,15 +95,35 @@ Current capability expansion:
 - Acquisition/campaign planning: available, external publishing remains approval/policy gated.
 - Conversion experimentation: available, live offer/pricing changes remain approval gated.
 - Delivery orchestration: available, authoritative fulfillment evidence is required.
-- Customer support/feedback: existing customer-worker remains available.
-- Measurement: traffic/funnel schema exists but authoritative Gumroad traffic is not connected.
+- Customer support/feedback: available.
+- Measurement: traffic/funnel schema exists; authoritative channel data is not yet connected.
 - Decisioning: project gates remain evidence-gated.
+- Project-type registry: available via `control_plane/project_types.json`.
+- Channel registry: available via `control_plane/channels.json`.
 
-Next major engineering target:
-**Connect authoritative traffic evidence and exercise one complete project loop end-to-end.**
+## Project-Type Agnostic Architecture
+The core engine must not contain marketplace-specific assumptions.
 
-## Project Types
-The company architecture must remain project-type agnostic. Candidate future types include digital products, software/micro-SaaS, automation services, data products, content/media properties, lead-generation businesses and other zero-cost/low-cost experiments approved by the Owner.
+Project types currently modeled:
+- digital product
+- software / micro-SaaS
+- automation service
+- data product
+- content / media
+- lead generation
+
+Channel adapters currently modeled:
+- marketplace
+- direct
+- search
+- social
+- lead generation
+- video
+- newsletter
+- web
+- subscription
+
+A specific platform such as Gumroad is an **instance of a channel adapter**, never the core business architecture.
 
 ## Dashboard Direction
 Keep Company and Project views separated.
@@ -114,9 +135,11 @@ Company view should answer:
 - What is the company doing?
 - What value/revenue/traffic is being generated?
 - Which business-loop capabilities are automated vs manual?
+- Which project types/channels are active?
 
 Project view should answer:
 - What is this project?
+- What business model and channel are being used?
 - What stage is it in?
 - What has been built?
 - What traffic/sales/revenue does it have?
