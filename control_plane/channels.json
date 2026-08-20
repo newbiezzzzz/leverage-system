@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "principle": "Channels are replaceable adapters; no single platform defines Leverage.",
+  "channels": {
+    "marketplace": {"role": "third_party discovery and checkout", "external_publish": true, "measurement": ["views", "referrers", "purchases", "revenue"], "approval": "required"},
+    "direct": {"role": "first-party landing, checkout or sales process", "external_publish": true, "measurement": ["visits", "leads", "conversion", "revenue"], "approval": "required"},
+    "search": {"role": "organic discovery", "external_publish": true, "measurement": ["impressions", "clicks", "visits", "leads"], "approval": "required"},
+    "social": {"role": "organic audience/distribution", "external_publish": true, "measurement": ["reach", "engagement", "clicks", "visits", "leads"], "approval": "required"},
+    "lead_generation": {"role": "prospect acquisition", "external_publish": true, "measurement": ["prospects", "qualified", "responses", "appointments"], "approval": "required"},
+    "video": {"role": "content discovery and audience building", "external_publish": true, "measurement": ["views", "watch_time", "clicks", "leads"], "approval": "required"},
+    "newsletter": {"role": "owned audience distribution", "external_publish": true, "measurement": ["subscribers", "opens", "clicks", "conversions"], "approval": "required"},
+    "web": {"role": "first-party software/service delivery and discovery", "external_publish": true, "measurement": ["visits", "signups", "activation", "retention", "revenue"], "approval": "required"},
+    "subscription": {"role": "recurring access monetization", "external_publish": true, "measurement": ["signups", "active", "churn", "revenue"], "approval": "required"}
+  }
+}
