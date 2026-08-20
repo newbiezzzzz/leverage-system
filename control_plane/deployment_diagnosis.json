@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "channel": "web",
+  "project_id": "engineering-quote-toolkit",
+  "pages_workflow": ".github/workflows/deploy-dashboard.yml",
+  "workflow_trigger": "push to main when dashboard/** changes",
+  "workflow_definition": "valid",
+  "tracking_commits_checked": ["7e3b43318cb0befa8437f01ebe14a43f57abcf3c","6da1ed227ae638767b002f3d29f77acfc2a603c3","7297a46b11f3b20d4304d076a621727d88fb933d"],
+  "associated_workflow_runs": 0,
+  "live_site": true,
+  "tracking_code_in_repository": true,
+  "verified_tracking_event": false,
+  "diagnosis": "Existing Pages site is live, but the available GitHub Actions evidence shows no deployment run associated with the tracking commits. The repository workflow is configured correctly, so the remaining blocker is Pages/Actions deployment configuration or repository Actions execution availability.",
+  "next_owner_check": "GitHub Settings -> Pages -> Build and deployment -> Source should be GitHub Actions; GitHub Settings -> Actions -> General should allow workflow execution."
+}
