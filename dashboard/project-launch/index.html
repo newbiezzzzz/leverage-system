@@ -25,5 +25,19 @@
       <p class="footer">This page is one channel adapter in Leverage's reusable business engine. The marketplace destination is separate from the core Leverage architecture.</p>
     </section>
   </main>
+  <script src="./analytics-config.js"></script>
+  <script>
+    // Measurement stays dormant until an Owner-created analytics site code is configured.
+    // This prevents fake/accidental tracking and keeps the public page functional meanwhile.
+    (function(){
+      var code = window.LEVERAGE_GOATCOUNTER_SITE_CODE;
+      if (!code) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://gc.zgo.at/count.js';
+      s.setAttribute('data-goatcounter', 'https://' + code + '.goatcounter.com/count');
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 </html>
