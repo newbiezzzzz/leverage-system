@@ -16,7 +16,7 @@ Leverage is **not a digital-product generator**. Digital products are one projec
 - Prefer RM0 / free and replaceable providers.
 - Keep projects reversible until evidence supports further investment.
 - Never invent financial balances, quotas, traffic, revenue or payout confirmations.
-- Build reusable company infrastructure before duplicating infrastructure for projects.
+- Build reusable company infrastructure before duplicating project infrastructure.
 - Separate company, system and project responsibilities.
 - Progressively automate safe, observable and reversible work.
 - Never bypass platform rules, spam, impersonate, sign contracts, move money or create binding commitments without the required authorization boundary.
@@ -49,7 +49,11 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - operations-worker: online
 - customer-worker: online
 - acquisition-worker: online
+- conversion-worker: online
+- delivery-worker: online
 - finance-worker: online
+
+The acquisition worker now supports campaign planning and traceable tracking-link preparation. Conversion and delivery workers are now explicit, bounded capabilities rather than implied responsibilities.
 
 ## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
@@ -86,14 +90,16 @@ It is:
 
 > **Can Leverage take an approved opportunity from zero to validated demand and measurable revenue with minimal Boss involvement?**
 
-The next major engineering work should close missing links in the loop rather than add more cosmetic infrastructure:
-- measurable acquisition/traffic
-- compliant distribution
-- conversion tracking
-- automated or low-touch delivery
-- customer feedback loop
-- evidence-based project decisioning
-- safe progression from manual to bounded automation
+Current capability expansion:
+- Acquisition/campaign planning: available, external publishing remains approval/policy gated.
+- Conversion experimentation: available, live offer/pricing changes remain approval gated.
+- Delivery orchestration: available, authoritative fulfillment evidence is required.
+- Customer support/feedback: existing customer-worker remains available.
+- Measurement: traffic/funnel schema exists but authoritative Gumroad traffic is not connected.
+- Decisioning: project gates remain evidence-gated.
+
+Next major engineering target:
+**Connect authoritative traffic evidence and exercise one complete project loop end-to-end.**
 
 ## Project Types
 The company architecture must remain project-type agnostic. Candidate future types include digital products, software/micro-SaaS, automation services, data products, content/media properties, lead-generation businesses and other zero-cost/low-cost experiments approved by the Owner.
