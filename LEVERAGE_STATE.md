@@ -3,33 +3,42 @@
 _Last aligned: 20 Aug 2026_
 
 ## Mission
-Build a zero-cost, reusable AI/data/automation company that can discover opportunities, launch projects, operate them with minimal Boss involvement, measure results, and scale evidence-backed winners.
+Build a zero-cost, reusable AI/data/automation company that can discover opportunities, validate demand, launch projects, acquire customers, deliver outcomes, measure results, and scale evidence-backed winners with minimal Boss involvement.
+
+## Core Identity
+Leverage is **not a digital-product generator**. Digital products are one project type. The reusable company capability is the full business loop:
+
+**Discover -> Validate -> Build -> Publish -> Acquire -> Convert -> Deliver -> Support -> Measure -> Decide**
 
 ## Operating Model
 - Boss = Owner / final approval for consequential external actions and spending.
 - Worker = AI/automation execution layer.
 - Prefer RM0 / free and replaceable providers.
 - Keep projects reversible until evidence supports further investment.
-- Never invent financial balances, quotas, revenue, traffic, or payout confirmations.
+- Never invent financial balances, quotas, traffic, revenue or payout confirmations.
 - Build reusable company infrastructure before duplicating infrastructure for projects.
-- Separate company, system, and project responsibilities.
+- Separate company, system and project responsibilities.
+- Progressively automate safe, observable and reversible work.
+- Never bypass platform rules, spam, impersonate, sign contracts, move money or create binding commitments without the required authorization boundary.
 
 ## Company State
 - Company: Leverage
 - Type: owner-operated technology company
-- Stage: system-build
+- Stage: system-build / business-loop validation
 - Base currency: MYR
 - Money movement: disabled
 - Lifecycle: intake -> validation -> build -> launch -> operate -> revenue -> payout-ready -> paused -> retired
 
 ## Current Leverage Progress
-- Overall project progress reported by dashboard: 98%
+The dashboard's 98% figure represents completion of the current infrastructure milestone, not completion of the ultimate autonomous-income capability.
+
 - Foundation & architecture: 100% complete
 - Core worker fleet: 100% complete
 - Control Plane v1: 100% complete
 - Company Operating System v1: 100% complete
 - Owner Command Center: 100% complete
 - Quota-independent worker runtime: 90%, active
+- Full end-to-end business-loop capability: **not yet validated**
 
 ## Current Worker Fleet
 - research-worker: online
@@ -42,7 +51,7 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 - acquisition-worker: online
 - finance-worker: online
 
-## Revenue Project #1
+## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
 - Project ID: engineering-quote-toolkit
 - Type: digital-product
@@ -53,18 +62,14 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 - Capital deployed: RM0
 - Verified sales: 0
 - Verified revenue: USD0
-- Product: no-macro workbook for small fabrication, welding, and machine shops covering shop-rate calculation, quoting, job costing, profit protection, and change-order control.
+- Product: no-macro workbook for small fabrication, welding and machine shops covering shop-rate calculation, quoting, job costing, profit protection and change-order control.
 - Published: 19 Aug 2026
-- Current gate: generate measurable traffic -> acquire first buyer -> evaluate conversion -> iterate.
+- Role in Leverage: first live experiment for validating the **full business loop**, not the definition of Leverage itself.
 
-## Immediate Priority
-Do NOT create another product yet.
+## Current Experiment Gate
+**Traffic -> first buyer -> conversion evidence -> iterate**
 
-The first product already exists and is live. The immediate business problem is distribution and validation:
-
-Traffic -> product-page visits -> purchases -> revenue -> conversion analysis -> iteration.
-
-A first-class traffic/funnel metrics schema now exists at `control_plane/project_metrics.json`.
+A first-class traffic/funnel metrics schema exists at `control_plane/project_metrics.json`.
 
 Current measurement state:
 - Verified sales: 0
@@ -72,7 +77,26 @@ Current measurement state:
 - Traffic: NOT CONNECTED / UNKNOWN
 - Unknown traffic must never be treated as zero.
 
-The next implementation target is to connect a trustworthy traffic source and surface those verified metrics in the project dashboard. No paid acquisition is allowed under the current RM0 constraint without explicit Owner approval.
+No new product should be created merely to avoid the current validation problem. We need to prove distribution/acquisition and end-to-end operation first.
+
+## Business Loop Validation Target
+The important Leverage milestone is no longer "create a digital product".
+
+It is:
+
+> **Can Leverage take an approved opportunity from zero to validated demand and measurable revenue with minimal Boss involvement?**
+
+The next major engineering work should close missing links in the loop rather than add more cosmetic infrastructure:
+- measurable acquisition/traffic
+- compliant distribution
+- conversion tracking
+- automated or low-touch delivery
+- customer feedback loop
+- evidence-based project decisioning
+- safe progression from manual to bounded automation
+
+## Project Types
+The company architecture must remain project-type agnostic. Candidate future types include digital products, software/micro-SaaS, automation services, data products, content/media properties, lead-generation businesses and other zero-cost/low-cost experiments approved by the Owner.
 
 ## Dashboard Direction
 Keep Company and Project views separated.
@@ -83,14 +107,16 @@ Company view should answer:
 - What resources/limits exist?
 - What is the company doing?
 - What value/revenue/traffic is being generated?
+- Which business-loop capabilities are automated vs manual?
 
 Project view should answer:
 - What is this project?
 - What stage is it in?
 - What has been built?
 - What traffic/sales/revenue does it have?
+- How much manual Boss work is required?
 - What is the next gate?
-- Should we improve, scale, pause, or retire it?
+- Should we improve, scale, pause or retire it?
 
 ## Continuity Rule
-When continuing Leverage, align against the current repository state first, then dashboard/project data, then conversation context. Do not assume a product, worker, project stage, metric, or milestone is missing without checking current state.
+When continuing Leverage, align against the current repository state first, then dashboard/project data, then conversation context. Do not assume a product, worker, project stage, metric or milestone is missing without checking current state.
