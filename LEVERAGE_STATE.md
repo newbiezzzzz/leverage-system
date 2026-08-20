@@ -56,8 +56,9 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - business-loop-worker: online
 - architecture-validator: online
 - external-action-worker: online
+- channel-adapter-worker: online
 
-The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop, architecture-validation and external-action workers are explicit bounded capabilities.
+The acquisition worker supports campaign planning and traceable tracking-link preparation. Conversion, delivery, business-loop, architecture-validation, external-action and channel-adapter workers are explicit bounded capabilities.
 
 ## Revenue Project #1 — Experiment A
 ### Fabrication Shop Profit & Quote System
@@ -108,6 +109,7 @@ Current capability expansion:
 - Controlled execution test definition: available via `control_plane/execution_test.json`.
 - Generic external-action queue: available via `control_plane/external_action_queue.json`.
 - External-action worker: prepares actions, routes approval, tracks status and verifies completion evidence; it does not directly publish, send, bind customers or move money.
+- Generic channel-adapter interface: available via `control_plane/channel_adapters.json` and `workers/channel_adapter_worker.py`.
 
 ## Controlled Execution Test
 A controlled execution test records an observable end-to-end run against Experiment A without adding capital or inventing external evidence.
@@ -149,6 +151,13 @@ Channel adapters currently modeled:
 - subscription
 
 A specific platform such as Gumroad is an **instance of a channel adapter**, never the core business architecture.
+
+## Generic Channel Adapter Contract
+Every adapter exposes the same conceptual interface:
+
+**Prepare -> Validate -> Execute (approval-gated) -> Verify -> Measure**
+
+The adapter contract requires authoritative evidence for completed actions and metrics. Platform-specific implementation is replaceable and must not leak into the Leverage core lifecycle logic.
 
 ## Architecture Validation
 A dry-run scenario for a software/micro-SaaS project is recorded at `control_plane/architecture_validation.json`.
