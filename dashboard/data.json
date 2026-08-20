@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T13:45:17.310140+00:00",
+  "generated_at": "2026-08-20T13:47:03.225717+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -234,6 +234,28 @@
       ]
     },
     {
+      "id": "business-loop-worker",
+      "role": "end-to-end business loop orchestration and gate evaluation",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/business_loop_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "orchestration-only",
+      "capabilities": [
+        "build_plan",
+        "evaluate_gate",
+        "report"
+      ],
+      "restricted_actions": [
+        "external_outreach",
+        "binding_commitment",
+        "spend",
+        "money_movement"
+      ]
+    },
+    {
       "id": "finance-worker",
       "role": "financial reconciliation, revenue reporting and payout preparation",
       "status": "online",
@@ -278,7 +300,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-20T13:45:17.310140+00:00"
+    "synced_at": "2026-08-20T13:47:03.225717+00:00"
   },
   "projects": [
     {
