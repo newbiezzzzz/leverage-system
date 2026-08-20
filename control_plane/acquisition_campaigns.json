@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "projects": {
+    "engineering-quote-toolkit": {
+      "status": "planning",
+      "objective": "Generate measurable organic traffic to the live Gumroad product without paid acquisition.",
+      "destination": "https://newbiezz.gumroad.com/l/neiqwz",
+      "campaigns": [
+        {
+          "id": "organic-community-01",
+          "channel": "relevant_online_communities",
+          "status": "draft",
+          "tracking_code": "community-01",
+          "tracking_url": "https://newbiezz.gumroad.com/l/neiqwz?utm_source=community&utm_medium=organic&utm_campaign=community-01",
+          "owner_approval_required": true,
+          "measurement": ["clicks", "product_views", "sales"],
+          "rules": ["follow_community_rules", "no_mass_spam", "no_impersonation", "provide_real_value"]
+        },
+        {
+          "id": "organic-search-01",
+          "channel": "organic_search_and_content",
+          "status": "draft",
+          "tracking_code": "search-01",
+          "tracking_url": "https://newbiezz.gumroad.com/l/neiqwz?utm_source=search&utm_medium=organic&utm_campaign=search-01",
+          "owner_approval_required": true,
+          "measurement": ["clicks", "product_views", "sales"],
+          "rules": ["no_false_claims", "no_paid_ads", "publish_useful_content"]
+        },
+        {
+          "id": "direct-referral-01",
+          "channel": "direct_referral",
+          "status": "draft",
+          "tracking_code": "referral-01",
+          "tracking_url": "https://newbiezz.gumroad.com/l/neiqwz?utm_source=referral&utm_medium=organic&utm_campaign=referral-01",
+          "owner_approval_required": true,
+          "measurement": ["clicks", "product_views", "sales"],
+          "rules": ["no_spam", "transparent_intent", "respect_recipient_preferences"]
+        }
+      ],
+      "constraints": {
+        "paid_acquisition": false,
+        "max_spend_rm": 0,
+        "automated_external_publishing": false
+      }
+    }
+  }
+}
