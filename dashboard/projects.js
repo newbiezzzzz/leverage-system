@@ -1,10 +1,15 @@
 async function get(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(`${path} ${r.status}`);return r.json()}
+const METRICS_URL='https://raw.githubusercontent.com/newbiezzzzz/leverage-system/main/control_plane/project_metrics.json';
+async function getMetrics(){const r=await fetch(`${METRICS_URL}?live=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`project_metrics ${r.status}`);return r.json()}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function money(v){return `RM ${Number(v||0).toFixed(2)}`}
 function decisionClass(status){return status==='ready'?'online':'planned'}
+function metricValue(v,suffix=''){return v===null||v===undefined?'UNKNOWN':`${esc(v)}${suffix}`}
+function metricCard(label,value,detail,klass=''){return `<div class="card stat ${klass}"><span>${esc(label)}</span><strong>${value}</strong><small>${esc(detail)}</small></div>`}
+function renderMetrics(data){const root=document.getElementById('metricsList'),state=document.getElementById('metricsState');if(!root)return;const p=data?.projects?.['engineering-quote-toolkit'];if(!p){state.textContent='NO DATA';root.innerHTML='<p class="muted">No metrics record exists for this project.</p>';return}const t=p.traffic||{},f=p.funnel||{},r=p.revenue||{};state.textContent=t.status==='connected'?'LIVE':'NOT CONNECTED';const source=(t.sources||[]).length?(t.sources||[]).map(x=>`${esc(x.name||x.source||'Source')}: ${esc(x.metric||'metric')}`).join(' · '):'No traffic sources verified yet';root.innerHTML=`<div class="grid stats">${metricCard('Product-page views',metricValue(t.product_page_views),'Unknown until a verified measurement source is connected')}${metricCard('Unique visitors',metricValue(t.unique_visitors),'Unknown until a verified measurement source is connected')}${metricCard('Verified sales',metricValue(f.verified_sales),'Authoritative sale count only')}${metricCard('Conversion rate',f.conversion_rate===null?'UNKNOWN':`${Number(f.conversion_rate).toFixed(2)}%`,'Calculated only when verified views and sales exist')}</div><div class="strategy-summary"><div><strong>Traffic status</strong><p>${esc(t.status||'not_connected')}</p></div><div><strong>Measurement source</strong><p>${esc(t.measurement_source||'Not connected')}</p></div><div><strong>Traffic sources</strong><p>${source}</p></div><div><strong>Revenue</strong><p>USD ${Number(r.verified_revenue_usd||0).toFixed(2)} verified</p></div><div><strong>Capital</strong><p>RM ${Number(r.capital_deployed_rm||0).toFixed(2)} deployed</p></div><div><strong>Next gate</strong><p>${esc(p.interpretation?.next_gate||'Connect measurable traffic, acquire the first buyer, then evaluate conversion and iterate.')}</p></div></div><p class="muted" style="margin-top:12px">Safety rule: unknown traffic is not treated as zero; future traffic records must include source, date range, metric and verification source.</p>`}
 async function refresh(){
   try{
-    const [snapshot,projectsReply]=await Promise.all([get('/api/snapshot'),get('/api/projects')]);
+    const [snapshot,projectsReply,metrics]=await Promise.all([get('/api/snapshot'),get('/api/projects'),getMetrics()]);
     const projects=projectsReply.projects||[];
     document.getElementById('companyStage').textContent='SYSTEM OPERATING';
     document.getElementById('projectCount').textContent=projects.length;
@@ -12,12 +17,13 @@ async function refresh(){
     document.getElementById('payoutCount').textContent=snapshot.payouts_prepared;
     document.getElementById('approvalCount').textContent='See gates';
     document.getElementById('moneyGate').textContent=snapshot.live_money_movement?'ENABLED':'BLOCKED';
+    renderMetrics(metrics);
     const registry=document.getElementById('projectsList');
     registry.innerHTML=projects.length?projects.map(p=>`<div class="worker"><div class="avatar ${p.status==='paused'?'planned':'online'}">${esc((p.name||'P')[0].toUpperCase())}</div><div class="grow"><strong>${esc(p.name)}</strong><span><b>Stage:</b> ${esc(p.lifecycle_stage||p.status)}</span><small>${esc(p.description||'No description')} · Revenue: ${esc(p.revenue_status||'none')} · Capital: ${money(p.capital_deployed)}</small></div><span class="worker-state ${p.status==='paused'?'planned':'online'}">${esc(String(p.status||'unknown').toUpperCase())}</span></div>`).join(''):'<p class="muted">No projects registered.</p>';
     const gateResults=await Promise.all(projects.map(async p=>{try{return (await get(`/api/projects/${encodeURIComponent(p.id)}/gates`)).report}catch{return null}}));
     const decisions=document.getElementById('decisionList');
     const cards=gateResults.filter(Boolean).map(report=>{const gate=report.current_gate;const waiting=gate.status!=='ready';const attention=gate.owner_decision_required?'Owner decision required':(waiting?'Waiting on evidence':'Ready for next gate');const detail=waiting?(gate.reasons||[]).join(' · '):(gate.evidence||[]).join(' · ');return `<div class="worker"><div class="avatar ${decisionClass(gate.status)}">${gate.status==='ready'?'✓':'!'}</div><div class="grow"><strong>${esc(report.project_id)} · ${esc(gate.label)}</strong><span><b>${esc(attention)}</b></span><small>${esc(gate.requires)}${detail?' · '+esc(detail):''}</small></div><span class="worker-state ${decisionClass(gate.status)}">${esc(gate.status.toUpperCase())}</span></div>`}).join('');
     decisions.innerHTML=cards||'<p class="muted">No project decisions are currently waiting.</p>';
-  }catch(e){document.getElementById('projectsList').innerHTML='<p class="muted">Local project registry unavailable.</p>';document.getElementById('decisionList').innerHTML='<p class="muted">Local decision center unavailable.</p>';}
+  }catch(e){document.getElementById('projectsList').innerHTML='<p class="muted">Local project registry unavailable.</p>';document.getElementById('decisionList').innerHTML='<p class="muted">Local decision center unavailable.</p>';const m=document.getElementById('metricsList');if(m)m.innerHTML='<p class="muted">Project metrics unavailable.</p>';const s=document.getElementById('metricsState');if(s)s.textContent='UNAVAILABLE';}
 }
 refresh();setInterval(refresh,30000);
