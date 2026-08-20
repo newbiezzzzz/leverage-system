@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T13:57:15.865062+00:00",
+  "generated_at": "2026-08-20T14:07:24.486607+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -321,6 +321,27 @@
       ]
     },
     {
+      "id": "measurement-worker",
+      "role": "provider-agnostic traffic and funnel measurement preparation and evidence verification",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/measurement_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "measurement-safe",
+      "capabilities": [
+        "prepare",
+        "verify_import",
+        "report"
+      ],
+      "restricted_actions": [
+        "invent_metrics",
+        "write_credentials",
+        "alter_authoritative_source"
+      ]
+    },
+    {
       "id": "finance-worker",
       "role": "financial reconciliation, revenue reporting and payout preparation",
       "status": "online",
@@ -365,7 +386,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-20T13:57:15.865062+00:00"
+    "synced_at": "2026-08-20T14:07:24.486607+00:00"
   },
   "projects": [
     {
