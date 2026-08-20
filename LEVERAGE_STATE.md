@@ -39,6 +39,7 @@ The dashboard's 98% figure represents completion of the current infrastructure m
 - Owner Command Center: 100% complete
 - Quota-independent worker runtime: 90%, active
 - Project-type compatibility dry run: **passed** for software/micro-SaaS and the existing modeled project types
+- Channel adapter dry run: **passed** for marketplace, web and social contracts
 - Controlled end-to-end business-loop execution: **not yet passed**
 
 ## Current Worker Fleet
@@ -128,6 +129,16 @@ Current result:
 
 Success criteria require every completed stage to have evidence, no paid acquisition, no fabricated metrics, and approval-gated external actions.
 
+## Channel Adapter Dry Run
+A dry-run contract is recorded at `control_plane/channel_adapter_dry_run.json`.
+
+Validated adapter contracts without external side effects:
+- Marketplace / Gumroad: prepare + validate passed; execute skipped; measurement blocked without authoritative source.
+- Web / generic web app: prepare + validate passed; execute skipped; measurement blocked without live source.
+- Social / generic social platform: prepare + validate passed; execute skipped; measurement blocked without live source.
+
+This proves the interface is platform-agnostic, but **does not prove real external execution**.
+
 ## Project-Type Agnostic Architecture
 The core engine must not contain marketplace-specific assumptions.
 
@@ -151,13 +162,6 @@ Channel adapters currently modeled:
 - subscription
 
 A specific platform such as Gumroad is an **instance of a channel adapter**, never the core business architecture.
-
-## Generic Channel Adapter Contract
-Every adapter exposes the same conceptual interface:
-
-**Prepare -> Validate -> Execute (approval-gated) -> Verify -> Measure**
-
-The adapter contract requires authoritative evidence for completed actions and metrics. Platform-specific implementation is replaceable and must not leak into the Leverage core lifecycle logic.
 
 ## Architecture Validation
 A dry-run scenario for a software/micro-SaaS project is recorded at `control_plane/architecture_validation.json`.
