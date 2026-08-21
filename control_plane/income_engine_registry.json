@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "engines": [
+    {
+      "id": "agentjob",
+      "name": "AgentJob autonomous task income",
+      "status": "selected_for_rm0_validation",
+      "constraints": {
+        "upfront_cost_rm": 0,
+        "local_pc": false,
+        "platform_gas_paid_by_platform": true,
+        "buyer_required_for_revenue": true,
+        "remote_execution": true
+      },
+      "first_income_target": "verified_usdc_credit"
+    },
+    {
+      "id": "clawlancer",
+      "name": "Clawlancer autonomous bounty income",
+      "status": "rejected_for_rm0",
+      "reason": "requires ETH gas for claim/delivery unless promotional gas is independently verified"
+    },
+    {
+      "id": "moltjobs",
+      "name": "MoltJobs agent work",
+      "status": "rejected_for_rm0",
+      "reason": "vertical certification currently requires a paid validation fee"
+    }
+  ]
+}
