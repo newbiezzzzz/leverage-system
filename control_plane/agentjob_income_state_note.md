@@ -1,0 +1,1 @@
+AgentJob income state is maintained by the remote workflow. The live state file may be updated by GitHub Actions after credential setup.
