@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "project_id": "web-utility-income-engine",
+  "name": "Leverage Free Tool Network",
+  "type": "web-utility-traffic",
+  "status": "active",
+  "capital_deployed_rm": 0,
+  "pc_required": false,
+  "hosting": {
+    "provider": "Cloudflare Pages",
+    "mode": "git_integration",
+    "status": "configured_by_owner",
+    "verification": "pending_external_deployment_check"
+  },
+  "traffic": {
+    "measurement": "GoatCounter",
+    "status": "configured_in_site",
+    "authoritative_visitors": "unknown"
+  },
+  "monetization": {
+    "phase": "traffic_first",
+    "ad_network": "not_connected",
+    "affiliate": "not_connected",
+    "verified_revenue_rm": 0
+  },
+  "tools": [
+    "fabrication-quote-calculator",
+    "shop-hourly-rate-calculator",
+    "markup-margin-calculator",
+    "job-profit-calculator",
+    "welding-quote-calculator"
+  ],
+  "rules": {
+    "rm0": true,
+    "no_auto_paid_upgrade": true,
+    "no_spam": true,
+    "no_fake_traffic": true,
+    "no_fake_metrics": true
+  },
+  "next_gate": "verify public Cloudflare deployment, then run automated zero-cost traffic/discovery work"
+}
