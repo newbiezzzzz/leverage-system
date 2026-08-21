@@ -38,6 +38,7 @@ ALLOWED_TRANSITIONS = {
 class Project:
     id: str
     name: str
+    project_no: str = ""
     type: str = "general"
     status: str = "intake"
     lifecycle_stage: str = "intake"
@@ -123,4 +124,4 @@ def has_owner_approval(action: str, target: str) -> bool:
 
 if __name__ == "__main__":
     company = load_json(COMPANY_FILE); projects = list_projects(); print(f"Leverage company: {company['company']['name']}"); print(f"Projects registered: {len(projects)}")
-    for project in projects: print(f"- {project.id}: {project.lifecycle_stage}")
+    for project in projects: print(f"- {project.project_no or project.id}: {project.lifecycle_stage}")
