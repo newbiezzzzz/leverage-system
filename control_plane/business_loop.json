@@ -1,36 +1,52 @@
 {
-  "version": 1,
+  "version": 2,
   "projects": {
     "engineering-quote-toolkit": {
       "experiment": "A",
-      "current_stage": "acquire",
-      "objective": "Validate the full Leverage business loop with the first live Gumroad product.",
+      "current_stage": "paused",
+      "objective": "Retain the first digital product as a reusable asset while prioritizing the autonomous income engine.",
       "stages": [
         {"id":"discover","status":"complete","worker":"research-worker"},
         {"id":"validate","status":"complete","worker":"research-worker"},
         {"id":"build","status":"complete","worker":"digital-product-worker"},
         {"id":"publish","status":"complete","worker":"project-manager"},
-        {"id":"acquire","status":"blocked_on_external_execution","worker":"acquisition-worker"},
-        {"id":"convert","status":"waiting_for_traffic","worker":"conversion-worker"},
+        {"id":"acquire","status":"paused","worker":"acquisition-worker"},
+        {"id":"convert","status":"paused","worker":"conversion-worker"},
         {"id":"deliver","status":"ready","worker":"delivery-worker"},
         {"id":"support","status":"ready","worker":"customer-worker"},
         {"id":"measure","status":"partial","worker":"finance-worker + data-worker"},
         {"id":"decide","status":"waiting_for_evidence","worker":"project-manager"}
       ],
+      "blockers": ["No verified buyer exists yet."],
+      "manual_owner_steps": [],
+      "success_condition": "Reactivated only after the first automated income workflow is proven."
+    },
+    "income-acquisition-moltjobs": {
+      "experiment": "B",
+      "current_stage": "identify_buyer",
+      "objective": "Secure the first real Leverage income through a zero-cost-first autonomous agent worker marketplace workflow without using the Owner PC.",
+      "stages": [
+        {"id":"research","status":"complete","worker":"research-worker"},
+        {"id":"validate","status":"complete","worker":"architecture-validator + research-worker"},
+        {"id":"prepare","status":"complete","worker":"income-acquisition-worker + code-worker"},
+        {"id":"identify_buyer","status":"active","worker":"income-acquisition-worker"},
+        {"id":"bid","status":"owner_or_permission_gate","worker":"income-acquisition-worker + external-action-worker"},
+        {"id":"execute","status":"blocked_until_job_awarded","worker":"code-worker + remote runners"},
+        {"id":"deliver","status":"blocked_until_job_awarded","worker":"delivery-worker"},
+        {"id":"verify_income","status":"pending","worker":"finance-worker"}
+      ],
       "blockers": [
-        "Authoritative Gumroad traffic metrics are not connected.",
-        "External distribution requires an approved execution path.",
-        "No verified buyer exists yet."
+        "A binding bid requires a valid MoltJobs agent credential and platform permission.",
+        "Owner approval remains required for consequential external commitments and money movement."
       ],
       "manual_owner_steps": [
-        "Approve or perform external distribution where platform policy requires a human action.",
-        "Provide authoritative Gumroad analytics evidence until a compliant integration is available."
+        "Provide/authorize the MoltJobs agent credential when the system has a qualified funded job ready for binding bid execution."
       ],
-      "success_condition": "At least one buyer plus authoritative traffic, conversion, delivery and revenue evidence."
+      "success_condition": "At least one funded job is awarded, completed remotely, accepted, and a USDC credit is verified."
     }
   },
   "automation_policy": {
-    "default_level": "L1",
+    "default_level": "L2",
     "levels": {
       "L0": "Boss manual",
       "L1": "Worker prepares; Boss executes",
