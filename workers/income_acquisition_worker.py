@@ -7,14 +7,12 @@ Rules:
 - No local-PC workload: execution must use approved remote runners.
 - Quota-aware: never consume more than the configured free bid/request budget.
 - Discovery is autonomous; binding bids and money movement remain gated.
-
-The worker uses a public MoltJobs jobs page for discovery when no API key is
-configured, and the authenticated API when MOLTJOBS_API_KEY is available.
 """
 from __future__ import annotations
 
 import html
 import json
+import os
 import re
 import urllib.request
 from dataclasses import dataclass
@@ -29,22 +27,11 @@ DEFAULT_CONFIG = Path("control_plane/income_acquisition_config.json")
 DEFAULT_STATE = Path("control_plane/income_acquisition_state.json")
 
 KEYWORDS = {
-    "research": 18,
-    "data": 18,
-    "extract": 16,
-    "analysis": 14,
-    "analyze": 14,
-    "python": 14,
-    "api": 12,
-    "automation": 15,
-    "json": 10,
-    "csv": 10,
-    "documentation": 8,
-    "content": 7,
-    "web": 8,
-    "spreadsheet": 10,
-    "classification": 12,
-    "lead": 8,
+    "research": 18, "product": 8, "find": 5, "data": 18, "extract": 16,
+    "analysis": 14, "analyze": 14, "python": 14, "api": 12,
+    "automation": 15, "json": 10, "csv": 10, "documentation": 8,
+    "content": 7, "creative": 6, "web": 8, "spreadsheet": 10,
+    "classification": 12, "lead": 8,
 }
 
 @dataclass(frozen=True)
@@ -75,7 +62,7 @@ def load_config(path: Path = DEFAULT_CONFIG) -> dict:
     return _load_json(path, {
         "version": 1,
         "platform": "moltjobs",
-        "discovery": {"enabled": True, "max_jobs": 25, "minimum_score": 45},
+        "discovery": {"enabled": True, "max_jobs": 25, "minimum_score": 40},
         "quota": {"free_bids_per_month": 10, "free_requests_per_minute": 120, "max_bids_per_cycle": 1},
         "economics": {"min_budget_usdc": 5.0, "execution_cost_rm": 0.0, "min_expected_net_rm": 1.0},
         "policy": {"no_paid_bids": True, "no_pc_execution": True, "no_spam": True, "owner_approval_for_binding_bid": True, "owner_approval_for_money_movement": True},
@@ -102,7 +89,6 @@ def _clean_text(value: str) -> str:
 
 
 def _parse_public_jobs(raw_html: str, max_jobs: int = 25) -> list[Job]:
-    # Server-rendered job links are enough for discovery; details are fetched later.
     jobs: list[Job] = []
     seen: set[str] = set()
     pattern = re.compile(r'href=["\'](/(?:jobs|job)/[^"\']+)["\'][^>]*>(.*?)</a>', re.I | re.S)
@@ -118,8 +104,8 @@ def _parse_public_jobs(raw_html: str, max_jobs: int = 25) -> list[Job]:
         if not title or title.lower() in {"view details", "details"}:
             continue
         budget = _budget(text)
-        poster_match = re.search(r"By\s+([A-Za-z0-9_.-]{2,64})", text, flags=re.I)
-        poster = poster_match.group(1) if poster_match else None
+        poster_match = re.search(r"By\s+([A-Za-z0-9_.-]{2,64}(?:\s+[A-Za-z0-9_.-]{2,64})?)", text, flags=re.I)
+        poster = poster_match.group(1).strip() if poster_match else None
         job_id = path.rstrip("/").split("/")[-1]
         jobs.append(Job(job_id, title, url, budget, poster, text))
         if len(jobs) >= max_jobs:
@@ -172,13 +158,13 @@ def discover_jobs(config_path: Path = DEFAULT_CONFIG, state_path: Path = DEFAULT
     if not config.get("discovery", {}).get("enabled", True):
         return {"status": "disabled", "jobs": []}
 
-    api_key = __import__("os").environ.get("MOLTJOBS_API_KEY")
+    api_key = os.environ.get("MOLTJOBS_API_KEY")
     max_jobs = int(config["discovery"].get("max_jobs", 25))
     source = "authenticated_api" if api_key else "public_open_jobs_page"
     try:
         raw = _fetch(f"{API_URL}?status=OPEN&limit={max_jobs}", api_key) if api_key else _fetch(OPEN_JOBS_URL)
         jobs = _parse_api_jobs(raw, max_jobs) if api_key else _parse_public_jobs(raw, max_jobs)
-    except Exception as exc:  # discovery must fail safely
+    except Exception as exc:
         state = _load_json(state_path, {"version": 1, "runs": []})
         result = {"status": "error", "source": source, "error": str(exc), "jobs": []}
         state.setdefault("runs", []).append({"timestamp": datetime.now(timezone.utc).isoformat(), **result})
@@ -186,7 +172,7 @@ def discover_jobs(config_path: Path = DEFAULT_CONFIG, state_path: Path = DEFAULT
         return result
 
     ranked = []
-    minimum_score = float(config["discovery"].get("minimum_score", 45))
+    minimum_score = float(config["discovery"].get("minimum_score", 40))
     for job in jobs:
         score, reasons = score_job(job, config)
         if score >= minimum_score:
@@ -228,7 +214,7 @@ def discover_jobs(config_path: Path = DEFAULT_CONFIG, state_path: Path = DEFAULT
 
 def self_test() -> dict:
     config = load_config()
-    demo = Job("demo-1", "Extract CSV data and research API automation", "https://moltjobs.io/jobs/demo-1", 10.0, "demo-poster", "data extraction python api")
+    demo = Job("demo-1", "Find a good product and research data for an API automation task", "https://moltjobs.io/jobs/demo-1", 100.0, "demo-poster", "research product data api automation")
     score, reasons = score_job(demo, config)
     return {
         "worker": "income-acquisition-worker",
