@@ -1,0 +1,35 @@
+name: Leverage AgentJob Income Discovery
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/income-agentjob
+
+permissions:
+  contents: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run AgentJob discovery
+        run: python -m workers.agentjob_income_worker
+        env:
+          AGENTJOB_API_KEY: ${{ secrets.AGENTJOB_API_KEY }}
+      - name: Commit discovery state
+        run: |
+          git config user.name 'leverage-income-bot'
+          git config user.email 'leverage-income-bot@users.noreply.github.com'
+          git add control_plane/agentjob_income_state.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'ops: refresh AgentJob income state [skip ci]'
+          git push
