@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T20:10:01.836698+00:00",
+  "generated_at": "2026-08-21T20:33:08.340867+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -386,7 +386,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-21T20:10:01.836698+00:00"
+    "synced_at": "2026-08-21T20:33:08.340867+00:00"
   },
   "projects": [
     {
@@ -401,7 +401,7 @@
       "owner_approval_required_for_spend": true,
       "description": "First Leverage digital-product experiment retained as a reusable asset; paused while automated income channels are tested.",
       "store": "Gumroad",
-      "store_url": "https://newbiezz.github.io/leverage-system/tools/",
+      "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
       "price_usd": 19,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
@@ -419,15 +419,15 @@
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "RM0 static web utility cluster designed to attract organic traffic and later monetize through compliant advertising or affiliate referrals. Calculators run client-side and the production target is Cloudflare Pages.",
+      "description": "RM0 static web utility cluster designed to attract organic traffic and later monetize through compliant advertising or affiliate referrals. Calculators run client-side and production hosting uses Cloudflare Pages.",
       "store": "Cloudflare Pages",
-      "store_url": null,
+      "store_url": "https://leverage-tools.pages.dev/",
       "price_usd": 0,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
-      "next_gate": "Verify the Cloudflare production URL, request indexing through Search Console when the URL is confirmed, measure traffic, then connect an approved monetization channel after eligibility is met.",
+      "next_gate": "Submit sitemap and key URLs to Google Search Console, verify indexing/discovery, measure traffic, then connect an approved monetization channel after eligibility is met.",
       "created_at": "2026-08-22T03:50:00+08:00",
-      "published_at": null
+      "published_at": "2026-08-22T04:22:00+08:00"
     }
   ]
 }
