@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 from urllib.parse import urlparse, unquote
 import mimetypes
+import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "dashboard"
@@ -22,7 +23,7 @@ HOST, PORT = "127.0.0.1", 8765
 
 
 def body(data: dict) -> bytes:
-    return json.dumps(data, indent=2).encode()
+    return json.dumps(data, indent=2, default=str).encode()
 
 
 def safe_dashboard_path(request_path: str) -> Path | None:
@@ -39,7 +40,7 @@ def safe_dashboard_path(request_path: str) -> Path | None:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "LeverageLocalAPI/1.6"
+    server_version = "LeverageLocalAPI/1.7"
 
     def log_message(self, *_args):
         pass
@@ -47,7 +48,7 @@ class Handler(BaseHTTPRequestHandler):
     def send_json(self, code: int, data: dict) -> None:
         raw = body(data)
         self.send_response(code)
-        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(raw)))
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
@@ -55,52 +56,57 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         path = urlparse(self.path).path
-        if path == "/api/health":
-            self.send_json(200, {"ok": True, "service": "Leverage Local API", "dashboard": True, "money_movement": "protected"})
-            return
-        if path == "/api/readiness":
-            result = company_os_readiness()
-            self.send_json(200 if result["ready"] else 503, {"ok": result["ready"], "readiness": result})
-            return
-        if path == "/api/snapshot":
-            self.send_json(200, {"ok": True, "snapshot": system_snapshot()})
-            return
-        if path == "/api/company-health":
-            self.send_json(200, {"ok": True, "health": company_health()})
-            return
-        if path == "/api/projects":
-            self.send_json(200, {"ok": True, "projects": [p.__dict__ for p in list_projects()]})
-            return
-        if path == "/api/customer-orders":
-            self.send_json(200, {"ok": True, "orders": list_orders()})
-            return
-        if path.startswith("/api/customer-orders/"):
-            order_id = unquote(path[len("/api/customer-orders/"):]).strip("/")
-            try:
-                self.send_json(200, {"ok": True, "order": get_order(order_id)})
-            except KeyError as exc:
-                self.send_json(404, {"ok": False, "error": str(exc)})
-            return
-        if path.startswith("/api/projects/") and path.endswith("/gates"):
-            project_id = unquote(path[len("/api/projects/"):-len("/gates")]).strip("/")
-            try:
-                self.send_json(200, {"ok": True, "report": project_gate_report(project_id)})
-            except KeyError as exc:
-                self.send_json(404, {"ok": False, "error": str(exc)})
-            except ValueError as exc:
-                self.send_json(400, {"ok": False, "error": str(exc)})
-            return
-        target = safe_dashboard_path(self.path)
-        if target:
-            data = target.read_bytes()
-            content_type, _ = mimetypes.guess_type(str(target))
-            self.send_response(200)
-            self.send_header("Content-Type", content_type or "application/octet-stream")
-            self.send_header("Content-Length", str(len(data)))
-            self.end_headers()
-            self.wfile.write(data)
-            return
-        self.send_json(404, {"ok": False, "error": "not_found"})
+        try:
+            if path == "/api/health":
+                self.send_json(200, {"ok": True, "service": "Leverage Local API", "dashboard": True, "money_movement": "protected"})
+                return
+            if path == "/api/readiness":
+                result = company_os_readiness()
+                self.send_json(200 if result["ready"] else 503, {"ok": result["ready"], "readiness": result})
+                return
+            if path == "/api/snapshot":
+                self.send_json(200, {"ok": True, "snapshot": system_snapshot()})
+                return
+            if path == "/api/company-health":
+                self.send_json(200, {"ok": True, "health": company_health()})
+                return
+            if path == "/api/projects":
+                self.send_json(200, {"ok": True, "projects": [p.__dict__ for p in list_projects()]})
+                return
+            if path == "/api/customer-orders":
+                self.send_json(200, {"ok": True, "orders": list_orders()})
+                return
+            if path.startswith("/api/customer-orders/"):
+                order_id = unquote(path[len("/api/customer-orders/"):]).strip("/")
+                try:
+                    self.send_json(200, {"ok": True, "order": get_order(order_id)})
+                except KeyError as exc:
+                    self.send_json(404, {"ok": False, "error": str(exc)})
+                return
+            if path.startswith("/api/projects/") and path.endswith("/gates"):
+                project_id = unquote(path[len("/api/projects/"):-len("/gates")]).strip("/")
+                try:
+                    self.send_json(200, {"ok": True, "report": project_gate_report(project_id)})
+                except KeyError as exc:
+                    self.send_json(404, {"ok": False, "error": str(exc)})
+                except ValueError as exc:
+                    self.send_json(400, {"ok": False, "error": str(exc)})
+                return
+            target = safe_dashboard_path(self.path)
+            if target:
+                data = target.read_bytes()
+                content_type, _ = mimetypes.guess_type(str(target))
+                self.send_response(200)
+                self.send_header("Content-Type", content_type or "application/octet-stream")
+                self.send_header("Content-Length", str(len(data)))
+                self.send_header("Cache-Control", "no-store")
+                self.end_headers()
+                self.wfile.write(data)
+                return
+            self.send_json(404, {"ok": False, "error": "not_found"})
+        except Exception as exc:
+            traceback.print_exc()
+            self.send_json(500, {"ok": False, "error": type(exc).__name__, "message": str(exc)})
 
     def do_POST(self):
         path = urlparse(self.path).path
@@ -137,6 +143,9 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(404, {"ok": False, "error": "not_found"})
         except (ValueError, KeyError, json.JSONDecodeError) as exc:
             self.send_json(400, {"ok": False, "error": str(exc)})
+        except Exception as exc:
+            traceback.print_exc()
+            self.send_json(500, {"ok": False, "error": type(exc).__name__, "message": str(exc)})
 
 
 def serve() -> None:
