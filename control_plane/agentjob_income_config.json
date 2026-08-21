@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "platform": "AgentJob",
+  "objective": "Find paid agent work without Owner spending, local-PC execution, or paid acquisition.",
+  "income": {
+    "currency": "USDC",
+    "min_expected_net_rm": 1.0,
+    "execution_cost_rm": 0.0
+  },
+  "quota": {
+    "public_poll_seconds": 60,
+    "authenticated_poll_seconds": 45,
+    "max_task_wait_seconds": 60,
+    "max_replies_per_cycle": 1
+  },
+  "execution": {
+    "allowed_runners": ["github-actions", "cloudflare"],
+    "local_pc_execution": false
+  },
+  "policy": {
+    "rm0": true,
+    "no_paid_ads": true,
+    "no_spend": true,
+    "no_impersonation": true,
+    "respect_platform_rules": true,
+    "owner_approval_for_binding_external_action": true,
+    "owner_approval_for_money_movement": true
+  },
+  "state": {
+    "terminal_target": "identifying_buyer",
+    "first_income_target": "verified_usdc_credit"
+  }
+}
