@@ -10,6 +10,7 @@ import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "dashboard"
+TRACKED_PROJECTS_FILE = ROOT / "control_plane" / "projects.json"
 sys.path.insert(0, str(ROOT))
 
 from control_plane.company_core import Project, list_projects
@@ -38,6 +39,19 @@ def safe_dashboard_path(request_path: str) -> Path | None:
     except ValueError:
         return None
     return target if target.is_file() else None
+
+
+def read_project_records() -> list[dict]:
+    """Read local runtime project state, with a tracked-state fallback for a fresh install."""
+    runtime_records = [p.__dict__ for p in list_projects()]
+    if runtime_records:
+        return runtime_records
+    try:
+        tracked = json.loads(TRACKED_PROJECTS_FILE.read_text(encoding="utf-8"))
+        records = tracked.get("projects", [])
+        return records if isinstance(records, list) else []
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return []
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -72,8 +86,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(200, {"ok": True, "health": company_health()})
                 return
             if path == "/api/projects":
-                projects = list_projects()
-                self.send_json(200, {"ok": True, "api_version": API_VERSION, "projects": [p.__dict__ for p in projects]})
+                self.send_json(200, {"ok": True, "api_version": API_VERSION, "projects": read_project_records()})
                 return
             if path == "/api/customer-orders":
                 self.send_json(200, {"ok": True, "orders": list_orders()})
