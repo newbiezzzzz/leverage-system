@@ -28,12 +28,25 @@ LEGACY_FILES={
 
 def state_path(name:str)->Path: return RUNTIME/name
 
+def _json(path:Path)->dict:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError,json.JSONDecodeError):
+        return {}
+
 def ensure_runtime_state()->None:
     for name,default in LEGACY_FILES.items():
         target=state_path(name)
-        if target.exists(): continue
         legacy=ROOT/name
-        if legacy.exists(): shutil.copy2(legacy,target)
-        else: target.write_text(json.dumps(default,indent=2)+"\n",encoding="utf-8")
+        if not target.exists():
+            if legacy.exists(): shutil.copy2(legacy,target)
+            else: target.write_text(json.dumps(default,indent=2)+"\n",encoding="utf-8")
+            continue
+        # Recovery rule for an empty runtime registry left behind by a clean
+        # checkout/update. Never overwrite non-empty live runtime state.
+        if name == "projects.json" and legacy.exists():
+            current=_json(target); source=_json(legacy)
+            if not current.get("projects") and source.get("projects"):
+                shutil.copy2(legacy,target)
 
 ensure_runtime_state()
