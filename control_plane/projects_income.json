@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "active_income_project": {
+    "id": "income-acquisition-agentjob",
+    "name": "Leverage Income Acquisition — AgentJob",
+    "type": "automated-digital-service",
+    "status": "active",
+    "lifecycle_stage": "identify_buyer",
+    "revenue_status": "not_verified",
+    "capital_deployed_rm": 0,
+    "platform": "AgentJob",
+    "objective": "Identify and qualify paid marketplace demand, then accept and complete suitable work remotely without Owner PC workload.",
+    "constraints": {
+      "rm0": true,
+      "no_local_pc": true,
+      "no_paid_ads": true,
+      "no_external_spend": true,
+      "quota_aware": true
+    },
+    "success_condition": "A paid task is assigned, completed remotely, accepted, and a verified USDC credit is recorded."
+  }
+}
