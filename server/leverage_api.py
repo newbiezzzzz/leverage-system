@@ -20,6 +20,7 @@ from control_plane.readiness import company_os_readiness
 from control_plane.delivery_gateway import create_order, get_order, list_orders
 
 HOST, PORT = "127.0.0.1", 8765
+API_VERSION = "1.8"
 
 
 def body(data: dict) -> bytes:
@@ -40,7 +41,7 @@ def safe_dashboard_path(request_path: str) -> Path | None:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "LeverageLocalAPI/1.7"
+    server_version = f"LeverageLocalAPI/{API_VERSION}"
 
     def log_message(self, *_args):
         pass
@@ -58,7 +59,7 @@ class Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         try:
             if path == "/api/health":
-                self.send_json(200, {"ok": True, "service": "Leverage Local API", "dashboard": True, "money_movement": "protected"})
+                self.send_json(200, {"ok": True, "service": "Leverage Local API", "dashboard": True, "money_movement": "protected", "api_version": API_VERSION})
                 return
             if path == "/api/readiness":
                 result = company_os_readiness()
@@ -71,7 +72,8 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(200, {"ok": True, "health": company_health()})
                 return
             if path == "/api/projects":
-                self.send_json(200, {"ok": True, "projects": [p.__dict__ for p in list_projects()]})
+                projects = list_projects()
+                self.send_json(200, {"ok": True, "api_version": API_VERSION, "projects": [p.__dict__ for p in projects]})
                 return
             if path == "/api/customer-orders":
                 self.send_json(200, {"ok": True, "orders": list_orders()})
@@ -106,7 +108,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(404, {"ok": False, "error": "not_found"})
         except Exception as exc:
             traceback.print_exc()
-            self.send_json(500, {"ok": False, "error": type(exc).__name__, "message": str(exc)})
+            try:
+                self.send_json(500, {"ok": False, "error": type(exc).__name__, "message": str(exc), "api_version": API_VERSION})
+            except Exception:
+                pass
 
     def do_POST(self):
         path = urlparse(self.path).path
@@ -127,7 +132,7 @@ class Handler(BaseHTTPRequestHandler):
                     raise ValueError("project_id, name and goal are required")
                 created = intake_project(project)
                 tasks = create_project_plan(created.id)
-                self.send_json(201, {"ok": True, "project": created.__dict__, "tasks_created": len(tasks)})
+                self.send_json(201, {"ok": True, "project": created.__dict__, "tasks_created": len(tasks), "api_version": API_VERSION})
                 return
 
             if path == "/api/customer-orders":
@@ -137,21 +142,37 @@ class Handler(BaseHTTPRequestHandler):
                     project_id=str(data.get("project_id", "")),
                     input_manifest=data.get("input_manifest") or [],
                 )
-                self.send_json(201, {"ok": True, "order": order})
+                self.send_json(201, {"ok": True, "order": order, "api_version": API_VERSION})
                 return
 
-            self.send_json(404, {"ok": False, "error": "not_found"})
+            self.send_json(404, {"ok": False, "error": "not_found", "api_version": API_VERSION})
         except (ValueError, KeyError, json.JSONDecodeError) as exc:
-            self.send_json(400, {"ok": False, "error": str(exc)})
+            self.send_json(400, {"ok": False, "error": str(exc), "api_version": API_VERSION})
         except Exception as exc:
             traceback.print_exc()
-            self.send_json(500, {"ok": False, "error": type(exc).__name__, "message": str(exc)})
+            try:
+                self.send_json(500, {"ok": False, "error": type(exc).__name__, "message": str(exc), "api_version": API_VERSION})
+            except Exception:
+                pass
+
+
+class SingleInstanceServer(ThreadingHTTPServer):
+    allow_reuse_address = True
+    allow_reuse_port = False
+
+    def server_bind(self):
+        try:
+            super().server_bind()
+        except OSError as exc:
+            raise RuntimeError(
+                f"Leverage API port {PORT} is already in use. Stop the existing LeverageLocalAPI process before starting another instance."
+            ) from exc
 
 
 def serve() -> None:
-    httpd = ThreadingHTTPServer((HOST, PORT), Handler)
+    httpd = SingleInstanceServer((HOST, PORT), Handler)
     print(f"Leverage Local Dashboard: http://{HOST}:{PORT}/")
-    print("Control Plane: READY")
+    print(f"Control Plane: READY (API {API_VERSION})")
     print("Money movement: PROTECTED")
     try:
         httpd.serve_forever()
