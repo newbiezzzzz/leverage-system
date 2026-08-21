@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "objective": "Identify funded agent jobs without spending money or using the Owner PC.",
+  "primary_platform": "MoltJobs",
+  "discovery": {
+    "enabled": true,
+    "max_jobs": 25,
+    "minimum_score": 45,
+    "refresh_minutes": 60
+  },
+  "quota": {
+    "free_bids_per_month": 10,
+    "free_requests_per_minute": 120,
+    "max_bids_per_cycle": 1,
+    "reserve_free_bids": 2
+  },
+  "economics": {
+    "min_budget_usdc": 5,
+    "execution_cost_rm": 0,
+    "min_expected_net_rm": 1,
+    "max_unverified_spend_rm": 0
+  },
+  "execution": {
+    "allowed_runners": ["github-actions", "cloudflare"],
+    "local_pc_execution": false
+  },
+  "policy": {
+    "no_paid_bids": true,
+    "no_pc_execution": true,
+    "no_mass_spam": true,
+    "no_impersonation": true,
+    "respect_platform_rules": true,
+    "owner_approval_for_binding_bid": true,
+    "owner_approval_for_money_movement": true,
+    "no_bypass_certification": true
+  },
+  "state": {
+    "terminal_target": "identifying_buyer",
+    "first_income_target": "verified_usdc_credit"
+  }
+}
