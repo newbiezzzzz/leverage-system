@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T20:33:08.340867+00:00",
+  "generated_at": "2026-08-21T20:36:19.234188+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -386,10 +386,11 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-21T20:33:08.340867+00:00"
+    "synced_at": "2026-08-21T20:36:19.234188+00:00"
   },
   "projects": [
     {
+      "project_no": "P-001",
       "id": "engineering-quote-toolkit",
       "name": "Fabrication Shop Profit & Quote System",
       "type": "digital-product",
@@ -410,6 +411,7 @@
       "published_at": "2026-08-19T23:55:00+08:00"
     },
     {
+      "project_no": "P-002",
       "id": "web-traffic-income-tools",
       "name": "Leverage Free Fabrication Tool Network",
       "type": "web-utility",
