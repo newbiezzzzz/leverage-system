@@ -1,11 +1,19 @@
 {
   "version": 1,
   "platform": "AgentJob",
-  "operating_state": "initializing",
-  "last_scan_at": null,
+  "operating_state": "scanning_for_buyer",
+  "last_scan_at": "2026-08-21T18:26:43.369992+00:00",
   "source": null,
   "active_candidates": [],
-  "runs": [],
+  "runs": [
+    {
+      "timestamp": "2026-08-21T18:26:43.369992+00:00",
+      "status": "error",
+      "source": "public_mcp",
+      "error": "HTTP Error 503: Service Unavailable",
+      "candidate_count": 0
+    }
+  ],
   "controls": {
     "rm0": true,
     "local_pc_execution": false,
