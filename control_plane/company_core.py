@@ -6,7 +6,7 @@ external actions.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, fields
 from datetime import datetime, timezone
 from pathlib import Path
 import json
@@ -22,9 +22,6 @@ LIFECYCLE = [
     "revenue", "payout-ready", "paused", "retired"
 ]
 
-# Explicit transitions keep the Control Plane from accidentally jumping a
-# project over a required gate. Pause is available from every non-terminal
-# stage; a paused project can safely re-enter validation for a fresh review.
 ALLOWED_TRANSITIONS = {
     "intake": {"validation", "paused", "retired"},
     "validation": {"build", "paused", "retired"},
@@ -52,6 +49,9 @@ class Project:
     next_gate: str = ""
 
 
+PROJECT_FIELDS = {field.name for field in fields(Project)}
+
+
 def load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
@@ -63,6 +63,12 @@ def save_json(path: Path, value: dict) -> None:
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def project_from_record(item: dict) -> Project:
+    """Build the stable Project model while tolerating extended project metadata."""
+    payload = {key: item[key] for key in PROJECT_FIELDS if key in item}
+    return Project(**payload)
 
 
 def validate_project(project: Project) -> list[str]:
@@ -78,7 +84,7 @@ def validate_project(project: Project) -> list[str]:
 
 
 def list_projects() -> list[Project]:
-    return [Project(**item) for item in load_json(PROJECTS_FILE).get("projects", [])]
+    return [project_from_record(item) for item in load_json(PROJECTS_FILE).get("projects", [])]
 
 
 def create_project(project: Project) -> Project:
@@ -92,7 +98,6 @@ def create_project(project: Project) -> Project:
 
 
 def can_change_stage(current_stage: str, next_stage: str) -> bool:
-    """Return whether a project may move between lifecycle gates."""
     return next_stage in ALLOWED_TRANSITIONS.get(current_stage, set())
 
 
@@ -104,7 +109,7 @@ def change_stage(project_id: str, stage: str, reason: str) -> Project:
             current = item.get("lifecycle_stage", item.get("status", "intake"))
             if current != stage and not can_change_stage(current, stage):
                 raise ValueError(f"invalid lifecycle transition: {current} -> {stage}")
-            item["lifecycle_stage"] = stage; item["status"] = stage; item["next_gate"] = reason; data["last_modified_at"] = utc_now(); save_json(PROJECTS_FILE, data); return Project(**item)
+            item["lifecycle_stage"] = stage; item["status"] = stage; item["next_gate"] = reason; data["last_modified_at"] = utc_now(); save_json(PROJECTS_FILE, data); return project_from_record(item)
     raise KeyError(f"project not found: {project_id}")
 
 
