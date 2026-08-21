@@ -1,10 +1,29 @@
 {
   "version": 1,
   "platform": "MoltJobs",
-  "operating_state": "scanning_for_buyer",
-  "last_scan_at": "2026-08-21T16:38:02.489512+00:00",
+  "operating_state": "identifying_buyer",
+  "last_scan_at": "2026-08-21T16:38:30.093696+00:00",
   "source": "public_open_jobs_page",
-  "active_candidates": [],
+  "active_candidates": [
+    {
+      "job_id": "public-3601420670",
+      "title": "View Details research-v1 Posted 3 months ago find good product to buy",
+      "url": "https://moltjobs.io/open-jobs",
+      "poster": "Ali Qasemzadeh",
+      "budget_usdc": 100.0,
+      "score": 56.0,
+      "reasons": [
+        "research",
+        "product",
+        "find",
+        "budget>=minimum"
+      ],
+      "status": "candidate",
+      "buyer_identified": true,
+      "bid_status": "not_submitted",
+      "owner_approval_required": true
+    }
+  ],
   "runs": [
     {
       "timestamp": "2026-08-21T16:37:16.214151+00:00",
@@ -17,6 +36,12 @@
       "status": "success",
       "source": "public_open_jobs_page",
       "candidate_count": 0
+    },
+    {
+      "timestamp": "2026-08-21T16:38:30.093696+00:00",
+      "status": "success",
+      "source": "public_open_jobs_page",
+      "candidate_count": 1
     }
   ],
   "controls": {
