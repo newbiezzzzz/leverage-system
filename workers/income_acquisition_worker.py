@@ -2,11 +2,7 @@
 
 Discovery-first autonomous income worker for agent job marketplaces.
 
-Rules:
-- RM0-first: no paid bids or external spend without Owner approval.
-- No local-PC workload: execution must use approved remote runners.
-- Quota-aware: never consume more than the configured free bid/request budget.
-- Discovery is autonomous; binding bids and money movement remain gated.
+RM0-first, no local-PC execution, quota-aware, and binding bids remain gated.
 """
 from __future__ import annotations
 
@@ -28,10 +24,9 @@ DEFAULT_STATE = Path("control_plane/income_acquisition_state.json")
 
 KEYWORDS = {
     "research": 18, "product": 8, "find": 5, "data": 18, "extract": 16,
-    "analysis": 14, "analyze": 14, "python": 14, "api": 12,
-    "automation": 15, "json": 10, "csv": 10, "documentation": 8,
-    "content": 7, "creative": 6, "web": 8, "spreadsheet": 10,
-    "classification": 12, "lead": 8,
+    "analysis": 14, "analyze": 14, "python": 14, "api": 12, "automation": 15,
+    "json": 10, "csv": 10, "documentation": 8, "content": 7, "creative": 6,
+    "web": 8, "spreadsheet": 10, "classification": 12, "lead": 8,
 }
 
 @dataclass(frozen=True)
@@ -79,35 +74,62 @@ def _fetch(url: str, api_key: str | None = None, timeout: int = 20) -> str:
         return response.read().decode("utf-8", errors="replace")
 
 
+def _clean_text(value: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value))).strip()
+
+
 def _budget(text: str) -> float | None:
     match = re.search(r"(\d+(?:\.\d+)?)\s*USDC", text, flags=re.I)
     return float(match.group(1)) if match else None
 
 
-def _clean_text(value: str) -> str:
-    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value))).strip()
-
-
 def _parse_public_jobs(raw_html: str, max_jobs: int = 25) -> list[Job]:
+    """Parse server-rendered job cards with two independent fallbacks."""
     jobs: list[Job] = []
     seen: set[str] = set()
-    pattern = re.compile(r'href=["\'](/(?:jobs|job)/[^"\']+)["\'][^>]*>(.*?)</a>', re.I | re.S)
-    for match in pattern.finditer(raw_html):
-        path, inner = match.groups()
+
+    # Path 1: extract individual job links and nearby card text.
+    for match in re.finditer(r'href=["\']([^"\']*/(?:jobs|job)/[^"\']+)["\']', raw_html, flags=re.I):
+        path = match.group(1)
         url = urljoin(BASE_URL, path)
         if url in seen:
             continue
-        seen.add(url)
-        surrounding = raw_html[max(0, match.start() - 1800): min(len(raw_html), match.end() + 1800)]
-        title = _clean_text(inner)
+        surrounding = raw_html[max(0, match.start() - 2500): min(len(raw_html), match.end() + 2500)]
         text = _clean_text(surrounding)
-        if not title or title.lower() in {"view details", "details"}:
+        if not re.search(r"USDC|By\s+", text, flags=re.I):
             continue
+        title = None
+        title_match = re.search(r"(?:Posted\s+\d+\s+days?\s+ago\s+)?(.{5,180}?)(?:\s+\d+(?:\.\d+)?\s+USDC)", text, flags=re.I)
+        if title_match:
+            title = title_match.group(1).strip(" :-")
+        if not title:
+            title_match = re.search(r">([^<>]{8,180})<", surrounding)
+            title = _clean_text(title_match.group(1)) if title_match else "MoltJobs opportunity"
         budget = _budget(text)
         poster_match = re.search(r"By\s+([A-Za-z0-9_.-]{2,64}(?:\s+[A-Za-z0-9_.-]{2,64})?)", text, flags=re.I)
         poster = poster_match.group(1).strip() if poster_match else None
         job_id = path.rstrip("/").split("/")[-1]
         jobs.append(Job(job_id, title, url, budget, poster, text))
+        seen.add(url)
+        if len(jobs) >= max_jobs:
+            return jobs
+
+    # Path 2: parse visible text when the frontend does not expose direct links.
+    visible = _clean_text(raw_html)
+    card_pattern = re.compile(
+        r"(?P<title>.{8,180}?)\s+(?P<budget>\d+(?:\.\d+)?)\s+USDC\s+Ends in\s+.{1,80}?\s+By\s+(?P<poster>[A-Za-z0-9_.-]+(?:\s+[A-Za-z0-9_.-]+)?)",
+        flags=re.I,
+    )
+    for match in card_pattern.finditer(visible):
+        title = match.group("title").strip(" :-")
+        if title.lower() in {"open jobs", "custom-v1", "research-v1"} or len(title) > 180:
+            continue
+        budget = float(match.group("budget"))
+        poster = match.group("poster").strip()
+        job_id = f"public-{abs(hash((title, poster, budget))) % 10**12}"
+        url = OPEN_JOBS_URL
+        if job_id not in seen:
+            jobs.append(Job(job_id, title, url, budget, poster, match.group(0)))
         if len(jobs) >= max_jobs:
             break
     return jobs
@@ -116,17 +138,17 @@ def _parse_public_jobs(raw_html: str, max_jobs: int = 25) -> list[Job]:
 def _parse_api_jobs(raw_json: str, max_jobs: int = 25) -> list[Job]:
     payload = json.loads(raw_json)
     items = payload.get("data", payload if isinstance(payload, list) else [])
-    jobs: list[Job] = []
-    for item in items[:max_jobs]:
-        jobs.append(Job(
+    return [
+        Job(
             job_id=str(item.get("id", "")),
             title=str(item.get("title") or item.get("name") or item.get("prompt") or "Untitled job"),
             url=str(item.get("url") or f"{BASE_URL}/jobs/{item.get('id', '')}"),
             budget_usdc=float(item["budgetUsdc"]) if item.get("budgetUsdc") not in (None, "") else None,
             poster=str(item.get("poster") or item.get("posterHandle") or "") or None,
             raw_text=json.dumps(item, ensure_ascii=False),
-        ))
-    return jobs
+        )
+        for item in items[:max_jobs]
+    ]
 
 
 def score_job(job: Job, config: dict) -> tuple[float, list[str]]:
@@ -157,7 +179,6 @@ def discover_jobs(config_path: Path = DEFAULT_CONFIG, state_path: Path = DEFAULT
     config = load_config(config_path)
     if not config.get("discovery", {}).get("enabled", True):
         return {"status": "disabled", "jobs": []}
-
     api_key = os.environ.get("MOLTJOBS_API_KEY")
     max_jobs = int(config["discovery"].get("max_jobs", 25))
     source = "authenticated_api" if api_key else "public_open_jobs_page"
@@ -216,17 +237,7 @@ def self_test() -> dict:
     config = load_config()
     demo = Job("demo-1", "Find a good product and research data for an API automation task", "https://moltjobs.io/jobs/demo-1", 100.0, "demo-poster", "research product data api automation")
     score, reasons = score_job(demo, config)
-    return {
-        "worker": "income-acquisition-worker",
-        "status": "healthy",
-        "platform": "MoltJobs",
-        "mode": "discover_then_owner_gate_bid",
-        "rm0": True,
-        "no_pc_execution": True,
-        "free_bid_limit": int(config["quota"]["free_bids_per_month"]),
-        "demo_score": score,
-        "demo_reasons": reasons,
-    }
+    return {"worker": "income-acquisition-worker", "status": "healthy", "platform": "MoltJobs", "mode": "discover_then_owner_gate_bid", "rm0": True, "no_pc_execution": True, "free_bid_limit": int(config["quota"]["free_bids_per_month"]), "demo_score": score, "demo_reasons": reasons}
 
 if __name__ == "__main__":
     print(json.dumps(self_test(), indent=2))
