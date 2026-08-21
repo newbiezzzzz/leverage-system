@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "projects": [
     {
       "id": "engineering-quote-toolkit",
@@ -13,7 +13,7 @@
       "owner_approval_required_for_spend": true,
       "description": "First Leverage digital-product experiment retained as a reusable asset; paused while automated income channels are tested.",
       "store": "Gumroad",
-      "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
+      "store_url": "https://newbiezz.github.io/leverage-system/tools/",
       "price_usd": 19,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
@@ -31,16 +31,16 @@
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "RM0 static web utility cluster designed to attract organic traffic and later monetize through compliant advertising or affiliate referrals. Calculators run client-side and production hosting uses the existing GitHub Pages/Cloudflare-compatible infrastructure.",
-      "store": "GitHub Pages",
-      "store_url": "https://newbiezzzzz.github.io/leverage-system/tools/",
+      "description": "RM0 static web utility cluster designed to attract organic traffic and later monetize through compliant advertising or affiliate referrals. Calculators run client-side and the production target is Cloudflare Pages.",
+      "store": "Cloudflare Pages",
+      "store_url": null,
       "price_usd": 0,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
-      "next_gate": "Deploy, verify indexing/discovery, measure traffic, then connect an approved monetization channel after eligibility is met.",
+      "next_gate": "Verify the Cloudflare production URL, request indexing through Search Console when the URL is confirmed, measure traffic, then connect an approved monetization channel after eligibility is met.",
       "created_at": "2026-08-22T03:50:00+08:00",
       "published_at": null
     }
   ],
-  "last_modified_at": "2026-08-22T03:50:00+08:00"
+  "last_modified_at": "2026-08-22T04:10:00+08:00"
 }
