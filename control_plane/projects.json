@@ -1,26 +1,46 @@
 {
-  "version": 3,
+  "version": 4,
   "projects": [
     {
       "id": "engineering-quote-toolkit",
       "name": "Fabrication Shop Profit & Quote System",
       "type": "digital-product",
-      "status": "live",
+      "status": "paused",
       "lifecycle_stage": "launch",
       "revenue_status": "none",
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "First Leverage digital-product experiment: a no-macro workbook for small fabrication, welding and machine shops covering shop-rate calculation, quoting, job costing, profit protection and change-order control.",
+      "description": "First Leverage digital-product experiment retained as a reusable asset but paused while the company prioritizes automated income acquisition.",
       "store": "Gumroad",
       "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
       "price_usd": 19,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
-      "next_gate": "Generate measurable traffic, acquire the first buyer, then evaluate conversion and iterate.",
+      "next_gate": "Revisit only after the first automated income workflow is proven.",
       "created_at": "2026-08-19T14:00:00+00:00",
       "published_at": "2026-08-19T23:55:00+08:00"
+    },
+    {
+      "id": "income-acquisition-moltjobs",
+      "name": "Leverage Income Acquisition — MoltJobs",
+      "type": "automated-digital-service",
+      "status": "active",
+      "lifecycle_stage": "acquire",
+      "revenue_status": "not_verified",
+      "capital_deployed": 0.0,
+      "currency": "MYR",
+      "owner_approval_required_for_spend": true,
+      "description": "Zero-cost-first autonomous worker that scans funded MoltJobs work, scores opportunities, identifies suitable buyers/job posters, and prepares the path to a first paid task without using the Owner PC.",
+      "store": "MoltJobs",
+      "store_url": "https://moltjobs.io/open-jobs",
+      "price_usd": 0,
+      "verified_sales": 0,
+      "verified_revenue_usd": 0,
+      "next_gate": "Identify a high-fit funded job, then route any binding bid through the configured owner/permission gate.",
+      "created_at": "2026-08-22T00:00:00+08:00",
+      "published_at": null
     }
   ],
-  "last_modified_at": "2026-08-20T00:10:00+08:00"
+  "last_modified_at": "2026-08-22T00:00:00+08:00"
 }
