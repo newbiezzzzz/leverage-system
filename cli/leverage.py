@@ -51,7 +51,20 @@ def cmd_payout_prepare(args: argparse.Namespace)->int:
 def cmd_payout_approve(args: argparse.Namespace)->int:
     approval=approve_payout(args.payout,"Boss");print(f"Owner approval recorded.\nApproval ID: {approval['id']}");ok,reason=can_execute_payout(args.payout);print(f"Transfer   : {'allowed' if ok else 'blocked'} ({reason})");return 0
 def cmd_help(_: argparse.Namespace)->int:
-    print("""\nLeverage — Boss commands\n\n  status / report / health / readiness\n  sync / install-sync / uninstall-sync\n  workers                      Worker queue state\n  project list|new|status <id>|create ...\n  payout prepare ... | payout approve <id>\n\nNatural-language instructions to the AI manager remain the preferred interface.\n""");return 0
+    print("""
+Leverage — Boss commands
+
+  status / report / health / readiness
+  sync / install-sync / uninstall-sync
+  workers                      Worker queue state
+  project list
+  project new
+  project status <id>
+  project create --id <id> --name <name> [--type <type>] [--description <text>]
+  payout prepare ... | payout approve <id>
+
+Natural-language instructions to the AI manager remain the preferred interface.
+""");return 0
 def build_parser()->argparse.ArgumentParser:
     parser=argparse.ArgumentParser(prog="leverage",add_help=False);sub=parser.add_subparsers(dest="command")
     for name,func in [("status",cmd_status),("report",cmd_report),("health",cmd_health),("readiness",cmd_readiness),("sync",cmd_sync),("install-sync",cmd_install_sync),("uninstall-sync",cmd_uninstall_sync),("workers",cmd_system_workers),("help",cmd_help)]:sub.add_parser(name).set_defaults(func=func)
