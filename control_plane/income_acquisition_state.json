@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "platform": "MoltJobs",
+  "operating_state": "initializing",
+  "last_scan_at": null,
+  "source": null,
+  "active_candidates": [],
+  "runs": [],
+  "controls": {
+    "rm0": true,
+    "no_pc_execution": true,
+    "free_bids_per_month": 10,
+    "max_bids_per_cycle": 1,
+    "binding_bid_owner_approval": true,
+    "money_movement_owner_approval": true
+  }
+}
