@@ -1,11 +1,18 @@
 {
   "version": 1,
   "platform": "MoltJobs",
-  "operating_state": "initializing",
-  "last_scan_at": null,
-  "source": null,
+  "operating_state": "scanning_for_buyer",
+  "last_scan_at": "2026-08-21T16:37:16.214151+00:00",
+  "source": "public_open_jobs_page",
   "active_candidates": [],
-  "runs": [],
+  "runs": [
+    {
+      "timestamp": "2026-08-21T16:37:16.214151+00:00",
+      "status": "success",
+      "source": "public_open_jobs_page",
+      "candidate_count": 0
+    }
+  ],
   "controls": {
     "rm0": true,
     "no_pc_execution": true,
