@@ -3,17 +3,11 @@ setlocal
 set "ROOT=%~dp0.."
 for %%I in ("%ROOT%") do set "ROOT=%%~fI"
 set "RUNNER=%ROOT%\tools\run-auto-sync.cmd"
-set "TASK=Leverage Auto Sync"
+set "INSTALLER=%ROOT%\tools\install-auto-sync.ps1"
 
-schtasks /Create /TN "%TASK%" /SC MINUTE /MO 2 /TR "cmd.exe /c \"%RUNNER%\"" /F >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%INSTALLER%" -Root "%ROOT%" -Runner "%RUNNER%"
 if errorlevel 1 (
   echo Failed to install Leverage Auto Sync.
-  exit /b 1
-)
-
-call "%RUNNER%"
-if errorlevel 1 (
-  echo Auto-sync test run failed. Check logs\auto-sync.log.
   exit /b 1
 )
 
