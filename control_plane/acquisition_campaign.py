@@ -2,8 +2,9 @@
 
 Runs without ChatGPT. It creates fresh organic-content/outreach tasks for the
 live Gumroad product, adds concrete prospect-validation work, gives each
-channel a distinct UTM link, deduplicates the queue, and keeps actual sending
-behind channel-specific authorization/policy gates.
+channel a distinct UTM link, prepares an evidence-based offer draft for the
+highest-fit prospect, deduplicates the queue, and keeps actual sending behind
+channel-specific authorization/policy gates.
 """
 from __future__ import annotations
 
@@ -12,9 +13,11 @@ from pathlib import Path
 from datetime import datetime, timezone
 from urllib.parse import urlencode
 
+from .offer_engine import draft_offer
+
 ROOT = Path(__file__).resolve().parent
 PRODUCT = "Fabrication Shop Profit & Quote System"
-PRODUCT_URL = "https://newbiezz.gumroad.com/l/neiqwz"
+PRODUCT_URL = "https://newbiezz.gumroad.com/l/neiqwq"
 QUEUE_PATH = ROOT / "acquisition_queue.json"
 PROSPECTS_PATH = ROOT / "prospects.json"
 
@@ -115,6 +118,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         reverse=True,
     )
     top_prospect = ranked_prospects[0] if ranked_prospects else None
+    offer = draft_offer(top_prospect) if top_prospect else None
 
     for index, pillar in enumerate(CONTENT_PILLARS):
         channel = CHANNELS[index % len(CHANNELS)]
@@ -141,6 +145,8 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
             item["prospect_fit_score"] = top_prospect.get("fit", 0)
             item["prospect_status"] = "research_required"
             item["personalization_basis"] = top_prospect.get("candidate_workflow", "")
+            item["offer_status"] = offer.get("status") if offer else "not_prepared"
+            item["offer_send_status"] = offer.get("send_status") if offer else "not_prepared"
         created.append(item)
 
     prospect_validation = _prospect_validation_items(date_key, prospects, existing_prospect_keys)
@@ -158,6 +164,8 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "policy": "Prospects remain candidates until explicitly validated and accepted; no outreach is sent automatically.",
         "validation_queue_size": len(data["prospect_validation"]),
         "top_candidate": top_prospect.get("id") if top_prospect else None,
+        "offer_status": offer.get("status") if offer else "not_prepared",
+        "offer_send_status": offer.get("send_status") if offer else "not_prepared",
     }
     _save(data)
     return {
@@ -166,6 +174,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "queue_size": len(data["items"]),
         "prospect_validation_size": len(data["prospect_validation"]),
         "top_candidate": top_prospect,
+        "offer": offer,
         "queue": created,
         "prospect_validation": prospect_validation,
     }
@@ -181,6 +190,7 @@ def self_test() -> dict:
         "autonomous": True,
         "sending": "gated",
         "prospect_validation": "enabled",
+        "offer_drafting": "enabled",
         "fresh_candidate_priority": True,
         "utm_tracking": sample,
         "cost_rm": 0,
