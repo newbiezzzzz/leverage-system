@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <title>Leverage | Command Center</title>
-<link rel="stylesheet" href="styles.css?v=32"><link rel="stylesheet" href="layout.css?v=10"><link rel="stylesheet" href="command.css?v=5">
+<link rel="stylesheet" href="styles.css?v=32"><link rel="stylesheet" href="layout.css?v=10"><link rel="stylesheet" href="command.css?v=6">
 </head>
 <body>
 <div class="shell">
@@ -18,7 +18,6 @@
   <div><p class="eyebrow">COMPANY COMMAND</p><h1>What needs to happen next?</h1><p class="muted">One screen for company health, active work and the next decision. Open a project when you need project-level detail.</p></div>
   <div class="hero-badge"><span>MONEY MOVEMENT</span><strong id="moneyGate">PROTECTED</strong><small>Owner approval required</small></div>
 </section>
-
 <section class="grid stats command-stats">
   <article class="card stat"><span>Projects</span><strong id="projectCount">0</strong><small>Portfolio size</small></article>
   <article class="card stat"><span>Active</span><strong id="activeProjects">0</strong><small>Currently operating</small></article>
@@ -27,7 +26,6 @@
   <article class="card stat"><span>Workers</span><strong id="workerStatus">CHECKING</strong><small>Fleet readiness</small></article>
   <article class="card stat"><span>Company</span><strong id="companyStage">SYSTEM</strong><small>Control Plane state</small></article>
 </section>
-
 <section class="grid command-main">
   <div class="card panel attention-panel">
     <div class="panel-head"><div><p class="eyebrow">COMPANY HEALTH</p><h2>Boss attention</h2></div><span class="pill blue-pill" id="healthStatus">CHECKING</span></div>
@@ -40,12 +38,15 @@
     <div id="readinessChecks" class="check-list"></div>
   </div>
 </section>
-
+<section class="card panel acquisition-panel">
+  <div class="panel-head"><div><p class="eyebrow">INCOME ACQUISITION</p><h2>Who can become the next customer?</h2><p class="panel-subtitle">Read-only queue. Candidates are not customers; outreach remains approval-gated.</p></div><span class="pill blue-pill" id="acquisitionStatus">CHECKING</span></div>
+  <div id="acquisitionSummary" class="health-summary muted">Loading acquisition work…</div>
+  <div id="acquisitionQueue" class="acquisition-list"><p class="muted">Loading prospects…</p></div>
+</section>
 <section class="card panel project-panel">
   <div class="panel-head"><div><p class="eyebrow">PROJECT PORTFOLIO</p><h2>Active projects</h2><p class="panel-subtitle">Company view only. Open a project for execution detail.</p></div><a class="ghost" href="projects.html?v=8">View all projects →</a></div>
   <div id="activeProjectCards" class="project-card-grid"><p class="muted">Loading projects…</p></div>
 </section>
-
 <section class="grid lower-grid command-lower">
   <div class="card panel">
     <div class="panel-head"><div><p class="eyebrow">WORKER FLEET</p><h2>Execution capacity</h2></div><span class="pill green-pill">CONTROL PLANE</span></div>
@@ -62,12 +63,11 @@
     <div id="requestResult" class="notice" hidden></div>
   </div>
 </section>
-
 <section class="card panel principle-panel">
   <div><p class="eyebrow">LEVERAGE OPERATING MODEL</p><h2>Company first. Projects second.</h2><p class="muted">Workers, safety rules, finance controls and the Control Plane are reusable company infrastructure. Individual projects are replaceable workloads. Trading is parked; the same system can power future income projects.</p></div>
   <a class="ghost" href="projects.html?v=8">Open project portfolio →</a>
 </section>
 </main>
 </div>
-<script src="command.js?v=8"></script><script src="dashboard-menu.js?v=8"></script>
+<script src="command.js?v=9"></script><script src="dashboard-menu.js?v=8"></script>
 </body></html>
