@@ -4,7 +4,6 @@ import re
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parent
 
 
@@ -26,6 +25,15 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn('id="acquisitionQueue"', html)
         self.assertIn("/api/acquisition-queue", js)
         self.assertIn("prospect-validation", js)
+
+    def test_command_center_exposes_buyer_funnel(self):
+        html = self.read("command.html")
+        js = self.read("command.js")
+        css = self.read("command.css")
+        self.assertIn("BUYER FUNNEL", html)
+        self.assertIn('id="buyerFunnel"', html)
+        self.assertIn("/api/buyer-pipeline", js)
+        self.assertIn("buyer-row", css)
 
     def test_project_detail_uses_same_theme(self):
         html = self.read("project-detail.html")
