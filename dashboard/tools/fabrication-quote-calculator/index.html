@@ -15,4 +15,5 @@
 <section class="card"><h2>Estimate</h2><div class="results"><div class="metric">Direct labor<strong id="labor">RM0.00</strong></div><div class="metric">Estimated cost<strong id="cost">RM0.00</strong></div><div class="metric">Suggested quote<strong id="quote">RM0.00</strong></div><div class="metric">Estimated gross profit<strong id="profit">RM0.00</strong></div></div><p class="note">Planning estimate only. Confirm actual shop costs before accepting a job.</p></section>
 </main>
 <script>function n(id){return Math.max(0,Number(document.getElementById(id).value)||0)}function money(x){return'RM'+x.toFixed(2)}function calculate(){const labor=n('hours')*n('rate');const cost=labor+n('material')+n('consumables')+n('overhead');const quote=cost*(1+n('markup')/100);const profit=quote-cost;document.getElementById('labor').textContent=money(labor);document.getElementById('cost').textContent=money(cost);document.getElementById('quote').textContent=money(quote);document.getElementById('profit').textContent=money(profit)}calculate();</script>
+<script src="/public-telemetry.js" defer></script>
 </body></html>
