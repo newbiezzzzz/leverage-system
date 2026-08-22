@@ -1,0 +1,57 @@
+from __future__ import annotations
+
+import re
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent
+
+
+class DashboardContractTests(unittest.TestCase):
+    def read(self, name: str) -> str:
+        return (ROOT / name).read_text(encoding="utf-8")
+
+    def test_command_center_is_dark_and_uses_shared_shell(self):
+        html = self.read("command.html")
+        self.assertIn('href="styles.css', html)
+        self.assertIn('href="layout.css', html)
+        self.assertIn('href="command.css', html)
+        self.assertNotRegex(html, r"background\s*:\s*white|background-color\s*:\s*white")
+
+    def test_project_detail_uses_same_theme(self):
+        html = self.read("project-detail.html")
+        self.assertIn('href="styles.css', html)
+        self.assertIn('href="layout.css', html)
+        self.assertIn('href="command.css', html)
+        self.assertIn('href="project-detail.css', html)
+        self.assertNotRegex(html, r"background\s*:\s*white|background-color\s*:\s*white")
+
+    def test_project_detail_is_local_api_first(self):
+        js = self.read("project-detail.js")
+        for endpoint in ("/api/projects", "/api/project-types", "/api/project-metrics", "/api/snapshot"):
+            self.assertIn(endpoint, js)
+        self.assertIn("/api/projects/", js)
+        self.assertNotIn("raw.githubusercontent.com", js)
+        self.assertNotIn("github.com/newbiezzzzz/leverage-system/raw", js)
+
+    def test_project_detail_has_no_embedded_light_theme(self):
+        html = self.read("project-detail.html")
+        self.assertNotIn("background:#fff", html.replace(" ", ""))
+        self.assertNotIn("background: #fff", html)
+        self.assertNotIn("color:#111", html.replace(" ", ""))
+
+    def test_project_detail_escapes_rendered_values(self):
+        js = self.read("project-detail.js")
+        self.assertIn("function esc", js)
+        self.assertIn("esc(p.name)", js)
+        self.assertIn("esc(p.id)", js)
+        self.assertIn("esc(p.description", js)
+
+    def test_required_dashboard_files_exist(self):
+        for name in ("index.html", "command.html", "command.js", "projects.html", "projects.js", "project-detail.html", "project-detail.js", "styles.css", "layout.css", "command.css", "project-detail.css"):
+            self.assertTrue((ROOT / name).is_file(), name)
+
+
+if __name__ == "__main__":
+    unittest.main()
