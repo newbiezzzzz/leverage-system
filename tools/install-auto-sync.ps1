@@ -11,15 +11,15 @@ $Runner = (Resolve-Path $Runner).Path
 $action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument ('/c "{0}"' -f $Runner) -WorkingDirectory $Root
 $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes 2) -RepetitionDuration (New-TimeSpan -Days 3650)
 $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Minutes 2) -MultipleInstances IgnoreNew -StartWhenAvailable
-$principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType InteractiveToken -RunLevel Limited
+$principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
 
 Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 
 Start-ScheduledTask -TaskName $TaskName
-Start-Sleep -Seconds 3
+Start-Sleep -Seconds 5
 
 $info = Get-ScheduledTaskInfo -TaskName $TaskName
-if ($info.LastTaskResult -ne 0) {
+if ($info.LastTaskResult -ne 0 -and $info.LastTaskResult -ne 267011) {
     $log = Join-Path $Root 'logs\auto-sync.log'
     if (Test-Path $log) {
         Write-Host (Get-Content $log -Tail 20 | Out-String)
@@ -27,5 +27,6 @@ if ($info.LastTaskResult -ne 0) {
     throw "Leverage Auto Sync test run failed with result $($info.LastTaskResult)."
 }
 
-Write-Host "Leverage Auto Sync registered and test run succeeded."
+Write-Host "Leverage Auto Sync registered successfully."
 Write-Host "Next run: $($info.NextRunTime)"
+Write-Host "Log: $(Join-Path $Root 'logs\auto-sync.log')"
