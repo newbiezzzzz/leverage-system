@@ -10,10 +10,13 @@ import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "dashboard"
-TRACKED_PROJECTS_FILE = ROOT / "control_plane" / "projects.json"
+CONTROL_PLANE = ROOT / "control_plane"
+TRACKED_PROJECTS_FILE = CONTROL_PLANE / "projects.json"
+PROJECT_TYPES_FILE = CONTROL_PLANE / "project_types.json"
+PROJECT_METRICS_FILE = CONTROL_PLANE / "project_metrics.json"
 sys.path.insert(0, str(ROOT))
 
-from control_plane.company_core import Project, list_projects
+from control_plane.company_core import Project
 from control_plane.company_ops import intake_project, create_project_plan, system_snapshot
 from control_plane.gates import project_gate_report
 from control_plane.health import company_health
@@ -22,7 +25,7 @@ from control_plane.delivery_gateway import create_order, get_order, list_orders
 from control_plane.runtime_state import ensure_runtime_state, state_path
 
 HOST, PORT = "127.0.0.1", 8765
-API_VERSION = "1.8"
+API_VERSION = "1.9"
 
 
 def body(data: dict) -> bytes:
@@ -51,13 +54,16 @@ def _read_project_file(path: Path) -> list[dict]:
         return []
 
 
-def read_project_records() -> list[dict]:
-    """Return authoritative raw project records, preserving extended metadata.
+def _read_json_file(path: Path, fallback: dict) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else fallback
+    except (OSError, json.JSONDecodeError):
+        return fallback
 
-    The Project dataclass intentionally contains only stable core fields. The
-    dashboard also needs adapter/channel metadata (store, URL, price, evidence,
-    timestamps, etc.), so the API must not serialize Project.__dict__ here.
-    """
+
+def read_project_records() -> list[dict]:
+    """Return authoritative raw project records, preserving extended metadata."""
     ensure_runtime_state()
     runtime_records = _read_project_file(state_path("projects.json"))
     if runtime_records:
@@ -98,6 +104,12 @@ class Handler(BaseHTTPRequestHandler):
                 return
             if path == "/api/projects":
                 self.send_json(200, {"ok": True, "api_version": API_VERSION, "projects": read_project_records()})
+                return
+            if path == "/api/project-types":
+                self.send_json(200, {"ok": True, "types": _read_json_file(PROJECT_TYPES_FILE, {"types": {}})})
+                return
+            if path == "/api/project-metrics":
+                self.send_json(200, {"ok": True, "metrics": _read_json_file(PROJECT_METRICS_FILE, {"projects": {}})})
                 return
             if path == "/api/customer-orders":
                 self.send_json(200, {"ok": True, "orders": list_orders()})
@@ -188,9 +200,7 @@ class SingleInstanceServer(ThreadingHTTPServer):
         try:
             super().server_bind()
         except OSError as exc:
-            raise RuntimeError(
-                f"Leverage API port {PORT} is already in use. Stop the existing LeverageLocalAPI process before starting another instance."
-            ) from exc
+            raise RuntimeError(f"Leverage API port {PORT} is already in use. Stop the existing LeverageLocalAPI process before starting another instance.") from exc
 
 
 def serve() -> None:
