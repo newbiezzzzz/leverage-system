@@ -19,6 +19,7 @@ class ReadinessTests(unittest.TestCase):
         self.assertIn("financial_boundary", names)
         self.assertIn("resource_safety", names)
         self.assertIn("worker_fleet", names)
+        self.assertIn("project_registry", names)
 
 
 if __name__ == "__main__":
