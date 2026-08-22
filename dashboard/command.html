@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <title>Leverage | Command Center</title>
-<link rel="stylesheet" href="styles.css?v=32"><link rel="stylesheet" href="layout.css?v=10"><link rel="stylesheet" href="command.css?v=6">
+<link rel="stylesheet" href="styles.css?v=32"><link rel="stylesheet" href="layout.css?v=10"><link rel="stylesheet" href="command.css?v=7">
 </head>
 <body>
 <div class="shell">
@@ -27,47 +27,29 @@
   <article class="card stat"><span>Company</span><strong id="companyStage">SYSTEM</strong><small>Control Plane state</small></article>
 </section>
 <section class="grid command-main">
-  <div class="card panel attention-panel">
-    <div class="panel-head"><div><p class="eyebrow">COMPANY HEALTH</p><h2>Boss attention</h2></div><span class="pill blue-pill" id="healthStatus">CHECKING</span></div>
-    <div id="healthSummary" class="health-summary muted">Checking company health…</div>
-    <div id="healthAlerts" class="attention-list"></div>
-  </div>
-  <div class="card panel readiness-panel">
-    <div class="panel-head"><div><p class="eyebrow">SYSTEM READINESS</p><h2>Can Leverage take the next project?</h2></div><span class="pill blue-pill" id="readinessStatus">CHECKING</span></div>
-    <div id="readinessSummary" class="health-summary muted">Checking the release gate…</div>
-    <div id="readinessChecks" class="check-list"></div>
-  </div>
+  <div class="card panel attention-panel"><div class="panel-head"><div><p class="eyebrow">COMPANY HEALTH</p><h2>Boss attention</h2></div><span class="pill blue-pill" id="healthStatus">CHECKING</span></div><div id="healthSummary" class="health-summary muted">Checking company health…</div><div id="healthAlerts" class="attention-list"></div></div>
+  <div class="card panel readiness-panel"><div class="panel-head"><div><p class="eyebrow">SYSTEM READINESS</p><h2>Can Leverage take the next project?</h2></div><span class="pill blue-pill" id="readinessStatus">CHECKING</span></div><div id="readinessSummary" class="health-summary muted">Checking the release gate…</div><div id="readinessChecks" class="check-list"></div></div>
 </section>
 <section class="card panel acquisition-panel">
-  <div class="panel-head"><div><p class="eyebrow">INCOME ACQUISITION</p><h2>Who can become the next customer?</h2><p class="panel-subtitle">Read-only queue. Candidates are not customers; outreach remains approval-gated.</p></div><span class="pill blue-pill" id="acquisitionStatus">CHECKING</span></div>
+  <div class="panel-head"><div><p class="eyebrow">INCOME ACQUISITION</p><h2>Who can become the next customer?</h2><p class="panel-subtitle">Candidates are not customers. External contact remains approval-gated.</p></div><span class="pill blue-pill" id="acquisitionStatus">CHECKING</span></div>
   <div id="acquisitionSummary" class="health-summary muted">Loading acquisition work…</div>
   <div id="acquisitionQueue" class="acquisition-list"><p class="muted">Loading prospects…</p></div>
+</section>
+<section class="card panel buyer-panel">
+  <div class="panel-head"><div><p class="eyebrow">BUYER FUNNEL</p><h2>Where each prospect stands</h2><p class="panel-subtitle">Evidence and approval determine every stage.</p></div><span class="pill blue-pill" id="buyerStatus">CHECKING</span></div>
+  <div id="buyerSummary" class="health-summary muted">Loading buyer pipeline…</div>
+  <div id="buyerFunnel" class="buyer-funnel"><p class="muted">Loading buyer states…</p></div>
 </section>
 <section class="card panel project-panel">
   <div class="panel-head"><div><p class="eyebrow">PROJECT PORTFOLIO</p><h2>Active projects</h2><p class="panel-subtitle">Company view only. Open a project for execution detail.</p></div><a class="ghost" href="projects.html?v=8">View all projects →</a></div>
   <div id="activeProjectCards" class="project-card-grid"><p class="muted">Loading projects…</p></div>
 </section>
 <section class="grid lower-grid command-lower">
-  <div class="card panel">
-    <div class="panel-head"><div><p class="eyebrow">WORKER FLEET</p><h2>Execution capacity</h2></div><span class="pill green-pill">CONTROL PLANE</span></div>
-    <div id="workerQueues" class="worker-list"><p class="muted">Loading worker queues…</p></div>
-  </div>
-  <div class="card panel request-panel">
-    <div class="panel-head"><div><p class="eyebrow">BOSS REQUEST</p><h2>Start a project</h2></div><span class="pill blue-pill">INTAKE</span></div>
-    <form id="projectForm" class="command-form">
-      <label>Project idea<input id="projectName" required placeholder="e.g. AI invoice automation for SMEs"></label>
-      <label>Desired outcome<textarea id="projectGoal" required rows="4" placeholder="Tell Leverage the result you want. Workers will turn it into a structured plan."></textarea></label>
-      <label>Type<select id="projectType"><option value="saas">SaaS / software</option><option value="automation">Automation / service</option><option value="digital-product">Digital product</option><option value="research">Research</option><option value="other">Other</option></select></label>
-      <button class="primary" type="submit">Create project brief</button>
-    </form>
-    <div id="requestResult" class="notice" hidden></div>
-  </div>
+  <div class="card panel"><div class="panel-head"><div><p class="eyebrow">WORKER FLEET</p><h2>Execution capacity</h2></div><span class="pill green-pill">CONTROL PLANE</span></div><div id="workerQueues" class="worker-list"><p class="muted">Loading worker queues…</p></div></div>
+  <div class="card panel request-panel"><div class="panel-head"><div><p class="eyebrow">BOSS REQUEST</p><h2>Start a project</h2></div><span class="pill blue-pill">INTAKE</span></div><form id="projectForm" class="command-form"><label>Project idea<input id="projectName" required placeholder="e.g. AI invoice automation for SMEs"></label><label>Desired outcome<textarea id="projectGoal" required rows="4" placeholder="Tell Leverage the result you want. Workers will turn it into a structured plan."></textarea></label><label>Type<select id="projectType"><option value="saas">SaaS / software</option><option value="automation">Automation / service</option><option value="digital-product">Digital product</option><option value="research">Research</option><option value="other">Other</option></select></label><button class="primary" type="submit">Create project brief</button></form><div id="requestResult" class="notice" hidden></div></div>
 </section>
-<section class="card panel principle-panel">
-  <div><p class="eyebrow">LEVERAGE OPERATING MODEL</p><h2>Company first. Projects second.</h2><p class="muted">Workers, safety rules, finance controls and the Control Plane are reusable company infrastructure. Individual projects are replaceable workloads. Trading is parked; the same system can power future income projects.</p></div>
-  <a class="ghost" href="projects.html?v=8">Open project portfolio →</a>
-</section>
+<section class="card panel principle-panel"><div><p class="eyebrow">LEVERAGE OPERATING MODEL</p><h2>Company first. Projects second.</h2><p class="muted">Workers, safety rules, finance controls and the Control Plane are reusable company infrastructure. Individual projects are replaceable workloads. Trading is parked; the same system can power future income projects.</p></div><a class="ghost" href="projects.html?v=8">Open project portfolio →</a></section>
 </main>
 </div>
-<script src="command.js?v=9"></script><script src="dashboard-menu.js?v=8"></script>
+<script src="command.js?v=10"></script><script src="dashboard-menu.js?v=8"></script>
 </body></html>
