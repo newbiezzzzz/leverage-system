@@ -37,7 +37,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Run company OS tests
-        run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py control_plane/test_company_ops.py control_plane/test_gates.py control_plane/test_cli.py control_plane/test_readiness.py control_plane/test_project_admin.py control_plane/test_local_sync.py control_plane/test_acquisition_worker.py control_plane/test_acquisition_campaign.py control_plane/test_offer_engine.py control_plane/test_buyer_pipeline.py control_plane/test_buyer_pipeline_store.py control_plane/test_delivery_gateway.py control_plane/test_channel_adapter.py control_plane/test_gumroad_connector.py server/test_api.py workers/test_runtime.py workers/test_digital_product_worker.py dashboard/test_dashboard.py
+        run: python -m unittest -v control_plane/test_company_core.py control_plane/test_finance_core.py control_plane/test_dispatcher.py control_plane/test_company_ops.py control_plane/test_gates.py control_plane/test_cli.py control_plane/test_readiness.py control_plane/test_project_admin.py control_plane/test_local_sync.py control_plane/test_acquisition_worker.py control_plane/test_acquisition_campaign.py control_plane/test_offer_engine.py control_plane/test_buyer_pipeline.py control_plane/test_buyer_pipeline_store.py control_plane/test_outreach_adapter.py control_plane/test_delivery_gateway.py control_plane/test_channel_adapter.py control_plane/test_gumroad_connector.py server/test_api.py workers/test_runtime.py workers/test_digital_product_worker.py dashboard/test_dashboard.py
       - name: Worker runtime tests
         run: python -m unittest -v workers.test_runtime
       - name: Dashboard contract tests
@@ -48,6 +48,8 @@ jobs:
         run: python -m control_plane.offer_engine
       - name: Buyer pipeline self-test
         run: python -m control_plane.buyer_pipeline
+      - name: Outreach adapter self-test
+        run: python -m control_plane.outreach_adapter
       - name: Company OS release gate
         run: python -m control_plane.readiness
       - name: Worker self-tests
