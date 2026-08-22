@@ -5,16 +5,19 @@ from pathlib import Path
 import json
 from .runtime_state import state_path
 
+ROOT = Path(__file__).resolve().parent
 PROJECTS_FILE = state_path("projects.json")
 TASKS_FILE = state_path("tasks.json")
 LEDGER_FILE = state_path("financial_ledger.json")
 GATES_FILE = state_path("gates.json")
-GATE_ORDER = ["intake", "validation", "build", "launch", "operate", "revenue", "payout-ready"]
+METRICS_FILE = ROOT / "project_metrics.json"
+GATE_ORDER = ["intake", "validation", "build", "launch", "acquire", "operate", "revenue", "payout-ready"]
 GATE_RULES = {
     "intake": {"label": "Project intake", "requires": "A clear project goal and initial workflow plan."},
     "validation": {"label": "Validation", "requires": "Research and data validation are completed."},
     "build": {"label": "Build readiness", "requires": "The validated idea is ready for implementation."},
     "launch": {"label": "Launch readiness", "requires": "Build and test evidence are complete."},
+    "acquire": {"label": "Acquisition readiness", "requires": "A verified acquisition/measurement source is connected; unknown traffic is not treated as zero."},
     "operate": {"label": "Operations readiness", "requires": "Operational verification and customer workflow are complete."},
     "revenue": {"label": "Revenue evidence", "requires": "Verified income has been recorded."},
     "payout-ready": {"label": "Payout readiness", "requires": "Revenue is recorded and a payout has been prepared."},
@@ -25,6 +28,12 @@ def _now() -> str: return datetime.now(timezone.utc).isoformat()
 def _tasks(project_id: str) -> list[dict]: return [t for t in _load(TASKS_FILE).get("tasks", []) if t.get("project") == project_id]
 def _revenue(project_id: str) -> list[dict]: return [e for e in _load(LEDGER_FILE).get("entries", []) if e.get("project_id") == project_id and e.get("direction") == "income" and e.get("verified")]
 def _payouts(project_id: str) -> list[dict]: return [p for p in _load(LEDGER_FILE).get("payout_queue", []) if p.get("project_id") == project_id]
+
+def _metrics(project_id: str) -> dict:
+    try:
+        return _load(METRICS_FILE).get("projects", {}).get(project_id, {})
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return {}
 
 def evaluate_gate(project_id: str, stage: str) -> dict:
     if stage not in GATE_RULES: raise ValueError(f"unknown gate: {stage}")
@@ -41,6 +50,13 @@ def evaluate_gate(project_id: str, stage: str) -> dict:
     elif stage == "launch":
         ready={"build","test"}.issubset(completed)
         for action in ("build","test"): (evidence.append(f"{action} evidence completed") if action in completed else reasons.append(f"{action} task is not completed"))
+    elif stage == "acquire":
+        traffic = _metrics(project_id).get("traffic", {})
+        ready = traffic.get("status") == "connected" and bool(traffic.get("measurement_source"))
+        if ready:
+            evidence.append(f"verified acquisition source connected: {traffic.get('measurement_source')}")
+        else:
+            reasons.append("no verified acquisition/measurement source is connected")
     elif stage == "operate":
         ready={"verify","intake"}.issubset(completed)
         for action in ("verify","intake"): (evidence.append(f"{action} evidence completed") if action in completed else reasons.append(f"{action} task is not completed"))
