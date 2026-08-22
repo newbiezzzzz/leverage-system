@@ -73,11 +73,20 @@ def read_project_records() -> list[dict]:
 
 
 def read_acquisition_queue() -> dict:
-    """Return the read-only acquisition work queue for dashboard visibility."""
-    return _read_json_file(
+    """Return a stable, backward-compatible acquisition queue shape."""
+    queue = _read_json_file(
         ACQUISITION_QUEUE_FILE,
         {"version": 0, "items": [], "prospect_validation": [], "tracking": {}},
     )
+    if not isinstance(queue.get("items"), list):
+        queue["items"] = []
+    if not isinstance(queue.get("prospect_validation"), list):
+        queue["prospect_validation"] = []
+    if not isinstance(queue.get("tracking"), dict):
+        queue["tracking"] = {}
+    queue.setdefault("version", 0)
+    queue["schema_version"] = 3 if "prospect_validation" in queue else 2
+    return queue
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -121,8 +130,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(200, {"ok": True, "metrics": _read_json_file(PROJECT_METRICS_FILE, {"projects": {}})})
                 return
             if path == "/api/acquisition-queue":
-                queue = read_acquisition_queue()
-                self.send_json(200, {"ok": True, "queue": queue})
+                self.send_json(200, {"ok": True, "queue": read_acquisition_queue()})
                 return
             if path == "/api/customer-orders":
                 self.send_json(200, {"ok": True, "orders": list_orders()})
