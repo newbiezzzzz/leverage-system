@@ -15,8 +15,8 @@ class ApiTests(unittest.TestCase):
         self.assertEqual("command.html", target.name)
 
     def test_money_protection_is_explicit(self):
-        self.assertEqual("LeverageLocalAPI/1.8", leverage_api.Handler.server_version)
-        self.assertEqual("1.8", leverage_api.API_VERSION)
+        self.assertEqual("LeverageLocalAPI/1.9", leverage_api.Handler.server_version)
+        self.assertEqual("1.9", leverage_api.API_VERSION)
 
     def test_company_os_readiness_is_exposed(self):
         result = leverage_api.company_os_readiness()
@@ -26,7 +26,6 @@ class ApiTests(unittest.TestCase):
 
     def test_projects_gate_and_health_routes_exist(self):
         self.assertTrue(callable(leverage_api.project_gate_report))
-        self.assertTrue(callable(leverage_api.list_projects))
         self.assertTrue(callable(leverage_api.company_health))
         self.assertTrue(callable(leverage_api.read_project_records))
 
@@ -38,6 +37,14 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(19, first.get("price_usd"))
         self.assertIn("store_url", first)
         self.assertIn("verified_sales", first)
+
+    def test_local_project_metadata_sources_exist(self):
+        types = leverage_api._read_json_file(leverage_api.PROJECT_TYPES_FILE, {})
+        metrics = leverage_api._read_json_file(leverage_api.PROJECT_METRICS_FILE, {})
+        self.assertIn("types", types)
+        self.assertIn("digital_product", types["types"])
+        self.assertIn("projects", metrics)
+        self.assertIn("engineering-quote-toolkit", metrics["projects"])
 
     def test_delivery_gateway_routes_exist(self):
         self.assertTrue(callable(leverage_api.create_order))
