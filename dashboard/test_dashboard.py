@@ -19,6 +19,14 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn('href="command.css', html)
         self.assertNotRegex(html, r"background\s*:\s*white|background-color\s*:\s*white")
 
+    def test_command_center_exposes_acquisition_queue(self):
+        html = self.read("command.html")
+        js = self.read("command.js")
+        self.assertIn("INCOME ACQUISITION", html)
+        self.assertIn('id="acquisitionQueue"', html)
+        self.assertIn("/api/acquisition-queue", js)
+        self.assertIn("prospect-validation", js)
+
     def test_project_detail_uses_same_theme(self):
         html = self.read("project-detail.html")
         self.assertIn('href="styles.css', html)
@@ -53,5 +61,4 @@ class DashboardContractTests(unittest.TestCase):
             self.assertTrue((ROOT / name).is_file(), name)
 
 
-if __name__ == "__main__":
-    unittest.main()
+if __name__ == "__main__": unittest.main()
