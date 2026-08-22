@@ -30,6 +30,15 @@ class ApiTests(unittest.TestCase):
         self.assertTrue(callable(leverage_api.company_health))
         self.assertTrue(callable(leverage_api.read_project_records))
 
+    def test_project_api_preserves_extended_metadata(self):
+        projects = leverage_api.read_project_records()
+        self.assertTrue(projects)
+        first = next(p for p in projects if p.get("id") == "engineering-quote-toolkit")
+        self.assertEqual("Gumroad", first.get("store"))
+        self.assertEqual(19, first.get("price_usd"))
+        self.assertIn("store_url", first)
+        self.assertIn("verified_sales", first)
+
     def test_delivery_gateway_routes_exist(self):
         self.assertTrue(callable(leverage_api.create_order))
         self.assertTrue(callable(leverage_api.get_order))
