@@ -15,8 +15,8 @@ class ApiTests(unittest.TestCase):
         self.assertEqual("command.html", target.name)
 
     def test_money_protection_is_explicit(self):
-        self.assertEqual("LeverageLocalAPI/2.0", leverage_api.Handler.server_version)
-        self.assertEqual("2.0", leverage_api.API_VERSION)
+        self.assertEqual("LeverageLocalAPI/2.1", leverage_api.Handler.server_version)
+        self.assertEqual("2.1", leverage_api.API_VERSION)
 
     def test_company_os_readiness_is_exposed(self):
         result = leverage_api.company_os_readiness()
@@ -50,6 +50,11 @@ class ApiTests(unittest.TestCase):
         queue = leverage_api.read_acquisition_queue()
         self.assertIn("items", queue)
         self.assertIn("prospect_validation", queue)
+
+    def test_buyer_pipeline_route_exists(self):
+        self.assertTrue(callable(leverage_api.get_pipeline))
+        self.assertTrue(callable(leverage_api.list_pipelines))
+        self.assertTrue(callable(leverage_api.transition_pipeline))
 
     def test_delivery_gateway_routes_exist(self):
         self.assertTrue(callable(leverage_api.create_order))
