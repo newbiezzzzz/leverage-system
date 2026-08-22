@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-08-22T06:53:11.869970+00:00",
+  "generated_at": "2026-08-22T07:37:48.410864+00:00",
   "resources": [
     {
       "provider": "GitHub",
       "metric": "REST API requests",
       "status": "safe",
-      "used": 4,
+      "used": 28,
       "limit": 5000,
-      "remaining": 4996,
+      "remaining": 4972,
       "reset_at": "2026-08-22T07:43:24+00:00",
       "quota_verified": true,
       "source": "github:/rate_limit",
-      "checked_at": "2026-08-22T06:53:11.868903+00:00"
+      "checked_at": "2026-08-22T07:37:48.409565+00:00"
     },
     {
       "provider": "Gemini",
@@ -23,7 +23,7 @@
       "reset_at": null,
       "quota_verified": false,
       "source": "provider_quota_not_exposed",
-      "checked_at": "2026-08-22T06:53:11.868918+00:00"
+      "checked_at": "2026-08-22T07:37:48.409585+00:00"
     },
     {
       "provider": "GitHub Actions",
@@ -35,7 +35,7 @@
       "reset_at": null,
       "quota_verified": false,
       "source": "provider_quota_not_exposed",
-      "checked_at": "2026-08-22T06:53:11.868923+00:00"
+      "checked_at": "2026-08-22T07:37:48.409592+00:00"
     },
     {
       "provider": "GitHub Pages",
@@ -47,7 +47,7 @@
       "reset_at": null,
       "quota_verified": false,
       "source": "provider_quota_not_exposed",
-      "checked_at": "2026-08-22T06:53:11.868927+00:00"
+      "checked_at": "2026-08-22T07:37:48.409597+00:00"
     }
   ],
   "policy": {
