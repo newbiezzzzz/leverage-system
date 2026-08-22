@@ -17,16 +17,21 @@ COMPANY_FILE = ROOT / "company.json"
 PROJECTS_FILE = state_path("projects.json")
 APPROVALS_FILE = state_path("approvals.json")
 
+# Lifecycle describes where the project is in the delivery/income pipeline.
+# Status is the operational state (active/paused/retired). They are deliberately
+# separate so a project can be ACTIVE while sitting at the ACQUIRE or REVENUE gate.
 LIFECYCLE = [
-    "intake", "validation", "build", "launch", "operate",
+    "intake", "validation", "build", "launch", "acquire", "operate",
     "revenue", "payout-ready", "paused", "retired"
 ]
+OPERATIONAL_STATUSES = {"active", "paused", "retired"}
 
 ALLOWED_TRANSITIONS = {
     "intake": {"validation", "paused", "retired"},
     "validation": {"build", "paused", "retired"},
     "build": {"launch", "paused", "retired"},
-    "launch": {"operate", "paused", "retired"},
+    "launch": {"acquire", "operate", "paused", "retired"},
+    "acquire": {"operate", "revenue", "paused", "retired"},
     "operate": {"revenue", "paused", "retired"},
     "revenue": {"payout-ready", "operate", "paused", "retired"},
     "payout-ready": {"operate", "paused", "retired"},
@@ -40,7 +45,7 @@ class Project:
     name: str
     project_no: str = ""
     type: str = "general"
-    status: str = "intake"
+    status: str = "active"
     lifecycle_stage: str = "intake"
     revenue_status: str = "none"
     capital_deployed: float = 0.0
@@ -77,10 +82,9 @@ def validate_project(project: Project) -> list[str]:
     if not project.id.strip(): errors.append("project id is required")
     if not project.name.strip(): errors.append("project name is required")
     if project.lifecycle_stage not in LIFECYCLE: errors.append(f"invalid lifecycle stage: {project.lifecycle_stage}")
-    if project.status not in LIFECYCLE: errors.append(f"invalid project status: {project.status}")
+    if project.status not in OPERATIONAL_STATUSES: errors.append(f"invalid operational status: {project.status}")
     if project.capital_deployed < 0: errors.append("capital_deployed cannot be negative")
     if project.currency != "MYR": errors.append("default company currency is MYR")
-    if project.status != project.lifecycle_stage: errors.append("project status and lifecycle_stage must match")
     return errors
 
 
@@ -107,10 +111,14 @@ def change_stage(project_id: str, stage: str, reason: str) -> Project:
     data = load_json(PROJECTS_FILE)
     for item in data.get("projects", []):
         if item["id"] == project_id:
-            current = item.get("lifecycle_stage", item.get("status", "intake"))
+            current = item.get("lifecycle_stage", "intake")
             if current != stage and not can_change_stage(current, stage):
                 raise ValueError(f"invalid lifecycle transition: {current} -> {stage}")
-            item["lifecycle_stage"] = stage; item["status"] = stage; item["next_gate"] = reason; data["last_modified_at"] = utc_now(); save_json(PROJECTS_FILE, data); return project_from_record(item)
+            item["lifecycle_stage"] = stage
+            item["next_gate"] = reason
+            # Do NOT overwrite operational status here. A project may be active
+            # while progressing through acquire/revenue/payout-ready gates.
+            data["last_modified_at"] = utc_now(); save_json(PROJECTS_FILE, data); return project_from_record(item)
     raise KeyError(f"project not found: {project_id}")
 
 
@@ -124,4 +132,4 @@ def has_owner_approval(action: str, target: str) -> bool:
 
 if __name__ == "__main__":
     company = load_json(COMPANY_FILE); projects = list_projects(); print(f"Leverage company: {company['company']['name']}"); print(f"Projects registered: {len(projects)}")
-    for project in projects: print(f"- {project.project_no or project.id}: {project.lifecycle_stage}")
+    for project in projects: print(f"- {project.project_no or project.id}: {project.lifecycle_stage} ({project.status})")
