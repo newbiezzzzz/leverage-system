@@ -19,6 +19,7 @@ from control_plane.gates import project_gate_report
 from control_plane.health import company_health
 from control_plane.readiness import company_os_readiness
 from control_plane.delivery_gateway import create_order, get_order, list_orders
+from control_plane.runtime_state import ensure_runtime_state, state_path
 
 HOST, PORT = "127.0.0.1", 8765
 API_VERSION = "1.8"
@@ -41,17 +42,27 @@ def safe_dashboard_path(request_path: str) -> Path | None:
     return target if target.is_file() else None
 
 
-def read_project_records() -> list[dict]:
-    """Read local runtime project state, with a tracked-state fallback for a fresh install."""
-    runtime_records = [p.__dict__ for p in list_projects()]
-    if runtime_records:
-        return runtime_records
+def _read_project_file(path: Path) -> list[dict]:
     try:
-        tracked = json.loads(TRACKED_PROJECTS_FILE.read_text(encoding="utf-8"))
-        records = tracked.get("projects", [])
+        data = json.loads(path.read_text(encoding="utf-8"))
+        records = data.get("projects", [])
         return records if isinstance(records, list) else []
     except (OSError, json.JSONDecodeError, AttributeError):
         return []
+
+
+def read_project_records() -> list[dict]:
+    """Return authoritative raw project records, preserving extended metadata.
+
+    The Project dataclass intentionally contains only stable core fields. The
+    dashboard also needs adapter/channel metadata (store, URL, price, evidence,
+    timestamps, etc.), so the API must not serialize Project.__dict__ here.
+    """
+    ensure_runtime_state()
+    runtime_records = _read_project_file(state_path("projects.json"))
+    if runtime_records:
+        return runtime_records
+    return _read_project_file(TRACKED_PROJECTS_FILE)
 
 
 class Handler(BaseHTTPRequestHandler):
