@@ -24,9 +24,10 @@ from control_plane.health import company_health
 from control_plane.readiness import company_os_readiness
 from control_plane.delivery_gateway import create_order, get_order, list_orders
 from control_plane.runtime_state import ensure_runtime_state, state_path
+from control_plane.buyer_pipeline_store import get_pipeline, list_pipelines, transition_pipeline
 
 HOST, PORT = "127.0.0.1", 8765
-API_VERSION = "2.0"
+API_VERSION = "2.1"
 
 
 def body(data: dict) -> bytes:
@@ -85,7 +86,7 @@ def read_acquisition_queue() -> dict:
     if not isinstance(queue.get("tracking"), dict):
         queue["tracking"] = {}
     queue.setdefault("version", 0)
-    queue["schema_version"] = 3 if "prospect_validation" in queue else 2
+    queue["schema_version"] = 3
     return queue
 
 
@@ -131,6 +132,13 @@ class Handler(BaseHTTPRequestHandler):
                 return
             if path == "/api/acquisition-queue":
                 self.send_json(200, {"ok": True, "queue": read_acquisition_queue()})
+                return
+            if path == "/api/buyer-pipeline":
+                self.send_json(200, {"ok": True, "pipelines": list_pipelines()})
+                return
+            if path.startswith("/api/buyer-pipeline/"):
+                prospect_id = unquote(path[len("/api/buyer-pipeline/"):]).strip("/")
+                self.send_json(200, {"ok": True, "pipeline": get_pipeline(prospect_id)})
                 return
             if path == "/api/customer-orders":
                 self.send_json(200, {"ok": True, "orders": list_orders()})
@@ -190,6 +198,20 @@ class Handler(BaseHTTPRequestHandler):
                 created = intake_project(project)
                 tasks = create_project_plan(created.id)
                 self.send_json(201, {"ok": True, "project": created.__dict__, "tasks_created": len(tasks), "api_version": API_VERSION})
+                return
+
+            if path.startswith("/api/buyer-pipeline/"):
+                prospect_id = unquote(path[len("/api/buyer-pipeline/"):]).strip("/")
+                target = str(data.get("target", "")).strip()
+                if not target:
+                    raise ValueError("target is required")
+                result = transition_pipeline(
+                    prospect_id,
+                    target,
+                    approvals=[str(x) for x in (data.get("approvals") or [])],
+                    evidence=[str(x) for x in (data.get("evidence") or [])],
+                )
+                self.send_json(200, {"ok": True, "pipeline": result, "api_version": API_VERSION})
                 return
 
             if path == "/api/customer-orders":
