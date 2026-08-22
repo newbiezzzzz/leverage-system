@@ -1,7 +1,7 @@
 """Autonomous, policy-safe acquisition campaign planner.
 
 Runs without ChatGPT. It creates fresh organic-content/outreach tasks for the
-live Gumroad product, adds a concrete prospect-validation queue, gives each
+live Gumroad product, adds concrete prospect-validation work, gives each
 channel a distinct UTM link, deduplicates the queue, and keeps actual sending
 behind channel-specific authorization/policy gates.
 """
@@ -60,7 +60,15 @@ def tracked_url(channel: str, date_key: str) -> str:
 
 def _prospect_validation_items(date_key: str, prospects: list[dict], existing: set[str]) -> list[dict]:
     created: list[dict] = []
-    ranked = sorted(prospects, key=lambda item: (item.get("fit", 0), item.get("public_contact_available", False)), reverse=True)
+    ranked = sorted(
+        prospects,
+        key=lambda item: (
+            item.get("validation_status") == "fresh_candidate",
+            item.get("fit", 0),
+            item.get("public_contact_available", False),
+        ),
+        reverse=True,
+    )
     for prospect in ranked[:10]:
         if not prospect.get("public_contact_available"):
             continue
@@ -78,6 +86,9 @@ def _prospect_validation_items(date_key: str, prospects: list[dict], existing: s
             "category": prospect.get("category", ""),
             "location": prospect.get("location", ""),
             "candidate_workflow": prospect.get("candidate_workflow", ""),
+            "why_fit": prospect.get("why_fit", ""),
+            "public_contact": prospect.get("public_contact", {}),
+            "evidence": prospect.get("evidence", []),
             "status": "research_required",
             "next_action": "validate_problem_and_public_contact",
             "requires_owner_or_policy_approval": ["outreach", "customer_commitment"],
@@ -94,7 +105,15 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
     created = []
     date_key = now.date().isoformat()
     prospects = _load_prospects()
-    ranked_prospects = sorted(prospects, key=lambda item: item.get("fit", 0), reverse=True)
+    ranked_prospects = sorted(
+        prospects,
+        key=lambda item: (
+            item.get("validation_status") == "fresh_candidate",
+            item.get("fit", 0),
+            item.get("public_contact_available", False),
+        ),
+        reverse=True,
+    )
     top_prospect = ranked_prospects[0] if ranked_prospects else None
 
     for index, pillar in enumerate(CONTENT_PILLARS):
@@ -119,7 +138,9 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         if channel == "direct_outreach" and top_prospect:
             item["prospect_id"] = top_prospect.get("id")
             item["prospect"] = top_prospect.get("name")
+            item["prospect_fit_score"] = top_prospect.get("fit", 0)
             item["prospect_status"] = "research_required"
+            item["personalization_basis"] = top_prospect.get("candidate_workflow", "")
         created.append(item)
 
     prospect_validation = _prospect_validation_items(date_key, prospects, existing_prospect_keys)
@@ -136,6 +157,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "source": "control_plane/prospects.json",
         "policy": "Prospects remain candidates until explicitly validated and accepted; no outreach is sent automatically.",
         "validation_queue_size": len(data["prospect_validation"]),
+        "top_candidate": top_prospect.get("id") if top_prospect else None,
     }
     _save(data)
     return {
@@ -143,6 +165,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "prospects_created": len(prospect_validation),
         "queue_size": len(data["items"]),
         "prospect_validation_size": len(data["prospect_validation"]),
+        "top_candidate": top_prospect,
         "queue": created,
         "prospect_validation": prospect_validation,
     }
@@ -158,6 +181,7 @@ def self_test() -> dict:
         "autonomous": True,
         "sending": "gated",
         "prospect_validation": "enabled",
+        "fresh_candidate_priority": True,
         "utm_tracking": sample,
         "cost_rm": 0,
     }
