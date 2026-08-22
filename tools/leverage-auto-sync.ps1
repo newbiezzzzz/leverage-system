@@ -14,6 +14,22 @@ function Write-Log([string]$Message) {
     Add-Content -Path $logPath -Value $line
 }
 
+function Get-LeverageApiProcesses {
+    @(Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like "*$Root\server\leverage_api.py*" })
+}
+
+function Ensure-LeverageApiRunning {
+    $processes = Get-LeverageApiProcesses
+    if ($processes.Count -gt 0) {
+        return $false
+    }
+
+    $python = (Get-Command python.exe -ErrorAction Stop).Source
+    Start-Process -FilePath $python -ArgumentList '-B','server\leverage_api.py' -WorkingDirectory $Root -WindowStyle Hidden
+    Write-Log 'Leverage Local API was not running; started it automatically.'
+    return $true
+}
+
 if (Test-Path $lockPath) {
     try {
         $age = (Get-Date) - (Get-Item $lockPath).LastWriteTime
@@ -29,6 +45,7 @@ try {
     $status = git status --porcelain
     if ($status) {
         Write-Log 'Local changes detected; sync skipped to protect Owner work.'
+        Ensure-LeverageApiRunning | Out-Null
         return
     }
 
@@ -37,6 +54,7 @@ try {
     $remote = (git rev-parse origin/main).Trim()
     if ($local -eq $remote) {
         Write-Log "Already current at $local."
+        Ensure-LeverageApiRunning | Out-Null
         return
     }
 
@@ -44,15 +62,26 @@ try {
     git merge --ff-only origin/main | Out-Null
     Write-Log "Fast-forwarded $local -> $remote. Changed files: $($changed.Count)."
 
-    $serverChanged = $changed | Where-Object { $_ -like 'server/*' -or $_ -eq 'leverage-server.cmd' -or $_ -like 'control_plane/*' }
+    $serverChanged = $changed | Where-Object {
+        $_ -like 'server/*' -or
+        $_ -eq 'leverage-server.cmd' -or
+        $_ -like 'control_plane/*'
+    }
+
     if ($serverChanged) {
-        $processes = @(Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like "*$Root\server\leverage_api.py*" })
+        $processes = Get-LeverageApiProcesses
         foreach ($process in $processes) {
-            try { Stop-Process -Id $process.ProcessId -Force -ErrorAction Stop; Write-Log "Stopped old API process $($process.ProcessId)." } catch { Write-Log "Could not stop process $($process.ProcessId): $($_.Exception.Message)" }
+            try {
+                Stop-Process -Id $process.ProcessId -Force -ErrorAction Stop
+                Write-Log "Stopped old API process $($process.ProcessId)."
+            } catch {
+                Write-Log "Could not stop process $($process.ProcessId): $($_.Exception.Message)"
+            }
         }
-        $python = (Get-Command python.exe -ErrorAction Stop).Source
-        Start-Process -FilePath $python -ArgumentList '-B','server\leverage_api.py' -WorkingDirectory $Root -WindowStyle Hidden
-        Write-Log 'Started updated Leverage Local API.'
+        Ensure-LeverageApiRunning | Out-Null
+        Write-Log 'Started updated Leverage Local API after code changes.'
+    } else {
+        Ensure-LeverageApiRunning | Out-Null
     }
 
     Write-Log 'Auto-sync completed successfully.'
