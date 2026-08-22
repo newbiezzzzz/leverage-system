@@ -14,10 +14,11 @@ from datetime import datetime, timezone
 from urllib.parse import urlencode
 
 from .offer_engine import draft_offer
+from .quota_guard import acquisition_budget
 
 ROOT = Path(__file__).resolve().parent
 PRODUCT = "Fabrication Shop Profit & Quote System"
-PRODUCT_URL = "https://newbiezz.gumroad.com/l/neiqwq"
+PRODUCT_URL = "https://newbiezz.gumroad.com/l/neiqwz"
 QUEUE_PATH = ROOT / "acquisition_queue.json"
 PROSPECTS_PATH = ROOT / "prospects.json"
 
@@ -61,7 +62,7 @@ def tracked_url(channel: str, date_key: str) -> str:
     return f"{PRODUCT_URL}?{urlencode(params)}"
 
 
-def _prospect_validation_items(date_key: str, prospects: list[dict], existing: set[str]) -> list[dict]:
+def _prospect_validation_items(date_key: str, prospects: list[dict], existing: set[str], cap: int) -> list[dict]:
     created: list[dict] = []
     ranked = sorted(
         prospects,
@@ -72,7 +73,7 @@ def _prospect_validation_items(date_key: str, prospects: list[dict], existing: s
         ),
         reverse=True,
     )
-    for prospect in ranked[:10]:
+    for prospect in ranked[:cap]:
         if not prospect.get("public_contact_available"):
             continue
         key = f"{date_key}::prospect-validation::{prospect.get('id', '')}"
@@ -108,6 +109,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
     created = []
     date_key = now.date().isoformat()
     prospects = _load_prospects()
+    budget = acquisition_budget()
     ranked_prospects = sorted(
         prospects,
         key=lambda item: (
@@ -120,7 +122,8 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
     top_prospect = ranked_prospects[0] if ranked_prospects else None
     offer = draft_offer(top_prospect) if top_prospect else None
 
-    for index, pillar in enumerate(CONTENT_PILLARS):
+    daily_content_target = min(len(CONTENT_PILLARS), int(budget["daily_content_target"]))
+    for index, pillar in enumerate(CONTENT_PILLARS[:daily_content_target]):
         channel = CHANNELS[index % len(CHANNELS)]
         key = f"{date_key}::{channel}::{pillar}"
         if key in existing_keys:
@@ -149,7 +152,12 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
             item["offer_send_status"] = offer.get("send_status") if offer else "not_prepared"
         created.append(item)
 
-    prospect_validation = _prospect_validation_items(date_key, prospects, existing_prospect_keys)
+    prospect_validation = _prospect_validation_items(
+        date_key,
+        prospects,
+        existing_prospect_keys,
+        int(budget["daily_prospect_validation_cap"]),
+    )
     data.setdefault("items", []).extend(created)
     data.setdefault("prospect_validation", []).extend(prospect_validation)
     data["version"] = 3
@@ -167,6 +175,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "offer_status": offer.get("status") if offer else "not_prepared",
         "offer_send_status": offer.get("send_status") if offer else "not_prepared",
     }
+    data["automation_budget"] = budget
     _save(data)
     return {
         "created": len(created),
@@ -175,6 +184,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "prospect_validation_size": len(data["prospect_validation"]),
         "top_candidate": top_prospect,
         "offer": offer,
+        "automation_budget": budget,
         "queue": created,
         "prospect_validation": prospect_validation,
     }
@@ -192,6 +202,7 @@ def self_test() -> dict:
         "prospect_validation": "enabled",
         "offer_drafting": "enabled",
         "fresh_candidate_priority": True,
+        "quota_guard": "enabled",
         "utm_tracking": sample,
         "cost_rm": 0,
     }
