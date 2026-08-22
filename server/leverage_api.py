@@ -14,6 +14,7 @@ CONTROL_PLANE = ROOT / "control_plane"
 TRACKED_PROJECTS_FILE = CONTROL_PLANE / "projects.json"
 PROJECT_TYPES_FILE = CONTROL_PLANE / "project_types.json"
 PROJECT_METRICS_FILE = CONTROL_PLANE / "project_metrics.json"
+ACQUISITION_QUEUE_FILE = CONTROL_PLANE / "acquisition_queue.json"
 sys.path.insert(0, str(ROOT))
 
 from control_plane.company_core import Project
@@ -25,7 +26,7 @@ from control_plane.delivery_gateway import create_order, get_order, list_orders
 from control_plane.runtime_state import ensure_runtime_state, state_path
 
 HOST, PORT = "127.0.0.1", 8765
-API_VERSION = "1.9"
+API_VERSION = "2.0"
 
 
 def body(data: dict) -> bytes:
@@ -71,6 +72,14 @@ def read_project_records() -> list[dict]:
     return _read_project_file(TRACKED_PROJECTS_FILE)
 
 
+def read_acquisition_queue() -> dict:
+    """Return the read-only acquisition work queue for dashboard visibility."""
+    return _read_json_file(
+        ACQUISITION_QUEUE_FILE,
+        {"version": 0, "items": [], "prospect_validation": [], "tracking": {}},
+    )
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = f"LeverageLocalAPI/{API_VERSION}"
 
@@ -110,6 +119,10 @@ class Handler(BaseHTTPRequestHandler):
                 return
             if path == "/api/project-metrics":
                 self.send_json(200, {"ok": True, "metrics": _read_json_file(PROJECT_METRICS_FILE, {"projects": {}})})
+                return
+            if path == "/api/acquisition-queue":
+                queue = read_acquisition_queue()
+                self.send_json(200, {"ok": True, "queue": queue})
                 return
             if path == "/api/customer-orders":
                 self.send_json(200, {"ok": True, "orders": list_orders()})
