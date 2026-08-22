@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "last_discovered_at": "2026-08-19",
+  "version": 2,
+  "last_discovered_at": "2026-08-22",
   "status_definition": "discovered prospects are candidates only; no outreach or customer claim is implied",
   "prospects": [
     {
@@ -69,6 +69,67 @@
       "discovery_source": "local_business_search",
       "public_contact_available": true,
       "validation_status": "unvalidated"
+    },
+    {
+      "id": "prospect-skid-systems-fabrication",
+      "name": "SKID Systems",
+      "category": "full-service metal fabrication",
+      "location": "Puchong, Selangor, Malaysia",
+      "fit": 96,
+      "candidate_workflow": "quote preparation, job costing, material/consumable costing, project margin tracking",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"phone": "+603-8062 6688", "email": "info@skidsystems.com.my", "url": "https://www.skidsystems.com.my/fabrication/"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["full-service fabrication including engineering, cutting, fitting, welding, testing, finishing, assembly and installation", "company explicitly states projects should remain within budget"],
+      "why_fit": "The product directly addresses quoting and job-costing pain in a fabrication operation with multiple cost components and project budgets."
+    },
+    {
+      "id": "prospect-ss-steel-fabrication",
+      "name": "SS Steel & Commercial Contractor Malaysia",
+      "category": "custom steel fabrication",
+      "location": "Rawang / Kuala Lumpur, Malaysia",
+      "fit": 95,
+      "candidate_workflow": "quotation intake, rough measurement costing, fabrication/installation quote preparation, margin tracking",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"phone_primary": "012-659 7702", "phone_secondary": "012-659 7202", "email": "info@sssteel.my", "url": "https://www.sssteel.my/products/custom-steel-fabrication.html"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["custom fabrication business", "quote requests are explicitly handled through WhatsApp/email", "workshop handles cutting, welding, fitting, coating and finishing"],
+      "why_fit": "The business already runs a quote-intake workflow and performs several cost-bearing fabrication steps, creating a strong fit for a structured quote and job-costing tool."
+    },
+    {
+      "id": "prospect-ruscho-fabrication",
+      "name": "Ruscho",
+      "category": "CNC machining and precision fabrication",
+      "location": "Klang / Puchong, Selangor, Malaysia",
+      "fit": 92,
+      "candidate_workflow": "drawing/specification intake, material/quantity costing, quote preparation, production cost review",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"phone": "+6012-709 2600", "email": "hea@ruscho.com.my", "url": "https://ruscho.com.my/cnc-machining/"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["quotation process explicitly asks for 2D drawings, 3D models, material and quantity", "supports prototype, repeat and production quantities", "fabrication and engineering support in Selangor"],
+      "why_fit": "Its quote process already collects structured costing inputs, making it a strong candidate for testing a disciplined quote/job-costing workflow."
+    },
+    {
+      "id": "prospect-kt-steel-fabrication",
+      "name": "K.T STEEL FABRICATION",
+      "category": "steel fabrication / welding",
+      "location": "Taman Sungai Besi, Kuala Lumpur, Malaysia",
+      "fit": 90,
+      "candidate_workflow": "job quote preparation, material/labour costing, quote follow-up and margin review",
+      "discovery_source": "local_business_search",
+      "public_contact_available": true,
+      "public_contact": {"phone": "+6016-816 7191"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["listed as welder", "listed with online estimates", "listed as on-site service provider"],
+      "why_fit": "A smaller fabrication operation with online-estimate capability is a plausible early adopter for a simple quote and profit calculator."
     }
-  ]
+  ],
+  "research_notes": {
+    "current_search_date": "2026-08-22",
+    "priority_rule": "Prefer prospects with an observable quoting workflow, fabrication activity, public contact path and a plausible reason to use a job-costing/quote tool.",
+    "customer_claim_rule": "Fresh candidates are not customers. No customer, outreach-sent, sale or revenue claim is valid until explicitly evidenced."
+  }
 }
