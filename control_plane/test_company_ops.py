@@ -69,7 +69,10 @@ class CompanyOpsEndToEndTests(unittest.TestCase):
             task = by_action[action]; claimed = company_ops.claim_task(task["id"], task["worker"]); self.assertEqual(claimed["status"], "running"); company_ops.complete_task(task["id"], f"{action} complete", task["worker"])
         summary = company_ops.project_task_summary(project.id); self.assertEqual(summary["completed"], 8); self.assertEqual(summary["progress"], 100.0); self.assertEqual(summary["waiting_on_dependencies"], 0)
         revenue = company_ops.record_revenue(project.id, 100.0, "demo sale", "test-sale-001"); self.assertTrue(revenue["verified"])
-        payout = company_ops.prepare_payout(project.id, 50.0, "owner-destination", "owner profit share"); self.assertEqual(payout["status"], "prepared"); self.assertEqual(json.loads(self.files["projects"].read_text())["projects"][0]["status"], "payout-ready")
+        payout = company_ops.prepare_payout(project.id, 50.0, "owner-destination", "owner profit share"); self.assertEqual(payout["status"], "prepared")
+        project_record = json.loads(self.files["projects"].read_text())["projects"][0]
+        self.assertEqual(project_record["status"], "active")
+        self.assertEqual(project_record["lifecycle_stage"], "payout-ready")
         approval = company_ops.approve_payout(payout["id"]); self.assertEqual(approval["type"], "owner_payout")
         ledger = json.loads(self.files["ledger"].read_text()); self.assertEqual(ledger["payout_queue"][0]["status"], "approved"); self.assertFalse(ledger["policy"]["live_money_movement"])
         event_types = [e["event_type"] for e in json.loads(self.files["audit"].read_text())["events"]]
