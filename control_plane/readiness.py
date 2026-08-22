@@ -5,10 +5,12 @@ from pathlib import Path
 import json
 from .runtime_state import ensure_runtime_state, state_path
 from .company_ops import DEFAULT_PROJECT_WORKFLOW
+from .company_core import Project, validate_project
 
 ROOT = Path(__file__).resolve().parent
 WORKERS_FILE = ROOT / "workers.json"
 POLICIES_FILE = ROOT / "policies.json"
+PROJECTS_FILE = state_path("projects.json")
 LEDGER_FILE = state_path("financial_ledger.json")
 
 REQUIRED_RUNTIME = (
@@ -45,6 +47,23 @@ def company_os_readiness() -> dict:
     checks.append(_check("core_files", not missing, "All core policy/registry files are present." if not missing else f"Missing: {', '.join(missing)}"))
     missing_runtime = [name for name in REQUIRED_RUNTIME if not state_path(name).is_file()]
     checks.append(_check("runtime_state", not missing_runtime, "All runtime state stores are available." if not missing_runtime else f"Missing: {', '.join(missing_runtime)}"))
+
+    try:
+        raw_projects = _load(PROJECTS_FILE).get("projects", [])
+        project_errors = []
+        seen_ids = set()
+        for item in raw_projects:
+            pid = str(item.get("id", ""))
+            if pid in seen_ids:
+                project_errors.append(f"duplicate project id: {pid}")
+                continue
+            seen_ids.add(pid)
+            project = Project(**{k: item[k] for k in Project.__dataclass_fields__ if k in item})
+            project_errors.extend(f"{pid}: {error}" for error in validate_project(project))
+        registry_ok = not project_errors
+        checks.append(_check("project_registry", registry_ok, "All registered projects use the stable status/lifecycle contract." if registry_ok else f"Project registry problems: {'; '.join(project_errors)}"))
+    except (OSError, json.JSONDecodeError, TypeError, AttributeError) as exc:
+        checks.append(_check("project_registry", False, f"Project registry could not be validated: {exc}"))
 
     try:
         workers = _load(WORKERS_FILE).get("workers", []); by_id = {w.get("id"): w for w in workers}
