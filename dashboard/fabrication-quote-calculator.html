@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Free fabrication quote calculator for welding, metal fabrication and engineering workshops. Estimate labour, material, consumables, overhead and profit before sending a quote.">
+<link rel="canonical" href="fabrication-quote-calculator.html">
+<title>Free Fabrication Quote Calculator | Leverage</title>
+<link rel="stylesheet" href="styles.css?v=32">
+<link rel="stylesheet" href="layout.css?v=10">
+<link rel="stylesheet" href="command.css?v=7">
+<style>
+.tool-wrap{max-width:1050px;margin:auto;padding:34px 22px 60px}.tool-hero{margin-bottom:22px}.tool-hero h1{font-size:34px;line-height:1.05;margin:8px 0}.tool-hero p{max-width:760px}.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.tool-card{background:#0a1220;border:1px solid var(--line);border-radius:14px;padding:18px}.tool-card h2{margin:0 0 14px;font-size:16px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:grid;gap:5px}.field label{font-size:9px;color:#8fa0b8;text-transform:uppercase;letter-spacing:.08em;font-weight:800}.field input{width:100%;box-sizing:border-box;border:1px solid #1d2a40;background:#08111d;color:#edf3ff;border-radius:9px;padding:10px;font:inherit}.result{display:grid;gap:9px}.result-row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #17263a;font-size:11px}.result-row strong{color:#dce6f4}.result-total{font-size:20px;color:#dffced}.cta{margin-top:18px;padding:15px;border:1px solid #285845;background:#0a1b16;border-radius:10px}.cta a{display:inline-block;margin-top:8px}.note{margin-top:10px;color:#7486a0;font-size:9px;line-height:1.5}.back{display:inline-block;margin-bottom:12px}
+@media(max-width:760px){.tool-grid,.field-grid{grid-template-columns:1fr}.tool-hero h1{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="shell"><header class="topbar"><div class="brand"><span class="brand-mark">L</span><div><strong>LEVERAGE</strong><small>FREE FABRICATION TOOL</small></div></div><div class="top-actions"><span class="live-dot"></span><span>FREE · NO SIGN-UP</span></div></header>
+<main class="tool-wrap">
+<a class="ghost back" href="command.html">← Leverage Command Center</a>
+<section class="tool-hero"><p class="eyebrow">FABRICATION QUOTING</p><h1>Free Fabrication Quote Calculator</h1><p class="muted">Estimate a practical selling price from labour, material, consumables, overhead and target profit. Built for small fabrication, welding and engineering workshops.</p></section>
+<section class="tool-grid">
+<div class="tool-card"><h2>Enter your job costs</h2><div class="field-grid">
+<div class="field"><label>Labour hours</label><input id="hours" type="number" min="0" step="0.1" value="8"></div>
+<div class="field"><label>Labour rate (RM/hr)</label><input id="rate" type="number" min="0" step="1" value="45"></div>
+<div class="field"><label>Material (RM)</label><input id="material" type="number" min="0" step="1" value="250"></div>
+<div class="field"><label>Consumables (RM)</label><input id="consumables" type="number" min="0" step="1" value="60"></div>
+<div class="field"><label>Other job costs (RM)</label><input id="other" type="number" min="0" step="1" value="30"></div>
+<div class="field"><label>Overhead %</label><input id="overhead" type="number" min="0" step="0.5" value="10"></div>
+<div class="field"><label>Target profit %</label><input id="profit" type="number" min="0" step="0.5" value="20"></div>
+</div><p class="note">This is an estimate, not accounting advice. Check your actual shop rates, taxes and project-specific requirements before issuing a quote.</p></div>
+<div class="tool-card"><h2>Quote summary</h2><div class="result">
+<div class="result-row"><span>Labour</span><strong id="rLabour">RM 0.00</strong></div>
+<div class="result-row"><span>Direct costs</span><strong id="rDirect">RM 0.00</strong></div>
+<div class="result-row"><span>Overhead</span><strong id="rOverhead">RM 0.00</strong></div>
+<div class="result-row"><span>Cost before profit</span><strong id="rCost">RM 0.00</strong></div>
+<div class="result-row"><span>Target profit</span><strong id="rProfit">RM 0.00</strong></div>
+<div class="result-row"><span>Suggested quote</span><strong id="rQuote" class="result-total">RM 0.00</strong></div>
+</div>
+<div class="cta"><strong>Need a reusable workbook?</strong><p class="muted">The Fabrication Shop Profit & Quote System adds job costing, shop-rate calculations, material/consumables costing and a structured quote workflow.</p><a class="primary" href="https://newbiezz.gumroad.com/l/neiqwq?utm_source=free_tool&utm_medium=organic&utm_campaign=fabrication_quote_tool" target="_blank" rel="noopener">View the $19 workbook →</a></div>
+</div></section>
+</main></div>
+<script>
+const ids=['hours','rate','material','consumables','other','overhead','profit'];
+const n=id=>Math.max(0,Number(document.getElementById(id).value)||0);
+const money=v=>`RM ${v.toFixed(2)}`;
+function calc(){const labour=n('hours')*n('rate');const direct=labour+n('material')+n('consumables')+n('other');const overhead=direct*n('overhead')/100;const cost=direct+overhead;const profit=cost*n('profit')/100;const quote=cost+profit;document.getElementById('rLabour').textContent=money(labour);document.getElementById('rDirect').textContent=money(direct);document.getElementById('rOverhead').textContent=money(overhead);document.getElementById('rCost').textContent=money(cost);document.getElementById('rProfit').textContent=money(profit);document.getElementById('rQuote').textContent=money(quote)}ids.forEach(id=>document.getElementById(id).addEventListener('input',calc));calc();
+</script>
+</body></html>
