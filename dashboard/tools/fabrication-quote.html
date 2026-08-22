@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Free fabrication quote calculator for labour, material, consumables, overhead and target profit.">
+<title>Free Fabrication Quote Calculator | Leverage</title>
+<link rel="stylesheet" href="../styles.css?v=32"><link rel="stylesheet" href="../layout.css?v=10"><link rel="stylesheet" href="../command.css?v=8">
+<style>
+.tool-wrap{max-width:980px;margin:0 auto;padding:28px 20px}.tool-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.tool-card{padding:20px;border:1px solid var(--line);background:#0a1220;border-radius:14px}.tool-form{display:grid;gap:12px}.tool-form label{display:grid;gap:6px;color:#a9b8ca;font-size:10px}.tool-form input{width:100%;border:1px solid #1d2a40;background:#08111d;color:#edf3ff;border-radius:9px;padding:11px;font:inherit}.tool-form button{border:1px solid #2a6e59;background:#0f3529;color:#dffced;border-radius:9px;padding:11px;font-weight:700;cursor:pointer}.result-grid{display:grid;gap:10px}.result{padding:12px;border:1px solid #17263a;border-radius:10px}.result strong{display:block;font-size:18px}.cta{margin-top:14px;padding:14px;border:1px solid #285845;background:#0a1b16;border-radius:10px}.cta a{color:#b8f1d6;font-weight:800;text-decoration:none}.back{display:inline-block;margin-bottom:16px;color:var(--cyan);text-decoration:none;font-size:10px}@media(max-width:760px){.tool-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shell"><main class="tool-wrap">
+<a class="back" href="../index.html">← Leverage</a>
+<section class="hero"><p class="eyebrow">FREE FABRICATION TOOL · PROJECT 2</p><h1>Fabrication Quote Calculator</h1><p class="muted">Estimate a selling price from labour, material, consumables, overhead and target profit. No signup required.</p></section>
+<section class="tool-grid">
+<div class="tool-card"><h2>Build your estimate</h2><form class="tool-form" id="quoteForm">
+<label>Labour cost (RM)<input id="labour" type="number" min="0" step="0.01" value="0"></label>
+<label>Material cost (RM)<input id="material" type="number" min="0" step="0.01" value="0"></label>
+<label>Consumables (RM)<input id="consumables" type="number" min="0" step="0.01" value="0"></label>
+<label>Other job costs (RM)<input id="other" type="number" min="0" step="0.01" value="0"></label>
+<label>Overhead allocation (RM)<input id="overhead" type="number" min="0" step="0.01" value="0"></label>
+<label>Target profit margin (%)<input id="margin" type="number" min="0" max="99" step="0.1" value="20"></label>
+<button type="submit">Calculate quote</button></form></div>
+<div class="tool-card"><p class="eyebrow">RESULT</p><div class="result-grid">
+<div class="result"><span class="muted">Total cost</span><strong id="total">RM 0.00</strong></div>
+<div class="result"><span class="muted">Profit target</span><strong id="profit">RM 0.00</strong></div>
+<div class="result"><span class="muted">Suggested selling price</span><strong id="price">RM 0.00</strong></div>
+</div>
+<div class="cta"><strong>Need saved quotes, job history and full profit tracking?</strong><p class="muted">Leverage Fabrication Pro is the paid product behind this free tool.</p><a href="https://newbiezz.gumroad.com/l/neiqwz" target="_blank" rel="noopener">See the current Pro product →</a></div>
+</div></section>
+</main></div>
+<script>
+const ids=['labour','material','consumables','other','overhead','margin'];
+function n(id){return Number(document.getElementById(id).value||0)}
+function calc(){const cost=n('labour')+n('material')+n('consumables')+n('other')+n('overhead');const margin=Math.min(99,Math.max(0,n('margin')))/100;const profit=margin>=1?0:cost*margin/(1-margin);const price=cost+profit;document.getElementById('total').textContent=`RM ${cost.toFixed(2)}`;document.getElementById('profit').textContent=`RM ${profit.toFixed(2)}`;document.getElementById('price').textContent=`RM ${price.toFixed(2)}`}
+document.getElementById('quoteForm').addEventListener('submit',e=>{e.preventDefault();calc();try{localStorage.setItem('leverage:quote-calculated','1')}catch{}});calc();
+</script>
+</body></html>
