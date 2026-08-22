@@ -15,6 +15,7 @@ TRACKED_PROJECTS_FILE = CONTROL_PLANE / "projects.json"
 PROJECT_TYPES_FILE = CONTROL_PLANE / "project_types.json"
 PROJECT_METRICS_FILE = CONTROL_PLANE / "project_metrics.json"
 ACQUISITION_QUEUE_FILE = CONTROL_PLANE / "acquisition_queue.json"
+PROSPECTS_FILE = CONTROL_PLANE / "prospects.json"
 sys.path.insert(0, str(ROOT))
 
 from control_plane.company_core import Project
@@ -24,7 +25,7 @@ from control_plane.health import company_health
 from control_plane.readiness import company_os_readiness
 from control_plane.delivery_gateway import create_order, get_order, list_orders
 from control_plane.runtime_state import ensure_runtime_state, state_path
-from control_plane.buyer_pipeline_store import get_pipeline, list_pipelines, transition_pipeline
+from control_plane.buyer_pipeline_store import ensure_prospect, get_pipeline, list_pipelines, transition_pipeline
 
 HOST, PORT = "127.0.0.1", 8765
 API_VERSION = "2.1"
@@ -90,6 +91,22 @@ def read_acquisition_queue() -> dict:
     return queue
 
 
+def ensure_buyer_pipeline_candidates() -> int:
+    """Materialize discovered prospects into the persistent buyer funnel without advancing them."""
+    prospects = _read_json_file(PROSPECTS_FILE, {}).get("prospects", [])
+    created = 0
+    if not isinstance(prospects, list):
+        return 0
+    for prospect in prospects:
+        prospect_id = str(prospect.get("id", "")).strip()
+        if prospect_id and prospect.get("public_contact_available"):
+            before = {item.get("prospect_id") for item in list_pipelines()}
+            ensure_prospect(prospect_id)
+            if prospect_id not in before:
+                created += 1
+    return created
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = f"LeverageLocalAPI/{API_VERSION}"
 
@@ -134,6 +151,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(200, {"ok": True, "queue": read_acquisition_queue()})
                 return
             if path == "/api/buyer-pipeline":
+                ensure_buyer_pipeline_candidates()
                 self.send_json(200, {"ok": True, "pipelines": list_pipelines()})
                 return
             if path.startswith("/api/buyer-pipeline/"):
