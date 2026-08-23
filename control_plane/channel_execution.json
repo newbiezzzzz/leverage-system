@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "channel": "web",
   "adapter": "github_pages",
-  "status": "published_by_git_commit_pending_deployment_verification",
+  "status": "owner_verified_live",
   "project_id": "engineering-quote-toolkit",
   "artifact": "dashboard/project-launch/index.html",
   "capital_deployed_rm": 0,
@@ -15,9 +15,10 @@
   },
   "destination": "marketplace product page",
   "notes": [
-    "This is a web-channel execution test, not a Gumroad-only architecture change.",
-    "The GitHub Pages workflow is configured in .github/workflows/deploy-dashboard.yml.",
-    "Deployment must be independently verified before being marked completed.",
-    "No traffic, click, sale or revenue is claimed without evidence."
-  ]
+    "This is the first real web-channel execution test, not a Gumroad-only architecture change.",
+    "The Owner verified the public landing page was live.",
+    "Traffic, click, sale and revenue values remain UNKNOWN until an authoritative measurement source provides evidence.",
+    "P-001 is currently paused; P-002 is the active web-utility acquisition experiment."
+  ],
+  "current_relevance": "historical architecture test retained as evidence; active acquisition validation is tracked under web-traffic-income-tools"
 }
