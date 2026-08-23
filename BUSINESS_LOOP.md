@@ -9,14 +9,14 @@ Leverage is not a digital-product generator. It is an AI-operated project compan
 3. Build — create the smallest viable product/service/automation.
 4. Publish — place the offer where customers can actually discover or buy it.
 5. Acquire — generate compliant organic/free distribution and qualify prospects.
-6. Convert — improve the offer, landing page, proof and customer journey to produce purchases or commitments.
-7. Deliver — fulfill the product/service automatically or with minimal Boss involvement.
+6. Convert — improve the offer, proof and customer journey to produce purchases or commitments.
+7. Deliver — fulfill automatically or with minimal Boss involvement.
 8. Support — collect customer questions, feedback and failure signals.
 9. Measure — record traffic, conversion, revenue, cost, time and other authoritative evidence.
 10. Decide — scale, iterate, pause or retire based on evidence.
 
 ## Project Types
-The loop must support more than digital products. Future project types may include:
+The loop supports:
 - digital products
 - software / micro-SaaS
 - automation services
@@ -37,20 +37,35 @@ The loop must support more than digital products. Future project types may inclu
 - project-manager: coordinate lifecycle, routing and gates.
 
 ## Automation Levels
-Leverage should progressively move work from manual to automated, but only when the action is safe and observable:
 - L0: Boss manual
 - L1: Worker prepares; Boss executes
 - L2: Worker executes reversible/non-consequential actions
 - L3: Worker executes bounded actions with monitoring and rollback
-- L4: Mostly autonomous operation with Owner approval only for consequential actions
+- L4: Mostly autonomous operation with Owner approval for consequential actions
 
 No worker may bypass platform rules, impersonate people, spam, sign contracts, move money, or create binding commitments without the appropriate authorization boundary.
 
-## Experiment A
-The existing Gumroad product, Fabrication Shop Profit & Quote System, remains live as the first experiment. It is a test of the full business loop, not proof that Leverage is only a digital-product system.
+## Experiment A — P-001
+The Fabrication Shop Profit & Quote System remains a reusable first experiment asset. **Current project status: paused.** It is not the definition of Leverage and is not the current active acquisition project.
+
+Current gate for P-001:
+Traffic -> first buyer -> conversion evidence -> iteration.
+
+## Active Acquisition Experiment — P-002
+Leverage Free Fabrication Tool Network is the active web-utility acquisition experiment.
+
+Verified state on 23 Aug 2026:
+- Cloudflare production site live and owner-verified.
+- `/tools/` public path loads.
+- Root sitemap is publicly reachable.
+- Google Search Console ownership verified.
+- Sitemap submitted.
+- Google live URL test: crawl allowed, page fetch successful, indexing allowed.
+- Manual indexing request quota exhausted for the day.
+- Authoritative traffic and buyer evidence: not yet available.
 
 Current gate:
-Traffic -> first buyer -> conversion evidence -> iteration.
+Live -> crawlable -> indexed/discovered -> traffic -> calculator events -> product clicks -> buyer/revenue evidence.
 
 ## Success Criterion
 The major Leverage milestone is no longer “can we create a product?”
@@ -59,4 +74,4 @@ It is:
 
 > Can Leverage take an approved opportunity from zero to validated demand and measurable revenue with minimal Boss involvement?
 
-A project is considered a successful systems test only when the loop is measurable end-to-end.
+A project is a successful systems test only when the loop is measurable end-to-end.
