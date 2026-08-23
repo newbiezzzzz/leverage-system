@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "mode": "controlled_execution_test",
   "capital_policy": "RM0",
   "external_side_effects": "approval_gated",
@@ -9,19 +9,19 @@
     "type": "digital_product",
     "channel": "marketplace",
     "channel_instance": "Gumroad",
-    "status": "live",
-    "note": "Gumroad is the test channel instance, not the Leverage architecture."
+    "status": "paused",
+    "note": "The digital-product test remains an architecture/business-loop experiment. Its artifact is retained, but the project is currently paused while P-002 validates acquisition."
   },
   "loop": [
     {"stage":"discover","status":"passed","evidence":"project exists and customer problem is defined"},
     {"stage":"validate","status":"passed","evidence":"product was selected as the first zero-cost experiment"},
     {"stage":"build","status":"passed","evidence":"digital product artifact exists"},
-    {"stage":"publish","status":"passed","evidence":"product is live on the selected marketplace channel"},
-    {"stage":"acquire","status":"blocked","evidence":"authoritative traffic execution is not connected; external distribution requires approved channel execution"},
+    {"stage":"publish","status":"passed","evidence":"product was published on the selected marketplace channel"},
+    {"stage":"acquire","status":"blocked","evidence":"authoritative product traffic is not connected and external marketplace distribution remains approval gated"},
     {"stage":"convert","status":"waiting","evidence":"requires measurable traffic and verified funnel data"},
     {"stage":"deliver","status":"ready","evidence":"digital delivery model is defined"},
     {"stage":"support","status":"ready","evidence":"customer-worker capability exists"},
-    {"stage":"measure","status":"partial","evidence":"verified sales/revenue state exists; traffic source is not connected"},
+    {"stage":"measure","status":"partial","evidence":"verified sales/revenue state exists; authoritative traffic source is not connected"},
     {"stage":"decide","status":"waiting","evidence":"requires end-to-end evidence"}
   ],
   "success_criteria": [
@@ -31,5 +31,11 @@
     "Every completed stage has observable evidence",
     "The same engine can represent a different project type without changing core lifecycle logic"
   ],
-  "next_action": "Connect an authoritative channel measurement source or approved free distribution execution path, then re-run the gate evaluation."
+  "active_follow_on_project": {
+    "project_id": "web-traffic-income-tools",
+    "role": "active acquisition validation",
+    "verified_public_state": "live and crawlable",
+    "google_state": "ownership verified; sitemap submitted; live URL fetch successful; not yet indexed"
+  },
+  "next_action": "Measure authoritative traffic and outbound product-click evidence for P-002, then evaluate buyer/revenue conversion evidence before declaring the business loop successful."
 }
