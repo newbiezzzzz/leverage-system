@@ -1,8 +1,9 @@
 {
-  "version": 1,
-  "project": "engineering-quote-toolkit",
-  "product_name": "Fabrication Shop Profit & Quote System — Excel Job Costing & Quote Calculator",
-  "product_url": "https://newbiezz.gumroad.com/l/neiqwz",
+  "version": 2,
+  "project": "web-traffic-income-tools",
+  "project_name": "Leverage Free Fabrication Tool Network",
+  "destination_url": "https://leverage-tools.pages.dev/",
+  "conversion_target": "https://newbiezz.gumroad.com/l/neiqwz",
   "channels": [
     {"name":"seo_content","mode":"draft_and_queue","daily_target":3},
     {"name":"linkedin","mode":"draft_and_queue","daily_target":2},
@@ -16,6 +17,11 @@
     "no_fake_social_proof": true,
     "no_paid_ads": true,
     "owner_approval_for_external_send": true
+  },
+  "tracking": {
+    "website": "https://leverage-tools.pages.dev/",
+    "primary_tool": "https://leverage-tools.pages.dev/fabrication-quote-calculator/",
+    "conversion_url": "https://newbiezz.gumroad.com/l/neiqwz"
   },
   "schedule": {"frequency":"daily","timezone":"Asia/Kuala_Lumpur","hour":23}
 }
