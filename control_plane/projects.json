@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "projects": [
     {
       "project_no": "P-001",
@@ -12,13 +12,13 @@
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "First Leverage digital-product experiment retained as a reusable asset; paused while automated income channels are tested.",
+      "description": "First Leverage digital-product experiment retained as a reusable asset; paused while the web acquisition experiment is validated.",
       "store": "Gumroad",
       "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
       "price_usd": 19,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
-      "next_gate": "Revisit after an automated income engine proves demand and revenue.",
+      "next_gate": "Revisit after measurable demand is established through the reusable acquisition engine.",
       "created_at": "2026-08-19T14:00:00+00:00",
       "published_at": "2026-08-19T23:55:00+08:00"
     },
@@ -33,16 +33,30 @@
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "RM0 static web utility cluster designed to attract organic traffic and later monetize through compliant advertising or affiliate referrals. Calculators run client-side and production hosting uses Cloudflare Pages.",
+      "description": "RM0 static web utility cluster designed to attract fabrication-shop traffic and create measurable conversion opportunities. Calculators run client-side and production hosting uses Cloudflare Pages.",
       "store": "Cloudflare Pages",
       "store_url": "https://leverage-tools.pages.dev/",
       "price_usd": 0,
       "verified_sales": 0,
       "verified_revenue_usd": 0,
-      "next_gate": "Submit sitemap and key URLs to Google Search Console, verify indexing/discovery, measure traffic, then connect an approved monetization channel after eligibility is met.",
+      "next_gate": "Monitor Google indexing after verified ownership and sitemap submission; then measure authoritative traffic, calculator events and outbound product clicks before enabling a compliant monetization channel.",
       "created_at": "2026-08-22T03:50:00+08:00",
-      "published_at": "2026-08-22T04:22:00+08:00"
+      "published_at": "2026-08-22T04:22:00+08:00",
+      "verification": {
+        "cloudflare_production_verified_by_owner": true,
+        "public_tools_path_verified_by_owner": true,
+        "google_search_console_ownership_verified": true,
+        "sitemap_submitted": true,
+        "live_url_test": {
+          "status": "available_to_google",
+          "crawl_allowed": true,
+          "page_fetch": "successful",
+          "indexing_allowed": true,
+          "indexed": false
+        },
+        "manual_index_request": "quota_exhausted_2026-08-23"
+      }
     }
   ],
-  "last_modified_at": "2026-08-22T04:36:00+08:00"
+  "last_modified_at": "2026-08-23T20:11:00+08:00"
 }
