@@ -1,15 +1,15 @@
 {
-  "version": 2,
+  "version": 3,
   "projects": {
     "engineering-quote-toolkit": {
       "name": "Fabrication Shop Profit & Quote System",
       "store": "Gumroad",
-      "store_url": "https://newbiezz.gumroad.com/l/neiqwq",
+      "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
       "price_usd": 19,
       "traffic": {"status":"not_connected","product_page_views":null,"unique_visitors":null,"sources":[],"measurement_source":null,"last_verified_at":null},
       "funnel": {"product_page_views":null,"verified_sales":0,"conversion_rate":null},
       "revenue": {"verified_revenue_usd":0,"capital_deployed_rm":0,"verified_at":null},
-      "interpretation": {"traffic_unknown_is_not_zero":true,"sales_zero_is_verified":true,"next_gate":"Revisit after an automated income engine proves demand and revenue."}
+      "interpretation": {"traffic_unknown_is_not_zero":true,"sales_zero_is_verified":true,"next_gate":"Revisit after measurable demand is established through the reusable acquisition engine."}
     },
     "web-traffic-income-tools": {
       "name": "Leverage Free Fabrication Tool Network",
@@ -17,9 +17,10 @@
       "store_url": "https://leverage-tools.pages.dev/",
       "price_usd": 0,
       "traffic": {"status":"not_connected","product_page_views":null,"unique_visitors":null,"sources":[],"measurement_source":null,"last_verified_at":null},
-      "funnel": {"product_page_views":null,"verified_sales":0,"conversion_rate":null},
+      "funnel": {"public_tool_events":null,"calculator_events":null,"outbound_product_clicks":null,"verified_sales":0,"conversion_rate":null},
       "revenue": {"verified_revenue_usd":0,"capital_deployed_rm":0,"verified_at":null},
-      "interpretation": {"traffic_unknown_is_not_zero":true,"sales_zero_is_verified":true,"next_gate":"Verify Google ownership, submit sitemap, measure organic discovery, then connect an approved monetization channel after eligibility is met."}
+      "verification": {"cloudflare_public_site":"owner_verified_live","google_ownership":"verified","sitemap":"submitted","live_url_test":"available_to_google","indexing":"not_yet_indexed","manual_index_request":"quota_exhausted_2026-08-23"},
+      "interpretation": {"traffic_unknown_is_not_zero":true,"sales_zero_is_verified":true,"next_gate":"Obtain authoritative traffic and outbound-click evidence, monitor Google indexing, then evaluate compliant monetization eligibility."}
     }
   },
   "rules": [
