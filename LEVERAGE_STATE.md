@@ -1,6 +1,6 @@
 # LEVERAGE STATE
 
-_Last aligned: 23 Aug 2026 20:11 MYT_
+_Last aligned: 25 Aug 2026 — Product Factory v2 implementation_
 
 ## Mission
 Build a zero-cost, reusable AI/data/automation company that can discover opportunities, validate demand, launch projects, acquire customers, deliver outcomes, measure results, and scale evidence-backed winners with minimal Boss involvement.
@@ -13,102 +13,90 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 - Never invent financial balances, quotas, traffic, revenue or payout confirmations.
 - No spam, impersonation, binding commitments, money movement, or platform-rule bypass.
 - UNKNOWN traffic remains UNKNOWN until an authoritative source provides evidence.
+- A product is not finished when it merely works: visual quality, UX, responsive behavior, originality and conversion presentation are mandatory gates.
+- Heavy local jobs run sequentially; cloud/local quotas are guarded.
 
 ## Company State
 - Company: Leverage
 - Type: owner-operated technology company
-- Stage: business-loop validation / acquisition
+- Stage: Product Factory v2 pre-Product-#1 implementation
 - Base currency: MYR
 - Money movement: disabled
+- Daily product target: 1
+- Startup cost policy: RM0 until revenue
 
-## Infrastructure Progress
-- Foundation & architecture: 100%
-- Core worker fleet: 100%
-- Control Plane v1: 100%
-- Company Operating System v1: 100%
-- Owner Command Center: 100%
-- Quota-independent worker runtime: 90%, active
-- Project-type compatibility dry run: passed
-- Channel adapter dry run: passed
-- Web publishing execution capability: owner-verified
-- Controlled end-to-end business-loop success: not yet passed
+## Product Factory v2 — IMPLEMENTED IN REPOSITORY
+- Factory orchestration contract: `control_plane/product_factory.py`
+- Factory runtime policy: `control_plane/product_factory_config.json`
+- Creative Director worker: `workers/creative_director_worker.py`
+- Design/UX QA worker: `workers/design_qa_worker.py`
+- Content/marketing worker: `workers/content_marketing_worker.py`
+- Marketplace worker: `workers/marketplace_worker.py`
+- Visual design system: `website/design-system.json`
+- Public website factory contract: `website/PUBLIC_SITE_FACTORY.md`
+- n8n dry-run workflow: `n8n/leverage-product-factory-dry-run.json`
+- Windows setup helper: `tools/setup-product-factory.cmd`
+- CI preflight: `.github/workflows/product-factory-preflight.yml`
+- Worker registry updated to v14.
 
-The dashboard's 98% represents the current infrastructure milestone, not autonomous-income completion.
+## Quality Contract
+- Minimum automatic publish score: 85/100.
+- Functional QA: required.
+- Creative/visual QA: required.
+- Responsive/mobile QA: required.
+- Conversion QA: required.
+- Safety audit: required.
+- Below threshold: redesign/rework, not publish.
 
-## Project P-001 — Fabrication Shop Profit & Quote System
-- Project ID: engineering-quote-toolkit
-- Type: digital product
-- Status: **paused**
+## Hybrid Runtime
+- Local Windows PC: n8n, local AI, browser automation, heavy/sequential jobs.
+- Cloudflare: public website, lightweight APIs, telemetry and public infrastructure.
+- GitHub: source control and deployment.
+- No requirement to run all AI workers simultaneously.
+
+## Marketplace Automation Boundary
+- API-first where a platform supports the required action.
+- Guarded browser automation where an API does not provide the required publishing action.
+- Marketplace worker may prepare listings and publishing actions.
+- Account credentials, payout/bank changes, money movement and other sensitive actions remain Owner-controlled.
+
+## Public Website Acquisition System
+`research -> information architecture -> visual design -> implementation -> functional QA -> responsive QA -> creative QA -> conversion QA -> SEO metadata -> deploy -> telemetry`
+
+Content must be useful and differentiated; no low-quality mass/duplicate SEO publishing.
+
+## Pre-Product-#1 Gate
+The factory must pass a non-financial dry run before the first real product is created:
+
+`research -> select -> build -> functional_qa -> creative_qa -> conversion_qa -> website_package -> marketplace_package -> marketing_package -> analytics_package -> safety_audit`
+
+Dry-run rules:
+- no real paid offer
+- no money movement
+- no payout changes
+- no credential changes
+
+## Existing Projects
+
+### Project P-001 — Fabrication Shop Profit & Quote System
+- Status: paused
 - Channel: Gumroad
 - Price: USD19
 - Capital deployed: RM0
 - Verified sales: 0
 - Verified revenue: USD0
-- Product URL: https://newbiezz.gumroad.com/l/neiqwz
-- Role: first reusable business-loop experiment retained as an asset while Project P-002 is used to validate acquisition.
 
-## Project P-002 — Leverage Free Fabrication Tool Network
-- Project ID: web-traffic-income-tools
-- Type: web utility
-- Status: **active / acquire**
+### Project P-002 — Leverage Free Fabrication Tool Network
+- Status: active / acquire
 - Production: https://leverage-tools.pages.dev/
 - Hosting: Cloudflare Pages
 - Capital deployed: RM0
 - Verified sales: 0
 - Verified revenue: USD0
 
-### Owner-verified public deployment state
-- Cloudflare production project exists and auto-deploys from `main`.
-- `https://leverage-tools.pages.dev/tools/` loads successfully.
-- Public sitemap `https://leverage-tools.pages.dev/sitemap.xml` loads successfully.
-- Public robots file points to the root sitemap.
-- Google Search Console ownership: **verified by HTML file**.
-- Sitemap: **submitted to Google**.
+P-002 remains an existing asset and acquisition surface; the Product Factory now provides the reusable engine for the next product cycle rather than replacing existing work.
 
-### Google crawl state verified on 23 Aug 2026
-For the fabrication quote calculator, Google Search Console live inspection reported:
-- URL available to Google: yes
-- Crawl allowed: yes
-- Page fetch: successful
-- Indexing allowed: yes
-- Last crawl/inspection: 23 Aug 2026 20:05 MYT
-- Indexed: not yet confirmed
-- Manual request indexing: blocked by Google's daily quota after the live test
+## Current Status
+Repository implementation is complete for the pre-Product-#1 architecture. The remaining environment-bound step is installing/running local n8n on the Owner's Windows machine and executing the dry-run, because this chat cannot directly control the Owner's PC process/session.
 
-### P-002 current gate
-**Live -> crawlable -> sitemap submitted -> awaiting indexing -> authoritative traffic -> calculator events -> outbound product clicks -> buyer/revenue evidence.**
-
-No revenue or traffic is claimed until an authoritative source verifies it.
-
-## Measurement
-- Provider-agnostic measurement layer exists.
-- Public tools include telemetry hooks.
-- Current authoritative traffic state: UNKNOWN / NOT CONNECTED.
-- Do not treat unknown traffic as zero.
-
-## Business Loop
-Discover -> Validate -> Build -> Publish -> Acquire -> Convert -> Deliver -> Support -> Measure -> Decide.
-
-Current system validation target:
-> Can Leverage take an approved opportunity from zero to validated demand and measurable revenue with minimal Boss involvement?
-
-## Controlled Execution Test
-The first digital-product test remains valid as an architecture test, but P-001 is now paused. The test is not considered end-to-end successful because authoritative acquisition measurement and buyer evidence are still missing.
-
-Current evidence:
-- Discover: passed
-- Validate: passed
-- Build: passed
-- Publish: passed
-- Acquire: partially passed through owner-verified web execution; authoritative traffic still missing
-- Convert: waiting for traffic/evidence
-- Deliver: ready
-- Support: ready
-- Measure: partial
-- Decide: waiting for evidence
-
-## Current Priority
-Project P-002 is now the active acquisition experiment. The next objective is not more infrastructure. It is measurable external demand and a first buyer signal while preserving the RM0 constraint.
-
-## Continuity Rule
-When continuing Leverage, align against the current repository state first, then dashboard/project data, then verified conversation evidence. Do not assume a project, worker, metric, milestone or stage is current without checking the repository.
+Do not create Product #1 until the dry-run passes.
