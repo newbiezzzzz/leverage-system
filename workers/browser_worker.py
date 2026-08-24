@@ -40,27 +40,15 @@ def _playwright_executable() -> str:
         p = shutil.which(c)
         if p:
             return p
-    p = os.path.join(
-        os.environ.get("LEVERAGE_NPM_GLOBAL", r"D:\development\node.js\npm-global"),
-        "playwright-cli.cmd",
-    )
+    p = os.path.join(os.environ.get("LEVERAGE_NPM_GLOBAL", r"D:\development\node.js\npm-global"), "playwright-cli.cmd")
     if os.path.exists(p):
         return p
     raise FileNotFoundError("playwright-cli was not found")
 
 
 def _run_cli(*args: str, timeout: int = 60, allow_fail: bool = False) -> str:
-    proc = subprocess.run(
-        [_playwright_executable(), *args],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-        timeout=timeout,
-        shell=False,
-    )
-    out = (proc.stdout or "") + "\n" + (proc.stderr or "")
-    out = out.strip()
+    proc = subprocess.run([_playwright_executable(), *args], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout, shell=False)
+    out = ((proc.stdout or "") + "\n" + (proc.stderr or "")).strip()
     if proc.returncode and not allow_fail:
         raise RuntimeError(out or f"playwright-cli exited {proc.returncode}")
     return out
@@ -68,12 +56,7 @@ def _run_cli(*args: str, timeout: int = 60, allow_fail: bool = False) -> str:
 
 def authorize_goal(goal: str) -> BrowserResult:
     hits = sorted(t for t in FORBIDDEN_TERMS if t in goal.lower())
-    return BrowserResult(
-        not hits,
-        "authorize",
-        "Goal is allowed." if not hits else "Blocked protected action.",
-        {"blocked_terms": hits},
-    )
+    return BrowserResult(not hits, "authorize", "Goal is allowed." if not hits else "Blocked protected action.", {"blocked_terms": hits})
 
 
 def snapshot() -> str:
@@ -84,15 +67,7 @@ def attach_or_open(profile: str) -> BrowserResult:
     attached = _run_cli("attach", "default", timeout=30, allow_fail=True)
     if "attached" in attached.lower():
         return BrowserResult(True, "attach", "Attached to existing browser.", {"snapshot": snapshot()})
-    _run_cli(
-        "open",
-        "https://gumroad.com/products",
-        "--browser=chromium",
-        "--headed",
-        "--persistent",
-        f"--profile={profile}",
-        timeout=90,
-    )
+    _run_cli("open", "https://gumroad.com/products", "--browser=chromium", "--headed", "--persistent", f"--profile={profile}", timeout=90)
     return BrowserResult(True, "open", "Opened browser.", {"snapshot": snapshot()})
 
 
@@ -135,19 +110,35 @@ def _upload_cover_and_thumbnail() -> dict[str, Any]:
     snap = snapshot()
     cover_refs = _extract_refs(snap, "Upload images or videos")
     upload_refs = _extract_refs(snap, "Upload")
-    save_ref = _extract_ref(snap, "Save changes")
-    if not cover_refs or not upload_refs or not save_ref:
+    if not cover_refs or len(upload_refs) < 1:
         raise RuntimeError("Could not rediscover Gumroad cover/thumbnail controls")
 
-    _run_cli("click", cover_refs[0], timeout=30)
-    _run_cli("upload", str(COVER_PATH), timeout=90)
+    # The chooser state is owned by the current Playwright CLI process, so the
+    # click and upload must be one atomic CLI operation instead of two calls.
+    cover_ref = cover_refs[0]
+    cover_path = str(COVER_PATH)
+    cover_script = f"""async () => {{
+        const btn = page.getByRole('button', {{name: 'Upload images or videos'}});
+        await btn.click();
+        const chooser = page.waitForEvent('filechooser');
+        await chooser.setFiles({json.dumps(cover_path)});
+    }}"""
+    _run_cli("run-code", cover_script, timeout=90)
+
     snap = snapshot()
     upload_refs = _extract_refs(snap, "Upload")
     if not upload_refs:
         raise RuntimeError("Thumbnail upload control not found after cover upload")
 
-    _run_cli("click", upload_refs[-1], timeout=30)
-    _run_cli("upload", str(THUMB_PATH), timeout=90)
+    thumb_path = str(THUMB_PATH)
+    thumb_script = f"""async () => {{
+        const btns = page.getByRole('button', {{name: 'Upload'}});
+        await btns.last().click();
+        const chooser = page.waitForEvent('filechooser');
+        await chooser.setFiles({json.dumps(thumb_path)});
+    }}"""
+    _run_cli("run-code", thumb_script, timeout=90)
+
     snap = snapshot()
     save_ref = _extract_ref(snap, "Save changes")
     if not save_ref:
@@ -198,18 +189,7 @@ def edit_p001_listing() -> BrowserResult:
     published_ok = 'button "Unpublish"' in verify
     summary_ok = summary.lower() in verify.lower()
     ok = price_ok and published_ok and summary_ok
-    return BrowserResult(
-        ok,
-        "edit_p001_listing",
-        "Listing, cover, thumbnail saved and protected fields verified." if ok else "Verification failed.",
-        {
-            "price_guard": price_ok,
-            "published_guard": published_ok,
-            "summary_guard": summary_ok,
-            "assets": assets,
-            "snapshot": verify,
-        },
-    )
+    return BrowserResult(ok, "edit_p001_listing", "Listing, cover, thumbnail saved and protected fields verified." if ok else "Verification failed.", {"price_guard": price_ok, "published_guard": published_ok, "summary_guard": summary_ok, "assets": assets, "snapshot": verify})
 
 
 def execute(goal: str, profile: str) -> BrowserResult:
@@ -225,7 +205,6 @@ def execute(goal: str, profile: str) -> BrowserResult:
     if "optimize" not in goal.lower() and "update" not in goal.lower():
         return BrowserResult(True, "plan_only", "Goal validated; no edit requested.", {})
     return edit_p001_listing()
-
 
 if __name__ == "__main__":
     import argparse
