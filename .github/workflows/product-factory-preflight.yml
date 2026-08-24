@@ -1,0 +1,27 @@
+name: Leverage Product Factory Preflight
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Factory dry-run plan
+        run: python control_plane/product_factory.py
+      - name: Factory unit tests
+        run: python -m pytest control_plane/test_product_factory.py workers/test_digital_product_worker.py -q
+      - name: Creative gate smoke test
+        run: python -c "from workers.creative_director_worker import review_asset, REQUIRED; r=review_asset({k:90 for k in REQUIRED}); assert r.decision == 'publish' and r.score >= 85; print(r)"
+      - name: Marketplace safety smoke test
+        run: python -c "from workers.marketplace_worker import authorize_action; assert authorize_action('move_money')['allowed'] is False; assert authorize_action('prepare_listing')['allowed'] is True; print('marketplace guard OK')"
