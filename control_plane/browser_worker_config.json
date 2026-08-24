@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "name": "Leverage Browser Worker v1",
+  "runtime": {
+    "browser": "chromium",
+    "profile": "D:\\Leverage\\browser-profile",
+    "headed": true
+  },
+  "goals": {
+    "allowed": [
+      "inspect marketplace pages",
+      "edit listing presentation",
+      "edit description",
+      "edit summary",
+      "upload approved creative assets",
+      "verify saved state"
+    ],
+    "blocked": [
+      "change price",
+      "change payout settings",
+      "change bank details",
+      "change password",
+      "change account email",
+      "move money",
+      "publish or unpublish",
+      "delete products",
+      "bypass platform rules",
+      "mass spam"
+    ]
+  },
+  "verification": {
+    "required": true,
+    "price_guard": true,
+    "financial_action_guard": true,
+    "account_security_guard": true
+  }
+}
