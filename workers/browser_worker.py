@@ -105,40 +105,25 @@ def _make_assets() -> dict[str, str]:
     return {"cover": str(COVER_PATH), "thumbnail": str(THUMB_PATH)}
 
 
+def _upload_file_input(file_path: Path, index: int) -> None:
+    path_json = json.dumps(str(file_path), ensure_ascii=False)
+    script = f"async () => {{ const inputs = page.locator('input[type=file]'); const count = await inputs.count(); if (count <= {index}) throw new Error('Expected file input index {index} but found ' + count); await inputs.nth({index}).setInputFiles({path_json}); }}"
+    _run_cli("run-code", script, timeout=90)
+
+
 def _upload_cover_and_thumbnail() -> dict[str, Any]:
     _run_cli("goto", f"https://gumroad.com/products/{P001_ID}/edit", timeout=60)
     snap = snapshot()
-    cover_refs = _extract_refs(snap, "Upload images or videos")
-    upload_refs = _extract_refs(snap, "Upload")
-    if not cover_refs or len(upload_refs) < 1:
+    if not _extract_refs(snap, "Upload images or videos") or not _extract_refs(snap, "Upload"):
         raise RuntimeError("Could not rediscover Gumroad cover/thumbnail controls")
 
-    # The chooser state is owned by the current Playwright CLI process, so the
-    # click and upload must be one atomic CLI operation instead of two calls.
-    cover_ref = cover_refs[0]
-    cover_path = str(COVER_PATH)
-    cover_script = f"""async () => {{
-        const btn = page.getByRole('button', {{name: 'Upload images or videos'}});
-        await btn.click();
-        const chooser = page.waitForEvent('filechooser');
-        await chooser.setFiles({json.dumps(cover_path)});
-    }}"""
-    _run_cli("run-code", cover_script, timeout=90)
-
+    _upload_file_input(COVER_PATH, 0)
     snap = snapshot()
-    upload_refs = _extract_refs(snap, "Upload")
-    if not upload_refs:
+    inputs_after_cover = _extract_refs(snap, "Upload")
+    if not inputs_after_cover:
         raise RuntimeError("Thumbnail upload control not found after cover upload")
 
-    thumb_path = str(THUMB_PATH)
-    thumb_script = f"""async () => {{
-        const btns = page.getByRole('button', {{name: 'Upload'}});
-        await btns.last().click();
-        const chooser = page.waitForEvent('filechooser');
-        await chooser.setFiles({json.dumps(thumb_path)});
-    }}"""
-    _run_cli("run-code", thumb_script, timeout=90)
-
+    _upload_file_input(THUMB_PATH, 1)
     snap = snapshot()
     save_ref = _extract_ref(snap, "Save changes")
     if not save_ref:
