@@ -1,0 +1,113 @@
+{
+  "name": "Leverage P-001 Factory Run",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual",
+      "name": "Start P-001 Factory Run",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0,0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id":"p1","name":"project_id","value":"engineering-quote-toolkit","type":"string"},
+            {"id":"p2","name":"product_name","value":"Fabrication Shop Profit & Quote System","type":"string"},
+            {"id":"p3","name":"reuse_existing_artifact","value":true,"type":"boolean"},
+            {"id":"p4","name":"artifact_rebuild_required","value":false,"type":"boolean"},
+            {"id":"p5","name":"current_price_usd","value":19,"type":"number"},
+            {"id":"p6","name":"price_change_requires_owner_approval","value":true,"type":"boolean"}
+          ]
+        }
+      },
+      "id":"intake",
+      "name":"P-001 Intake / Reuse Existing Product",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[220,0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id":"q1","name":"functional_qa_required","value":true,"type":"boolean"},
+            {"id":"q2","name":"creative_qa_required","value":true,"type":"boolean"},
+            {"id":"q3","name":"responsive_qa_required","value":true,"type":"boolean"},
+            {"id":"q4","name":"conversion_qa_required","value":true,"type":"boolean"},
+            {"id":"q5","name":"minimum_score","value":85,"type":"number"}
+          ]
+        }
+      },
+      "id":"qa",
+      "name":"Quality Gate Setup",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[440,0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id":"c1","name":"creative_direction","value":"industrial-professional, modern, evidence-led, premium-but-practical","type":"string"},
+            {"id":"c2","name":"landing_page","value":"P001_LANDING_PAGE_SPEC.md","type":"string"},
+            {"id":"c3","name":"marketing_brief","value":"P001_MARKETING_BRIEF.md","type":"string"},
+            {"id":"c4","name":"visual_quality_gate","value":85,"type":"number"}
+          ]
+        }
+      },
+      "id":"creative",
+      "name":"Creative Director Brief",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[660,0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id":"m1","name":"listing_copy","value":"v2","type":"string"},
+            {"id":"m2","name":"marketing_asset_target","value":10,"type":"number"},
+            {"id":"m3","name":"primary_store","value":"Gumroad","type":"string"},
+            {"id":"m4","name":"marketplace_mode","value":"guarded_browser_automation","type":"string"},
+            {"id":"m5","name":"gumroad_api_product_upload_supported","value":false,"type":"boolean"}
+          ]
+        }
+      },
+      "id":"market",
+      "name":"Marketplace + Marketing Package",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[880,0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id":"r1","name":"website_ready_to_build","value":true,"type":"boolean"},
+            {"id":"r2","name":"marketplace_ready_for_guarded_edit","value":true,"type":"boolean"},
+            {"id":"r3","name":"financial_action_allowed","value":false,"type":"boolean"},
+            {"id":"r4","name":"next_action","value":"execute P-001 browser/site QA on the Owner machine","type":"string"}
+          ]
+        }
+      },
+      "id":"handoff",
+      "name":"P-001 Execution Handoff",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[1100,0]
+    }
+  ],
+  "connections": {
+    "Start P-001 Factory Run":{"main":[[{"node":"P-001 Intake / Reuse Existing Product","type":"main","index":0}]]},
+    "P-001 Intake / Reuse Existing Product":{"main":[[{"node":"Quality Gate Setup","type":"main","index":0}]]},
+    "Quality Gate Setup":{"main":[[{"node":"Creative Director Brief","type":"main","index":0}]]},
+    "Creative Director Brief":{"main":[[{"node":"Marketplace + Marketing Package","type":"main","index":0}]]},
+    "Marketplace + Marketing Package":{"main":[[{"node":"P-001 Execution Handoff","type":"main","index":0}]]}
+  },
+  "active":false,
+  "settings":{"executionOrder":"v1"},
+  "meta":{"purpose":"P-001 real factory run preparation; no price change, money movement, payout change, or account credential change."},
+  "versionId":"p001-factory-v2"
+}
