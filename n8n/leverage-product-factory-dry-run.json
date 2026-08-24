@@ -1,0 +1,20 @@
+{
+  "name": "Leverage Product Factory - Dry Run",
+  "nodes": [
+    {"parameters":{"rule":{"interval":[{"field":"hours","hoursInterval":24}]}},"id":"daily-trigger","name":"Daily Trigger","type":"n8n-nodes-base.scheduleTrigger","typeVersion":1.2,"position":[0,0]},
+    {"parameters":{"command":"python control_plane/product_factory.py"},"id":"plan","name":"Create Factory Plan","type":"n8n-nodes-base.executeCommand","typeVersion":1,"position":[220,0]},
+    {"parameters":{"command":"python -m pytest control_plane/test_product_factory.py workers/test_digital_product_worker.py -q"},"id":"qa","name":"Run Factory QA","type":"n8n-nodes-base.executeCommand","typeVersion":1,"position":[440,0]},
+    {"parameters":{"command":"python -c \"from workers.creative_director_worker import review_asset, REQUIRED; print(review_asset({k:90 for k in REQUIRED}))\""},"id":"creative","name":"Creative Gate","type":"n8n-nodes-base.executeCommand","typeVersion":1,"position":[660,0]},
+    {"parameters":{"command":"python -c \"from control_plane.product_factory import ready_for_product_one, FACTORY_STAGES; print(ready_for_product_one({s:True for s in FACTORY_STAGES}))\""},"id":"readiness","name":"Product #1 Readiness","type":"n8n-nodes-base.executeCommand","typeVersion":1,"position":[880,0]}
+  ],
+  "connections": {
+    "Daily Trigger":{"main":[[{"node":"Create Factory Plan","type":"main","index":0}]]},
+    "Create Factory Plan":{"main":[[{"node":"Run Factory QA","type":"main","index":0}]]},
+    "Run Factory QA":{"main":[[{"node":"Creative Gate","type":"main","index":0}]]},
+    "Creative Gate":{"main":[[{"node":"Product #1 Readiness","type":"main","index":0}]]}
+  },
+  "active":false,
+  "settings":{"executionOrder":"v1"},
+  "meta":{"purpose":"Pre-Product-#1 validation only; no real marketplace publication or money movement."},
+  "versionId":"leverage-factory-v2"
+}
