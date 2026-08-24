@@ -1,8 +1,8 @@
 """Leverage Browser Worker v1.
 
 Goal-driven local browser automation using the installed Playwright CLI.
-The worker discovers controls from the current page rather than relying on
-stored element IDs. It is intentionally constrained to presentation edits.
+The worker discovers controls from the current page and attaches to the
+Owner's existing authenticated Playwright session when available.
 """
 from __future__ import annotations
 
@@ -28,10 +28,10 @@ class BrowserResult:
     data: dict[str, Any]
 
 
-def _run_cli(*args: str, timeout: int = 60) -> str:
+def _run_cli(*args: str, timeout: int = 60, allow_fail: bool = False) -> str:
     proc = subprocess.run(["playwright-cli", *args], capture_output=True, text=True, timeout=timeout)
     output = (proc.stdout + "\n" + proc.stderr).strip()
-    if proc.returncode != 0:
+    if proc.returncode != 0 and not allow_fail:
         raise RuntimeError(output)
     return output
 
@@ -56,9 +56,12 @@ def authorize_goal(goal: str) -> BrowserResult:
     return BrowserResult(True, "authorize", "Goal is within presentation-editing boundary.", {})
 
 
-def open_gumroad(profile: str) -> BrowserResult:
+def attach_or_open(profile: str) -> BrowserResult:
+    attached = _run_cli("attach", "default", timeout=30, allow_fail=True)
+    if "attached" in attached.lower() or "browser" in attached.lower() and "error" not in attached.lower():
+        return BrowserResult(True, "attach_browser", "Attached to existing Playwright browser session.", {"output": attached})
     _run_cli("open", "https://gumroad.com/products", "--browser=chromium", "--headed", "--persistent", f"--profile={profile}", timeout=90)
-    return BrowserResult(True, "open_gumroad", "Browser opened.", {"snapshot": _snapshot()})
+    return BrowserResult(True, "open_browser", "Opened a new authenticated-capable Playwright browser session.", {})
 
 
 def find_product(product_id: str, title_hint: str) -> BrowserResult:
@@ -76,7 +79,6 @@ def _set_description(description_html: str) -> None:
         "if(!el) throw new Error('Description editor not found'); el.innerHTML=html; "
         "el.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText'})); return el.innerText; }"
     )
-    # Pass the JS function and JSON payload as one CLI argument so CMD does not split the content.
     _run_cli("eval", f"{js[:-1]}, {payload})", timeout=30)
 
 
@@ -89,8 +91,7 @@ def edit_p001_listing(summary: str, description_html: str) -> BrowserResult:
     _run_cli("click", save_ref, timeout=30)
     _run_cli("reload", timeout=30)
     snap = _snapshot()
-    amount_match = re.search(r'textbox \"Amount\"[^\n]*?:?\s*\"19\"', snap)
-    price_ok = bool(amount_match) or ('Amount' in snap and '"19"' in snap)
+    price_ok = bool(re.search(r'textbox \"Amount\"[^\n]*?:?\s*\"19\"', snap)) or ('Amount' in snap and '"19"' in snap)
     published_ok = 'button "Unpublish"' in snap
     summary_ok = summary.lower() in snap.lower()
     ok = price_ok and published_ok and summary_ok
@@ -101,7 +102,7 @@ def execute(goal: str, profile: str, product_id: str = "neiqwz") -> BrowserResul
     auth = authorize_goal(goal)
     if not auth.ok:
         return auth
-    open_gumroad(profile)
+    attach_or_open(profile)
     product = find_product(product_id, "Fabrication Shop Profit & Quote System")
     if not product.ok:
         return product
