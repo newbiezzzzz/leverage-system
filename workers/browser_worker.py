@@ -1,15 +1,18 @@
 """Leverage Browser Worker v1.
 
-Goal-driven local browser automation using the installed Playwright CLI.
-The worker discovers controls from the current page and attaches to the
-Owner's existing authenticated Playwright session when available.
+Goal-driven local browser automation using Playwright CLI.
+
+This worker is intentionally constrained: it may edit marketplace presentation
+fields, but it will refuse money movement, payout/security changes, price changes,
+or publishing/unpublishing actions. The authenticated browser session remains on
+ the Owner machine in the dedicated Playwright profile.
 """
 from __future__ import annotations
 
-import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 from dataclasses import dataclass
 from typing import Any
@@ -28,24 +31,31 @@ class BrowserResult:
     data: dict[str, Any]
 
 
+def _playwright_executable() -> str:
+    candidates = ["playwright-cli.cmd", "playwright-cli"]
+    for candidate in candidates:
+        found = shutil.which(candidate)
+        if found:
+            return found
+
+    npm_global = os.environ.get("LEVERAGE_NPM_GLOBAL", r"D:\development\node.js\npm-global")
+    candidate = os.path.join(npm_global, "playwright-cli.cmd")
+    if os.path.exists(candidate):
+        return candidate
+
+    raise FileNotFoundError(
+        "playwright-cli was not found. Add the npm global bin directory to PATH "
+        "or set LEVERAGE_NPM_GLOBAL to the directory containing playwright-cli.cmd."
+    )
+
+
 def _run_cli(*args: str, timeout: int = 60, allow_fail: bool = False) -> str:
-    proc = subprocess.run(["playwright-cli", *args], capture_output=True, text=True, timeout=timeout)
+    cmd = [_playwright_executable(), *args]
+    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, shell=False)
     output = (proc.stdout + "\n" + proc.stderr).strip()
     if proc.returncode != 0 and not allow_fail:
         raise RuntimeError(output)
     return output
-
-
-def _snapshot() -> str:
-    return _run_cli("snapshot", timeout=60)
-
-
-def _find_ref(label: str) -> str:
-    output = _run_cli("find", label, timeout=30)
-    match = re.search(r"\[ref=([A-Za-z0-9]+)\]", output)
-    if not match:
-        raise RuntimeError(f"Could not discover UI target: {label}\n{output}")
-    return match.group(1)
 
 
 def authorize_goal(goal: str) -> BrowserResult:
@@ -56,59 +66,83 @@ def authorize_goal(goal: str) -> BrowserResult:
     return BrowserResult(True, "authorize", "Goal is within presentation-editing boundary.", {})
 
 
-def attach_or_open(profile: str) -> BrowserResult:
+def attach_or_open(profile: str, url: str = "https://gumroad.com/products") -> BrowserResult:
     attached = _run_cli("attach", "default", timeout=30, allow_fail=True)
     if "attached" in attached.lower() or "browser" in attached.lower() and "error" not in attached.lower():
-        return BrowserResult(True, "attach_browser", "Attached to existing Playwright browser session.", {"output": attached})
-    _run_cli("open", "https://gumroad.com/products", "--browser=chromium", "--headed", "--persistent", f"--profile={profile}", timeout=90)
-    return BrowserResult(True, "open_browser", "Opened a new authenticated-capable Playwright browser session.", {})
+        snap = _run_cli("snapshot", timeout=60)
+        return BrowserResult(True, "attach_browser", "Attached to existing Playwright browser session.", {"snapshot": snap})
+
+    _run_cli("open", url, "--browser=chromium", "--headed", "--persistent", f"--profile={profile}", timeout=90)
+    snap = _run_cli("snapshot", timeout=60)
+    return BrowserResult(True, "open_browser", "Browser opened and snapshot captured.", {"snapshot": snap})
 
 
-def find_product(product_id: str, title_hint: str) -> BrowserResult:
+def find_product(product_id: str, title_hint: str = "Fabrication Shop Profit & Quote System") -> BrowserResult:
     _run_cli("goto", "https://gumroad.com/products", timeout=60)
-    snap = _snapshot()
+    snap = _run_cli("snapshot", timeout=60)
     found = product_id in snap and title_hint.lower() in snap.lower()
     return BrowserResult(found, "find_product", "Existing product located." if found else "Target product not found.", {"product_id": product_id, "snapshot": snap})
 
 
-def _set_description(description_html: str) -> None:
-    payload = json.dumps(description_html, ensure_ascii=False)
-    js = (
-        "(html) => { const editors=[...document.querySelectorAll('[contenteditable=true]')]; "
-        "const el=editors.find(e=>e.innerText.includes('Fabrication Shop Profit & Quote System')) || editors[0]; "
-        "if(!el) throw new Error('Description editor not found'); el.innerHTML=html; "
-        "el.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText'})); return el.innerText; }"
-    )
-    _run_cli("eval", f"{js[:-1]}, {payload})", timeout=30)
+def _extract_ref(snapshot: str, label: str) -> str | None:
+    pattern = rf'(?:textbox|button|combobox) "{re.escape(label)}" \[ref=([^\]]+)\]'
+    match = re.search(pattern, snapshot)
+    return match.group(1) if match else None
 
 
 def edit_p001_listing(summary: str, description_html: str) -> BrowserResult:
     _run_cli("goto", "https://gumroad.com/products/neiqwz/edit", timeout=60)
-    summary_ref = _find_ref("Summary")
+    snap = _run_cli("snapshot", timeout=60)
+
+    summary_ref = _extract_ref(snap, "Summary")
+    save_ref = _extract_ref(snap, "Save changes")
+    if not summary_ref or not save_ref:
+        return BrowserResult(False, "edit_p001_listing", "Could not rediscover required Gumroad controls.", {"snapshot": snap})
+
     _run_cli("fill", summary_ref, summary, timeout=30)
-    _set_description(description_html)
-    save_ref = _find_ref("Save changes")
+    js = (
+        "() => { const el=document.querySelector('[contenteditable=true]'); "
+        "if(!el) throw new Error('Description editor not found'); "
+        "el.innerHTML='" + description_html.replace("\\", "\\\\").replace("'", "\\'") + "'; "
+        "el.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText'})); return el.innerText; }"
+    )
+    _run_cli("eval", js, timeout=30)
     _run_cli("click", save_ref, timeout=30)
-    _run_cli("reload", timeout=30)
-    snap = _snapshot()
-    price_ok = bool(re.search(r'textbox \"Amount\"[^\n]*?:?\s*\"19\"', snap)) or ('Amount' in snap and '"19"' in snap)
-    published_ok = 'button "Unpublish"' in snap
-    summary_ok = summary.lower() in snap.lower()
+
+    verify = _run_cli("snapshot", timeout=60)
+    price_ok = bool(re.search(r'textbox \"Amount\"[^\n]*\"19\"', verify))
+    published_ok = "button \"Unpublish\"" in verify
+    summary_ok = summary.lower() in verify.lower()
     ok = price_ok and published_ok and summary_ok
-    return BrowserResult(ok, "edit_p001_listing", "Listing edited and safety checks passed." if ok else "Verification failed; no further action taken.", {"price_guard": price_ok, "published_guard": published_ok, "summary_guard": summary_ok, "snapshot": snap})
+
+    return BrowserResult(
+        ok,
+        "edit_p001_listing",
+        "Listing saved and protected fields verified." if ok else "Save attempted but verification failed.",
+        {
+            "price_guard": price_ok,
+            "published_guard": published_ok,
+            "summary_guard": summary_ok,
+            "snapshot": verify,
+        },
+    )
 
 
 def execute(goal: str, profile: str, product_id: str = "neiqwz") -> BrowserResult:
     auth = authorize_goal(goal)
     if not auth.ok:
         return auth
-    attach_or_open(profile)
-    product = find_product(product_id, "Fabrication Shop Profit & Quote System")
+
+    browser = attach_or_open(profile)
+    if not browser.ok:
+        return browser
+
+    product = find_product(product_id)
     if not product.ok:
         return product
-    lowered = goal.lower()
-    if not ("optimize" in lowered or "update" in lowered):
-        return BrowserResult(True, "plan_only", "Goal validated and product found; no edit requested.", product.data)
+
+    if "optimize" not in goal.lower() and "update" not in goal.lower():
+        return BrowserResult(True, "plan_only", "Goal validated and product found; no edit keyword requested.", product.data)
 
     summary = "Know the cost and margin before you quote."
     description_html = (
@@ -132,6 +166,7 @@ def execute(goal: str, profile: str, product_id: str = "neiqwz") -> BrowserResul
 
 
 if __name__ == "__main__":
+    import argparse
     parser = argparse.ArgumentParser(description="Leverage Browser Worker v1")
     parser.add_argument("goal", help='Goal, e.g. "Optimize P-001 Gumroad listing"')
     parser.add_argument("--profile", default=os.environ.get("LEVERAGE_BROWSER_PROFILE", r"D:\Leverage\browser-profile"))
