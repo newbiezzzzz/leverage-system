@@ -1,7 +1,7 @@
 {
   "name": "Leverage P-001 Factory Run",
   "nodes": [
-    {"parameters": {},"id":"manual","name":"Start P-001 Factory Run","type":"n8n-nodes-base.manualTrigger","typeVersion":1,"position":[0,0]},
+    {"parameters":{},"id":"manual","name":"Start P-001 Factory Run","type":"n8n-nodes-base.manualTrigger","typeVersion":1,"position":[0,0]},
     {"parameters":{"assignments":{"assignments":[
       {"id":"p1","name":"project_id","value":"engineering-quote-toolkit","type":"string"},
       {"id":"p2","name":"product_name","value":"Fabrication Shop Profit & Quote System","type":"string"},
@@ -30,27 +30,29 @@
       {"id":"m4","name":"marketplace_mode","value":"guarded_browser_automation","type":"string"},
       {"id":"m5","name":"gumroad_api_product_upload_supported","value":false,"type":"boolean"},
       {"id":"m6","name":"browser_worker_enabled","value":true,"type":"boolean"},
-      {"id":"m7","name":"browser_worker_goal","value":"Optimize Fabrication Shop Profit & Quote System Gumroad marketplace listing","type":"string"},
+      {"id":"m7","name":"browser_worker_goal","value":"Optimize Fabrication Shop Profit & Quote System marketplace listing","type":"string"},
       {"id":"m8","name":"financial_actions_allowed","value":false,"type":"boolean"}]}}
     ,"id":"market","name":"Marketplace + Browser Worker Package","type":"n8n-nodes-base.set","typeVersion":3.4,"position":[880,0]},
+    {"parameters":{"method":"POST","url":"http://127.0.0.1:8787/run","sendBody":true,"contentType":"json","specifyBody":"json","jsonBody":"={{ JSON.stringify({ goal: $json.browser_worker_goal }) }}","options":{}},"id":"browserbridge","name":"Execute Local Browser Worker","type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[1100,0]},
     {"parameters":{"assignments":{"assignments":[
       {"id":"r1","name":"website_ready_to_build","value":true,"type":"boolean"},
       {"id":"r2","name":"marketplace_ready_for_guarded_edit","value":true,"type":"boolean"},
       {"id":"r3","name":"financial_action_allowed","value":false,"type":"boolean"},
       {"id":"r4","name":"browser_worker_ready","value":true,"type":"boolean"},
-      {"id":"r5","name":"browser_worker_command","value":"tools\\run-browser-worker.cmd \"Optimize Fabrication Shop Profit & Quote System marketplace listing\"","type":"string"},
-      {"id":"r6","name":"next_action","value":"execute Browser Worker goal on the Owner machine; no manual marketplace editing required","type":"string"}]}}
-    ,"id":"handoff","name":"P-001 Browser Worker Handoff","type":"n8n-nodes-base.set","typeVersion":3.4,"position":[1100,0]}
+      {"id":"r5","name":"browser_bridge_url","value":"http://127.0.0.1:8787/run","type":"string"},
+      {"id":"r6","name":"next_action","value":"browser worker execution accepted locally; no manual marketplace editing required","type":"string"}]}}
+    ,"id":"handoff","name":"P-001 Browser Worker Handoff","type":"n8n-nodes-base.set","typeVersion":3.4,"position":[1320,0]}
   ],
   "connections": {
     "Start P-001 Factory Run":{"main":[[{"node":"P-001 Intake / Reuse Existing Product","type":"main","index":0}]]},
     "P-001 Intake / Reuse Existing Product":{"main":[[{"node":"Quality Gate Setup","type":"main","index":0}]]},
     "Quality Gate Setup":{"main":[[{"node":"Creative Director Brief","type":"main","index":0}]]},
     "Creative Director Brief":{"main":[[{"node":"Marketplace + Browser Worker Package","type":"main","index":0}]]},
-    "Marketplace + Browser Worker Package":{"main":[[{"node":"P-001 Browser Worker Handoff","type":"main","index":0}]]}
+    "Marketplace + Browser Worker Package":{"main":[[{"node":"Execute Local Browser Worker","type":"main","index":0}]]},
+    "Execute Local Browser Worker":{"main":[[{"node":"P-001 Browser Worker Handoff","type":"main","index":0}]]}
   },
   "active":false,
   "settings":{"executionOrder":"v1"},
-  "meta":{"purpose":"P-001 real factory run preparation; browser presentation edits may execute through the guarded local Browser Worker. Price change, money movement, payout change, and account credential change remain blocked."},
-  "versionId":"p001-factory-v3"
+  "meta":{"purpose":"P-001 real factory run with guarded local browser execution. Price change, money movement, payout change, and account credential change remain blocked."},
+  "versionId":"p001-factory-v4"
 }
