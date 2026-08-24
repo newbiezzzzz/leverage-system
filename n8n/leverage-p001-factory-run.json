@@ -36,17 +36,17 @@
     {"parameters":{"method":"POST","url":"http://127.0.0.1:8787/run","sendBody":true,"contentType":"json","specifyBody":"json","jsonBody":"={{ JSON.stringify({ goal: $json.browser_worker_goal }) }}","options":{}},"id":"browserbridge","name":"Start Local Browser Worker","type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[1100,0]},
     {"parameters":{"resume":"timeInterval","amount":5,"unit":"seconds"},"id":"wait","name":"Wait Before Status Check","type":"n8n-nodes-base.wait","typeVersion":1.1,"position":[1320,0]},
     {"parameters":{"method":"GET","url":"={{ 'http://127.0.0.1:8787/status/' + $json.job_id }}","options":{}},"id":"status","name":"Check Browser Worker Status","type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[1540,0]},
-    {"parameters":{"conditions":{"boolean":[{"value1":"={{ $json.completed }}","operation":"isTrue"}]}},"id":"done","name":"Browser Worker Completed?","type":"n8n-nodes-base.if","typeVersion":2.2,"position":[1760,0]},
+    {"parameters":{"conditions":{"boolean":[{"value1":"={{ $json.completed === true }}","operation":"isTrue"}]}},"id":"done","name":"Browser Worker Completed?","type":"n8n-nodes-base.if","typeVersion":2.2,"position":[1760,0]},
     {"parameters":{"assignments":{"assignments":[
       {"id":"r1","name":"website_ready_to_build","value":true,"type":"boolean"},
       {"id":"r2","name":"marketplace_ready_for_guarded_edit","value":true,"type":"boolean"},
       {"id":"r3","name":"financial_action_allowed","value":false,"type":"boolean"},
       {"id":"r4","name":"browser_worker_ready","value":true,"type":"boolean"},
-      {"id":"r5","name":"browser_worker_completed","value":"={{ $json.completed }}","type":"boolean"},
-      {"id":"r6","name":"browser_worker_ok","value":"={{ $json.ok }}","type":"boolean"},
+      {"id":"r5","name":"browser_worker_completed","value":"={{ $json.completed === true }}","type":"boolean"},
+      {"id":"r6","name":"browser_worker_ok","value":"={{ $json.ok === true }}","type":"boolean"},
       {"id":"r7","name":"browser_worker_action","value":"={{ $json.action || '' }}","type":"string"},
       {"id":"r8","name":"browser_bridge_url","value":"http://127.0.0.1:8787/run","type":"string"},
-      {"id":"r9","name":"next_action","value":"browser worker execution completed; no manual marketplace editing required","type":"string"}]}}
+      {"id":"r9","name":"next_action","value":"={{ $json.completed === true ? ($json.ok === true ? 'browser worker execution completed successfully; no manual marketplace editing required' : 'browser worker completed with failure; inspect worker result') : 'browser worker still running; keep polling' }}","type":"string"}]}}
     ,"id":"handoff","name":"P-001 Browser Worker Result","type":"n8n-nodes-base.set","typeVersion":3.4,"position":[1980,-120]}
   ],
   "connections": {
@@ -63,5 +63,5 @@
   "active":false,
   "settings":{"executionOrder":"v1"},
   "meta":{"purpose":"P-001 real factory run with guarded local browser execution and asynchronous result polling. Price change, money movement, payout change, and account credential change remain blocked."},
-  "versionId":"p001-factory-v5"
+  "versionId":"p001-factory-v6"
 }
