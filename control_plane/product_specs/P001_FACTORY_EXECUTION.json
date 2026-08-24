@@ -1,0 +1,56 @@
+{
+  "project_id": "engineering-quote-toolkit",
+  "factory_cycle": "P001-v2",
+  "mode": "upgrade-and-launch-existing-product",
+  "product": "Fabrication Shop Profit & Quote System",
+  "artifact_policy": {
+    "reuse_existing_product": true,
+    "rebuild_required": false,
+    "preserve_verified_artifact": true
+  },
+  "current_store": {
+    "provider": "Gumroad",
+    "product_url": "https://newbiezz.gumroad.com/l/neiqwz",
+    "current_price_usd": 19,
+    "price_change": "owner_approval_required"
+  },
+  "factory_stages": [
+    "artifact_verify",
+    "ux_content_review",
+    "creative_redesign",
+    "listing_copy_upgrade",
+    "preview_asset_plan",
+    "public_site_landing_page",
+    "organic_marketing_package",
+    "marketplace_publish_or_edit",
+    "analytics_validation"
+  ],
+  "artifact_quality": {
+    "functional_qa_required": true,
+    "creative_qa_required": true,
+    "responsive_qa_required": true,
+    "conversion_qa_required": true,
+    "minimum_publish_score": 85
+  },
+  "gumroad": {
+    "mode": "guarded_browser_automation",
+    "reason": "Gumroad currently does not support creating products or uploading product content through its API.",
+    "allowed": ["edit_listing", "upload_cover", "upload_preview_files", "edit_description", "edit_tags", "edit_url"],
+    "owner_approval_required": ["payout_settings", "payment_credentials", "major_price_change", "money_movement"]
+  },
+  "website": {
+    "goal": "high-quality acquisition page, not a brochure",
+    "primary_cta": "Get the Fabrication Shop Profit & Quote System",
+    "supporting_cta": "See how the calculator protects margin",
+    "required_sections": ["hero", "problem", "workflow", "screenshots", "what_is_included", "who_it_is_for", "faq", "cta"],
+    "creative_gate": 85
+  },
+  "marketing": {
+    "first_package_count": 10,
+    "formats": ["educational_post", "problem_solution_post", "square_visual", "portrait_visual", "short_video_script", "comparison_post", "calculator_demo", "faq_post", "quote_tip", "profit_leak_tip"],
+    "rule": "useful before promotional; no spam"
+  },
+  "success_gate": "first verified external buyer transaction",
+  "revenue_before_first_sale": 0,
+  "startup_cost_rm": 0
+}
