@@ -19,6 +19,7 @@ ALLOWED_PREFIXES = (
     "Optimize Fabrication Shop Profit & Quote System marketplace listing",
 )
 RUNNER = ROOT / "tools" / "run-browser-worker.cmd"
+TIMEOUT_SECONDS = int(os.environ.get("LEVERAGE_BROWSER_BRIDGE_TIMEOUT", "300"))
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -61,17 +62,57 @@ class Handler(BaseHTTPRequestHandler):
 
         try:
             env = os.environ.copy()
-            proc = subprocess.Popen(
+            completed = subprocess.run(
                 [str(RUNNER), goal],
                 cwd=str(ROOT),
                 env=env,
-                creationflags=getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0),
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=TIMEOUT_SECONDS,
+                shell=False,
             )
-            self._json(202, {"ok": True, "accepted": True, "pid": proc.pid, "goal": goal})
+            output = (completed.stdout or "") + "\n" + (completed.stderr or "")
+            output = output.strip()
+            if completed.returncode != 0:
+                self._json(500, {
+                    "ok": False,
+                    "accepted": True,
+                    "completed": True,
+                    "return_code": completed.returncode,
+                    "goal": goal,
+                    "error": output or f"browser worker exited with code {completed.returncode}",
+                })
+                return
+
+            try:
+                result = json.loads(output)
+                if not isinstance(result, dict):
+                    raise ValueError("worker output was not a JSON object")
+            except Exception as exc:
+                self._json(500, {
+                    "ok": False,
+                    "accepted": True,
+                    "completed": True,
+                    "goal": goal,
+                    "error": f"invalid_worker_output: {exc}",
+                    "raw_output": output,
+                })
+                return
+
+            result.update({"accepted": True, "completed": True, "goal": goal})
+            self._json(200 if result.get("ok") else 422, result)
+        except subprocess.TimeoutExpired:
+            self._json(504, {
+                "ok": False,
+                "accepted": True,
+                "completed": False,
+                "goal": goal,
+                "error": f"browser worker timed out after {TIMEOUT_SECONDS}s",
+            })
         except Exception as exc:
-            self._json(500, {"ok": False, "error": str(exc)})
+            self._json(500, {"ok": False, "error": str(exc), "goal": goal})
 
 
 if __name__ == "__main__":
