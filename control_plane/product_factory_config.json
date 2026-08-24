@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "mode": "pre-product-1",
+  "version": 2,
+  "mode": "product-1-ready",
   "daily_target": 1,
   "cost_policy": "rm0_until_revenue",
   "execution": {
@@ -8,7 +8,13 @@
     "max_heavy_jobs_concurrent": 1,
     "local_resource_guard": true,
     "cloud_quota_guard": true,
-    "queue_on_resource_pressure": true
+    "queue_on_resource_pressure": true,
+    "browser_worker": {
+      "enabled": true,
+      "owner_machine_required": true,
+      "financial_actions_allowed": false,
+      "goal_driven": true
+    }
   },
   "quality": {
     "minimum_publish_score": 85,
@@ -23,10 +29,14 @@
     "redesign_below_score": 85
   },
   "marketplaces": {
-    "gumroad": {"mode": "browser_or_api", "real_publish_requires_verified_session": true},
-    "itch": {"mode": "browser_or_api"},
-    "cgtrader": {"mode": "browser_or_api"},
-    "fab": {"mode": "browser_or_api"}
+    "gumroad": {
+      "mode": "browser_or_api",
+      "real_publish_requires_verified_session": true,
+      "browser_worker": {"enabled": true, "goal_pattern": "Optimize {product} Gumroad marketplace listing"}
+    },
+    "itch": {"mode": "browser_or_api", "browser_worker": {"enabled": true}},
+    "cgtrader": {"mode": "browser_or_api", "browser_worker": {"enabled": true}},
+    "fab": {"mode": "browser_or_api", "browser_worker": {"enabled": true}}
   },
   "financial_actions": {"owner_approval_required": true},
   "dry_run": {"enabled": true, "real_paid_publish": false, "money_movement": false}
