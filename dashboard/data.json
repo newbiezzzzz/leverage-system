@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T19:35:50.404019+00:00",
+  "generated_at": "2026-08-24T20:39:23.923510+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -108,6 +108,94 @@
       ],
       "external_dependencies": [],
       "cost_rm": 0
+    },
+    {
+      "id": "creative-director-worker",
+      "role": "creative direction, visual design standards and creative review",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/creative_director_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "creative-safe",
+      "capabilities": [
+        "brief",
+        "review",
+        "score",
+        "redesign",
+        "report"
+      ],
+      "restricted_actions": [
+        "publish",
+        "move_money"
+      ]
+    },
+    {
+      "id": "design-qa-worker",
+      "role": "UX, responsive and visual quality assurance",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/design_qa_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "qa-safe",
+      "capabilities": [
+        "evaluate",
+        "responsive_check",
+        "report"
+      ],
+      "restricted_actions": [
+        "publish",
+        "move_money"
+      ]
+    },
+    {
+      "id": "content-marketing-worker",
+      "role": "content strategy and marketing asset planning",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/content_marketing_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "marketing-guarded",
+      "capabilities": [
+        "plan_content",
+        "prepare_assets",
+        "report"
+      ],
+      "restricted_actions": [
+        "mass_spam",
+        "publish_binding_offer",
+        "move_money"
+      ]
+    },
+    {
+      "id": "marketplace-worker",
+      "role": "marketplace listing preparation and guarded publishing automation",
+      "status": "online",
+      "activation": "verified",
+      "entrypoint": "workers/marketplace_worker.py",
+      "projects": [
+        "*"
+      ],
+      "risk_level": "external-action-guarded",
+      "capabilities": [
+        "prepare_listing",
+        "authorize_action",
+        "report"
+      ],
+      "restricted_actions": [
+        "move_money",
+        "approve_payout",
+        "change_bank_details",
+        "change_password",
+        "change_account_email",
+        "bypass_platform_rules",
+        "mass_spam"
+      ]
     },
     {
       "id": "project-manager",
@@ -386,7 +474,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-24T19:35:50.404019+00:00"
+    "synced_at": "2026-08-24T20:39:23.923510+00:00"
   },
   "projects": [
     {
