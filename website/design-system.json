@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "name": "Leverage Visual System",
+  "principles": ["clear", "useful", "modern", "distinctive", "responsive", "conversion-aware"],
+  "quality_gate": 85,
+  "design_tokens": {
+    "spacing": [4,8,12,16,24,32,48,64,96],
+    "radii": [8,12,16,24],
+    "type_scale": [12,14,16,18,20,24,32,40,56,72],
+    "content_width": 1200
+  },
+  "required_components": ["header", "hero", "benefit_grid", "tool_or_product_demo", "proof_or_example", "faq", "cta", "footer"],
+  "responsive_viewports": [360, 390, 768, 1024, 1440],
+  "creative_rules": [
+    "Never ship a default-looking template when a stronger composition is possible.",
+    "Use hierarchy before decoration.",
+    "Use visual proof for product claims where practical.",
+    "Keep CTAs obvious without deceptive urgency.",
+    "Prefer original compositions and purposeful imagery.",
+    "Every page must work on mobile before publish."
+  ],
+  "asset_variants": ["landing_page", "product_card", "social_square", "social_portrait", "marketplace_cover", "email_banner", "video_thumbnail"]
+}
