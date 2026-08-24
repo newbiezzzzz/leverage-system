@@ -1,6 +1,6 @@
 # LEVERAGE STATE
 
-_Last aligned: 25 Aug 2026 — Product Factory v2 implementation_
+_Last aligned: 25 Aug 2026 — Product Factory v2 + P-001 factory execution_
 
 ## Mission
 Build a zero-cost, reusable AI/data/automation company that can discover opportunities, validate demand, launch projects, acquire customers, deliver outcomes, measure results, and scale evidence-backed winners with minimal Boss involvement.
@@ -19,7 +19,7 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 ## Company State
 - Company: Leverage
 - Type: owner-operated technology company
-- Stage: Product Factory v2 pre-Product-#1 implementation
+- Stage: Product Factory v2 / P-001 launch execution
 - Base currency: MYR
 - Money movement: disabled
 - Daily product target: 1
@@ -39,6 +39,39 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 - CI preflight: `.github/workflows/product-factory-preflight.yml`
 - Worker registry updated to v14.
 
+## Product #1 — P-001 — Fabrication Shop Profit & Quote System
+- Status: **active / factory-launch**
+- Existing product reused as the first real Product Factory cycle; no duplicate rebuild required.
+- Channel: Gumroad
+- Product URL: https://newbiezz.gumroad.com/l/neiqwz
+- Current listed price: USD19
+- Price changes remain Owner approval actions.
+- Capital deployed: RM0
+- Verified sales: 0
+- Verified revenue: USD0
+
+### P-001 factory execution package
+- `control_plane/product_specs/P001_FACTORY_EXECUTION.json`
+- `control_plane/product_specs/P001_MARKETING_BRIEF.md`
+- `website/P001_LANDING_PAGE_SPEC.md`
+- `control_plane/product_specs/gumroad_listing_v1.md` upgraded to v2 copy
+
+### P-001 required execution stages
+`artifact_verify -> ux_content_review -> creative_redesign -> listing_copy_upgrade -> preview_asset_plan -> public_site_landing_page -> organic_marketing_package -> marketplace_publish_or_edit -> analytics_validation`
+
+### P-001 marketplace constraint
+Gumroad's current help documentation states that creating products or uploading product content through its API is not supported, so listing creation/editing requiring those actions must use the guarded browser path rather than pretending an API can perform them. citeturn174733search12
+
+## Project P-002 — Leverage Free Fabrication Tool Network
+- Status: active / acquire
+- Production: https://leverage-tools.pages.dev/
+- Hosting: Cloudflare Pages
+- Capital deployed: RM0
+- Verified sales: 0
+- Verified revenue: USD0
+
+P-002 remains the free acquisition surface and traffic experiment. P-001 is now the first monetized product routed through the new factory.
+
 ## Quality Contract
 - Minimum automatic publish score: 85/100.
 - Functional QA: required.
@@ -48,55 +81,16 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 - Safety audit: required.
 - Below threshold: redesign/rework, not publish.
 
-## Hybrid Runtime
-- Local Windows PC: n8n, local AI, browser automation, heavy/sequential jobs.
-- Cloudflare: public website, lightweight APIs, telemetry and public infrastructure.
-- GitHub: source control and deployment.
-- No requirement to run all AI workers simultaneously.
+## Current Execution State
+- Product Factory architecture: ready.
+- n8n local installation: complete.
+- n8n Owner account: complete.
+- n8n dry-run execution: passed.
+- Repository Product Factory tests: 6 passed.
+- Repository readiness tests: 2 passed.
+- Direct readiness gate: ready.
+- P-001 factory launch: **in execution**.
+- Real external marketplace edit/publish and public landing-page deployment still require environment-side execution; this chat cannot directly control the Owner's authenticated browser or Windows session.
 
-## Marketplace Automation Boundary
-- API-first where a platform supports the required action.
-- Guarded browser automation where an API does not provide the required publishing action.
-- Marketplace worker may prepare listings and publishing actions.
-- Account credentials, payout/bank changes, money movement and other sensitive actions remain Owner-controlled.
-
-## Public Website Acquisition System
-`research -> information architecture -> visual design -> implementation -> functional QA -> responsive QA -> creative QA -> conversion QA -> SEO metadata -> deploy -> telemetry`
-
-Content must be useful and differentiated; no low-quality mass/duplicate SEO publishing.
-
-## Pre-Product-#1 Gate
-The factory must pass a non-financial dry run before the first real product is created:
-
-`research -> select -> build -> functional_qa -> creative_qa -> conversion_qa -> website_package -> marketplace_package -> marketing_package -> analytics_package -> safety_audit`
-
-Dry-run rules:
-- no real paid offer
-- no money movement
-- no payout changes
-- no credential changes
-
-## Existing Projects
-
-### Project P-001 — Fabrication Shop Profit & Quote System
-- Status: paused
-- Channel: Gumroad
-- Price: USD19
-- Capital deployed: RM0
-- Verified sales: 0
-- Verified revenue: USD0
-
-### Project P-002 — Leverage Free Fabrication Tool Network
-- Status: active / acquire
-- Production: https://leverage-tools.pages.dev/
-- Hosting: Cloudflare Pages
-- Capital deployed: RM0
-- Verified sales: 0
-- Verified revenue: USD0
-
-P-002 remains an existing asset and acquisition surface; the Product Factory now provides the reusable engine for the next product cycle rather than replacing existing work.
-
-## Current Status
-Repository implementation is complete for the pre-Product-#1 architecture. The remaining environment-bound step is installing/running local n8n on the Owner's Windows machine and executing the dry-run, because this chat cannot directly control the Owner's PC process/session.
-
-Do not create Product #1 until the dry-run passes.
+## Success Gate
+The P-001 cycle is not considered commercially successful until an authoritative source verifies at least one genuine external transaction. No revenue is claimed before that evidence exists.
