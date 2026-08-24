@@ -1,6 +1,5 @@
 """Read-only release gate for the reusable Leverage Company OS."""
 from __future__ import annotations
-
 from pathlib import Path
 import json
 from .runtime_state import ensure_runtime_state, state_path
@@ -12,129 +11,76 @@ WORKERS_FILE = ROOT / "workers.json"
 POLICIES_FILE = ROOT / "policies.json"
 PROJECTS_FILE = state_path("projects.json")
 LEDGER_FILE = state_path("financial_ledger.json")
+FACTORY_CONFIG = ROOT / "product_factory_config.json"
 
 REQUIRED_RUNTIME = (
     "projects.json", "tasks.json", "approvals.json", "audit_log.json",
     "financial_ledger.json", "gates.json", "resource_state.json", "customer_orders.json",
 )
-REQUIRED_FILES = ("company.json", "workers.json", "policies.json", "resource_limits.json", "channel_adapter.py")
+REQUIRED_FILES = ("company.json", "workers.json", "policies.json", "resource_limits.json", "channel_adapter.py", "product_factory_config.json", "product_factory.py")
 REQUIRED_TESTS = (
     "test_company_core.py", "test_finance_core.py", "test_dispatcher.py",
     "test_company_ops.py", "test_gates.py", "test_cli.py", "test_readiness.py",
     "test_project_admin.py", "test_local_sync.py", "test_acquisition_worker.py",
     "test_delivery_gateway.py", "test_channel_adapter.py", "../server/test_api.py",
-    "../workers/test_runtime.py", "../workers/test_digital_product_worker.py",
+    "../workers/test_runtime.py", "../workers/test_digital_product_worker.py", "test_product_factory.py",
 )
 EXPECTED_WORKERS = {
     "research-worker": "research", "data-worker": "validate", "code-worker": "build",
     "digital-product-worker": "build", "project-manager": "plan", "operations-worker": "verify",
-    "customer-worker": "intake", "acquisition-worker": "discover_prospects", "finance-worker": "reconcile",
+    "customer-worker": "intake", "finance-worker": "reconcile",
+}
+FACTORY_WORKERS = {
+    "creative-director-worker": "review", "design-qa-worker": "evaluate",
+    "content-marketing-worker": "plan_content", "marketplace-worker": "prepare_listing",
 }
 
 
-def _load(path: Path) -> dict:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _check(name: str, passed: bool, detail: str) -> dict:
-    return {"name": name, "status": "pass" if passed else "fail", "detail": detail}
+def _load(path: Path) -> dict: return json.loads(path.read_text(encoding="utf-8"))
+def _check(name: str, passed: bool, detail: str) -> dict: return {"name": name, "status": "pass" if passed else "fail", "detail": detail}
 
 
 def company_os_readiness() -> dict:
-    ensure_runtime_state()
-    checks: list[dict] = []
+    ensure_runtime_state(); checks: list[dict] = []
     missing = [name for name in REQUIRED_FILES if not (ROOT / name).is_file()]
-    checks.append(_check("core_files", not missing, "All core policy/registry files are present." if not missing else f"Missing: {', '.join(missing)}"))
+    checks.append(_check("core_files", not missing, "All core policy/registry/factory files are present." if not missing else f"Missing: {', '.join(missing)}"))
     missing_runtime = [name for name in REQUIRED_RUNTIME if not state_path(name).is_file()]
     checks.append(_check("runtime_state", not missing_runtime, "All runtime state stores are available." if not missing_runtime else f"Missing: {', '.join(missing_runtime)}"))
-
     try:
-        raw_projects = _load(PROJECTS_FILE).get("projects", [])
-        project_errors = []
-        seen_ids = set()
+        raw_projects = _load(PROJECTS_FILE).get("projects", []); project_errors=[]; seen_ids=set()
         for item in raw_projects:
-            pid = str(item.get("id", ""))
-            if pid in seen_ids:
-                project_errors.append(f"duplicate project id: {pid}")
-                continue
-            seen_ids.add(pid)
-            project = Project(**{k: item[k] for k in Project.__dataclass_fields__ if k in item})
-            project_errors.extend(f"{pid}: {error}" for error in validate_project(project))
-        registry_ok = not project_errors
-        checks.append(_check("project_registry", registry_ok, "All registered projects use the stable status/lifecycle contract." if registry_ok else f"Project registry problems: {'; '.join(project_errors)}"))
-    except (OSError, json.JSONDecodeError, TypeError, AttributeError) as exc:
-        checks.append(_check("project_registry", False, f"Project registry could not be validated: {exc}"))
-
+            pid=str(item.get("id",""))
+            if pid in seen_ids: project_errors.append(f"duplicate project id: {pid}"); continue
+            seen_ids.add(pid); project=Project(**{k:item[k] for k in Project.__dataclass_fields__ if k in item}); project_errors.extend(f"{pid}: {e}" for e in validate_project(project))
+        checks.append(_check("project_registry", not project_errors, "All registered projects use the stable status/lifecycle contract." if not project_errors else f"Project registry problems: {'; '.join(project_errors)}"))
+    except (OSError,json.JSONDecodeError,TypeError,AttributeError) as exc: checks.append(_check("project_registry",False,f"Project registry could not be validated: {exc}"))
     try:
-        workers = _load(WORKERS_FILE).get("workers", []); by_id = {w.get("id"): w for w in workers}
-        missing_workers = [wid for wid in EXPECTED_WORKERS if wid not in by_id]
-        offline = [wid for wid, w in by_id.items() if wid in EXPECTED_WORKERS and w.get("status") != "online"]
-        unverified = [wid for wid, w in by_id.items() if wid in EXPECTED_WORKERS and w.get("activation") != "verified"]
-        bad_capabilities = [wid for wid, action in EXPECTED_WORKERS.items() if wid in by_id and action not in set(by_id[wid].get("capabilities", []))]
-        worker_ok = not (missing_workers or offline or unverified or bad_capabilities)
-        detail = f"{len(EXPECTED_WORKERS)}/{len(EXPECTED_WORKERS)} required workers online, verified, and capability-aligned."
-        if not worker_ok:
-            detail = f"Worker contract problems: {', '.join(sorted(set(missing_workers + offline + unverified + bad_capabilities)))}"
-        checks.append(_check("worker_fleet", worker_ok, detail))
-    except (OSError, json.JSONDecodeError, AttributeError):
-        checks.append(_check("worker_fleet", False, "Worker registry could not be read."))
-
+        workers=_load(WORKERS_FILE).get("workers",[]); by_id={w.get("id"):w for w in workers}; missing_workers=[wid for wid in EXPECTED_WORKERS if wid not in by_id]; offline=[wid for wid in EXPECTED_WORKERS if wid in by_id and by_id[wid].get("status")!="online"]; unverified=[wid for wid in EXPECTED_WORKERS if wid in by_id and by_id[wid].get("activation")!="verified"]; bad=[wid for wid,action in EXPECTED_WORKERS.items() if wid in by_id and action not in set(by_id[wid].get("capabilities",[]))]; ok=not(missing_workers or offline or unverified or bad); checks.append(_check("worker_fleet",ok,f"{len(EXPECTED_WORKERS)}/{len(EXPECTED_WORKERS)} core workers online, verified, and capability-aligned." if ok else f"Worker contract problems: {', '.join(sorted(set(missing_workers+offline+unverified+bad)))}"))
+        fmissing=[wid for wid in FACTORY_WORKERS if wid not in by_id]; foffline=[wid for wid in FACTORY_WORKERS if wid in by_id and by_id[wid].get("status")!="online"]; funverified=[wid for wid in FACTORY_WORKERS if wid in by_id and by_id[wid].get("activation")!="verified"]; fbad=[wid for wid,action in FACTORY_WORKERS.items() if wid in by_id and action not in set(by_id[wid].get("capabilities",[]))]; fok=not(fmissing or foffline or funverified or fbad); checks.append(_check("factory_worker_fleet",fok,"Creative, design-QA, marketing and marketplace workers are online and verified." if fok else f"Factory worker problems: {', '.join(sorted(set(fmissing+foffline+funverified+fbad)))}"))
+    except (OSError,json.JSONDecodeError,AttributeError): checks.append(_check("worker_fleet",False,"Worker registry could not be read."))
     try:
-        workers = _load(WORKERS_FILE).get("workers", []); by_id = {w.get("id"): w for w in workers}
-        workflow_ok = True; problems: list[str] = []; actions_seen: set[str] = set()
-        for worker_id, action, _description, _dependencies in DEFAULT_PROJECT_WORKFLOW:
-            if worker_id not in by_id: workflow_ok = False; problems.append(f"missing worker {worker_id}"); continue
-            if action in actions_seen: workflow_ok = False; problems.append(f"duplicate workflow action {action}")
+        workers=_load(WORKERS_FILE).get("workers",[]); by_id={w.get("id"):w for w in workers}; actions_seen=set(); problems=[]
+        for worker_id,action,_description,_deps in DEFAULT_PROJECT_WORKFLOW:
+            if worker_id not in by_id: problems.append(f"missing worker {worker_id}"); continue
+            if action in actions_seen: problems.append(f"duplicate workflow action {action}")
             actions_seen.add(action)
-            if action not in set(by_id[worker_id].get("capabilities", [])): workflow_ok = False; problems.append(f"{worker_id} lacks {action}")
-        workflow_ok = workflow_ok and actions_seen == {item[1] for item in DEFAULT_PROJECT_WORKFLOW}
-        detail = "Default 8-step project workflow is unique, dependency-defined, and capability-aligned."
-        if not workflow_ok: detail = f"Workflow contract problems: {', '.join(problems)}"
-        checks.append(_check("workflow_contract", workflow_ok, detail))
-    except (OSError, json.JSONDecodeError, AttributeError):
-        checks.append(_check("workflow_contract", False, "Default project workflow could not be validated."))
-
-    missing_tests = [name for name in REQUIRED_TESTS if not (ROOT / name).is_file()]
-    checks.append(_check("test_surface", not missing_tests, "Core OS regression tests are present." if not missing_tests else f"Missing tests: {', '.join(missing_tests)}"))
-
+            if action not in set(by_id[worker_id].get("capabilities",[])): problems.append(f"{worker_id} lacks {action}")
+        expected={item[1] for item in DEFAULT_PROJECT_WORKFLOW}; ok=not problems and actions_seen==expected; checks.append(_check("workflow_contract",ok,"Default project workflow remains unique, dependency-defined, and capability-aligned." if ok else f"Workflow contract problems: {', '.join(problems)}"))
+    except (OSError,json.JSONDecodeError,AttributeError): checks.append(_check("workflow_contract",False,"Default project workflow could not be validated."))
+    missing_tests=[name for name in REQUIRED_TESTS if not (ROOT / name).is_file()]; checks.append(_check("test_surface",not missing_tests,"Core OS + factory regression tests are present." if not missing_tests else f"Missing tests: {', '.join(missing_tests)}"))
     try:
-        policy = _load(POLICIES_FILE).get("company_policy", {})
-        policy_ok = (
-            policy.get("default_mode") == "owner-controlled" and policy.get("spend_requires_approval") is True
-            and policy.get("external_side_effects_require_approval") is True
-            and policy.get("financial_actions_require_owner_approval") is True
-            and policy.get("unknown_provider_state") == "safe_mode" and policy.get("unknown_balance_state") == "blocked"
-            and policy.get("audit_every_state_change") is True
-        )
-        checks.append(_check("safety_policy", policy_ok, "Owner control, approval boundaries, safe mode, blocked unknown balances, and auditing are enabled." if policy_ok else "Safety policy is incomplete or weaker than the Company OS baseline."))
-    except (OSError, json.JSONDecodeError, AttributeError):
-        checks.append(_check("safety_policy", False, "Safety policy could not be read."))
-
+        config=_load(FACTORY_CONFIG); q=config.get("quality",{}); exec_cfg=config.get("execution",{}); dry=config.get("dry_run",{}); factory_ok=(q.get("minimum_publish_score")==85 and q.get("creative_qa") is True and q.get("responsive_qa") is True and exec_cfg.get("strategy")=="hybrid" and exec_cfg.get("max_heavy_jobs_concurrent")==1 and exec_cfg.get("local_resource_guard") is True and exec_cfg.get("cloud_quota_guard") is True and dry.get("enabled") is True and dry.get("real_paid_publish") is False and dry.get("money_movement") is False); checks.append(_check("factory_policy",factory_ok,"Hybrid, sequential, quota/resource-guarded factory with creative QA and non-financial dry-run is configured." if factory_ok else "Product Factory policy is incomplete."))
+    except (OSError,json.JSONDecodeError,AttributeError): checks.append(_check("factory_policy",False,"Product Factory configuration could not be read."))
     try:
-        ledger = _load(LEDGER_FILE); money_policy = ledger.get("policy", {})
-        money_ok = (
-            money_policy.get("live_money_movement") is False and money_policy.get("worker_can_prepare_payout") is True
-            and money_policy.get("worker_can_approve_payout") is False and money_policy.get("worker_can_execute_payout") is False
-            and money_policy.get("owner_approval_required") is True and money_policy.get("never_assume_balance") is True
-            and money_policy.get("never_mark_paid_without_external_confirmation") is True
-        )
-        checks.append(_check("financial_boundary", money_ok, "Live money movement is disabled and worker financial authority is limited to preparation." if money_ok else "Financial safety boundary is not locked to the Company OS baseline."))
-    except (OSError, json.JSONDecodeError, AttributeError):
-        checks.append(_check("financial_boundary", False, "Financial ledger could not be read."))
-
+        policy=_load(POLICIES_FILE).get("company_policy",{}); ok=(policy.get("default_mode")=="owner-controlled" and policy.get("spend_requires_approval") is True and policy.get("external_side_effects_require_approval") is True and policy.get("financial_actions_require_owner_approval") is True and policy.get("unknown_provider_state")=="safe_mode" and policy.get("unknown_balance_state")=="blocked" and policy.get("audit_every_state_change") is True); checks.append(_check("safety_policy",ok,"Owner control and financial/external approval boundaries are enabled." if ok else "Safety policy is incomplete."))
+    except (OSError,json.JSONDecodeError,AttributeError): checks.append(_check("safety_policy",False,"Safety policy could not be read."))
     try:
-        resource_limits = _load(ROOT / "resource_limits.json"); resources = resource_limits.get("resources", [])
-        unknown = [r.get("id", "unknown") for r in resources if not r.get("quota_verified", False) and r.get("status") != "unknown_quota_safe_mode"]
-        gemini = next((r for r in resources if r.get("id") == "gemini"), None)
-        quota_ok = bool(gemini and gemini.get("status") == "unknown_quota_safe_mode" and gemini.get("quota_verified") is False)
-        checks.append(_check("resource_safety", quota_ok and not unknown, "Unknown provider quota remains explicitly in safe mode; no unlimited usage is assumed." if quota_ok and not unknown else "Resource policy does not consistently enforce unknown-quota safe mode."))
-    except (OSError, json.JSONDecodeError, AttributeError):
-        checks.append(_check("resource_safety", False, "Resource limits could not be read."))
+        ledger=_load(LEDGER_FILE); p=ledger.get("policy",{}); ok=(p.get("live_money_movement") is False and p.get("worker_can_prepare_payout") is True and p.get("worker_can_approve_payout") is False and p.get("worker_can_execute_payout") is False and p.get("owner_approval_required") is True and p.get("never_assume_balance") is True and p.get("never_mark_paid_without_external_confirmation") is True); checks.append(_check("financial_boundary",ok,"Live money movement is disabled and worker financial authority is limited to preparation." if ok else "Financial boundary is not locked."))
+    except (OSError,json.JSONDecodeError,AttributeError): checks.append(_check("financial_boundary",False,"Financial ledger could not be read."))
+    try:
+        resources=_load(ROOT/"resource_limits.json").get("resources",[]); unknown=[r.get("id","unknown") for r in resources if not r.get("quota_verified",False) and r.get("status")!="unknown_quota_safe_mode"]; gemini=next((r for r in resources if r.get("id")=="gemini"),None); ok=bool(gemini and gemini.get("status")=="unknown_quota_safe_mode" and gemini.get("quota_verified") is False); checks.append(_check("resource_safety",ok and not unknown,"Unknown provider quota remains in safe mode; no unlimited usage is assumed." if ok and not unknown else "Resource policy does not consistently enforce unknown-quota safe mode."))
+    except (OSError,json.JSONDecodeError,AttributeError): checks.append(_check("resource_safety",False,"Resource limits could not be read."))
+    passed=all(item["status"]=="pass" for item in checks); return {"ready":passed,"status":"ready" if passed else "not_ready","checks":checks,"release_gate":"Build next income project" if passed else "Strengthen Company OS before starting the next income project"}
 
-    passed = all(item["status"] == "pass" for item in checks)
-    return {"ready": passed, "status": "ready" if passed else "not_ready", "checks": checks,
-            "release_gate": "Build next income project" if passed else "Strengthen Company OS before starting the next income project"}
-
-
-if __name__ == "__main__":
-    result = company_os_readiness(); print(json.dumps(result, indent=2)); raise SystemExit(0 if result["ready"] else 1)
+if __name__=="__main__":
+    result=company_os_readiness(); print(json.dumps(result,indent=2)); raise SystemExit(0 if result["ready"] else 1)
