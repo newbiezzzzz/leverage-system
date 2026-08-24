@@ -1,4 +1,9 @@
-"""Leverage Browser Worker v1."""
+"""Leverage Browser Worker v1.
+
+Goal-driven local browser automation using Playwright CLI.
+The worker may improve marketplace presentation, including copy and visual
+assets. Financial/account/security actions remain blocked.
+"""
 from __future__ import annotations
 
 import json
@@ -7,6 +12,7 @@ import re
 import shutil
 import subprocess
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 FORBIDDEN_TERMS = {
@@ -14,6 +20,12 @@ FORBIDDEN_TERMS = {
     "payment", "refund", "unpublish", "publish", "delete", "money",
     "withdraw", "tax", "security", "account owner",
 }
+
+P001_ID = "neiqwz"
+P001_PUBLIC = "https://leverage-tools.pages.dev/fabrication-profit-system/"
+ASSET_DIR = Path(r"D:\Leverage\artifacts\p001")
+COVER_PATH = ASSET_DIR / "p001-cover.png"
+THUMB_PATH = ASSET_DIR / "p001-thumbnail.png"
 
 @dataclass
 class BrowserResult:
@@ -89,6 +101,10 @@ def _extract_ref(snap: str, label: str) -> str | None:
     return m.group(1) if m else None
 
 
+def _extract_refs(snap: str, label: str) -> list[str]:
+    return re.findall(rf'(?:textbox|button|combobox) "{re.escape(label)}" \[ref=([^\]]+)\]', snap)
+
+
 def _extract_generic_ref(snap: str, label: str) -> str | None:
     m = re.search(rf'generic "{re.escape(label)}" \[ref=([^\]]+)\]', snap)
     return m.group(1) if m else None
@@ -98,12 +114,46 @@ def find_product(product_id: str) -> BrowserResult:
     _run_cli("goto", "https://gumroad.com/products", timeout=60)
     snap = snapshot()
     ok = product_id in snap and "Fabrication Shop Profit & Quote System".lower() in snap.lower()
-    return BrowserResult(
-        ok,
-        "find_product",
-        "Existing product located." if ok else "Product not found.",
-        {"snapshot": snap},
-    )
+    return BrowserResult(ok, "find_product", "Existing product located." if ok else "Product not found.", {"snapshot": snap})
+
+
+def _make_assets() -> dict[str, str]:
+    ASSET_DIR.mkdir(parents=True, exist_ok=True)
+    if not COVER_PATH.exists():
+        _run_cli("goto", P001_PUBLIC, timeout=60)
+        _run_cli("resize", "1600", "900", timeout=20)
+        _run_cli("screenshot", "--filename", str(COVER_PATH), "--hires", timeout=60)
+    if not THUMB_PATH.exists():
+        _run_cli("goto", P001_PUBLIC, timeout=60)
+        _run_cli("resize", "800", "800", timeout=20)
+        _run_cli("screenshot", "--filename", str(THUMB_PATH), "--hires", timeout=60)
+    return {"cover": str(COVER_PATH), "thumbnail": str(THUMB_PATH)}
+
+
+def _upload_cover_and_thumbnail() -> dict[str, Any]:
+    _run_cli("goto", f"https://gumroad.com/products/{P001_ID}/edit", timeout=60)
+    snap = snapshot()
+    cover_refs = _extract_refs(snap, "Upload images or videos")
+    upload_refs = _extract_refs(snap, "Upload")
+    save_ref = _extract_ref(snap, "Save changes")
+    if not cover_refs or not upload_refs or not save_ref:
+        raise RuntimeError("Could not rediscover Gumroad cover/thumbnail controls")
+
+    _run_cli("click", cover_refs[0], timeout=30)
+    _run_cli("upload", str(COVER_PATH), timeout=90)
+    snap = snapshot()
+    upload_refs = _extract_refs(snap, "Upload")
+    if not upload_refs:
+        raise RuntimeError("Thumbnail upload control not found after cover upload")
+
+    _run_cli("click", upload_refs[-1], timeout=30)
+    _run_cli("upload", str(THUMB_PATH), timeout=90)
+    snap = snapshot()
+    save_ref = _extract_ref(snap, "Save changes")
+    if not save_ref:
+        raise RuntimeError("Save button disappeared after asset upload")
+    _run_cli("click", save_ref, timeout=30)
+    return {"snapshot": snapshot()}
 
 
 def edit_p001_listing() -> BrowserResult:
@@ -112,19 +162,12 @@ def edit_p001_listing() -> BrowserResult:
         "Know the cost and margin before you quote.\n\n"
         "A macro-free Excel toolkit for small fabrication, welding, machine and job shops.\n\n"
         "WHAT YOU GET\n"
-        "• Shop Rate Calculator\n"
-        "• Quote Builder\n"
-        "• Material & Consumables Costing\n"
-        "• Target-Margin Profit Check\n"
-        "• Job Log — Quoted vs Actual\n"
-        "• Change Order Register\n"
-        "• Sample Job Data\n"
-        "• Quick-Start Guide\n\n"
+        "• Shop Rate Calculator\n• Quote Builder\n• Material & Consumables Costing\n"
+        "• Target-Margin Profit Check\n• Job Log — Quoted vs Actual\n• Change Order Register\n"
+        "• Sample Job Data\n• Quick-Start Guide\n\n"
         "WHY IT IS DIFFERENT\n"
-        "• Macro-free — no VBA required\n"
-        "• No subscription for the workbook\n"
-        "• Uses your own rates and assumptions\n"
-        "• Built around fabrication and job-shop quoting\n"
+        "• Macro-free — no VBA required\n• No subscription for the workbook\n"
+        "• Uses your own rates and assumptions\n• Built around fabrication and job-shop quoting\n"
         "• Includes the post-job actual-vs-estimate learning loop\n\n"
         "WHO IT IS FOR\n"
         "Fabrication shops, welding businesses, machine/job shops, engineering workshops and small contractors pricing custom work.\n\n"
@@ -134,19 +177,13 @@ def edit_p001_listing() -> BrowserResult:
         "You receive downloadable digital files after purchase."
     )
 
-    _run_cli("goto", "https://gumroad.com/products/neiqwz/edit", timeout=60)
+    _run_cli("goto", f"https://gumroad.com/products/{P001_ID}/edit", timeout=60)
     snap = snapshot()
     summary_ref = _extract_ref(snap, "Summary")
     save_ref = _extract_ref(snap, "Save changes")
     description_ref = _extract_generic_ref(snap, "Description")
-
     if not summary_ref or not save_ref or not description_ref:
-        return BrowserResult(
-            False,
-            "edit_p001_listing",
-            "Required Gumroad controls were not rediscovered.",
-            {"snapshot": snap, "summary_ref": summary_ref, "description_ref": description_ref, "save_ref": save_ref},
-        )
+        return BrowserResult(False, "edit_p001_listing", "Required Gumroad controls were not rediscovered.", {"snapshot": snap})
 
     _run_cli("fill", summary_ref, summary, timeout=30)
     _run_cli("click", description_ref, timeout=30)
@@ -154,20 +191,22 @@ def edit_p001_listing() -> BrowserResult:
     _run_cli("type", description, timeout=60)
     _run_cli("click", save_ref, timeout=30)
 
-    verify = snapshot()
+    assets = _make_assets()
+    upload_result = _upload_cover_and_thumbnail()
+    verify = upload_result["snapshot"]
     price_ok = bool(re.search(r'textbox "Amount"[^\n]*"19"', verify))
     published_ok = 'button "Unpublish"' in verify
     summary_ok = summary.lower() in verify.lower()
     ok = price_ok and published_ok and summary_ok
-
     return BrowserResult(
         ok,
         "edit_p001_listing",
-        "Listing saved and protected fields verified." if ok else "Verification failed.",
+        "Listing, cover, thumbnail saved and protected fields verified." if ok else "Verification failed.",
         {
             "price_guard": price_ok,
             "published_guard": published_ok,
             "summary_guard": summary_ok,
+            "assets": assets,
             "snapshot": verify,
         },
     )
@@ -180,7 +219,7 @@ def execute(goal: str, profile: str) -> BrowserResult:
     browser = attach_or_open(profile)
     if not browser.ok:
         return browser
-    product = find_product("neiqwz")
+    product = find_product(P001_ID)
     if not product.ok:
         return product
     if "optimize" not in goal.lower() and "update" not in goal.lower():
