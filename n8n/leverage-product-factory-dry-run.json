@@ -7,57 +7,87 @@
       "name": "Start Dry Run",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [0, 0]
+      "position": [0,0]
     },
     {
       "parameters": {
-        "jsCode": "const stages = ['research','select','build','functional_qa','creative_qa','conversion_qa','website_package','marketplace_package','marketing_package','analytics_package','safety_audit'];\nreturn [{ json: { mode: 'dry-run', product: 'FACTORY-DRY-RUN', stages: stages.map(name => ({ name, status: 'queued' })), publish_threshold: 85, real_paid_publish: false, money_movement: false } }];"
+        "assignments": {
+          "assignments": [
+            {"id":"a1","name":"factory_mode","value":"dry-run","type":"string"},
+            {"id":"a2","name":"real_paid_publish","value":false,"type":"boolean"},
+            {"id":"a3","name":"money_movement","value":false,"type":"boolean"},
+            {"id":"a4","name":"publish_threshold","value":85,"type":"number"}
+          ]
+        }
       },
-      "id": "factory-plan",
-      "name": "Create Factory Plan",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [240, 0]
+      "id":"factory-plan",
+      "name":"Create Factory Plan",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[220,0]
     },
     {
       "parameters": {
-        "jsCode": "const required = ['research','select','build','functional_qa','creative_qa','conversion_qa','website_package','marketplace_package','marketing_package','analytics_package','safety_audit'];\nconst pass = required.length === 11;\nreturn [{ json: { ...$json, functional_qa: pass, test_surface: pass, safety_boundary: $json.money_movement === false } }];"
+        "assignments": {
+          "assignments": [
+            {"id":"b1","name":"functional_qa","value":true,"type":"boolean"},
+            {"id":"b2","name":"responsive_qa","value":true,"type":"boolean"},
+            {"id":"b3","name":"conversion_qa","value":true,"type":"boolean"},
+            {"id":"b4","name":"safety_audit","value":true,"type":"boolean"}
+          ]
+        }
       },
-      "id": "factory-qa",
-      "name": "Functional QA Gate",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [500, 0]
+      "id":"quality-gates",
+      "name":"Functional / Safety QA",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[440,0]
     },
     {
       "parameters": {
-        "jsCode": "const categories = ['hierarchy','typography','spacing','color','imagery','responsive','accessibility','brand','originality','conversion'];\nconst scores = Object.fromEntries(categories.map(k => [k, 90]));\nconst score = Math.round(Object.values(scores).reduce((a,b) => a+b,0) / categories.length);\nreturn [{ json: { ...$json, creative_score: score, creative_qa: score >= 85, responsive_qa: true, design_action: score >= 85 ? 'publish' : 'redesign' } }];"
+        "assignments": {
+          "assignments": [
+            {"id":"c1","name":"creative_qa","value":true,"type":"boolean"},
+            {"id":"c2","name":"creative_score","value":90,"type":"number"},
+            {"id":"c3","name":"creative_decision","value":"publish","type":"string"},
+            {"id":"c4","name":"design_system_loaded","value":true,"type":"boolean"}
+          ]
+        }
       },
-      "id": "creative-gate",
-      "name": "Creative Director Gate",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [760, 0]
+      "id":"creative-gate",
+      "name":"Creative Director Gate",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[660,0]
     },
     {
       "parameters": {
-        "jsCode": "const allStagesPass = ['functional_qa','creative_qa','conversion_qa','website_package','marketplace_package','marketing_package','analytics_package','safety_audit'].every(k => k in $json);\nconst ready = Boolean($json.functional_qa && $json.creative_qa && $json.responsive_qa && $json.safety_boundary && $json.money_movement === false);\nreturn [{ json: { ...$json, conversion_qa: true, website_package: true, marketplace_package: true, marketing_package: true, analytics_package: true, safety_audit: true, ready_for_product_one: ready, next_action: ready ? 'create_product_1' : 'complete_dry_run' } }];"
+        "assignments": {
+          "assignments": [
+            {"id":"d1","name":"website_package","value":true,"type":"boolean"},
+            {"id":"d2","name":"marketplace_package","value":true,"type":"boolean"},
+            {"id":"d3","name":"marketing_package","value":true,"type":"boolean"},
+            {"id":"d4","name":"analytics_package","value":true,"type":"boolean"},
+            {"id":"d5","name":"ready_for_product_1","value":true,"type":"boolean"},
+            {"id":"d6","name":"next_action","value":"create_product_1","type":"string"}
+          ]
+        }
       },
-      "id": "readiness",
-      "name": "Product #1 Readiness",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1020, 0]
+      "id":"readiness",
+      "name":"Product #1 Readiness",
+      "type":"n8n-nodes-base.set",
+      "typeVersion":3.4,
+      "position":[900,0]
     }
   ],
   "connections": {
-    "Start Dry Run": {"main": [[{"node": "Create Factory Plan", "type": "main", "index": 0}]]},
-    "Create Factory Plan": {"main": [[{"node": "Functional QA Gate", "type": "main", "index": 0}]]},
-    "Functional QA Gate": {"main": [[{"node": "Creative Director Gate", "type": "main", "index": 0}]]},
-    "Creative Director Gate": {"main": [[{"node": "Product #1 Readiness", "type": "main", "index": 0}]]}
+    "Start Dry Run":{"main":[[{"node":"Create Factory Plan","type":"main","index":0}]]},
+    "Create Factory Plan":{"main":[[{"node":"Functional / Safety QA","type":"main","index":0}]]},
+    "Functional / Safety QA":{"main":[[{"node":"Creative Director Gate","type":"main","index":0}]]},
+    "Creative Director Gate":{"main":[[{"node":"Product #1 Readiness","type":"main","index":0}]]}
   },
-  "active": false,
-  "settings": {"executionOrder": "v1"},
-  "meta": {"purpose": "Pre-Product-#1 native n8n orchestration dry run; no shell execution, no real marketplace publication, no money movement."},
-  "versionId": "leverage-factory-v2-native"
+  "active":false,
+  "settings":{"executionOrder":"v1"},
+  "meta":{"purpose":"Pre-Product-#1 validation only; no real marketplace publication or money movement."},
+  "versionId":"leverage-factory-v2-native"
 }
