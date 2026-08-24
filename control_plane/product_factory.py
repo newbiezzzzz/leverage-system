@@ -1,7 +1,7 @@
-"""Pre-Product-#1 factory orchestration contract.
+"""Product Factory orchestration contract.
 
-This module is intentionally provider-agnostic. It creates a deterministic plan and
-quality gates; external execution is routed through existing guarded adapters.
+Creates deterministic plans and quality gates. External marketplace execution is
+routed through the existing guarded Browser Worker on the Owner machine.
 """
 from __future__ import annotations
 
@@ -31,8 +31,17 @@ def create_dry_run_plan(product_name: str = "FACTORY-DRY-RUN") -> dict:
         "publish_threshold": config["quality"]["minimum_publish_score"],
         "real_paid_publish": False,
         "money_movement": False,
+        "marketplace_execution": {
+            "mode": "guarded_browser_worker",
+            "enabled": config["marketplaces"]["gumroad"]["browser_worker"]["enabled"],
+            "owner_machine_required": True,
+        },
         "owner_approval_boundaries": ["payout", "payment_credentials", "bank_details", "major_financial_action"],
     }
+
+
+def browser_worker_goal(product_name: str, marketplace: str = "gumroad") -> str:
+    return f"Optimize {product_name} {marketplace} marketplace listing"
 
 
 def ready_for_product_one(stage_results: dict[str, bool]) -> dict:
