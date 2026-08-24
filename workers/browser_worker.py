@@ -1,20 +1,17 @@
 """Leverage Browser Worker v1.
 
-Goal-driven local browser automation using Playwright CLI.
-
-This worker is intentionally constrained: it may edit marketplace presentation
-fields, but it will refuse money movement, payout/security changes, price changes,
-or publishing/unpublishing actions. The authenticated browser session remains on
- the Owner machine in the dedicated Playwright profile.
+Goal-driven local browser automation using the installed Playwright CLI.
+The worker discovers controls from the current page rather than relying on
+stored element IDs. It is intentionally constrained to presentation edits.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import re
 import subprocess
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any
 
 FORBIDDEN_TERMS = {
@@ -32,11 +29,23 @@ class BrowserResult:
 
 
 def _run_cli(*args: str, timeout: int = 60) -> str:
-    cmd = ["playwright-cli", *args]
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    proc = subprocess.run(["playwright-cli", *args], capture_output=True, text=True, timeout=timeout)
+    output = (proc.stdout + "\n" + proc.stderr).strip()
     if proc.returncode != 0:
-        raise RuntimeError((proc.stdout + "\n" + proc.stderr).strip())
-    return proc.stdout.strip()
+        raise RuntimeError(output)
+    return output
+
+
+def _snapshot() -> str:
+    return _run_cli("snapshot", timeout=60)
+
+
+def _find_ref(label: str) -> str:
+    output = _run_cli("find", label, timeout=30)
+    match = re.search(r"\[ref=([A-Za-z0-9]+)\]", output)
+    if not match:
+        raise RuntimeError(f"Could not discover UI target: {label}\n{output}")
+    return match.group(1)
 
 
 def authorize_goal(goal: str) -> BrowserResult:
@@ -47,57 +56,61 @@ def authorize_goal(goal: str) -> BrowserResult:
     return BrowserResult(True, "authorize", "Goal is within presentation-editing boundary.", {})
 
 
-def open_gumroad(profile: str, url: str = "https://gumroad.com/products") -> BrowserResult:
-    _run_cli("open", url, "--browser=chromium", "--headed", "--persistent", f"--profile={profile}", timeout=90)
-    snap = _run_cli("snapshot", timeout=60)
-    return BrowserResult(True, "open_gumroad", "Browser opened and snapshot captured.", {"snapshot": snap})
+def open_gumroad(profile: str) -> BrowserResult:
+    _run_cli("open", "https://gumroad.com/products", "--browser=chromium", "--headed", "--persistent", f"--profile={profile}", timeout=90)
+    return BrowserResult(True, "open_gumroad", "Browser opened.", {"snapshot": _snapshot()})
 
 
-def find_product(product_id: str, title_hint: str = "Fabrication Shop Profit & Quote System") -> BrowserResult:
+def find_product(product_id: str, title_hint: str) -> BrowserResult:
     _run_cli("goto", "https://gumroad.com/products", timeout=60)
-    snap = _run_cli("snapshot", timeout=60)
+    snap = _snapshot()
     found = product_id in snap and title_hint.lower() in snap.lower()
     return BrowserResult(found, "find_product", "Existing product located." if found else "Target product not found.", {"product_id": product_id, "snapshot": snap})
 
 
-def edit_p001_listing(summary: str, description: str) -> BrowserResult:
-    # Open the known editor after product discovery has passed.
-    _run_cli("goto", "https://gumroad.com/products/neiqwz/edit", timeout=60)
-    _run_cli("fill", "f4e237", summary, timeout=30)
-    # Use page-evaluated DOM replacement in one line to avoid CMD multiline quoting.
+def _set_description(description_html: str) -> None:
+    payload = json.dumps(description_html, ensure_ascii=False)
     js = (
-        "() => { const el=document.querySelector('[contenteditable=true]'); "
-        "if(!el) throw new Error('Description editor not found'); "
-        "el.innerHTML='" + description.replace("\\", "\\\\").replace("'", "\\'").replace("\n", "<br>") + "'; "
+        "(html) => { const editors=[...document.querySelectorAll('[contenteditable=true]')]; "
+        "const el=editors.find(e=>e.innerText.includes('Fabrication Shop Profit & Quote System')) || editors[0]; "
+        "if(!el) throw new Error('Description editor not found'); el.innerHTML=html; "
         "el.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText'})); return el.innerText; }"
     )
-    _run_cli("eval", js, timeout=30)
-    _run_cli("click", "f4e64", timeout=30)
-    snap = _run_cli("snapshot", timeout=60)
-    price_ok = bool(re.search(r'textbox \"Amount\"[^\n]*\"19\"', snap))
-    return BrowserResult(
-        price_ok,
-        "edit_p001_listing",
-        "Listing saved and price guard verified." if price_ok else "Save completed but price guard could not be verified.",
-        {"price_guard": price_ok, "snapshot": snap},
-    )
+    # Pass the JS function and JSON payload as one CLI argument so CMD does not split the content.
+    _run_cli("eval", f"{js[:-1]}, {payload})", timeout=30)
+
+
+def edit_p001_listing(summary: str, description_html: str) -> BrowserResult:
+    _run_cli("goto", "https://gumroad.com/products/neiqwz/edit", timeout=60)
+    summary_ref = _find_ref("Summary")
+    _run_cli("fill", summary_ref, summary, timeout=30)
+    _set_description(description_html)
+    save_ref = _find_ref("Save changes")
+    _run_cli("click", save_ref, timeout=30)
+    _run_cli("reload", timeout=30)
+    snap = _snapshot()
+    amount_match = re.search(r'textbox \"Amount\"[^\n]*?:?\s*\"19\"', snap)
+    price_ok = bool(amount_match) or ('Amount' in snap and '"19"' in snap)
+    published_ok = 'button "Unpublish"' in snap
+    summary_ok = summary.lower() in snap.lower()
+    ok = price_ok and published_ok and summary_ok
+    return BrowserResult(ok, "edit_p001_listing", "Listing edited and safety checks passed." if ok else "Verification failed; no further action taken.", {"price_guard": price_ok, "published_guard": published_ok, "summary_guard": summary_ok, "snapshot": snap})
 
 
 def execute(goal: str, profile: str, product_id: str = "neiqwz") -> BrowserResult:
     auth = authorize_goal(goal)
     if not auth.ok:
         return auth
-    open_result = open_gumroad(profile)
-    if not open_result.ok:
-        return open_result
-    product = find_product(product_id)
+    open_gumroad(profile)
+    product = find_product(product_id, "Fabrication Shop Profit & Quote System")
     if not product.ok:
         return product
-    if "optimize" not in goal.lower() and "update" not in goal.lower():
-        return BrowserResult(True, "plan_only", "Goal validated and product found; no edit keyword requested.", product.data)
+    lowered = goal.lower()
+    if not ("optimize" in lowered or "update" in lowered):
+        return BrowserResult(True, "plan_only", "Goal validated and product found; no edit requested.", product.data)
 
     summary = "Know the cost and margin before you quote."
-    description = (
+    description_html = (
         "<p><strong>Know the cost and margin before you quote.</strong></p>"
         "<p>A macro-free Excel toolkit for small fabrication, welding, machine and job shops.</p>"
         "<p><strong>WHAT YOU GET</strong></p>"
@@ -114,11 +127,10 @@ def execute(goal: str, profile: str, product_id: str = "neiqwz") -> BrowserResul
         "<p>This is a quoting and job-costing tool, not accounting, tax, legal or engineering certification software. Replace example assumptions with your own verified business inputs.</p>"
         "<p><strong>DIGITAL PRODUCT</strong></p><p>You receive downloadable digital files after purchase.</p>"
     )
-    return edit_p001_listing(summary, description)
+    return edit_p001_listing(summary, description_html)
 
 
 if __name__ == "__main__":
-    import argparse
     parser = argparse.ArgumentParser(description="Leverage Browser Worker v1")
     parser.add_argument("goal", help='Goal, e.g. "Optimize P-001 Gumroad listing"')
     parser.add_argument("--profile", default=os.environ.get("LEVERAGE_BROWSER_PROFILE", r"D:\Leverage\browser-profile"))
