@@ -1,6 +1,322 @@
 {
+  "generated_at": "2026-08-25T11:11:01.250723+00:00",
   "source": "local-leverage-runtime",
   "privacy": "sanitized-no-finance-no-audit",
-  "status": "awaiting-first-local-sync",
-  "note": "Run leverage install-sync once on the Boss PC. After that this file is maintained automatically."
+  "readiness": {
+    "ready": true,
+    "status": "ready",
+    "release_gate": "Build next income project",
+    "checks": [
+      {
+        "name": "core_files",
+        "status": "pass"
+      },
+      {
+        "name": "runtime_state",
+        "status": "pass"
+      },
+      {
+        "name": "project_registry",
+        "status": "pass"
+      },
+      {
+        "name": "worker_fleet",
+        "status": "pass"
+      },
+      {
+        "name": "factory_worker_fleet",
+        "status": "pass"
+      },
+      {
+        "name": "workflow_contract",
+        "status": "pass"
+      },
+      {
+        "name": "test_surface",
+        "status": "pass"
+      },
+      {
+        "name": "factory_policy",
+        "status": "pass"
+      },
+      {
+        "name": "safety_policy",
+        "status": "pass"
+      },
+      {
+        "name": "financial_boundary",
+        "status": "pass"
+      },
+      {
+        "name": "resource_safety",
+        "status": "pass"
+      }
+    ]
+  },
+  "health": {
+    "status": "yellow",
+    "alert_count": 1
+  },
+  "company": {
+    "projects": 2,
+    "active_projects": 1,
+    "tasks": {
+      "queued": 0,
+      "ready": 0,
+      "running": 0,
+      "completed": 0,
+      "failed": 0,
+      "blocked": 0
+    },
+    "verified_revenue": 0,
+    "verified_expenses": 0,
+    "verified_profit": 0,
+    "money_movement_protected": true
+  },
+  "workers": [
+    {
+      "worker": "research-worker",
+      "role": "market and opportunity research",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "data-worker",
+      "role": "data collection and preparation",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "code-worker",
+      "role": "code implementation and testing",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "digital-product-worker",
+      "role": "digital product creation and packaging",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "creative-director-worker",
+      "role": "creative direction, visual design standards and creative review",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "design-qa-worker",
+      "role": "UX, responsive and visual quality assurance",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "content-marketing-worker",
+      "role": "content strategy and marketing asset planning",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "marketplace-worker",
+      "role": "marketplace listing preparation and guarded publishing automation",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "project-manager",
+      "role": "project intake, planning and lifecycle management",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "operations-worker",
+      "role": "system operations, health and safe recovery",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "customer-worker",
+      "role": "customer intake and support",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "acquisition-worker",
+      "role": "customer acquisition and prospect qualification",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "conversion-worker",
+      "role": "conversion optimization and experiment planning",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "delivery-worker",
+      "role": "customer delivery and fulfillment orchestration",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "business-loop-worker",
+      "role": "end-to-end business loop orchestration and gate evaluation",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "architecture-validator",
+      "role": "project-type and channel compatibility validation",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "external-action-worker",
+      "role": "external action preparation, approval routing and verification",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "channel-adapter-worker",
+      "role": "generic channel adapter preparation, validation and verification",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "measurement-worker",
+      "role": "provider-agnostic traffic and funnel measurement preparation and evidence verification",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    },
+    {
+      "worker": "finance-worker",
+      "role": "financial reconciliation, revenue reporting and payout preparation",
+      "status": "online",
+      "ready": 0,
+      "waiting": 0,
+      "running": 0,
+      "blocked": 0,
+      "completed": 0,
+      "total": 0
+    }
+  ],
+  "projects": [
+    {
+      "id": "engineering-quote-toolkit",
+      "name": "Fabrication Shop Profit & Quote System",
+      "type": "digital-product",
+      "status": "paused",
+      "lifecycle_stage": "launch",
+      "revenue_status": "none",
+      "capital_deployed": 0.0,
+      "currency": "MYR",
+      "next_gate": "Revisit after an automated income engine proves demand and revenue."
+    },
+    {
+      "id": "web-traffic-income-tools",
+      "name": "Leverage Free Fabrication Tool Network",
+      "type": "web-utility",
+      "status": "active",
+      "lifecycle_stage": "acquire",
+      "revenue_status": "not_verified",
+      "capital_deployed": 0.0,
+      "currency": "MYR",
+      "next_gate": "Submit sitemap and key URLs to Google Search Console, verify indexing/discovery, measure traffic, then connect an approved monetization channel after eligibility is met."
+    }
+  ]
 }
