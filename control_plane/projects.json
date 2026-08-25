@@ -1,62 +1,49 @@
 {
-  "version": 8,
+  "version": 9,
+  "portfolio_model": {
+    "project_1": {
+      "name": "Digital Products",
+      "purpose": "Leverage's first and current business project. Multiple digital products can be created, launched, marketed and measured inside P-001.",
+      "product_container": true,
+      "status": "active"
+    },
+    "project_2": {
+      "status": "not_started",
+      "rule": "Create P-002 only when the Owner approves a new project that is materially unrelated to the P-001 digital-product business."
+    }
+  },
   "projects": [
     {
       "project_no": "P-001",
-      "id": "engineering-quote-toolkit",
-      "name": "Fabrication Shop Profit & Quote System",
-      "type": "digital-product",
-      "status": "paused",
-      "lifecycle_stage": "launch",
-      "revenue_status": "none",
-      "capital_deployed": 0.0,
-      "currency": "MYR",
-      "owner_approval_required_for_spend": true,
-      "description": "First Leverage digital-product experiment retained as a reusable asset; paused while the web acquisition experiment is validated.",
-      "store": "Gumroad",
-      "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
-      "price_usd": 19,
-      "verified_sales": 0,
-      "verified_revenue_usd": 0,
-      "next_gate": "Revisit after measurable demand is established through the reusable acquisition engine.",
-      "created_at": "2026-08-19T14:00:00+00:00",
-      "published_at": "2026-08-19T23:55:00+08:00"
-    },
-    {
-      "project_no": "P-002",
-      "id": "web-traffic-income-tools",
-      "name": "Leverage Free Fabrication Tool Network",
-      "type": "web-utility",
+      "id": "digital-products",
+      "name": "Digital Products",
+      "type": "digital-product-business",
       "status": "active",
       "lifecycle_stage": "acquire",
       "revenue_status": "not_verified",
       "capital_deployed": 0.0,
       "currency": "MYR",
       "owner_approval_required_for_spend": true,
-      "description": "RM0 static web utility cluster designed to attract fabrication-shop traffic and create measurable conversion opportunities. Calculators run client-side and production hosting uses Cloudflare Pages.",
-      "store": "Cloudflare Pages",
-      "store_url": "https://leverage-tools.pages.dev/",
-      "price_usd": 0,
-      "verified_sales": 0,
-      "verified_revenue_usd": 0,
-      "next_gate": "Monitor Google indexing after verified ownership and sitemap submission; then measure authoritative traffic, calculator events and outbound product clicks before enabling a compliant monetization channel.",
-      "created_at": "2026-08-22T03:50:00+08:00",
-      "published_at": "2026-08-22T04:22:00+08:00",
-      "verification": {
-        "cloudflare_production_verified_by_owner": true,
-        "public_tools_path_verified_by_owner": true,
-        "google_search_console_ownership_verified": true,
-        "sitemap_submitted": true,
-        "live_url_test": {
-          "status": "available_to_google",
-          "crawl_allowed": true,
-          "page_fetch": "successful",
-          "indexing_allowed": true,
-          "indexed": false
-        },
-        "manual_index_request": "quota_exhausted_2026-08-23"
-      }
+      "description": "Leverage's first business project. It is a reusable digital-product portfolio, not a single-product project. Future digital products belong inside P-001 unless the Owner explicitly creates a separate project.",
+      "products": [
+        {
+          "product_no": "P001-DP01",
+          "id": "fabrication-shop-profit-quote-system",
+          "name": "Fabrication Shop Profit & Quote System",
+          "type": "excel-digital-product",
+          "status": "active",
+          "store": "Gumroad",
+          "store_url": "https://newbiezz.gumroad.com/l/neiqwz",
+          "price_usd": 19,
+          "verified_sales": 0,
+          "verified_revenue_usd": 0,
+          "acquisition_stage": "buyer-acquisition",
+          "created_at": "2026-08-19T14:00:00+00:00",
+          "published_at": "2026-08-19T23:55:00+08:00"
+        }
+      ],
+      "next_gate": "Acquire and verify the first customer for P001-DP01, then use the same product engine to evaluate additional digital products inside P-001."
     }
   ],
-  "last_modified_at": "2026-08-23T20:11:00+08:00"
+  "last_modified_at": "2026-08-25T08:20:00+00:00"
 }
