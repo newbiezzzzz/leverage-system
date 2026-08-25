@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -35,6 +35,13 @@ jobs:
           mkdir -p _site/p001
           cp -R dashboard/. _site/
           cp -R website/p001/. _site/p001/
+          printf '%s\n' "${GITHUB_SHA}" > _site/deployment-commit.txt
+      - name: Verify redesigned dashboard is in artifact
+        run: |
+          test -f _site/projects.html
+          grep -q "PROJECT 001 · DIGITAL PRODUCTS" _site/projects.html
+          grep -q "P001-DP01" _site/projects.html
+          grep -q "P-002" _site/projects.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
