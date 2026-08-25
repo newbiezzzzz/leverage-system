@@ -7,7 +7,7 @@ echo LEVERAGE LOCAL REFRESH
 echo ========================================
 echo.
 
-echo [1/4] Pulling latest Leverage state...
+echo [1/5] Pulling latest Leverage state...
 git pull --ff-only origin main
 if errorlevel 1 (
   echo.
@@ -17,19 +17,24 @@ if errorlevel 1 (
 )
 
 echo.
-echo [2/4] Verifying project registry...
+echo [2/5] Migrating mutable runtime project state...
+python -m control_plane.migrate_runtime_state
+if errorlevel 1 exit /b 1
+
+echo.
+echo [3/5] Verifying project registry...
 python -m control_plane.company_core
 if errorlevel 1 exit /b 1
 
 echo.
-echo [3/4] Restarting local API on port 8765...
+echo [4/5] Restarting local API on port 8765...
 for /f "tokens=5" %%P in ('netstat -ano ^| findstr ":8765" ^| findstr "LISTENING"') do (
   echo Stopping Leverage API PID %%P
   taskkill /PID %%P /F >nul 2>&1
 )
 
 echo.
-echo [4/4] Starting Leverage Local API...
+echo [5/5] Starting Leverage Local API...
 if exist "%~dp0leverage-server.cmd" (
   call "%~dp0leverage-server.cmd"
 ) else (
