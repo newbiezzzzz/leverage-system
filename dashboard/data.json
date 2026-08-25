@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T08:21:03.255839+00:00",
+  "generated_at": "2026-08-25T08:31:37.245628+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -474,7 +474,7 @@
     "run_id": "",
     "conclusion": "scheduled",
     "fresh": true,
-    "synced_at": "2026-08-25T08:21:03.255839+00:00"
+    "synced_at": "2026-08-25T08:31:37.245628+00:00"
   },
   "projects": [
     {
@@ -504,6 +504,18 @@
           "acquisition_stage": "buyer-acquisition",
           "created_at": "2026-08-19T14:00:00+00:00",
           "published_at": "2026-08-19T23:55:00+08:00"
+        }
+      ],
+      "acquisition_assets": [
+        {
+          "id": "fabrication-free-tool-network",
+          "name": "Leverage Free Fabrication Tool Network",
+          "type": "free-traffic-asset",
+          "status": "active",
+          "hosting": "Cloudflare Pages",
+          "url": "https://leverage-tools.pages.dev/",
+          "purpose": "Acquire organic traffic and qualified interest for P001-DP01 and future P-001 products. This is an acquisition asset, not a separate business project.",
+          "capital_deployed": 0.0
         }
       ],
       "next_gate": "Acquire and verify the first customer for P001-DP01, then use the same product engine to evaluate additional digital products inside P-001."
