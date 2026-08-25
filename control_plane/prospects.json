@@ -1,75 +1,8 @@
 {
-  "version": 2,
-  "last_discovered_at": "2026-08-22",
+  "version": 3,
+  "last_discovered_at": "2026-08-25",
   "status_definition": "discovered prospects are candidates only; no outreach or customer claim is implied",
   "prospects": [
-    {
-      "id": "prospect-xtreme-performance-automotive",
-      "name": "Xtreme Performance Automotive",
-      "category": "automotive workshop",
-      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
-      "fit": 84,
-      "candidate_workflow": "customer enquiry intake, appointment/status follow-up, FAQ handling",
-      "discovery_source": "local_business_search",
-      "public_contact_available": true,
-      "validation_status": "unvalidated"
-    },
-    {
-      "id": "prospect-excom-management",
-      "name": "Excom Management",
-      "category": "accounting firm",
-      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
-      "fit": 80,
-      "candidate_workflow": "client intake, document/request tracking, repetitive status enquiries",
-      "discovery_source": "local_business_search",
-      "public_contact_available": true,
-      "validation_status": "unvalidated",
-      "restriction": "do not provide tax/accounting advice; automation must remain administrative"
-    },
-    {
-      "id": "prospect-vestcom",
-      "name": "Vestcom",
-      "category": "property management",
-      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
-      "fit": 86,
-      "candidate_workflow": "tenant enquiry intake, maintenance request routing, status updates",
-      "discovery_source": "local_business_search",
-      "public_contact_available": true,
-      "validation_status": "unvalidated"
-    },
-    {
-      "id": "prospect-printer-repair-kuchai",
-      "name": "Kedai Repair Printer KL Dan Selangor • Kuchai Lama",
-      "category": "printer repair service",
-      "location": "Kuchai Entrepreneurs Park, Kuala Lumpur",
-      "fit": 82,
-      "candidate_workflow": "repair enquiry intake, issue classification, quotation/status follow-up",
-      "discovery_source": "local_business_search",
-      "public_contact_available": true,
-      "validation_status": "unvalidated"
-    },
-    {
-      "id": "prospect-malsoothanan-enterprise",
-      "name": "Malsoothanan Enterprise",
-      "category": "plumber / transport service",
-      "location": "Puchong, Selangor",
-      "fit": 78,
-      "candidate_workflow": "service request intake, job triage, scheduling/status communication",
-      "discovery_source": "local_business_search",
-      "public_contact_available": true,
-      "validation_status": "unvalidated"
-    },
-    {
-      "id": "prospect-towing-puchong-kinrara",
-      "name": "TOWING SERVICES PUCHONG KINRARA",
-      "category": "towing service",
-      "location": "Puchong, Selangor",
-      "fit": 81,
-      "candidate_workflow": "urgent enquiry intake, location/details collection, dispatch/status communication",
-      "discovery_source": "local_business_search",
-      "public_contact_available": true,
-      "validation_status": "unvalidated"
-    },
     {
       "id": "prospect-skid-systems-fabrication",
       "name": "SKID Systems",
@@ -81,8 +14,8 @@
       "public_contact_available": true,
       "public_contact": {"phone": "+603-8062 6688", "email": "info@skidsystems.com.my", "url": "https://www.skidsystems.com.my/fabrication/"},
       "validation_status": "fresh_candidate",
-      "evidence": ["full-service fabrication including engineering, cutting, fitting, welding, testing, finishing, assembly and installation", "company explicitly states projects should remain within budget"],
-      "why_fit": "The product directly addresses quoting and job-costing pain in a fabrication operation with multiple cost components and project budgets."
+      "evidence": ["full-service fabrication including engineering, cutting, fitting, welding, testing, finishing, assembly and installation", "company states projects should remain within budget"],
+      "why_fit": "Direct fit for a quote and job-costing workflow with multiple fabrication cost components."
     },
     {
       "id": "prospect-ss-steel-fabrication",
@@ -95,8 +28,8 @@
       "public_contact_available": true,
       "public_contact": {"phone_primary": "012-659 7702", "phone_secondary": "012-659 7202", "email": "info@sssteel.my", "url": "https://www.sssteel.my/products/custom-steel-fabrication.html"},
       "validation_status": "fresh_candidate",
-      "evidence": ["custom fabrication business", "quote requests are explicitly handled through WhatsApp/email", "workshop handles cutting, welding, fitting, coating and finishing"],
-      "why_fit": "The business already runs a quote-intake workflow and performs several cost-bearing fabrication steps, creating a strong fit for a structured quote and job-costing tool."
+      "evidence": ["custom fabrication business", "quote requests handled through WhatsApp/email", "workshop handles cutting, welding, fitting, coating and finishing"],
+      "why_fit": "Observable quote-intake workflow and several cost-bearing fabrication steps make this a strong early-adopter candidate."
     },
     {
       "id": "prospect-ruscho-fabrication",
@@ -109,8 +42,8 @@
       "public_contact_available": true,
       "public_contact": {"phone": "+6012-709 2600", "email": "hea@ruscho.com.my", "url": "https://ruscho.com.my/cnc-machining/"},
       "validation_status": "fresh_candidate",
-      "evidence": ["quotation process explicitly asks for 2D drawings, 3D models, material and quantity", "supports prototype, repeat and production quantities", "fabrication and engineering support in Selangor"],
-      "why_fit": "Its quote process already collects structured costing inputs, making it a strong candidate for testing a disciplined quote/job-costing workflow."
+      "evidence": ["quotation process asks for 2D drawings, 3D models, material and quantity", "supports prototype, repeat and production quantities", "fabrication and engineering support in Selangor"],
+      "why_fit": "Structured quote inputs make this a strong candidate for disciplined quote and job-costing workflow testing."
     },
     {
       "id": "prospect-kt-steel-fabrication",
@@ -124,12 +57,69 @@
       "public_contact": {"phone": "+6016-816 7191"},
       "validation_status": "fresh_candidate",
       "evidence": ["listed as welder", "listed with online estimates", "listed as on-site service provider"],
-      "why_fit": "A smaller fabrication operation with online-estimate capability is a plausible early adopter for a simple quote and profit calculator."
+      "why_fit": "Smaller operation with estimate capability; plausible early adopter for a simple quote and profit calculator."
+    },
+    {
+      "id": "prospect-cebsteel-puchong",
+      "name": "CEBSTEEL Industrial Solutions",
+      "category": "custom steel and stainless steel fabrication",
+      "location": "Puchong, Selangor, Malaysia",
+      "fit": 94,
+      "candidate_workflow": "custom inquiry intake, material/process selection, itemized quotation, approval/deposit, fabrication",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"phone": "+6016-3789429", "email": "cebsteelindustrial@gmail.com", "url": "https://cebsteel-industrial.com/ms/custom-made-order/"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["public custom-order workflow explicitly includes quotation", "quotation covers materials, fabrication and finishing", "Puchong workshop performs laser cutting, bending and welding"],
+      "why_fit": "The public workflow maps closely to the product's material/labour/consumable/finishing quote model."
+    },
+    {
+      "id": "prospect-metal-engineering-puchong",
+      "name": "Cenad Art Sdn Bhd / Metal Engineering",
+      "category": "metal fabrication and welding",
+      "location": "Puchong, Selangor, Malaysia",
+      "fit": 93,
+      "candidate_workflow": "quote request intake, service selection, welding/fabrication costing, production and delivery",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"phone": "+603-8068 1168", "whatsapp": "+6012-409 5168", "email": "salesp@cenadart.com", "url": "https://www.metalengineering.com.my/get-a-quote/"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["public Get A Free Quote form", "welding and metal fabrication services", "published production workflow from quote to production to delivery"],
+      "why_fit": "A visible quote-intake process and multi-service fabrication operation provide a strong test environment for the P001 workflow."
+    },
+    {
+      "id": "prospect-benshear-puchong",
+      "name": "BENSHEAR TECHNOLOGY SDN BHD",
+      "category": "sheet metal fabrication",
+      "location": "Puchong, Selangor, Malaysia",
+      "fit": 88,
+      "candidate_workflow": "OEM/custom inquiry, sheet-metal process costing, welding and production planning",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"phone": "+603-5882 9238", "email": "sales@benshear.com", "whatsapp": "+6012-2379902", "url": "https://benshear.com/"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["Puchong sheet-metal fabrication factory", "laser cutting, punching, forming and welding", "supports small orders and larger quantities"],
+      "why_fit": "Multi-process fabrication creates many cost categories where structured quoting can be useful; candidate requires validation because the operation is relatively large."
+    },
+    {
+      "id": "prospect-bm-engineering-house",
+      "name": "BM Engineering House",
+      "category": "steel fabrication / engineering services",
+      "location": "Puchong, Selangor, Malaysia",
+      "fit": 91,
+      "candidate_workflow": "engineering inquiry, estimation, steel fabrication planning, installation support",
+      "discovery_source": "public_company_website",
+      "public_contact_available": true,
+      "public_contact": {"url": "https://www.bmeh.com.my/"},
+      "validation_status": "fresh_candidate",
+      "evidence": ["company states it draws, calculates, plans and estimates", "specializes in steel fabrication", "Puchong industrial location"],
+      "why_fit": "Its explicit estimation workflow is closely aligned with P001; public contact details require further validation before outreach."
     }
   ],
   "research_notes": {
-    "current_search_date": "2026-08-22",
+    "current_search_date": "2026-08-25",
     "priority_rule": "Prefer prospects with an observable quoting workflow, fabrication activity, public contact path and a plausible reason to use a job-costing/quote tool.",
+    "market_signal": ["recent welding/fabrication discussions show active questions about shop rates and missed quote costs", "competing spreadsheets currently sell on Etsy, confirming buyer interest but also meaningful competition"],
     "customer_claim_rule": "Fresh candidates are not customers. No customer, outreach-sent, sale or revenue claim is valid until explicitly evidenced."
   }
 }
