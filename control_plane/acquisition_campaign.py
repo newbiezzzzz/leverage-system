@@ -1,7 +1,7 @@
 """Autonomous, policy-safe acquisition campaign planner.
 
 Runs without ChatGPT. It creates fresh organic-content/outreach tasks for the
-live Gumroad product, adds concrete prospect-validation work, gives each
+public acquisition page, adds concrete prospect-validation work, gives each
 channel a distinct UTM link, prepares an evidence-based offer draft for the
 highest-fit prospect, deduplicates the queue, and keeps actual sending behind
 channel-specific authorization/policy gates.
@@ -18,13 +18,14 @@ from .quota_guard import acquisition_budget
 
 ROOT = Path(__file__).resolve().parent
 PRODUCT = "Fabrication Shop Profit & Quote System"
-PRODUCT_URL = "https://newbiezz.gumroad.com/l/neiqwz"
+LANDING_URL = "https://newbiezzzzz.github.io/leverage-system/p001/"
+CONVERSION_URL = "https://newbiezz.gumroad.com/l/neiqwz"
 QUEUE_PATH = ROOT / "acquisition_queue.json"
 PROSPECTS_PATH = ROOT / "prospects.json"
 
 CONTENT_PILLARS = [
     "how to calculate a fabrication shop hourly rate",
-    "why fabrication jobs get underquoted",
+    "why fabrication quotes miss small costs",
     "quoted vs actual job profit",
     "material and consumable markup",
     "change-order profit protection",
@@ -56,10 +57,10 @@ def tracked_url(channel: str, date_key: str) -> str:
     params = {
         "utm_source": channel,
         "utm_medium": "organic",
-        "utm_campaign": f"first-product-{date_key}",
+        "utm_campaign": f"p001-acquisition-{date_key}",
         "utm_content": channel,
     }
-    return f"{PRODUCT_URL}?{urlencode(params)}"
+    return f"{LANDING_URL}?{urlencode(params)}"
 
 
 def _prospect_validation_items(date_key: str, prospects: list[dict], existing: set[str], cap: int) -> list[dict]:
@@ -138,6 +139,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
             "channel": channel,
             "topic": pillar,
             "call_to_action": destination,
+            "conversion_target": CONVERSION_URL,
             "status": "draft",
             "requires_channel_authorization": True,
             "policy": ["no_spam", "no_impersonation", "respect_platform_rules", "no_fake_claims"],
@@ -160,12 +162,14 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
     )
     data.setdefault("items", []).extend(created)
     data.setdefault("prospect_validation", []).extend(prospect_validation)
-    data["version"] = 3
+    data["version"] = 4
     data["last_generated_at"] = now.isoformat()
     data["tracking"] = {
-        "base_product_url": PRODUCT_URL,
+        "landing_url": LANDING_URL,
+        "conversion_url": CONVERSION_URL,
         "utm_enabled": True,
-        "utm_note": "Gumroad Analytics can attribute clicks, sales, revenue and conversion to UTM links.",
+        "funnel": "channel -> public landing page -> Gumroad conversion",
+        "utm_note": "UTM links point to the public landing page; the page remains the acquisition experience and Gumroad remains the conversion endpoint.",
     }
     data["prospect_pipeline"] = {
         "source": "control_plane/prospects.json",
@@ -191,11 +195,13 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
 
 
 def self_test() -> dict:
-    sample = tracked_url("linkedin", "2026-08-20")
+    sample = tracked_url("linkedin", "2026-08-25")
     return {
         "worker": "acquisition-campaign-planner",
         "status": "healthy",
         "product": PRODUCT,
+        "landing_url": LANDING_URL,
+        "conversion_url": CONVERSION_URL,
         "channels": CHANNELS,
         "autonomous": True,
         "sending": "gated",
