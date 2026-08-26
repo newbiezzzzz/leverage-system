@@ -28,6 +28,10 @@ class AcquisitionCampaignTests(unittest.TestCase):
     def tearDown(self):
         self.ppatch.stop(); self.qpatch.stop(); self.tmp.cleanup()
 
+    def test_public_acquisition_surface_is_live_cloudflare_site(self):
+        self.assertEqual("https://leverage-tools.pages.dev/", acquisition_campaign.LANDING_URL)
+        self.assertTrue(acquisition_campaign.tracked_url("linkedin", "2026-08-22").startswith(acquisition_campaign.LANDING_URL + "?"))
+
     def test_daily_queue_creates_concrete_prospect_validation_work(self):
         result = acquisition_campaign.generate_daily_queue(datetime(2026, 8, 22, tzinfo=timezone.utc))
         self.assertGreater(result["created"], 0)
@@ -58,5 +62,4 @@ class AcquisitionCampaignTests(unittest.TestCase):
         self.assertEqual(direct["status"], "draft")
 
 
-if __name__ == "__main__":
-    unittest.main()
+if __name__ == "__main__": unittest.main()
