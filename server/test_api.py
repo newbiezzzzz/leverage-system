@@ -15,8 +15,8 @@ class ApiTests(unittest.TestCase):
         self.assertEqual("command.html", target.name)
 
     def test_money_protection_is_explicit(self):
-        self.assertEqual("LeverageLocalAPI/2.1", leverage_api.Handler.server_version)
-        self.assertEqual("2.1", leverage_api.API_VERSION)
+        self.assertEqual("LeverageLocalAPI/2.2", leverage_api.Handler.server_version)
+        self.assertEqual("2.2", leverage_api.API_VERSION)
 
     def test_company_os_readiness_is_exposed(self):
         result = leverage_api.company_os_readiness()
@@ -47,6 +47,10 @@ class ApiTests(unittest.TestCase):
         self.assertIn("digital_product", types["types"])
         self.assertIn("projects", metrics)
         self.assertIn("engineering-quote-toolkit", metrics["projects"])
+
+    def test_public_metrics_bridge_exists(self):
+        self.assertEqual("https://leverage-tools.pages.dev/api/public-metrics", leverage_api.PUBLIC_METRICS_URL)
+        self.assertTrue(callable(leverage_api.fetch_public_metrics))
 
     def test_acquisition_queue_route_exists(self):
         queue = leverage_api.read_acquisition_queue()
