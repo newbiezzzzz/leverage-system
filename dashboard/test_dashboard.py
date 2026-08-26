@@ -77,6 +77,17 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("Product traffic & acquisition", js)
         self.assertIn("product-detail-link", css)
 
+    def test_project_detail_connects_public_telemetry(self):
+        html = self.read("project-detail.html")
+        js = self.read("product-traffic.js")
+        self.assertIn("product-traffic.js", html)
+        self.assertIn("leverage-tools.pages.dev/api/public-metrics", js)
+        self.assertIn("unique_visitors", js)
+        self.assertIn("pro_clicks", js)
+        self.assertIn("calculated_quotes", js)
+        self.assertIn("traffic_sources", js)
+        self.assertIn("ACTIVE", js)
+
     def test_project_detail_uses_same_theme(self):
         html = self.read("project-detail.html")
         self.assertIn('href="styles.css', html)
@@ -113,7 +124,7 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("esc(p.description", js)
 
     def test_required_dashboard_files_exist(self):
-        for name in ("index.html", "command.html", "command.js", "projects.html", "projects.js", "project-detail.html", "project-detail.js", "styles.css", "layout.css", "command.css", "project-detail.css"):
+        for name in ("index.html", "command.html", "command.js", "projects.html", "projects.js", "project-detail.html", "project-detail.js", "product-traffic.js", "styles.css", "layout.css", "command.css", "project-detail.css"):
             self.assertTrue((ROOT / name).is_file(), name)
 
 
