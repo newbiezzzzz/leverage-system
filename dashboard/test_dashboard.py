@@ -35,6 +35,26 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("/api/buyer-pipeline", js)
         self.assertIn("buyer-row", css)
 
+    def test_command_center_exposes_product_drilldown(self):
+        html = self.read("command.html")
+        js = self.read("command.js")
+        css = self.read("command.css")
+        self.assertIn("PRODUCTS", js)
+        self.assertIn("product-mini", css)
+        self.assertIn("product-detail.html", js)
+        self.assertIn("Product 1", html)
+
+    def test_command_center_exposes_traffic_view(self):
+        html = self.read("command.html")
+        js = self.read("command.js")
+        css = self.read("command.css")
+        self.assertIn("TRAFFIC VIEW", html)
+        for element_id in ("trafficVisitors", "trafficEvents", "trafficQuotes", "trafficClicks", "trafficConversion", "trafficSources"):
+            self.assertIn(f'id="{element_id}"', html)
+        self.assertIn("/api/project-metrics", js)
+        self.assertIn("renderTraffic", js)
+        self.assertIn("traffic-source", css)
+
     def test_project_detail_uses_same_theme(self):
         html = self.read("project-detail.html")
         self.assertIn('href="styles.css', html)
@@ -50,6 +70,14 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("/api/projects/", js)
         self.assertNotIn("raw.githubusercontent.com", js)
         self.assertNotIn("github.com/newbiezzzzz/leverage-system/raw", js)
+
+    def test_product_query_renders_product_detail(self):
+        js = self.read("project-detail.js")
+        self.assertIn("params.get('product')", js)
+        self.assertIn("renderProductDetail", js)
+        self.assertIn("fabrication-shop-profit-quote-system", js)
+        css = self.read("project-detail.css")
+        self.assertIn("product-detail-link", css)
 
     def test_project_detail_has_no_embedded_light_theme(self):
         html = self.read("project-detail.html")
@@ -69,4 +97,5 @@ class DashboardContractTests(unittest.TestCase):
             self.assertTrue((ROOT / name).is_file(), name)
 
 
-if __name__ == "__main__": unittest.main()
+if __name__ == "__main__":
+    unittest.main()
