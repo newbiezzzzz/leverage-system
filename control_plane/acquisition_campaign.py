@@ -18,7 +18,10 @@ from .quota_guard import acquisition_budget
 
 ROOT = Path(__file__).resolve().parent
 PRODUCT = "Fabrication Shop Profit & Quote System"
-LANDING_URL = "https://newbiezzzzz.github.io/leverage-system/p001/"
+# Acquisition must point to the live public acquisition surface, not the
+# repository-only P-001 source tree. This URL is the production Cloudflare
+# Pages surface currently used by Leverage for organic discovery.
+LANDING_URL = "https://leverage-tools.pages.dev/"
 CONVERSION_URL = "https://newbiezz.gumroad.com/l/neiqwz"
 QUEUE_PATH = ROOT / "acquisition_queue.json"
 PROSPECTS_PATH = ROOT / "prospects.json"
@@ -169,7 +172,7 @@ def generate_daily_queue(now: datetime | None = None) -> dict:
         "conversion_url": CONVERSION_URL,
         "utm_enabled": True,
         "funnel": "channel -> public landing page -> Gumroad conversion",
-        "utm_note": "UTM links point to the public landing page; the page remains the acquisition experience and Gumroad remains the conversion endpoint.",
+        "utm_note": "UTM links point to the live Cloudflare Pages acquisition surface; the page remains the acquisition experience and Gumroad remains the conversion endpoint.",
     }
     data["prospect_pipeline"] = {
         "source": "control_plane/prospects.json",
