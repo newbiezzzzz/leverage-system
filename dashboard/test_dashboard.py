@@ -56,20 +56,26 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("renderTraffic", js)
         self.assertIn("traffic-source", css)
 
-    def test_project_portfolio_enforces_project_then_product_flow(self):
+    def test_project_portfolio_starts_with_project_only(self):
         html = self.read("projects.html")
         css = self.read("command.css")
         self.assertIn("STEP 1 · PROJECT", html)
-        self.assertIn("STEP 2 · PRODUCT", html)
         self.assertIn("P-001 · Digital Products", html)
-        self.assertIn("Product 1", html)
-        self.assertIn("P001-DP01", html)
-        self.assertIn("project-detail.html?id=digital-products&amp;product=fabrication-shop-profit-quote-system", html)
-        self.assertIn("Open Product 1", html)
+        self.assertIn("Open P-001", html)
         self.assertIn("TRAFFIC VIEW", html)
+        self.assertNotIn("STEP 2 · PRODUCT", html)
+        self.assertNotIn("Open Product 1", html)
+        self.assertNotIn("fabrication-shop-profit-quote-system", html)
         self.assertIn("project-drill-card", css)
-        self.assertIn("product-detail-entry", css)
-        self.assertNotIn('href="https://newbiezz.gumroad.com/l/neiqwz"', html)
+
+    def test_project_detail_exposes_product_selection_and_traffic(self):
+        js = self.read("project-detail.js")
+        css = self.read("project-detail.css")
+        self.assertIn("Products inside this project", js)
+        self.assertIn("fabrication-shop-profit-quote-system", js)
+        self.assertIn("&product=", js)
+        self.assertIn("Product traffic & acquisition", js)
+        self.assertIn("product-detail-link", css)
 
     def test_project_detail_uses_same_theme(self):
         html = self.read("project-detail.html")
@@ -92,8 +98,6 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("params.get('product')", js)
         self.assertIn("renderProductDetail", js)
         self.assertIn("fabrication-shop-profit-quote-system", js)
-        css = self.read("project-detail.css")
-        self.assertIn("product-detail-link", css)
 
     def test_project_detail_has_no_embedded_light_theme(self):
         html = self.read("project-detail.html")
