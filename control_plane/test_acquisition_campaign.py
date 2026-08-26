@@ -32,6 +32,19 @@ class AcquisitionCampaignTests(unittest.TestCase):
         self.assertEqual("https://leverage-tools.pages.dev/", acquisition_campaign.LANDING_URL)
         self.assertTrue(acquisition_campaign.tracked_url("linkedin", "2026-08-22").startswith(acquisition_campaign.LANDING_URL + "?"))
 
+    def test_legacy_queued_destination_is_repaired(self):
+        old = "https://newbiezzzzz.github.io/leverage-system/p001/?utm_source=seo_content"
+        self.queue.write_text(json.dumps({
+            "version": 3,
+            "items": [{"key": "legacy", "destination": old, "call_to_action": old}],
+            "prospect_validation": [],
+            "tracking": {"landing_url": "https://newbiezzzzz.github.io/leverage-system/p001/"},
+        }), encoding="utf-8")
+        data = acquisition_campaign._load()
+        self.assertEqual("https://leverage-tools.pages.dev/?utm_source=seo_content", data["items"][0]["destination"])
+        self.assertEqual("https://leverage-tools.pages.dev/?utm_source=seo_content", data["items"][0]["call_to_action"])
+        self.assertEqual("https://leverage-tools.pages.dev/", data["tracking"]["landing_url"])
+
     def test_daily_queue_creates_concrete_prospect_validation_work(self):
         result = acquisition_campaign.generate_daily_queue(datetime(2026, 8, 22, tzinfo=timezone.utc))
         self.assertGreater(result["created"], 0)
