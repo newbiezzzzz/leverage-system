@@ -4,7 +4,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
 import sys
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, parse_qs, quote
 import mimetypes
 import traceback
 import urllib.request
@@ -94,11 +94,14 @@ def read_acquisition_queue() -> dict:
 
 
 def fetch_public_metrics(tool: str = "") -> dict:
-    """Fetch the public Cloudflare telemetry through a short-lived local proxy."""
+    """Fetch public Cloudflare telemetry through a short-lived local proxy."""
     url = PUBLIC_METRICS_URL
     if tool:
-        url = f"{url}?tool={urllib.parse.quote(tool)}"
-    request = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "LeverageLocalAPI/2.2"})
+        url = f"{url}?tool={quote(tool)}"
+    request = urllib.request.Request(
+        url,
+        headers={"Accept": "application/json", "User-Agent": f"LeverageLocalAPI/{API_VERSION}"},
+    )
     try:
         with urllib.request.urlopen(request, timeout=8) as response:
             raw = json.loads(response.read().decode("utf-8"))
@@ -164,11 +167,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(200, {"ok": True, "metrics": _read_json_file(PROJECT_METRICS_FILE, {"projects": {}})})
                 return
             if path == "/api/public-metrics":
-                query = urlparse(self.path).query
-                tool = ""
-                if query:
-                    from urllib.parse import parse_qs
-                    tool = (parse_qs(query).get("tool") or [""])[0].strip()
+                tool = (parse_qs(urlparse(self.path).query).get("tool") or [""])[0].strip()
                 result = fetch_public_metrics(tool)
                 self.send_json(200 if result.get("ok") else 503, result)
                 return
@@ -283,3 +282,24 @@ class SingleInstanceServer(ThreadingHTTPServer):
     allow_reuse_port = False
 
     def server_bind(self):
+        try:
+            super().server_bind()
+        except OSError as exc:
+            raise RuntimeError(f"Leverage API port {PORT} is already in use. Stop the existing LeverageLocalAPI process before starting another instance.") from exc
+
+
+def serve() -> None:
+    httpd = SingleInstanceServer((HOST, PORT), Handler)
+    print(f"Leverage Local Dashboard: http://{HOST}:{PORT}/")
+    print(f"Control Plane: READY (API {API_VERSION})")
+    print("Money movement: PROTECTED")
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
+
+
+if __name__ == "__main__":
+    serve()
