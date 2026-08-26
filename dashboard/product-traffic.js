@@ -2,7 +2,7 @@
   const params=new URLSearchParams(location.search);
   const product=params.get('product');
   if(!product)return;
-  const METRICS='https://leverage-tools.pages.dev/api/public-metrics';
+  const METRICS='/api/public-metrics';
   const esc=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
   const analyse=m=>{
     const visitors=m.unique_visitors;
