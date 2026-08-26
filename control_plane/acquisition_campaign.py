@@ -22,6 +22,9 @@ PRODUCT = "Fabrication Shop Profit & Quote System"
 # repository-only P-001 source tree. This URL is the production Cloudflare
 # Pages surface currently used by Leverage for organic discovery.
 LANDING_URL = "https://leverage-tools.pages.dev/"
+LEGACY_LANDING_URLS = (
+    "https://newbiezzzzz.github.io/leverage-system/p001/",
+)
 CONVERSION_URL = "https://newbiezz.gumroad.com/l/neiqwz"
 QUEUE_PATH = ROOT / "acquisition_queue.json"
 PROSPECTS_PATH = ROOT / "prospects.json"
@@ -36,10 +39,38 @@ CONTENT_PILLARS = [
 CHANNELS = ["seo_content", "linkedin", "niche_community", "direct_outreach"]
 
 
+def _repair_legacy_destinations(data: dict) -> bool:
+    """Repair tracked queue links created before the public-site migration."""
+    changed = False
+    for item in data.get("items", []):
+        for field in ("destination", "call_to_action"):
+            value = item.get(field)
+            if isinstance(value, str):
+                for legacy in LEGACY_LANDING_URLS:
+                    if value.startswith(legacy):
+                        item[field] = LANDING_URL + value[len(legacy):]
+                        changed = True
+    tracking = data.get("tracking")
+    if isinstance(tracking, dict) and tracking.get("landing_url") in LEGACY_LANDING_URLS:
+        tracking["landing_url"] = LANDING_URL
+        changed = True
+    return changed
+
+
 def _load() -> dict:
     if not QUEUE_PATH.exists():
         return {"version": 3, "items": [], "prospect_validation": []}
-    return json.loads(QUEUE_PATH.read_text(encoding="utf-8"))
+    try:
+        data = json.loads(QUEUE_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"version": 3, "items": [], "prospect_validation": []}
+    if not isinstance(data, dict):
+        return {"version": 3, "items": [], "prospect_validation": []}
+    data.setdefault("items", [])
+    data.setdefault("prospect_validation", [])
+    if _repair_legacy_destinations(data):
+        _save(data)
+    return data
 
 
 def _load_prospects() -> list[dict]:
