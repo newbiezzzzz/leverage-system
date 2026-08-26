@@ -28,13 +28,30 @@ class AcquisitionCampaignTests(unittest.TestCase):
     def tearDown(self):
         self.ppatch.stop(); self.qpatch.stop(); self.tmp.cleanup()
 
+    def test_public_acquisition_surface_is_live_cloudflare_site(self):
+        self.assertEqual("https://leverage-tools.pages.dev/", acquisition_campaign.LANDING_URL)
+        self.assertTrue(acquisition_campaign.tracked_url("linkedin", "2026-08-22").startswith(acquisition_campaign.LANDING_URL + "?"))
+
+    def test_legacy_queued_destination_is_repaired(self):
+        old = "https://newbiezzzzz.github.io/leverage-system/p001/?utm_source=seo_content"
+        self.queue.write_text(json.dumps({
+            "version": 3,
+            "items": [{"key": "legacy", "destination": old, "call_to_action": old}],
+            "prospect_validation": [],
+            "tracking": {"landing_url": "https://newbiezzzzz.github.io/leverage-system/p001/"},
+        }), encoding="utf-8")
+        data = acquisition_campaign._load()
+        self.assertEqual("https://leverage-tools.pages.dev/?utm_source=seo_content", data["items"][0]["destination"])
+        self.assertEqual("https://leverage-tools.pages.dev/?utm_source=seo_content", data["items"][0]["call_to_action"])
+        self.assertEqual("https://leverage-tools.pages.dev/", data["tracking"]["landing_url"])
+
     def test_daily_queue_creates_concrete_prospect_validation_work(self):
         result = acquisition_campaign.generate_daily_queue(datetime(2026, 8, 22, tzinfo=timezone.utc))
         self.assertGreater(result["created"], 0)
         self.assertEqual(result["prospects_created"], 2)
         self.assertEqual(result["top_candidate"]["id"], "p-high")
         data = json.loads(self.queue.read_text(encoding="utf-8"))
-        self.assertEqual(data["version"], 3)
+        self.assertEqual(data["version"], 4)
         self.assertEqual(data["prospect_validation"][0]["prospect_id"], "p-high")
         self.assertEqual(data["prospect_validation"][0]["status"], "research_required")
         self.assertEqual(data["prospect_validation"][0]["why_fit"], "observable quote workflow")
@@ -58,5 +75,6 @@ class AcquisitionCampaignTests(unittest.TestCase):
         self.assertEqual(direct["status"], "draft")
 
 
+# Regression coverage for live acquisition-surface alignment.
 if __name__ == "__main__":
     unittest.main()
