@@ -75,5 +75,6 @@ class AcquisitionCampaignTests(unittest.TestCase):
         self.assertEqual(direct["status"], "draft")
 
 
+# Regression coverage for live acquisition-surface alignment.
 if __name__ == "__main__":
     unittest.main()
