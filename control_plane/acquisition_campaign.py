@@ -24,6 +24,7 @@ PRODUCT = "Fabrication Shop Profit & Quote System"
 LANDING_URL = "https://leverage-tools.pages.dev/"
 LEGACY_LANDING_URLS = (
     "https://newbiezzzzz.github.io/leverage-system/p001/",
+    "https://newbiezz.gumroad.com/l/neiqwz",
 )
 CONVERSION_URL = "https://newbiezz.gumroad.com/l/neiqwz"
 QUEUE_PATH = ROOT / "acquisition_queue.json"
@@ -50,10 +51,13 @@ def _repair_legacy_destinations(data: dict) -> bool:
                     if value.startswith(legacy):
                         item[field] = LANDING_URL + value[len(legacy):]
                         changed = True
+                        break
     tracking = data.get("tracking")
-    if isinstance(tracking, dict) and tracking.get("landing_url") in LEGACY_LANDING_URLS:
-        tracking["landing_url"] = LANDING_URL
-        changed = True
+    if isinstance(tracking, dict):
+        landing = tracking.get("landing_url")
+        if landing in LEGACY_LANDING_URLS:
+            tracking["landing_url"] = LANDING_URL
+            changed = True
     return changed
 
 
