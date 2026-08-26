@@ -56,6 +56,21 @@ class DashboardContractTests(unittest.TestCase):
         self.assertIn("renderTraffic", js)
         self.assertIn("traffic-source", css)
 
+    def test_project_portfolio_enforces_project_then_product_flow(self):
+        html = self.read("projects.html")
+        css = self.read("command.css")
+        self.assertIn("STEP 1 · PROJECT", html)
+        self.assertIn("STEP 2 · PRODUCT", html)
+        self.assertIn("P-001 · Digital Products", html)
+        self.assertIn("Product 1", html)
+        self.assertIn("P001-DP01", html)
+        self.assertIn("project-detail.html?id=digital-products&amp;product=fabrication-shop-profit-quote-system", html)
+        self.assertIn("Open Product 1", html)
+        self.assertIn("TRAFFIC VIEW", html)
+        self.assertIn("project-drill-card", css)
+        self.assertIn("product-detail-entry", css)
+        self.assertNotIn('href="https://newbiezz.gumroad.com/l/neiqwz"', html)
+
     def test_project_detail_uses_same_theme(self):
         html = self.read("project-detail.html")
         self.assertIn('href="styles.css', html)
