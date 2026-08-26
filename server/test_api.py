@@ -31,12 +31,14 @@ class ApiTests(unittest.TestCase):
 
     def test_project_api_preserves_extended_metadata(self):
         projects = leverage_api.read_project_records()
-        self.assertTrue(projects)
-        first = next(p for p in projects if p.get("id") == "engineering-quote-toolkit")
-        self.assertEqual("Gumroad", first.get("store"))
-        self.assertEqual(19, first.get("price_usd"))
-        self.assertIn("store_url", first)
-        self.assertIn("verified_sales", first)
+        first = next(p for p in projects if p.get("id") == "digital-products")
+        self.assertEqual("Digital Products", first.get("name"))
+        self.assertEqual("digital-product-business", first.get("type"))
+        product = next(item for item in first.get("products", []) if item.get("id") == "fabrication-shop-profit-quote-system")
+        self.assertEqual("Gumroad", product.get("store"))
+        self.assertEqual(19, product.get("price_usd"))
+        self.assertIn("store_url", product)
+        self.assertIn("verified_sales", product)
 
     def test_local_project_metadata_sources_exist(self):
         types = leverage_api._read_json_file(leverage_api.PROJECT_TYPES_FILE, {})
