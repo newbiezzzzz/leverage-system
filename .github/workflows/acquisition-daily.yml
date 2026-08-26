@@ -3,6 +3,13 @@ name: Leverage Daily Acquisition Planner
 on:
   schedule:
     - cron: '0 15 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'control_plane/acquisition_campaign.py'
+      - 'control_plane/acquisition_config.json'
+      - 'control_plane/acquisition_queue.json'
+      - '.github/workflows/acquisition-daily.yml'
   workflow_dispatch:
 
 permissions:
