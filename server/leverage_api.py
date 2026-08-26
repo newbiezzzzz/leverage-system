@@ -7,6 +7,7 @@ import sys
 from urllib.parse import urlparse, unquote
 import mimetypes
 import traceback
+import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD = ROOT / "dashboard"
@@ -28,7 +29,8 @@ from control_plane.runtime_state import ensure_runtime_state, state_path
 from control_plane.buyer_pipeline_store import ensure_prospect, get_pipeline, list_pipelines, transition_pipeline
 
 HOST, PORT = "127.0.0.1", 8765
-API_VERSION = "2.1"
+API_VERSION = "2.2"
+PUBLIC_METRICS_URL = "https://leverage-tools.pages.dev/api/public-metrics"
 
 
 def body(data: dict) -> bytes:
@@ -91,6 +93,20 @@ def read_acquisition_queue() -> dict:
     return queue
 
 
+def fetch_public_metrics(tool: str = "") -> dict:
+    """Fetch the public Cloudflare telemetry through a short-lived local proxy."""
+    url = PUBLIC_METRICS_URL
+    if tool:
+        url = f"{url}?tool={urllib.parse.quote(tool)}"
+    request = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "LeverageLocalAPI/2.2"})
+    try:
+        with urllib.request.urlopen(request, timeout=8) as response:
+            raw = json.loads(response.read().decode("utf-8"))
+        return raw if isinstance(raw, dict) else {"ok": False, "error": "invalid_metrics_response"}
+    except Exception as exc:
+        return {"ok": False, "error": "public_metrics_unavailable", "message": str(exc)}
+
+
 def ensure_buyer_pipeline_candidates() -> int:
     """Materialize discovered prospects into the persistent buyer funnel without advancing them."""
     prospects = _read_json_file(PROSPECTS_FILE, {}).get("prospects", [])
@@ -146,6 +162,15 @@ class Handler(BaseHTTPRequestHandler):
                 return
             if path == "/api/project-metrics":
                 self.send_json(200, {"ok": True, "metrics": _read_json_file(PROJECT_METRICS_FILE, {"projects": {}})})
+                return
+            if path == "/api/public-metrics":
+                query = urlparse(self.path).query
+                tool = ""
+                if query:
+                    from urllib.parse import parse_qs
+                    tool = (parse_qs(query).get("tool") or [""])[0].strip()
+                result = fetch_public_metrics(tool)
+                self.send_json(200 if result.get("ok") else 503, result)
                 return
             if path == "/api/acquisition-queue":
                 self.send_json(200, {"ok": True, "queue": read_acquisition_queue()})
@@ -258,24 +283,3 @@ class SingleInstanceServer(ThreadingHTTPServer):
     allow_reuse_port = False
 
     def server_bind(self):
-        try:
-            super().server_bind()
-        except OSError as exc:
-            raise RuntimeError(f"Leverage API port {PORT} is already in use. Stop the existing LeverageLocalAPI process before starting another instance.") from exc
-
-
-def serve() -> None:
-    httpd = SingleInstanceServer((HOST, PORT), Handler)
-    print(f"Leverage Local Dashboard: http://{HOST}:{PORT}/")
-    print(f"Control Plane: READY (API {API_VERSION})")
-    print("Money movement: PROTECTED")
-    try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        httpd.server_close()
-
-
-if __name__ == "__main__":
-    serve()
