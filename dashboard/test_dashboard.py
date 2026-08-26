@@ -41,7 +41,8 @@ class DashboardContractTests(unittest.TestCase):
         css = self.read("command.css")
         self.assertIn("PRODUCTS", js)
         self.assertIn("product-mini", css)
-        self.assertIn("product-detail.html", js)
+        self.assertIn("project-detail.html", js)
+        self.assertIn("&product=", js)
         self.assertIn("Product 1", html)
 
     def test_command_center_exposes_traffic_view(self):
