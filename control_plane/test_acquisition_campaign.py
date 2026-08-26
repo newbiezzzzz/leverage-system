@@ -51,7 +51,7 @@ class AcquisitionCampaignTests(unittest.TestCase):
         self.assertEqual(result["prospects_created"], 2)
         self.assertEqual(result["top_candidate"]["id"], "p-high")
         data = json.loads(self.queue.read_text(encoding="utf-8"))
-        self.assertEqual(data["version"], 3)
+        self.assertEqual(data["version"], 4)
         self.assertEqual(data["prospect_validation"][0]["prospect_id"], "p-high")
         self.assertEqual(data["prospect_validation"][0]["status"], "research_required")
         self.assertEqual(data["prospect_validation"][0]["why_fit"], "observable quote workflow")
@@ -75,4 +75,5 @@ class AcquisitionCampaignTests(unittest.TestCase):
         self.assertEqual(direct["status"], "draft")
 
 
-if __name__ == "__main__": unittest.main()
+if __name__ == "__main__":
+    unittest.main()
