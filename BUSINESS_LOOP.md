@@ -46,26 +46,32 @@ The loop supports:
 No worker may bypass platform rules, impersonate people, spam, sign contracts, move money, or create binding commitments without the appropriate authorization boundary.
 
 ## Experiment A — P-001
-The Fabrication Shop Profit & Quote System remains a reusable first experiment asset. **Current project status: paused.** It is not the definition of Leverage and is not the current active acquisition project.
+The Fabrication Shop Profit & Quote System is the first monetized product routed through the Product Factory v2.
 
-Current gate for P-001:
-Traffic -> first buyer -> conversion evidence -> iteration.
+**Current project status: active / factory-launch.**
+
+The product itself already exists and is being reused; the factory is improving its presentation, public acquisition surface, listing package and measurement path rather than rebuilding the workbook unnecessarily.
+
+Current gate:
+`artifact/package QA -> public landing page deployment -> marketplace listing verification -> analytics validation -> traffic -> first buyer -> conversion evidence -> iteration`
+
+No financial action, payout change, or price change is autonomous. The current listed price is USD19 and requires Owner approval for any change.
 
 ## Active Acquisition Experiment — P-002
-Leverage Free Fabrication Tool Network is the active web-utility acquisition experiment.
+Leverage Free Fabrication Tool Network is the active web-utility acquisition experiment and the primary free discovery surface for P-001.
 
-Verified state on 23 Aug 2026:
+Verified state:
 - Cloudflare production site live and owner-verified.
 - `/tools/` public path loads.
 - Root sitemap is publicly reachable.
 - Google Search Console ownership verified.
 - Sitemap submitted.
 - Google live URL test: crawl allowed, page fetch successful, indexing allowed.
-- Manual indexing request quota exhausted for the day.
+- Manual indexing request quota was exhausted on the earlier test day.
 - Authoritative traffic and buyer evidence: not yet available.
 
 Current gate:
-Live -> crawlable -> indexed/discovered -> traffic -> calculator events -> product clicks -> buyer/revenue evidence.
+`live -> crawlable -> indexed/discovered -> traffic -> calculator events -> product clicks -> buyer/revenue evidence`
 
 ## Success Criterion
 The major Leverage milestone is no longer “can we create a product?”
