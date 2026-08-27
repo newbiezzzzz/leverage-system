@@ -1,6 +1,6 @@
 # LEVERAGE STATE
 
-_Last aligned: 25 Aug 2026 — P-001 factory execution in progress_
+_Last aligned: 27 Aug 2026 — P-001 factory launch / P-002 acquisition verification_
 
 ## Mission
 Build a zero-cost, reusable AI/data/automation company that can discover opportunities, validate demand, launch projects, acquire customers, deliver outcomes, measure results, and scale evidence-backed winners with minimal Boss involvement.
@@ -18,6 +18,7 @@ Build a zero-cost, reusable AI/data/automation company that can discover opportu
 - n8n local automation layer: installed and dry-run passed.
 - Creative Director, Design QA, Content/Marketing, Marketplace workers: registered and verified.
 - Minimum creative/conversion release score: 85/100.
+- Product #1 factory execution artifacts are present in the repository.
 
 ## Product #1 — P-001 — Fabrication Shop Profit & Quote System
 - Status: active / factory-launch
@@ -60,7 +61,7 @@ No financial action, payout change, or price change has been performed.
 - Verified sales: 0
 - Verified revenue: USD0
 
-P-002 remains an acquisition surface for P-001; P-001 is now the first monetized product routed through the factory.
+P-002 remains the primary free acquisition surface for P-001.
 
 ## Success Gate
 P-001 is not commercially successful until an authoritative source verifies at least one genuine external buyer transaction.
