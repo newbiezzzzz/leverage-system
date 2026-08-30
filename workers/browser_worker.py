@@ -23,8 +23,9 @@ FORBIDDEN_TERMS = {
 
 P001_ID = "neiqwz"
 P001_PUBLIC = "https://leverage-tools.pages.dev/fabrication-profit-system/"
+P001_GUMROAD = f"https://newbiezz.gumroad.com/l/{P001_ID}"
 P001_FREE_CALCULATOR = "https://leverage-tools.pages.dev/fabrication-quote-calculator/?utm_source=gumroad&utm_medium=product&utm_campaign=p001&utm_content=free-calculator"
-P001_FREE_CALCULATOR_LABEL = "Try the FREE Fabrication Quote Calculator →"
+P001_FREE_CALCULATOR_LABEL = "Try the FREE Fabrication Quote Calculator"
 ASSET_DIR = Path(r"D:\Leverage\artifacts\p001")
 COVER_PATH = ASSET_DIR / "p001-cover.png"
 THUMB_PATH = ASSET_DIR / "p001-thumbnail.png"
@@ -134,13 +135,26 @@ def _upload_cover_and_thumbnail() -> dict[str, Any]:
     return {"snapshot": snapshot()}
 
 
+def _verify_public_listing() -> dict[str, Any]:
+    """Verify the CTA on the public Gumroad page rather than the editor snapshot."""
+    _run_cli("goto", P001_GUMROAD, timeout=60)
+    script = f"async () => {{ const body = await page.locator('body').innerText(); const links = await page.locator('a').evaluateAll(els => els.map(a => ({{text:(a.innerText||'').trim(), href:a.href}}))); const url={json.dumps(P001_FREE_CALCULATOR_URL)}; const label={json.dumps(P001_FREE_CALCULATOR_LABEL)}; const exact=links.find(x => x.href===url || x.href===url.replace(/\\/$/,'')); const text=links.find(x => (x.text||'').toLowerCase().includes(label.toLowerCase())); return JSON.stringify({{url_guard:!!exact,label_guard:!!text,exact_link:exact||null,text_link:text||null,body_has_url:body.includes(url),body_has_label:body.toLowerCase().includes(label.toLowerCase())}}); }}"
+    raw = _run_cli("run-code", script, timeout=60)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        m = re.search(r'({.*})', raw, re.S)
+        return json.loads(m.group(1)) if m else {"url_guard": False, "label_guard": False, "raw": raw}
+
+
 def edit_p001_listing() -> BrowserResult:
     summary = "Know the cost and margin before you quote."
     description = (
         "Know the cost and margin before you quote.\n\n"
         "A macro-free Excel toolkit for small fabrication, welding, machine and job shops.\n\n"
         "TRY THE FREE TOOL FIRST\n"
-        f"{P001_FREE_CALCULATOR_LABEL}\n{P001_FREE_CALCULATOR}\n\n"
+        f"{P001_FREE_CALCULATOR_LABEL}\n"
+        f"{P001_FREE_CALCULATOR_URL}\n\n"
         "WHAT YOU GET\n"
         "• Shop Rate Calculator\n• Quote Builder\n• Material & Consumables Costing\n"
         "• Target-Margin Profit Check\n• Job Log — Quoted vs Actual\n• Change Order Register\n"
@@ -177,10 +191,11 @@ def edit_p001_listing() -> BrowserResult:
     price_ok = bool(re.search(r'textbox "Amount"[^\n]*"19"', verify))
     published_ok = 'button "Unpublish"' in verify
     summary_ok = summary.lower() in verify.lower()
-    cta_url_ok = P001_FREE_CALCULATOR in verify
-    cta_label_ok = P001_FREE_CALCULATOR_LABEL.lower() in verify.lower()
+    public_verify = _verify_public_listing()
+    cta_url_ok = bool(public_verify.get("url_guard") or public_verify.get("body_has_url"))
+    cta_label_ok = bool(public_verify.get("label_guard") or public_verify.get("body_has_label"))
     ok = price_ok and published_ok and summary_ok and cta_url_ok and cta_label_ok
-    detail = "Listing, cover, thumbnail, and tracked free-calculator CTA saved and verified." if ok else "Verification failed."
+    detail = "Listing saved and verified on the public Gumroad page." if ok else "Verification failed."
     return BrowserResult(ok, "edit_p001_listing", detail, {
         "price_guard": price_ok,
         "published_guard": published_ok,
@@ -189,6 +204,7 @@ def edit_p001_listing() -> BrowserResult:
         "free_calculator_label_guard": cta_label_ok,
         "free_calculator_url": P001_FREE_CALCULATOR,
         "assets": assets,
+        "public_verification": public_verify,
         "snapshot": verify,
     })
 
