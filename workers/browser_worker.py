@@ -1,8 +1,6 @@
 """Leverage Browser Worker v1.
-
-Goal-driven local browser automation using Playwright CLI.
-The worker may improve marketplace presentation, including copy and visual
-assets. Financial/account/security actions remain blocked.
+Goal-driven local Gumroad browser automation using Playwright CLI.
+External financial/account/security actions remain blocked.
 """
 from __future__ import annotations
 
@@ -11,6 +9,7 @@ import os
 import re
 import shutil
 import subprocess
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -20,11 +19,11 @@ FORBIDDEN_TERMS = {
     "payment", "refund", "unpublish", "publish", "delete", "money",
     "withdraw", "tax", "security", "account owner",
 }
-
 P001_ID = "neiqwz"
 P001_PUBLIC = "https://leverage-tools.pages.dev/fabrication-profit-system/"
 P001_FREE_CALCULATOR = "https://leverage-tools.pages.dev/fabrication-quote-calculator/?utm_source=gumroad&utm_medium=product&utm_campaign=p001&utm_content=free-calculator"
 P001_FREE_CALCULATOR_LABEL = "Try the FREE Fabrication Quote Calculator"
+P001_GUMROAD_PUBLIC = f"https://newbiezz.gumroad.com/l/{P001_ID}"
 ASSET_DIR = Path(r"D:\Leverage\artifacts\p001")
 COVER_PATH = ASSET_DIR / "p001-cover.png"
 THUMB_PATH = ASSET_DIR / "p001-thumbnail.png"
@@ -74,12 +73,8 @@ def attach_or_open(profile: str) -> BrowserResult:
 
 
 def _extract_ref(snap: str, label: str) -> str | None:
-    m = re.search(rf'(?:textbox|button|combobox) "{re.escape(label)}" \[ref=([^\]]+)\]', snap)
+    m = re.search(rf'(?:textbox|button|combobox|link) "{re.escape(label)}" \[ref=([^\]]+)\]', snap)
     return m.group(1) if m else None
-
-
-def _extract_refs(snap: str, label: str) -> list[str]:
-    return re.findall(rf'(?:textbox|button|combobox) "{re.escape(label)}" \[ref=([^\]]+)\]', snap)
 
 
 def _extract_generic_ref(snap: str, label: str) -> str | None:
@@ -94,47 +89,8 @@ def find_product(product_id: str) -> BrowserResult:
     return BrowserResult(ok, "find_product", "Existing product located." if ok else "Product not found.", {"snapshot": snap})
 
 
-def _make_assets() -> dict[str, str]:
-    ASSET_DIR.mkdir(parents=True, exist_ok=True)
-    if not COVER_PATH.exists():
-        _run_cli("goto", P001_PUBLIC, timeout=60)
-        _run_cli("resize", "1600", "900", timeout=20)
-        _run_cli("screenshot", "--filename", str(COVER_PATH), "--hires", timeout=60)
-    if not THUMB_PATH.exists():
-        _run_cli("goto", P001_PUBLIC, timeout=60)
-        _run_cli("resize", "800", "800", timeout=20)
-        _run_cli("screenshot", "--filename", str(THUMB_PATH), "--hires", timeout=60)
-    return {"cover": str(COVER_PATH), "thumbnail": str(THUMB_PATH)}
-
-
-def _upload_file_input(file_path: Path, index: int) -> None:
-    path_json = json.dumps(str(file_path), ensure_ascii=False)
-    script = f"async () => {{ const inputs = page.locator('input[type=file]'); const count = await inputs.count(); if (count <= {index}) throw new Error('Expected file input index {index} but found ' + count); await inputs.nth({index}).setInputFiles({path_json}); }}"
-    _run_cli("run-code", script, timeout=90)
-
-
-def _upload_cover_and_thumbnail() -> dict[str, Any]:
-    _run_cli("goto", f"https://gumroad.com/products/{P001_ID}/edit", timeout=60)
-    snap = snapshot()
-    if not _extract_refs(snap, "Upload images or videos") or not _extract_refs(snap, "Upload"):
-        raise RuntimeError("Could not rediscover Gumroad cover/thumbnail controls")
-
-    _upload_file_input(COVER_PATH, 0)
-    snap = snapshot()
-    if not _extract_refs(snap, "Upload"):
-        raise RuntimeError("Thumbnail upload control not found after cover upload")
-
-    _upload_file_input(THUMB_PATH, 1)
-    snap = snapshot()
-    save_ref = _extract_ref(snap, "Save changes")
-    if not save_ref:
-        raise RuntimeError("Save button disappeared after asset upload")
-    _run_cli("click", save_ref, timeout=30)
-    return {"snapshot": snapshot()}
-
-
 def _public_listing_snapshot() -> str:
-    _run_cli("goto", f"https://newbiezz.gumroad.com/l/{P001_ID}", timeout=60)
+    _run_cli("goto", P001_GUMROAD_PUBLIC, timeout=60)
     snap = snapshot()
     read_more = _extract_ref(snap, "Read more")
     if read_more:
@@ -142,15 +98,35 @@ def _public_listing_snapshot() -> str:
     return snapshot()
 
 
-def _public_listing_verify(snapshot_text: str) -> dict[str, Any]:
+def _public_html() -> str:
+    request = urllib.request.Request(P001_GUMROAD_PUBLIC, headers={"User-Agent": "Mozilla/5.0 LeverageBrowserWorker"})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return response.read().decode("utf-8", errors="replace")
+
+
+def _verify_public_listing(snapshot_text: str) -> dict[str, Any]:
     body = snapshot_text.lower()
-    url_guard = P001_FREE_CALCULATOR in snapshot_text
-    label_guard = P001_FREE_CALCULATOR_LABEL.lower() in body
+    try:
+        html = _public_html().lower()
+    except Exception as exc:
+        html = ""
+        html_error = str(exc)
+    else:
+        html_error = ""
+    url_token = P001_FREE_CALCULATOR.lower()
+    label_token = P001_FREE_CALCULATOR_LABEL.lower()
+    html_url = url_token in html
+    html_label = label_token in html
+    snapshot_url = url_token in body
+    snapshot_label = label_token in body
+    clickable = html_url and ("<a " in html and url_token in html)
     return {
-        "url_guard": url_guard,
-        "label_guard": label_guard,
-        "body_has_url": url_guard,
-        "body_has_label": label_guard,
+        "url_guard": snapshot_url or html_url,
+        "label_guard": snapshot_label or html_label,
+        "clickable_link_guard": clickable,
+        "html_has_url": html_url,
+        "html_has_label": html_label,
+        "html_error": html_error,
     }
 
 
@@ -160,7 +136,8 @@ def edit_p001_listing() -> BrowserResult:
         "Know the cost and margin before you quote.\n\n"
         "A macro-free Excel toolkit for small fabrication, welding, machine and job shops.\n\n"
         "TRY THE FREE TOOL FIRST\n"
-        f"{P001_FREE_CALCULATOR_LABEL}\n{P001_FREE_CALCULATOR}\n\n"
+        f"{P001_FREE_CALCULATOR_LABEL}\n"
+        f"{P001_FREE_CALCULATOR}\n\n"
         "WHAT YOU GET\n"
         "• Shop Rate Calculator\n• Quote Builder\n• Material & Consumables Costing\n"
         "• Target-Margin Profit Check\n• Job Log — Quoted vs Actual\n• Change Order Register\n"
@@ -176,7 +153,6 @@ def edit_p001_listing() -> BrowserResult:
         "DIGITAL PRODUCT\n"
         "You receive downloadable digital files after purchase."
     )
-
     _run_cli("goto", f"https://gumroad.com/products/{P001_ID}/edit", timeout=60)
     snap = snapshot()
     summary_ref = _extract_ref(snap, "Summary")
@@ -184,31 +160,26 @@ def edit_p001_listing() -> BrowserResult:
     description_ref = _extract_generic_ref(snap, "Description")
     if not summary_ref or not save_ref or not description_ref:
         return BrowserResult(False, "edit_p001_listing", "Required Gumroad controls were not rediscovered.", {"snapshot": snap})
-
     _run_cli("fill", summary_ref, summary, timeout=30)
     _run_cli("click", description_ref, timeout=30)
     _run_cli("press", "Control+A", timeout=30)
     _run_cli("type", description, timeout=60)
     _run_cli("click", save_ref, timeout=30)
-
-    assets = _make_assets()
-    _upload_cover_and_thumbnail()
     public_snapshot = _public_listing_snapshot()
-    verify = _public_listing_verify(public_snapshot)
+    verify = _verify_public_listing(public_snapshot)
     published_ok = "Fabrication Shop Profit & Quote System".lower() in public_snapshot.lower()
     summary_ok = summary.lower() in public_snapshot.lower()
-    cta_url_ok = bool(verify.get("url_guard") or verify.get("body_has_url"))
-    cta_label_ok = bool(verify.get("label_guard") or verify.get("body_has_label"))
-    ok = cta_url_ok and cta_label_ok and published_ok and summary_ok
-    detail = "Listing, cover, thumbnail, and tracked free-calculator CTA saved and verified on public listing." if ok else "Verification failed."
+    ok = bool(verify["url_guard"] and verify["label_guard"] and published_ok and summary_ok)
+    detail = "Gumroad Product 1 updated and tracked free-calculator CTA verified." if ok else "Verification failed."
     return BrowserResult(ok, "edit_p001_listing", detail, {
         "price_guard": True,
         "published_guard": published_ok,
         "summary_guard": summary_ok,
-        "free_calculator_url_guard": cta_url_ok,
-        "free_calculator_label_guard": cta_label_ok,
+        "free_calculator_url_guard": bool(verify["url_guard"]),
+        "free_calculator_label_guard": bool(verify["label_guard"]),
+        "clickable_link_guard": bool(verify["clickable_link_guard"]),
         "free_calculator_url": P001_FREE_CALCULATOR,
-        "assets": assets,
+        "public_verification": verify,
         "snapshot": public_snapshot,
     })
 
