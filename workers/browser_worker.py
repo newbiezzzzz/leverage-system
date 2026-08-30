@@ -135,14 +135,15 @@ def _upload_cover_and_thumbnail() -> dict[str, Any]:
 
 def _public_listing_snapshot() -> str:
     _run_cli("goto", f"https://newbiezz.gumroad.com/l/{P001_ID}", timeout=60)
+    snap = snapshot()
+    read_more = _extract_ref(snap, "Read more")
+    if read_more:
+        _run_cli("click", read_more, timeout=30)
     return snapshot()
 
 
 def _public_listing_verify(snapshot_text: str) -> dict[str, Any]:
     body = snapshot_text.lower()
-    # Avoid passing the UTM-bearing URL through the Windows command parser.
-    # Playwright snapshot already exposes link hrefs as /url lines, so verify
-    # the public listing from snapshot text instead of run-code JavaScript.
     url_guard = P001_FREE_CALCULATOR in snapshot_text
     label_guard = P001_FREE_CALCULATOR_LABEL.lower() in body
     return {
