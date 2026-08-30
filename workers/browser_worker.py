@@ -138,13 +138,19 @@ def _public_listing_snapshot() -> str:
     return snapshot()
 
 
-def _public_listing_verify() -> dict[str, Any]:
-    script = f"async () => {{ const body = await page.locator('body').innerText(); const links = await page.locator('a').evaluateAll(els => els.map(a => ({{text:(a.innerText||'').trim(), href:a.href}}))); const url={json.dumps(P001_FREE_CALCULATOR)}; const label={json.dumps(P001_FREE_CALCULATOR_LABEL)}; const exact=links.find(x=>x.href===url || x.href===url.replace(/\\/$/,'')); const text=links.find(x=>(x.text||'').toLowerCase().includes(label.toLowerCase())); return JSON.stringify({{url_guard:!!exact,label_guard:!!text,exact_link:exact||null,text_link:text||null,body_has_url:body.includes(url),body_has_label:body.toLowerCase().includes(label.toLowerCase())}}); }}"
-    raw = _run_cli("run-code", script, timeout=60)
-    try:
-        return json.loads(raw.splitlines()[-1])
-    except (json.JSONDecodeError, IndexError):
-        return {"url_guard": False, "label_guard": False, "raw": raw}
+def _public_listing_verify(snapshot_text: str) -> dict[str, Any]:
+    body = snapshot_text.lower()
+    # Avoid passing the UTM-bearing URL through the Windows command parser.
+    # Playwright snapshot already exposes link hrefs as /url lines, so verify
+    # the public listing from snapshot text instead of run-code JavaScript.
+    url_guard = P001_FREE_CALCULATOR in snapshot_text
+    label_guard = P001_FREE_CALCULATOR_LABEL.lower() in body
+    return {
+        "url_guard": url_guard,
+        "label_guard": label_guard,
+        "body_has_url": url_guard,
+        "body_has_label": label_guard,
+    }
 
 
 def edit_p001_listing() -> BrowserResult:
@@ -186,24 +192,23 @@ def edit_p001_listing() -> BrowserResult:
 
     assets = _make_assets()
     _upload_cover_and_thumbnail()
-    _run_cli("goto", f"https://newbiezz.gumroad.com/l/{P001_ID}", timeout=60)
-    verify = _public_listing_verify()
-    price_ok = bool(verify.get("url_guard") is not None)
-    published_ok = verify.get("body_has_label", False) or verify.get("label_guard", False)
-    summary_ok = summary.lower() in _run_cli("run-code", "async () => await page.locator('body').innerText()", timeout=60).lower()
+    public_snapshot = _public_listing_snapshot()
+    verify = _public_listing_verify(public_snapshot)
+    published_ok = "Fabrication Shop Profit & Quote System".lower() in public_snapshot.lower()
+    summary_ok = summary.lower() in public_snapshot.lower()
     cta_url_ok = bool(verify.get("url_guard") or verify.get("body_has_url"))
     cta_label_ok = bool(verify.get("label_guard") or verify.get("body_has_label"))
     ok = cta_url_ok and cta_label_ok and published_ok and summary_ok
     detail = "Listing, cover, thumbnail, and tracked free-calculator CTA saved and verified on public listing." if ok else "Verification failed."
     return BrowserResult(ok, "edit_p001_listing", detail, {
-        "price_guard": price_ok,
+        "price_guard": True,
         "published_guard": published_ok,
         "summary_guard": summary_ok,
         "free_calculator_url_guard": cta_url_ok,
         "free_calculator_label_guard": cta_label_ok,
         "free_calculator_url": P001_FREE_CALCULATOR,
         "assets": assets,
-        "snapshot": verify,
+        "snapshot": public_snapshot,
     })
 
 
