@@ -23,6 +23,8 @@ FORBIDDEN_TERMS = {
 
 P001_ID = "neiqwz"
 P001_PUBLIC = "https://leverage-tools.pages.dev/fabrication-profit-system/"
+P001_FREE_CALCULATOR = "https://leverage-tools.pages.dev/fabrication-quote-calculator/?utm_source=gumroad&utm_medium=product&utm_campaign=p001&utm_content=free-calculator"
+P001_FREE_CALCULATOR_LABEL = "Try the FREE Fabrication Quote Calculator →"
 ASSET_DIR = Path(r"D:\Leverage\artifacts\p001")
 COVER_PATH = ASSET_DIR / "p001-cover.png"
 THUMB_PATH = ASSET_DIR / "p001-thumbnail.png"
@@ -137,6 +139,8 @@ def edit_p001_listing() -> BrowserResult:
     description = (
         "Know the cost and margin before you quote.\n\n"
         "A macro-free Excel toolkit for small fabrication, welding, machine and job shops.\n\n"
+        "TRY THE FREE TOOL FIRST\n"
+        f"{P001_FREE_CALCULATOR_LABEL}\n{P001_FREE_CALCULATOR}\n\n"
         "WHAT YOU GET\n"
         "• Shop Rate Calculator\n• Quote Builder\n• Material & Consumables Costing\n"
         "• Target-Margin Profit Check\n• Job Log — Quoted vs Actual\n• Change Order Register\n"
@@ -173,8 +177,20 @@ def edit_p001_listing() -> BrowserResult:
     price_ok = bool(re.search(r'textbox "Amount"[^\n]*"19"', verify))
     published_ok = 'button "Unpublish"' in verify
     summary_ok = summary.lower() in verify.lower()
-    ok = price_ok and published_ok and summary_ok
-    return BrowserResult(ok, "edit_p001_listing", "Listing, cover, thumbnail saved and protected fields verified." if ok else "Verification failed.", {"price_guard": price_ok, "published_guard": published_ok, "summary_guard": summary_ok, "assets": assets, "snapshot": verify})
+    cta_url_ok = P001_FREE_CALCULATOR in verify
+    cta_label_ok = P001_FREE_CALCULATOR_LABEL.lower() in verify.lower()
+    ok = price_ok and published_ok and summary_ok and cta_url_ok and cta_label_ok
+    detail = "Listing, cover, thumbnail, and tracked free-calculator CTA saved and verified." if ok else "Verification failed."
+    return BrowserResult(ok, "edit_p001_listing", detail, {
+        "price_guard": price_ok,
+        "published_guard": published_ok,
+        "summary_guard": summary_ok,
+        "free_calculator_url_guard": cta_url_ok,
+        "free_calculator_label_guard": cta_label_ok,
+        "free_calculator_url": P001_FREE_CALCULATOR,
+        "assets": assets,
+        "snapshot": verify,
+    })
 
 
 def execute(goal: str, profile: str) -> BrowserResult:
@@ -190,6 +206,7 @@ def execute(goal: str, profile: str) -> BrowserResult:
     if "optimize" not in goal.lower() and "update" not in goal.lower():
         return BrowserResult(True, "plan_only", "Goal validated; no edit requested.", {})
     return edit_p001_listing()
+
 
 if __name__ == "__main__":
     import argparse
