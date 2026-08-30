@@ -55,10 +55,10 @@ def playwright() -> str:
     raise FileNotFoundError("playwright-cli was not found")
 
 
-def run(*args: str, timeout: int = 90) -> str:
+def run(*args: str, timeout: int = 90, allow_fail: bool = False) -> str:
     proc = subprocess.run([playwright(), *args], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout, shell=False)
     out = ((proc.stdout or "") + "\n" + (proc.stderr or "")).strip()
-    if proc.returncode:
+    if proc.returncode and not allow_fail:
         raise RuntimeError(out or f"playwright-cli exited {proc.returncode}")
     return out
 
@@ -74,7 +74,7 @@ def ref(snapshot_text: str, role: str, name: str) -> str | None:
 
 
 def attach() -> None:
-    attached = run("attach", "default", timeout=30) if True else ""
+    attached = run("attach", "default", timeout=30, allow_fail=True)
     if "attached" not in attached.lower():
         run("open", "https://gumroad.com/products", "--browser=chromium", "--headed", "--persistent", f"--profile={PROFILE}", timeout=90)
 
@@ -109,11 +109,21 @@ def update_description() -> None:
         "const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);"
         "document.execCommand('createLink',false,url);"
         "editor.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText',data:null}));"
+        "editor.dispatchEvent(new Event('change',{bubbles:true}));"
         "return JSON.stringify({editors:count,linked:true});"
         "}"
     )
     run("run-code", js, timeout=60)
+
+    # Re-snapshot after the DOM mutation so we never reuse a stale Gumroad button ref.
+    s = snap()
+    save = ref(s, "button", "Save changes")
+    if not save:
+        raise RuntimeError("Gumroad Save changes button not found after description update")
     run("click", save, timeout=30)
+
+    # Give Gumroad a short settling period and confirm the save notice if present.
+    run("wait", "1000", timeout=10, allow_fail=True)
 
 
 def verify() -> dict[str, Any]:
@@ -143,6 +153,8 @@ def verify() -> dict[str, Any]:
         result = {"url_guard": False, "label_guard": False, "clickable_link_guard": False, "raw": raw}
     result["summary_guard"] = "Know the cost and margin before you quote.".lower() in body
     result["page_url"] = GUMROAD_PUBLIC
+    result["public_has_cta_text"] = CTA_LABEL.lower() in body
+    result["public_has_cta_url"] = CTA_URL.lower() in body
     return result
 
 
