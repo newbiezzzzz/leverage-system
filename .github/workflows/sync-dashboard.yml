@@ -18,6 +18,10 @@ on:
 permissions:
   contents: write
 
+env:
+  SYNC_RUN_ID: ${{ github.run_id }}
+  SYNC_EVENT: ${{ github.event_name }}
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -34,6 +38,7 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import os
           from datetime import datetime, timezone
           from pathlib import Path
 
@@ -44,11 +49,11 @@ jobs:
           tasks_path = root / 'control_plane' / 'tasks.json'
           projects_path = root / 'control_plane' / 'projects.json'
 
-          data = json.loads(data_path.read_text())
-          milestones = json.loads(milestones_path.read_text()).get('milestones', [])
-          workers = json.loads(workers_path.read_text()).get('workers', [])
-          tasks = json.loads(tasks_path.read_text()).get('tasks', [])
-          projects = json.loads(projects_path.read_text()).get('projects', [])
+          data = json.loads(data_path.read_text(encoding='utf-8'))
+          milestones = json.loads(milestones_path.read_text(encoding='utf-8')).get('milestones', [])
+          workers = json.loads(workers_path.read_text(encoding='utf-8')).get('workers', [])
+          tasks = json.loads(tasks_path.read_text(encoding='utf-8')).get('tasks', [])
+          projects = json.loads(projects_path.read_text(encoding='utf-8')).get('projects', [])
 
           overall = round(sum(float(m.get('progress', 0)) for m in milestones) / len(milestones)) if milestones else 0
           counts = {status: 0 for status in ['queued', 'running', 'completed', 'failed', 'blocked', 'cancelled']}
@@ -65,17 +70,20 @@ jobs:
           data['tasks'] = counts
           data['cost'] = {'amount': 0, 'currency': 'RM', 'target': 'zero-cost', 'tracked': True}
           data['projects'] = projects
-          data['latest_research'] = None
+          # Preserve the latest research evidence already present in dashboard/data.json.
+          # The sync job must not erase authoritative research just because no new report
+          # was generated in this run.
           data['sync'] = {
               'source': 'github-actions',
               'workflow': 'Sync Leverage Dashboard',
-              'run_id': '',
-              'conclusion': 'scheduled',
+              'run_id': os.getenv('SYNC_RUN_ID', ''),
+              'event': os.getenv('SYNC_EVENT', ''),
+              'conclusion': 'running',
               'fresh': True,
               'synced_at': synced_at
           }
 
-          data_path.write_text(json.dumps(data, indent=2) + '\n')
+          data_path.write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
           PY
 
       - name: Commit dashboard and resource state
