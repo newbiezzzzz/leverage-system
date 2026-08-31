@@ -9,6 +9,12 @@ US$19 introductory price. Any price change is an Owner approval action.
 ## Short description
 **Know the cost and margin before you quote.** A macro-free Excel toolkit for small fabrication, welding and machine/job shops to calculate shop rates, build quotes, include consumables and overhead, compare quoted vs actual job economics, and track change orders.
 
+## Public web CTA
+**Try the FREE Fabrication Quote Calculator**
+https://leverage-tools.pages.dev/fabrication-quote-calculator/?utm_source=gumroad&utm_medium=product&utm_campaign=p001&utm_content=free-calculator
+
+Put this CTA near the top of the Gumroad description so buyers can move from the marketplace listing into Leverage's public web acquisition surface.
+
 ## Who it is for
 - Small fabrication shops
 - Welders and mobile welders
