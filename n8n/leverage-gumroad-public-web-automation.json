@@ -2,11 +2,17 @@
   "name": "Leverage — Gumroad Public Web CTA Automation",
   "nodes": [
     {
-      "parameters": {},
-      "id": "schedule",
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {"mode": "everyX", "value": 6, "unit": "hours"}
+          ]
+        }
+      },
+      "id": "cron",
       "name": "Every 6 Hours",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
       "position": [0, 0]
     },
     {
@@ -112,5 +118,5 @@
   "meta": {
     "purpose": "Unattended API-first Gumroad product CTA maintenance. Uses Gumroad API when possible and Browserbase/Stagehand only for UI-only fallback. No price, payout, credential, account, or money actions."
   },
-  "versionId": "gumroad-public-web-auto-v1"
+  "versionId": "gumroad-public-web-auto-v2"
 }
