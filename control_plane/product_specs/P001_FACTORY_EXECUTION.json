@@ -33,15 +33,36 @@
     "minimum_publish_score": 85
   },
   "gumroad": {
-    "mode": "guarded_browser_automation",
-    "reason": "Gumroad currently does not support creating products or uploading product content through its API.",
-    "allowed": ["edit_listing", "upload_cover", "upload_preview_files", "edit_description", "edit_tags", "edit_url"],
-    "owner_approval_required": ["payout_settings", "payment_credentials", "major_price_change", "money_movement"]
+    "mode": "api_first_browser_fallback",
+    "api": {
+      "enabled": true,
+      "endpoint": "PUT https://api.gumroad.com/v2/products/:id",
+      "scope": "edit_products",
+      "credentials": "GUMROAD_ACCESS_TOKEN environment secret"
+    },
+    "browser_fallback": {
+      "provider": "Browserbase + Stagehand",
+      "enabled_when": "API unavailable or action is UI-only",
+      "persistent_context": true,
+      "credentials": "BROWSERBASE_API_KEY and BROWSERBASE_GUMROAD_CONTEXT_ID environment secrets"
+    },
+    "automated_actions": [
+      "edit_description",
+      "edit_summary",
+      "verify_public_listing"
+    ],
+    "owner_approval_required": [
+      "payout_settings",
+      "payment_credentials",
+      "major_price_change",
+      "money_movement"
+    ]
   },
   "website": {
     "goal": "high-quality acquisition page, not a brochure",
     "primary_cta": "Get the Fabrication Shop Profit & Quote System",
     "supporting_cta": "See how the calculator protects margin",
+    "free_tool_url": "https://leverage-tools.pages.dev/fabrication-quote-calculator/",
     "required_sections": ["hero", "problem", "workflow", "screenshots", "what_is_included", "who_it_is_for", "faq", "cta"],
     "creative_gate": 85
   },
