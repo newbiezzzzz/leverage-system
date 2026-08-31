@@ -1,0 +1,11 @@
+{
+  "name": "leverage-web-automation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gumroad": "node browserbase_stagehand_worker.mjs"
+  },
+  "dependencies": {
+    "@browserbasehq/stagehand": "latest"
+  }
+}
