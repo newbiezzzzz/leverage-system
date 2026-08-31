@@ -1,0 +1,116 @@
+{
+  "name": "Leverage — Gumroad Public Web CTA Automation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "schedule",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "command": "cd /d D:\\Leverage && python -m automation.web_automation_router update_gumroad_public_web_cta"
+      },
+      "id": "execute",
+      "name": "Leverage Web Automation Router",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.stdout ? JSON.parse($json.stdout).ok : false }}",
+              "operation": "isTrue"
+            }
+          ]
+        }
+      },
+      "id": "ok",
+      "name": "Automation Verified?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [500, 0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-ok",
+              "name": "status",
+              "value": "Gumroad public-web CTA verified",
+              "type": "string"
+            },
+            {
+              "id": "route",
+              "name": "route",
+              "value": "={{ JSON.parse($json.stdout).route }}",
+              "type": "string"
+            },
+            {
+              "id": "target",
+              "name": "target_url",
+              "value": "https://leverage-tools.pages.dev/fabrication-quote-calculator/",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "success",
+      "name": "Record Success",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [740, -100]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "status-fail",
+              "name": "status",
+              "value": "Gumroad public-web CTA automation failed",
+              "type": "string"
+            },
+            {
+              "id": "diagnostic",
+              "name": "diagnostic",
+              "value": "={{ $json.stderr || $json.stdout || 'No diagnostic output' }}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "id": "failure",
+      "name": "Record Failure",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [740, 100]
+    }
+  ],
+  "connections": {
+    "Every 6 Hours": {
+      "main": [[{"node": "Leverage Web Automation Router", "type": "main", "index": 0}]]
+    },
+    "Leverage Web Automation Router": {
+      "main": [[{"node": "Automation Verified?", "type": "main", "index": 0}]]
+    },
+    "Automation Verified?": {
+      "main": [
+        [{"node": "Record Success", "type": "main", "index": 0}],
+        [{"node": "Record Failure", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "meta": {
+    "purpose": "Unattended API-first Gumroad product CTA maintenance. Uses Gumroad API when possible and Browserbase/Stagehand only for UI-only fallback. No price, payout, credential, account, or money actions."
+  },
+  "versionId": "gumroad-public-web-auto-v1"
+}
