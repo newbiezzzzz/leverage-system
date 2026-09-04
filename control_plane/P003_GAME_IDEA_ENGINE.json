@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "project": "P-003",
+  "name": "Game Idea Engine",
+  "purpose": "Generate, score, rank, and gate small Roblox entertainment experiments before build effort is spent.",
+  "cost_policy": {"startup_capital_rm": 0, "paid_acquisition_required": false},
+  "decision_rule": "Generate many candidates, score deterministically, reject hard-fail ideas, then send only the highest-scoring buildable candidates to the Game Factory.",
+  "scoring": {
+    "scale": "0-100 per criterion",
+    "weights": {
+      "hook_and_first_minute": 20,
+      "replayability_and_retention": 20,
+      "social_and_co_play": 15,
+      "content_and_shareability": 15,
+      "novelty_and_differentiation": 10,
+      "buildability_and_iteration_speed": 10,
+      "monetization_fit": 5,
+      "discovery_and_metadata_fit": 5
+    },
+    "formula": "weighted_sum",
+    "gates": {
+      "build_threshold": 70,
+      "preferred_threshold": 80,
+      "scale_threshold_after_data": 85
+    }
+  },
+  "hard_reject": [
+    "Requires paid infrastructure or paid user acquisition to prove the core loop",
+    "Copies a specific existing Roblox game, branding, or distinctive protected identity",
+    "Relies on misleading metadata, fake rewards, or deceptive monetization",
+    "Core loop is not understandable or playable in a small prototype",
+    "High safety, moderation, legal, or platform-risk burden without a clear mitigation",
+    "Cannot produce a meaningful first-play experience quickly enough for an experiment"
+  ],
+  "idea_schema": {
+    "idea_id": "stable slug",
+    "title": "working title",
+    "one_sentence_hook": "why a player cares immediately",
+    "core_loop": "what the player repeatedly does",
+    "audience": "primary player type",
+    "social_mechanic": "how other players make it better",
+    "content_moments": ["clip-worthy moments"],
+    "novelty_claim": "specific differentiator",
+    "build_scope": "small prototype description",
+    "monetization": ["optional fair monetization concepts"],
+    "scores": {
+      "hook_and_first_minute": 0,
+      "replayability_and_retention": 0,
+      "social_and_co_play": 0,
+      "content_and_shareability": 0,
+      "novelty_and_differentiation": 0,
+      "buildability_and_iteration_speed": 0,
+      "monetization_fit": 0,
+      "discovery_and_metadata_fit": 0
+    },
+    "hard_rejects": [],
+    "notes": []
+  },
+  "outputs": ["ranked ideas", "reject reasons", "recommended build candidate", "experiment hypothesis", "initial metrics to watch"]
+}
