@@ -39,9 +39,18 @@ Success means the AI can create and change a small playable experience without r
 - [x] Define first technical proof.
 - [x] Preserve existing P-001/P-002 work; do not replace it.
 - [ ] Verify local `D:\Leverage` working copy is synced with the P-003 branch.
-- [ ] Verify Roblox Studio is installed and launches.
-- [ ] Verify the selected MCP/AI bridge can connect to Roblox Studio.
+- [x] Verify Roblox Studio is installed and launches.
+- [x] Verify the selected MCP/AI bridge can connect to Roblox Studio.
 - [ ] Execute the first tiny game proof.
+
+## Step 4 — Game Idea Engine
+- [x] Create machine-readable idea-engine contract: `control_plane/P003_GAME_IDEA_ENGINE.json`.
+- [x] Add deterministic ranking worker: `workers/game_idea_worker.py`.
+- [x] Score ideas across hook/first-minute, replayability/retention, social/co-play, content/shareability, novelty/differentiation, buildability/iteration speed, monetization fit, and discovery/metadata fit.
+- [x] Add hard-reject rules for paid-core-loop dependency, copying, deceptive metadata/rewards, non-prototypable concepts, high unmanaged platform/safety risk, and slow experiment cycles.
+- [x] Define thresholds: 80+ preferred build candidate, 70–79 prototype-only, below 70 reject.
+- [ ] Connect an AI ideation prompt to generate candidate concepts automatically.
+- [ ] Generate and rank the first live batch of concepts.
 
 ## Data to track from day one
 Every game experiment should have a stable game/experiment ID and eventually capture:
@@ -56,4 +65,4 @@ Every game experiment should have a stable game/experiment ID and eventually cap
 - outcome: kill / improve / scale
 
 ## Next gate
-Step 1 is complete when the environment and project contract are ready and Step 2 can begin without redesigning the Leverage architecture.
+Step 4 is complete when an AI-generated batch of ideas can be scored, rejected/ranked, and one build candidate can be handed to the Game Factory without manual restructuring.
