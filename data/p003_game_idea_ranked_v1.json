@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "project": "P-003",
+  "source": "data/p003_game_ideas_v1.json",
+  "scoring_version": "control_plane/P003_GAME_IDEA_ENGINE.json@1",
+  "ranked": [
+    {
+      "rank": 1,
+      "idea_id": "floor-is-voted",
+      "score": 91,
+      "decision": "build_candidate",
+      "reason": "Best combined first-minute hook, repeat play, social interaction, and shareable moments."
+    },
+    {
+      "rank": 2,
+      "idea_id": "one-button-chaos",
+      "score": 90,
+      "decision": "build_candidate",
+      "reason": "Extremely simple prototype with strong social timing and short-form content potential."
+    },
+    {
+      "rank": 3,
+      "idea_id": "tiny-crew-heist",
+      "score": 90,
+      "decision": "build_candidate",
+      "reason": "Very strong social/replay loop, but prototype cost is higher because of roles and NPC behavior."
+    },
+    {
+      "rank": 4,
+      "idea_id": "panic-package",
+      "score": 88,
+      "decision": "build_candidate",
+      "reason": "Strong compact loop and content moments with high buildability."
+    },
+    {
+      "rank": 5,
+      "idea_id": "wrong-door",
+      "score": 84,
+      "decision": "build_candidate",
+      "reason": "Fastest build and good replayability, but materially weaker social/co-play score."
+    }
+  ],
+  "recommended_first_prototype": "floor-is-voted",
+  "experiment_hypothesis": "A player-authored vote that changes the next survival hazard will create stronger repeat play and social moments than a fixed hazard sequence.",
+  "initial_metrics": [
+    "first-play bounce",
+    "average session time",
+    "D1 retention",
+    "play days per user",
+    "intentional co-play days per user",
+    "qualified play sessions",
+    "clip-worthy event rate"
+  ],
+  "warning": "These are pre-build scores, not evidence of market demand. Real player behavior must decide whether to improve, kill, or scale the prototype."
+}
