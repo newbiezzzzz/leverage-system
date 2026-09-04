@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "project": "P-003",
+  "generated_as": "initial AI ideation batch",
+  "note": "Concepts are intentionally small, original, social, clip-friendly experiments. Scores are pre-build heuristics and must be replaced/updated with real player data after launch.",
+  "ideas": [
+    {
+      "idea_id": "panic-package",
+      "title": "Panic Package",
+      "one_sentence_hook": "Deliver the wrong-looking package through a chaotic obstacle course before the timer exposes you.",
+      "core_loop": "Pick a package -> navigate hazards -> deliver to the matching receiver -> earn upgrade tokens -> harder round.",
+      "audience": "casual players and friend groups",
+      "social_mechanic": "Players can accidentally interfere with or help each other during deliveries.",
+      "content_moments": ["near-miss delivery", "friend sabotage", "last-second save"],
+      "novelty_claim": "Delivery gameplay built around visual confusion and social interference rather than a standard simulator.",
+      "build_scope": "One compact map, four hazard types, timer, package/receiver matching, round loop, simple upgrades.",
+      "monetization": ["cosmetic delivery trails", "non-competitive emotes"],
+      "scores": {
+        "hook_and_first_minute": 91,
+        "replayability_and_retention": 86,
+        "social_and_co_play": 88,
+        "content_and_shareability": 92,
+        "novelty_and_differentiation": 82,
+        "buildability_and_iteration_speed": 92,
+        "monetization_fit": 76,
+        "discovery_and_metadata_fit": 88
+      },
+      "hard_rejects": [],
+      "notes": ["Strong first prototype candidate."]
+    },
+    {
+      "idea_id": "floor-is-voted",
+      "title": "The Floor Is Voted",
+      "one_sentence_hook": "Every round players vote which part of the floor disappears next.",
+      "core_loop": "Survive -> vote on a modifier -> survive the resulting layout -> last players standing win.",
+      "audience": "social/party-game players",
+      "social_mechanic": "Voting directly changes the arena and creates alliances/bluffs.",
+      "content_moments": ["betrayal vote", "unexpected collapse", "final-player panic"],
+      "novelty_claim": "The players collectively author the next hazard instead of a fixed random sequence.",
+      "build_scope": "Single modular arena, tile removal, voting UI, rounds, respawn/win state.",
+      "monetization": ["arena cosmetics", "voting effect cosmetics"],
+      "scores": {
+        "hook_and_first_minute": 94,
+        "replayability_and_retention": 90,
+        "social_and_co_play": 96,
+        "content_and_shareability": 94,
+        "novelty_and_differentiation": 84,
+        "buildability_and_iteration_speed": 89,
+        "monetization_fit": 78,
+        "discovery_and_metadata_fit": 91
+      },
+      "hard_rejects": [],
+      "notes": ["Highest social score; needs strong visual identity to avoid feeling generic."]
+    },
+    {
+      "idea_id": "one-button-chaos",
+      "title": "One Button Chaos",
+      "one_sentence_hook": "Everyone shares one button that triggers a random world-changing event.",
+      "core_loop": "Enter room -> players decide when to press shared button -> survive event -> collect points -> next room.",
+      "audience": "short-session social players",
+      "social_mechanic": "Timing the shared button creates cooperation and betrayal.",
+      "content_moments": ["instant disaster", "group screaming moment", "perfect timing"],
+      "novelty_claim": "A single shared input creates the entire strategy layer.",
+      "build_scope": "Small room generator, 12 events, shared button, score table.",
+      "monetization": ["button skins", "lobby emotes"],
+      "scores": {
+        "hook_and_first_minute": 95,
+        "replayability_and_retention": 82,
+        "social_and_co_play": 93,
+        "content_and_shareability": 95,
+        "novelty_and_differentiation": 89,
+        "buildability_and_iteration_speed": 95,
+        "monetization_fit": 72,
+        "discovery_and_metadata_fit": 89
+      },
+      "hard_rejects": [],
+      "notes": ["Excellent short-form content potential."]
+    },
+    {
+      "idea_id": "tiny-crew-heist",
+      "title": "Tiny Crew Heist",
+      "one_sentence_hook": "Three players must steal a ridiculous object while each player secretly has a different side objective.",
+      "core_loop": "Get contract -> sneak through tiny map -> complete hidden objectives -> escape -> unlock harder contract.",
+      "audience": "friend groups",
+      "social_mechanic": "Asymmetric objectives create uncertainty about teammates' motives.",
+      "content_moments": ["friend betrayal", "hidden objective reveal", "escape fail"],
+      "novelty_claim": "Very small heist maps designed around fast asymmetric social rounds.",
+      "build_scope": "One compact heist map, three roles, six objectives, simple guard AI.",
+      "monetization": ["cosmetic disguises", "safehouse cosmetics"],
+      "scores": {
+        "hook_and_first_minute": 88,
+        "replayability_and_retention": 94,
+        "social_and_co_play": 97,
+        "content_and_shareability": 93,
+        "novelty_and_differentiation": 86,
+        "buildability_and_iteration_speed": 78,
+        "monetization_fit": 84,
+        "discovery_and_metadata_fit": 90
+      },
+      "hard_rejects": [],
+      "notes": ["Very strong but more expensive to prototype because of role logic and NPC behavior."]
+    },
+    {
+      "idea_id": "wrong-door",
+      "title": "Wrong Door",
+      "one_sentence_hook": "You have seconds to choose a door, and the game learns your habits to fool you.",
+      "core_loop": "Read clues -> choose door -> survive/fail -> clues become harder -> chase best streak.",
+      "audience": "solo and competitive score-chasing players",
+      "social_mechanic": "Players can spectate streaks and challenge friends' best runs.",
+      "content_moments": ["instant wrong choice", "record streak", "fake clue reveal"],
+      "novelty_claim": "The challenge adapts to player choice patterns instead of only increasing speed.",
+      "build_scope": "Door room, clue generator, adaptive difficulty, streak board.",
+      "monetization": ["door cosmetics", "streak effects"],
+      "scores": {
+        "hook_and_first_minute": 90,
+        "replayability_and_retention": 88,
+        "social_and_co_play": 62,
+        "content_and_shareability": 86,
+        "novelty_and_differentiation": 87,
+        "buildability_and_iteration_speed": 97,
+        "monetization_fit": 70,
+        "discovery_and_metadata_fit": 86
+      },
+      "hard_rejects": [],
+      "notes": ["Fastest prototype; weaker multiplayer loop."]
+    }
+  ]
+}
