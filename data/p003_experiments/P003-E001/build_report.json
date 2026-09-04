@@ -1,0 +1,32 @@
+{
+  "experiment_id": "P003-E001",
+  "game_id": "floor-is-voted",
+  "title": "The Floor Is Voted",
+  "status": "build-started",
+  "build_version": "0.1.0",
+  "studio": {
+    "mcp_required": true,
+    "publish_status": "not_published"
+  },
+  "prototype": {
+    "arena": false,
+    "vote_ui": false,
+    "floor_hazards": false,
+    "round_loop": false,
+    "respawn_and_win": false
+  },
+  "testing": {
+    "playable_round": false,
+    "blocking_errors": null,
+    "notes": []
+  },
+  "analytics": {
+    "visits": null,
+    "players": null,
+    "engagement": null,
+    "retention": null,
+    "revenue": null
+  },
+  "decision": null,
+  "owner_actions_required": []
+}
