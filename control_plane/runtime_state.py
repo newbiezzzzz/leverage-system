@@ -2,7 +2,9 @@
 
 Mutable company state lives under control_plane/runtime and is deliberately
 excluded from source control. Runtime state is bootstrapped from the tracked
-company state when a runtime file is missing or empty.
+company state when a runtime file is missing or empty, and tracked definitions
+are reconciled into an existing runtime registry without overwriting mutable
+runtime state.
 """
 from __future__ import annotations
 from pathlib import Path
@@ -27,6 +29,13 @@ LEGACY_FILES = {
     "business_pipelines.json": {"version": 1, "pipelines": []},
 }
 
+# These registries contain definitions authored in source control. Runtime
+# state may add execution fields, so reconciliation only adds missing IDs.
+TRACKED_COLLECTIONS = {
+    "projects.json": "projects",
+    "tasks.json": "tasks",
+}
+
 
 def state_path(name: str) -> Path:
     return RUNTIME / name
@@ -36,14 +45,47 @@ def _write_default(target: Path, default: dict) -> None:
     target.write_text(json.dumps(default, indent=2) + "\n", encoding="utf-8")
 
 
-def _is_empty_state(target: Path, name: str) -> bool:
-    if name != "projects.json" or not target.exists():
-        return False
+def _read_json(path: Path) -> dict | None:
     try:
-        data = json.loads(target.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
-        return True
-    return not data.get("projects")
+        return None
+
+
+def _item_key(item: dict) -> str | None:
+    for key in ("id", "task_id", "project_id"):
+        value = item.get(key)
+        if value is not None:
+            return str(value)
+    return None
+
+
+def _reconcile_tracked_collection(target: Path, tracked: Path, collection: str) -> None:
+    """Add newly tracked definitions while preserving existing runtime records."""
+    runtime_data = _read_json(target)
+    tracked_data = _read_json(tracked)
+    if runtime_data is None or tracked_data is None:
+        return
+
+    runtime_items = runtime_data.get(collection)
+    tracked_items = tracked_data.get(collection)
+    if not isinstance(runtime_items, list) or not isinstance(tracked_items, list):
+        return
+
+    existing = {_item_key(item) for item in runtime_items if isinstance(item, dict)}
+    additions = [
+        item for item in tracked_items
+        if isinstance(item, dict) and _item_key(item) not in existing
+    ]
+    if not additions:
+        return
+
+    runtime_items.extend(additions)
+    runtime_data["version"] = max(
+        int(runtime_data.get("version", 1) or 1),
+        int(tracked_data.get("version", 1) or 1),
+    )
+    target.write_text(json.dumps(runtime_data, indent=2) + "\n", encoding="utf-8")
 
 
 def ensure_runtime_state() -> None:
@@ -58,17 +100,24 @@ def ensure_runtime_state() -> None:
                 _write_default(target, default)
             continue
 
-        # Existing runtime state is normally authoritative, but a newly cloned
-        # or reset installation can contain an empty projects registry. In that
-        # case recover the tracked project definitions so the dashboard remains
-        # usable without requiring manual project re-entry.
-        if _is_empty_state(target, name) and legacy.exists():
-            try:
-                tracked = json.loads(legacy.read_text(encoding="utf-8"))
-                if tracked.get("projects"):
+        # Recover an empty registry from tracked state.
+        if name in TRACKED_COLLECTIONS:
+            collection = TRACKED_COLLECTIONS[name]
+            data = _read_json(target)
+            if data is None:
+                if legacy.exists():
                     shutil.copy2(legacy, target)
-            except (OSError, json.JSONDecodeError):
-                pass
+                continue
+            if not data.get(collection) and legacy.exists():
+                tracked = _read_json(legacy)
+                if tracked and tracked.get(collection):
+                    shutil.copy2(legacy, target)
+                    continue
+
+            # Important: an existing runtime registry is not replaced wholesale.
+            # This lets GitHub add P-002/B1-B10 while preserving live local state.
+            if legacy.exists():
+                _reconcile_tracked_collection(target, legacy, collection)
 
 
 ensure_runtime_state()
