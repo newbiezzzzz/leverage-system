@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "projects": {
     "engineering-quote-toolkit": {
       "name": "Fabrication Shop Profit & Quote System",
@@ -21,6 +21,14 @@
       "revenue": {"verified_revenue_usd":0,"capital_deployed_rm":0,"verified_at":null},
       "verification": {"cloudflare_public_site":"owner_verified_live","google_ownership":"verified","sitemap":"submitted","live_url_test":"available_to_google","indexing":"not_yet_indexed","manual_index_request":"quota_exhausted_2026-08-23"},
       "interpretation": {"traffic_unknown_is_not_zero":true,"sales_zero_is_verified":true,"next_gate":"Obtain authoritative traffic and outbound-click evidence, monitor Google indexing, then evaluate compliant monetization eligibility."}
+    },
+    "affiliate-project": {
+      "name": "Affiliate Project",
+      "traffic": {"status":"not_connected","product_page_views":null,"unique_visitors":null,"sources":[],"measurement_source":null,"last_verified_at":null},
+      "funnel": {"content_published":0,"product_clicks":null,"verified_sales":0,"conversion_rate":null},
+      "revenue": {"verified_revenue_myr":0,"capital_deployed_rm":0,"verified_at":null},
+      "platforms": {"TikTok":{"status":"planned","role":"primary discovery / affiliate commerce"},"YouTube":{"status":"planned","role":"discovery + search / affiliate commerce"},"Reddit":{"status":"planned","role":"demand intelligence"}},
+      "interpretation": {"traffic_unknown_is_not_zero":true,"sales_zero_is_verified":true,"next_gate":"Complete B1 audit, then activate research and product discovery before creating the first content batch."}
     }
   },
   "rules": [
