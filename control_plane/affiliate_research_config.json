@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "project": "affiliate-project",
+  "niche": "Automotive / car problem-solving / buying decisions",
+  "sources": {
+    "reddit": [
+      {
+        "name": "r/kereta",
+        "url": "https://www.reddit.com/r/kereta/new/.rss",
+        "kind": "reddit"
+      }
+    ],
+    "trends": [
+      {
+        "name": "Google Trends automotive Malaysia",
+        "url": "https://trends.google.com/trending/rss?geo=MY",
+        "kind": "trend"
+      }
+    ],
+    "market": [
+      {
+        "name": "Google News automotive Malaysia",
+        "url": "https://news.google.com/rss/search?q=automotive%20Malaysia%20car%20accessories%20OR%20car%20problem&hl=en-MY&gl=MY&ceid=MY%3Aen",
+        "kind": "market"
+      }
+    ]
+  },
+  "research": {
+    "max_items_per_source": 30,
+    "timeout_seconds": 15,
+    "user_agent": "LeverageAffiliateResearch/1.0 (+https://github.com/newbiezzzzz/leverage-system)",
+    "freshness_days": 14,
+    "keywords": [
+      "car", "kereta", "automotive", "accessory", "aksesori", "dashcam", "tyre", "tayar", "battery", "bateri", "oil", "minyak", "maintenance", "servis", "service", "problem", "masalah", "buy", "beli", "recommend", "cadang", "worth", "berbaloi", "review"
+    ]
+  },
+  "output": "control_plane/affiliate_research_queue.json"
+}
