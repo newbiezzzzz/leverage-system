@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "portfolio_model": {
     "project_1": {
       "name": "Digital Products",
@@ -8,8 +8,10 @@
       "status": "active"
     },
     "project_2": {
-      "status": "not_started",
-      "rule": "Create P-002 only when the Owner approves a new project that is materially unrelated to the P-001 digital-product business."
+      "name": "Affiliate Project",
+      "purpose": "Technology-powered automotive recommendation and acquisition engine using research, affiliate offers and automated content distribution.",
+      "product_container": true,
+      "status": "active"
     }
   },
   "projects": [
@@ -55,7 +57,52 @@
         }
       ],
       "next_gate": "Acquire and verify the first customer for P001-DP01, then use the same product engine to evaluate additional digital products inside P-001."
+    },
+    {
+      "project_no": "P-002",
+      "id": "affiliate-project",
+      "name": "Affiliate Project",
+      "type": "affiliate_media",
+      "status": "active",
+      "lifecycle_stage": "validation",
+      "revenue_status": "not_verified",
+      "capital_deployed": 0.0,
+      "currency": "MYR",
+      "owner_approval_required_for_spend": true,
+      "description": "Automated automotive affiliate recommendation engine: discover real buyer problems, research products and offers, create useful video content, distribute through permitted platform workflows, measure results and continuously optimize.",
+      "strategy": {
+        "niche": "Automotive / car problem-solving / buying decisions",
+        "business_model": "Demand intelligence -> product recommendation -> content/distribution -> affiliate commission -> measurement -> learning",
+        "automation_target": "End-to-end automation from research through video production, distribution, analytics and next-opportunity generation",
+        "owner_role": "Strategy, approvals and consequential external actions only",
+        "capital_policy": "RM0-first; no paid acquisition without explicit Owner approval"
+      },
+      "continue_list": [
+        {"step":"B1","name":"Existing System Audit","status":"active","description":"Audit current Leverage architecture, workers, APIs, dashboard and reusable automation before modifying anything."},
+        {"step":"B2","name":"Research Automation","status":"queued","description":"Automate Reddit, trend, competitor, buyer-question and market research collection."},
+        {"step":"B3","name":"Opportunity Engine","status":"queued","description":"Detect, deduplicate, score and prioritize automotive opportunities."},
+        {"step":"B4","name":"Product & Affiliate Engine","status":"queued","description":"Research products, offers, availability, economics and affiliate eligibility."},
+        {"step":"B5","name":"Content Intelligence","status":"queued","description":"Generate angles, hooks, scripts, titles, descriptions and platform-specific content plans."},
+        {"step":"B6","name":"Video Production Engine","status":"queued","description":"Automate voice, visuals, captions, editing, thumbnails and finished video assets using available zero-cost tooling first."},
+        {"step":"B7","name":"Distribution Engine","status":"queued","description":"Prepare, schedule and publish content through officially supported platform workflows; respect required human/platform gates."},
+        {"step":"B8","name":"Analytics Engine","status":"queued","description":"Collect content, click, conversion, commission and revenue evidence."},
+        {"step":"B9","name":"Learning & Optimization","status":"queued","description":"Detect winners and losers, explain patterns and automatically generate the next experiments."},
+        {"step":"B10","name":"End-to-End Autonomous Loop","status":"queued","description":"Run the complete demand-to-revenue loop continuously with safety and approval controls."}
+      ],
+      "products": [],
+      "product_strategy": {
+        "selection_rule": "Prefer automotive products that solve clear problems, have strong buyer intent, useful demonstration potential, meaningful economics and legitimate affiliate availability.",
+        "catalog_status": "research_pending",
+        "product_fields": ["product_name","category","problem_solved","price_myr","commission_rate","estimated_commission_myr","affiliate_network","offer_url","availability","evidence","opportunity_score","status"]
+      },
+      "platforms": [
+        {"name":"TikTok","role":"Primary discovery and first affiliate-commerce channel","priority":"primary","monetization":"TikTok Shop / permitted affiliate commerce","automation":"research -> script -> video -> publishing workflow subject to platform access and controls","status":"planned"},
+        {"name":"YouTube","role":"Short-form discovery plus long-form search/trust","priority":"primary","monetization":"YouTube Shopping when eligible + permitted affiliate programs","automation":"research -> video -> metadata -> publishing workflow subject to platform access and controls","status":"planned"},
+        {"name":"Reddit","role":"Demand intelligence and community research","priority":"intelligence","monetization":"Not treated as a spam/distribution channel","automation":"research and signal extraction only; contribution must respect subreddit rules","status":"planned"}
+      ],
+      "automation_modules": ["demand-research","opportunity-scoring","product-research","affiliate-offer-research","content-generation","video-production","distribution","analytics","winner-detection","learning-loop"],
+      "next_gate": "Complete B1 system audit, then implement the automotive acquisition pipeline without duplicating existing Leverage capabilities."
     }
   ],
-  "last_modified_at": "2026-08-25T08:31:00+00:00"
+  "last_modified_at": "2026-09-06T02:22:00+08:00"
 }
