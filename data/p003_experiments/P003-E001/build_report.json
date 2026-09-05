@@ -2,10 +2,12 @@
   "experiment_id": "P003-E001",
   "game_id": "floor-is-voted",
   "title": "The Floor Is Voted",
-  "status": "build-started",
+  "status": "blocked-mcp-approval",
   "build_version": "0.1.0",
   "studio": {
     "mcp_required": true,
+    "mcp_connected": false,
+    "mcp_block_reason": "Roblox_Studio MCP tool calls (list_roblox_studios) were rejected at the approval prompt three times in this session, including a smart-mode approval retry; cannot inspect, construct, script, or playtest the open Studio place.",
     "publish_status": "not_published"
   },
   "prototype": {
@@ -17,8 +19,13 @@
   },
   "testing": {
     "playable_round": false,
-    "blocking_errors": null,
-    "notes": []
+    "blocking_errors": "Build not started — Studio MCP access not approved.",
+    "notes": [
+      "Read P003 control-plane docs, idea engine, game ideas, and prior build_report for floor-is-voted.",
+      "Attempted Roblox_Studio skill, then list_roblox_studios twice, then list_roblox_studios with requestSmartModeApproval; all rejected by user/approval gate.",
+      "No DataModel inspection, construction, scripting, or playtest was possible.",
+      "Per P003_GAME_FACTORY stop conditions: stop and report when MCP cannot operate on the place."
+    ]
   },
   "analytics": {
     "visits": null,
@@ -27,6 +34,9 @@
     "retention": null,
     "revenue": null
   },
-  "decision": null,
-  "owner_actions_required": []
+  "decision": "blocked",
+  "owner_actions_required": [
+    "Approve Roblox_Studio MCP tool calls when prompted (Allow / Always allow) so the Game Factory worker can list studios, inspect, construct, script, and playtest in the connected Studio instance.",
+    "Ensure Roblox Studio is open with the target place and the Roblox Studio MCP plugin/proxy is connected."
+  ]
 }
