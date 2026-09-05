@@ -3,6 +3,13 @@ name: Leverage Affiliate Opportunity Daily
 on:
   schedule:
     - cron: '40 15 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'control_plane/affiliate_opportunity.py'
+      - 'control_plane/affiliate_opportunity_config.json'
+      - 'control_plane/affiliate_research_queue.json'
+      - '.github/workflows/affiliate-opportunity-daily.yml'
   workflow_dispatch:
 
 permissions:
