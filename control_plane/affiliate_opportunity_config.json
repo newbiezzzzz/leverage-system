@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "project": "affiliate-project",
+  "scoring": {
+    "source_weights": {
+      "reddit": 1.0,
+      "trend": 0.9,
+      "market": 0.75
+    },
+    "freshness_weights": {
+      "fresh": 1.0,
+      "stale": 0.55,
+      "unknown": 0.65
+    },
+    "dedupe_similarity_threshold": 0.55,
+    "recurrence_cap": 5,
+    "recurrence_bonus_per_signal": 2.0,
+    "recurrence_bonus_max": 10.0,
+    "multi_source_bonus": 8.0
+  },
+  "output": {
+    "minimum_candidate_score": 50,
+    "max_opportunities": 50,
+    "max_evidence_per_opportunity": 5
+  }
+}
