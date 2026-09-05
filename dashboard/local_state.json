@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T11:11:01.250723+00:00",
+  "generated_at": "2026-09-05T18:41:01.285031+00:00",
   "source": "local-leverage-runtime",
   "privacy": "sanitized-no-finance-no-audit",
   "readiness": {
@@ -58,7 +58,7 @@
     "alert_count": 1
   },
   "company": {
-    "projects": 2,
+    "projects": 1,
     "active_projects": 1,
     "tasks": {
       "queued": 0,
@@ -297,26 +297,15 @@
   ],
   "projects": [
     {
-      "id": "engineering-quote-toolkit",
-      "name": "Fabrication Shop Profit & Quote System",
-      "type": "digital-product",
-      "status": "paused",
-      "lifecycle_stage": "launch",
-      "revenue_status": "none",
-      "capital_deployed": 0.0,
-      "currency": "MYR",
-      "next_gate": "Revisit after an automated income engine proves demand and revenue."
-    },
-    {
-      "id": "web-traffic-income-tools",
-      "name": "Leverage Free Fabrication Tool Network",
-      "type": "web-utility",
+      "id": "digital-products",
+      "name": "Digital Products",
+      "type": "digital-product-business",
       "status": "active",
       "lifecycle_stage": "acquire",
       "revenue_status": "not_verified",
       "capital_deployed": 0.0,
       "currency": "MYR",
-      "next_gate": "Submit sitemap and key URLs to Google Search Console, verify indexing/discovery, measure traffic, then connect an approved monetization channel after eligibility is met."
+      "next_gate": "Acquire and verify the first customer for P001-DP01, then use the same product engine to evaluate additional digital products inside P-001."
     }
   ]
 }
