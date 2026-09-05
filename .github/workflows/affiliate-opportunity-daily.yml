@@ -1,0 +1,30 @@
+name: Leverage Affiliate Opportunity Daily
+
+on:
+  schedule:
+    - cron: '40 15 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  opportunity-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Build ranked opportunity queue
+        run: python -m control_plane.affiliate_opportunity
+      - name: Commit opportunity queue
+        run: |
+          git config user.name 'leverage-bot'
+          git config user.email 'leverage-bot@users.noreply.github.com'
+          git add control_plane/affiliate_opportunity_queue.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'ops: refresh affiliate opportunity queue'
+          git push
