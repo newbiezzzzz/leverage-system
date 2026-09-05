@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "project": "affiliate-project",
+  "networks": [
+    {
+      "name": "Shopee Affiliate",
+      "role": "social-commerce affiliate network",
+      "url": "https://help.shopee.com.my/portal/10/article/123387",
+      "evidence": "Shopee's Malaysia Help Center describes its in-house affiliate program: affiliates use social platforms to recommend Shopee items through unique URLs and earn commission on successful purchases."
+    },
+    {
+      "name": "TikTok Shop Affiliate",
+      "role": "primary short-video commerce network",
+      "url": "https://seller-my.tiktok.com/university/essay?knowledge_id=6012742750979857&lang=ms",
+      "evidence": "TikTok Shop Malaysia provides an Affiliate Creator program for promoting products through creator content; current eligibility and feature access are controlled by TikTok."
+    },
+    {
+      "name": "Lazada Affiliate",
+      "role": "secondary commerce affiliate network",
+      "url": "https://pages.lazada.com.my/wow/i/my/corp/affiliate-howitworks",
+      "evidence": "Lazada Malaysia describes its affiliate program for promoting products through social channels, websites and apps, with commission depending on product/category and program terms."
+    }
+  ],
+  "output": {
+    "max_opportunities": 25,
+    "max_categories_per_opportunity": 4
+  },
+  "verification": {
+    "required_before_offer": ["specific_product_listing", "current_price", "current_commission", "availability", "affiliate_eligibility"],
+    "unknown_policy": "Never infer or invent missing commercial facts. Keep them unknown until authoritative evidence is captured."
+  }
+}
