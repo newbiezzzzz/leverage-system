@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T19:12:06.034700+00:00",
+  "generated_at": "2026-09-05T19:26:56.418203+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -471,11 +471,11 @@
   "sync": {
     "source": "github-actions",
     "workflow": "Sync Leverage Dashboard",
-    "run_id": "33986382115",
+    "run_id": "33987130942",
     "event": "push",
     "conclusion": "running",
     "fresh": true,
-    "synced_at": "2026-09-05T19:12:06.034700+00:00"
+    "synced_at": "2026-09-05T19:26:56.418203+00:00"
   },
   "projects": [
     {
@@ -556,13 +556,13 @@
         {
           "step": "B3",
           "name": "Opportunity Engine",
-          "status": "queued",
-          "description": "Detect, deduplicate, score and prioritize automotive opportunities."
+          "status": "completed",
+          "description": "Detect, deduplicate, score and prioritize automotive opportunities from the B2 research queue."
         },
         {
           "step": "B4",
           "name": "Product & Affiliate Engine",
-          "status": "queued",
+          "status": "active",
           "description": "Research products, offers, availability, economics and affiliate eligibility."
         },
         {
@@ -593,7 +593,7 @@
           "step": "B9",
           "name": "Learning & Optimization",
           "status": "queued",
-          "description": "Detect winners and losers, explain patterns and automatically generate the next experiments."
+          "description": "Detect winners and losers, explain performance patterns and automatically generate the next experiments."
         },
         {
           "step": "B10",
@@ -659,7 +659,7 @@
         "winner-detection",
         "learning-loop"
       ],
-      "next_gate": "B2 complete. Build B3 Opportunity Engine on the research queue."
+      "next_gate": "B3 complete. Build B4 Product & Affiliate Engine using the ranked opportunity queue."
     }
   ]
 }
