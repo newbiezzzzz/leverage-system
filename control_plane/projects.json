@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "portfolio_model": {
     "project_1": {"name":"Digital Products","purpose":"Leverage's first and current business project. Multiple digital products can be created, launched, marketed and measured inside P-001.","product_container":true,"status":"active"},
     "project_2": {"name":"Affiliate Project","purpose":"Technology-powered automotive recommendation and acquisition engine using research, affiliate offers and automated content distribution.","product_container":true,"status":"active"}
@@ -19,21 +19,21 @@
       "continue_list":[
         {"step":"B1","name":"Existing System Audit","status":"completed","description":"Audit current Leverage architecture, workers, APIs, dashboard and reusable automation before modifying anything."},
         {"step":"B2","name":"Research Automation","status":"completed","description":"Collect public automotive demand signals from Reddit, trends and market feeds; normalize, deduplicate and preserve evidence for downstream opportunity scoring."},
-        {"step":"B3","name":"Opportunity Engine","status":"queued","description":"Detect, deduplicate, score and prioritize automotive opportunities."},
-        {"step":"B4","name":"Product & Affiliate Engine","status":"queued","description":"Research products, offers, availability, economics and affiliate eligibility."},
+        {"step":"B3","name":"Opportunity Engine","status":"completed","description":"Detect, deduplicate, score and prioritize automotive opportunities from the B2 research queue."},
+        {"step":"B4","name":"Product & Affiliate Engine","status":"active","description":"Research products, offers, availability, economics and affiliate eligibility."},
         {"step":"B5","name":"Content Intelligence","status":"queued","description":"Generate angles, hooks, scripts, titles, descriptions and platform-specific content plans."},
         {"step":"B6","name":"Video Production Engine","status":"queued","description":"Automate voice, visuals, captions, editing, thumbnails and finished video assets using available zero-cost tooling first."},
         {"step":"B7","name":"Distribution Engine","status":"queued","description":"Prepare, schedule and publish content through officially supported platform workflows; respect required human/platform gates."},
         {"step":"B8","name":"Analytics Engine","status":"queued","description":"Collect content, click, conversion, commission and revenue evidence."},
-        {"step":"B9","name":"Learning & Optimization","status":"queued","description":"Detect winners and losers, explain patterns and automatically generate the next experiments."},
+        {"step":"B9","name":"Learning & Optimization","status":"queued","description":"Detect winners and losers, explain performance patterns and automatically generate the next experiments."},
         {"step":"B10","name":"End-to-End Autonomous Loop","status":"queued","description":"Run the complete demand-to-revenue loop continuously with safety and approval controls."}
       ],
       "products":[],
       "product_strategy":{"selection_rule":"Prefer automotive products that solve clear problems, have strong buyer intent, useful demonstration potential, meaningful economics and legitimate affiliate availability.","catalog_status":"research_pending","product_fields":["product_name","category","problem_solved","price_myr","commission_rate","estimated_commission_myr","affiliate_network","offer_url","availability","evidence","opportunity_score","status"]},
       "platforms":[{"name":"TikTok","role":"Primary discovery and first affiliate-commerce channel","priority":"primary","monetization":"TikTok Shop / permitted affiliate commerce","automation":"research -> script -> video -> publishing workflow subject to platform access and controls","status":"planned"},{"name":"YouTube","role":"Short-form discovery plus long-form search/trust","priority":"primary","monetization":"YouTube Shopping when eligible + permitted affiliate programs","automation":"research -> video -> metadata -> publishing workflow subject to platform access and controls","status":"planned"},{"name":"Reddit","role":"Demand intelligence and community research","priority":"intelligence","monetization":"Not treated as a spam/distribution channel","automation":"research and signal extraction only; contribution must respect subreddit rules","status":"planned"}],
       "automation_modules":["demand-research","opportunity-scoring","product-research","affiliate-offer-research","content-generation","video-production","distribution","analytics","winner-detection","learning-loop"],
-      "next_gate":"B2 complete. Build B3 Opportunity Engine on the research queue."
+      "next_gate":"B3 complete. Build B4 Product & Affiliate Engine using the ranked opportunity queue."
     }
   ],
-  "last_modified_at":"2026-09-06T03:20:00+08:00"
+  "last_modified_at":"2026-09-06T03:25:00+08:00"
 }
