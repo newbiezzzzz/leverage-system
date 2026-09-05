@@ -1,10 +1,99 @@
 {
-  "version": 1,
+  "version": 2,
   "project": "affiliate-project",
-  "generated_at": "2026-09-06T00:00:00+00:00",
-  "opportunity_count": 0,
-  "candidate_count": 0,
-  "products": [],
-  "status": "awaiting-first-run",
-  "boundary": "B4 researches product and affiliate candidates. It never fabricates prices, commissions, availability, eligibility, or purchases."
+  "generated_at": "2026-09-06T04:15:00+08:00",
+  "status": "research_completed_offer_verification_pending",
+  "source_scope": "Current public Malaysia marketplace evidence plus official affiliate-program documentation",
+  "opportunity_count": 50,
+  "verified_product_count": 2,
+  "products": [
+    {
+      "id": "verified-70mai-a410",
+      "product_name": "70mai A410 Dashcam 2.5K + HDR | Dual Channel Recording | Built-in GPS | Super Night Vision | 24H Parking Surveillance",
+      "brand": "70mai",
+      "category": "dashcams",
+      "problem_solved": "Need a practical dashcam for front/rear recording and incident evidence.",
+      "affiliate_network": "Shopee Affiliate",
+      "network_role": "social-commerce affiliate network",
+      "offer_url": "https://shopee.com.my/70mai-A410-Dashcam-2.5K-HDR-Dual-Channel-Recording-Built-in-GPS-Super-Night-Vision-24H-Parking-Surveillance-i.292905608.26791984068",
+      "price_myr": 309.0,
+      "commission_rate": null,
+      "estimated_commission_myr": null,
+      "availability": "listing_active",
+      "affiliate_eligibility": "network_program_verified; item-level eligibility/account access unverified",
+      "evidence": [
+        {
+          "type": "specific_product_listing",
+          "url": "https://shopee.com.my/70mai-A410-Dashcam-2.5K-HDR-Dual-Channel-Recording-Built-in-GPS-Super-Night-Vision-24H-Parking-Surveillance-i.292905608.26791984068",
+          "facts": "Product listing identifies 70mai A410; displayed price RM309; 2 variations available; 70mai Official Store; 100% Authentic and free shipping shown."
+        },
+        {
+          "type": "affiliate_program",
+          "url": "https://help.shopee.com.my/portal/10/article/123387",
+          "facts": "Shopee Malaysia states its Affiliate Program allows social-platform recommendations via unique URLs with commission on successful purchases."
+        }
+      ],
+      "opportunity_score": 100.0,
+      "status": "verified_marketplace_candidate",
+      "verification": "listing, displayed price and seller/store evidence verified from public source; commission and item-level affiliate eligibility require affiliate account/product-marketplace check",
+      "source_opportunity_id": "opp-c8a6cb42d23aa591"
+    },
+    {
+      "id": "verified-70mai-m310-plus",
+      "product_name": "70mai M310 Plus Front Dashcam | Super Night Vision | Buffered Emergency Recording | Voice & App Control",
+      "brand": "70mai",
+      "category": "dashcams",
+      "problem_solved": "Need an affordable front dashcam with night vision and buffered incident recording.",
+      "affiliate_network": "Shopee Affiliate",
+      "network_role": "social-commerce affiliate network",
+      "offer_url": "https://shopee.com.my/70mai-M310-Plus-Front-Dashcam-Super-Night-Vision-Buffered-Emergency-Recording-Voice-App-Control-i.292905608.9568197985",
+      "price_myr": 160.0,
+      "commission_rate": null,
+      "estimated_commission_myr": null,
+      "availability": "listing_active",
+      "affiliate_eligibility": "network_program_verified; item-level eligibility/account access unverified",
+      "evidence": [
+        {
+          "type": "specific_product_listing",
+          "url": "https://shopee.com.my/70mai-M310-Plus-Front-Dashcam-Super-Night-Vision-Buffered-Emergency-Recording-Voice-App-Control-i.292905608.9568197985",
+          "facts": "Product listing identifies 70mai M310 Plus; displayed price RM160 after voucher; 3 variations available; 70mai Official Store; 100% Authentic and free shipping shown."
+        },
+        {
+          "type": "affiliate_program",
+          "url": "https://help.shopee.com.my/portal/10/article/123387",
+          "facts": "Shopee Malaysia states its Affiliate Program allows social-platform recommendations via unique URLs with commission on successful purchases."
+        }
+      ],
+      "opportunity_score": 100.0,
+      "status": "verified_marketplace_candidate",
+      "verification": "listing, displayed price and seller/store evidence verified from public source; commission and item-level affiliate eligibility require affiliate account/product-marketplace check",
+      "source_opportunity_id": "opp-1e82cc60e7af02d8"
+    }
+  ],
+  "verification_policy": {
+    "required_before_publish_as_verified_offer": [
+      "specific_product_listing",
+      "current_price",
+      "availability",
+      "affiliate_item_eligibility",
+      "current_commission"
+    ],
+    "unknown_policy": "Never infer or invent missing commercial facts. A public listing is a product candidate, not proof that the exact item is commissionable for the connected creator account."
+  },
+  "network_evidence": [
+    {
+      "network": "Shopee Affiliate",
+      "url": "https://help.shopee.com.my/portal/10/article/123387",
+      "verified": true,
+      "note": "Official Shopee Malaysia documentation confirms the affiliate program exists and supports social-platform product recommendations using unique affiliate URLs."
+    },
+    {
+      "network": "TikTok Shop Affiliate",
+      "url": "https://seller-my.tiktok.com/university/essay?knowledge_id=6837863837042434&lang=en",
+      "verified": true,
+      "note": "Official TikTok Shop Malaysia documentation confirms Affiliate Creator onboarding and product-link/shoppable-content functionality; eligibility is subject to account requirements."
+    }
+  ],
+  "next_stage": "B5 Content Intelligence",
+  "boundary": "B4 has completed product discovery and public commercial-evidence capture. Exact commission and item-level affiliate eligibility remain an external account-level verification gate and must not be fabricated."
 }
