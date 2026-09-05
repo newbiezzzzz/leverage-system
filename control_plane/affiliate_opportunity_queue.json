@@ -1,13 +1,1468 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": null,
+  "generated_at": "2026-09-05T19:27:23.232673+00:00",
   "input_generated_at": "2026-09-05T19:11:38.694450+00:00",
   "record_count": 65,
-  "cluster_count": 0,
-  "opportunity_count": 0,
-  "opportunities": [],
-  "status": "pending_first_b3_run",
+  "cluster_count": 64,
+  "opportunity_count": 50,
+  "opportunities": [
+    {
+      "id": "opp-f5e6990f40076e43",
+      "project": "affiliate-project",
+      "problem": "Anwar walks abroad, we crawl in traffic at home: Malaysia’s car problem - aliran.com",
+      "normalized_problem": "anwar walks abroad we crawl in traffic at home malaysia s car problem aliran com",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPR3kybk9DcGZWdWdQblBSY3E1Sm5IQjJDTGJ3RXlLMnhaaE5PeG1tcUVNc2Ftd0pPa3pLWnNXY1dBNk83Tk0wTDhGNEkzQkRySWxUbXJHdWdzTUNEOVlHelZpX0pqekx5WWtOQzhEa0l0SzlYZ1M0MHotRlZlclNMOEw4eVpWRWZpTFdxb2RLVFhfNjdjZW9LZ3RMNm9SXzFoNkNMUmNvODhwSFMzTzk2S0VHNA?oc=5",
+          "excerpt": "Anwar walks abroad, we crawl in traffic at home: Malaysia’s car problem &nbsp;&nbsp; aliran.com"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232090+00:00",
+      "rank": 1
+    },
+    {
+      "id": "opp-c98d8f62c2a95200",
+      "project": "affiliate-project",
+      "problem": "Best looking new sedan in the Malaysian market?",
+      "normalized_problem": "best looking new sedan in the malaysian market",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7pzzm/best_looking_new_sedan_in_the_malaysian_market/",
+          "excerpt": "What do y&#39;all think is the best looking new sedan that us Malaysians can buy brand new? Like something that makes you turn back everytime you leave the car? Id actually prefer if we don&#39;t point at the most expensive luxury sport car or some ultra rare vehicle, like even common traffic is designed nicely sometimes. These are my picks. &#32; submitted by &#32; /u/arnav_298 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231367+00:00",
+      "rank": 2
+    },
+    {
+      "id": "opp-decab349031bd87e",
+      "project": "affiliate-project",
+      "problem": "Biodiesel B15 rollout begins June 1 – gov’t says no issue with compatibility; here’s what car brands say - Paul Tan's Automotive News",
+      "normalized_problem": "biodiesel b15 rollout begins june 1 gov t says no issue with compatibility here s what car brands say paul tan s automotive news",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPRXRQaEkyTnVVRjM0Nmh2cm92MTRtdmgtX0poSl9CcUlEUTV4YTBQNWFhMld2SWw0SmRObVBuNVdtandSVTM4blBCenVuUllYYXlzbnI5cmRORUg1Y21md0pGOTJSeE1sRVZRcXBnTVVDVl9nSTJfak5SWWowUVl6ME0yN0hzam1wYTBFeGRBM002R2wxa1dLcXhGbDVtOWZneHhGM210Y25DR0dnREdkQlFPNlJiWFZXS2lob0FtbmtkT1FDa1d0Wi0yNA?oc=5",
+          "excerpt": "Biodiesel B15 rollout begins June 1 – gov’t says no issue with compatibility; here’s what car brands say &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232269+00:00",
+      "rank": 3
+    },
+    {
+      "id": "opp-6fd83c555f9536b8",
+      "project": "affiliate-project",
+      "problem": "Car spare parts prices in Malaysia up by between 25% and 60% due to current global supply issues - report - Paul Tan's Automotive News",
+      "normalized_problem": "car spare parts prices in malaysia up by between 25 and 60 due to current global supply issues report paul tan s automotive news",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5RX1F0RkY0SmN5RHZ2TThkZlg3RkVZZzZ4UEp3aENZNVJWUUlpLUxRSm9ITXRyNXp6eVBkeC1HZE1sQVc4ZndPUDBaYi1qcjNJTVZHVjdxbk9RT2x4bF9vTFNOT2ZLMTBwUHlrZnA5ZzNFWkdzTWc?oc=5",
+          "excerpt": "Car spare parts prices in Malaysia up by between 25% and 60% due to current global supply issues - report &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232542+00:00",
+      "rank": 4
+    },
+    {
+      "id": "opp-c8a6cb42d23aa591",
+      "project": "affiliate-project",
+      "problem": "Cara atasi laluan terhalang disebabkan objek.",
+      "normalized_problem": "cara atasi laluan terhalang disebabkan objek",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7mod3/cara_atasi_laluan_terhalang_disebabkan_objek/",
+          "excerpt": "&#32; submitted by &#32; /u/sonic3ar [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231408+00:00",
+      "rank": 5
+    },
+    {
+      "id": "opp-2113a110b91e9c2f",
+      "project": "affiliate-project",
+      "problem": "Continental tyres September promotion in Shopee",
+      "normalized_problem": "continental tyres september promotion in shopee",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w75tyh/continental_tyres_september_promotion_in_shopee/",
+          "excerpt": "Anyone who wants to change tyres can look at this continental promotion.. really cheap compared to normal days.. available throughout Malaysia.. &#32; submitted by &#32; /u/PigsAlsoCanFly [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231473+00:00",
+      "rank": 6
+    },
+    {
+      "id": "opp-f76cefdad4bb5281",
+      "project": "affiliate-project",
+      "problem": "Do car enthusiasts show up at Denai Alam RnR on Friday night?",
+      "normalized_problem": "do car enthusiasts show up at denai alam rnr on friday night",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w743qj/do_car_enthusiasts_show_up_at_denai_alam_rnr_on/",
+          "excerpt": "Just saw a post talking about Denai Alam RnR being a hangout spot for car enthusiasts but some were talking about Saturday &amp; Sunday night &amp; some were talking about how there was a crack down by the police some time ago. I&#39;ve recently got much deeper into cars than I already was &amp; was fascinated by our own &#39;mini daikoku&#39; meet ups but it&#39;s quite a long drive for me so I wanna know before hand before committing to driving all the way there at night. &#32; submitted by &#"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231515+00:00",
+      "rank": 7
+    },
+    {
+      "id": "opp-3dd51094397db261",
+      "project": "affiliate-project",
+      "problem": "First Car Advice",
+      "normalized_problem": "first car advice",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7uime/first_car_advice/",
+          "excerpt": "m24, already have a mid cc motorcycle (fully paid) commute daily to work using motorcycle (home to work is like 10km). thinking of buying a first car for rainy day/weekend car/occasional trip or vacation with parents basic 2k and i already save enough for deposit. whats on my mind is the new saga mc3 or 2nd hand proton inspira. i only want sedan, of course proton inspira for the driving experience, modding availability and the overall looks. saga mc3 for brand new car, suits my budget. seeking a"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231331+00:00",
+      "rank": 8
+    },
+    {
+      "id": "opp-315896c9d98c1ddb",
+      "project": "affiliate-project",
+      "problem": "Harley Davidwave",
+      "normalized_problem": "harley davidwave",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w72rp0/harley_davidwave/",
+          "excerpt": "The only Harley that I can afford to buy... &#32; submitted by &#32; /u/PigsAlsoCanFly [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231560+00:00",
+      "rank": 9
+    },
+    {
+      "id": "opp-f8f4cd343af03962",
+      "project": "affiliate-project",
+      "problem": "How much maintenance do you pay for your old continental car annually?",
+      "normalized_problem": "how much maintenance do you pay for your old continental car annually",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 3,
+        "content_potential": 4,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w75b5h/how_much_maintenance_do_you_pay_for_your_old/",
+          "excerpt": "I see some of my friends inherit cars from their parents, which I assume are fully paid off. I have one friend who was passed down a 2013 BMW, and he told me he’s spent around RM10k on just repairs this year (though he did mention that this year’s repairs were more major than usual). So I’m just wondering, for those who own older Mercs, BMWs, Audis, etc., how much do you typically spend on maintenance and repairs annually? &#32; submitted by &#32; /u/Either-Swing4926 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231495+00:00",
+      "rank": 10
+    },
+    {
+      "id": "opp-a6a2883750dda89d",
+      "project": "affiliate-project",
+      "problem": "Love the new Grand Tour SG/Msian episode, but I find it funny the scene where they talk about modded Malaysian cars, they showed Singaporean reg cars lol",
+      "normalized_problem": "love the new grand tour sg msian episode but i find it funny the scene where they talk about modded malaysian cars they showed singaporean reg cars lol",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7dktc/love_the_new_grand_tour_sgmsian_episode_but_i/",
+          "excerpt": "&#32; submitted by &#32; /u/Nexus_104 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231438+00:00",
+      "rank": 11
+    },
+    {
+      "id": "opp-e29f719f061ff2cd",
+      "project": "affiliate-project",
+      "problem": "MITI issues new rules for CBU EVs, effective min price RM300k, 245 PS fr July - promote CKD, protect Proton - Paul Tan's Automotive News",
+      "normalized_problem": "miti issues new rules for cbu evs effective min price rm300k 245 ps fr july promote ckd protect proton paul tan s automotive news",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 3,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNjFyYVMtVWxMMC0zcnA4TlBZX0lyX1RPS3lmTG44Xzd6X1VHb2JYYTFNSVc2c3pnSG9vN2lYd01CVVVCb3d1XzJ4aHY4TGZqVGxkcEVuYWx3Yk1QS0YyWGxPbGE2eS1HQ3NvV2ZSUzd6RElqRHg5b09VNHBFOS02ckVEZHRKSTBra0JNVl9oYmx6Yk9ScEtfQjFjaTNZdFF6WXVodHpMRjFKY0lEaFcyTHRwZmJRSDNfZXo1UDl2Tm1HZmlqM2w4Tm9Pa3JDMUk?oc=5",
+          "excerpt": "MITI issues new rules for CBU EVs, effective min price RM300k, 245 PS fr July - promote CKD, protect Proton &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232148+00:00",
+      "rank": 12
+    },
+    {
+      "id": "opp-b39666cf0ca2d258",
+      "project": "affiliate-project",
+      "problem": "MITI issues statement on BYD CKD topic - open to all Chinese brands, floor price is RM100k, not RM200k - Paul Tan's Automotive News",
+      "normalized_problem": "miti issues statement on byd ckd topic open to all chinese brands floor price is rm100k not rm200k paul tan s automotive news",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxObFUwWlU1elZWNFBoN05tZHppV3VrOWhSMXMtdmx5SlNhS0p2UXR2S3NXQkdUb245bUQ5RHdsZFNCcENFV2JsbVlTU0Zsc2hENDJpV01TZ3ZFcjFrUlJGWURfUHlPeVZSa3I2NGQxUFBzdEhuWk05WVBuMW9jemRUNDByS1UtaENiTkhrYUhjY0o5Q2pwVG1mejk1bkNib1pvUjVOdTd4UjJjTWFiSTY1anFDNGF0dWVsbkhjWERud2ZROTJIUHJzdjNB?oc=5",
+          "excerpt": "MITI issues statement on BYD CKD topic - open to all Chinese brands, floor price is RM100k, not RM200k &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232218+00:00",
+      "rank": 13
+    },
+    {
+      "id": "opp-de4f5549b70b58c6",
+      "project": "affiliate-project",
+      "problem": "Need rear tyre recommendations for 2019 Axia (175/65 R14) — Dunlop front, weekly NKVE highway commute",
+      "normalized_problem": "need rear tyre recommendations for 2019 axia 175 65 r14 dunlop front weekly nkve highway commute",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w73ozn/need_rear_tyre_recommendations_for_2019_axia/",
+          "excerpt": "Hey everyone, looking for opinions on what rear tyres to pair with my setup. Car: Perodua Axia 2019 Tyre Size: 175/65 R14 Current Setup: Front pair was recently changed to Dunlop SP Sport J6. Driving Profile: Daily town driving setapak - mindef - ampang (60–80 km/h) --- plus weekly highway runs from KL to Puncak Alam via NKVE (cruising around 110–120 km/h). Main Priority: Maximum fuel economy (low rolling resistance) and ride comfort that absorbs road harshness, while still keeping the car plant"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231545+00:00",
+      "rank": 14
+    },
+    {
+      "id": "opp-242411f2752aceb8",
+      "project": "affiliate-project",
+      "problem": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature - asiaone.com",
+      "normalized_problem": "no car no problem singaporeans can now drive getgo cars into malaysia under new cross border feature asiaone com",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOWFE5RC1hMHJ5cmNhSzVzeE9tWWhVRVMxbHlPRkd6bTJhdlZkcWppRnBLeUxVbW5IM3phWElPLTh1OENpdzNxdzRkV0FyeFdNZmJqdjhKRkVLMFFSOEN3a3haRlplcHM4dUk3ZF9lLVljQnhvQm1PZE9WQWhlVkZTOFRQNA?oc=5",
+          "excerpt": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature &nbsp;&nbsp; asiaone.com"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231899+00:00",
+      "rank": 15
+    },
+    {
+      "id": "opp-f0bcc5b81d6f9dc3",
+      "project": "affiliate-project",
+      "problem": "No price increase for CKD cars in July 2026, OMV/402 issue resolved, delay to finalise calculations - MAA - Paul Tan's Automotive News",
+      "normalized_problem": "no price increase for ckd cars in july 2026 omv 402 issue resolved delay to finalise calculations maa paul tan s automotive news",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNklyMTVrdm82dGMySEtOUzhTbVBNbnFvQTQxdGk5ZWE4ZXN2d2pZVl9UR3FKUUpxSE5KaFFEYm5lR3V4RTJYVnVNbFRlMjNTT3dVNjhSdVpvY3JyMHBTUm1BQjZUYTZxb1JKaTFxMF9ST2ZuUFNXQ0VrYkVXX3NZOVZvNW5nVERvMEZfU1RoZEtsZ1VMNVdsNkRab2JqYlhvd0s2b2wtdVh5MXBWcFFwcHQ4RWJYVWZqNVRKYTdoMEtjMk1sczZ1Vm5vUWxQUQ?oc=5",
+          "excerpt": "No price increase for CKD cars in July 2026, OMV/402 issue resolved, delay to finalise calculations - MAA &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232629+00:00",
+      "rank": 16
+    },
+    {
+      "id": "opp-ba0f5f17d9cd479e",
+      "project": "affiliate-project",
+      "problem": "TYRESSSSSSS",
+      "normalized_problem": "tyresssssss",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w85dqm/tyresssssss/",
+          "excerpt": "//image for attention purposes only Do anyone know where to buy+install Goodyear AMG without paying 20~25% extra? ( Its like 750~ in semenanjung iykyk) Costing the same as UC7 in Sarawak is crazy ong 😭 disclaimer im trying to buy goodyear AMG in sarawak &#32; submitted by &#32; /u/lolicekait [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231163+00:00",
+      "rank": 17
+    },
+    {
+      "id": "opp-2c9d45b576d64f24",
+      "project": "affiliate-project",
+      "problem": "al-ittihad vs al-nassr",
+      "normalized_problem": "al ittihad vs al nassr",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "al-ittihad vs al-nassr"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231760+00:00",
+      "rank": 18
+    },
+    {
+      "id": "opp-afaa6ae2f0539225",
+      "project": "affiliate-project",
+      "problem": "athletic bilbao vs atlético madrid standings",
+      "normalized_problem": "athletic bilbao vs atl tico madrid standings",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "athletic bilbao vs atlético madrid standings"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231821+00:00",
+      "rank": 19
+    },
+    {
+      "id": "opp-c182d1d09e3aa674",
+      "project": "affiliate-project",
+      "problem": "fulham f.c. vs crystal palace f.c. standings",
+      "normalized_problem": "fulham f c vs crystal palace f c standings",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "fulham f.c. vs crystal palace f.c. standings"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231856+00:00",
+      "rank": 20
+    },
+    {
+      "id": "opp-edde090d895231e5",
+      "project": "affiliate-project",
+      "problem": "nottingham forest vs tottenham standings",
+      "normalized_problem": "nottingham forest vs tottenham standings",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "nottingham forest vs tottenham standings"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231837+00:00",
+      "rank": 21
+    },
+    {
+      "id": "opp-d6d86f527ef2d398",
+      "project": "affiliate-project",
+      "problem": "pakistan women's national cricket team vs india women's national cricket team standings",
+      "normalized_problem": "pakistan women s national cricket team vs india women s national cricket team standings",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "pakistan women's national cricket team vs india women's national cricket team standings"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231783+00:00",
+      "rank": 22
+    },
+    {
+      "id": "opp-4657ca5f1c7e872a",
+      "project": "affiliate-project",
+      "problem": "rayo vallecano vs racing santander",
+      "normalized_problem": "rayo vallecano vs racing santander",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "rayo vallecano vs racing santander"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231799+00:00",
+      "rank": 23
+    },
+    {
+      "id": "opp-d344cac70978a969",
+      "project": "affiliate-project",
+      "problem": "roma vs atalanta",
+      "normalized_problem": "roma vs atalanta",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "roma vs atalanta"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231739+00:00",
+      "rank": 24
+    },
+    {
+      "id": "opp-d9e1a2b8c24572cc",
+      "project": "affiliate-project",
+      "problem": "schalke vs bayern munich standings",
+      "normalized_problem": "schalke vs bayern munich standings",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 2,
+        "source_count": 1,
+        "evidence_count": 2
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "schalke vs bayern munich standings"
+        },
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "fc schalke 04 lwn fc bayern munich"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231723+00:00",
+      "rank": 25
+    },
+    {
+      "id": "opp-78f4b0223280390d",
+      "project": "affiliate-project",
+      "problem": "Alfa Romeo Giulia",
+      "normalized_problem": "alfa romeo giulia",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7vqxw/alfa_romeo_giulia/",
+          "excerpt": "Spotted near Bendang restaurant at Kg Baru. &#32; submitted by &#32; /u/QaleOusha [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231296+00:00",
+      "rank": 26
+    },
+    {
+      "id": "opp-57d4db10412218e2",
+      "project": "affiliate-project",
+      "problem": "Alfa Romeo sedan in a random parking lot",
+      "normalized_problem": "alfa romeo sedan in a random parking lot",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w82jql/alfa_romeo_sedan_in_a_random_parking_lot/",
+          "excerpt": "Not Giulia, but a 159. I was having dinner in a restaurant in Ipoh, after food I walked to the parking area and immediately recognised this mid size Italian sedan. The car is at its most supreme condition &#32; submitted by &#32; /u/LowAffectionate7893 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231231+00:00",
+      "rank": 27
+    },
+    {
+      "id": "opp-90dc666d1ad40765",
+      "project": "affiliate-project",
+      "problem": "Found in the wild",
+      "normalized_problem": "found in the wild",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w77h1v/found_in_the_wild/",
+          "excerpt": "&#32; submitted by &#32; /u/QorstSynthion [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231453+00:00",
+      "rank": 28
+    },
+    {
+      "id": "opp-ec6a25e573ee0caa",
+      "project": "affiliate-project",
+      "problem": "Gotta admit, that’s one of the most creative car plate I’ve seen",
+      "normalized_problem": "gotta admit that s one of the most creative car plate i ve seen",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7nz3a/gotta_admit_thats_one_of_the_most_creative_car/",
+          "excerpt": "I actually missed it at the first glance, had to take a second look 😂 &#32; submitted by &#32; /u/Heyday-_- [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231390+00:00",
+      "rank": 29
+    },
+    {
+      "id": "opp-7df569b0697338f7",
+      "project": "affiliate-project",
+      "problem": "Is that a Supra?? 🗣️🔥🔥",
+      "normalized_problem": "is that a supra",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w70gyw/is_that_a_supra/",
+          "excerpt": "With a Wide body kit and Exhaust tip bigger than my head &#32; submitted by &#32; /u/Common_Playerrrrr [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231665+00:00",
+      "rank": 30
+    },
+    {
+      "id": "opp-7611da0185da3578",
+      "project": "affiliate-project",
+      "problem": "Is this some kind of branding?",
+      "normalized_problem": "is this some kind of branding",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w6zgyh/is_this_some_kind_of_branding/",
+          "excerpt": "Is this guy the CEO of DELL or something? &#32; submitted by &#32; /u/Meknon_ [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231702+00:00",
+      "rank": 31
+    },
+    {
+      "id": "opp-1af1acf9da925643",
+      "project": "affiliate-project",
+      "problem": "Knocking sound",
+      "normalized_problem": "knocking sound",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7yrma/knocking_sound/",
+          "excerpt": "Need help with knocking sound. It&#39;s an 2015 Iriz with 130k milage. &#32; submitted by &#32; /u/gnars-a-tech [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231276+00:00",
+      "rank": 32
+    },
+    {
+      "id": "opp-9197f80ab584f9ce",
+      "project": "affiliate-project",
+      "problem": "Luftwasser 2026",
+      "normalized_problem": "luftwasser 2026",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7ukjo/luftwasser_2026/",
+          "excerpt": "Anyone going to Luftwasser today? I can’t. Have other plans 😞 Can anyone report back here to see if the Singer 911 makes a surprise cameo? &#32; submitted by &#32; /u/Nirsan98 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231312+00:00",
+      "rank": 33
+    },
+    {
+      "id": "opp-05bc638d6a921521",
+      "project": "affiliate-project",
+      "problem": "Mercedes F1 W04",
+      "normalized_problem": "mercedes f1 w04",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w70yjq/mercedes_f1_w04/",
+          "excerpt": "Just wanted to share what I have captured in Orchard rd, Singapore. Hope this is allowed as the photo is taken outside of Malaysia. &#32; submitted by &#32; /u/Riger123 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231626+00:00",
+      "rank": 34
+    },
+    {
+      "id": "opp-96e34377696e3778",
+      "project": "affiliate-project",
+      "problem": "P Licence Insurance",
+      "normalized_problem": "p licence insurance",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w82y3q/p_licence_insurance/",
+          "excerpt": "Just changed from an international licence to a P licence due to new car licence laws for non-Malaysian resident. Before I could just get normal insurance. Is there a different kind of insurance I need to purchase for a P licence? &#32; submitted by &#32; /u/Sea_Pack_1801 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231205+00:00",
+      "rank": 35
+    },
+    {
+      "id": "opp-db0d6ed65bd093d3",
+      "project": "affiliate-project",
+      "problem": "Phew.",
+      "normalized_problem": "phew",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7121o/phew/",
+          "excerpt": "Remember to topup just in case. &#32; submitted by &#32; /u/Lazy_Physics3127 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231605+00:00",
+      "rank": 36
+    },
+    {
+      "id": "opp-371c9aab3253afb1",
+      "project": "affiliate-project",
+      "problem": "Proton S70 MC2 Lite",
+      "normalized_problem": "proton s70 mc2 lite",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w7t5do/proton_s70_mc2_lite/",
+          "excerpt": "Latest Proton S70 MC2 lite details Thoughts? &#32; submitted by &#32; /u/Harry_Puter [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231348+00:00",
+      "rank": 37
+    },
+    {
+      "id": "opp-3f89f1b75bf822cd",
+      "project": "affiliate-project",
+      "problem": "Saw a Jaaaaaaag",
+      "normalized_problem": "saw a jaaaaaaag",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w6zpb6/saw_a_jaaaaaaag/",
+          "excerpt": "&#32; submitted by &#32; /u/Renrem210169 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231680+00:00",
+      "rank": 38
+    },
+    {
+      "id": "opp-4aa2f77067208bfa",
+      "project": "affiliate-project",
+      "problem": "This shall never work in this country and it is infuriating",
+      "normalized_problem": "this shall never work in this country and it is infuriating",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w80mcw/this_shall_never_work_in_this_country_and_it_is/",
+          "excerpt": "&#32; submitted by &#32; /u/Pristine-Unit1034 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231254+00:00",
+      "rank": 39
+    },
+    {
+      "id": "opp-9d10becabd5cc996",
+      "project": "affiliate-project",
+      "problem": "Winter road in Malaysia??💀💀",
+      "normalized_problem": "winter road in malaysia",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1w70x88/winter_road_in_malaysia/",
+          "excerpt": "&#32; submitted by &#32; /u/PistonPixel [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231646+00:00",
+      "rank": 40
+    },
+    {
+      "id": "opp-891fbbcf5f5ce4fe",
+      "project": "affiliate-project",
+      "problem": "BYD CKD EV saga – where does the auto industry stand with MITI's RM200k floor price, export criteria? - Paul Tan's Automotive News",
+      "normalized_problem": "byd ckd ev saga where does the auto industry stand with miti s rm200k floor price export criteria paul tan s automotive news",
+      "opportunity_score": 95.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQWG5hU1R5Y0FsRXlFVUxFd0NSd3pRVEljOHpNWGMyTlhxMVpsNVdkQjdFM1BGdFhhRHc4Rm9XUE9fU1U3NlBaWGpsdDc3RllhQkQ4RXY1clJaNUlKWE56cTJXOWx0U2l2cFlRSWh1UVI2eTlZcEUxdlJqLXp6QzVBMzFlM0gxMlpOS0ZHWG16SFdfWm83c2h4TUdzbVo4WGs0blVSV3h0Slh5LS1vdTZ2QmhuN3B0Sk9ESXdmam0zMFd1ak1GRERr?oc=5",
+          "excerpt": "BYD CKD EV saga – where does the auto industry stand with MITI's RM200k floor price, export criteria? &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232044+00:00",
+      "rank": 41
+    },
+    {
+      "id": "opp-fefc028971954f92",
+      "project": "affiliate-project",
+      "problem": "EVs Have No Resale Value — Myth or Truth? - Carz Automedia Malaysia",
+      "normalized_problem": "evs have no resale value myth or truth carz automedia malaysia",
+      "opportunity_score": 95.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1HUnRuaDlUeE1XMGJ4NDVuZUE2OGJFVElyalBmcDZpclI4V0pwZnB1VzBVZWZxWXhUQi1Nck4xcC0tZ0g0U2FHaWV2eEl4S1N5aXRkd1hxcV9TZWtzYjRNQjF3MEU5TWdLZ3A5U2RvMmFjZE9UVmhnOGFR?oc=5",
+          "excerpt": "EVs Have No Resale Value — Myth or Truth? &nbsp;&nbsp; Carz Automedia Malaysia"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231991+00:00",
+      "rank": 42
+    },
+    {
+      "id": "opp-dbbb716866996b32",
+      "project": "affiliate-project",
+      "problem": "Malaysia Revolutionizing Vehicle Disposal: JPJ’s Digital Drive – OpEd - Eurasia Review",
+      "normalized_problem": "malaysia revolutionizing vehicle disposal jpj s digital drive oped eurasia review",
+      "opportunity_score": 95.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNRUtnQy02UlFmTXZpTnV3R3hQU29CcWc1c2d1bGdyYl9MR0lRN3Y2eUFIZG1tcER3ZnlHQ1JOakQyZ19QRDAya3BXSzRDQ3lacUo5dmxGZEVoQmtSRDdqblFCTldGNU1wWko5c1pCdE1oWDZYMHhPZ3U4ZGFCTTg0eDVkR0NidG1mRDRTbVdtX183TWNOT3g4VkFfMTlfQ1huUXBYUzVFR2g?oc=5",
+          "excerpt": "Malaysia Revolutionizing Vehicle Disposal: JPJ’s Digital Drive – OpEd &nbsp;&nbsp; Eurasia Review"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232493+00:00",
+      "rank": 43
+    },
+    {
+      "id": "opp-1d3d7ce7074e7450",
+      "project": "affiliate-project",
+      "problem": "Chery Auto Malaysia launches safety recall for Omoda 5 following axle Issue - Zigwheels",
+      "normalized_problem": "chery auto malaysia launches safety recall for omoda 5 following axle issue zigwheels",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPbGc0ZGZIUXR5aU90R0xkcG55azR5UVZRZXFKTTRQWUpnTWM4bjhkVEV4RmVsVjZtMjRvWll2MUxCcWN0bzFWOEhfVjZfQmNOaTR3NktoUXpSNnJrOFJXNXVGUHdWV19DSWwzTlBCeGdLLTVPTElQV0RxWjJjSFNlZGw1Y1h5aldVaEtxYWMwZy1iQlRCSVRfb1BZZy01cEp0MUpCNGdSd2dzUW8xdHfSAbYBQVVfeXFMT0FFQS15ZEZuUEZIQXVQUjVsLVF3c3pMcmFkeUtPMmdYQU8xdU1odXBoUWNuT2xZTnF2TDVMWlBrT1loQTRVY1JEalhGdDZHa1dLcGxiSk4yUlBUOE1rNTFvN2hBQ2pyQlE5MWUzX3o2UVVVQTJsXzREXzdMaU9CeS1KRUJvQlZZUmRIbzAwVVNnUTl6VlJoVmE2MTNCcE95eGlZZlJYY0dfM2VEWGhKTkhjZFVEcnc?oc=5",
+          "excerpt": "Chery Auto Malaysia launches safety recall for Omoda 5 following axle Issue &nbsp;&nbsp; Zigwheels"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232379+00:00",
+      "rank": 44
+    },
+    {
+      "id": "opp-ab09f94d4d70065e",
+      "project": "affiliate-project",
+      "problem": "Chery Malaysia successfully resolves Omoda 5 axle Issue - Zigwheels",
+      "normalized_problem": "chery malaysia successfully resolves omoda 5 axle issue zigwheels",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQcjc1cE9fWUpxTnRmV3JFQ1FHaFR1enViaEZDT2xtRDdvYTBDczdjbGxDcmU4MS1NNF9wYW5xdGdnRXdoRUJrb005OVgtWjYySXhfZzRjb3JudWJQODBPYXplcFRFbFF4R1paNzd5a05pb01oSzRaZHZQODlJMnY5dnVxTWxGQTU3Wi1LWFRKZ2QwaG_SAZsBQVVfeXFMUDVJTTVKcnJuOWxTVDl1M2NKNGhadzFub0RtWXo4dngwdU0td2FwVW9oWk5FcnhWLThEdWZLc1FfaFJ6ZnN2b0RmT3EybHhUSlhicThnRmc4Qnk3RTUzVlpxNFJLR3FBQ2pnUmlBYk5sMHEzNXNNdVZ6TEF3QlNKYWx4ZjdsdWU1aEowZkJIWTVWalV0MnRXYmxiajQ?oc=5",
+          "excerpt": "Chery Malaysia successfully resolves Omoda 5 axle Issue &nbsp;&nbsp; Zigwheels"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232514+00:00",
+      "rank": 45
+    },
+    {
+      "id": "opp-27527b13a1303d44",
+      "project": "affiliate-project",
+      "problem": "Honda Malaysia recalls 87,490 cars over fuel pump issue - Zigwheels",
+      "normalized_problem": "honda malaysia recalls 87 490 cars over fuel pump issue zigwheels",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVUstc0VpOHp5UFBTbEdIWV9saTlyN1VZRGp0cHIzdExmRlZFb0NuSnNkMHhpejlNdzRwa0ZtN2tEazhtSFRLYzdmSXdsYXByTkt6c2ZtZng1RTBjMUFOeEJpSW1jOHBuNmpFdVpDY0RtQ0gwclhKVk92VEkxTDZILXZ2eTIxc1c5M1RjSkZOZnFQQdIBmgFBVV95cUxOQzlJemVNay0zQ3NfRXY0TDJCejRBdVNjaVE4OEtmdW5OOEttenNZdkRlRURJRkVkRDA4b01COUphOWFLVlZaZkdKSmhVQldEd0U5RWE4OGRjU2p0X0k4ajY3djVKUnFmVWZseURNeVRPWE16a0ZwT3UyOWhZaEFRdmVhMEtkMkNBUndsWUdRVms4dHJTUi1xN1pn?oc=5",
+          "excerpt": "Honda Malaysia recalls 87,490 cars over fuel pump issue &nbsp;&nbsp; Zigwheels"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232470+00:00",
+      "rank": 46
+    },
+    {
+      "id": "opp-5407d70172ce5845",
+      "project": "affiliate-project",
+      "problem": "Malaysia Introduces e-Dereg system to combat abandoned vehicle Issue - Zigwheels",
+      "normalized_problem": "malaysia introduces e dereg system to combat abandoned vehicle issue zigwheels",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQOFNfT3BTbVVpTVJhRnFuaE5LWlVXbGoxTUtfU0REeTBfS1llWERtQTlGalRGU0Z1ZWhtQ3hRb0hycGgtQWoxTXo1STJhTHB3ZDdCdGhsSGtxR214aXhjeWxzaFpSNUtoVTB0LVNwNml4cEhBSW5GNjlWb0s1THBjcFA3VmVsTWJsaG5za1pVSmZuVzQ0VERic0ExcFFPYWl4Z29oUNIBrAFBVV95cUxPcFB5Znl6aW9OOGQyamJsRDdKUVRHMVdaQW96azJ5THBYOE1BcHJLOHgyWjhNRjYwdXNKTHNoM3pRUTFiRUhSYlUySUlDc1ZEOEFGQjlrT1FjdzcwXzBZUkh5aTk4WDZ3eWZTUFRWME9pX0pEa1ZnUnozZkRuR0NpdE5abll1Q2diRGlqY0xxN0JIZ1JlcE1YWDNxYVBHUlZOSVVlc09KNmtYNDc5?oc=5",
+          "excerpt": "Malaysia Introduces e-Dereg system to combat abandoned vehicle Issue &nbsp;&nbsp; Zigwheels"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232169+00:00",
+      "rank": 47
+    },
+    {
+      "id": "opp-2ad1e7630da69154",
+      "project": "affiliate-project",
+      "problem": "Malaysia’s fuel problem is also an urban planning problem - Free Malaysia Today",
+      "normalized_problem": "malaysia s fuel problem is also an urban planning problem free malaysia today",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSFZZeEdaR1RMQ3VmYUpaeWw4RjFUaDZoRDQwUmhWckllT3lzMUFCV3d2bWZ4UkhZS3NjNU5ENVBsY19scXdCdmNPa3RGaXdJX0R3dUdIeGhabUZ3bFZTU1ItQ2xqWENyVlZKQndvS0VFZXVYMV9jci13ak1aX0QyNGI3VmF4djEwaUVESXhsRmROS0JkeWlrQllXZE9hYXhtanlFWnBWbEpNM0JUU1VzalhROEVkNEEyNHc?oc=5",
+          "excerpt": "Malaysia’s fuel problem is also an urban planning problem &nbsp;&nbsp; Free Malaysia Today"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232066+00:00",
+      "rank": 48
+    },
+    {
+      "id": "opp-fcb3e965075d3367",
+      "project": "affiliate-project",
+      "problem": "Meet the boy who turns vehicle number plates into maths problems - Free Malaysia Today",
+      "normalized_problem": "meet the boy who turns vehicle number plates into maths problems free malaysia today",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQT082RTBBVmpnTll0Z0luNjF1UWlib0x4LXNTano2aHVRMGs5V09kM2piR3lORngtWU5IRU5GSmtqempkaHRiQVUxQWdVQlVPTWRwQUEwX1R2QmpRNmdvUmtxbHh3ZEgzRnNvb3A5ZDFMSFI1Q0p4cmgyY195RHhFUnIzLVQtbEdRSzI4VU5WTnZGZ1hjQVQzY0N3UHhHdjhjVE9SLUtQbVJvVnlhelVLWG9jRUVVS0RJRXFKX1h3WmtCWXNj?oc=5",
+          "excerpt": "Meet the boy who turns vehicle number plates into maths problems &nbsp;&nbsp; Free Malaysia Today"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.232449+00:00",
+      "rank": 49
+    },
+    {
+      "id": "opp-db5e22678c13826c",
+      "project": "affiliate-project",
+      "problem": "Government to ensure Malaysia will not be a dumping ground for excess and cheap, low quality cars - Johari - Paul Tan's Automotive News",
+      "normalized_problem": "government to ensure malaysia will not be a dumping ground for excess and cheap low quality cars johari paul tan s automotive news",
+      "opportunity_score": 88.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOU1V2WktLZUNmdFlKT1JOSk9BLXBYTTZzSW80SENuRjFDOWZyUVA1bDQ5eDhIVDEwNTdqWDhjWG9EMnl2cnpTMmZRNERBeXBCY1p0bmx1UnlsVkp4dTdNbXdZSUx2WlpTSVEyTGdGb2VnOGY4d1hmMXFZd01uX09hU096OWNHYjk2WktrcnlRLTRacWpUMTVPYzNEQnZULUcxVlMtYmpZSHhvNW1NcjVhNlZVeVpsRUV5TUtoR2hDbjBCdjFzVzJaTy1zc2VhTUZJ?oc=5",
+          "excerpt": "Government to ensure Malaysia will not be a dumping ground for excess and cheap, low quality cars - Johari &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-05T19:27:23.231928+00:00",
+      "rank": 50
+    }
+  ],
   "next_stage": "B4 Product & Affiliate Engine",
   "boundary": "B3 ranks demand opportunities. It does not select products, affiliate networks, offers, or make purchases."
 }
