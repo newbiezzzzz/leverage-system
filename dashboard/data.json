@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T19:11:50.204425+00:00",
+  "generated_at": "2026-09-05T19:12:06.034700+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -453,9 +453,9 @@
     }
   ],
   "tasks": {
-    "queued": 13,
-    "running": 2,
-    "completed": 5,
+    "queued": 12,
+    "running": 1,
+    "completed": 7,
     "failed": 0,
     "blocked": 0,
     "cancelled": 0
@@ -471,11 +471,11 @@
   "sync": {
     "source": "github-actions",
     "workflow": "Sync Leverage Dashboard",
-    "run_id": "33986367397",
+    "run_id": "33986382115",
     "event": "push",
     "conclusion": "running",
     "fresh": true,
-    "synced_at": "2026-09-05T19:11:50.204425+00:00"
+    "synced_at": "2026-09-05T19:12:06.034700+00:00"
   },
   "projects": [
     {
