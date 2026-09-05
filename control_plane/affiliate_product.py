@@ -1,8 +1,8 @@
 """B4 Product & Affiliate Engine.
 
 Turns ranked B3 demand opportunities into product/offer research candidates.
-B4 does not invent listings, prices, commissions, availability, or affiliate
-eligibility. Those fields remain unknown until authoritative evidence is found.
+B4 preserves previously verified marketplace candidates and never invents
+listings, prices, commissions, availability, or affiliate eligibility.
 """
 from __future__ import annotations
 
@@ -27,8 +27,11 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def slug(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:80]
+def load_optional(path: Path) -> dict:
+    try:
+        return load(path)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
 
 
 def candidate_categories(problem: str) -> list[str]:
@@ -49,20 +52,34 @@ def candidate_categories(problem: str) -> list[str]:
     return list(dict.fromkeys(categories)) or ["automotive accessories", "car care products", "automotive tools"]
 
 
+def existing_verified_products() -> list[dict]:
+    current = load_optional(OUTPUT)
+    return [
+        product for product in current.get("products", [])
+        if str(product.get("status", "")).startswith("verified_")
+    ]
+
+
 def build() -> dict:
     cfg = load(CONFIG)
     source = load(INPUT)
     networks = cfg["networks"]
     opportunities = source.get("opportunities", [])
-    rows = []
+
+    verified = existing_verified_products()
+    rows: list[dict] = list(verified)
+    verified_ids = {p.get("id") for p in verified}
+
     for opp in opportunities[: int(cfg["output"]["max_opportunities"] )]:
         cats = candidate_categories(opp.get("problem", ""))
-        candidates = []
         for category in cats:
             for network in networks:
                 key = f"{opp['id']}|{category}|{network['name']}"
-                candidates.append({
-                    "id": "pc-" + hashlib.sha256(key.encode()).hexdigest()[:16],
+                candidate_id = "pc-" + hashlib.sha256(key.encode()).hexdigest()[:16]
+                if candidate_id in verified_ids:
+                    continue
+                rows.append({
+                    "id": candidate_id,
                     "product_name": None,
                     "category": category,
                     "problem_solved": opp.get("problem"),
@@ -85,17 +102,27 @@ def build() -> dict:
                     "source_opportunity_id": opp.get("id"),
                     "generated_at": now(),
                 })
-        rows.extend(candidates)
 
+    verified_count = len(verified)
+    research_count = len(rows) - verified_count
     payload = {
-        "version": 1,
+        "version": 2,
         "project": "affiliate-project",
         "generated_at": now(),
         "input_generated_at": source.get("generated_at"),
         "opportunity_count": len(opportunities),
         "candidate_count": len(rows),
+        "verified_product_count": verified_count,
+        "research_candidate_count": research_count,
+        "status": "research_completed_offer_verification_pending" if verified_count else "awaiting_product_evidence",
         "products": rows,
-        "boundary": "B4 researches product and affiliate candidates. It never fabricates prices, commissions, availability, eligibility, or purchases. Authoritative evidence is required before a candidate becomes an offer.",
+        "verification_policy": {
+            "required_before_publish_as_verified_offer": [
+                "specific_product_listing", "current_price", "availability", "affiliate_item_eligibility", "current_commission"
+            ],
+            "unknown_policy": "Never infer or invent missing commercial facts. A public listing is a product candidate, not proof that the exact item is commissionable for the connected creator account."
+        },
+        "boundary": "B4 researches product and affiliate candidates. Verified marketplace candidates persist across automated runs; commission and item-level affiliate eligibility remain unknown until authoritative account-level evidence exists.",
         "next_stage": "B5 Content Intelligence",
     }
     OUTPUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -104,4 +131,4 @@ def build() -> dict:
 
 if __name__ == "__main__":
     result = build()
-    print(json.dumps({"status": "ok", "opportunities": result["opportunity_count"], "product_candidates": result["candidate_count"], "output": str(OUTPUT)}))
+    print(json.dumps({"status": "ok", "opportunities": result["opportunity_count"], "verified_products": result["verified_product_count"], "research_candidates": result["research_candidate_count"], "output": str(OUTPUT)}))
