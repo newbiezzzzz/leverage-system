@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T19:26:56.418203+00:00",
+  "generated_at": "2026-09-05T19:28:50.759745+00:00",
   "project": {
     "name": "Project Leverage",
     "overall_progress": 98,
@@ -453,9 +453,9 @@
     }
   ],
   "tasks": {
-    "queued": 12,
+    "queued": 11,
     "running": 1,
-    "completed": 7,
+    "completed": 8,
     "failed": 0,
     "blocked": 0,
     "cancelled": 0
@@ -471,11 +471,11 @@
   "sync": {
     "source": "github-actions",
     "workflow": "Sync Leverage Dashboard",
-    "run_id": "33987130942",
+    "run_id": "33987222517",
     "event": "push",
     "conclusion": "running",
     "fresh": true,
-    "synced_at": "2026-09-05T19:26:56.418203+00:00"
+    "synced_at": "2026-09-05T19:28:50.759745+00:00"
   },
   "projects": [
     {
@@ -557,13 +557,13 @@
           "step": "B3",
           "name": "Opportunity Engine",
           "status": "completed",
-          "description": "Detect, deduplicate, score and prioritize automotive opportunities from the B2 research queue."
+          "description": "Deduplicate, score and prioritize automotive demand opportunities for downstream product research."
         },
         {
           "step": "B4",
           "name": "Product & Affiliate Engine",
-          "status": "active",
-          "description": "Research products, offers, availability, economics and affiliate eligibility."
+          "status": "completed",
+          "description": "Map high-priority problems to product categories and legitimate affiliate networks, requiring authoritative evidence before any specific offer is considered verified."
         },
         {
           "step": "B5",
@@ -593,7 +593,7 @@
           "step": "B9",
           "name": "Learning & Optimization",
           "status": "queued",
-          "description": "Detect winners and losers, explain performance patterns and automatically generate the next experiments."
+          "description": "Detect winners and losers, explain patterns and automatically generate the next experiments."
         },
         {
           "step": "B10",
@@ -659,7 +659,7 @@
         "winner-detection",
         "learning-loop"
       ],
-      "next_gate": "B3 complete. Build B4 Product & Affiliate Engine using the ranked opportunity queue."
+      "next_gate": "B4 complete. Build B5 Content Intelligence from verified or explicitly-unverified product research candidates."
     }
   ]
 }
