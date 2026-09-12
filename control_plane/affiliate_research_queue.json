@@ -1,11 +1,387 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-09-11T18:38:28.789355+00:00",
+  "generated_at": "2026-09-12T17:45:47.472773+00:00",
   "scope": "Automotive / car problem-solving / buying decisions",
   "record_count": 65,
   "source_errors": [],
   "records": [
+    {
+      "id": "r-853e2aaf169fee05",
+      "project": "affiliate-project",
+      "problem": "Car Replacement/Upgrade from Axia",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Helloo, I have been driving my dad’a old Axia for three years now. He bought it in 2015 so it’s 10/11 years old. It’s still runs okay and I primarily use it to travel from home to my work which is around 20km away. My mother has been pushing me to buy a new car as she fears that driving an older car means that it has a higher chance of breaking down in the middle of nowhere and leaving me stranded as idk how to fix a car (also my younger brother needs a car but family issue aside) . However, this car has never given me an issue and fuel budget is quite low. In your opinion, is it worth it to p",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wefg6v/car_replacementupgrade_from_axia/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy",
+          "car",
+          "worth"
+        ],
+        "buyer_intent": 3,
+        "problem_strength": 2,
+        "content_potential": 4
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 3,
+      "content_potential": 4,
+      "product_potential": 2,
+      "freshness": "2026-09-12T15:24:16+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230181+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-40cf97d3239f5f7a",
+      "project": "affiliate-project",
+      "problem": "Genting Touge",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi all, I&#39;ll be in Malaysia for the next month. What would be the best way to experience driving the genting Touge? Are their any groups? Or alternatively any groups in Penang? &#32; submitted by &#32; /u/Wololo_Warlord [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1weewr0/genting_touge/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T15:02:34+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230231+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-e2edea1add01b6d7",
+      "project": "affiliate-project",
+      "problem": "White/Putih plate on this?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "This version of Camry doesn&#39;t has a electric version.. or is it? &#32; submitted by &#32; /u/leloneR4nger [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1weald2/whiteputih_plate_on_this/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T11:52:37+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230259+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-275896e5ec601a54",
+      "project": "affiliate-project",
+      "problem": "Car Tint rules and regulations",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi I’m looking to install tint (not tinted god knows why we use this term instead) on my car since the standard film my vehicle provides isn’t good enough. I was looking up on what VLT I can go for (afaik min 70% on windshield and 50% on passenger sides). Small thing I’m wondering is how there’s so many cars on the road that made their tint noticeably waaaay darker than JPJ standards. How do they deal with police or roadblock inspections? And also how did they actually get someone to install that level of VLT when it’s not legal at all? PS: I also need tint recommendations. I heard V-Kool, 3M,",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we7hxi/car_tint_rules_and_regulations/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "recommend"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 4
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 4,
+      "product_potential": 1,
+      "freshness": "2026-09-12T08:59:08+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230319+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-b5dffc626cb40e26",
+      "project": "affiliate-project",
+      "problem": "Proton keep churning out new sedan models",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "We got new Saga, and S70, and now new budget oriented S70. &#32; submitted by &#32; /u/Budget_Coffee1 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we6scm/proton_keep_churning_out_new_sedan_models/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T08:16:32+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230343+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-1efc434bfe97fda7",
+      "project": "affiliate-project",
+      "problem": "Those who went from B2 to B, what was your first bike?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi, just got my B2 license, I plan to get my B license within the next 5 years after riding on-road for awhile. What bikes do you guys recommend for beginner? I will probably be using to commute to and from work plus occasional chill riding. Any bike that will also help me get more prepared for B full exam in the future also helps. &#32; submitted by &#32; /u/nicloride [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we2ytp/those_who_went_from_b2_to_b_what_was_your_first/",
+      "demand_signal": {
+        "keyword_hits": [
+          "recommend"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T04:47:17+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230383+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-9d5313d649150256",
+      "project": "affiliate-project",
+      "problem": "Opinions on Toyota Corolla Altis E170",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "https://preview.redd.it/4dto8qdpq0ph1.png?width=515&amp;format=png&amp;auto=webp&amp;s=3899c3d08999b6798f04d7262960f2bf06cf6146 Would like to know people`s views on this car. I haven`t had the chance to drive or ride on one before, but I`m a fan of the design. &#32; submitted by &#32; /u/Certain-Newspaper373 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we2v9g/opinions_on_toyota_corolla_altis_e170/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "review"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-09-12T04:42:03+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230414+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-d89a75482b1f4e99",
+      "project": "affiliate-project",
+      "problem": "Takut 🥲",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "&#32; submitted by &#32; /u/Forward-Tackle4635 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we2tlj/takut/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T04:39:37+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230449+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-ec2221a4234e452b",
+      "project": "affiliate-project",
+      "problem": "Opinion onYaris 1.5 E 2020 (AT)",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi guys, I&#39;m planning to buy a used car and saw this model on a dealership for quite an offer. Always wanted a Yaris. Soo, I want to ask; How does the car hold up till now How is the fuel consumption (for daily drive) Is there anything that I should be worried or concern about when it comes to this model in general Would appreciate to hear some feedback, especially if you own/owned one Thanks a lot! &#32; submitted by &#32; /u/irresistiblepotato [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we2qa7/opinion_onyaris_15_e_2020_at/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy",
+          "car"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 4
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 4,
+      "product_potential": 1,
+      "freshness": "2026-09-12T04:34:47+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230490+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-b49e3edbe9cdcd51",
+      "project": "affiliate-project",
+      "problem": "Valvoline Protect & Restore is available through authorised dealer, Greatocean",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "https://www.facebook.com/share/p/18R8vK4XNM/ But the price they are selling is just out of reach.. lol.. &#32; submitted by &#32; /u/PigsAlsoCanFly [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we2hh4/valvoline_protect_restore_is_available_through/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T04:21:49+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230517+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-d06484e3231fce79",
+      "project": "affiliate-project",
+      "problem": "Trimming my collection : jaguar etype 1961, Lexus ISF 2008",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "https://preview.redd.it/860yzbq922ph1.jpg?width=1720&amp;format=pjpg&amp;auto=webp&amp;s=1ff1fd5cdf142e5b6f696820cc6e947d18aacd1b Looking to let go of my collection of cars. Wondering what&#39;s the best route to do it. The cars are in Kota Kinabalu. https://preview.redd.it/u4yuf35w02ph1.jpg?width=4032&amp;format=pjpg&amp;auto=webp&amp;s=5656766dccd85ab4b5702435593a24d84a4d18f1 &#32; submitted by &#32; /u/juliusdx [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we1zp2/trimming_my_collection_jaguar_etype_1961_lexus/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "review"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-09-12T03:57:01+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230552+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-be8067c2e82d8a6b",
+      "project": "affiliate-project",
+      "problem": "Proton why?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "I have had a proton persona 2023 since it&#39;s released year, and it has come with ALOT of flaws. First of all the power window SUCK so bad, I&#39;m driving in KL-Selangor and travel not so often but when i do I need to open the window for tol, my hometown is in east coast so yeah u bet I need to pay the toll too. The power window for the driver popped and broke when i was on a highway and had to change it at an outside workshop cus it was during a night drive while still under warranty. The android player sucks, it has the most basic function possible, and sometimes fail to load or boot duri",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we1yqj/proton_why/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "problem",
+          "service"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 3,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 3,
+      "product_potential": 3,
+      "freshness": "2026-09-12T03:55:38+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230629+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-8fafd3f098692bba",
+      "project": "affiliate-project",
+      "problem": "Assistance in Final Year Project (regarding kereta i swear)",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Sorry if this is abrupt/out of topic/borderline crossing moderation,,but i really, reallyyyy, reallyyyyyyy need help with my final year project. I&#39;ve tried contacting many companies since months ago and got no updates after follow ups regarding my car forensics project. So I just want to openly ask if anyone from the automotive sector here,,is willing to be my &quot;client&quot; ? My project revolves around CAN-bus &amp; telemetry data. In very short; my dashboard can tarik the data from car OBD2 port (given not totalled) to figure out what exactly happened during crash. So i just need to ",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1we18t8/assistance_in_final_year_project_regarding_kereta/",
+      "demand_signal": {
+        "keyword_hits": [
+          "automotive",
+          "buy",
+          "car",
+          "kereta"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-09-12T03:20:05+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230710+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-626713a88941ca92",
+      "project": "affiliate-project",
+      "problem": "WTS City 2018",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "RM39,900 can negotiate 90K+ KMs Full service record available LOCATION PETALING JAYA Honda City 2018 GM6 - Front Lower arm &amp; Shock Absorbers, Rear Absorber, Stab bush changed June 2024 - Last service done 30th June 2026 - Engine air filter changed 1 July 2026 - Brake serviced; Rotor &amp; Brakepad changed July 2026 &#32; submitted by &#32; /u/artlkw [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wdzdsm/wts_city_2018/",
+      "demand_signal": {
+        "keyword_hits": [
+          "service"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 2,
+      "freshness": "2026-09-12T01:49:45+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230744+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-f10da976dd9edf5d",
+      "project": "affiliate-project",
+      "problem": "Top Gear 1991 - Proton Saga honest review",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "&#32; submitted by &#32; /u/Cute-Win8593 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wdy4kz/top_gear_1991_proton_saga_honest_review/",
+      "demand_signal": {
+        "keyword_hits": [
+          "review"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-12T00:51:46+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.230763+00:00",
+      "freshness_status": "fresh"
+    },
     {
       "id": "r-9794ccea6a7d5ae2",
       "project": "affiliate-project",
@@ -29,7 +405,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T18:15:45+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.727946+00:00",
+      "collected_at": "2026-09-12T17:45:46.230828+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -55,7 +431,7 @@
       "product_potential": 2,
       "freshness": "2026-09-11T14:33:43+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728081+00:00",
+      "collected_at": "2026-09-12T17:45:46.230889+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -78,7 +454,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T13:58:05+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728179+00:00",
+      "collected_at": "2026-09-12T17:45:46.230922+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -101,7 +477,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T13:04:47+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728226+00:00",
+      "collected_at": "2026-09-12T17:45:46.230946+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -124,7 +500,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T12:53:03+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728293+00:00",
+      "collected_at": "2026-09-12T17:45:46.230986+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -147,7 +523,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T10:11:39+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728329+00:00",
+      "collected_at": "2026-09-12T17:45:46.231007+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -172,7 +548,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T09:35:33+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728378+00:00",
+      "collected_at": "2026-09-12T17:45:46.231040+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -195,7 +571,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T08:37:15+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728432+00:00",
+      "collected_at": "2026-09-12T17:45:46.231074+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -218,7 +594,7 @@
       "product_potential": 1,
       "freshness": "2026-09-11T07:25:02+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728472+00:00",
+      "collected_at": "2026-09-12T17:45:46.231100+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -241,430 +617,251 @@
       "product_potential": 1,
       "freshness": "2026-09-11T07:01:19+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728527+00:00",
+      "collected_at": "2026-09-12T17:45:46.231135+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-6b2de3e9221df5a9",
+      "id": "r-e4abc79182b162b7",
       "project": "affiliate-project",
-      "problem": "Mercedes EV...",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "&#32; submitted by &#32; /u/Bright-Sink7452 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd71vm/mercedes_ev/",
+      "problem": "al-khaleej vs al-nassr",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "al-khaleej vs al-nassr",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T17:20:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.895896+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-28d166e093efc3f9",
+      "project": "affiliate-project",
+      "problem": "fifa",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "fifa",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
         "buyer_intent": 1,
         "problem_strength": 1,
-        "content_potential": 2
+        "content_potential": 1
       },
       "recurrence": "unknown",
       "buyer_intent": 1,
-      "content_potential": 2,
+      "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-11T05:24:04+00:00",
+      "freshness": "2026-09-12T16:50:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728555+00:00",
+      "collected_at": "2026-09-12T17:45:46.895930+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-1022b8101c232477",
+      "id": "r-d689858b0a6a2b37",
       "project": "affiliate-project",
-      "problem": "Thoughts on my first car.",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hello gng, currently fresh grad earning 1.7k basic (but changing roles soon, hoping to get 2.5k) with part time making around rm400~. I wanna buy my first car for convenience in travelling (house &gt; full time. house &gt; part time. full time &gt; part time). and I really want a car not only to drive from A-B, I love fast cars. So my eyes are currently seeing the Proton Inspira 2.0, don&#39;t really bother which year which goes around RM18k-RMRM35k. Is this a decent car for me to get or are there any other better, financially stable cars. &#32; submitted by &#32; /u/Either-Mousse192 [link] &#",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd70tq/thoughts_on_my_first_car/",
+      "problem": "热刺 - 埃弗顿",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "热刺 - 埃弗顿",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T16:40:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.895965+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-8d19aea9a5731064",
+      "project": "affiliate-project",
+      "problem": "crystal palace f.c. vs ipswich town standings",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "crystal palace f.c. vs ipswich town standings",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T16:20:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.895988+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-cd16573db787e734",
+      "project": "affiliate-project",
+      "problem": "afc bournemouth vs brentford f.c. standings",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "afc bournemouth vs brentford f.c. standings",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T16:20:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.896008+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-7a2e9445ee027380",
+      "project": "affiliate-project",
+      "problem": "athletic vs elche",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "athletic vs elche",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T16:20:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.896024+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-00093abbc9d00426",
+      "project": "affiliate-project",
+      "problem": "borussia dortmund vs sc paderborn 07 standings",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "borussia dortmund vs sc paderborn 07 standings",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T16:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.896043+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-f8e69a39ad0edc0c",
+      "project": "affiliate-project",
+      "problem": "valentín barco",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "valentín barco",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T16:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.896059+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-749cb5753fe31de6",
+      "project": "affiliate-project",
+      "problem": "epl",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "epl",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T15:50:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.896073+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-c7f7ee5c00b7f3a6",
+      "project": "affiliate-project",
+      "problem": "premier league standings",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "premier league standings",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-12T15:50:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:46.896090+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-083730ca6331cbac",
+      "project": "affiliate-project",
+      "problem": "Is \"Adjusting\" Used-Car Mileage Really Normal In Malaysia? - Carz Automedia Malaysia",
+      "source": "Google News automotive Malaysia",
+      "source_kind": "market",
+      "evidence": "Is \"Adjusting\" Used-Car Mileage Really Normal In Malaysia? &nbsp;&nbsp; Carz Automedia Malaysia",
+      "evidence_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNSmZ3R3dFcEZPRVRQQW5ERHFpcmZLOGNoLXVwSVJFRC03LXVlb1NvdXkzcmVLeERPeHlwV3BQV2VrQ3VjVVVnNG11dmNjSWVTVG1wMXl0VGc5ZEVVb2tBaFlYMGV6empGZzBsb0dmTnc5enpaQzRrOTBLNUk0YU1xbDRWWHdvVXEtQ3RtMWRiSQ?oc=5",
       "demand_signal": {
         "keyword_hits": [
-          "buy",
           "car"
         ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-09-11T05:22:27+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728628+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-66bd480c1a296a72",
-      "project": "affiliate-project",
-      "problem": "Getting a Saga BLM",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hiii guys, Im getting my parent&#39;s old Saga BLM (180k km) and planning to send it to a bengkel first for a major service, then I wanna make it look nicer/cooler, so any suggestions for bodykit, lights, rims or other stuff I can add before repainting it, maybe red? 😗 &#32; submitted by &#32; /u/tiktock9090 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd5sv0/getting_a_saga_blm/",
-      "demand_signal": {
-        "keyword_hits": [
-          "service"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 2,
-      "freshness": "2026-09-11T04:17:42+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728691+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-1236055b345d73c2",
-      "project": "affiliate-project",
-      "problem": "Megane RS - Smart tunnel.",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "I was the f30. It was fun 😁 &#32; submitted by &#32; /u/Fsociety039 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd5f54/megane_rs_smart_tunnel/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-11T03:59:53+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728728+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-fdc36d3eece6e941",
-      "project": "affiliate-project",
-      "problem": "Am I cooked",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "I know the tyres are well worn out. Will change soon and I&#39;m wondering if this can last another 1000 km? &#32; submitted by &#32; /u/MobileBrilliant2034 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd5112/am_i_cooked/",
-      "demand_signal": {
-        "keyword_hits": [
-          "tyre"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 2,
-      "freshness": "2026-09-11T03:41:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728764+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-3a662bbc9a99ae91",
-      "project": "affiliate-project",
-      "problem": "Should I tint sunroof?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi all, This car comes with sunroof and sunshade. Is there still a need to tint sunroof since there is already a built in sunshade? Appreciate for your help. Thanks. &#32; submitted by &#32; /u/ondeonde123 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd4xsj/should_i_tint_sunroof/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-11T03:36:32+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728813+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-6f2f5f53eb0d91ef",
-      "project": "affiliate-project",
-      "problem": "7 Seater car advice with 2 Baby Seats",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi Guys, I am looking for an advice on buying a 7 seater in Malaysia that can fit two baby seats (newborn + 2.5 year old toddler). Budget: 150k (used) But I am willing to extend budget 270k (new car) but it is going to be a financial pressure (but still feasible). So, open to both options, specially if 270k spend is worth for long run (10-12 years). Thanks &#32; submitted by &#32; /u/Significant_Buy2438 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd4p0t/7_seater_car_advice_with_2_baby_seats/",
-      "demand_signal": {
-        "keyword_hits": [
-          "buy",
-          "car",
-          "worth"
-        ],
-        "buyer_intent": 3,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 3,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-09-11T03:24:54+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728870+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-baf812d44f72c285",
-      "project": "affiliate-project",
-      "problem": "Driving seat position",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi guys, just wanted to ask the experts here why does our driving position feel different in the morning compared to noon and evening, even though we’ve adjusted the seat to the exact same position? There’s no change in the seat settings, but somehow the driving position still feels different. &#32; submitted by &#32; /u/Typical_Oil_8163 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wd14xz/driving_seat_position/",
-      "demand_signal": {
-        "keyword_hits": [
-          "oil"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-09-11T00:42:01+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728928+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-f4ad999ed07c408c",
-      "project": "affiliate-project",
-      "problem": "Only fake rich and arrogant people buy 8055 plate number",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "While the real rich flaunt their single digit plate number. There, I&#39;ve said it. &#32; submitted by &#32; /u/Different_Routine_52 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wcxtdq/only_fake_rich_and_arrogant_people_buy_8055_plate/",
-      "demand_signal": {
-        "keyword_hits": [
-          "buy"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-10T22:21:59+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728966+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-693f0bf65f759119",
-      "project": "affiliate-project",
-      "problem": "GGWP MY CAR KIA SPECTRA 2008",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "What do you think guys? Any opinion? I need sifu help here if got advice &#32; submitted by &#32; /u/LimitedBuy86 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wcq860/ggwp_my_car_kia_spectra_2008/",
-      "demand_signal": {
-        "keyword_hits": [
-          "buy",
-          "car"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-09-10T17:44:57+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.728999+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-f5927195ce451641",
-      "project": "affiliate-project",
-      "problem": "Civic EK with 4 wheel steering",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Found on twitter &#32; submitted by &#32; /u/quizface [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wcj4nh/civic_ek_with_4_wheel_steering/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-10T13:24:16+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.729029+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-1419e0e37a3bcd53",
-      "project": "affiliate-project",
-      "problem": "Proton eMas 5 sells as much as Myvi",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Data for August 2026. Guess Malaysians are already fully accepting EV&#39;s. &#32; submitted by &#32; /u/lan9603 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wcinf9/proton_emas_5_sells_as_much_as_myvi/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-10T13:04:25+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.729071+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-da3668ab651ff1b0",
-      "project": "affiliate-project",
-      "problem": "Porsche outjerked by a Myvi",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "&#32; submitted by &#32; /u/PistonPixel [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wcgqef/porsche_outjerked_by_a_myvi/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-10T11:40:45+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.729098+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-cccaa9652195b923",
-      "project": "affiliate-project",
-      "problem": "Proton Persona lipas",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi guys. I got this quotation from Proton. Is this price reasonable? &#32; submitted by &#32; /u/hxqfrhn [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wcg00d/proton_persona_lipas/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-10T11:04:21+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.729156+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-c2b976230d0131ad",
-      "project": "affiliate-project",
-      "problem": "How many bloody times is Proton going to update the S70?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "This is getting ridiculous. It&#39;s already crazy enough that that they did a giant enough upgrade within just 2 years of launch, but they are planning to launch another MC2 update less than a year with new interior and designs? Please tell me I am not the one who feels this way. &#32; submitted by &#32; /u/arnav_298 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wccwiv/how_many_bloody_times_is_proton_going_to_update/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-09-10T08:14:32+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:27.729208+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-c5807b2996b2e2ea",
-      "project": "affiliate-project",
-      "problem": "west ham vs wrexham",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "west ham vs wrexham",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T18:20:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317061+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-427066d7b1d26ca9",
-      "project": "affiliate-project",
-      "problem": "sevilla vs valencia",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "sevilla vs valencia",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T18:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317153+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-b0977ead8ccd450e",
-      "project": "affiliate-project",
-      "problem": "razaullah",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "razaullah",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
         "buyer_intent": 1,
         "problem_strength": 1,
         "content_potential": 1
@@ -673,170 +870,9 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-11T17:20:00+00:00",
+      "freshness": "2026-09-09T07:30:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317194+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-dfe65f5d81ea47a9",
-      "project": "affiliate-project",
-      "problem": "nifty",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "nifty",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T17:10:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317224+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-3d58cfb4370464c2",
-      "project": "affiliate-project",
-      "problem": "foldable iphone duo",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "foldable iphone duo",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T16:40:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317257+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-e3e0b362f69dd3f2",
-      "project": "affiliate-project",
-      "problem": "michael olise",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "michael olise",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T16:20:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317287+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-4c0d20e7203a2df7",
-      "project": "affiliate-project",
-      "problem": "al qadsiah vs al-ettifaq",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "al qadsiah vs al-ettifaq",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T16:20:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317318+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-0c04c7806d1c4056",
-      "project": "affiliate-project",
-      "problem": "al-faisaly vs al-ittihad",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "al-faisaly vs al-ittihad",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T16:10:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317348+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-d67404033f51538e",
-      "project": "affiliate-project",
-      "problem": "jefri nichol",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "jefri nichol",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T15:30:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317375+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-2277719c0443a77b",
-      "project": "affiliate-project",
-      "problem": "sony hideo kojima",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "sony hideo kojima",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-11T15:30:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.317403+00:00",
+      "collected_at": "2026-09-12T17:45:47.471567+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -862,7 +898,7 @@
       "product_potential": 2,
       "freshness": "2026-08-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.785563+00:00",
+      "collected_at": "2026-09-12T17:45:47.471610+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -885,7 +921,7 @@
       "product_potential": 1,
       "freshness": "2026-05-27T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.785661+00:00",
+      "collected_at": "2026-09-12T17:45:47.471638+00:00",
       "freshness_status": "stale"
     },
     {
@@ -910,7 +946,7 @@
       "product_potential": 2,
       "freshness": "2026-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.785766+00:00",
+      "collected_at": "2026-09-12T17:45:47.471674+00:00",
       "freshness_status": "stale"
     },
     {
@@ -933,32 +969,7 @@
       "product_potential": 1,
       "freshness": "2026-04-30T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.785842+00:00",
-      "freshness_status": "stale"
-    },
-    {
-      "id": "r-6245eed6f2d73fc1",
-      "project": "affiliate-project",
-      "problem": "EVs Have No Resale Value — Myth or Truth? - Carz Automedia Malaysia",
-      "source": "Google News automotive Malaysia",
-      "source_kind": "market",
-      "evidence": "EVs Have No Resale Value — Myth or Truth? &nbsp;&nbsp; Carz Automedia Malaysia",
-      "evidence_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1HUnRuaDlUeE1XMGJ4NDVuZUE2OGJFVElyalBmcDZpclI4V0pwZnB1VzBVZWZxWXhUQi1Nck4xcC0tZ0g0U2FHaWV2eEl4S1N5aXRkd1hxcV9TZWtzYjRNQjF3MEU5TWdLZ3A5U2RvMmFjZE9UVmhnOGFR?oc=5",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-04-17T07:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.785931+00:00",
+      "collected_at": "2026-09-12T17:45:47.471700+00:00",
       "freshness_status": "stale"
     },
     {
@@ -981,7 +992,7 @@
       "product_potential": 1,
       "freshness": "2026-04-08T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786019+00:00",
+      "collected_at": "2026-09-12T17:45:47.471732+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1006,7 +1017,32 @@
       "product_potential": 2,
       "freshness": "2026-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786100+00:00",
+      "collected_at": "2026-09-12T17:45:47.471764+00:00",
+      "freshness_status": "stale"
+    },
+    {
+      "id": "r-6245eed6f2d73fc1",
+      "project": "affiliate-project",
+      "problem": "EVs Have No Resale Value — Myth or Truth? - Carz Automedia Malaysia",
+      "source": "Google News automotive Malaysia",
+      "source_kind": "market",
+      "evidence": "EVs Have No Resale Value — Myth or Truth? &nbsp;&nbsp; Carz Automedia Malaysia",
+      "evidence_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1HUnRuaDlUeE1XMGJ4NDVuZUE2OGJFVElyalBmcDZpclI4V0pwZnB1VzBVZWZxWXhUQi1Nck4xcC0tZ0g0U2FHaWV2eEl4S1N5aXRkd1hxcV9TZWtzYjRNQjF3MEU5TWdLZ3A5U2RvMmFjZE9UVmhnOGFR?oc=5",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-04-17T07:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-12T17:45:47.471792+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1031,7 +1067,7 @@
       "product_potential": 1,
       "freshness": "2026-03-30T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786241+00:00",
+      "collected_at": "2026-09-12T17:45:47.471829+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1057,7 +1093,7 @@
       "product_potential": 2,
       "freshness": "2026-05-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786361+00:00",
+      "collected_at": "2026-09-12T17:45:47.471867+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1080,7 +1116,7 @@
       "product_potential": 1,
       "freshness": "2026-07-28T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786468+00:00",
+      "collected_at": "2026-09-12T17:45:47.471899+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1106,7 +1142,7 @@
       "product_potential": 2,
       "freshness": "2024-04-02T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786580+00:00",
+      "collected_at": "2026-09-12T17:45:47.471930+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1131,7 +1167,7 @@
       "product_potential": 2,
       "freshness": "2025-12-04T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786692+00:00",
+      "collected_at": "2026-09-12T17:45:47.471961+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1156,7 +1192,7 @@
       "product_potential": 2,
       "freshness": "2026-03-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786806+00:00",
+      "collected_at": "2026-09-12T17:45:47.471994+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1182,7 +1218,7 @@
       "product_potential": 2,
       "freshness": "2025-12-28T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.786906+00:00",
+      "collected_at": "2026-09-12T17:45:47.472022+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1208,7 +1244,7 @@
       "product_potential": 1,
       "freshness": "2026-02-05T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787020+00:00",
+      "collected_at": "2026-09-12T17:45:47.472055+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1233,7 +1269,7 @@
       "product_potential": 1,
       "freshness": "2025-06-23T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787139+00:00",
+      "collected_at": "2026-09-12T17:45:47.472081+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1258,7 +1294,7 @@
       "product_potential": 1,
       "freshness": "2026-06-24T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787261+00:00",
+      "collected_at": "2026-09-12T17:45:47.472114+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1284,7 +1320,7 @@
       "product_potential": 3,
       "freshness": "2025-12-12T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787398+00:00",
+      "collected_at": "2026-09-12T17:45:47.472150+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1309,7 +1345,7 @@
       "product_potential": 1,
       "freshness": "2024-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787483+00:00",
+      "collected_at": "2026-09-12T17:45:47.472177+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1334,7 +1370,7 @@
       "product_potential": 1,
       "freshness": "2025-06-21T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787564+00:00",
+      "collected_at": "2026-09-12T17:45:47.472201+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1357,7 +1393,7 @@
       "product_potential": 1,
       "freshness": "2026-05-22T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787656+00:00",
+      "collected_at": "2026-09-12T17:45:47.472228+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1382,7 +1418,7 @@
       "product_potential": 1,
       "freshness": "2025-08-09T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787720+00:00",
+      "collected_at": "2026-09-12T17:45:47.472254+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1407,7 +1443,7 @@
       "product_potential": 1,
       "freshness": "2025-01-21T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787813+00:00",
+      "collected_at": "2026-09-12T17:45:47.472286+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1432,7 +1468,7 @@
       "product_potential": 1,
       "freshness": "2025-01-27T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787896+00:00",
+      "collected_at": "2026-09-12T17:45:47.472310+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1455,7 +1491,7 @@
       "product_potential": 2,
       "freshness": "2024-03-22T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.787980+00:00",
+      "collected_at": "2026-09-12T17:45:47.472335+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1478,32 +1514,7 @@
       "product_potential": 2,
       "freshness": "2024-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.788072+00:00",
-      "freshness_status": "stale"
-    },
-    {
-      "id": "r-a66ccb831c1de353",
-      "project": "affiliate-project",
-      "problem": "MBPP Pioneers Strata Scheme For Abandoned Vehicles - Carz Automedia Malaysia",
-      "source": "Google News automotive Malaysia",
-      "source_kind": "market",
-      "evidence": "MBPP Pioneers Strata Scheme For Abandoned Vehicles &nbsp;&nbsp; Carz Automedia Malaysia",
-      "evidence_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPbHRCRUtCRHNNOWpjaGEwai1JM2ZHYmp1NDJMT3VUTXdDak96bS1aQ0ZHa2RrX2hVVi1MY2VvNm1RcWFYOGxZcXRIS0ZIUHhTMWllUE9uN0Y2a1dEcFZwV2ZRU1FZWWJ3Qm5FZFVNZUtwSndBWElmVUQ3TWd6NTJJMFBKcUJ5aklSc2c?oc=5",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2025-09-22T07:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-11T18:38:28.788184+00:00",
+      "collected_at": "2026-09-12T17:45:47.472361+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1528,7 +1539,7 @@
       "product_potential": 2,
       "freshness": "2025-06-11T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.788260+00:00",
+      "collected_at": "2026-09-12T17:45:47.472385+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1553,7 +1564,7 @@
       "product_potential": 1,
       "freshness": "2022-09-03T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.788347+00:00",
+      "collected_at": "2026-09-12T17:45:47.472415+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1578,7 +1589,7 @@
       "product_potential": 1,
       "freshness": "2019-02-27T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-11T18:38:28.788417+00:00",
+      "collected_at": "2026-09-12T17:45:47.472452+00:00",
       "freshness_status": "stale"
     }
   ],
