@@ -1,12 +1,41 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-09-17T19:13:31.398070+00:00",
-  "input_generated_at": "2026-09-17T19:05:18.302934+00:00",
+  "generated_at": "2026-09-18T18:36:57.252303+00:00",
+  "input_generated_at": "2026-09-18T18:33:06.331155+00:00",
   "record_count": 65,
   "cluster_count": 65,
   "opportunity_count": 50,
   "opportunities": [
+    {
+      "id": "opp-a9ab3b6a5811146c",
+      "project": "affiliate-project",
+      "problem": "2019 Vellfire rattling from engine. Any ideas? (More info in post)",
+      "normalized_problem": "2019 vellfire rattling from engine any ideas more info in post",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjeszq/2019_vellfire_rattling_from_engine_any_ideas_more/",
+          "excerpt": "2019 Vellfire with 45,000KM. Just got some work done - oil change, new control arms, alignment. After getting back from shop I notice this rattle sound. Only happens on cold start. Once engine heats up, and RPMs drop it goes away. I also notice something weird. After getting the work done, I notice extra/different engine noice in cabin of car. I feel like I can here the engine more louder on ignition, and acceleration from the drivers seat. Like there is some hole under the steering wheel where "
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250945+00:00",
+      "rank": 1
+    },
     {
       "id": "opp-f5e6990f40076e43",
       "project": "affiliate-project",
@@ -33,8 +62,37 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397815+00:00",
-      "rank": 1
+      "created_at": "2026-09-18T18:36:57.251748+00:00",
+      "rank": 2
+    },
+    {
+      "id": "opp-bf1f1c2bb5c79467",
+      "project": "affiliate-project",
+      "problem": "Anybody heard of Carzora?",
+      "normalized_problem": "anybody heard of carzora",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 3,
+        "problem_strength": 1,
+        "content_potential": 4,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjeytt/anybody_heard_of_carzora/",
+          "excerpt": "Its a platform that allows you to get a hire purchase financing when you buy a car from private seller. The buyer and seller both need to register in their system, they will provide a linking code for both to consider &#39;partner&#39; in their app. Everything is done via the app, including document submissions, loan application, etc. It&#39;s kind of similar with Paul Tan&#39;s Private Auto Finance (in collaboration with Carro) but much cheaper. Unlike them, seller don&#39;t have to pay anythin"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250922+00:00",
+      "rank": 3
     },
     {
       "id": "opp-992bfa41377452db",
@@ -62,8 +120,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397440+00:00",
-      "rank": 2
+      "created_at": "2026-09-18T18:36:57.251215+00:00",
+      "rank": 4
     },
     {
       "id": "opp-decab349031bd87e",
@@ -91,8 +149,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397885+00:00",
-      "rank": 3
+      "created_at": "2026-09-18T18:36:57.251688+00:00",
+      "rank": 5
     },
     {
       "id": "opp-af861632878dbb99",
@@ -120,8 +178,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397387+00:00",
-      "rank": 4
+      "created_at": "2026-09-18T18:36:57.251086+00:00",
+      "rank": 6
     },
     {
       "id": "opp-8fab60dde63b1aa2",
@@ -149,20 +207,20 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397400+00:00",
-      "rank": 5
+      "created_at": "2026-09-18T18:36:57.251106+00:00",
+      "rank": 7
     },
     {
-      "id": "opp-710174221e941165",
+      "id": "opp-0f4cf28a5855c58f",
       "project": "affiliate-project",
-      "problem": "Can anyone tell me the mileage and after sales service of the new yezdi roadster",
-      "normalized_problem": "can anyone tell me the mileage and after sales service of the new yezdi roadster",
+      "problem": "Buying a used car for ~10k, good idea?",
+      "normalized_problem": "buying a used car for 10k good idea",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2,
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
@@ -172,20 +230,49 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1whr1si/can_anyone_tell_me_the_mileage_and_after_sales/",
-          "excerpt": "&#32; submitted by &#32; /u/imarjun_ [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wjj86u/buying_a_used_car_for_10k_good_idea/",
+          "excerpt": "Hey friends, I&#39;m an expat currently working in KL and I&#39;m thinking of buying my first ever car. I don&#39;t need the car for commute but rather just for convenience like driving on weekends. I&#39;m thinking to buy a car for less than 10k if possible, but like, is that a good idea? I got a license last year so I could drive my friend&#39;s car but they moved already so that&#39;s that. I prefer buying full cash because I don&#39;t want to bother with loans and interest. I see ads for lik"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397583+00:00",
-      "rank": 6
+      "created_at": "2026-09-18T18:36:57.250838+00:00",
+      "rank": 8
     },
     {
-      "id": "opp-6fd83c555f9536b8",
+      "id": "opp-690e20bdc6c458b0",
       "project": "affiliate-project",
-      "problem": "Car spare parts prices in Malaysia up by between 25% and 60% due to current global supply issues - report - Paul Tan's Automotive News",
-      "normalized_problem": "car spare parts prices in malaysia up by between 25 and 60 due to current global supply issues report paul tan s automotive news",
+      "problem": "Car Insurance",
+      "normalized_problem": "car insurance",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjf4tj/car_insurance/",
+          "excerpt": "Hi, I am new to car insurance. Would like to ask what car insurance is good for a 2017 civic and what should I include in my car insurance? I drive long distance weekly so appreciate your kind recommendation &#32; submitted by &#32; /u/Inside_Highway8297 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250878+00:00",
+      "rank": 9
+    },
+    {
+      "id": "opp-9ddc5bfb0a740cfc",
+      "project": "affiliate-project",
+      "problem": "Do Car Brands BUY Back Problematic Cars In Malaysia - Drive Safe and Fast",
+      "normalized_problem": "do car brands buy back problematic cars in malaysia drive safe and fast",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -201,129 +288,42 @@
       "evidence": [
         {
           "source": "Google News automotive Malaysia",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5RX1F0RkY0SmN5RHZ2TThkZlg3RkVZZzZ4UEp3aENZNVJWUUlpLUxRSm9ITXRyNXp6eVBkeC1HZE1sQVc4ZndPUDBaYi1qcjNJTVZHVjdxbk9RT2x4bF9vTFNOT2ZLMTBwUHlrZnA5ZzNFWkdzTWc?oc=5",
-          "excerpt": "Car spare parts prices in Malaysia up by between 25% and 60% due to current global supply issues - report &nbsp;&nbsp; Paul Tan's Automotive News"
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPZHpGa20yTlc2TjdoWkh1d0NvR2dfcGcxTzFWM053NVVwb25ycl82NDlhNFZDOU1DaDhPX2dGLWhiSDhZYUI2OGp1enFYdG0zMWVKUkhkLVRINnU4TGJHeWo2bFFWMWU4Y0dvZ3Bac2kyd3laUnFWclZMeHllNjNaZTI3WjdWUQ?oc=5",
+          "excerpt": "Do Car Brands BUY Back Problematic Cars In Malaysia &nbsp;&nbsp; Drive Safe and Fast"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.398043+00:00",
-      "rank": 7
-    },
-    {
-      "id": "opp-b6949028ea271e8b",
-      "project": "affiliate-project",
-      "problem": "Car with builtin rfid/smartag",
-      "normalized_problem": "car with builtin rfid smartag",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1whwodf/car_with_builtin_rfidsmartag/",
-          "excerpt": "As per title. I own Myvi 2018H and tesla m3 2024. Frequently travel kl-seremban. Got annoyed on rfid and smart tag to fail either lanes with my m3 and revert to my MyVI for the commute. Any new car or better car with this feature? How difficult this ask to have a built in with the car, especially EV? Edit: adding context why myvi despite m3 - the builtin smart tag in that myvi never failed me since the beginning of time (2018), thats how good and convenience it is &#32; submitted by &#32; /u/min"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397547+00:00",
-      "rank": 8
-    },
-    {
-      "id": "opp-3ac96053d4e97787",
-      "project": "affiliate-project",
-      "problem": "Honda Refurbishing",
-      "normalized_problem": "honda refurbishing",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1whwct8/honda_refurbishing/",
-          "excerpt": "Hi folks, I have an 2015 Honda CR-V that I would like to refurbish it&#39;s seats, get a new paintjob and upgrade some of its accessories. I was looking for recommendations for a good, reliable workshop specializing in Hondas in Klang Valley. Any tips from the community? &#32; submitted by &#32; /u/sh4d0wm45ter [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397554+00:00",
-      "rank": 9
-    },
-    {
-      "id": "opp-eb6b055988f10f99",
-      "project": "affiliate-project",
-      "problem": "How can i meet new friends that does genting runs?",
-      "normalized_problem": "how can i meet new friends that does genting runs",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wi2x8i/how_can_i_meet_new_friends_that_does_genting_runs/",
-          "excerpt": "&#32; submitted by &#32; /u/Traditional-Key-796 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397531+00:00",
+      "created_at": "2026-09-18T18:36:57.252046+00:00",
       "rank": 10
     },
     {
-      "id": "opp-172374a998d8b04b",
+      "id": "opp-b3ea17c9fa4a1f63",
       "project": "affiliate-project",
-      "problem": "How to get cars for internship",
-      "normalized_problem": "how to get cars for internship",
+      "problem": "Doing it right: Chery Malaysia responds rapidly to brake issue problem in hope to not harm exceptional start to 2024 - Zigwheels",
+      "normalized_problem": "doing it right chery malaysia responds rapidly to brake issue problem in hope to not harm exceptional start to 2024 zigwheels",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
         "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
+        "problem_strength": 3,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
         "recurrence": 1,
         "source_count": 1,
         "evidence_count": 1
       },
       "evidence": [
         {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wi0bpr/how_to_get_cars_for_internship/",
-          "excerpt": "I wanted to ask, how can i get a car for internship as my family don&#39;t have spare car i can use. My family also don&#39;t have any motorcycle that can safely travel over 50kmh. I don&#39;t know what to do at this very moment as i can&#39;t go to the city to work part time or am i familiar with the process of finding part time job. What should i do? Thanks in advance &#32; submitted by &#32; /u/not_ordinary_student [link] &#32; [comments]"
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNUWQzNnBxWU1EOGlwTFRkZzdUTDdtQmlTdHJZUjVuOGgtRDN3d053SUNmN0xvR1pXcmptMGxxT18wa2JVR1RCZURWQU1ZenZreHRhaGppaTRwYVViN09hUkZ4aDc4X3gzMDZ3T25Lbms2ZkJhc1RaX0JZYUtmQy1KaW9nbGF2QzFBWTI1WVRDVGFsT1JrLW5kZ3dhOTZ2NFdYVldBMjlfazBkMjA1NmN5TU93eERNdFZHOGpIYzExdFdSU0xVNDM3a2hzT05faDBvT19FZXl4MkdZaUVBRTJWaTVLWnhuQdIB7gFBVV95cUxQMGxiUzZlQUptYkRDZzBSWEc1dG9oejdHaEM2Q2VfaGJzVUhVS1FVN2VEclNhV0JMRnJEUzRidVk4VlctVE0zcDVCZHpRX0dsYnZ4Y0hscjAzWEI1UzlNVURYTnk1Sm1JTC1FUWx5dDlZb1FnQzMxM1haUjJvZko4TXV6dGZOby1ZVGowQXFhZzRjc1MtbFFKR1owaE14YkVBaFJ6TlJvR0RLdmlhSWFRVkZTcG5wYUlXdzVqZWk5NzVfTGMwcW1oVy1RX2diSFBkUHVDU0FfRXFrbFJjbm5mdVVsc1ZDM0std2o0Z2VB?oc=5",
+          "excerpt": "Doing it right: Chery Malaysia responds rapidly to brake issue problem in hope to not harm exceptional start to 2024 &nbsp;&nbsp; Zigwheels"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397539+00:00",
+      "created_at": "2026-09-18T18:36:57.252258+00:00",
       "rank": 11
     },
     {
@@ -352,7 +352,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397924+00:00",
+      "created_at": "2026-09-18T18:36:57.251995+00:00",
       "rank": 12
     },
     {
@@ -381,37 +381,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397975+00:00",
+      "created_at": "2026-09-18T18:36:57.252072+00:00",
       "rank": 13
-    },
-    {
-      "id": "opp-dd413ee9181bf7d0",
-      "project": "affiliate-project",
-      "problem": "MAZDA 3 1.5 Liftback Questions",
-      "normalized_problem": "mazda 3 1 5 liftback questions",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1whuczy/mazda_3_15_liftback_questions/",
-          "excerpt": "I&#39;ll be receiving my Mazda 3 Liftback in a few weeks time. To all Mazda 3 Liftback owners. I have some questions. Is installing dashcam have severe impact on the battery lifespan/longevity? What brand of dashcam works well with the car? Anyone replace the maggi mats with 3rd party brand like Trapo etc? Any other tips/tricks for new owner that isn&#39;t mention by Sales Advisor or the manual? &#32; submitted by &#32; /u/zax7077 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397563+00:00",
-      "rank": 14
     },
     {
       "id": "opp-e29f719f061ff2cd",
@@ -439,8 +410,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397831+00:00",
-      "rank": 15
+      "created_at": "2026-09-18T18:36:57.251554+00:00",
+      "rank": 14
     },
     {
       "id": "opp-b39666cf0ca2d258",
@@ -468,14 +439,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397859+00:00",
-      "rank": 16
+      "created_at": "2026-09-18T18:36:57.251865+00:00",
+      "rank": 15
     },
     {
-      "id": "opp-242411f2752aceb8",
+      "id": "opp-c65aaaa79095abae",
       "project": "affiliate-project",
-      "problem": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature - asiaone.com",
-      "normalized_problem": "no car no problem singaporeans can now drive getgo cars into malaysia under new cross border feature asiaone com",
+      "problem": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature - AsiaOne",
+      "normalized_problem": "no car no problem singaporeans can now drive getgo cars into malaysia under new cross border feature asiaone",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -492,12 +463,41 @@
         {
           "source": "Google News automotive Malaysia",
           "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOWFE5RC1hMHJ5cmNhSzVzeE9tWWhVRVMxbHlPRkd6bTJhdlZkcWppRnBLeUxVbW5IM3phWElPLTh1OENpdzNxdzRkV0FyeFdNZmJqdjhKRkVLMFFSOEN3a3haRlplcHM4dUk3ZF9lLVljQnhvQm1PZE9WQWhlVkZTOFRQNA?oc=5",
-          "excerpt": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature &nbsp;&nbsp; asiaone.com"
+          "excerpt": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature &nbsp;&nbsp; AsiaOne"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397702+00:00",
+      "created_at": "2026-09-18T18:36:57.251503+00:00",
+      "rank": 16
+    },
+    {
+      "id": "opp-928e48f226c4ca79",
+      "project": "affiliate-project",
+      "problem": "Opinion Needed : Worth buying Volkswagen MK6 1.4 TSI?",
+      "normalized_problem": "opinion needed worth buying volkswagen mk6 1 4 tsi",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 5,
+        "problem_strength": 5,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjtkjf/opinion_needed_worth_buying_volkswagen_mk6_14_tsi/",
+          "excerpt": "Hi guys, nak minta opinion. Saya tengah consider nak beli VW Golf Mk6 1.4 TSI. Owner bagitahu gearbox, engine, mechatronic, belting + tensioner, water pump semua dah pernah buat/tukar. So saya nak tanya pendapat owner/yang pernah pakai Mk6 1.4 TSI, berbaloi ke kalau saya ambil kereta ni? Adakah major parts yang dah tukar ni kira advantage sebab common problem dah settle, atau masih banyak potential problem yang saya kena expect? Kalau ada yang pernah own model ni or still own this model, boleh s"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250712+00:00",
       "rank": 17
     },
     {
@@ -526,7 +526,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397449+00:00",
+      "created_at": "2026-09-18T18:36:57.251232+00:00",
       "rank": 18
     },
     {
@@ -555,18 +555,18 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397420+00:00",
+      "created_at": "2026-09-18T18:36:57.251172+00:00",
       "rank": 19
     },
     {
-      "id": "opp-26d6c29680254240",
+      "id": "opp-2cc48f0f68c5b894",
       "project": "affiliate-project",
-      "problem": "Saga MC3 Premium vs S70 Lite",
-      "normalized_problem": "saga mc3 premium vs s70 lite",
+      "problem": "Questions on cleaning o2 and vvt sensors (Bezza 1.3)",
+      "normalized_problem": "questions on cleaning o2 and vvt sensors bezza 1 3",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 3,
+        "buyer_intent": 1,
         "problem_strength": 1,
         "content_potential": 3,
         "source_strength": 1.0,
@@ -578,43 +578,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wihulv/saga_mc3_premium_vs_s70_lite/",
-          "excerpt": "Budget under 60k, paying half and the rest I&#39;m taking a 3 years loan. Also wanna inquire about your tolerance on the S70 lite price, what do you think its a good price and how much would you pay for it? Btw I really love this white and red accent S70. Edit: Planning to keep it for long term - 10-15 years at least. City driving usage (puchong traffic jam) with occasional highway/ long distance driving (once a quarter). Single but planning to use this for family car in the future. &#32; submit"
+          "url": "https://www.reddit.com/r/kereta/comments/1wjf442/questions_on_cleaning_o2_and_vvt_sensors_bezza_13/",
+          "excerpt": "Just get to know the existance of vvt sensor in Bezza 1 hour ago. Along the way, thought about o2 sensors too. Thinking of cleaning them tonight. Questions, I should be able to use the mr diy Aeropack Throttle, carby and choke cleaner right for these sensors, right? And I know bezza 1.3 have 2 oxygen sensors. Is cleaning them a good idea? Or do we need to replace them? I kinda can guess the 2nd oxygen sensor (maybe around the exhaust pipe), but where is the first sensor? I know its inside the en"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397512+00:00",
+      "created_at": "2026-09-18T18:36:57.250903+00:00",
       "rank": 20
-    },
-    {
-      "id": "opp-0a8d7941bf424445",
-      "project": "affiliate-project",
-      "problem": "Selling my car",
-      "normalized_problem": "selling my car",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 3,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wiikt5/selling_my_car/",
-          "excerpt": "Hi all, I am wanting to sell my Bezza 2019 via private sale. This is my first time selling a car privately. (Obviously wanting to get more money compared to going through carsome etc.) Posted on various platforms already. A guy from marketplace contacted me and willing to buy with cash which is fine. After that only i realised he is a middle man and said that there is already a confirmed buyer through him. The car is only going to be available in middle of October as i am still driving it till t"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397502+00:00",
-      "rank": 21
     },
     {
       "id": "opp-b571a67295a9321f",
@@ -642,36 +613,65 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397469+00:00",
-      "rank": 22
+      "created_at": "2026-09-18T18:36:57.251278+00:00",
+      "rank": 21
     },
     {
-      "id": "opp-3e9a687f128f4417",
+      "id": "opp-7ece7beb3eeab4ba",
       "project": "affiliate-project",
-      "problem": "Why \"Oil-Rich\" Malaysia Still Imports 50% of Its Fuel, And Why That’s a Problem Right Now - carz.com.my",
-      "normalized_problem": "why oil rich malaysia still imports 50 of its fuel and why that s a problem right now carz com my",
+      "problem": "USED X70 CBU vs CKD? 6AT vs DCT",
+      "normalized_problem": "used x70 cbu vs ckd 6at vs dct",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
+        "buyer_intent": 2,
+        "problem_strength": 1,
         "content_potential": 2,
-        "source_strength": 0.75,
-        "freshness_factor": 0.55,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
         "evidence_count": 1
       },
       "evidence": [
         {
-          "source": "Google News automotive Malaysia",
-          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTTk3Q3FlbDZzOXl1QWRpM25qQzA1ZDFRRndxYkRJZlpPTzlYeVpZZDV5WTBuNVY2ZUVQQ2pQSHBUamd4NFVOWi1KUG10ZmZ6VDJMYmstLXo3akRPNk9ReDN4c2Y4QzdldjNDSkhYdUtZY3ZvdFBXRGZlYzVoWjkwSmhMd2xNWU5PWW95SlB4dkJaUkZLcEEtc2I3N2lpaWdnLW1kVEx5amJRVXpBY3Bvb0FYRUlkdE0?oc=5",
-          "excerpt": "Why \"Oil-Rich\" Malaysia Still Imports 50% of Its Fuel, And Why That’s a Problem Right Now &nbsp;&nbsp; carz.com.my"
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjta4g/used_x70_cbu_vs_ckd_6at_vs_dct/",
+          "excerpt": "hi asking for opinion on used x70. could users and owner comments on the reliability of gearbox and engine. from my brief research i was told 6AT are more reliable and cheaper to maintain or replace. should i go for CBU? side notes im not the driver, i recently fall sick and becomed visually impaired and looking for a comfortable suv as a passenger. my budget is around 40-45k cash. &#32; submitted by &#32; /u/AdelBiang [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397845+00:00",
+      "created_at": "2026-09-18T18:36:57.250760+00:00",
+      "rank": 22
+    },
+    {
+      "id": "opp-429a593fc2a3bb5f",
+      "project": "affiliate-project",
+      "problem": "Where to buy these in delhi? Original Alloyy",
+      "normalized_problem": "where to buy these in delhi original alloyy",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjnqud/where_to_buy_these_in_delhi_original_alloyy/",
+          "excerpt": "&#32; submitted by &#32; /u/Low-Mango-3981 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250810+00:00",
       "rank": 23
     },
     {
@@ -700,14 +700,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397432+00:00",
+      "created_at": "2026-09-18T18:36:57.251198+00:00",
       "rank": 24
     },
     {
-      "id": "opp-aed45d456bedeb0b",
+      "id": "opp-4f9cde420511ab86",
       "project": "affiliate-project",
-      "problem": "betis vs getafe",
-      "normalized_problem": "betis vs getafe",
+      "problem": "bayern vs union berlin",
+      "normalized_problem": "bayern vs union berlin",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -724,19 +724,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "betis vs getafe"
+          "excerpt": "bayern vs union berlin"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397625+00:00",
+      "created_at": "2026-09-18T18:36:57.251316+00:00",
       "rank": 25
     },
     {
-      "id": "opp-30643ad3f786b29a",
+      "id": "opp-621b0e0b34384a5f",
       "project": "affiliate-project",
-      "problem": "india vs afghanistan",
-      "normalized_problem": "india vs afghanistan",
+      "problem": "brentford vs chelsea",
+      "normalized_problem": "brentford vs chelsea",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -753,19 +753,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "india vs afghanistan"
+          "excerpt": "brentford vs chelsea"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397661+00:00",
+      "created_at": "2026-09-18T18:36:57.251295+00:00",
       "rank": 26
     },
     {
-      "id": "opp-05952fea347bcc32",
+      "id": "opp-5b52928b73777b7d",
       "project": "affiliate-project",
-      "problem": "man city vs norwich city",
-      "normalized_problem": "man city vs norwich city",
+      "problem": "resident evil movie review",
+      "normalized_problem": "resident evil movie review",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -782,77 +782,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "man city vs norwich city"
+          "excerpt": "resident evil movie review"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397610+00:00",
+      "created_at": "2026-09-18T18:36:57.251398+00:00",
       "rank": 27
     },
     {
-      "id": "opp-34358e27ae7aafff",
+      "id": "opp-555a3e65bda7456f",
       "project": "affiliate-project",
-      "problem": "real sociedad vs bournemouth",
-      "normalized_problem": "real sociedad vs bournemouth",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "real sociedad vs bournemouth"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397592+00:00",
-      "rank": 28
-    },
-    {
-      "id": "opp-b431e61ad6343141",
-      "project": "affiliate-project",
-      "problem": "sri lanka vs england",
-      "normalized_problem": "sri lanka vs england",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "sri lanka vs england"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397618+00:00",
-      "rank": 29
-    },
-    {
-      "id": "opp-195bcec9a57bfb31",
-      "project": "affiliate-project",
-      "problem": "DCT Cooler + Aftermarket Intercooler",
-      "normalized_problem": "dct cooler aftermarket intercooler",
+      "problem": "Absolute cheapest way to renew car insurance?",
+      "normalized_problem": "absolute cheapest way to renew car insurance",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -868,14 +810,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wikei4/dct_cooler_aftermarket_intercooler/",
-          "excerpt": "Would adding a DCT cooler + aftermarket intercooler bring any benefit? Not chasing HP figures, just want my gearbox and engine to last long Battle Bee DCT cooler Works Engineering Intercooler Anyone got experience, please share &#32; submitted by &#32; /u/Practical-Kiwi-9202 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wjd9oj/absolute_cheapest_way_to_renew_car_insurance/",
+          "excerpt": "My car insurance expires on Jan 2027 and I’m looking to shop around for the cheapest method to renew it. I also drive like 32k km this year so “drive less” option doesn’t really work for me. In 2026 I paid almost 4k 0% ncd, I’m expecting 3k or lesser going into 2027 with 25% ncd. Jpj app, BJAK, policystreet, Shopee etc. Anyone knows the cheapest way to renew it? &#32; submitted by &#32; /u/TonightCurrent6959 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397477+00:00",
-      "rank": 30
+      "created_at": "2026-09-18T18:36:57.250986+00:00",
+      "rank": 28
     },
     {
       "id": "opp-ba6e552e46f76b57",
@@ -903,8 +845,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397375+00:00",
-      "rank": 31
+      "created_at": "2026-09-18T18:36:57.251062+00:00",
+      "rank": 29
     },
     {
       "id": "opp-be6c48deb835562d",
@@ -932,14 +874,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397456+00:00",
-      "rank": 32
+      "created_at": "2026-09-18T18:36:57.251248+00:00",
+      "rank": 30
     },
     {
-      "id": "opp-675e9ec0d1a0bf3a",
+      "id": "opp-c1a7e78d36c78332",
       "project": "affiliate-project",
-      "problem": "Jalur Gemilang Gathering 2026",
-      "normalized_problem": "jalur gemilang gathering 2026",
+      "problem": "I saw a WRX on Ulu Yam and it reminded me of this idiot",
+      "normalized_problem": "i saw a wrx on ulu yam and it reminded me of this idiot",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -955,43 +897,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wijajc/jalur_gemilang_gathering_2026/",
-          "excerpt": "Some rare cars I took during the Jalur Gemilang Gathering 2026 on Malaysia Day. &#32; submitted by &#32; /u/zackpoh48 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wjdx8x/i_saw_a_wrx_on_ulu_yam_and_it_reminded_me_of_this/",
+          "excerpt": "&#32; submitted by &#32; /u/Fuzzy_Mulberry5511 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397495+00:00",
-      "rank": 33
-    },
-    {
-      "id": "opp-961be147091c038f",
-      "project": "affiliate-project",
-      "problem": "Modified Mazda CX-5 KF?",
-      "normalized_problem": "modified mazda cx 5 kf",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1whtz1j/modified_mazda_cx5_kf/",
-          "excerpt": "As the title suggests, has anyone here owned and modified their Mazda CX-5 2017 - 2024, especially the most recent 2024 facelift? What have you done to your car? Anyone lowered it or put on a nice sounding exhaust? Just looking for some inspiration. Thanks! &#32; submitted by &#32; /u/SnooSketches6622 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397571+00:00",
-      "rank": 34
+      "created_at": "2026-09-18T18:36:57.250966+00:00",
+      "rank": 31
     },
     {
       "id": "opp-a7fa874dcbb4fd49",
@@ -1019,66 +932,95 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397328+00:00",
+      "created_at": "2026-09-18T18:36:57.251020+00:00",
+      "rank": 32
+    },
+    {
+      "id": "opp-5c7a77f169827719",
+      "project": "affiliate-project",
+      "problem": "Question about ETC (electronic throttle control)",
+      "normalized_problem": "question about etc electronic throttle control",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjhzro/question_about_etc_electronic_throttle_control/",
+          "excerpt": "I&#39;m getting an etc unit for my Bezza 1.3x, the simple plug in ones. Mainly because I noticed for highway driving the throttle lag is just ridiculous and overtaking can be a pain. I wanted to get an opinion from anyone who has them installed on their cars. What&#39;s the risk and what not &#32; submitted by &#32; /u/Itsmyoppinion [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250861+00:00",
+      "rank": 33
+    },
+    {
+      "id": "opp-4e90ab52925ca8bd",
+      "project": "affiliate-project",
+      "problem": "Question on passing toll via motorbike",
+      "normalized_problem": "question on passing toll via motorbike",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjrkbr/question_on_passing_toll_via_motorbike/",
+          "excerpt": "As a motor biker, if I missed the bike lane, and have to go through the car toll lane. Will squeezing pass this small gap screw over the car paying the toll? Are there any etiquette that I am supposed to follow? &#32; submitted by &#32; /u/jinjerlypotato [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.250787+00:00",
+      "rank": 34
+    },
+    {
+      "id": "opp-a7aee66ce16554b7",
+      "project": "affiliate-project",
+      "problem": "What are my options?",
+      "normalized_problem": "what are my options",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wjbvte/what_are_my_options/",
+          "excerpt": "Greetings, fellow Malaysians. My daily drive is a Myvi 1.5H (2018), and I&#39;m planning to upgrade to a bigger car now that my family is growing; three kids, aged 9F, 6M, and 2F. The luggage space just isn&#39;t cutting it anymore. I&#39;m already stuffing things into the legroom area. My budget is around RM1.4k per month for a new car. I&#39;d prefer an SUV, but I&#39;m open to a sedan as well. Right now, I&#39;m eyeing the Yaris Cross HEV. A 9-year loan would put me at roughly RM1k per month,"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.251003+00:00",
       "rank": 35
-    },
-    {
-      "id": "opp-33f41ac14352efde",
-      "project": "affiliate-project",
-      "problem": "Suggestions needed- 30-40k budget",
-      "normalized_problem": "suggestions needed 30 40k budget",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wik5jy/suggestions_needed_3040k_budget/",
-          "excerpt": "Hi all, can you guys help me with what car i should get.. Some facts, 90km drive everyday, Bangi to PJ and back. Should be fuel economical, have some ride quality and must be reliable. Thank you &#32; submitted by &#32; /u/azalam89 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397486+00:00",
-      "rank": 36
-    },
-    {
-      "id": "opp-51e9a957c246f989",
-      "project": "affiliate-project",
-      "problem": "Unicorn Of The Day 🦄",
-      "normalized_problem": "unicorn of the day",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wihozf/unicorn_of_the_day/",
-          "excerpt": "I found my long-time childhood dream of a car. Fell in love with this Mustang when I saw Barricade in Transformers (2007). Edit: TIL that the first-gen Barricade wasn&#39;t a Mustang, but a Saleen S281 Extreme, which shared similar 2007 Mustang design philosophies. &#32; submitted by &#32; /u/Cranium-Delirium [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397521+00:00",
-      "rank": 37
     },
     {
       "id": "opp-6046460cceabba68",
@@ -1106,8 +1048,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397412+00:00",
-      "rank": 38
+      "created_at": "2026-09-18T18:36:57.251153+00:00",
+      "rank": 36
     },
     {
       "id": "opp-728dffb5aa9d210b",
@@ -1135,8 +1077,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397360+00:00",
-      "rank": 39
+      "created_at": "2026-09-18T18:36:57.251038+00:00",
+      "rank": 37
     },
     {
       "id": "opp-891fbbcf5f5ce4fe",
@@ -1164,14 +1106,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397777+00:00",
-      "rank": 40
+      "created_at": "2026-09-18T18:36:57.251719+00:00",
+      "rank": 38
     },
     {
-      "id": "opp-6a1c836b04cbf9bf",
+      "id": "opp-fefc028971954f92",
       "project": "affiliate-project",
-      "problem": "EVs Have No Resale Value — Myth or Truth? - carz.com.my",
-      "normalized_problem": "evs have no resale value myth or truth carz com my",
+      "problem": "EVs Have No Resale Value — Myth or Truth? - Carz Automedia Malaysia",
+      "normalized_problem": "evs have no resale value myth or truth carz automedia malaysia",
       "opportunity_score": 95.8,
       "priority": "high",
       "signals": {
@@ -1188,13 +1130,13 @@
         {
           "source": "Google News automotive Malaysia",
           "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1HUnRuaDlUeE1XMGJ4NDVuZUE2OGJFVElyalBmcDZpclI4V0pwZnB1VzBVZWZxWXhUQi1Nck4xcC0tZ0g0U2FHaWV2eEl4S1N5aXRkd1hxcV9TZWtzYjRNQjF3MEU5TWdLZ3A5U2RvMmFjZE9UVmhnOGFR?oc=5",
-          "excerpt": "EVs Have No Resale Value — Myth or Truth? &nbsp;&nbsp; carz.com.my"
+          "excerpt": "EVs Have No Resale Value — Myth or Truth? &nbsp;&nbsp; Carz Automedia Malaysia"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397790+00:00",
-      "rank": 41
+      "created_at": "2026-09-18T18:36:57.251657+00:00",
+      "rank": 39
     },
     {
       "id": "opp-1d3d7ce7074e7450",
@@ -1222,8 +1164,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.398006+00:00",
-      "rank": 42
+      "created_at": "2026-09-18T18:36:57.252166+00:00",
+      "rank": 40
     },
     {
       "id": "opp-27527b13a1303d44",
@@ -1251,8 +1193,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.398028+00:00",
-      "rank": 43
+      "created_at": "2026-09-18T18:36:57.252231+00:00",
+      "rank": 41
     },
     {
       "id": "opp-5407d70172ce5845",
@@ -1280,8 +1222,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397995+00:00",
-      "rank": 44
+      "created_at": "2026-09-18T18:36:57.252138+00:00",
+      "rank": 42
     },
     {
       "id": "opp-48b3b64e3361abc1",
@@ -1309,8 +1251,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397762+00:00",
-      "rank": 45
+      "created_at": "2026-09-18T18:36:57.251780+00:00",
+      "rank": 43
     },
     {
       "id": "opp-2ad1e7630da69154",
@@ -1338,8 +1280,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397802+00:00",
-      "rank": 46
+      "created_at": "2026-09-18T18:36:57.251624+00:00",
+      "rank": 44
     },
     {
       "id": "opp-da9bd9ef21f08c20",
@@ -1367,8 +1309,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397938+00:00",
-      "rank": 47
+      "created_at": "2026-09-18T18:36:57.251965+00:00",
+      "rank": 45
     },
     {
       "id": "opp-db5e22678c13826c",
@@ -1396,8 +1338,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397716+00:00",
-      "rank": 48
+      "created_at": "2026-09-18T18:36:57.251915+00:00",
+      "rank": 46
     },
     {
       "id": "opp-b9401fe0d3a9b180",
@@ -1425,14 +1367,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397959+00:00",
-      "rank": 49
+      "created_at": "2026-09-18T18:36:57.252016+00:00",
+      "rank": 47
     },
     {
-      "id": "opp-3d9fd49780729c7b",
+      "id": "opp-23bf81fe727880dc",
       "project": "affiliate-project",
-      "problem": "abhishek sharma",
-      "normalized_problem": "abhishek sharma",
+      "problem": "capital a bigpay tune protect divestment",
+      "normalized_problem": "capital a bigpay tune protect divestment",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1449,12 +1391,70 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "abhishek sharma"
+          "excerpt": "capital a bigpay tune protect divestment"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-17T19:13:31.397632+00:00",
+      "created_at": "2026-09-18T18:36:57.251350+00:00",
+      "rank": 48
+    },
+    {
+      "id": "opp-abe1ec3612dc4a9e",
+      "project": "affiliate-project",
+      "problem": "joao pedro",
+      "normalized_problem": "joao pedro",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "joao pedro"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.251332+00:00",
+      "rank": 49
+    },
+    {
+      "id": "opp-c8f33fbcb1758f13",
+      "project": "affiliate-project",
+      "problem": "mayat",
+      "normalized_problem": "mayat",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "mayat"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-18T18:36:57.251425+00:00",
       "rank": 50
     }
   ],
