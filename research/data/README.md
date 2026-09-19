@@ -34,3 +34,8 @@ cross-check are mandatory.
   extracting stock codes from PDFs is an automated convenience and must be QA'd.
 - No current Shariah list is applied backwards.
 - No strategy result may be produced until the data QA gate passes.
+
+## Smoke-test trigger
+
+A data-pipeline change on the main branch should trigger the GitHub Actions
+smoke test before the full dataset is attempted.
