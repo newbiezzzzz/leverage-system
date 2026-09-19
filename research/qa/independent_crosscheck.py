@@ -32,7 +32,10 @@ def kls_history(code: str) -> pd.DataFrame:
     body = re.sub(r"\s+", "", r.text)
     m = re.search(r"data=\[(.*?),\];", body)
     if not m:
-        raise ValueError("KLSE Screener data array not found")
+        raise ValueError(
+            f"KLSE Screener data array not found; status={r.status_code}; "
+            f"url={r.url}; body={r.text[:1500]!r}"
+        )
     rows = []
     for raw in re.findall(r"\[(.*?)\]", m.group(1)):
         parts = raw.split(",")
