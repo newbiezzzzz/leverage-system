@@ -18,6 +18,9 @@ OUT.mkdir(parents=True, exist_ok=True)
 def main():
     u = pd.read_csv(UNIVERSE, dtype={"raw_code": str})
     symbols = sorted(u["yahoo_symbol"].dropna().unique())
+    max_symbols = int(__import__("os").environ.get("MAX_SYMBOLS", "0"))
+    if max_symbols > 0:
+        symbols = symbols[:max_symbols]
     print("Symbols:", len(symbols))
     # Batch downloads reduce request overhead.
     for i in range(0, len(symbols), 50):
