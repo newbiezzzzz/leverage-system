@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-DATA_ROOT = HERE.parent / "data"
+DATA_ROOT = HERE.parent / "data" / "data"
 OHLCV = DATA_ROOT / "ohlcv"
 SHARIAH = DATA_ROOT / "shariah" / "shariah_snapshots.csv"
 FAILURES = DATA_ROOT / "download_failures.csv"
