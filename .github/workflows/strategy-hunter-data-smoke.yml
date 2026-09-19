@@ -6,6 +6,7 @@ on:
       - "research/data/**"
       - "research/qa/**"
       - ".github/workflows/strategy-hunter-data-smoke.yml"
+      - ".github/workflows/strategy-hunter-data-full.trigger"
   workflow_dispatch:
 
 jobs:
@@ -61,3 +62,66 @@ jobs:
             research/data/data/
             research/qa/strategy_hunter_data_qa.json
           retention-days: 7
+
+  full:
+    if: >-
+      github.event_name == 'push' &&
+      (contains(github.event.head_commit.added, '.github/workflows/strategy-hunter-data-full.trigger') ||
+       contains(github.event.head_commit.modified, '.github/workflows/strategy-hunter-data-full.trigger'))
+    needs: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install data tools
+        run: pip install -r research/data/requirements.txt
+
+      - name: Build full SC Shariah snapshots
+        run: |
+          cd research/data
+          python build_shariah_universe.py
+
+      - name: Download full historical OHLCV
+        env:
+          LATEST_ONLY: "0"
+          MAX_SYMBOLS: "0"
+        run: |
+          cd research/data
+          python download_ohlcv.py
+
+      - name: QA full dataset
+        run: python research/qa/strategy_hunter_data_qa.py
+
+      - name: Full dataset inventory
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          p = Path("research/data/data/shariah/shariah_snapshots.csv")
+          df = pd.read_csv(p)
+          files = list(Path("research/data/data/ohlcv").glob("*.csv"))
+          failures = pd.read_csv("research/data/data/download_failures.csv")
+          exclusions = pd.read_csv("research/data/data/qa_exclusions.csv")
+          print("Shariah snapshot rows:", len(df))
+          print("Unique Shariah symbols:", df.yahoo_symbol.nunique())
+          print("OHLCV files:", len(files))
+          print("Download failures:", len(failures))
+          print("Cleaned-row exclusions:", len(exclusions))
+          if not files:
+              raise SystemExit("No OHLCV files produced")
+          PY
+
+      - name: Upload full dataset and QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: strategy-hunter-data-full
+          path: |
+            research/data/data/
+            research/qa/strategy_hunter_data_qa.json
+          retention-days: 30
+          compression-level: 6
