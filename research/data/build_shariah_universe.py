@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build point-in-time SC Shariah universe snapshots from official SC PDFs."""
+"""Build point-in-time SC Shariah equity snapshots from official SC PDFs."""
 from __future__ import annotations
 
 import hashlib
@@ -20,17 +20,13 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 DATE_RE = re.compile(
     r"\b(\d{1,2}\s+(?:JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|"
-    r"AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+\d{4})\b",
-    re.I,
+    r"AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+\d{4})\b", re.I
 )
 MONTH_YEAR_RE = re.compile(
     r"\b(JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|"
-    r"SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+(\d{4})\b",
-    re.I,
+    r"SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+(\d{4})\b", re.I
 )
 
-# Direct official SC PDFs discovered from the SC archive/search index.
-# These are historical snapshots; never backfill a later list into an earlier date.
 OFFICIAL_SEED_PDFS = [
     ("29 May 2026", "https://www.sc.com.my/api/documentms/download.ashx?id=9f03c706-607f-4fbe-b4c7-91afc352ee49"),
     ("28 November 2025", "https://www.sc.com.my/api/documentms/download.ashx?id=5f0bb08b-802c-49a0-b093-d6f0edf6c276"),
@@ -55,13 +51,12 @@ OFFICIAL_SEED_PDFS = [
     ("27 May 2016", "https://www.sc.com.my/api/documentms/download.ashx?id=a4781f4e-b6c4-4f40-bb1c-17d5aded73f6"),
 ]
 
-# Stock rows in SC PDFs may be extracted as:
-#   1. 0209 AIMFLEX Bhd
-# or as separate lines:
-#   1.
-#   0209
-#   AIMFLEX Bhd
-CODE_ROW_RE = re.compile(r"(?<!\d)\d{1,3}\s*[\.)]\s*(\d{4,5})(?!\d)\s+", re.I)
+# SC full-list rows look like "1. 7086 Ablegroup Bhd".  Warrants may carry
+# alphabetic suffixes in the security code; those are not ordinary equities.
+CODE_ROW_RE = re.compile(
+    r"(?<!\d)\d{1,3}\s*[\.)]\s*(\d{4,5}[A-Z]{0,3})(?![A-Z0-9])",
+    re.I,
+)
 
 
 def discover_pdfs():
@@ -107,9 +102,7 @@ def effective_date(context: str, text: str) -> str:
         month = pd.to_datetime(m.group(1), format="%B").month
         year = int(m.group(2))
         dates = pd.date_range(
-            f"{year}-{month:02d}-01",
-            f"{year}-{month:02d}-31",
-            freq="D",
+            f"{year}-{month:02d}-01", f"{year}-{month:02d}-31", freq="D"
         )
         fridays = [d for d in dates if d.weekday() == 4]
         if fridays:
@@ -118,9 +111,16 @@ def effective_date(context: str, text: str) -> str:
 
 
 def expected_universe_count(text: str) -> int | None:
-    # Pick the largest plausible count explicitly associated with
-    # "Shariah-compliant securities". Intro text often mentions newly
-    # classified counts, while the complete universe is much larger.
+    # Table 3 rows use "Total <shariah-count> <all-count> <percentage>".
+    m = re.search(
+        r"(?:TOTAL|Total)\s*\n\s*(?:Jumlah\s*)?(?:\n\s*)?"
+        r"([0-9][0-9,]{2,4})\s+([0-9][0-9,]{2,5})\s+([0-9]{1,3})",
+        text,
+        flags=re.I,
+    )
+    if m:
+        return int(m.group(1).replace(",", ""))
+
     values = [
         int(x.replace(",", ""))
         for x in re.findall(
@@ -131,17 +131,6 @@ def expected_universe_count(text: str) -> int | None:
             flags=re.I,
         )
     ]
-
-    # Fallback: sector-table TOTAL rows, e.g. "TOTAL 850 1,056 80".
-    values.extend(
-        int(x.replace(",", ""))
-        for x in re.findall(
-            r"TOTAL\s+(?:\n|\s)+([0-9][0-9,]{2,4})\s+"
-            r"(?:[0-9][0-9,]{2,4}|Nil|NIL)",
-            text,
-            flags=re.I,
-        )
-    )
     return max(values) if values else None
 
 
@@ -149,11 +138,7 @@ def extract_full_universe_codes(text: str) -> tuple[list[str], int | None, str]:
     upper = text.upper()
     expected = expected_universe_count(text)
 
-    # Candidate starts: every explicit full-list title plus Appendix II and
-    # main-market headings. Score each candidate by how close its unique code
-    # count is to the SC-reported universe count.
     candidates = []
-
     for pattern in (
         r"LIST OF SHARIAH[\s\W]{0,20}COMPLIANT SECURITIES",
         r"APPENDIX\s+II",
@@ -164,40 +149,39 @@ def extract_full_universe_codes(text: str) -> tuple[list[str], int | None, str]:
     if not candidates:
         raise ValueError("No full-list anchor found")
 
-    # Prefer later-document candidates; early candidates usually include
-    # introductory/change tables in addition to the universe.
     candidates = sorted(set(candidates))
-
     best = None
+
     for start in candidates:
         tail = text[start:]
-        codes = list(dict.fromkeys(CODE_ROW_RE.findall(tail)))
-        n = len(codes)
+        all_codes = list(dict.fromkeys(CODE_ROW_RE.findall(tail)))
+        equity_codes = [c for c in all_codes if c.isdigit()]
+        n = len(equity_codes)
 
         if expected:
-            # Allow a modest difference because some older lists report the
-            # Main/ACE total separately from a LEAP-market section.
             distance = abs(n - expected) / expected
             score = distance + (0.05 if start < len(text) * 0.30 else 0.0)
             if best is None or score < best[0]:
-                best = (score, start, codes, n)
+                best = (score, start, equity_codes, n, len(all_codes) - n)
         else:
-            # Without an expected count, prefer the largest credible later
-            # block rather than a tiny table.
             score = (-n, 0 if start >= len(text) * 0.30 else 1)
             if best is None or score < best[0]:
-                best = (score, start, codes, n)
+                best = (score, start, equity_codes, n, len(all_codes) - n)
 
-    _, start, codes, n = best
+    _, start, codes, n, excluded_non_equity = best
 
-    if expected and not (0.85 * expected <= n <= 1.15 * expected):
+    if expected and not (0.95 * expected <= n <= 1.05 * expected):
         raise ValueError(
-            f"Extracted {n} unique stock codes; SC-reported universe is {expected}"
+            f"Extracted {n} equity codes; SC-reported universe is {expected}"
         )
     if n < 500:
-        raise ValueError(f"Suspiciously small full universe: {n} codes")
+        raise ValueError(f"Suspiciously small equity universe: {n} codes")
 
-    return codes, expected, text[start : start + 160].replace("\n", " ")
+    return (
+        codes,
+        expected,
+        text[start : start + 160].replace("\n", " "),
+    )
 
 
 def main():
@@ -223,9 +207,6 @@ def main():
             sha = hashlib.sha256(content).hexdigest()
 
             for raw in codes:
-                # Preserve the exact SC Bursa stock code. Leading zeros matter
-                # for Yahoo symbols such as 0209.KL and 0059.KL.
-                raw = raw.zfill(len(raw))
                 rows.append(
                     {
                         "effective_date": date,
@@ -238,7 +219,7 @@ def main():
 
             print(
                 date,
-                "codes=", len(codes),
+                "equity_codes=", len(codes),
                 "expected=", expected,
                 "anchor=", anchor,
                 url,
@@ -256,11 +237,8 @@ def main():
     )
     df.to_csv(OUT / "shariah_snapshots.csv", index=False)
     print(
-        "Wrote",
-        len(df),
-        "snapshot rows across",
-        df.effective_date.nunique(),
-        "effective dates",
+        "Wrote", len(df), "snapshot rows across",
+        df.effective_date.nunique(), "effective dates",
     )
 
 
