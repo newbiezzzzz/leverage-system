@@ -14,10 +14,21 @@ OUT.mkdir(parents=True, exist_ok=True)
 DATE_RE = re.compile(r"\b(\d{1,2}\s+(?:JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+\d{4})\b", re.I)
 MONTH_YEAR_RE = re.compile(r"\b(JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+(\d{4})\b", re.I)
 
+# Explicit official SC PDF seeds. The archive page renders its historical
+# download controls dynamically, so plain HTTP parsing only exposes a subset.
+OFFICIAL_SEED_PDFS = [
+    ("29 May 2026", "https://www.sc.com.my/api/documentms/download.ashx?id=9f03c706-607f-4fbe-b4c7-91afc352ee49"),
+    ("28 November 2025", "https://www.sc.com.my/api/documentms/download.ashx?id=5f0bb08b-802c-49a0-b093-d6f0edf6c276"),
+    ("30 May 2025", "https://www.sc.com.my/api/documentms/download.ashx?id=2671e073-8b4c-4291-af90-7cb34ad7715f"),
+    ("29 November 2024", "https://www.sc.com.my/api/documentms/download.ashx?id=1920c06f-61e5-46d7-8016-28a918acd4c8"),
+    ("31 May 2024", "https://www.sc.com.my/api/documentms/download.ashx?id=d540937f-6840-41e1-b4ec-b3681b11bedf"),
+    ("24 November 2023", "https://www.sc.com.my/api/documentms/download.ashx?id=c39e4960-6720-40da-92f3-633e6c86c36e"),
+]
+
 def discover_pdfs():
     html = requests.get(SC_PAGE, timeout=30).text
     soup = BeautifulSoup(html, "html.parser")
-    links = []
+    links = list(OFFICIAL_SEED_PDFS)
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if "download.ashx" not in href.lower() and not href.lower().endswith(".pdf"):
@@ -26,7 +37,6 @@ def discover_pdfs():
             href = "https://www.sc.com.my" + href
         if not href.startswith("http"):
             continue
-        # Keep broad discovery; actual PDF content is validated below.
         parts = []
         node = a
         for _ in range(3):
@@ -40,7 +50,6 @@ def discover_pdfs():
             seen.add(href)
             result.append((label, href))
     return result
-
 def pdf_text(pdf_bytes):
     doc = fitz.open(stream=pdf_bytes, filetype="pdf")
     return "\n".join(page.get_text() for page in doc)
