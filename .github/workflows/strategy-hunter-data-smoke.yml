@@ -1,0 +1,56 @@
+name: strategy-hunter-data-smoke
+
+on:
+  push:
+    paths:
+      - "research/data/**"
+      - ".github/workflows/strategy-hunter-data-smoke.yml"
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install data tools
+        run: pip install -r research/data/requirements.txt
+
+      - name: Build SC Shariah snapshots
+        run: |
+          cd research/data
+          python build_shariah_universe.py
+
+      - name: Download bounded OHLCV smoke sample
+        env:
+          MAX_SYMBOLS: "30"
+        run: |
+          cd research/data
+          python download_ohlcv.py
+
+      - name: Basic data inventory
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          p = Path("research/data/data/shariah/shariah_snapshots.csv")
+          df = pd.read_csv(p)
+          files = list(Path("research/data/data/ohlcv").glob("*.csv"))
+          print("Shariah snapshot rows:", len(df))
+          print("Unique symbols:", df.yahoo_symbol.nunique())
+          print("OHLCV files:", len(files))
+          if not files:
+              raise SystemExit("No OHLCV files produced")
+          PY
+
+      - name: Upload smoke dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: strategy-hunter-data-smoke
+          path: research/data/data/
+          retention-days: 7
