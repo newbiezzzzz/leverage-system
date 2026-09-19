@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "research/data/**"
+      - "research/qa/**"
       - ".github/workflows/strategy-hunter-data-smoke.yml"
   workflow_dispatch:
 
@@ -29,9 +30,13 @@ jobs:
       - name: Download bounded OHLCV smoke sample
         env:
           MAX_SYMBOLS: "30"
+          LATEST_ONLY: "1"
         run: |
           cd research/data
           python download_ohlcv.py
+
+      - name: QA smoke dataset
+        run: python research/qa/strategy_hunter_data_qa.py
 
       - name: Basic data inventory
         run: |
@@ -48,9 +53,11 @@ jobs:
               raise SystemExit("No OHLCV files produced")
           PY
 
-      - name: Upload smoke dataset
+      - name: Upload smoke dataset and QA
         uses: actions/upload-artifact@v4
         with:
           name: strategy-hunter-data-smoke
-          path: research/data/data/
+          path: |
+            research/data/data/
+            research/qa/strategy_hunter_data_qa.json
           retention-days: 7
