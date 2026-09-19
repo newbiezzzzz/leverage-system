@@ -121,6 +121,7 @@ def main() -> None:
                 }
             )
         except Exception as exc:
+            print("CROSSCHECK ERROR", code, repr(exc))
             errors.append({"code": code, "error": repr(exc)})
             results.append({"code": code, "status": "error", "error": repr(exc)})
 
