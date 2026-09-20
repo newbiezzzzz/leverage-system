@@ -52,7 +52,7 @@ STRATEGIES = {
     "high_volume_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03},
     "downturn_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03, "breadth_max": 0.45},
     "relative_contrarian": {"lookback": 5, "bottom_quantile": 0.20, "min_dollar_vol": 500_000.0, "max_hold": 5},
-    "regime_adaptive": {"bull_breadth": 0.55, "bear_breadth": 0.45, "momentum_lookback": 60, "momentum_hold": 40, "reversal_drop": -0.05, "reversal_hold": 5, "min_dollar_vol": 500_000.0},
+    "regime_adaptive": {"bull_breadth": 0.55, "bear_breadth": 0.45, "momentum_lookback": 60, "momentum_hold": 20, "reversal_drop": -0.05, "reversal_hold": 5, "min_dollar_vol": 500_000.0},
 }
 
 
@@ -293,9 +293,8 @@ def should_exit(i, pos_sym, entry_i, entry_price, close, ind, strategy):
     if strategy == "relative_contrarian":
         return held >= STRATEGIES[strategy]["max_hold"]
     if strategy == "regime_adaptive":
-        # The entry regime determines whether the trade is momentum or reversal.
-        # We keep the fixed conservative 40-day maximum; reversal exits earlier
-        # through the signal structure in the dedicated candidate tests.
+        # Fixed common hold avoids encoding a regime decision into the backtest
+        # state. The pattern scanner separately measures each regime/horizon.
         return held >= STRATEGIES[strategy]["momentum_hold"]
     return False
 
