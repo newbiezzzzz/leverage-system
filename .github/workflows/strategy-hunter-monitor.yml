@@ -1,0 +1,102 @@
+name: strategy-hunter-monitor
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Strategy Hunter status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          api = f"https://api.github.com/repos/{repo}/actions/workflows/strategy-hunter-data-smoke.yml/runs?per_page=5&branch=main"
+          r = subprocess.run(
+              ["curl", "-fsSL", "-H", f"Authorization: Bearer {os.environ['GH_TOKEN']}",
+               "-H", "Accept: application/vnd.github+json", api],
+              check=True, capture_output=True, text=True,
+          )
+          runs = json.loads(r.stdout).get("workflow_runs", [])
+
+          lines = [
+              "# Strategy Hunter — Live Monitor",
+              "",
+              f"Checked: {datetime.now(timezone.utc).isoformat()}",
+              "",
+          ]
+
+          if not runs:
+              lines += ["Status: ⚪ No workflow runs found.", ""]
+          else:
+              run = runs[0]
+              run_id = run["id"]
+              status = run.get("status", "unknown")
+              conclusion = run.get("conclusion") or "—"
+              if status == "in_progress":
+                  shown = "🟡 RUNNING"
+              elif conclusion == "success":
+                  shown = "✅ COMPLETED"
+              elif conclusion == "failure":
+                  shown = "❌ FAILED"
+              else:
+                  shown = "⚪ " + conclusion.upper()
+              lines += [
+                  f"Status: {shown}",
+                  f"Run: #{run_id}",
+                  f"Started: {run.get('created_at', '—')}",
+                  f"Updated: {run.get('updated_at', '—')}",
+                  "",
+              ]
+
+              jobs_api = f"https://api.github.com/repos/{repo}/actions/runs/{run_id}/jobs?per_page=100"
+              jr = subprocess.run(
+                  ["curl", "-fsSL", "-H", f"Authorization: Bearer {os.environ['GH_TOKEN']}",
+                   "-H", "Accept: application/vnd.github+json", jobs_api],
+                  check=True, capture_output=True, text=True,
+              )
+              jobs = json.loads(jr.stdout).get("jobs", [])
+              lines += ["## Jobs", "", "| Job | Status | Current step |",
+                        "|---|---|---|"]
+
+              for job in jobs:
+                  current = "—"
+                  for step in job.get("steps", []):
+                      if step.get("status") == "in_progress":
+                          current = step.get("name", "—")
+                          break
+                  state = job.get("status", "unknown")
+                  concl = job.get("conclusion") or "—"
+                  shown_job = f"🟡 {state}" if state == "in_progress" else ("✅ success" if concl == "success" else f"⚪ {concl}")
+                  lines.append(f"| {job.get('name','—')} | {shown_job} | {current} |")
+
+          Path("research/results/strategy_hunter_status.md").write_text(
+              "\n".join(lines) + "\n", encoding="utf-8"
+          )
+          PY
+
+      - name: Publish status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/results/strategy_hunter_status.md
+          if git diff --cached --quiet; then
+            echo "No status change."
+          else
+            git commit -m "chore: update Strategy Hunter monitor status"
+            git push
+          fi
