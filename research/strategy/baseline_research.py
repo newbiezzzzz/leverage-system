@@ -21,9 +21,10 @@ OUT = Path("research/results")
 OUT.mkdir(parents=True, exist_ok=True)
 
 STARTING_CASH = 1000.0
-LOT = 100
-MAX_PRICE = 9.00
-MIN_AVG_DOLLAR_VOL = 500_000.0
+LOT = 1  # Moomoo MY supports Bursa odd-lot orders.
+MAX_PRICE = 1000.0
+MIN_PRICE = 0.50
+MIN_AVG_DOLLAR_VOL = 100_000.0
 COST_MODEL = {
     "commission_rate": 0.0003,
     "commission_min": 3.0,
@@ -136,7 +137,7 @@ def indicators(close, volume):
 def select_candidate(date, current_close, universe, ind, strategy, current_pos):
     eligible = universe.loc[date].copy()
     px = current_close.loc[date]
-    liquid = (ind["avg_dollar"].loc[date] >= MIN_AVG_DOLLAR_VOL) & (px <= MAX_PRICE) & (px > 0)
+    liquid = (ind["avg_dollar"].loc[date] >= MIN_AVG_DOLLAR_VOL) & (px <= MAX_PRICE) & (px >= MIN_PRICE)
     eligible &= liquid.fillna(False)
 
     if strategy == "momentum":
@@ -238,7 +239,7 @@ def backtest(strategy: str, open_df, close_df, universe, ind):
             sym = pending_entry
             px = open_df.loc[next_date, sym]
             if pd.notna(px) and px > 0:
-                max_shares = int((cash / px) // LOT) * LOT
+                max_shares = int((cash * 0.95 / px) // LOT) * LOT
                 if max_shares >= LOT:
                     value = max_shares * px
                     costs = fee(value)
