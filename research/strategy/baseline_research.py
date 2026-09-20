@@ -243,8 +243,8 @@ def select_candidate(date, close, universe, ind, strategy):
         return None
 
     ranked = score.where(signal).dropna().sort_values(ascending=False)
-    if strategy in {"shock_reaction", "active_reversal", "trend_pullback"}:
-        ranked = score.where(signal).dropna().sort_values(ascending=True if strategy in {"active_reversal", "high_volume_reversal", "downturn_reversal"} else False)
+    if strategy in {"shock_reaction", "active_reversal", "trend_pullback", "relative_contrarian"}:
+        ranked = score.where(signal).dropna().sort_values(ascending=True if strategy in {"active_reversal", "high_volume_reversal", "downturn_reversal", "relative_contrarian"} else False)
     return ranked.index[0] if not ranked.empty else None
 
 
@@ -291,9 +291,46 @@ def backtest(strategy, open_df, close_df, universe, ind):
     pending_entry = None
     equity_rows = []
     trades = []
+    last_valid_i = {}
+    for sym in close_df.columns:
+        valid_idx = close_df[sym].dropna().index
+        if len(valid_idx):
+            last_valid_i[sym] = int(close_df.index.get_loc(valid_idx[-1]))
+
+    entry_fee = None
 
     for i in range(1, len(close_df)):
         date = close_df.index[i]
+
+        # Do not leave a position sitting indefinitely after its price history ends.
+        # For research accounting, liquidate at the last quoted close and record it
+        # explicitly rather than silently writing the position down to cash.
+        if pos_sym is not None and i > last_valid_i.get(pos_sym, i):
+            last_i = last_valid_i[pos_sym]
+            px = close_df.iloc[last_i][pos_sym]
+            if pd.notna(px) and shares > 0:
+                value = shares * float(px)
+                costs = fee(value)
+                cash += value - costs
+                trades.append({
+                    "strategy": strategy,
+                    "entry_date": str(entry_date.date()),
+                    "exit_date": str(close_df.index[last_i].date()),
+                    "symbol": pos_sym,
+                    "entry_price": float(entry_price),
+                    "exit_price": float(px),
+                    "shares": int(shares),
+                    "gross_pnl": float((px - entry_price) * shares),
+                    "entry_fee": float(entry_fee or 0.0),
+                    "exit_fee": float(costs),
+                    "net_pnl": float((px - entry_price) * shares - (entry_fee or 0.0) - costs),
+                    "exit_reason": "data_end",
+                })
+            pos_sym = None
+            shares = 0
+            entry_i = entry_date = entry_price = entry_fee = None
+            pending_exit = False
+            pending_entry = None
 
         if pending_exit and pos_sym is not None:
             px = open_df.iloc[i][pos_sym]
@@ -310,11 +347,14 @@ def backtest(strategy, open_df, close_df, universe, ind):
                     "exit_price": float(px),
                     "shares": int(shares),
                     "gross_pnl": float((px - entry_price) * shares),
+                    "entry_fee": float(entry_fee or 0.0),
                     "exit_fee": float(costs),
+                    "net_pnl": float((px - entry_price) * shares - (entry_fee or 0.0) - costs),
+                    "exit_reason": "signal",
                 })
                 pos_sym = None
                 shares = 0
-                entry_i = entry_date = entry_price = None
+                entry_i = entry_date = entry_price = entry_fee = None
             pending_exit = False
 
         if pending_entry is not None and pos_sym is None:
@@ -332,6 +372,7 @@ def backtest(strategy, open_df, close_df, universe, ind):
                         entry_i = i
                         entry_date = date
                         entry_price = float(px)
+                        entry_fee = float(costs)
             pending_entry = None
 
         # Equity at this date uses the position actually held on this date.
@@ -371,7 +412,10 @@ def backtest(strategy, open_df, close_df, universe, ind):
                 "exit_price": float(px),
                 "shares": int(shares),
                 "gross_pnl": float((px - entry_price) * shares),
+                "entry_fee": float(entry_fee or 0.0),
                 "exit_fee": float(costs),
+                "net_pnl": float((px - entry_price) * shares - (entry_fee or 0.0) - costs),
+                "exit_reason": "final_close",
             })
             eq.iloc[-1] = cash
 
@@ -385,7 +429,7 @@ def backtest(strategy, open_df, close_df, universe, ind):
         win_rate = 0.0
         profit_factor = 0.0
     else:
-        net_trade = tdf["gross_pnl"] - tdf["exit_fee"]
+        net_trade = tdf["net_pnl"]
         win_rate = float((net_trade > 0).mean())
         gp = float(net_trade[net_trade > 0].sum())
         gl = float(-net_trade[net_trade < 0].sum())
