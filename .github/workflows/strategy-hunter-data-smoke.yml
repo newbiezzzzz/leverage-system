@@ -13,7 +13,6 @@ on:
 permissions:
   contents: write
 
-
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -103,20 +102,12 @@ jobs:
       - name: Install baseline quant tools
         run: pip install -r research/strategy/requirements.txt
 
-      - name: Run fixed-rule baseline strategies with costs
+      - name: Run autonomous recoverable Strategy Hunter pipeline
         run: |
-          python research/strategy/baseline_research.py
-          cp research/results/baseline_results.csv research/results/baseline_with_costs.csv
-
-      - name: Run fixed-rule baseline diagnostic without costs
-        env:
-          SH_DISABLE_COSTS: "1"
-        run: |
-          python research/strategy/baseline_research.py
-          cp research/results/baseline_results.csv research/results/baseline_no_costs.csv
-          cp research/results/baseline_with_costs.csv research/results/baseline_results.csv
+          python research/strategy/pipeline_orchestrator.py
 
       - name: Publish simple baseline result
+        if: always()
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -124,7 +115,8 @@ jobs:
 
           src = Path("research/results/baseline_results.csv")
           if not src.exists():
-              raise SystemExit("baseline_results.csv was not produced")
+              print("No baseline result available.")
+              raise SystemExit(0)
 
           df = pd.read_csv(src)
           lines = [
@@ -143,23 +135,25 @@ jobs:
           lines += [
               "",
               "Research only. No live orders.",
-              "This file is machine-published after a successful baseline run.",
+              "This file is machine-published after the recoverable baseline run.",
           ]
-          out = Path("research/results/latest_baseline_result.md")
-          out.write_text("\n".join(lines) + "\n", encoding="utf-8")
-          print(out.read_text(encoding="utf-8"))
+          Path("research/results/latest_baseline_result.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          print(Path("research/results/latest_baseline_result.md").read_text(encoding="utf-8"))
           PY
 
-      - name: Discover price-volume-regime patterns
-        run: python research/strategy/pattern_discovery.py
-
       - name: Publish cost diagnostic
+        if: always()
         run: |
           python - <<'PY'
           from pathlib import Path
           import pandas as pd
-          costs = pd.read_csv("research/results/baseline_with_costs.csv")
-          free = pd.read_csv("research/results/baseline_no_costs.csv")
+          costs_path = Path("research/results/baseline_with_costs.csv")
+          free_path = Path("research/results/baseline_no_costs.csv")
+          if not costs_path.exists() or not free_path.exists():
+              print("No complete cost diagnostic available.")
+              raise SystemExit(0)
+          costs = pd.read_csv(costs_path)
+          free = pd.read_csv(free_path)
           m = costs.merge(free, on="strategy", suffixes=("_costs", "_no_costs"))
           lines = [
               "# Strategy Hunter — Cost Diagnostic",
@@ -176,19 +170,8 @@ jobs:
           Path("research/results/cost_diagnostic.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
           PY
 
-      - name: Commit simple baseline result
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/results/baseline_results.csv research/results/baseline_spec.csv research/results/latest_baseline_result.md research/results/baseline_with_costs.csv research/results/baseline_no_costs.csv research/results/cost_diagnostic.md research/results/pattern_discovery.csv research/results/pattern_candidates.csv research/results/pattern_discovery.md
-          if git diff --cached --quiet; then
-            echo "No baseline result changes to commit."
-          else
-            git commit -m "chore: publish Strategy Hunter baseline result"
-            git push
-          fi
-
       - name: Full dataset inventory
+        if: always()
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -207,7 +190,8 @@ jobs:
               raise SystemExit("No OHLCV files produced")
           PY
 
-      - name: Upload full dataset and QA
+      - name: Upload full dataset, QA and research results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: strategy-hunter-data-full
@@ -217,6 +201,20 @@ jobs:
             research/results/
           retention-days: 30
           compression-level: 6
+
+      - name: Commit Strategy Hunter research results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/results/
+          if git diff --cached --quiet; then
+            echo "No research result changes to commit."
+          else
+            git commit -m "chore: publish Strategy Hunter pipeline results"
+            git pull --rebase origin main
+            git push
+          fi
 
   crosscheck:
     if: >-
