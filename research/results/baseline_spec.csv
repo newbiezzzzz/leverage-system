@@ -1,5 +1,10 @@
-strategy,parameters_json,cost_model_json,starting_cash,lot_size
-momentum,"{""hold_days"": 10, ""lookback"": 60}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
-trend,"{""fast"": 20, ""hold_days"": 20, ""slow"": 50}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
-breakout,"{""breakout"": 20, ""exit"": 10, ""hold_days"": 30, ""trend"": 50}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
-shock_reaction,"{""max_hold"": 10, ""shock"": -0.05, ""trend"": 100}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
+strategy,parameters_json,cost_model_json,starting_cash,capital_pct,lot_size
+momentum,"{""hold_days"": 10, ""lookback"": 60}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+trend,"{""fast"": 20, ""hold_days"": 20, ""slow"": 50}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+breakout,"{""breakout"": 20, ""exit"": 10, ""hold_days"": 30, ""trend"": 50}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+shock_reaction,"{""max_hold"": 10, ""shock"": -0.05, ""trend"": 100}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+slow_momentum,"{""hold_days"": 40, ""lookback"": 252, ""skip"": 21, ""trend"": 200}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+volume_momentum,"{""hold_days"": 30, ""lookback"": 126, ""trend"": 100, ""vol_window"": 63}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+trend_pullback,"{""drop_max"": -0.03, ""drop_min"": -0.1, ""hold_days"": 15, ""momentum"": 60, ""trend"": 100}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+active_reversal,"{""drop"": -0.06, ""max_hold"": 10, ""min_dollar_vol"": 500000.0, ""rebound"": 0.05, ""trend"": 200}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
+breakout_volume,"{""breakout"": 20, ""exit"": 10, ""hold_days"": 30, ""trend"": 50, ""volume_mult"": 1.5}","{""clearing_rate"": 0.0003, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,0.95,1
