@@ -49,6 +49,8 @@ STRATEGIES = {
     "trend_pullback": {"trend": 100, "momentum": 60, "drop_min": -0.10, "drop_max": -0.03, "hold_days": 15},
     "active_reversal": {"drop": -0.06, "trend": 200, "min_dollar_vol": 500_000.0, "rebound": 0.05, "max_hold": 10},
     "breakout_volume": {"breakout": 20, "exit": 10, "trend": 50, "volume_mult": 1.5, "hold_days": 30},
+    "high_volume_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03},
+    "downturn_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03, "breadth_max": 0.45},
 }
 
 
@@ -208,12 +210,25 @@ def select_candidate(date, close, universe, ind, strategy):
             & (ind["volume_ratio20"].loc[date] >= p["volume_mult"])
             & score.notna()
         )
+    elif strategy in {"high_volume_reversal", "downturn_reversal"}:
+        score = ind["mom5"].loc[date]
+        p = STRATEGIES[strategy]
+        breadth = (px > ind["ma200"].loc[date]).where(eligible).mean()
+        signal = (
+            eligible
+            & (score <= p["drop"])
+            & (px > ind["ma200"].loc[date])
+            & (ind["avg_dollar"].loc[date] >= p["min_dollar_vol"])
+            & ind["ma200"].loc[date].notna()
+        )
+        if strategy == "downturn_reversal":
+            signal &= breadth <= p["breadth_max"]
     else:
         return None
 
     ranked = score.where(signal).dropna().sort_values(ascending=False)
     if strategy in {"shock_reaction", "active_reversal", "trend_pullback"}:
-        ranked = score.where(signal).dropna().sort_values(ascending=True if strategy == "active_reversal" else False)
+        ranked = score.where(signal).dropna().sort_values(ascending=True if strategy in {"active_reversal", "high_volume_reversal", "downturn_reversal"} else False)
     return ranked.index[0] if not ranked.empty else None
 
 
@@ -241,6 +256,9 @@ def should_exit(i, pos_sym, entry_i, entry_price, close, ind, strategy):
         return px >= entry_price * (1 + STRATEGIES[strategy]["rebound"]) or held >= STRATEGIES[strategy]["max_hold"]
     if strategy == "breakout_volume":
         return (px < ind["prev10_low"].iloc[i][pos_sym]) or held >= STRATEGIES[strategy]["hold_days"]
+    if strategy in {"high_volume_reversal", "downturn_reversal"}:
+        p = STRATEGIES[strategy]
+        return px >= entry_price * (1 + p["rebound"]) or held >= p["max_hold"]
     return False
 
 
