@@ -13,6 +13,9 @@ Capital: RM1,000 | Period: 2015-01-05 to 2026-09-18
 | trend_pullback | RM-0.15 | -100.01% | -100.01% | 79 |
 | active_reversal | RM5.27 | -99.47% | -99.52% | 47 |
 | breakout_volume | RM3.92 | -99.61% | -99.92% | 110 |
+| high_volume_reversal | RM4.49 | -99.55% | -99.72% | 143 |
+| downturn_reversal | RM1.94 | -99.81% | -99.82% | 97 |
+| relative_contrarian | RM2.17 | -99.78% | -99.78% | 118 |
 
 Research only. No live orders.
 This file is machine-published after a successful baseline run.
