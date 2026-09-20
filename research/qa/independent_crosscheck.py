@@ -23,41 +23,59 @@ KLS_URL = "https://www.klsescreener.com/v2/stocks/chart/{code}/embedded/10y"
 
 
 def kls_history(code: str) -> pd.DataFrame:
+    """Read KLSE Screener's current historical-price HTML table."""
+    url = f"https://www.klsescreener.com/v2/stocks/historical_prices/{code}"
     r = requests.get(
-        KLS_URL.format(code=code),
+        url,
         timeout=30,
-        headers={"User-Agent": "Strategy-Hunter-independent-crosscheck/1.0"},
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (compatible; Strategy-Hunter/1.0; "
+                "+https://github.com/newbiezzzzz/leverage-system)"
+            )
+        },
     )
     r.raise_for_status()
-    body = re.sub(r"\s+", "", r.text)
-    m = re.search(r"data=\[(.*?),\];", body)
-    if not m:
+
+    tables = pd.read_html(r.text)
+    target = None
+    for t in tables:
+        cols = {str(c).strip().lower() for c in t.columns}
+        if {"date", "price", "open", "high", "low", "volume"} <= cols:
+            target = t.copy()
+            break
+
+    if target is None:
         raise ValueError(
-            f"KLSE Screener data array not found; status={r.status_code}; "
-            f"url={r.url}; body={r.text[:1500]!r}"
+            f"KLSE historical price table not found; status={r.status_code}; "
+            f"tables={len(tables)}"
         )
-    rows = []
-    for raw in re.findall(r"\[(.*?)\]", m.group(1)):
-        parts = raw.split(",")
-        if len(parts) != 6:
-            continue
-        try:
-            ts = int(parts[0])
-            rows.append(
-                {
-                    "date": pd.to_datetime(ts, unit="ms").normalize(),
-                    "open_kls": float(parts[1]),
-                    "high_kls": float(parts[2]),
-                    "low_kls": float(parts[3]),
-                    "close_kls": float(parts[4]),
-                    "volume_kls": float(parts[5]),
-                }
-            )
-        except ValueError:
-            continue
-    if not rows:
-        raise ValueError("No KLSE historical rows parsed")
-    return pd.DataFrame(rows).drop_duplicates("date").sort_values("date")
+
+    target.columns = [str(c).strip().lower() for c in target.columns]
+    target["date"] = pd.to_datetime(target["date"], errors="coerce").dt.normalize()
+
+    for c in ["price", "open", "high", "low"]:
+        target[c] = pd.to_numeric(target[c], errors="coerce")
+
+    target["volume"] = (
+        target["volume"].astype(str).str.replace(",", "", regex=False)
+    )
+    target["volume"] = pd.to_numeric(target["volume"], errors="coerce")
+
+    out = target[
+        ["date", "open", "high", "low", "price", "volume"]
+    ].copy()
+    out = out.rename(
+        columns={
+            "open": "open_kls",
+            "high": "high_kls",
+            "low": "low_kls",
+            "price": "close_kls",
+            "volume": "volume_kls",
+        }
+    )
+    out = out.dropna(subset=["date", "open_kls", "high_kls", "low_kls", "close_kls"])
+    return out.drop_duplicates("date").sort_values("date")
 
 
 def yahoo_history(code: str) -> pd.DataFrame:
