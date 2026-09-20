@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-20T15:17:54Z",
+  "updated_at": "2026-09-20T15:19:15Z",
   "status": "running",
-  "stage": "chronos2",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -27,6 +27,10 @@
       "attempts": 1
     },
     "lean": {
+      "status": "done",
+      "attempts": 1
+    },
+    "chronos2": {
       "status": "done",
       "attempts": 1
     }
