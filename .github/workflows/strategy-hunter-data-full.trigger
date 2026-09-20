@@ -1,3 +1,3 @@
-ONE-TIME FULL DATA + BASELINE RUN v6
+ONE-TIME FULL DATA + BASELINE RUN v7
 
-// odd-lot baseline rerun
+// publish baseline result automatically
