@@ -103,8 +103,18 @@ jobs:
       - name: Install baseline quant tools
         run: pip install -r research/strategy/requirements.txt
 
-      - name: Run fixed-rule baseline strategies
-        run: python research/strategy/baseline_research.py
+      - name: Run fixed-rule baseline strategies with costs
+        run: |
+          python research/strategy/baseline_research.py
+          cp research/results/baseline_results.csv research/results/baseline_with_costs.csv
+
+      - name: Run fixed-rule baseline diagnostic without costs
+        env:
+          SH_DISABLE_COSTS: "1"
+        run: |
+          python research/strategy/baseline_research.py
+          cp research/results/baseline_results.csv research/results/baseline_no_costs.csv
+          cp research/results/baseline_with_costs.csv research/results/baseline_results.csv
 
       - name: Publish simple baseline result
         run: |
@@ -140,11 +150,34 @@ jobs:
           print(out.read_text(encoding="utf-8"))
           PY
 
+      - name: Publish cost diagnostic
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          costs = pd.read_csv("research/results/baseline_with_costs.csv")
+          free = pd.read_csv("research/results/baseline_no_costs.csv")
+          m = costs.merge(free, on="strategy", suffixes=("_costs", "_no_costs"))
+          lines = [
+              "# Strategy Hunter — Cost Diagnostic",
+              "",
+              "| Strategy | Final with costs | Final without costs | Difference |",
+              "|---|---:|---:|---:|",
+          ]
+          for _, r in m.iterrows():
+              lines.append(
+                  f"| {r['strategy']} | RM{r['final_equity_costs']:.2f} | "
+                  f"RM{r['final_equity_no_costs']:.2f} | "
+                  f"RM{r['final_equity_no_costs']-r['final_equity_costs']:.2f} |"
+              )
+          Path("research/results/cost_diagnostic.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+
       - name: Commit simple baseline result
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/results/baseline_results.csv research/results/baseline_spec.csv research/results/latest_baseline_result.md
+          git add research/results/baseline_results.csv research/results/baseline_spec.csv research/results/latest_baseline_result.md research/results/baseline_with_costs.csv research/results/baseline_no_costs.csv research/results/cost_diagnostic.md
           if git diff --cached --quiet; then
             echo "No baseline result changes to commit."
           else
