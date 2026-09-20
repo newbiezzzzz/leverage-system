@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-20T15:17:47Z",
+  "updated_at": "2026-09-20T15:17:52Z",
   "status": "running",
-  "stage": "lean",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -23,6 +23,10 @@
       "attempts": 1
     },
     "optuna": {
+      "status": "done",
+      "attempts": 1
+    },
+    "lean": {
       "status": "done",
       "attempts": 1
     }
