@@ -101,6 +101,7 @@ def main():
             end=END,
             auto_adjust=False,
             group_by="ticker",
+            actions=True,
             threads=True,
             progress=False,
         )
@@ -118,7 +119,27 @@ def main():
                 if d.empty:
                     raise ValueError("no dated historical rows returned")
 
+                # Store corporate split events and build a split-adjusted
+                # research series. A split on date D is excluded from D itself;
+                # only prices before D are converted to the post-split basis.
+                if "stock_splits" in d.columns:
+                    splits = pd.to_numeric(d["stock_splits"], errors="coerce").fillna(0.0)
+                    sf = splits.replace(0.0, 1.0)
+                    future_factor = sf.iloc[::-1].cumprod().iloc[::-1] / sf
+                    d["split_factor"] = future_factor
+                else:
+                    d["stock_splits"] = 0.0
+                    d["split_factor"] = 1.0
+
+                if "dividends" not in d.columns:
+                    d["dividends"] = 0.0
+
+                for c in ["open", "high", "low", "close"]:
+                    d[f"split_adj_{c}"] = d[c] / d["split_factor"]
+
+                d["split_adj_volume"] = d["volume"] * d["split_factor"]
                 d["symbol"] = symbol
+
                 clean, rows_excluded = classify_exclusions(d, symbol)
                 exclusions.extend(rows_excluded)
 
