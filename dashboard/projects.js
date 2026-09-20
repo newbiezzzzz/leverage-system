@@ -13,7 +13,18 @@ function renderMetrics(data,preferredId,publicMetrics={}){const root=document.ge
 function typeInfo(types,p){const key=String(p.type||'').replaceAll('-','_');const t=types?.types?.[key]||types?.types?.[p.type];return {label:t?.label||p.type||'Unclassified',channels:t?.channels||[],delivery:t?.delivery||[],events:t?.revenue_events||[]}}
 function projectNumber(projects,p){return p?.project_no||`P-${String(projects.findIndex(x=>x.id===p.id)+1).padStart(3,'0')}`}
 function renderRegistry(projects,types){const registry=document.getElementById('projectsList');if(!registry)return;registry.innerHTML=projects.length?projects.map(p=>{const x=typeInfo(types,p);const num=projectNumber(projects,p);return `<a href="project-detail.html?id=${encodeURIComponent(p.id)}" class="worker" style="text-decoration:none;color:inherit;display:flex;align-items:center"><div class="avatar ${p.status==='paused'?'planned':'online'}">${esc((p.name||'P')[0].toUpperCase())}</div><div class="grow"><strong>${esc(num)} · ${esc(p.name)}</strong><span><b>Type:</b> ${esc(x.label)} · <b>Stage:</b> ${esc(p.lifecycle_stage||p.status)}</span><small>${esc(p.description||'No description')}</small><small>${p.id==='affiliate-project'?'Automotive recommendation engine · TikTok + YouTube acquisition · Reddit intelligence.':'Products, acquisition assets and business state inside this project.'}</small><small><b>Open full project detail →</b></small></div><span class="worker-state ${p.status==='paused'?'planned':'online'}">${esc(String(p.status||'unknown').toUpperCase())}</span></a>`}).join(''):'<p class="muted">No projects registered.</p>'}
-async function refresh(){
+async const STRATEGY_STATUS_URL='https://raw.githubusercontent.com/newbiezzzzz/leverage-system/main/research/results/strategy_hunter_status.json';
+async function getStrategyHunterStatus(){return getJson(STRATEGY_STATUS_URL,'strategy_hunter_status')}
+function renderStrategyHunterStatus(s){
+ const status=s&&s.status||'unknown', jobs=Array.isArray(s&&s.jobs)?s.jobs:[], running=jobs.find(function(j){return j.status==='in_progress'});
+ const shown=status==='in_progress'?'RUNNING':status==='completed'?'COMPLETED':status==='no_run'?'NO RUN':'NOT READY';
+ function put(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+ put('strategyHunterStatus',shown); put('strategyHunterRun',s&&s.run_id?'#'+s.run_id:'—'); put('strategyHunterStarted',s&&s.started_at?new Date(s.started_at).toLocaleString():'—'); put('strategyHunterUpdated',s&&s.updated_at?new Date(s.updated_at).toLocaleString():'—'); put('strategyHunterStep',running&&running.current_step&&running.current_step!=='—'?running.current_step:'—');
+ const root=document.getElementById('strategyHunterJobs');
+ if(root) root.innerHTML=jobs.length?jobs.map(function(j){const st=j.status==='in_progress'?'RUNNING':j.conclusion==='success'?'DONE':j.conclusion==='failure'?'FAILED':String(j.status||'UNKNOWN').toUpperCase();return '<div class="worker"><div class="avatar '+(j.status==='in_progress'?'online':'planned')+'">S</div><div class="grow"><strong>'+esc(j.name||'Job')+'</strong><span><b>'+esc(st)+'</b></span><small>'+esc(j.current_step&&j.current_step!=='—'?'Current: '+j.current_step:'No active step')+'</small></div><span class="worker-state '+(j.status==='in_progress'?'online':j.conclusion==='failure'?'planned':'online')+'">'+esc(st)+'</span></div>'}).join(''):'<p class="muted">No Strategy Hunter job details published yet.</p>';
+}
+async function refreshStrategyHunter(){try{renderStrategyHunterStatus(await getStrategyHunterStatus())}catch(e){const el=document.getElementById('strategyHunterStatus');if(el)el.textContent='NOT READY';const root=document.getElementById('strategyHunterJobs');if(root)root.innerHTML='<p class="muted">Monitor data not published yet.</p>'}}
+function refresh(){
  const projectsEl=document.getElementById('projectsList');
  try{
    const [projectsReply,snapshot]=await Promise.all([get('/api/projects'),get('/api/snapshot').catch(()=>({}))]);
@@ -44,4 +55,4 @@ async function refresh(){
    const r=document.getElementById('registryStatus');if(r)r.textContent='UNAVAILABLE';
  }
 }
-refresh();setInterval(refresh,30000);
+refresh();refreshStrategyHunter();setInterval(refresh,30000);setInterval(refreshStrategyHunter,30000);
