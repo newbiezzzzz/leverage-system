@@ -1,22 +1,9 @@
 {
-  "checked_at": "2026-09-20T14:58:35.034990+00:00",
-  "status": "queued",
-  "run_id": 35518104982,
-  "started_at": "2026-09-20T14:58:26Z",
-  "updated_at": "2026-09-20T14:58:26Z",
-  "jobs": [
-    {
-      "name": "smoke",
-      "status": "queued",
-      "conclusion": "\u2014",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "full",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Install data tools"
-    }
-  ],
+  "checked_at": "2026-09-20T15:06:14.452887+00:00",
+  "status": "pending",
+  "run_id": 35518517500,
+  "started_at": "2026-09-20T15:06:08Z",
+  "updated_at": "2026-09-20T15:06:09Z",
+  "jobs": [],
   "conclusion": "\u2014"
 }
