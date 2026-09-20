@@ -1,6 +1,10 @@
 name: strategy-hunter-monitor
 
 on:
+  push:
+    paths:
+      - ".github/workflows/strategy-hunter-data-full.trigger"
+      - ".github/workflows/strategy-hunter-monitor.yml"
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
