@@ -1,0 +1,5 @@
+strategy,parameters_json,cost_model_json,starting_cash,lot_size
+momentum,"{""hold_days"": 10, ""lookback"": 60}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
+trend,"{""fast"": 20, ""hold_days"": 20, ""slow"": 50}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
+breakout,"{""breakout"": 20, ""exit"": 10, ""hold_days"": 30, ""trend"": 50}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
+shock_reaction,"{""max_hold"": 10, ""shock"": -0.05, ""trend"": 100}","{""clearing_rate"": 0.0003, ""commission_min"": 3.0, ""commission_rate"": 0.0003, ""platform_fee"": 3.0, ""sst_rate"": 0.08, ""stamp_per_1000"": 1.0}",1000.0,1
