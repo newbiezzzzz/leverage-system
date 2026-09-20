@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from pathlib import Path
 
 import numpy as np
@@ -52,6 +53,8 @@ STRATEGIES = {
 
 
 def fee(trade_value: float) -> float:
+    if os.environ.get("SH_DISABLE_COSTS", "0") == "1":
+        return 0.0
     commission = trade_value * COST_MODEL["commission_rate"]
     clearing = trade_value * COST_MODEL["clearing_rate"]
     stamp = math.ceil(trade_value / 1000.0) * COST_MODEL["stamp_per_1000"]
