@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-09-20T15:15:04Z",
-  "status": "failed",
-  "stage": "baseline",
-  "attempt": 5,
-  "error": "Traceback (most recent call last):\n  File \"/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py\", line 506, in <module>\n    main()\n  File \"/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py\", line 475, in main\n    open_df, _, _, close_df, vol_df = load_wide()\n                                      ^^^^^^^^^\nNameError: name 'load_wide' is not defined\n",
+  "updated_at": "2026-09-20T15:15:06Z",
+  "status": "running",
+  "stage": "pattern_hunter",
+  "attempt": 0,
+  "error": null,
   "stages": {
     "baseline": {
       "status": "failed",
