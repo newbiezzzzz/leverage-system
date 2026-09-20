@@ -1,3 +1,3 @@
-ONE-TIME FULL DATA + BASELINE RUN v8
+ONE-TIME FULL DATA + BASELINE RUN v9
 
-// corrected execution engine + researched strategy candidates
+// cost diagnostic: with vs without fees
