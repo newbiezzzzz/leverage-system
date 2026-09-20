@@ -33,6 +33,8 @@ jobs:
           )
           runs = json.loads(r.stdout).get("workflow_runs", [])
 
+          status_payload = {"checked_at": datetime.now(timezone.utc).isoformat(), "status": "unknown", "run_id": None, "started_at": None, "updated_at": None, "jobs": []}
+
           lines = [
               "# Strategy Hunter — Live Monitor",
               "",
@@ -41,6 +43,7 @@ jobs:
           ]
 
           if not runs:
+              status_payload["status"] = "no_run"
               lines += ["Status: ⚪ No workflow runs found.", ""]
           else:
               run = runs[0]
@@ -55,6 +58,7 @@ jobs:
                   shown = "❌ FAILED"
               else:
                   shown = "⚪ " + conclusion.upper()
+              status_payload.update({"status": status, "conclusion": conclusion, "run_id": run_id, "started_at": run.get("created_at"), "updated_at": run.get("updated_at")})
               lines += [
                   f"Status: {shown}",
                   f"Run: #{run_id}",
@@ -82,18 +86,20 @@ jobs:
                   state = job.get("status", "unknown")
                   concl = job.get("conclusion") or "—"
                   shown_job = f"🟡 {state}" if state == "in_progress" else ("✅ success" if concl == "success" else f"⚪ {concl}")
+                  status_payload["jobs"].append({"name": job.get("name"), "status": state, "conclusion": concl, "current_step": current})
                   lines.append(f"| {job.get('name','—')} | {shown_job} | {current} |")
 
           Path("research/results/strategy_hunter_status.md").write_text(
               "\n".join(lines) + "\n", encoding="utf-8"
           )
+          Path("research/results/strategy_hunter_status.json").write_text(json.dumps(status_payload, indent=2) + "\n", encoding="utf-8")
           PY
 
       - name: Publish status
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/results/strategy_hunter_status.md
+          git add research/results/strategy_hunter_status.md research/results/strategy_hunter_status.json
           if git diff --cached --quiet; then
             echo "No status change."
           else
