@@ -13,7 +13,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import vectorbt as vbt
 
 DATA = Path("research/data/data")
 OHLCV = DATA / "ohlcv"
@@ -112,9 +111,9 @@ def universe_mask(index: pd.DatetimeIndex, columns: pd.Index) -> pd.DataFrame:
 def indicators(close, volume):
     avg_dollar = (close * volume).rolling(20, min_periods=20).mean()
     mom60 = close / close.shift(60) - 1.0
-    ma20 = vbt.MA.run(close, 20).ma
-    ma50 = vbt.MA.run(close, 50).ma
-    ma100 = vbt.MA.run(close, 100).ma
+    ma20 = close.rolling(20, min_periods=20).mean()
+    ma50 = close.rolling(50, min_periods=50).mean()
+    ma100 = close.rolling(100, min_periods=100).mean()
     prev20_close_high = close.shift(1).rolling(20, min_periods=20).max()
     prev10_close_low = close.shift(1).rolling(10, min_periods=10).min()
     one_day = close.pct_change()
