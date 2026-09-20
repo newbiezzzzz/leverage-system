@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/pattern_discovery.py", line 14, in <module>
+    from baseline_research import load_wide, universe_mask, indicators, MIN_PRICE, MAX_PRICE, fee, CAPITAL_PCT, STARTING_CASH, COST_HURDLE
+ImportError: cannot import name 'load_wide' from 'baseline_research' (/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py)
