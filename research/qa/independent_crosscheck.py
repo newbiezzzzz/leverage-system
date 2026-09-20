@@ -10,6 +10,7 @@ from __future__ import annotations
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from io import StringIO
 
 import pandas as pd
 import requests
@@ -37,7 +38,7 @@ def kls_history(code: str) -> pd.DataFrame:
     )
     r.raise_for_status()
 
-    tables = pd.read_html(r.text)
+    tables = pd.read_html(StringIO(r.text))
     target = None
     for t in tables:
         cols = {str(c).strip().lower() for c in t.columns}
