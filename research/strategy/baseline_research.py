@@ -228,7 +228,7 @@ def select_candidate(date, close, universe, ind, strategy):
             signal &= breadth <= p["breadth_max"]
     elif strategy == "regime_adaptive":
         p = STRATEGIES[strategy]
-        breadth = (px > ind["ma200"]).where(eligible).mean()
+        breadth = (px > ind["ma200"].loc[date]).where(eligible).mean()
         if breadth >= p["bull_breadth"]:
             score = ind["mom60"].loc[date]
             signal = eligible & (px > ind["ma100"].loc[date]) & score.notna()
