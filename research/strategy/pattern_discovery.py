@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from baseline_research import load_wide, universe_mask, indicators, MIN_PRICE, MAX_PRICE
+from baseline_research import load_wide, universe_mask, indicators, MIN_PRICE, MAX_PRICE, fee, CAPITAL_PCT, STARTING_CASH
 
 OUT = Path("research/results")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -98,6 +98,7 @@ def main():
                     "win_rate": float((pflat > 0).mean()),
                     "p10": float(pflat.quantile(0.10)),
                     "p90": float(pflat.quantile(0.90)),
+                "net_mean_vs_hurdle": float(pflat.mean() - COST_HURDLE),
                 })
 
     df = pd.DataFrame(rows)
@@ -115,7 +116,7 @@ def main():
                 va = float(piv.loc[(name, h), ("mean_return", "validation")])
                 vw = float(piv.loc[(name, h), ("win_rate", "validation")])
                 vn = int(piv.loc[(name, h), ("observations", "validation")])
-                if di > 0 and va > 0 and vw >= 0.50 and vn >= 100:
+                if di > COST_HURDLE and va > COST_HURDLE and vw >= 0.50 and vn >= 100:
                     ok.append((h, va, vw, vn))
             except Exception:
                 pass
@@ -147,7 +148,9 @@ def main():
         "",
         "## Patterns surviving both periods",
         "",
-        "| Pattern | Positive horizons | Best validation horizon | Validation mean | Win rate | Observations |",
+        f"| Approx. round-trip cost hurdle on RM1,000 | | | {COST_HURDLE*100:.2f}% | | |",
+        "",
+        "| Pattern | Cost-positive horizons | Best validation horizon | Validation mean | Win rate | Observations |",
         "|---|---:|---:|---:|---:|---:|",
     ]
     if cand.empty:
@@ -162,6 +165,7 @@ def main():
     lines += [
         "",
         "This is pattern evidence, not a live-trading recommendation.",
+        "A pattern must beat the approximate round-trip cost hurdle in both discovery and validation before becoming a strategy candidate.",
         "Next gate: convert surviving patterns into low-turnover RM1,000 backtests with realistic costs and walk-forward testing.",
     ]
     (OUT / "pattern_discovery.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
