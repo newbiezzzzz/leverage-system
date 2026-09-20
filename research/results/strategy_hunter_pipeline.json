@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-20T15:17:10Z",
+  "updated_at": "2026-09-20T15:17:34Z",
   "status": "running",
-  "stage": "vectorbt",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -13,6 +13,10 @@
       "status": "failed",
       "attempts": 5,
       "error": "Traceback (most recent call last):\n  File \"/home/runner/work/leverage-system/leverage-system/research/strategy/pattern_discovery.py\", line 14, in <module>\n    from baseline_research import load_wide, universe_mask, indicators, MIN_PRICE, MAX_PRICE, fee, CAPITAL_PCT, STARTING_CASH, COST_HURDLE\nImportError: cannot import name 'load_wide' from 'baseline_research' (/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py)\n"
+    },
+    "vectorbt": {
+      "status": "done",
+      "attempts": 1
     }
   }
 }
