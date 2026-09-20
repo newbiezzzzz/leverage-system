@@ -1,3 +1,3 @@
-ONE-TIME FULL DATA + BASELINE RUN v10
+ONE-TIME FULL DATA + BASELINE RUN v11
 
-// add volume + downturn reversal candidates
+// weekly relative contrarian candidate
