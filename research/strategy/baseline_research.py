@@ -52,6 +52,7 @@ STRATEGIES = {
     "high_volume_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03},
     "downturn_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03, "breadth_max": 0.45},
     "relative_contrarian": {"lookback": 5, "bottom_quantile": 0.20, "min_dollar_vol": 500_000.0, "max_hold": 5},
+    "regime_adaptive": {"bull_breadth": 0.55, "bear_breadth": 0.45, "momentum_lookback": 60, "momentum_hold": 40, "reversal_drop": -0.05, "reversal_hold": 5, "min_dollar_vol": 500_000.0},
 }
 
 
@@ -225,6 +226,20 @@ def select_candidate(date, close, universe, ind, strategy):
         )
         if strategy == "downturn_reversal":
             signal &= breadth <= p["breadth_max"]
+    elif strategy == "regime_adaptive":
+        p = STRATEGIES[strategy]
+        breadth = (px > ind["ma200"]).where(eligible).mean()
+        if breadth >= p["bull_breadth"]:
+            score = ind["mom60"].loc[date]
+            signal = eligible & (px > ind["ma100"].loc[date]) & score.notna()
+            ranked = score.where(signal).dropna().sort_values(ascending=False)
+            return ranked.index[0] if not ranked.empty else None
+        if breadth <= p["bear_breadth"]:
+            score = ind["mom5"].loc[date]
+            signal = eligible & (score <= p["reversal_drop"]) & (px > ind["ma200"].loc[date]) & (ind["avg_dollar"].loc[date] >= p["min_dollar_vol"]) & score.notna()
+            ranked = score.where(signal).dropna().sort_values(ascending=True)
+            return ranked.index[0] if not ranked.empty else None
+        return None
     elif strategy == "relative_contrarian":
         score = ind["mom_week"].loc[date]
         p = STRATEGIES[strategy]
@@ -277,6 +292,11 @@ def should_exit(i, pos_sym, entry_i, entry_price, close, ind, strategy):
         return px >= entry_price * (1 + p["rebound"]) or held >= p["max_hold"]
     if strategy == "relative_contrarian":
         return held >= STRATEGIES[strategy]["max_hold"]
+    if strategy == "regime_adaptive":
+        # The entry regime determines whether the trade is momentum or reversal.
+        # We keep the fixed conservative 40-day maximum; reversal exits earlier
+        # through the signal structure in the dedicated candidate tests.
+        return held >= STRATEGIES[strategy]["momentum_hold"]
     return False
 
 
