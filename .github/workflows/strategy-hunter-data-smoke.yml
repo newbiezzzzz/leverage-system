@@ -97,6 +97,12 @@ jobs:
       - name: QA full dataset
         run: python research/qa/strategy_hunter_data_qa.py
 
+      - name: Install baseline quant tools
+        run: pip install -r research/strategy/requirements.txt
+
+      - name: Run fixed-rule baseline strategies
+        run: python research/strategy/baseline_research.py
+
       - name: Full dataset inventory
         run: |
           python - <<'PY'
@@ -123,6 +129,7 @@ jobs:
           path: |
             research/data/data/
             research/qa/strategy_hunter_data_qa.json
+            research/results/
           retention-days: 30
           compression-level: 6
 
