@@ -87,14 +87,17 @@ def patch_known_failure(log):
         subprocess.run(["git","push"],check=False)
     return changed
 
-def run_cmd(cmd,stage):
+def run_cmd(cmd,stage,env_extra=None):
     attempts=0
     last=""
+    env=os.environ.copy()
+    if env_extra:
+        env.update(env_extra)
     while attempts<MAX_ATTEMPTS:
         attempts+=1
         log_path=LOGS/f"{stage}_attempt_{attempts}.log"
         print(f"\n=== {stage} attempt {attempts}/{MAX_ATTEMPTS} ===")
-        p=subprocess.run(cmd,shell=True,cwd=ROOT,capture_output=True,text=True,env=os.environ.copy())
+        p=subprocess.run(cmd,shell=True,cwd=ROOT,capture_output=True,text=True,env=env)
         last=(p.stdout or "")+(p.stderr or "")
         log_path.write_text(last,encoding="utf-8")
         if p.returncode==0:
@@ -111,11 +114,9 @@ def baseline_stage():
     if not ok: return False,a,log
     shutil_cmd=subprocess.run(["cp","research/results/baseline_results.csv","research/results/baseline_with_costs.csv"],cwd=ROOT,capture_output=True,text=True)
     if shutil_cmd.returncode: return False,a,shutil_cmd.stderr
-    env=os.environ.copy(); env["SH_DISABLE_COSTS"]="1"
-    p=subprocess.run("python research/strategy/baseline_research.py",shell=True,cwd=ROOT,capture_output=True,text=True,env=env)
-    log=(p.stdout or "")+(p.stderr or "")
-    (LOGS/"baseline_nocosts.log").write_text(log,encoding="utf-8")
-    if p.returncode: return False,a,log
+    ok2,a2,log2=run_cmd("python research/strategy/baseline_research.py","baseline_nocosts",{"SH_DISABLE_COSTS":"1"})
+    if not ok2: return False,max(a,a2),log2
+    log=log2
     subprocess.run(["cp","research/results/baseline_results.csv","research/results/baseline_no_costs.csv"],cwd=ROOT)
     subprocess.run(["cp","research/results/baseline_with_costs.csv","research/results/baseline_results.csv"],cwd=ROOT)
     return True,a,log
@@ -126,9 +127,6 @@ def main():
     ok,a,log=baseline_stage()
     details["baseline"]={"status":"done" if ok else "failed","attempts":a}
     write_status("running" if ok else "failed","pattern_hunter" if ok else "baseline",a,None if ok else log[-3000:],details)
-    if not ok:
-        raise SystemExit("Baseline stage failed after automatic recovery attempts")
-
     for key,label,cmd in STAGES[1:]:
         write_status("running",key,0,details=details)
         if key=="pattern_hunter":
@@ -145,7 +143,8 @@ def main():
             continue
         write_status("running",None,a,details=details)
 
-    write_status("completed","done",0,details=details)
+    any_failed=any(v.get("status")=="failed" for v in details.values())
+    write_status("completed_with_errors" if any_failed else "completed","done",0,details=details)
 
 if __name__=="__main__":
     main()
