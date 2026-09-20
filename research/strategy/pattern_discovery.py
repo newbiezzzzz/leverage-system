@@ -63,7 +63,7 @@ def main():
     patterns = {
         "momentum_60_uptrend": liquid & (mom60 > 0.05) & (close_df > ind["ma100"]),
         "slow_momentum_12_1": liquid & (mom252_skip21 > 0) & (close_df > ind["ma200"]),
-        "pullback_in_uptrend": liquid & (mom60 > 0) & (close_df > ind["ma100"]) & mom5.between(-0.10, -0.03),
+        "pullback_in_uptrend": liquid & (mom60 > 0) & (close_df > ind["ma100"]) & mom5.ge(-0.10) & mom5.le(-0.03),
         "reversal_bottom10": liquid & (mom5.le(q10_mom5, axis=0)) & (close_df > ind["ma200"]) & (ind["avg_dollar"] >= 500_000.0),
         "panic_reversal_volume": liquid & (mom1 <= -0.05) & (volume_ratio >= 1.5) & (close_df > ind["ma200"]) & (ind["avg_dollar"] >= 500_000.0),
         "relative_reversal_bottom20": liquid & (mom5.le(q20_mom5, axis=0)) & (close_df > ind["ma50"]) & (ind["avg_dollar"] >= 500_000.0),
