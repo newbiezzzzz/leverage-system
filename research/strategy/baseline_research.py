@@ -243,7 +243,7 @@ def select_candidate(date, close, universe, ind, strategy):
         return None
 
     ranked = score.where(signal).dropna().sort_values(ascending=False)
-    if strategy in {"shock_reaction", "active_reversal", "trend_pullback", "relative_contrarian"}:
+    if strategy in {"shock_reaction", "active_reversal", "trend_pullback", "high_volume_reversal", "downturn_reversal", "relative_contrarian"}:
         ranked = score.where(signal).dropna().sort_values(ascending=True if strategy in {"active_reversal", "high_volume_reversal", "downturn_reversal", "relative_contrarian"} else False)
     return ranked.index[0] if not ranked.empty else None
 
