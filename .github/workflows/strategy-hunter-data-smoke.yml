@@ -150,6 +150,9 @@ jobs:
           print(out.read_text(encoding="utf-8"))
           PY
 
+      - name: Discover price-volume-regime patterns
+        run: python research/strategy/pattern_discovery.py
+
       - name: Publish cost diagnostic
         run: |
           python - <<'PY'
@@ -177,7 +180,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/results/baseline_results.csv research/results/baseline_spec.csv research/results/latest_baseline_result.md research/results/baseline_with_costs.csv research/results/baseline_no_costs.csv research/results/cost_diagnostic.md
+          git add research/results/baseline_results.csv research/results/baseline_spec.csv research/results/latest_baseline_result.md research/results/baseline_with_costs.csv research/results/baseline_no_costs.csv research/results/cost_diagnostic.md research/results/pattern_discovery.csv research/results/pattern_candidates.csv research/results/pattern_discovery.md
           if git diff --cached --quiet; then
             echo "No baseline result changes to commit."
           else
