@@ -18,4 +18,4 @@ Capital: RM1,000 | Period: 2015-01-05 to 2026-09-18
 | relative_contrarian | RM2.17 | -99.78% | -99.78% | 118 |
 
 Research only. No live orders.
-This file is machine-published after a successful baseline run.
+This file is machine-published after the recoverable baseline run.
