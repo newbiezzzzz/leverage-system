@@ -13,9 +13,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: strategy-hunter-full
-  cancel-in-progress: false
 
 jobs:
   smoke:
