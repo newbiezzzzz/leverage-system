@@ -10,6 +10,9 @@ on:
       - ".github/workflows/strategy-hunter-data-crosscheck.trigger"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
@@ -103,6 +106,52 @@ jobs:
       - name: Run fixed-rule baseline strategies
         run: python research/strategy/baseline_research.py
 
+      - name: Publish simple baseline result
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          src = Path("research/results/baseline_results.csv")
+          if not src.exists():
+              raise SystemExit("baseline_results.csv was not produced")
+
+          df = pd.read_csv(src)
+          lines = [
+              "# Strategy Hunter — Latest Baseline Result",
+              "",
+              f"Capital: RM1,000 | Period: {df['start'].min()} to {df['end'].max()}",
+              "",
+              "| Strategy | Final RM1,000 | Return | Max DD | Trades |",
+              "|---|---:|---:|---:|---:|",
+          ]
+          for _, r in df.iterrows():
+              lines.append(
+                  f"| {r['strategy']} | RM{r['final_equity']:.2f} | {r['total_return']*100:.2f}% | "
+                  f"{r['max_drawdown']*100:.2f}% | {int(r['trade_count'])} |"
+              )
+          lines += [
+              "",
+              "Research only. No live orders.",
+              "This file is machine-published after a successful baseline run.",
+          ]
+          out = Path("research/results/latest_baseline_result.md")
+          out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+          print(out.read_text(encoding="utf-8"))
+          PY
+
+      - name: Commit simple baseline result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/results/baseline_results.csv research/results/baseline_spec.csv research/results/latest_baseline_result.md
+          if git diff --cached --quiet; then
+            echo "No baseline result changes to commit."
+          else
+            git commit -m "chore: publish Strategy Hunter baseline result"
+            git push
+          fi
+
       - name: Full dataset inventory
         run: |
           python - <<'PY'
@@ -132,7 +181,6 @@ jobs:
             research/results/
           retention-days: 30
           compression-level: 6
-
 
   crosscheck:
     if: >-
