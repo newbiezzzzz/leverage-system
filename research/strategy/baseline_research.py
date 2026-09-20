@@ -56,7 +56,11 @@ def load_wide():
     for path in sorted(OHLCV.glob("*.csv")):
         try:
             d = pd.read_csv(path, parse_dates=["date"])
-            required = {"date", "open", "high", "low", "close", "volume"}
+            required = {
+                "date", "open", "high", "low", "close", "volume",
+                "split_adj_open", "split_adj_high", "split_adj_low",
+                "split_adj_close", "split_adj_volume",
+            }
             if not required <= set(d.columns):
                 continue
             sym = path.stem.replace("_", ".", 1)
@@ -79,11 +83,11 @@ def load_wide():
     vol_df = pd.DataFrame(index=index)
 
     for sym, d in rows:
-        open_df[sym] = d["open"].reindex(index)
-        high_df[sym] = d["high"].reindex(index)
-        low_df[sym] = d["low"].reindex(index)
-        close_df[sym] = d["close"].reindex(index)
-        vol_df[sym] = d["volume"].reindex(index)
+        open_df[sym] = d["split_adj_open"].reindex(index)
+        high_df[sym] = d["split_adj_high"].reindex(index)
+        low_df[sym] = d["split_adj_low"].reindex(index)
+        close_df[sym] = d["split_adj_close"].reindex(index)
+        vol_df[sym] = d["split_adj_volume"].reindex(index)
 
     return open_df, high_df, low_df, close_df, vol_df
 
@@ -312,7 +316,7 @@ def backtest(strategy: str, open_df, close_df, universe, ind):
         "trades_per_month": float(len(trade_df) / max(years * 12, 1)),
         "win_rate": float(win_rate),
         "profit_factor": float(profit_factor),
-        "equity_volatility": float(eq.pct_change().std() * np.sqrt(252)),
+        "equity_volatility": float(eq.pct_change(fill_method=None).std() * np.sqrt(252)),
         "trade_rows": trades,
     }
 
