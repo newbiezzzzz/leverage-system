@@ -51,6 +51,7 @@ STRATEGIES = {
     "breakout_volume": {"breakout": 20, "exit": 10, "trend": 50, "volume_mult": 1.5, "hold_days": 30},
     "high_volume_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03},
     "downturn_reversal": {"drop": -0.05, "trend": 200, "min_dollar_vol": 500_000.0, "max_hold": 5, "rebound": 0.03, "breadth_max": 0.45},
+    "relative_contrarian": {"lookback": 5, "bottom_quantile": 0.20, "min_dollar_vol": 500_000.0, "max_hold": 5},
 }
 
 
@@ -130,6 +131,7 @@ def indicators(close: pd.DataFrame, volume: pd.DataFrame):
         "prev10_low": close.shift(1).rolling(10, min_periods=10).min(),
         "volume_ratio20": volume / volume.rolling(20, min_periods=20).mean(),
         "one_day": close.pct_change(),
+        "mom_week": close / close.shift(5) - 1.0,
     }
 
 
@@ -223,6 +225,20 @@ def select_candidate(date, close, universe, ind, strategy):
         )
         if strategy == "downturn_reversal":
             signal &= breadth <= p["breadth_max"]
+    elif strategy == "relative_contrarian":
+        score = ind["mom_week"].loc[date]
+        p = STRATEGIES[strategy]
+        eligible_scores = score.where(eligible).dropna()
+        if len(eligible_scores) >= 10:
+            cutoff = eligible_scores.quantile(p["bottom_quantile"])
+            signal = (
+                eligible
+                & (score <= cutoff)
+                & (ind["avg_dollar"].loc[date] >= p["min_dollar_vol"])
+                & score.notna()
+            )
+        else:
+            signal = pd.Series(False, index=score.index)
     else:
         return None
 
@@ -259,6 +275,8 @@ def should_exit(i, pos_sym, entry_i, entry_price, close, ind, strategy):
     if strategy in {"high_volume_reversal", "downturn_reversal"}:
         p = STRATEGIES[strategy]
         return px >= entry_price * (1 + p["rebound"]) or held >= p["max_hold"]
+    if strategy == "relative_contrarian":
+        return held >= STRATEGIES[strategy]["max_hold"]
     return False
 
 
