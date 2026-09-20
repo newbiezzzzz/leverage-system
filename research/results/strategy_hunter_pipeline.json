@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-20T15:17:41Z",
+  "updated_at": "2026-09-20T15:17:45Z",
   "status": "running",
-  "stage": "optuna",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -19,6 +19,10 @@
       "attempts": 1
     },
     "lightgbm": {
+      "status": "done",
+      "attempts": 1
+    },
+    "optuna": {
       "status": "done",
       "attempts": 1
     }
