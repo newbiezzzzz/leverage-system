@@ -20,21 +20,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check triggering run really completed full research
+        id: full
+        if: github.event_name == 'workflow_run'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          python - <<'PY'
+          import json, os, subprocess
+          run_id=os.environ["RUN_ID"]
+          out=subprocess.check_output([
+              "gh","api",f"repos/${{ github.repository }}/actions/runs/{run_id}/jobs?per_page=100"
+          ], text=True)
+          jobs=json.loads(out).get("jobs", [])
+          full=[j for j in jobs if j.get("name")=="full"]
+          ok=bool(full) and full[0].get("conclusion")=="success"
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              f.write(f"eligible={'true' if ok else 'false'}\n")
+          print("eligible:", ok)
+
       - name: Check Strategy Hunter goal gate
         id: goal
         run: |
           python research/strategy/goal_gate.py
 
       - name: Stop when goal is achieved
-        if: steps.goal.outputs.achieved == 'true'
+        if: steps.goal.outputs.achieved == 'true' || (github.event_name == 'workflow_run' && steps.full.outputs.eligible != 'true')
         run: |
-          echo "Strategy Hunter goal achieved. Autoloop stopping."
+          echo "No new full research cycle needed right now."
 
       - name: Continue research automatically
-        if: steps.goal.outputs.achieved != 'true'
+        if: steps.goal.outputs.achieved != 'true' && (github.event_name == 'workflow_dispatch' || steps.full.outputs.eligible == 'true')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Goal not achieved. Starting the next autonomous research cycle."
+          echo "Goal not achieved after a completed full research cycle. Starting the next autonomous research cycle."
           sleep 120
           gh workflow run strategy-hunter-data-smoke.yml --ref main
