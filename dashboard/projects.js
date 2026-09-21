@@ -26,8 +26,8 @@ function renderStrategyHunterStatus(s){
  if(root) root.innerHTML=jobs.length?jobs.map(function(j){const st=j.status==='in_progress'?'RUNNING':j.conclusion==='success'?'DONE':j.conclusion==='failure'?'FAILED':String(j.status||'UNKNOWN').toUpperCase();return '<div class="worker"><div class="avatar '+(j.status==='in_progress'?'online':'planned')+'">S</div><div class="grow"><strong>'+esc(j.name||'Job')+'</strong><span><b>'+esc(st)+'</b></span><small>'+esc(j.current_step&&j.current_step!=='—'?'Current: '+j.current_step:'No active step')+'</small></div><span class="worker-state '+(j.status==='in_progress'?'online':j.conclusion==='failure'?'planned':'online')+'">'+esc(st)+'</span></div>'}).join(''):'<p class="muted">No Strategy Hunter job details published yet.</p>';
 }
 function renderStrategyHunterPipeline(p){
- const stages=['baseline','pattern_hunter','vectorbt','lightgbm','symbolic','qlib','optuna','lean','chronos2'];
- const labels={baseline:'Baseline',pattern_hunter:'Pattern Hunter',vectorbt:'VectorBT',lightgbm:'LightGBM',symbolic:'Symbolic Regression',qlib:'Qlib',optuna:'Optuna',lean:'LEAN',chronos2:'Chronos-2'};
+ const stages=['baseline','pattern_hunter','adaptive','vectorbt','lightgbm','symbolic','qlib','optuna','lean','chronos2'];
+ const labels={baseline:'Baseline',pattern_hunter:'Pattern Hunter',adaptive:'Improve Promising Ideas',vectorbt:'VectorBT',lightgbm:'LightGBM',symbolic:'Symbolic Regression',qlib:'Qlib',optuna:'Optuna',lean:'LEAN',chronos2:'Chronos-2'};
  const stage=p&&p.stage||'—',details=p&&p.stages||{};
  function put(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
  const idx=stages.indexOf(stage);
