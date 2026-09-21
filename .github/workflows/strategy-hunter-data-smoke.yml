@@ -1,5 +1,7 @@
 name: strategy-hunter-data-smoke
 
+run-name: Strategy Hunter research (recovery=${{ inputs.recovery_attempt || '0' }})
+
 on:
   push:
     paths:
@@ -9,6 +11,12 @@ on:
       - ".github/workflows/strategy-hunter-data-full.trigger"
       - ".github/workflows/strategy-hunter-data-crosscheck.trigger"
   workflow_dispatch:
+    inputs:
+      recovery_attempt:
+        description: "Automatic recovery attempt number"
+        required: false
+        default: "0"
+        type: string
 
 permissions:
   contents: write
