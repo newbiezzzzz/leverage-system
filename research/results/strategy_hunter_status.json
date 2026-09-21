@@ -1,21 +1,21 @@
 {
-  "checked_at": "2026-09-21T14:43:09.362885+00:00",
+  "checked_at": "2026-09-21T15:38:15.684825+00:00",
   "status": "in_progress",
-  "run_id": 35614018320,
-  "started_at": "2026-09-21T14:43:00Z",
-  "updated_at": "2026-09-21T14:43:06Z",
+  "run_id": 35620278298,
+  "started_at": "2026-09-21T15:38:09Z",
+  "updated_at": "2026-09-21T15:38:13Z",
   "jobs": [
-    {
-      "name": "full",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Install data tools"
-    },
     {
       "name": "smoke",
       "status": "in_progress",
       "conclusion": "\u2014",
-      "current_step": "Install data tools"
+      "current_step": "Run actions/checkout@v4"
+    },
+    {
+      "name": "full",
+      "status": "completed",
+      "conclusion": "skipped",
+      "current_step": "\u2014"
     }
   ],
   "conclusion": "\u2014"
