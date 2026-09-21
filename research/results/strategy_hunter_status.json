@@ -1,22 +1,9 @@
 {
-  "checked_at": "2026-09-21T15:38:15.684825+00:00",
-  "status": "in_progress",
-  "run_id": 35620278298,
-  "started_at": "2026-09-21T15:38:09Z",
-  "updated_at": "2026-09-21T15:38:13Z",
-  "jobs": [
-    {
-      "name": "smoke",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Run actions/checkout@v4"
-    },
-    {
-      "name": "full",
-      "status": "completed",
-      "conclusion": "skipped",
-      "current_step": "\u2014"
-    }
-  ],
+  "checked_at": "2026-09-21T15:40:15.821379+00:00",
+  "status": "pending",
+  "run_id": 35620495135,
+  "started_at": "2026-09-21T15:40:08Z",
+  "updated_at": "2026-09-21T15:40:09Z",
+  "jobs": [],
   "conclusion": "\u2014"
 }

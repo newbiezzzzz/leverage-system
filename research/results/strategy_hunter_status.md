@@ -1,15 +1,13 @@
 # Strategy Hunter — Live Monitor
 
-Checked: 2026-09-21T15:38:15.684845+00:00
+Checked: 2026-09-21T15:40:15.821419+00:00
 
-Status: 🟡 RUNNING
-Run: #35620278298
-Started: 2026-09-21T15:38:09Z
-Updated: 2026-09-21T15:38:13Z
+Status: ⚪ —
+Run: #35620495135
+Started: 2026-09-21T15:40:08Z
+Updated: 2026-09-21T15:40:09Z
 
 ## Jobs
 
 | Job | Status | Current step |
 |---|---|---|
-| smoke | 🟡 in_progress | Run actions/checkout@v4 |
-| full | ⚪ skipped | — |
