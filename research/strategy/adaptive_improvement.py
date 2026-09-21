@@ -74,12 +74,12 @@ def main():
                 tag="ma50" if trend is ind["ma50"] else "ma100"
                 variants[f"breakout_{b}_vr{vr:g}_{tag}"]=liquid&(cp>prev)&(cp>trend)&(vr20>=vr)
     # Relative strength / regime combinations
-    variants["relative_strength_20_bull"]=liquid&(rel20>=q80rel20)&(cp>ind["ma100"])&(breadth>=.55)
-    variants["relative_strength_20_neutral"]=liquid&(rel20>=q80rel20)&(cp>ind["ma100"])&(breadth>=.45)&(breadth<.55)
-    variants["bottom20_reversal_bull"]=liquid&(mom5<=q20)&(cp>ind["ma200"])&(breadth>=.55)&(ind["avg_dollar"]>=500_000)
-    variants["bottom10_reversal_bear"]=liquid&(mom5<=q10)&(cp>ind["ma200"])&(breadth<=.45)&(ind["avg_dollar"]>=500_000)
+    variants["relative_strength_20_bull"]=liquid&(rel20>=q80rel20)&(cp>ind["ma100"])&breadth.ge(.55,axis=0)
+    variants["relative_strength_20_neutral"]=liquid&(rel20>=q80rel20)&(cp>ind["ma100"])&breadth.ge(.45,axis=0)&breadth.lt(.55,axis=0)
+    variants["bottom20_reversal_bull"]=liquid&(mom5<=q20)&(cp>ind["ma200"])&breadth.ge(.55,axis=0)&(ind["avg_dollar"]>=500_000)
+    variants["bottom10_reversal_bear"]=liquid&(mom5<=q10)&(cp>ind["ma200"])&breadth.le(.45,axis=0)&(ind["avg_dollar"]>=500_000)
     variants["slow_momentum_12_1_lowvol"]=liquid&(mom252>0)&(cp>ind["ma200"])&(vol20<=vol63)
-    variants["slow_momentum_12_1_bull"]=liquid&(mom252>0)&(cp>ind["ma200"])&(breadth>=.55)
+    variants["slow_momentum_12_1_bull"]=liquid&(mom252>0)&(cp>ind["ma200"])&breadth.ge(.55,axis=0)
 
     fwd={h:(cp.shift(-h)/op.shift(-1))-1 for h in HORIZONS}
     period_dev=fwd[5].index<=DEV_END
