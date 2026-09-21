@@ -1,28 +1,22 @@
 {
-  "checked_at": "2026-09-21T14:00:06.636992+00:00",
-  "status": "completed",
-  "run_id": 35608633864,
-  "started_at": "2026-09-21T13:54:43Z",
-  "updated_at": "2026-09-21T13:57:36Z",
+  "checked_at": "2026-09-21T14:43:09.362885+00:00",
+  "status": "in_progress",
+  "run_id": 35614018320,
+  "started_at": "2026-09-21T14:43:00Z",
+  "updated_at": "2026-09-21T14:43:06Z",
   "jobs": [
     {
-      "name": "smoke",
-      "status": "completed",
-      "conclusion": "success",
-      "current_step": "\u2014"
-    },
-    {
       "name": "full",
-      "status": "completed",
-      "conclusion": "failure",
-      "current_step": "\u2014"
+      "status": "in_progress",
+      "conclusion": "\u2014",
+      "current_step": "Install data tools"
     },
     {
-      "name": "crosscheck",
-      "status": "completed",
-      "conclusion": "skipped",
-      "current_step": "\u2014"
+      "name": "smoke",
+      "status": "in_progress",
+      "conclusion": "\u2014",
+      "current_step": "Install data tools"
     }
   ],
-  "conclusion": "failure"
+  "conclusion": "\u2014"
 }
