@@ -13,68 +13,218 @@ on:
 permissions:
   actions: write
   contents: read
+  issues: write
 
 jobs:
   continue:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check triggering run really completed full research
-        id: full
+      - name: Check triggering run and classify failures
+        id: run_state
         if: github.event_name == 'workflow_run'
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ github.event.workflow_run.id }}
         run: |
           python - <<'PY'
-          import json, os, subprocess
-          run_id=os.environ["RUN_ID"]
-          out=subprocess.check_output([
-              "gh","api",f"repos/${{ github.repository }}/actions/runs/{run_id}/jobs?per_page=100"
-          ], text=True)
-          jobs=json.loads(out).get("jobs", [])
-          full=[j for j in jobs if j.get("name")=="full"]
-          ok=bool(full) and full[0].get("conclusion")=="success"
-          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
-              f.write(f"eligible={'true' if ok else 'false'}\n")
-          print("eligible:", ok)
+          import json, os, re, subprocess
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          run_id = os.environ["RUN_ID"]
+
+          run = json.loads(subprocess.check_output([
+              "gh", "api", f"repos/{repo}/actions/runs/{run_id}"
+          ], text=True))
+
+          jobs = json.loads(subprocess.check_output([
+              "gh", "api", f"repos/{repo}/actions/runs/{run_id}/jobs?per_page=100"
+          ], text=True)).get("jobs", [])
+
+          full = [j for j in jobs if j.get("name") == "full"]
+          full_ok = bool(full) and full[0].get("conclusion") == "success"
+          conclusion = run.get("conclusion") or "unknown"
+          title = run.get("display_title") or run.get("name") or ""
+
+          # Every normal research cycle starts at recovery=0.
+          # A failed recovery run increments this number through workflow_dispatch.
+          m = re.search(r"recovery[= ](\d+)", title, flags=re.I)
+          recovery_attempt = int(m.group(1)) if m else 0
+
+          failed_logs = ""
+          try:
+              failed_logs = subprocess.run(
+                  ["gh", "run", "view", run_id, "--log-failed"],
+                  check=False, capture_output=True, text=True, timeout=90,
+              ).stdout
+          except Exception:
+              failed_logs = ""
+
+          t = (failed_logs or "").lower()
+
+          transient_tokens = [
+              "http 429", "status code 429", "too many requests",
+              "http 502", "http 503", "http 504",
+              "connection reset", "connection aborted", "connection refused",
+              "timed out", "timeout", "temporary failure", "temporarily unavailable",
+              "name resolution", "dns", "network is unreachable",
+              "tls handshake", "ssl error", "curl 28",
+              "runner lost communication", "the runner has received no communication",
+              "service unavailable", "rate limit",
+          ]
+          code_tokens = [
+              "syntaxerror", "modulenotfounderror", "importerror",
+              "nameerror", "keyerror", "attributeerror",
+              "typeerror", "valueerror", "assertionerror",
+              "operands are not aligned", "truth value of a series is ambiguous",
+              "resolutionimpossible",
+          ]
+
+          failure_class = "unknown"
+          if conclusion in {"cancelled", "timed_out"}:
+              failure_class = "transient"
+          elif any(x in t for x in transient_tokens):
+              failure_class = "transient"
+          elif any(x in t for x in code_tokens):
+              failure_class = "code_or_dependency"
+
+          # A successful full job is the only condition that advances research.
+          # If smoke/preflight failed and no full job exists, it still needs recovery.
+          eligible = full_ok
+
+          should_retry = (
+              not eligible
+              and failure_class == "transient"
+              and recovery_attempt < 3
+          )
+
+          blocked = (
+              not eligible
+              and not should_retry
+          )
+
+          out = os.environ.get("GITHUB_OUTPUT")
+          with open(out, "a", encoding="utf-8") as f:
+              f.write(f"eligible={'true' if eligible else 'false'}\n")
+              f.write(f"failure_class={failure_class}\n")
+              f.write(f"recovery_attempt={recovery_attempt}\n")
+              f.write(f"should_retry={'true' if should_retry else 'false'}\n")
+              f.write(f"blocked={'true' if blocked else 'false'}\n")
+
+          print("full eligible:", eligible)
+          print("workflow conclusion:", conclusion)
+          print("failure class:", failure_class)
+          print("recovery attempt:", recovery_attempt)
+          print("automatic retry:", should_retry)
+          PY
 
       - name: Check Strategy Hunter goal gate
         id: goal
         run: |
           python research/strategy/goal_gate.py
 
-      - name: Stop when goal is achieved
-        if: steps.goal.outputs.achieved == 'true' || (github.event_name == 'workflow_run' && steps.full.outputs.eligible != 'true')
+      - name: Recover transient automation failure
+        if: >
+          github.event_name == 'workflow_run' &&
+          steps.goal.outputs.achieved != 'true' &&
+          steps.run_state.outputs.should_retry == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          echo "No new full research cycle needed right now."
+          ATTEMPT="${{ steps.run_state.outputs.recovery_attempt }}"
+          NEXT=$((ATTEMPT + 1))
+          echo "Transient failure detected. Starting controlled recovery attempt $NEXT/3."
+          sleep $((30 * NEXT))
+          gh workflow run strategy-hunter-data-smoke.yml             --ref main             --field recovery_attempt="$NEXT"
+
+      - name: Report and stop on non-transient failure
+        if: >
+          github.event_name == 'workflow_run' &&
+          steps.goal.outputs.achieved != 'true' &&
+          steps.run_state.outputs.blocked == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          CLASS="${{ steps.run_state.outputs.failure_class }}"
+          ATTEMPT="${{ steps.run_state.outputs.recovery_attempt }}"
+
+          BODY=$(cat <<EOF
+          Strategy Hunter stopped before advancing because an automation failure was not safe to retry.
+
+          Triggering run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${RUN_ID}
+          Failure class: ${CLASS}
+          Recovery attempts already used: ${ATTEMPT}
+
+          The system deliberately did NOT continue to the next research stage. This is the root-cause gate.
+
+          Next action: inspect the failed job logs, repair the underlying problem, run preflight, then resume the research loop.
+          EOF
+          )
+
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/issues"             -f title="Strategy Hunter blocked: ${CLASS} failure in run ${RUN_ID}"             -f body="${BODY}" >/dev/null
+
+          echo "BLOCKED: root-cause repair is required."
+          exit 1
+
+      - name: Stop after recovery dispatch
+        if: >
+          github.event_name == 'workflow_run' &&
+          steps.goal.outputs.achieved != 'true' &&
+          steps.run_state.outputs.should_retry == 'true'
+        run: echo "Recovery cycle dispatched; this controller exits so the new cycle can run alone."
 
       - name: Check for another active Strategy Hunter run
         id: active
-        if: steps.goal.outputs.achieved != 'true' && (github.event_name == 'workflow_dispatch' || steps.full.outputs.eligible == 'true')
+        if: >
+          steps.goal.outputs.achieved != 'true' &&
+          (github.event_name == 'workflow_dispatch' ||
+           github.event_name == 'workflow_run')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
           import json, os, subprocess
-          out=subprocess.check_output([
+
+          repo = os.environ["GITHUB_REPOSITORY"]
+          current = int(os.environ.get("RUN_ID", "0"))
+          runs = json.loads(subprocess.check_output([
               "gh","api",
-              "repos/${{ github.repository }}/actions/workflows/strategy-hunter-data-smoke.yml/runs?per_page=10&branch=main"
-          ],text=True)
-          runs=json.loads(out).get("workflow_runs",[])
-          this=int(os.environ.get("RUN_ID","0"))
-          active=any(r.get("id")!=this and r.get("status") in {"queued","in_progress"} for r in runs)
-          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              f"repos/{repo}/actions/workflows/strategy-hunter-data-smoke.yml/runs?per_page=20&branch=main"
+          ], text=True)).get("workflow_runs", [])
+
+          active = any(
+              r.get("id") != current and r.get("status") in {"queued","in_progress"}
+              for r in runs
+          )
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
               f.write(f"blocked={'true' if active else 'false'}\n")
+
           print("another active run:", active)
           PY
 
       - name: Continue research automatically
-        if: steps.goal.outputs.achieved != 'true' && steps.active.outputs.blocked != 'true' && (github.event_name == 'workflow_dispatch' || steps.full.outputs.eligible == 'true')
+        if: >
+          steps.goal.outputs.achieved != 'true' &&
+          steps.active.outputs.blocked != 'true' &&
+          github.event_name == 'workflow_run' &&
+          steps.run_state.outputs.eligible == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Goal not achieved and no other active research cycle exists. Starting the next cycle."
+          echo "Goal not achieved and the previous full research cycle succeeded."
           sleep 120
+          gh workflow run strategy-hunter-data-smoke.yml --ref main
+
+      - name: Start first cycle manually
+        if: >
+          steps.goal.outputs.achieved != 'true' &&
+          steps.active.outputs.blocked != 'true' &&
+          github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
           gh workflow run strategy-hunter-data-smoke.yml --ref main
