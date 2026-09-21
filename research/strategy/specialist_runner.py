@@ -29,7 +29,8 @@ def vectorbt_stage():
     ok, log = install("vectorbt==0.28.1");
     if ok:
         ok2, log2 = install("plotly<6");
-        if not ok2:\n            return {"tool": "VectorBT", "status": "unavailable", "added_value": False, "detail": log2}
+        if not ok2:
+            return {"tool": "VectorBT", "status": "unavailable", "added_value": False, "detail": log2}
     if not ok:
         return {"tool": "VectorBT", "status": "unavailable", "added_value": False, "detail": log}
     try:
