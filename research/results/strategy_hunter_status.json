@@ -1,22 +1,28 @@
 {
-  "checked_at": "2026-09-21T13:54:49.822409+00:00",
-  "status": "in_progress",
+  "checked_at": "2026-09-21T14:00:06.636992+00:00",
+  "status": "completed",
   "run_id": 35608633864,
   "started_at": "2026-09-21T13:54:43Z",
-  "updated_at": "2026-09-21T13:54:48Z",
+  "updated_at": "2026-09-21T13:57:36Z",
   "jobs": [
     {
       "name": "smoke",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Run actions/checkout@v4"
+      "status": "completed",
+      "conclusion": "success",
+      "current_step": "\u2014"
     },
     {
       "name": "full",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Set up job"
+      "status": "completed",
+      "conclusion": "failure",
+      "current_step": "\u2014"
+    },
+    {
+      "name": "crosscheck",
+      "status": "completed",
+      "conclusion": "skipped",
+      "current_step": "\u2014"
     }
   ],
-  "conclusion": "\u2014"
+  "conclusion": "failure"
 }
