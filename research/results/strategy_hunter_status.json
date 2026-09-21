@@ -1,28 +1,22 @@
 {
-  "checked_at": "2026-09-21T07:05:52.204452+00:00",
-  "status": "completed",
-  "run_id": 35518661806,
-  "started_at": "2026-09-20T15:09:00Z",
-  "updated_at": "2026-09-20T15:19:32Z",
+  "checked_at": "2026-09-21T11:34:45.408109+00:00",
+  "status": "queued",
+  "run_id": 35594791652,
+  "started_at": "2026-09-21T11:34:40Z",
+  "updated_at": "2026-09-21T11:34:41Z",
   "jobs": [
     {
       "name": "full",
-      "status": "completed",
-      "conclusion": "success",
+      "status": "in_progress",
+      "conclusion": "\u2014",
       "current_step": "\u2014"
     },
     {
       "name": "smoke",
-      "status": "completed",
-      "conclusion": "success",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "crosscheck",
-      "status": "completed",
-      "conclusion": "skipped",
-      "current_step": "\u2014"
+      "status": "in_progress",
+      "conclusion": "\u2014",
+      "current_step": "Set up job"
     }
   ],
-  "conclusion": "success"
+  "conclusion": "\u2014"
 }
