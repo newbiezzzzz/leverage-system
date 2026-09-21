@@ -152,11 +152,11 @@ def main():
             except Exception:
                 pass
         if not ok:
-            details[key]["error"]=log[-2500:]
-            # Independent specialists are allowed to fail without stopping the
-            # pipeline. Later specialists still get their chance where possible.
-            write_status("running",None,a,details=details)
-            continue
+            details[key]["error"]=log[-4000:]
+            # Do not continue past a broken stage. Fix the root cause first,
+            # then rerun the same stage before advancing.
+            write_status("blocked",key,a,error=log[-4000:],details=details)
+            raise SystemExit(f"Strategy Hunter blocked at {label}; root-cause repair required.")
         write_status("running",None,a,details=details)
 
     any_failed=any(v.get("status")=="failed" for v in details.values())
