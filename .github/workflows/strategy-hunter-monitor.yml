@@ -9,8 +9,12 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
+concurrency:
+  group: strategy-hunter-monitor-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
-  actions: read
+  actions: write
   contents: write
 
 jobs:
@@ -62,6 +66,33 @@ jobs:
               run_id = run["id"]
               status = run.get("status", "unknown")
               conclusion = run.get("conclusion") or "—"
+
+              # Guard against a runner that remains in_progress but has stopped
+              # making real progress. Full research is capped at 180 minutes.
+              # Canceling at 170 minutes lets the autoloop classify it as
+              # transient and start a controlled recovery attempt.
+              stale = False
+              if status == "in_progress" and run.get("updated_at"):
+                  try:
+                      updated = datetime.fromisoformat(run["updated_at"].replace("Z", "+00:00"))
+                      age_minutes = (datetime.now(timezone.utc) - updated).total_seconds() / 60.0
+                      stale = age_minutes >= 170
+                  except Exception:
+                      age_minutes = -1
+
+              if stale:
+                  cancel_api = f"https://api.github.com/repos/{repo}/actions/runs/{run_id}/cancel"
+                  subprocess.run(
+                      ["curl", "-fsSL", "-X", "POST",
+                       "-H", f"Authorization: Bearer {os.environ['GH_TOKEN']}",
+                       "-H", "Accept: application/vnd.github+json",
+                       cancel_api],
+                      check=True,
+                  )
+                  status = "cancelled"
+                  conclusion = "cancelled"
+                  status_payload["stale_cancel"] = True
+                  print(f"STALE RUN CANCELLED: #{run_id} (age_minutes={age_minutes:.1f})")
               if status == "in_progress":
                   shown = "🟡 RUNNING"
               elif conclusion == "success":
