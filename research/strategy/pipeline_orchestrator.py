@@ -22,6 +22,8 @@ STAGES=[
     ("pattern_hunter","Pattern Hunter","research/strategy/pattern_discovery.py"),
     ("vectorbt","VectorBT","research/strategy/specialist_runner.py vectorbt"),
     ("lightgbm","LightGBM","research/strategy/specialist_runner.py lightgbm"),
+    ("symbolic","Symbolic Regression","research/strategy/specialist_runner.py symbolic"),
+    ("qlib","Qlib","research/strategy/specialist_runner.py qlib"),
     ("optuna","Optuna","research/strategy/specialist_runner.py optuna"),
     ("lean","LEAN","research/strategy/specialist_runner.py lean"),
     ("chronos2","Chronos-2","research/strategy/specialist_runner.py chronos2"),
