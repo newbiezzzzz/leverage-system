@@ -20,6 +20,7 @@ MAX_ATTEMPTS=5
 STAGES=[
     ("baseline","Baseline backtest",None),
     ("pattern_hunter","Pattern Hunter","research/strategy/pattern_discovery.py"),
+    ("adaptive","Improve Promising Ideas","research/strategy/adaptive_improvement.py"),
     ("vectorbt","VectorBT","research/strategy/specialist_runner.py vectorbt"),
     ("lightgbm","LightGBM","research/strategy/specialist_runner.py lightgbm"),
     ("symbolic","Symbolic Regression","research/strategy/specialist_runner.py symbolic"),
