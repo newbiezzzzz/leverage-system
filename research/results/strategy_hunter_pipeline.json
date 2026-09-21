@@ -1,80 +1,8 @@
 {
-  "updated_at": "2026-09-21T14:54:36Z",
-  "status": "completed",
-  "stage": "done",
+  "updated_at": "2026-09-21T15:49:17Z",
+  "status": "running",
+  "stage": "baseline",
   "attempt": 0,
   "error": null,
-  "stages": {
-    "baseline": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "strategies": 13,
-        "best_final_equity": 14.448744019836482,
-        "worst_max_drawdown": -1.0001454922993516
-      }
-    },
-    "pattern_hunter": {
-      "status": "done",
-      "attempts": 1
-    },
-    "vectorbt": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "VectorBT",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 21.173s",
-        "version": "0.28.1"
-      }
-    },
-    "lightgbm": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LightGBM",
-        "status": "tested",
-        "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1752; RMSE=0.1029; mean-only RMSE=0.1043",
-        "oos_correlation": 0.17518063730970246,
-        "oos_rmse": 0.10288832810545127,
-        "baseline_rmse": 0.10426079391673347
-      }
-    },
-    "optuna": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Optuna",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
-        "best_discovery_mean": 0.0124197754370633,
-        "validation_mean": 0.0140468914881399,
-        "validation_win_rate": 0.4591616316563879,
-        "validation_observations": 63886
-      }
-    },
-    "lean": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LEAN",
-        "status": "tested_cli",
-        "added_value": true,
-        "detail": "lean 1.0.229"
-      }
-    },
-    "chronos2": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Chronos-2",
-        "status": "package_ready",
-        "added_value": true,
-        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
-      }
-    }
-  }
+  "stages": {}
 }
