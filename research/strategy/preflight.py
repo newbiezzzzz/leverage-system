@@ -11,6 +11,8 @@ import py_compile
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0, str(ROOT))
 FILES=[
     ROOT/"research/strategy/baseline_research.py",
     ROOT/"research/strategy/pattern_discovery.py",
