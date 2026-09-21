@@ -1,14 +1,14 @@
 {
-  "checked_at": "2026-09-21T16:26:39.713720+00:00",
+  "checked_at": "2026-09-21T19:12:26.565842+00:00",
   "status": "completed",
-  "run_id": 35623510518,
-  "started_at": "2026-09-21T16:07:02Z",
-  "updated_at": "2026-09-21T16:14:39Z",
+  "run_id": 35625666811,
+  "started_at": "2026-09-21T16:26:58Z",
+  "updated_at": "2026-09-21T16:28:22Z",
   "jobs": [
     {
-      "name": "full",
+      "name": "preflight",
       "status": "completed",
-      "conclusion": "cancelled",
+      "conclusion": "failure",
       "current_step": "\u2014"
     },
     {
@@ -18,11 +18,17 @@
       "current_step": "\u2014"
     },
     {
+      "name": "full",
+      "status": "completed",
+      "conclusion": "skipped",
+      "current_step": "\u2014"
+    },
+    {
       "name": "crosscheck",
       "status": "completed",
       "conclusion": "skipped",
       "current_step": "\u2014"
     }
   ],
-  "conclusion": "cancelled"
+  "conclusion": "failure"
 }
