@@ -1,5 +1,9 @@
 name: strategy-hunter-autoloop
 
+concurrency:
+  group: strategy-hunter-autoloop-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   workflow_run:
     workflows: ["strategy-hunter-data-smoke"]
