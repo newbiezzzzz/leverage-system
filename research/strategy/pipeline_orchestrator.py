@@ -126,6 +126,12 @@ def main():
     write_status("running","baseline",0,details=details)
     ok,a,log=baseline_stage()
     details["baseline"]={"status":"done" if ok else "failed","attempts":a}
+    if (OUT/"baseline_with_costs.csv").exists():
+        try:
+            bdf=__import__("pandas").read_csv(OUT/"baseline_with_costs.csv")
+            details["baseline"]["result"]={"strategies":int(len(bdf)),"best_final_equity":float(bdf["final_equity"].max()),"worst_max_drawdown":float(bdf["max_drawdown"].min())}
+        except Exception:
+            pass
     write_status("running" if ok else "failed","pattern_hunter" if ok else "baseline",a,None if ok else log[-3000:],details)
     for key,label,cmd in STAGES[1:]:
         write_status("running",key,0,details=details)
@@ -135,6 +141,13 @@ def main():
         else:
             ok,a,log=run_cmd(f"python {cmd}",key)
         details[key]={"status":"done" if ok else "failed","attempts":a}
+        result_file=OUT/f"specialist_{key}.json"
+        if result_file.exists():
+            try:
+                specialist_result=json.loads(result_file.read_text(encoding="utf-8"))
+                details[key]["result"]=specialist_result
+            except Exception:
+                pass
         if not ok:
             details[key]["error"]=log[-2500:]
             # Independent specialists are allowed to fail without stopping the
