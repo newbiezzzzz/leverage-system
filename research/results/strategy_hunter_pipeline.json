@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-21T15:59:08Z",
+  "updated_at": "2026-09-21T16:00:04Z",
   "status": "running",
-  "stage": "vectorbt",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -22,6 +22,17 @@
       "status": "failed",
       "attempts": 5,
       "error": "line_research.py:138: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n  \"one_day\": close.pct_change(),\n/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:42: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n  vol20=cp.pct_change().rolling(20,min_periods=20).std()\n/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:43: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n  vol63=cp.pct_change().rolling(63,min_periods=63).std()\nTraceback (most recent call last):\n  File \"/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py\", line 119, in <module>\n    main()\n  File \"/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py\", line 77, in main\n    variants[\"relative_strength_20_bull\"]=liquid&(rel20>=q80rel20)&(cp>ind[\"ma100\"])&(breadth>=.55)\n                                                  ^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/ops/common.py\", line 76, in new_method\n    return method(self, other)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/arraylike.py\", line 60, in __ge__\n    return self._cmp_method(other, operator.ge)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/frame.py\", line 7919, in _cmp_method\n    self, other = self._align_for_op(other, axis, flex=False, level=None)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/frame.py\", line 8227, in _align_for_op\n    raise ValueError(\nValueError: Operands are not aligned. Do `left, right = left.align(right, axis=1, copy=False)` before operating.\n"
+    },
+    "vectorbt": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "VectorBT",
+        "status": "tested",
+        "added_value": true,
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.768s",
+        "version": "0.28.1"
+      }
     }
   }
 }
