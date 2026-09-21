@@ -1,16 +1,16 @@
 # Strategy Hunter — Live Monitor
 
-Checked: 2026-09-21T16:14:37.971844+00:00
+Checked: 2026-09-21T16:15:15.408726+00:00
 
-Status: 🟡 RUNNING
+Status: ⚪ CANCELLED
 Run: #35623510518
 Started: 2026-09-21T16:07:02Z
-Updated: 2026-09-21T16:07:55Z
+Updated: 2026-09-21T16:14:39Z
 
 ## Jobs
 
 | Job | Status | Current step |
 |---|---|---|
-| full | 🟡 in_progress | Post Run actions/checkout@v4 |
+| full | ⚪ cancelled | — |
 | smoke | ✅ success | — |
 | crosscheck | ⚪ skipped | — |
