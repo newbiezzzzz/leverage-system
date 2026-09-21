@@ -73,8 +73,9 @@ jobs:
 
   full:
     if: >-
-      github.event_name == 'push' &&
-      contains(github.event.head_commit.message, 'trigger full Strategy Hunter data job')
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' &&
+       contains(github.event.head_commit.message, 'trigger full Strategy Hunter data job'))
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
