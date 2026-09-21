@@ -23,7 +23,9 @@ permissions:
 
 concurrency:
   group: strategy-hunter-${{ github.ref }}
-  cancel-in-progress: true
+  # Never kill an active research cycle because a duplicate trigger arrived.
+  # Duplicate cycles wait in the queue instead.
+  cancel-in-progress: false
 
 jobs:
   smoke:
