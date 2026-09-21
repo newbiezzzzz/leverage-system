@@ -1,0 +1,36 @@
+name: strategy-hunter-autoloop
+
+on:
+  workflow_run:
+    workflows: ["strategy-hunter-data-smoke"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  continue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Strategy Hunter goal gate
+        id: goal
+        run: |
+          python research/strategy/goal_gate.py
+
+      - name: Stop when goal is achieved
+        if: steps.goal.outputs.achieved == 'true'
+        run: |
+          echo "Strategy Hunter goal achieved. Autoloop stopping."
+
+      - name: Continue research automatically
+        if: steps.goal.outputs.achieved != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Goal not achieved. Starting the next autonomous research cycle."
+          sleep 120
+          gh workflow run strategy-hunter-data-smoke.yml --ref main
