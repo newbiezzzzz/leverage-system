@@ -74,11 +74,28 @@ jobs:
             research/qa/strategy_hunter_data_qa.json
           retention-days: 7
 
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install strategy test dependencies
+        run: pip install -r research/strategy/requirements.txt
+      - name: Run cheap research preflight
+        run: python research/strategy/preflight.py
+
   full:
+    needs: preflight
     if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'push' &&
-       contains(github.event.head_commit.message, 'trigger full Strategy Hunter data job'))
+      needs.preflight.result == 'success' &&
+      (
+        github.event_name == 'workflow_dispatch' ||
+        (github.event_name == 'push' &&
+         contains(github.event.head_commit.message, 'trigger full Strategy Hunter data job'))
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
