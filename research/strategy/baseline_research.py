@@ -67,7 +67,11 @@ def fee(trade_value: float) -> float:
     return commission + COST_MODEL["platform_fee"] + clearing + stamp + sst
 
 
-# Approximate round-trip transaction-cost hurdle for a 95% deployed RM1,000 account.\nCOST_HURDLE = 2.0 * fee(STARTING_CASH * CAPITAL_PCT) / (STARTING_CASH * CAPITAL_PCT)\n\n\ndef load_wide():
+# Approximate round-trip transaction-cost hurdle for a 95% deployed RM1,000 account.
+COST_HURDLE = 2.0 * fee(STARTING_CASH * CAPITAL_PCT) / (STARTING_CASH * CAPITAL_PCT)
+
+
+def load_wide():
     rows = []
     for path in sorted(OHLCV.glob("*.csv")):
         try:
