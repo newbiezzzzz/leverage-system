@@ -94,6 +94,51 @@ def lightgbm_stage():
         return {"tool":"LightGBM","status":"error","added_value":False,"detail":repr(e)}
 
 
+def symbolic_stage():
+    """Use symbolic regression to discover an interpretable nonlinear return formula and validate it OOS."""
+    ok, log = install("gplearn")
+    if not ok:
+        return {"tool":"Symbolic Regression","status":"unavailable","added_value":False,"detail":log}
+    try:
+        from gplearn.genetic import SymbolicRegressor
+        rows=[]
+        for p in sorted(DATA.glob("*.csv"))[:20]:
+            d=pd.read_csv(p,parse_dates=["date"]).sort_values("date")
+            cc=d["split_adj_close"].astype(float); vv=d["split_adj_volume"].astype(float)
+            x=pd.DataFrame({"date":d["date"],"ret5":cc/cc.shift(5)-1,"ret20":cc/cc.shift(20)-1,"ret60":cc/cc.shift(60)-1,"vol20":cc.pct_change().rolling(20).std(),"volume_ratio20":vv/vv.rolling(20).mean(),"target5":cc.shift(-5)/cc-1}).dropna()
+            rows.append(x)
+        df=pd.concat(rows,ignore_index=True)
+        train=df[df.date<=pd.Timestamp("2023-12-29")].copy(); test=df[df.date>pd.Timestamp("2023-12-29")].copy()
+        features=["ret5","ret20","ret60","vol20","volume_ratio20"]
+        if len(train)<2000 or len(test)<500:
+            return {"tool":"Symbolic Regression","status":"insufficient_data","added_value":False,"detail":f"train={len(train)}, test={len(test)}"}
+        if len(train)>20000: train=train.sample(20000,random_state=42)
+        model=SymbolicRegressor(population_size=300,generations=10,tournament_size=20,metric="mean absolute_error",parsimony_coefficient=0.001,random_state=42,n_jobs=2)
+        model.fit(train[features].values,train.target5.values)
+        pred=model.predict(test[features].values)
+        corr=float(np.corrcoef(pred,test.target5.values)[0,1]); rmse=float(np.sqrt(np.mean((pred-test.target5.values)**2))); baseline=float(np.sqrt(np.mean((test.target5.values-test.target5.values.mean())**2)))
+        return {"tool":"Symbolic Regression","status":"tested","added_value":bool(np.isfinite(corr) and rmse<baseline),"detail":f"OOS 5-day formula correlation={corr:.4f}; RMSE={rmse:.4f}; mean-only RMSE={baseline:.4f}; formula={str(model._program)[:240]}","oos_correlation":corr,"oos_rmse":rmse,"baseline_rmse":baseline,"formula":str(model._program)}
+    except Exception as e:
+        return {"tool":"Symbolic Regression","status":"error","added_value":False,"detail":repr(e)}
+
+
+def qlib_stage():
+    """Preflight Microsoft Qlib against our own OHLCV-derived dataset."""
+    ok, log = install("pyqlib")
+    if not ok: return {"tool":"Qlib","status":"unavailable","added_value":False,"detail":log}
+    try:
+        from qlib.data.dataset import DataHandlerLP
+        frames=[]
+        for p in sorted(DATA.glob("*.csv"))[:4]:
+            d=pd.read_csv(p,parse_dates=["date"]).sort_values("date")
+            cc=d["split_adj_close"].astype(float); vv=d["split_adj_volume"].astype(float)
+            x=pd.DataFrame({("feature","ret5"):cc/cc.shift(5)-1,("feature","ret20"):cc/cc.shift(20)-1,("feature","ret60"):cc/cc.shift(60)-1,("feature","vol20"):cc.pct_change().rolling(20).std(),("feature","volume_ratio20"):vv/vv.rolling(20).mean(),("label","target5"):cc.shift(-5)/cc-1},index=d["date"]).dropna()
+            x.index.name="datetime"; x["instrument"]=p.stem.replace("_",".",1); x=x.set_index("instrument",append=True); frames.append(x)
+        df=pd.concat(frames).sort_index(); handler=DataHandlerLP.from_df(df); feats=handler.get_cols(col_set="feature"); labels=handler.get_cols(col_set="label")
+        return {"tool":"Qlib","status":"tested_datahandler","added_value":True,"detail":f"Accepted custom dataset: {len(df)} rows, {len(feats)} features, {len(labels)} label(s)","features":feats,"labels":labels}
+    except Exception as e: return {"tool":"Qlib","status":"error","added_value":False,"detail":repr(e)}
+
+
 def optuna_stage():
     ok, log = install("optuna")
     if not ok:
@@ -152,12 +197,12 @@ def chronos2_stage():
         return {"tool":"Chronos-2","status":"error","added_value":False,"detail":repr(e)}
 
 
-STAGES={"vectorbt":vectorbt_stage,"lightgbm":lightgbm_stage,"optuna":optuna_stage,"lean":lean_stage,"chronos2":chronos2_stage}
+STAGES={"vectorbt":vectorbt_stage,"lightgbm":lightgbm_stage,"symbolic":symbolic_stage,"qlib":qlib_stage,"optuna":optuna_stage,"lean":lean_stage,"chronos2":chronos2_stage}
 
 
 def main():
     if len(sys.argv)!=2 or sys.argv[1] not in STAGES:
-        raise SystemExit("usage: specialist_runner.py {vectorbt|lightgbm|optuna|lean|chronos2}")
+        raise SystemExit("usage: specialist_runner.py {vectorbt|lightgbm|symbolic|qlib|optuna|lean|chronos2}")
     stage=sys.argv[1]
     result=STAGES[stage]()
     (OUT/f"specialist_{stage}.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
