@@ -28,6 +28,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Validate research Python syntax
+        run: python -m py_compile research/strategy/baseline_research.py research/strategy/pattern_discovery.py research/strategy/adaptive_improvement.py research/strategy/specialist_runner.py research/strategy/pipeline_orchestrator.py
+
       - name: Install data tools
         run: pip install -r research/data/requirements.txt
 
@@ -106,9 +109,6 @@ jobs:
 
       - name: Install baseline quant tools
         run: pip install -r research/strategy/requirements.txt
-
-      - name: Validate research Python syntax
-        run: python -m py_compile research/strategy/baseline_research.py research/strategy/pattern_discovery.py research/strategy/adaptive_improvement.py research/strategy/specialist_runner.py research/strategy/pipeline_orchestrator.py
 
       - name: Run autonomous recoverable Strategy Hunter pipeline
         run: |
