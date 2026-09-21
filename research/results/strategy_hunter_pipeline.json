@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-21T16:00:06Z",
+  "updated_at": "2026-09-21T16:00:08Z",
   "status": "running",
-  "stage": "symbolic",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -45,6 +45,16 @@
         "oos_correlation": 0.17518063730970246,
         "oos_rmse": 0.10288832810545127,
         "baseline_rmse": 0.10426079391673347
+      }
+    },
+    "symbolic": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Symbolic Regression",
+        "status": "error",
+        "added_value": false,
+        "detail": "ValueError('Unsupported metric: mean absolute_error')"
       }
     }
   }
