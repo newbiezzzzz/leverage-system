@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-21T16:00:08Z",
+  "updated_at": "2026-09-21T16:00:41Z",
   "status": "running",
-  "stage": "qlib",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -55,6 +55,26 @@
         "status": "error",
         "added_value": false,
         "detail": "ValueError('Unsupported metric: mean absolute_error')"
+      }
+    },
+    "qlib": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Qlib",
+        "status": "tested_datahandler",
+        "added_value": true,
+        "detail": "Accepted custom dataset: 0 rows, 5 features, 1 label(s)",
+        "features": [
+          "ret5",
+          "ret20",
+          "ret60",
+          "vol20",
+          "volume_ratio20"
+        ],
+        "labels": [
+          "target5"
+        ]
       }
     }
   }
