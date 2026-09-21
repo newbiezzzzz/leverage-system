@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-21T14:53:16Z",
+  "updated_at": "2026-09-21T14:53:20Z",
   "status": "running",
-  "stage": "optuna",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -40,6 +40,20 @@
         "oos_correlation": 0.17518063730970246,
         "oos_rmse": 0.10288832810545127,
         "baseline_rmse": 0.10426079391673347
+      }
+    },
+    "optuna": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Optuna",
+        "status": "tested",
+        "added_value": true,
+        "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
+        "best_discovery_mean": 0.0124197754370633,
+        "validation_mean": 0.0140468914881399,
+        "validation_win_rate": 0.4591616316563879,
+        "validation_observations": 63886
       }
     }
   }
