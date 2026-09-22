@@ -6,6 +6,7 @@ on:
   workflow_run:
     workflows: ["strategy-hunter-data-smoke"]
     types: [completed]
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,7 +26,6 @@ tools:
     toolsets: [default]
   edit:
   bash: true
-  web-search:
 network:
   allowed:
     - defaults
