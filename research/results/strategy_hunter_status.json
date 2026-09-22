@@ -1,34 +1,9 @@
 {
-  "checked_at": "2026-09-22T12:33:49.339178+00:00",
-  "status": "completed",
-  "run_id": 35722342513,
-  "started_at": "2026-09-22T11:35:58Z",
-  "updated_at": "2026-09-22T11:52:03Z",
-  "jobs": [
-    {
-      "name": "preflight",
-      "status": "completed",
-      "conclusion": "success",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "smoke",
-      "status": "completed",
-      "conclusion": "success",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "full",
-      "status": "completed",
-      "conclusion": "success",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "crosscheck",
-      "status": "completed",
-      "conclusion": "skipped",
-      "current_step": "\u2014"
-    }
-  ],
-  "conclusion": "success"
+  "checked_at": "2026-09-22T12:44:34.117152+00:00",
+  "status": "pending",
+  "run_id": 35729010731,
+  "started_at": "2026-09-22T12:44:26Z",
+  "updated_at": "2026-09-22T12:44:27Z",
+  "jobs": [],
+  "conclusion": "\u2014"
 }
