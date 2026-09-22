@@ -1,20 +1,32 @@
 {
-  "checked_at": "2026-09-22T11:16:52.348498+00:00",
-  "status": "queued",
+  "checked_at": "2026-09-22T11:29:01.760630+00:00",
+  "status": "in_progress",
   "run_id": 35720558202,
   "started_at": "2026-09-22T11:16:45Z",
-  "updated_at": "2026-09-22T11:16:45Z",
+  "updated_at": "2026-09-22T11:17:13Z",
   "jobs": [
     {
       "name": "preflight",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Run actions/checkout@v4"
+      "status": "completed",
+      "conclusion": "success",
+      "current_step": "\u2014"
     },
     {
       "name": "smoke",
-      "status": "queued",
+      "status": "completed",
+      "conclusion": "success",
+      "current_step": "\u2014"
+    },
+    {
+      "name": "full",
+      "status": "in_progress",
       "conclusion": "\u2014",
+      "current_step": "Run autonomous recoverable Strategy Hunter pipeline"
+    },
+    {
+      "name": "crosscheck",
+      "status": "completed",
+      "conclusion": "skipped",
       "current_step": "\u2014"
     }
   ],
