@@ -1,11 +1,11 @@
 # Strategy Hunter — Live Monitor
 
-Checked: 2026-09-22T11:29:01.760653+00:00
+Checked: 2026-09-22T12:10:24.466022+00:00
 
-Status: 🟡 RUNNING
-Run: #35720558202
-Started: 2026-09-22T11:16:45Z
-Updated: 2026-09-22T11:17:13Z
+Status: ✅ COMPLETED
+Run: #35722342513
+Started: 2026-09-22T11:35:58Z
+Updated: 2026-09-22T11:52:03Z
 
 ## Jobs
 
@@ -13,5 +13,5 @@ Updated: 2026-09-22T11:17:13Z
 |---|---|---|
 | preflight | ✅ success | — |
 | smoke | ✅ success | — |
-| full | 🟡 in_progress | Run autonomous recoverable Strategy Hunter pipeline |
+| full | ✅ success | — |
 | crosscheck | ⚪ skipped | — |
