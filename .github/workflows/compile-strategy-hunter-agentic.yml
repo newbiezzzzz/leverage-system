@@ -1,0 +1,49 @@
+name: Compile Strategy Hunter agentic workflows
+
+on:
+  push:
+    paths:
+      - ".github/workflows/strategy-hunter-self-heal.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install GitHub Agentic Workflows
+        run: gh extension install github/gh-aw
+
+      - name: Compile self-heal workflow
+        run: gh aw compile strategy-hunter-self-heal --strict
+
+      - name: Validate compiled workflow exists
+        run: |
+          test -s .github/workflows/strategy-hunter-self-heal.lock.yml
+          grep -q "Strategy Hunter Self-Heal" .github/workflows/strategy-hunter-self-heal.lock.yml
+
+      - name: Publish compiled workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/strategy-hunter-self-heal.lock.yml
+          if git diff --cached --quiet; then
+            echo "Compiled workflow is already current."
+          else
+            git commit -m "chore: compile Strategy Hunter self-heal agent"
+            git push
+          fi
+
+      - name: Resume Strategy Hunter through workflow dispatch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run strategy-hunter-data-smoke.yml --ref main
