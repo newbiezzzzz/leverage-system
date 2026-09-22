@@ -44,7 +44,7 @@ safe-outputs:
 ---
 # Strategy Hunter Self-Heal Agent
 
-This workflow is the autonomous repair layer for Strategy Hunter. v1.2.
+This workflow is the autonomous repair layer for Strategy Hunter. v1.3.
 
 You are the repair engineer for the Leverage Strategy Hunter repository.
 
