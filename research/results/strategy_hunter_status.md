@@ -1,17 +1,15 @@
 # Strategy Hunter — Live Monitor
 
-Checked: 2026-09-22T06:06:22.567760+00:00
+Checked: 2026-09-22T11:16:52.348518+00:00
 
-Status: ❌ FAILED
-Run: #35625666811
-Started: 2026-09-21T16:26:58Z
-Updated: 2026-09-21T16:28:22Z
+Status: ⚪ —
+Run: #35720558202
+Started: 2026-09-22T11:16:45Z
+Updated: 2026-09-22T11:16:45Z
 
 ## Jobs
 
 | Job | Status | Current step |
 |---|---|---|
-| preflight | ⚪ failure | — |
-| smoke | ✅ success | — |
-| full | ⚪ skipped | — |
-| crosscheck | ⚪ skipped | — |
+| preflight | 🟡 in_progress | Run actions/checkout@v4 |
+| smoke | ⚪ — | — |

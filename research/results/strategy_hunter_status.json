@@ -1,34 +1,22 @@
 {
-  "checked_at": "2026-09-22T06:06:22.567742+00:00",
-  "status": "completed",
-  "run_id": 35625666811,
-  "started_at": "2026-09-21T16:26:58Z",
-  "updated_at": "2026-09-21T16:28:22Z",
+  "checked_at": "2026-09-22T11:16:52.348498+00:00",
+  "status": "queued",
+  "run_id": 35720558202,
+  "started_at": "2026-09-22T11:16:45Z",
+  "updated_at": "2026-09-22T11:16:45Z",
   "jobs": [
     {
       "name": "preflight",
-      "status": "completed",
-      "conclusion": "failure",
-      "current_step": "\u2014"
+      "status": "in_progress",
+      "conclusion": "\u2014",
+      "current_step": "Run actions/checkout@v4"
     },
     {
       "name": "smoke",
-      "status": "completed",
-      "conclusion": "success",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "full",
-      "status": "completed",
-      "conclusion": "skipped",
-      "current_step": "\u2014"
-    },
-    {
-      "name": "crosscheck",
-      "status": "completed",
-      "conclusion": "skipped",
+      "status": "queued",
+      "conclusion": "\u2014",
       "current_step": "\u2014"
     }
   ],
-  "conclusion": "failure"
+  "conclusion": "\u2014"
 }
