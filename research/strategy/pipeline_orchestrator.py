@@ -145,12 +145,20 @@ def main():
             ok,a,log=run_cmd(f"python {cmd}",key)
         details[key]={"status":"done" if ok else "failed","attempts":a}
         result_file=OUT/f"specialist_{key}.json"
+        specialist_result=None
         if result_file.exists():
             try:
                 specialist_result=json.loads(result_file.read_text(encoding="utf-8"))
                 details[key]["result"]=specialist_result
-            except Exception:
-                pass
+                # A specialist that exits 0 but reports its own error is still a
+                # broken research stage. Never let the orchestrator call that "done".
+                if specialist_result.get("status") in {"error","unavailable","insufficient_data"}:
+                    ok=False
+                    a=max(a,1)
+                    log=specialist_result.get("detail","specialist reported failure")
+            except Exception as exc:
+                ok=False
+                log=f"Could not parse {result_file.name}: {exc}"
         if not ok:
             details[key]["error"]=log[-4000:]
             # Do not continue past a broken stage. Fix the root cause first,
