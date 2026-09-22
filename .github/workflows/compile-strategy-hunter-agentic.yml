@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/strategy-hunter-self-heal.md"
+      - ".github/workflows/compile-strategy-hunter-agentic.yml"
   workflow_dispatch:
   schedule:
     - cron: "*/15 * * * *"
