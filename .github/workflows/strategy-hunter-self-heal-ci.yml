@@ -1,0 +1,49 @@
+name: Strategy Hunter Self-Heal Repair Gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "research/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install strategy test dependencies
+        run: pip install -r research/strategy/requirements.txt
+
+      - name: Compile affected Strategy Hunter modules
+        run: |
+          python -m py_compile             research/strategy/baseline_research.py             research/strategy/pattern_discovery.py             research/strategy/adaptive_improvement.py             research/strategy/specialist_runner.py             research/strategy/pipeline_orchestrator.py
+
+      - name: Run Strategy Hunter preflight
+        run: python research/strategy/preflight.py
+
+      - name: Guard critical research protections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          required = [
+              "research/strategy/goal_gate.py",
+              "research/strategy/pipeline_orchestrator.py",
+              ".github/workflows/strategy-hunter-data-smoke.yml",
+          ]
+          for p in required:
+              if not Path(p).exists():
+                  raise SystemExit(f"Missing critical file: {p}")
+          print("Critical research protection files are present.")
+          PY
