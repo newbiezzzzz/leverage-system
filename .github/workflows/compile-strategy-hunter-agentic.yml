@@ -5,6 +5,8 @@ on:
     paths:
       - ".github/workflows/strategy-hunter-self-heal.md"
   workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
 
 permissions:
   contents: write
@@ -16,21 +18,34 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.COPILOT_GITHUB_TOKEN }}
 
       - name: Install GitHub Agentic Workflows
         run: gh extension install github/gh-aw
 
+      - name: Check Copilot automation credential
+        id: auth
+        env:
+          AUTOMATION_PAT: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$AUTOMATION_PAT" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::COPILOT_GITHUB_TOKEN is not configured yet. Self-heal agent is installed in source form but cannot be activated in this personal repository until the one-time credential is added."
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Compile self-heal workflow
+        if: steps.auth.outputs.available == 'true'
         run: gh aw compile strategy-hunter-self-heal --strict
 
       - name: Validate compiled workflow exists
+        if: steps.auth.outputs.available == 'true'
         run: |
           test -s .github/workflows/strategy-hunter-self-heal.lock.yml
           grep -q "Strategy Hunter Self-Heal" .github/workflows/strategy-hunter-self-heal.lock.yml
 
       - name: Publish compiled workflow
+        if: steps.auth.outputs.available == 'true'
         env:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: |
@@ -45,7 +60,8 @@ jobs:
           fi
 
       - name: Resume Strategy Hunter through workflow dispatch
+        if: steps.auth.outputs.available == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: |
           gh workflow run strategy-hunter-data-smoke.yml --ref main
