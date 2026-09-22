@@ -101,6 +101,7 @@ jobs:
     needs: preflight
     if: >-
       needs.preflight.result == 'success' &&
+      hashFiles('.github/workflows/strategy-hunter-self-heal.lock.yml') != '' &&
       (
         github.event_name == 'workflow_dispatch' ||
         (github.event_name == 'push' &&
