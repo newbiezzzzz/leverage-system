@@ -2957,7 +2957,7 @@
     {
       "strategy": "momentum",
       "entry_date": "2026-09-11",
-      "exit_date": "2026-09-21",
+      "exit_date": "2026-09-22",
       "symbol": "5010.KL",
       "entry_price": 2.400000095367432,
       "exit_price": 2.450000047683716,
@@ -6727,15 +6727,15 @@
     {
       "strategy": "breakout",
       "entry_date": "2026-08-31",
-      "exit_date": "2026-09-21",
+      "exit_date": "2026-09-22",
       "symbol": "7103.KL",
       "entry_price": 3.549999952316284,
-      "exit_price": 3.75,
+      "exit_price": 3.7100000381469727,
       "shares": 72,
-      "gross_pnl": 14.400003433227539,
+      "gross_pnl": 11.52000617980957,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": 14.400003433227539,
+      "net_pnl": 11.52000617980957,
       "exit_reason": "final_close"
     }
   ],
@@ -11267,15 +11267,15 @@
     {
       "strategy": "slow_momentum",
       "entry_date": "2026-08-19",
-      "exit_date": "2026-09-21",
+      "exit_date": "2026-09-22",
       "symbol": "5286.KL",
       "entry_price": 6.260767593759622,
-      "exit_price": 5.659999847412109,
+      "exit_price": 5.989999771118164,
       "shares": 3,
-      "gross_pnl": -1.8023032390425389,
+      "gross_pnl": -0.8123034679243748,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": -1.8023032390425389,
+      "net_pnl": -0.8123034679243748,
       "exit_reason": "final_close"
     }
   ],
@@ -27683,15 +27683,15 @@
     {
       "strategy": "breakout_volume",
       "entry_date": "2026-09-03",
-      "exit_date": "2026-09-21",
+      "exit_date": "2026-09-22",
       "symbol": "7103.KL",
       "entry_price": 3.75,
-      "exit_price": 3.75,
+      "exit_price": 3.7100000381469727,
       "shares": 73,
-      "gross_pnl": 0.0,
+      "gross_pnl": -2.919997215270996,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": 0.0,
+      "net_pnl": -2.919997215270996,
       "exit_reason": "final_close"
     }
   ],
@@ -43175,15 +43175,15 @@
     {
       "strategy": "regime_adaptive",
       "entry_date": "2026-09-03",
-      "exit_date": "2026-09-21",
+      "exit_date": "2026-09-22",
       "symbol": "5286.KL",
       "entry_price": 5.550000190734863,
-      "exit_price": 5.659999847412109,
+      "exit_price": 5.989999771118164,
       "shares": 71,
-      "gross_pnl": 7.809975624084473,
+      "gross_pnl": 31.239970207214355,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": 7.809975624084473,
+      "net_pnl": 31.239970207214355,
       "exit_reason": "final_close"
     }
   ]
