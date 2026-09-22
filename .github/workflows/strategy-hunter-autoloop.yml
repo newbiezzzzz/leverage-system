@@ -44,9 +44,19 @@ jobs:
           ], text=True)).get("jobs", [])
 
           full = [j for j in jobs if j.get("name") == "full"]
-          full_ok = bool(full) and full[0].get("conclusion") == "success"
+          preflight = [j for j in jobs if j.get("name") == "preflight"]
+          full_conclusion = full[0].get("conclusion") if full else None
+          preflight_conclusion = preflight[0].get("conclusion") if preflight else None
+          full_ok = full_conclusion == "success"
           conclusion = run.get("conclusion") or "unknown"
           title = run.get("display_title") or run.get("name") or ""
+
+          # A successful preflight with an intentionally skipped full job is a
+          # normal smoke-only run, not a failed research cycle. The full trigger
+          # itself is the source of truth for whether a cycle was requested.
+          full_requested = full_conclusion != "skipped"
+          if full_conclusion == "skipped" and preflight_conclusion != "success":
+              full_requested = True
 
           # Every normal research cycle starts at recovery=0.
           # A failed recovery run increments this number through workflow_dispatch.
@@ -91,16 +101,23 @@ jobs:
               failure_class = "code_or_dependency"
 
           # A successful full job is the only condition that advances research.
-          # If smoke/preflight failed and no full job exists, it still needs recovery.
+          # A normal smoke-only run is a no-op for the research loop.
           eligible = full_ok
+          smoke_only_noop = (
+              not full_requested and
+              conclusion == "success" and
+              preflight_conclusion == "success"
+          )
 
           should_retry = (
+              full_requested and
               not eligible
               and failure_class == "transient"
               and recovery_attempt < 3
           )
 
           blocked = (
+              full_requested and
               not eligible
               and not should_retry
           )
