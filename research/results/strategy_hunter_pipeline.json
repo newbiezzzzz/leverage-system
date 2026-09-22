@@ -1,8 +1,18 @@
 {
-  "updated_at": "2026-09-22T22:10:42Z",
+  "updated_at": "2026-09-22T22:13:42Z",
   "status": "running",
-  "stage": "baseline",
-  "attempt": 0,
+  "stage": "pattern_hunter",
+  "attempt": 1,
   "error": null,
-  "stages": {}
+  "stages": {
+    "baseline": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "strategies": 13,
+        "best_final_equity": 20.22990624471492,
+        "worst_max_drawdown": -1.0001454922993516
+      }
+    }
+  }
 }
