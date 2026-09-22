@@ -65,6 +65,8 @@ jobs:
             echo "Compiled workflow is already current."
           else
             git commit -m "chore: compile Strategy Hunter self-heal agent"
+            git fetch origin main
+            git rebase origin/main
             git push
           fi
 
