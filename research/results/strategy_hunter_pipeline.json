@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-22T11:45:13Z",
+  "updated_at": "2026-09-22T11:48:51Z",
   "status": "running",
-  "stage": "adaptive",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -17,6 +17,17 @@
     "pattern_hunter": {
       "status": "done",
       "attempts": 1
+    },
+    "adaptive": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "status": "tested",
+        "variants": 106,
+        "candidate_count": 0,
+        "robust_holdout_count": 0,
+        "cost_hurdle": 0.010222315789473684
+      }
     }
   }
 }
