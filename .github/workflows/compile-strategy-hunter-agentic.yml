@@ -35,11 +35,9 @@ jobs:
           fi
 
       - name: Compile self-heal workflow
-        if: steps.auth.outputs.available == 'true'
         run: gh aw compile strategy-hunter-self-heal --strict
 
       - name: Upload compiled workflow artifact
-        if: steps.auth.outputs.available != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: strategy-hunter-self-heal-lock
@@ -47,7 +45,6 @@ jobs:
           retention-days: 7
 
       - name: Validate compiled workflow exists
-        if: steps.auth.outputs.available == 'true'
         run: |
           test -s .github/workflows/strategy-hunter-self-heal.lock.yml
           grep -q "Strategy Hunter Self-Heal" .github/workflows/strategy-hunter-self-heal.lock.yml
