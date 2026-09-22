@@ -104,7 +104,7 @@ jobs:
       (
         github.event_name == 'workflow_dispatch' ||
         (github.event_name == 'push' &&
-         contains(github.event.head_commit.message, 'trigger full Strategy Hunter data job'))
+         contains(toJSON(github.event.commits), '.github/workflows/strategy-hunter-data-full.trigger'))
       )
     runs-on: ubuntu-latest
     timeout-minutes: 180
