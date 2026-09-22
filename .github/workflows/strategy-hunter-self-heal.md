@@ -25,7 +25,7 @@ tools:
     toolsets: [default]
   edit:
   bash: true
-  web-search: true
+  web-search:
 network:
   allowed:
     - defaults
