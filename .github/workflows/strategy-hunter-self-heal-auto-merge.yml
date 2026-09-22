@@ -1,0 +1,61 @@
+name: Strategy Hunter Self-Heal Auto-Merge
+
+on:
+  workflow_run:
+    workflows: ["Strategy Hunter Self-Heal Repair Gate"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  merge:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Locate verified self-heal PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_BRANCH: ${{ github.event.workflow_run.head_branch }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "manual dispatch: no automatic merge target"
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          prs=$(gh api --paginate "repos/${GITHUB_REPOSITORY}/commits/${RUN_SHA}/pulls" -H "Accept: application/vnd.github+json")
+          number=$(printf '%s' "$prs" | python -c 'import json,sys; p=json.load(sys.stdin); q=[x for x in p if x.get("state")=="open" and (x.get("title") or "").startswith("[Leverage Self-Heal]") and (x.get("head",{}).get("ref") or "").startswith("leverage-self-heal/")]; print(q[0]["number"] if q else "")')
+          if [ -z "$number" ]; then
+            echo "No matching verified self-heal PR found."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+          echo "found=true" >> "$GITHUB_OUTPUT"
+
+      - name: Merge verified repair
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          gh pr merge "$PR_NUMBER" --squash --delete-branch --repo "$GITHUB_REPOSITORY"
+
+      - name: Resume Strategy Hunter
+        if: steps.pr.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run strategy-hunter-data-smoke.yml --ref main --repo "$GITHUB_REPOSITORY"
