@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-22T15:42:10Z",
+  "updated_at": "2026-09-22T15:42:12Z",
   "status": "running",
-  "stage": "lightgbm",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -38,6 +38,19 @@
         "added_value": true,
         "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 20.447s",
         "version": "0.28.1"
+      }
+    },
+    "lightgbm": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "LightGBM",
+        "status": "tested",
+        "added_value": true,
+        "detail": "OOS 5-day-return correlation=0.1752; RMSE=0.1029; mean-only RMSE=0.1043",
+        "oos_correlation": 0.17518249730618035,
+        "oos_rmse": 0.10292571023289712,
+        "baseline_rmse": 0.1043007090385
       }
     }
   }
