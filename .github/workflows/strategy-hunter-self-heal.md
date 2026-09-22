@@ -13,6 +13,7 @@ permissions:
   actions: read
   issues: read
   pull-requests: read
+  copilot-requests: write
 engine:
   id: copilot
   max-turns: 60
@@ -32,7 +33,6 @@ network:
     - python
     - github
 safe-outputs:
-  github-token: ${{ secrets.COPILOT_GITHUB_TOKEN }}
   create-pull-request:
     max: 1
     protected-files:
