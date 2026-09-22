@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-22T11:50:32Z",
+  "updated_at": "2026-09-22T11:51:43Z",
   "status": "running",
-  "stage": "chronos2",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -105,6 +105,16 @@
         "status": "tested_cli",
         "added_value": true,
         "detail": "lean 1.0.229"
+      }
+    },
+    "chronos2": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Chronos-2",
+        "status": "package_ready",
+        "added_value": true,
+        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
       }
     }
   }
