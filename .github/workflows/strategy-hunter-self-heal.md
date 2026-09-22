@@ -95,3 +95,5 @@ If the failure cannot be safely fixed with strong evidence, do not invent a fix.
 A repair PR is the hand-off to the deterministic repair gate. Do not dispatch a new research cycle yourself unless the repository is already repaired and the requested workflow can be safely resumed without bypassing the repair gate.
 
 Always use NO-OP when no repair is required.
+
+<!-- activation verification: compiler credential handoff fixed -->
