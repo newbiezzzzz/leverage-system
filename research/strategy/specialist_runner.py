@@ -113,7 +113,7 @@ def symbolic_stage():
         if len(train)<2000 or len(test)<500:
             return {"tool":"Symbolic Regression","status":"insufficient_data","added_value":False,"detail":f"train={len(train)}, test={len(test)}"}
         if len(train)>20000: train=train.sample(20000,random_state=42)
-        model=SymbolicRegressor(population_size=300,generations=10,tournament_size=20,metric="mean absolute_error",parsimony_coefficient=0.001,random_state=42,n_jobs=2)
+        model=SymbolicRegressor(population_size=300,generations=10,tournament_size=20,metric="mae",parsimony_coefficient=0.001,random_state=42,n_jobs=2)
         model.fit(train[features].values,train.target5.values)
         pred=model.predict(test[features].values)
         corr=float(np.corrcoef(pred,test.target5.values)[0,1]); rmse=float(np.sqrt(np.mean((pred-test.target5.values)**2))); baseline=float(np.sqrt(np.mean((test.target5.values-test.target5.values.mean())**2)))
@@ -135,7 +135,7 @@ def qlib_stage():
             x=pd.DataFrame({("feature","ret5"):cc/cc.shift(5)-1,("feature","ret20"):cc/cc.shift(20)-1,("feature","ret60"):cc/cc.shift(60)-1,("feature","vol20"):cc.pct_change().rolling(20).std(),("feature","volume_ratio20"):vv/vv.rolling(20).mean(),("label","target5"):cc.shift(-5)/cc-1},index=d["date"]).dropna()
             x.index.name="datetime"; x["instrument"]=p.stem.replace("_",".",1); x=x.set_index("instrument",append=True); frames.append(x)
         df=pd.concat(frames).sort_index(); handler=DataHandlerLP.from_df(df); feats=handler.get_cols(col_set="feature"); labels=handler.get_cols(col_set="label")
-        return {"tool":"Qlib","status":"tested_datahandler","added_value":True,"detail":f"Accepted custom dataset: {len(df)} rows, {len(feats)} features, {len(labels)} label(s)","features":feats,"labels":labels}
+        if df.empty:\n            return {"tool":"Qlib","status":"error","added_value":False,"detail":"Qlib datahandler received 0 usable rows after feature/label construction"}\n        return {"tool":"Qlib","status":"tested_datahandler","added_value":True,"detail":f"Accepted custom dataset: {len(df)} rows, {len(feats)} features, {len(labels)} label(s)","features":feats,"labels":labels}
     except Exception as e: return {"tool":"Qlib","status":"error","added_value":False,"detail":repr(e)}
 
 
