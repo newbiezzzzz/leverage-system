@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-22T22:16:53Z",
+  "updated_at": "2026-09-22T22:17:33Z",
   "status": "running",
-  "stage": "vectorbt",
-  "attempt": 0,
+  "stage": null,
+  "attempt": 1,
   "error": null,
   "stages": {
     "baseline": {
@@ -27,6 +27,17 @@
         "candidate_count": 0,
         "robust_holdout_count": 0,
         "cost_hurdle": 0.010222315789473684
+      }
+    },
+    "vectorbt": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "VectorBT",
+        "status": "tested",
+        "added_value": true,
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 12.675s",
+        "version": "0.28.1"
       }
     }
   }
