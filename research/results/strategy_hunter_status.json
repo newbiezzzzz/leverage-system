@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-09-22T19:07:00.729243+00:00",
-  "status": "in_progress",
+  "checked_at": "2026-09-22T22:02:00.104095+00:00",
+  "status": "completed",
   "run_id": 35771065618,
   "started_at": "2026-09-22T19:01:31Z",
-  "updated_at": "2026-09-22T19:01:59Z",
+  "updated_at": "2026-09-22T19:15:49Z",
   "jobs": [
     {
       "name": "preflight",
@@ -19,9 +19,9 @@
     },
     {
       "name": "full",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Run autonomous recoverable Strategy Hunter pipeline"
+      "status": "completed",
+      "conclusion": "failure",
+      "current_step": "\u2014"
     },
     {
       "name": "crosscheck",
@@ -30,5 +30,5 @@
       "current_step": "\u2014"
     }
   ],
-  "conclusion": "\u2014"
+  "conclusion": "failure"
 }
