@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-09-22T19:15:26Z",
-  "status": "running",
+  "updated_at": "2026-09-22T19:15:28Z",
+  "status": "blocked",
   "stage": "symbolic",
-  "attempt": 0,
-  "error": null,
+  "attempt": 1,
+  "error": "ValueError('Unsupported metric: mae')",
   "stages": {
     "baseline": {
       "status": "done",
@@ -52,6 +52,17 @@
         "oos_rmse": 0.10291276582241135,
         "baseline_rmse": 0.10428758699296022
       }
+    },
+    "symbolic": {
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Symbolic Regression",
+        "status": "error",
+        "added_value": false,
+        "detail": "ValueError('Unsupported metric: mae')"
+      },
+      "error": "ValueError('Unsupported metric: mae')"
     }
   }
 }
