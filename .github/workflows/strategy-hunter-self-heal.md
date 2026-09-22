@@ -32,7 +32,7 @@ network:
     - python
     - github
 safe-outputs:
-  github-token: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+  github-token: ${{ secrets.GITHUB_TOKEN }}
   create-pull-request:
     max: 1
     protected-files:
