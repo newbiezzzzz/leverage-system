@@ -4789,6 +4789,20 @@
       "exit_fee": 0.0,
       "net_pnl": -0.4545816200707353,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "trend",
+      "entry_date": "2026-09-22",
+      "exit_date": "2026-09-22",
+      "symbol": "5136.KL",
+      "entry_price": 1.149999976158142,
+      "exit_price": 1.149999976158142,
+      "shares": 9,
+      "gross_pnl": 0.0,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": 0.0,
+      "exit_reason": "final_close"
     }
   ],
   "breakout": [
