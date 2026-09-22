@@ -135,7 +135,9 @@ def qlib_stage():
             x=pd.DataFrame({("feature","ret5"):cc/cc.shift(5)-1,("feature","ret20"):cc/cc.shift(20)-1,("feature","ret60"):cc/cc.shift(60)-1,("feature","vol20"):cc.pct_change().rolling(20).std(),("feature","volume_ratio20"):vv/vv.rolling(20).mean(),("label","target5"):cc.shift(-5)/cc-1},index=d["date"]).dropna()
             x.index.name="datetime"; x["instrument"]=p.stem.replace("_",".",1); x=x.set_index("instrument",append=True); frames.append(x)
         df=pd.concat(frames).sort_index(); handler=DataHandlerLP.from_df(df); feats=handler.get_cols(col_set="feature"); labels=handler.get_cols(col_set="label")
-        if df.empty:\n            return {"tool":"Qlib","status":"error","added_value":False,"detail":"Qlib datahandler received 0 usable rows after feature/label construction"}\n        return {"tool":"Qlib","status":"tested_datahandler","added_value":True,"detail":f"Accepted custom dataset: {len(df)} rows, {len(feats)} features, {len(labels)} label(s)","features":feats,"labels":labels}
+        if df.empty:
+            return {"tool":"Qlib","status":"error","added_value":False,"detail":"Qlib datahandler received 0 usable rows after feature/label construction"}
+        return {"tool":"Qlib","status":"tested_datahandler","added_value":True,"detail":f"Accepted custom dataset: {len(df)} rows, {len(feats)} features, {len(labels)} label(s)","features":feats,"labels":labels}
     except Exception as e: return {"tool":"Qlib","status":"error","added_value":False,"detail":repr(e)}
 
 
