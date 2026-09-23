@@ -15,6 +15,7 @@ permissions:
   pull-requests: read
 engine:
   id: copilot
+  model: gpt-5.3-codex
   max-turns: 60
   harness:
     watchdog-timeout: 900
