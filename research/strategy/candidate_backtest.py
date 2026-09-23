@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import math
+import hashlib
 import numpy as np
 import pandas as pd
 
@@ -71,8 +72,6 @@ def patterns(hp,lp,cp,vp,u,ind):
     q80=rel20.where(liquid).quantile(.80,axis=1)
     breadth=((cp>ind["ma200"])&liquid).sum(axis=1)/liquid.sum(axis=1).replace(0,np.nan)
     breakout=cp>ind["prev20_high"]
-    range_pct=(cp*0+1)  # placeholder overwritten below
-    # high/low are already available through the input matrices in the caller
     return {
         "momentum_60_uptrend": liquid&(mom60>0.05)&(cp>ind["ma100"]),
         "slow_momentum_12_1": liquid&(mom252>0)&(cp>ind["ma200"]),
@@ -128,6 +127,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
     trades=[]
     equity=[]
     halted=False
+    force_exit_next=False
     dates=cp.index
     for i in range(1,len(dates)):
         d=dates[i]
@@ -139,7 +139,11 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
             stop=entry_price*(1-STOP_LOSS)
             exit_px=None
             reason=None
-            if pd.notna(low) and low<=stop and pd.notna(open_px) and open_px>0:
+            if force_exit_next and pd.notna(open_px) and open_px>0:
+                exit_px=open_px
+                reason="risk_limit"
+                force_exit_next=False
+            elif pd.notna(low) and low<=stop and pd.notna(open_px) and open_px>0:
                 exit_px=min(open_px,stop)
                 reason="stop"
             elif held>=h and pd.notna(open_px) and open_px>0:
@@ -187,6 +191,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
         dd=eq/peak-1 if peak>0 else -1
         if dd<=-MAX_DD and pos is not None:
             halted=True
+            force_exit_next=True
         equity.append((d,float(eq)))
     if pos is not None and shares>0:
         px=cp.iloc[-1][pos]
@@ -272,7 +277,8 @@ def main():
     }
     if not passed.empty:
         top=passed.iloc[0]
-        evidence["candidate_id"]=f"SH-{int(abs(hash((top.pattern,int(top.horizon_days))))%1_000_000):06d}"
+        raw_id=f"{top.pattern}:{int(top.horizon_days)}".encode("utf-8")
+        evidence["candidate_id"]=f"SH-{int(hashlib.sha256(raw_id).hexdigest()[:8],16)%1_000_000:06d}"
         evidence["strategy"]={"pattern":top.pattern,"horizon_days":int(top.horizon_days),"stop_loss":STOP_LOSS}
         evidence["oos_result"]=top.to_dict()
         evidence["gates"]["positive_after_costs"]=bool(top.total_return>0)
