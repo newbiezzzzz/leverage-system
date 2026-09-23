@@ -71,7 +71,8 @@ on:
     types:
       - completed
     workflows:
-      - strategy-hunter-data-smoke
+      - strategy-hunter-data-full
+      - strategy-hunter-cycle
 
 permissions: {}
 
