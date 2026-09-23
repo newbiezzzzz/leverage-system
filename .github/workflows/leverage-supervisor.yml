@@ -12,6 +12,13 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "strategy-hunter-cycle"
+      - "strategy-hunter-data-full"
+      - "Strategy Hunter Self-Heal"
+    types: [completed]
+    branches: [main]
 
 permissions:
   actions: write
@@ -39,7 +46,6 @@ jobs:
           import json
           import os
           import subprocess
-          from datetime import datetime, timezone
 
           repo = os.environ["GITHUB_REPOSITORY"]
 
@@ -68,15 +74,30 @@ jobs:
           )
 
           latest_cycle = cycle_runs[0] if cycle_runs else None
-          failed_cycle = (
+          latest_data = data_runs[0] if data_runs else None
+          latest_heal = heal_runs[0] if heal_runs else None
+
+          failed_cycle = bool(
               latest_cycle
-              if latest_cycle
               and latest_cycle.get("status") == "completed"
               and latest_cycle.get("conclusion") in {"failure", "cancelled", "timed_out"}
-              else None
           )
-
-          latest_heal = heal_runs[0] if heal_runs else None
+          failed_data = bool(
+              latest_data
+              and latest_data.get("status") == "completed"
+              and latest_data.get("conclusion") in {"failure", "cancelled", "timed_out"}
+          )
+          has_successful_data = any(
+              r.get("status") == "completed" and r.get("conclusion") == "success"
+              for r in data_runs
+          )
+          latest_successful_data = next(
+              (
+                  r for r in data_runs
+                  if r.get("status") == "completed" and r.get("conclusion") == "success"
+              ),
+              None,
+          )
 
           achieved = False
           goal_path = "research/results/strategy_hunter_goal.json"
@@ -90,6 +111,21 @@ jobs:
           except Exception:
               pass
 
+          heal_after_cycle = bool(
+              failed_cycle
+              and (
+                  latest_heal is None
+                  or latest_heal.get("created_at", "") < latest_cycle.get("updated_at", "")
+              )
+          )
+          heal_after_data = bool(
+              failed_data
+              and (
+                  latest_heal is None
+                  or latest_heal.get("created_at", "") < latest_data.get("updated_at", "")
+              )
+          )
+
           if achieved:
               action = "none"
               reason = "goal_achieved"
@@ -99,29 +135,31 @@ jobs:
           elif active_heal:
               action = "none"
               reason = "self_heal_active"
-          elif failed_cycle and (
-              latest_heal is None
-              or latest_heal.get("created_at", "") < failed_cycle.get("updated_at", "")
-          ):
-              action = "start_self_heal"
-              reason = "failed_research_needs_repair"
-          elif failed_cycle:
-              action = "none"
-              reason = "repair_run_exists"
           elif active_data:
               action = "none"
               reason = "data_refresh_active"
+          elif not has_successful_data:
+              action = "start_data"
+              reason = "no_successful_dataset_available"
+          elif heal_after_data or heal_after_cycle:
+              action = "start_self_heal"
+              reason = "failed_workflow_needs_repair"
           else:
               action = "start_cycle"
-              reason = "mission_not_achieved_and_no_active_cycle"
+              reason = "mission_not_achieved_and_prerequisites_ready"
 
           print("goal_achieved:", achieved)
           print("active_cycle:", active_cycle)
           print("active_data:", active_data)
           print("active_heal:", active_heal)
+          print("has_successful_data:", has_successful_data)
+          print("latest_successful_data:", latest_successful_data.get("id") if latest_successful_data else None)
           print("latest_cycle:", latest_cycle.get("id") if latest_cycle else None)
           print("latest_cycle_conclusion:", latest_cycle.get("conclusion") if latest_cycle else None)
+          print("latest_data:", latest_data.get("id") if latest_data else None)
+          print("latest_data_conclusion:", latest_data.get("conclusion") if latest_data else None)
           print("latest_heal:", latest_heal.get("id") if latest_heal else None)
+          print("latest_heal_conclusion:", latest_heal.get("conclusion") if latest_heal else None)
           print("decision:", action, reason)
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
@@ -134,6 +172,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
+
+      - name: Start data refresh
+        if: steps.decision.outputs.action == 'start_data'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run strategy-hunter-data-full.yml --ref main
 
       - name: Start Strategy Hunter cycle
         if: steps.decision.outputs.action == 'start_cycle'
