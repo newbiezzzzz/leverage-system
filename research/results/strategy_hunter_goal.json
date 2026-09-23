@@ -1,0 +1,16 @@
+{
+  "status": "searching",
+  "all_gates_passed": false,
+  "missing_gates": [
+    "data_integrity",
+    "engine_sanity",
+    "positive_after_costs",
+    "robust_out_of_sample",
+    "drawdown_within_limit",
+    "trade_frequency_feasible",
+    "broker_feasible_at_rm1000",
+    "historical_shariah_compliance",
+    "independent_replication",
+    "forward_paper_validation"
+  ]
+}
