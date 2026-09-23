@@ -175,6 +175,21 @@ def main():
             details[key] = {"status": "skipped", "reason": "upstream_core_failure"}
             continue
 
+        # Optional research tools are activated only after the core engine has
+        # produced a candidate. This keeps the loop focused and quota-efficient.
+        if tier == "optional":
+            candidate_file = OUT / "adaptive_candidates.csv"
+            candidate_count = 0
+            if candidate_file.exists():
+                try:
+                    import pandas as pd
+                    candidate_count = len(pd.read_csv(candidate_file))
+                except Exception:
+                    candidate_count = 0
+            if candidate_count == 0:
+                details[key] = {"status": "skipped", "reason": "no_candidate_ready"}
+                continue
+
         write_status("running", key, 0, details)
         command = (
             "python research/strategy/pattern_discovery.py"
