@@ -1,7 +1,7 @@
 {
   "status": "searching",
   "candidate_id": null,
-  "all_gates_passed": false,
+  "selected_by": "development_and_selection_only",
   "gates": {
     "data_integrity": true,
     "engine_sanity": true,
@@ -13,6 +13,5 @@
     "historical_shariah_compliance": true,
     "independent_replication": false,
     "forward_paper_validation": false
-  },
-  "evidence_source": "research/results/qualified_strategy_evidence.json"
+  }
 }

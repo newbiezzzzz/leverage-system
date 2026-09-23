@@ -4,13 +4,23 @@
   "objective": "Find a repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk.",
   "state": "RUNNING",
   "goal_achieved": false,
-  "engine_sanity": false,
-  "cycle": 0,
+  "engine_sanity": true,
+  "cycle": 1,
   "progress": {
-    "patterns_tested": 0,
+    "cycle": 1,
+    "updated_at": "2026-09-23T15:42:47Z",
+    "patterns_tested": 10,
     "candidates": 0,
-    "robust_candidates": 0
+    "robust_candidates": 0,
+    "engine_sanity": true,
+    "last_cycle_status": "completed"
   },
-  "next_action": "start_research_cycle",
+  "last_cycle": {
+    "cycle": 1,
+    "status": "completed",
+    "next_action": "continue_research",
+    "goal_achieved": false
+  },
+  "next_action": "continue_research",
   "owner_action_required": false
 }
