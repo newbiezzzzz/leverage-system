@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "mission": "Leverage",
+  "active_track": "strategy_hunter",
+  "objective": "Find a repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk.",
+  "constraints": {
+    "starting_capital_rm": 1000,
+    "one_active_position": true,
+    "planned_max_drawdown": 0.10,
+    "target_trades_per_month": [5, 20],
+    "shariah_required": true,
+    "execution_universe": ["Moomoo", "Phillip Nova"],
+    "research_only_until_all_gates_pass": true,
+    "live_money_movement": false,
+    "costs_must_be_included": true,
+    "survivorship_bias_must_be_tested": true,
+    "lookahead_bias_must_be_tested": true
+  },
+  "achievement_gates": [
+    "data_integrity",
+    "engine_sanity",
+    "positive_after_costs",
+    "robust_out_of_sample",
+    "drawdown_within_limit",
+    "trade_frequency_feasible",
+    "broker_feasible_at_rm1000",
+    "historical_shariah_compliance",
+    "independent_replication",
+    "forward_paper_validation"
+  ],
+  "stop_policy": {
+    "default": "continue",
+    "ordinary_research_failure": "recover_and_continue",
+    "optional_tool_failure": "bypass_and_continue",
+    "worker_failure": "restart_or_reassign",
+    "only_stop_for": [
+      "genuine_external_blocker_requiring_owner_action",
+      "explicit_owner_stop",
+      "goal_achieved"
+    ]
+  }
+}
