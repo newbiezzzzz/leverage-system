@@ -140,8 +140,8 @@ jobs:
               action = "none"
               reason = "data_refresh_active"
           elif heal_after_data or heal_after_cycle:
-              action = "none"
-              reason = "failed_workflow_triggers_self_heal_event"
+              action = "start_self_heal"
+              reason = "failed_workflow_needs_repair"
           elif not has_successful_data:
               action = "start_data"
               reason = "no_successful_dataset_available"
@@ -167,6 +167,12 @@ jobs:
               f.write(f"action={action}\n")
               f.write(f"reason={reason}\n")
           PY
+
+      - name: Start self-heal
+        if: steps.decision.outputs.action == 'start_self_heal'
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
 
       - name: Start data refresh
         if: steps.decision.outputs.action == 'start_data'
