@@ -12,16 +12,10 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - strategy-hunter-cycle
-      - strategy-hunter-data-full
-    types: [completed]
 
 permissions:
   actions: write
   contents: read
-  pull-requests: read
 
 concurrency:
   group: leverage-supervisor
@@ -31,7 +25,6 @@ jobs:
   supervise:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
       - uses: actions/checkout@v4
 
@@ -39,115 +32,114 @@ jobs:
         id: decision
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           python - <<'PY'
-          import json, os, subprocess
+          import json
+          import os
+          import subprocess
           from datetime import datetime, timezone
 
-          repo=os.environ["GITHUB_REPOSITORY"]
+          repo = os.environ["GITHUB_REPOSITORY"]
 
           def api(path):
-              return json.loads(subprocess.check_output(["gh","api",path], text=True))
+              return json.loads(
+                  subprocess.check_output(["gh", "api", path], text=True)
+              )
 
           def runs(workflow):
-              return api(f"repos/{repo}/actions/workflows/{workflow}/runs?branch=main&per_page=30").get("workflow_runs", [])
+              return api(
+                  f"repos/{repo}/actions/workflows/{workflow}/runs?branch=main&per_page=30"
+              ).get("workflow_runs", [])
 
-          cycle_runs=runs("strategy-hunter-cycle.yml")
-          data_runs=runs("strategy-hunter-data-full.yml")
-          heal_runs=runs("strategy-hunter-self-heal.lock.yml")
+          cycle_runs = runs("strategy-hunter-cycle.yml")
+          data_runs = runs("strategy-hunter-data-full.yml")
+          heal_runs = runs("strategy-hunter-self-heal.lock.yml")
 
-          active_cycle=any(r.get("status") in {"queued","in_progress"} for r in cycle_runs)
-          active_data=any(r.get("status") in {"queued","in_progress"} for r in data_runs)
-          active_heal=any(r.get("status") in {"queued","in_progress"} for r in heal_runs)
-          latest_cycle=cycle_runs[0] if cycle_runs else None
-          latest_failed_cycle=(
+          active_cycle = any(
+              r.get("status") in {"queued", "in_progress"} for r in cycle_runs
+          )
+          active_data = any(
+              r.get("status") in {"queued", "in_progress"} for r in data_runs
+          )
+          active_heal = any(
+              r.get("status") in {"queued", "in_progress"} for r in heal_runs
+          )
+
+          latest_cycle = cycle_runs[0] if cycle_runs else None
+          failed_cycle = (
               latest_cycle
               if latest_cycle
               and latest_cycle.get("status") == "completed"
-              and latest_cycle.get("conclusion") in {"failure","cancelled","timed_out"}
+              and latest_cycle.get("conclusion") in {"failure", "cancelled", "timed_out"}
               else None
           )
-          matching_heal=(
-              next(
-                  (
-                      r for r in heal_runs
-                      if latest_failed_cycle
-                      and r.get("created_at")
-                      and latest_failed_cycle.get("updated_at")
-                      and r.get("created_at") >= latest_failed_cycle.get("updated_at")
-                  ),
-                  None,
-              )
-              if latest_failed_cycle else None
-          )
-          latest_data_success=next((r for r in data_runs if r.get("conclusion")=="success"), None)
-          latest_data_attempt=data_runs[0] if data_runs else None
 
-          def age_hours(dt):
-              if not dt: return 10000
-              x=datetime.fromisoformat(dt.replace("Z","+00:00"))
-              return (datetime.now(timezone.utc)-x).total_seconds()/3600
+          latest_heal = heal_runs[0] if heal_runs else None
 
-          data_age=age_hours(latest_data_success.get("updated_at")) if latest_data_success else 10000
-          last_data_attempt_age=age_hours(latest_data_attempt.get("updated_at")) if latest_data_attempt else 10000
-
-          achieved=False
+          achieved = False
+          goal_path = "research/results/strategy_hunter_goal.json"
           try:
-              g=json.load(open("research/results/strategy_hunter_goal.json",encoding="utf-8"))
-              achieved=(g.get("status")=="achieved" and g.get("all_gates_passed") is True)
+              with open(goal_path, encoding="utf-8") as f:
+                  goal = json.load(f)
+              achieved = (
+                  goal.get("status") == "achieved"
+                  and goal.get("all_gates_passed") is True
+              )
           except Exception:
               pass
 
           if achieved:
-              action="none"; reason="goal_achieved"
+              action = "none"
+              reason = "goal_achieved"
           elif active_cycle:
-              action="none"; reason="research_cycle_active"
-          elif latest_failed_cycle and not matching_heal:
-              action="start_self_heal"; reason="failed_research_without_repair_run"
-          elif latest_failed_cycle and active_heal:
-              action="none"; reason="self_heal_active_after_failed_research"
-          elif latest_failed_cycle and matching_heal and matching_heal.get("conclusion") != "success":
-              action="start_self_heal"; reason="self_heal_failed_after_research_failure"
-          elif latest_failed_cycle and matching_heal and matching_heal.get("conclusion") == "success":
-              action="none"; reason="await_verified_repair_resume"
-          elif (not latest_data_success or data_age > 72) and not active_data and last_data_attempt_age >= 6:
-              action="refresh_data"; reason=f"dataset_missing_or_stale_{data_age:.1f}h"
+              action = "none"
+              reason = "research_cycle_active"
+          elif active_heal:
+              action = "none"
+              reason = "self_heal_active"
+          elif failed_cycle and (
+              latest_heal is None
+              or latest_heal.get("created_at", "") < failed_cycle.get("updated_at", "")
+          ):
+              action = "start_self_heal"
+              reason = "failed_research_needs_repair"
+          elif failed_cycle:
+              action = "none"
+              reason = "repair_run_exists"
           elif active_data:
-              action="none"; reason="data_refresh_active"
+              action = "none"
+              reason = "data_refresh_active"
           else:
-              action="start_cycle"; reason="mission_not_achieved_and_no_active_cycle"
+              action = "start_cycle"
+              reason = "mission_not_achieved_and_no_active_cycle"
 
           print("goal_achieved:", achieved)
           print("active_cycle:", active_cycle)
           print("active_data:", active_data)
-          print("data_age_hours:", round(data_age,2))
-          print("last_data_attempt_age_hours:", round(last_data_attempt_age,2))
+          print("active_heal:", active_heal)
+          print("latest_cycle:", latest_cycle.get("id") if latest_cycle else None)
+          print("latest_cycle_conclusion:", latest_cycle.get("conclusion") if latest_cycle else None)
+          print("latest_heal:", latest_heal.get("id") if latest_heal else None)
           print("decision:", action, reason)
 
-          with open(os.environ["GITHUB_OUTPUT"],"a",encoding="utf-8") as f:
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
               f.write(f"action={action}\n")
               f.write(f"reason={reason}\n")
           PY
 
-      - name: Start self-heal when a research run failed without a repair run
+      - name: Start self-heal
         if: steps.decision.outputs.action == 'start_self_heal'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
 
-      - name: Start data refresh when needed
-        if: steps.decision.outputs.action == 'refresh_data'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run strategy-hunter-data-full.yml --ref main
-
-      - name: Start Strategy Hunter research cycle
+      - name: Start Strategy Hunter cycle
         if: steps.decision.outputs.action == 'start_cycle'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run strategy-hunter-cycle.yml --ref main
 
-      - name: No action required
-        if: steps.decision.outputs.action == 'none'
-        run: echo "Supervisor: no action required."
+      - name: Supervisor completed
+        run: echo "Leverage supervisor decision completed."
