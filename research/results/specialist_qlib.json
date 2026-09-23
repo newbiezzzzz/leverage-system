@@ -1,16 +1,6 @@
 {
   "tool": "Qlib",
-  "status": "tested_datahandler",
-  "added_value": true,
-  "detail": "Accepted custom dataset: 0 rows, 5 features, 1 label(s)",
-  "features": [
-    "ret5",
-    "ret20",
-    "ret60",
-    "vol20",
-    "volume_ratio20"
-  ],
-  "labels": [
-    "target5"
-  ]
+  "status": "error",
+  "added_value": false,
+  "detail": "Qlib datahandler received 0 usable rows after feature/label construction"
 }

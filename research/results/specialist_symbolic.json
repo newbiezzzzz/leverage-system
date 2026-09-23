@@ -1,6 +1,10 @@
 {
   "tool": "Symbolic Regression",
-  "status": "error",
+  "status": "tested",
   "added_value": false,
-  "detail": "ValueError('Unsupported metric: mae')"
+  "detail": "OOS 5-day formula correlation=nan; RMSE=0.0981; mean-only RMSE=0.0981; formula=sub(X1, X1)",
+  "oos_correlation": NaN,
+  "oos_rmse": 0.09805588575606597,
+  "baseline_rmse": 0.09805467567737682,
+  "formula": "sub(X1, X1)"
 }
