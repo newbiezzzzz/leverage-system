@@ -18,6 +18,8 @@ FILES = [
     ROOT / "research/strategy/pipeline_orchestrator.py",
     ROOT / "research/strategy/engine_sanity.py",
     ROOT / "research/strategy/mission_controller.py",
+    ROOT / "research/strategy/candidate_qualification.py",
+    ROOT / "research/strategy/candidate_backtest.py",
 ]
 for path in FILES:
     py_compile.compile(str(path), doraise=True)
@@ -43,6 +45,7 @@ for name in (
     "research.strategy.engine_sanity",
     "research.strategy.mission_controller",
     "research.strategy.candidate_qualification",
+    "research.strategy.candidate_backtest",
 ):
     importlib.import_module(name)
 
