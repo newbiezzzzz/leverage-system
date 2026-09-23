@@ -314,6 +314,8 @@ def backtest(strategy, open_df, close_df, universe, ind):
     pending_entry = None
     equity_rows = []
     trades = []
+    peak_equity = STARTING_CASH
+    risk_halt = False
     last_valid_i = {}
     for sym in close_df.columns:
         valid_idx = close_df[sym].dropna().index
@@ -404,14 +406,20 @@ def backtest(strategy, open_df, close_df, universe, ind):
             cp = close_df.iloc[i][pos_sym]
             if pd.notna(cp):
                 eq += shares * float(cp)
+        peak_equity = max(peak_equity, float(eq))
+        account_dd = float(eq / peak_equity - 1.0) if peak_equity > 0 else -1.0
+        if pos_sym is not None and account_dd <= -0.10:
+            pending_exit = True
+            pending_entry = None
+            risk_halt = True
         equity_rows.append((date, eq))
 
         # Signal at today's close, executed next trading day's open.
-        if pos_sym is not None:
+        if pos_sym is not None and not risk_halt:
             if should_exit(i, pos_sym, entry_i, entry_price, close_df, ind, strategy):
                 pending_exit = True
                 pending_entry = None
-        else:
+        elif pos_sym is None and not risk_halt:
             pending_entry = select_candidate(date, close_df, universe, ind, strategy)
 
     eq = pd.Series(dict(equity_rows)).sort_index()
