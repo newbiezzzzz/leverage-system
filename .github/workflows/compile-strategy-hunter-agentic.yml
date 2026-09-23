@@ -6,8 +6,6 @@ on:
       - ".github/workflows/strategy-hunter-self-heal.md"
       - ".github/workflows/compile-strategy-hunter-agentic.yml"
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
 
 permissions:
   contents: write
@@ -53,26 +51,21 @@ jobs:
           grep -q "Strategy Hunter Self-Heal" .github/workflows/strategy-hunter-self-heal.lock.yml
 
       - name: Publish compiled workflow
-        if: steps.auth.outputs.available == 'true'
         env:
-          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          gh auth setup-git
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add .github/workflows/strategy-hunter-self-heal.lock.yml
           if git diff --cached --quiet; then
             echo "Compiled workflow is already current."
           else
             git commit -m "chore: compile Strategy Hunter self-heal agent"
-            git fetch origin main
-            git rebase origin/main
+            git pull --rebase origin main
             git push
           fi
 
-      - name: Resume Strategy Hunter through workflow dispatch
-        if: steps.auth.outputs.available == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
-        run: |
-          gh workflow run strategy-hunter-data-smoke.yml --ref main
+      - name: Compiler complete
+        run: echo "Agentic workflow compilation complete. Leverage supervisor owns research continuation."
