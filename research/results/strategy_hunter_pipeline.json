@@ -1,68 +1,8 @@
 {
-  "updated_at": "2026-09-22T22:17:38Z",
-  "status": "blocked",
-  "stage": "symbolic",
-  "attempt": 1,
-  "error": "ValueError('Unsupported metric: mae')",
-  "stages": {
-    "baseline": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "strategies": 13,
-        "best_final_equity": 20.22990624471492,
-        "worst_max_drawdown": -1.0001454922993516
-      }
-    },
-    "pattern_hunter": {
-      "status": "done",
-      "attempts": 1
-    },
-    "adaptive": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "status": "tested",
-        "variants": 106,
-        "candidate_count": 0,
-        "robust_holdout_count": 0,
-        "cost_hurdle": 0.010222315789473684
-      }
-    },
-    "vectorbt": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "VectorBT",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 12.675s",
-        "version": "0.28.1"
-      }
-    },
-    "lightgbm": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LightGBM",
-        "status": "tested",
-        "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1752; RMSE=0.1029; mean-only RMSE=0.1043",
-        "oos_correlation": 0.17518178583391647,
-        "oos_rmse": 0.10291276582241135,
-        "baseline_rmse": 0.10428758699296022
-      }
-    },
-    "symbolic": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Symbolic Regression",
-        "status": "error",
-        "added_value": false,
-        "detail": "ValueError('Unsupported metric: mae')"
-      },
-      "error": "ValueError('Unsupported metric: mae')"
-    }
-  }
+  "updated_at": "2026-09-23T00:33:18Z",
+  "status": "running",
+  "stage": "baseline",
+  "attempt": 0,
+  "error": null,
+  "stages": {}
 }
