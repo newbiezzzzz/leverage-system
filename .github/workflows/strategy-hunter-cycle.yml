@@ -1,0 +1,122 @@
+name: strategy-hunter-cycle
+
+run-name: Strategy Hunter cycle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: strategy-hunter-research-cycle
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install strategy dependencies
+        run: pip install -r research/strategy/requirements.txt
+
+      - name: Run deterministic preflight and engine sanity
+        run: python research/strategy/preflight.py
+
+      - name: Find latest successful Strategy Hunter dataset
+        id: data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          RUN_ID="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/strategy-hunter-data-full.yml/runs?branch=main&status=success&per_page=20" --jq '.workflow_runs[0].id')"
+          if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+            echo "No successful Strategy Hunter data refresh exists yet."
+            exit 1
+          fi
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "Using data refresh run $RUN_ID"
+
+      - name: Download latest research dataset
+        uses: actions/download-artifact@v5
+        with:
+          name: strategy-hunter-data-full
+          path: ${{ runner.temp }}/strategy-hunter-data
+          run-id: ${{ steps.data.outputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+
+      - name: Restore dataset into research workspace
+        run: |
+          set -e
+          rm -rf research/data/data
+          mkdir -p research/data
+          if [ -d "${RUNNER_TEMP}/strategy-hunter-data/data/data" ]; then
+            cp -a "${RUNNER_TEMP}/strategy-hunter-data/data/data" research/data/data
+          elif [ -d "${RUNNER_TEMP}/strategy-hunter-data/data" ]; then
+            cp -a "${RUNNER_TEMP}/strategy-hunter-data/data" research/data/data
+          else
+            echo "Dataset artifact layout is invalid."
+            find "${RUNNER_TEMP}/strategy-hunter-data" -maxdepth 4 -type f | head -50
+            exit 1
+          fi
+          test -f research/data/data/shariah/shariah_snapshots.csv
+          test -d research/data/data/ohlcv
+
+      - name: Execute recoverable research cycle
+        run: python research/strategy/pipeline_orchestrator.py
+
+      - name: Evaluate achievement gate
+        run: python research/strategy/goal_gate.py
+
+      - name: Recalculate mission state
+        run: python research/strategy/mission_controller.py
+
+      - name: Show owner-level status
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("control_plane/mission_state.json")
+          d=json.loads(p.read_text()) if p.exists() else {}
+          print("STATE:", d.get("state","RUNNING"))
+          print("TRACK:", d.get("active_track"))
+          print("NEXT:", d.get("next_action"))
+          prog=d.get("progress",{})
+          print("CYCLE:", prog.get("cycle",0))
+          print("ROBUST CANDIDATES:", prog.get("robust_candidates",0))
+          print("GOAL ACHIEVED:", d.get("goal_achieved",False))
+          PY
+
+      - name: Upload research evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strategy-hunter-cycle-evidence-${{ github.run_id }}
+          path: |
+            research/results/
+            control_plane/mission_state.json
+          retention-days: 30
+          compression-level: 6
+
+      - name: Publish research evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/results/ control_plane/mission_state.json
+          if git diff --cached --quiet; then
+            echo "No evidence changes to publish."
+          else
+            git commit -m "chore: publish Leverage Strategy Hunter cycle"
+            git pull --rebase origin main
+            git push
+          fi
