@@ -52,7 +52,7 @@ def load():
     return op,hp,lp,cp,vp,u,ind
 
 
-def patterns(cp,vp,u,ind):
+def patterns(hp,lp,cp,vp,u,ind):
     liquid=u&(ind["avg_dollar"]>=MIN_AVG_DOLLAR_VOL)&cp.ge(MIN_PRICE)&cp.le(MAX_PRICE)&cp.notna()
     mom1=cp/cp.shift(1)-1
     mom5=cp/cp.shift(5)-1
@@ -60,6 +60,10 @@ def patterns(cp,vp,u,ind):
     mom60=cp/cp.shift(60)-1
     mom252=cp.shift(21)/cp.shift(273)-1
     vr=ind["volume_ratio20"]
+    vol20=cp.pct_change().rolling(20,min_periods=20).std()
+    vol63=ind["vol63"]
+    range_pct=(hp-lp)/cp.replace(0,np.nan)
+    range20=range_pct.rolling(20,min_periods=20).mean()
     market20=mom20.where(liquid).mean(axis=1)
     rel20=mom20.sub(market20,axis=0)
     q10=mom5.where(liquid).quantile(.10,axis=1)
@@ -77,11 +81,11 @@ def patterns(cp,vp,u,ind):
         "panic_reversal_volume": liquid&(mom1<=-0.05)&(vr>=1.5)&(cp>ind["ma200"])&(ind["avg_dollar"]>=500_000),
         "relative_reversal_bottom20": liquid&(mom5.le(q20,axis=0))&(cp>ind["ma50"])&(ind["avg_dollar"]>=500_000),
         "breakout_plus_volume": liquid&breakout&(cp>ind["ma50"])&(vr>=1.5),
-        "volatility_contraction_breakout": liquid&breakout&(cp>ind["ma50"])&(vr>=1.5)&(ind["vol63"].notna()),
+        "volatility_contraction_breakout": liquid&breakout&(cp>ind["ma50"])&(vr>=1.5)&(vol20<=0.80*vol63),
         "relative_strength_20": liquid&(rel20.ge(q80,axis=0))&(cp>ind["ma100"]),
         "low_vol_momentum_regime": liquid&(breadth>=0.55)&(mom60>0)&(cp>ind["ma100"]),
         "high_vol_reversal_regime": liquid&(breadth<=0.45)&mom5.le(q10,axis=0)&(cp>ind["ma200"])&(ind["avg_dollar"]>=500_000),
-        "range_expansion_reversal": liquid&(mom5<=-0.05)&(cp>ind["ma200"])&(ind["avg_dollar"]>=500_000),
+        "range_expansion_reversal": liquid&(mom5<=-0.05)&(range_pct>=1.5*range20)&(cp>ind["ma200"])&(ind["avg_dollar"]>=500_000),
     }
 
 
@@ -220,7 +224,7 @@ def main():
     import sys
     sys.path.insert(0,str(ROOT/"research/strategy"))
     op,hp,lp,cp,vp,u,ind=load()
-    pats=patterns(cp,vp,u,ind)
+    pats=patterns(hp,lp,cp,vp,u,ind)
     rows=[]
     hurdle=2*fee(STARTING_CASH*CAPITAL_PCT)/(STARTING_CASH*CAPITAL_PCT)
     for name,mask in pats.items():
