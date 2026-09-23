@@ -1,6 +1,6 @@
 # Strategy Hunter — Latest Baseline Result
 
-Capital: RM1,000 | Period: 2015-01-05 to 2026-09-22
+Capital: RM1,000 | Period: 2015-01-05 to 2026-09-23
 
 | Strategy | Final RM1,000 | Return | Max DD | Trades |
 |---|---:|---:|---:|---:|
@@ -8,7 +8,7 @@ Capital: RM1,000 | Period: 2015-01-05 to 2026-09-22
 | trend | RM6.10 | -99.39% | -99.39% | 40 |
 | breakout | RM7.11 | -99.29% | -99.44% | 78 |
 | shock_reaction | RM5.58 | -99.44% | -99.52% | 127 |
-| slow_momentum | RM9.98 | -99.00% | -99.84% | 52 |
+| slow_momentum | RM9.88 | -99.01% | -99.84% | 52 |
 | volume_momentum | RM14.45 | -98.56% | -99.42% | 73 |
 | trend_pullback | RM-0.15 | -100.01% | -100.01% | 79 |
 | active_reversal | RM5.27 | -99.47% | -99.52% | 47 |
