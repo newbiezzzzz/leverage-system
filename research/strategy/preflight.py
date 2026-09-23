@@ -42,6 +42,7 @@ for name in (
     "research.strategy.pipeline_orchestrator",
     "research.strategy.engine_sanity",
     "research.strategy.mission_controller",
+    "research.strategy.candidate_qualification",
 ):
     importlib.import_module(name)
 
