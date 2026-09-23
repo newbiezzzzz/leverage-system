@@ -138,12 +138,12 @@ jobs:
           elif active_data:
               action = "none"
               reason = "data_refresh_active"
-          elif not has_successful_data:
-              action = "start_data"
-              reason = "no_successful_dataset_available"
           elif heal_after_data or heal_after_cycle:
               action = "start_self_heal"
               reason = "failed_workflow_needs_repair"
+          elif not has_successful_data:
+              action = "start_data"
+              reason = "no_successful_dataset_available"
           else:
               action = "start_cycle"
               reason = "mission_not_achieved_and_prerequisites_ready"
