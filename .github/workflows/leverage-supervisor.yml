@@ -3,6 +3,12 @@ name: leverage-supervisor
 run-name: Leverage supervisor
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "research/strategy/**"
+      - "control_plane/**"
+      - ".github/workflows/**"
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
