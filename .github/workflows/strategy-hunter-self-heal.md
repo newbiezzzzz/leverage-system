@@ -4,7 +4,7 @@ description: Investigate and repair failed Strategy Hunter automation runs befor
 intent: When a Strategy Hunter research workflow stops unexpectedly, identify the root cause from logs and repository evidence, implement and verify a minimal safe repair, then publish one repair pull request so the automation can resume.
 on:
   workflow_run:
-    workflows: ["strategy-hunter-data-smoke"]
+    workflows: ["strategy-hunter-data-full", "strategy-hunter-cycle"]
     types: [completed]
     branches: [main]
   workflow_dispatch:
@@ -51,7 +51,7 @@ You are the repair engineer for the Leverage Strategy Hunter repository.
 
 ## Activation
 
-For a workflow_run event, work only when the triggering Strategy Hunter data workflow actually failed, was cancelled, or timed out. Inspect the run and its jobs first. A successful run, or a normal smoke/preflight-only run where the full job was intentionally skipped, is a NO-OP.
+For a workflow_run event, work only when the triggering Strategy Hunter data or research workflow actually failed, was cancelled, or timed out. Inspect the run and its jobs first. A successful run, or a normal smoke/preflight-only run where the full job was intentionally skipped, is a NO-OP.
 
 For a manual run, inspect the current repository state and the latest Strategy Hunter research workflow before deciding whether repair work is needed.
 
