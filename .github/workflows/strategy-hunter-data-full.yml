@@ -1,12 +1,23 @@
 name: strategy-hunter-data-full
 
+run-name: Strategy Hunter data refresh
+
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "20 2 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: strategy-hunter-data-refresh
+  cancel-in-progress: false
 
 jobs:
-  full:
+  refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
 
@@ -52,7 +63,7 @@ jobs:
               raise SystemExit("No OHLCV files produced")
           PY
 
-      - name: Upload full dataset and QA
+      - name: Upload Strategy Hunter research dataset
         uses: actions/upload-artifact@v4
         with:
           name: strategy-hunter-data-full
