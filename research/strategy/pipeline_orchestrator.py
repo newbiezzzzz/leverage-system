@@ -29,6 +29,7 @@ STAGES = [
     ("baseline", "Baseline backtest", "core"),
     ("pattern_hunter", "Pattern Hunter", "core"),
     ("adaptive", "Guided improvement", "core"),
+    ("candidate_backtest", "Risk-aware candidate backtest", "core"),
     ("vectorbt", "VectorBT", "optional"),
     ("lightgbm", "LightGBM", "optional"),
     ("symbolic", "Symbolic Regression", "optional"),
@@ -196,6 +197,8 @@ def main():
             if key == "pattern_hunter"
             else "python research/strategy/adaptive_improvement.py"
             if key == "adaptive"
+            else "python research/strategy/candidate_backtest.py"
+            if key == "candidate_backtest"
             else "python research/strategy/specialist_runner.py " + key
             if key not in {"baseline"}
             else "python research/strategy/baseline_research.py"
