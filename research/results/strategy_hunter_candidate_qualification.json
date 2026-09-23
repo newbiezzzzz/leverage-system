@@ -1,0 +1,18 @@
+{
+  "status": "searching",
+  "candidate_id": null,
+  "all_gates_passed": false,
+  "gates": {
+    "data_integrity": false,
+    "engine_sanity": false,
+    "positive_after_costs": false,
+    "robust_out_of_sample": false,
+    "drawdown_within_limit": false,
+    "trade_frequency_feasible": false,
+    "broker_feasible_at_rm1000": false,
+    "historical_shariah_compliance": false,
+    "independent_replication": false,
+    "forward_paper_validation": false
+  },
+  "evidence_source": "research/results/qualified_strategy_evidence.json"
+}

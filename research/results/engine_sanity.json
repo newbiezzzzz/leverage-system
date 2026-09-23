@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "tests": [
+    {
+      "case": "up",
+      "final_equity": 2568.1995137737167,
+      "max_drawdown": -0.005384979669187384,
+      "trade_count": 10
+    },
+    {
+      "case": "down",
+      "final_equity": 873.1757724383672,
+      "max_drawdown": -0.1268242275616328,
+      "trade_count": 2
+    },
+    {
+      "case": "flat",
+      "final_equity": 903.5360000000001,
+      "max_drawdown": -0.096464,
+      "trade_count": 10
+    }
+  ],
+  "invariants": [
+    "final_equity_nonnegative",
+    "drawdown_between_minus_100_and_zero",
+    "trade_pnl_identity",
+    "positive_execution_prices",
+    "positive_share_count"
+  ]
+}
