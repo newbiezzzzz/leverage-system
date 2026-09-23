@@ -69,6 +69,17 @@ def patch_known_failure(log):
             baseline.write_text(c.replace(old,new),encoding="utf-8")
             changed=True
             print("AUTO-REPAIR: fixed regime breadth Series lookup")
+    if "unsupported metric: mae" in text:
+        c = ROOT/"research/strategy/specialist_runner.py"
+        if c.exists():
+            body = c.read_text(encoding="utf-8")
+            old = 'metric="mae"'
+            if old in body:
+                c.write_text(body.replace(old, 'metric="mean absolute error"'), encoding="utf-8")
+                changed=True
+                print("AUTO-REPAIR: fixed gplearn metric name")
+    if "model_not_supported" in text:
+        print("AUTO-REPAIR: AI model unavailable; deterministic repair continues without bypassing research gates")
     if "cost_hurdle" in text and "not defined" in text:
         c=pattern.read_text(encoding="utf-8") if pattern.exists() else ""
         if "COST_HURDLE" not in c or "from baseline_research import" in c and "COST_HURDLE" not in c.splitlines()[0:20].__str__():
