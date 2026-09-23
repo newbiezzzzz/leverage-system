@@ -21,6 +21,7 @@ on:
 permissions:
   actions: write
   contents: read
+  pull-requests: read
 
 concurrency:
   group: leverage-supervisor
@@ -54,9 +55,32 @@ jobs:
 
           cycle_runs=runs("strategy-hunter-cycle.yml")
           data_runs=runs("strategy-hunter-data-full.yml")
+          heal_runs=runs("strategy-hunter-self-heal.lock.yml")
 
           active_cycle=any(r.get("status") in {"queued","in_progress"} for r in cycle_runs)
           active_data=any(r.get("status") in {"queued","in_progress"} for r in data_runs)
+          active_heal=any(r.get("status") in {"queued","in_progress"} for r in heal_runs)
+          latest_cycle=cycle_runs[0] if cycle_runs else None
+          latest_failed_cycle=(
+              latest_cycle
+              if latest_cycle
+              and latest_cycle.get("status") == "completed"
+              and latest_cycle.get("conclusion") in {"failure","cancelled","timed_out"}
+              else None
+          )
+          matching_heal=(
+              next(
+                  (
+                      r for r in heal_runs
+                      if latest_failed_cycle
+                      and r.get("created_at")
+                      and latest_failed_cycle.get("updated_at")
+                      and r.get("created_at") >= latest_failed_cycle.get("updated_at")
+                  ),
+                  None,
+              )
+              if latest_failed_cycle else None
+          )
           latest_data_success=next((r for r in data_runs if r.get("conclusion")=="success"), None)
           latest_data_attempt=data_runs[0] if data_runs else None
 
@@ -79,6 +103,14 @@ jobs:
               action="none"; reason="goal_achieved"
           elif active_cycle:
               action="none"; reason="research_cycle_active"
+          elif latest_failed_cycle and not matching_heal:
+              action="start_self_heal"; reason="failed_research_without_repair_run"
+          elif latest_failed_cycle and active_heal:
+              action="none"; reason="self_heal_active_after_failed_research"
+          elif latest_failed_cycle and matching_heal and matching_heal.get("conclusion") != "success":
+              action="start_self_heal"; reason="self_heal_failed_after_research_failure"
+          elif latest_failed_cycle and matching_heal and matching_heal.get("conclusion") == "success":
+              action="none"; reason="await_verified_repair_resume"
           elif (not latest_data_success or data_age > 72) and not active_data and last_data_attempt_age >= 6:
               action="refresh_data"; reason=f"dataset_missing_or_stale_{data_age:.1f}h"
           elif active_data:
@@ -97,6 +129,12 @@ jobs:
               f.write(f"action={action}\n")
               f.write(f"reason={reason}\n")
           PY
+
+      - name: Start self-heal when a research run failed without a repair run
+        if: steps.decision.outputs.action == 'start_self_heal'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
 
       - name: Start data refresh when needed
         if: steps.decision.outputs.action == 'refresh_data'
