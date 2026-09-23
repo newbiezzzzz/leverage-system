@@ -1,6 +1,7 @@
 name: leverage-supervisor
 
 run-name: Leverage supervisor
+# Completion-aware watchdog: upstream runs are also checked by the 15-minute supervisor.
 
 on:
   push:
