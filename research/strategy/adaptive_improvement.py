@@ -102,8 +102,9 @@ def main():
             if d.empty or s.empty or hold.empty: continue
             dr=float(d.iloc[0].net_mean); sr=float(s.iloc[0].net_mean); sw=float(s.iloc[0].win_rate)
             hr=float(hold.iloc[0].net_mean); hw=float(hold.iloc[0].win_rate); hn=int(hold.iloc[0].observations)
-            # Selection only: must beat costs and have >=50% win rate.
-            if dr>COST_HURDLE and sr>0 and sw>=.50:
+            # Selection only: development must be positive after costs; the
+            # selection period must remain positive with >=50% wins.
+            if dr>0 and sr>0 and sw>=.50:
                 selected.append({"pattern":name,"horizon_days":int(h),"development_net_mean":dr,"selection_net_mean":sr,"selection_win_rate":sw,"holdout_net_mean":hr,"holdout_win_rate":hw,"holdout_observations":hn})
     out=pd.DataFrame(selected)
     if not out.empty:
