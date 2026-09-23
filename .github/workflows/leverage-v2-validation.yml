@@ -1,0 +1,25 @@
+name: leverage-v2-validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research/strategy/**"
+      - "control_plane/**"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install strategy dependencies
+        run: pip install -r research/strategy/requirements.txt
+      - name: Run Strategy Hunter preflight
+        run: python research/strategy/preflight.py
