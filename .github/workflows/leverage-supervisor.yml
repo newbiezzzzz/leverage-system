@@ -11,7 +11,7 @@ on:
       - "control_plane/**"
       - ".github/workflows/**"
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
   workflow_run:
     workflows:
@@ -177,13 +177,13 @@ jobs:
       - name: Start data refresh
         if: steps.decision.outputs.action == 'start_data'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-data-full.yml --ref main
 
       - name: Start Strategy Hunter cycle
         if: steps.decision.outputs.action == 'start_cycle'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-cycle.yml --ref main
 
       - name: Supervisor completed
