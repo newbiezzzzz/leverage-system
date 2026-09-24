@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
 
       - name: Install GitHub Agentic Workflows
-        run: gh extension install github/gh-aw
+        run: gh extension install github/gh-aw@v0.89.17
 
       - name: Check Copilot automation credential
         id: auth
