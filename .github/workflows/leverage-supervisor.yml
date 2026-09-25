@@ -113,17 +113,13 @@ jobs:
               pass
 
           recovery_stale = bool(
-              failed_cycle
+              (failed_cycle or failed_data)
               and (
-                  latest_heal is None
-                  or latest_heal.get("created_at", "") < latest_cycle.get("updated_at", "")
-              )
-          )
-          heal_after_data = bool(
-              failed_data
-              and (
-                  latest_heal is None
-                  or latest_heal.get("created_at", "") < latest_data.get("updated_at", "")
+                  latest_recovery is None
+                  or latest_recovery.get("created_at", "") < max(
+                      (latest_cycle or {}).get("updated_at", ""),
+                      (latest_data or {}).get("updated_at", "")
+                  )
               )
           )
 
