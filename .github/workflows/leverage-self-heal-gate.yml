@@ -1,0 +1,61 @@
+name: Leverage self-heal repair gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: leverage-self-heal-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    if: startsWith(github.head_ref, 'leverage-self-heal/') && startsWith(github.event.pull_request.title, '[Leverage Self-Heal]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install strategy dependencies
+        run: pip install -r research/strategy/requirements.txt
+
+      - name: Deterministic preflight
+        run: python research/strategy/preflight.py
+
+      - name: Validate changed-file safety
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          changed="$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")"
+          echo "$changed"
+          if echo "$changed" | grep -E '(^|/)(\.env|.*secret.*|.*credential.*)$'; then
+            echo "Sensitive credential/secret file change detected."
+            exit 1
+          fi
+          if echo "$changed" | grep -E '(^|/)\.git/|(^|/)\.ssh/'; then
+            echo "Git/SSH control file change detected."
+            exit 1
+          fi
+
+      - name: Merge verified repair
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          gh pr merge "$PR_NUMBER" --squash --delete-branch --repo "$GITHUB_REPOSITORY"
