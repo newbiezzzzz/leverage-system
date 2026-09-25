@@ -17,7 +17,7 @@ on:
     workflows:
       - "strategy-hunter-cycle"
       - "strategy-hunter-data-full"
-      - "Strategy Hunter Self-Heal"
+      - "Leverage Recovery Engine"
     types: [completed]
     branches: [main]
 
@@ -62,7 +62,7 @@ jobs:
 
           cycle_runs = runs("strategy-hunter-cycle.yml")
           data_runs = runs("strategy-hunter-data-full.yml")
-          heal_runs = runs("strategy-hunter-self-heal.lock.yml")
+          recovery_runs = runs("leverage-recovery-engine.yml")
 
           active_cycle = any(
               r.get("status") in {"queued", "in_progress"} for r in cycle_runs
@@ -70,13 +70,13 @@ jobs:
           active_data = any(
               r.get("status") in {"queued", "in_progress"} for r in data_runs
           )
-          active_heal = any(
-              r.get("status") in {"queued", "in_progress"} for r in heal_runs
+          active_recovery = any(
+              r.get("status") in {"queued", "in_progress"} for r in recovery_runs
           )
 
           latest_cycle = cycle_runs[0] if cycle_runs else None
           latest_data = data_runs[0] if data_runs else None
-          latest_heal = heal_runs[0] if heal_runs else None
+          latest_recovery = recovery_runs[0] if recovery_runs else None
 
           failed_cycle = bool(
               latest_cycle
@@ -112,7 +112,7 @@ jobs:
           except Exception:
               pass
 
-          heal_after_cycle = bool(
+          recovery_stale = bool(
               failed_cycle
               and (
                   latest_heal is None
@@ -133,15 +133,15 @@ jobs:
           elif active_cycle:
               action = "none"
               reason = "research_cycle_active"
-          elif active_heal:
+          elif active_recovery:
               action = "none"
-              reason = "self_heal_active"
+              reason = "recovery_active"
           elif active_data:
               action = "none"
               reason = "data_refresh_active"
-          elif heal_after_data or heal_after_cycle:
-              action = "start_self_heal"
-              reason = "failed_workflow_needs_repair"
+          elif recovery_stale:
+              action = "start_recovery"
+              reason = "failed_workflow_needs_deterministic_recovery"
           elif not has_successful_data:
               action = "start_data"
               reason = "no_successful_dataset_available"
@@ -168,11 +168,11 @@ jobs:
               f.write(f"reason={reason}\n")
           PY
 
-      - name: Start self-heal
-        if: steps.decision.outputs.action == 'start_self_heal'
+      - name: Start deterministic recovery
+        if: steps.decision.outputs.action == 'start_recovery'
         env:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
-        run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
+        run: gh workflow run leverage-recovery-engine.yml --ref main
 
       - name: Start data refresh
         if: steps.decision.outputs.action == 'start_data'
