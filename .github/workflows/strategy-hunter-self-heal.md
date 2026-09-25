@@ -1,7 +1,7 @@
 ---
 name: Strategy Hunter Self-Heal
 description: Investigate and repair a repeated Strategy Hunter automation failure.
-intent: When deterministic recovery cannot restore Strategy Hunter after repeated failures, identify the root cause from logs and repository evidence, implement and verify a minimal safe repair, then publish one repair pull request.
+intent: When deterministic recovery cannot restore Strategy Hunter after repeated failures, identify the root cause from logs and repository evidence, implement and verify a minimal safe repair, then publish one repair pull request that the deterministic repair gate can verify and merge automatically.
 on:
   workflow_dispatch:
 permissions:
@@ -32,8 +32,14 @@ safe-outputs:
   github-token: ${{ secrets.COPILOT_GITHUB_TOKEN }}
   create-pull-request:
     max: 1
-    protected-files:
-      policy: fallback-to-issue
+    protected-files: allowed
+    allowed-files:
+      - .github/workflows/**
+      - research/**
+      - control_plane/**
+    excluded-files:
+      - .github/workflows/strategy-hunter-self-heal.md
+      - .github/workflows/strategy-hunter-self-heal.lock.yml
     labels: [automation, self-heal]
   create-issue:
     max: 1
@@ -77,6 +83,6 @@ If a safe fix cannot be proven, create one issue instead of inventing a patch.
 
 The AI layer does not directly restart Strategy Hunter.
 
-A successful repair PR must pass the deterministic repair gate and then the normal supervisor/recovery chain resumes the mission.
+A successful repair PR is verified by the deterministic repair gate and automatically merged only when its checks pass. The merge then triggers the normal supervisor/recovery chain. Never request manual intervention for an ordinary repair.
 
 Use NO-OP when no repair is required.
