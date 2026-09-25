@@ -1,17 +1,17 @@
             strategy      start        end  final_equity  total_return      cagr  max_drawdown  trade_count  trades_per_month  win_rate  profit_factor  equity_volatility
-            momentum 2015-01-05 2026-09-24    893.016770     -0.106983 -0.009610     -0.121000            2          0.014223  0.000000       0.000000           0.025173
-               trend 2015-01-05 2026-09-24    871.079983     -0.128920 -0.011709     -0.128920            1          0.007112  0.000000       0.000000           0.024995
-            breakout 2015-01-05 2026-09-24   1001.289936      0.001290  0.000110     -0.107680            4          0.028446  0.250000       1.016489           0.044936
-      shock_reaction 2015-01-05 2026-09-24   1054.480481      0.054480  0.004537     -0.142197            8          0.056893  0.500000       1.238314           0.056003
-       slow_momentum 2015-01-05 2026-09-24    890.417333     -0.109583 -0.009856     -0.117640            1          0.007112  0.000000       0.000000           0.017899
-     volume_momentum 2015-01-05 2026-09-24    951.344419     -0.048656 -0.004248     -0.108173            3          0.021335  0.333333       0.451432           0.029716
-      trend_pullback 2015-01-05 2026-09-24    831.080008     -0.168920 -0.015666     -0.171472            6          0.042669  0.333333       0.080657           0.026240
-     active_reversal 2015-01-05 2026-09-24    892.952046     -0.107048 -0.009616     -0.146089            2          0.014223  0.500000       0.045305           0.036087
-     breakout_volume 2015-01-05 2026-09-24    871.374743     -0.128625 -0.011681     -0.155772            1          0.007112  0.000000       0.000000           0.053776
-high_volume_reversal 2015-01-05 2026-09-24   1020.022004      0.020022  0.001693     -0.104130            5          0.035558  0.600000       1.207848           0.034338
-   downturn_reversal 2015-01-05 2026-09-24   1038.847594      0.038848  0.003258     -0.119306            5          0.035558  0.600000       1.249643           0.045824
- relative_contrarian 2015-01-05 2026-09-24    943.466367     -0.056534 -0.004954     -0.114171            2          0.014223  0.500000       0.446183           0.024971
-     regime_adaptive 2015-01-05 2026-09-24    966.181593     -0.033818 -0.002932     -0.148943            1          0.007112  0.000000       0.000000           0.033656
+            momentum 2015-01-05 2026-09-25    893.016770     -0.106983 -0.009607     -0.121000            2          0.014220  0.000000       0.000000           0.025169
+               trend 2015-01-05 2026-09-25    871.079983     -0.128920 -0.011707     -0.128920            1          0.007110  0.000000       0.000000           0.024991
+            breakout 2015-01-05 2026-09-25   1001.289936      0.001290  0.000110     -0.107680            4          0.028440  0.250000       1.016489           0.044928
+      shock_reaction 2015-01-05 2026-09-25   1054.480481      0.054480  0.004536     -0.142197            8          0.056879  0.500000       1.238314           0.055993
+       slow_momentum 2015-01-05 2026-09-25    890.417333     -0.109583 -0.009854     -0.117640            1          0.007110  0.000000       0.000000           0.017896
+     volume_momentum 2015-01-05 2026-09-25    951.344419     -0.048656 -0.004247     -0.108173            3          0.021330  0.333333       0.451432           0.029711
+      trend_pullback 2015-01-05 2026-09-25    831.080008     -0.168920 -0.015663     -0.171472            6          0.042659  0.333333       0.080657           0.026235
+     active_reversal 2015-01-05 2026-09-25    892.952046     -0.107048 -0.009613     -0.146089            2          0.014220  0.500000       0.045305           0.036080
+     breakout_volume 2015-01-05 2026-09-25    871.374743     -0.128625 -0.011678     -0.155772            1          0.007110  0.000000       0.000000           0.053767
+high_volume_reversal 2015-01-05 2026-09-25   1020.022004      0.020022  0.001693     -0.104130            5          0.035550  0.600000       1.207848           0.034332
+   downturn_reversal 2015-01-05 2026-09-25   1038.847594      0.038848  0.003257     -0.119306            5          0.035550  0.600000       1.249643           0.045816
+ relative_contrarian 2015-01-05 2026-09-25    943.466367     -0.056534 -0.004953     -0.114171            2          0.014220  0.500000       0.446183           0.024967
+     regime_adaptive 2015-01-05 2026-09-25    966.181593     -0.033818 -0.002931     -0.148943            1          0.007110  0.000000       0.000000           0.033650
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   frames["open"][sym] = d["split_adj_open"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
