@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Diagnose and choose deterministic recovery
+      - name: Choose recovery level
         id: decision
         env:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
@@ -39,59 +39,87 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           import json, os, subprocess
-          repo=os.environ["GITHUB_REPOSITORY"]
+
+          repo = os.environ["GITHUB_REPOSITORY"]
 
           def api(path):
-              return json.loads(subprocess.check_output(["gh","api",path], text=True))
+              return json.loads(subprocess.check_output(["gh", "api", path], text=True))
 
-          def runs(wf):
-              return api(f"repos/{repo}/actions/workflows/{wf}/runs?branch=main&per_page=20").get("workflow_runs", [])
+          def runs(wf, n=30):
+              return api(f"repos/{repo}/actions/workflows/{wf}/runs?branch=main&per_page={n}").get("workflow_runs", [])
 
-          cycle=runs("strategy-hunter-cycle.yml")
-          data=runs("strategy-hunter-data-full.yml")
+          cycle = runs("strategy-hunter-cycle.yml")
+          data = runs("strategy-hunter-data-full.yml")
+          heal = runs("strategy-hunter-self-heal.lock.yml")
 
-          active_cycle=any(x.get("status") in {"queued","in_progress"} for x in cycle)
-          active_data=any(x.get("status") in {"queued","in_progress"} for x in data)
+          def active(items):
+              return any(x.get("status") in {"queued", "in_progress"} for x in items)
 
           def failed(x):
-              return x and x.get("status")=="completed" and x.get("conclusion") in {"failure","cancelled","timed_out"}
+              return x and x.get("status") == "completed" and x.get("conclusion") in {"failure", "cancelled", "timed_out"}
 
-          latest_cycle=cycle[0] if cycle else None
-          latest_data=data[0] if data else None
+          latest_cycle = cycle[0] if cycle else None
+          latest_data = data[0] if data else None
 
-          if active_cycle or active_data:
-              action="none"
-              reason="research_already_running"
-          elif failed(latest_data) and (not latest_cycle or latest_data.get("updated_at","") >= latest_cycle.get("updated_at","")):
-              action="retry_data"
-              reason="latest_data_failure"
-          elif failed(latest_cycle):
-              action="retry_cycle"
-              reason="latest_cycle_failure"
+          target = None
+          target_name = None
+          if failed(latest_cycle):
+              target, target_name = latest_cycle, "cycle"
+          if failed(latest_data) and (target is None or latest_data.get("updated_at", "") > target.get("updated_at", "")):
+              target, target_name = latest_data, "data"
+
+          if active(cycle) or active(data):
+              action, reason = "none", "research_already_running"
+          elif target is None:
+              action, reason = "none", "no_failed_research_run"
           else:
-              action="none"
-              reason="no_failed_research_run"
+              target_runs = cycle if target_name == "cycle" else data
+              consecutive_failures = 0
+              for r in target_runs:
+                  if failed(r):
+                      consecutive_failures += 1
+                  elif r.get("status") == "completed" and r.get("conclusion") == "success":
+                      break
 
-          print("RECOVERY_ACTION:",action)
-          print("RECOVERY_REASON:",reason)
-          print("LATEST_DATA:", latest_data.get("id") if latest_data else None)
-          print("LATEST_CYCLE:", latest_cycle.get("id") if latest_cycle else None)
+              heal_after_target = any(
+                  h.get("created_at", "") >= target.get("updated_at", "")
+                  for h in heal
+              )
 
-          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              if consecutive_failures < 2:
+                  action = "retry_data" if target_name == "data" else "retry_cycle"
+                  reason = f"first_failure_{target_name}"
+              elif heal_after_target:
+                  action, reason = "none", "ai_repair_already_attempted_for_failure_episode"
+              else:
+                  action, reason = "ai_repair", f"repeated_{target_name}_failure"
+
+              print("target:", target_name, target.get("id"))
+              print("consecutive_failures:", consecutive_failures)
+              print("heal_after_target:", heal_after_target)
+
+          print("recovery:", action, reason)
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
               f.write(f"action={action}\nreason={reason}\n")
           PY
 
-      - name: Retry data refresh
+      - name: Retry data once
         if: steps.decision.outputs.action == 'retry_data'
         env:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-data-full.yml --ref main
 
-      - name: Retry Strategy Hunter
+      - name: Retry Strategy Hunter once
         if: steps.decision.outputs.action == 'retry_cycle'
         env:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-cycle.yml --ref main
 
+      - name: Escalate to AI repair
+        if: steps.decision.outputs.action == 'ai_repair'
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
+
       - name: Recovery result
-        run: echo "Deterministic recovery decision completed."
+        run: echo "Recovery level completed."
