@@ -276,6 +276,11 @@ def main():
     write_status(cycle_status, None, 0, details)
     subprocess.run([sys.executable, str(ROOT / "research/strategy/mission_controller.py")], cwd=ROOT, check=False)
 
+    # Core failures must surface to the external recovery engine. Optional
+    # specialist failures remain non-fatal by design.
+    if core_failed:
+        raise SystemExit("Strategy Hunter core stage failed after deterministic retries; recovery engine must repair and resume.")
+
 
 if __name__ == "__main__":
     main()
