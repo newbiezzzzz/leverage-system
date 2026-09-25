@@ -4,7 +4,7 @@ description: Investigate and repair failed Strategy Hunter automation runs befor
 intent: When a Strategy Hunter research workflow stops unexpectedly, identify the root cause from logs and repository evidence, implement and verify a minimal safe repair, then publish one repair pull request so the automation can resume.
 on:
   workflow_run:
-    workflows: ["strategy-hunter-data-full", "strategy-hunter-cycle"]
+    workflow_dispatch only
     types: [completed]
     branches: [main]
   workflow_dispatch:
