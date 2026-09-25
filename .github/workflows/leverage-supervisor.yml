@@ -1,7 +1,6 @@
 name: leverage-supervisor
 
 run-name: Leverage supervisor
-# Completion-aware watchdog: upstream runs are also checked by the 15-minute supervisor.
 
 on:
   push:
@@ -39,132 +38,75 @@ jobs:
       - name: Decide mission continuation
         id: decision
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
-          import json
-          import os
-          import subprocess
+          import json, os, subprocess
 
           repo = os.environ["GITHUB_REPOSITORY"]
 
           def api(path):
-              return json.loads(
-                  subprocess.check_output(["gh", "api", path], text=True)
-              )
+              return json.loads(subprocess.check_output(["gh", "api", path], text=True))
 
           def runs(workflow):
-              return api(
-                  f"repos/{repo}/actions/workflows/{workflow}/runs?branch=main&per_page=30"
-              ).get("workflow_runs", [])
+              return api(f"repos/{repo}/actions/workflows/{workflow}/runs?branch=main&per_page=30").get("workflow_runs", [])
 
           cycle_runs = runs("strategy-hunter-cycle.yml")
           data_runs = runs("strategy-hunter-data-full.yml")
           recovery_runs = runs("leverage-recovery-engine.yml")
 
-          active_cycle = any(
-              r.get("status") in {"queued", "in_progress"} for r in cycle_runs
-          )
-          active_data = any(
-              r.get("status") in {"queued", "in_progress"} for r in data_runs
-          )
-          active_recovery = any(
-              r.get("status") in {"queued", "in_progress"} for r in recovery_runs
-          )
+          active_cycle = any(r.get("status") in {"queued", "in_progress"} for r in cycle_runs)
+          active_data = any(r.get("status") in {"queued", "in_progress"} for r in data_runs)
+          active_recovery = any(r.get("status") in {"queued", "in_progress"} for r in recovery_runs)
 
           latest_cycle = cycle_runs[0] if cycle_runs else None
           latest_data = data_runs[0] if data_runs else None
-          latest_recovery = recovery_runs[0] if recovery_runs else None
 
-          failed_cycle = bool(
-              latest_cycle
-              and latest_cycle.get("status") == "completed"
-              and latest_cycle.get("conclusion") in {"failure", "cancelled", "timed_out"}
-          )
-          failed_data = bool(
-              latest_data
-              and latest_data.get("status") == "completed"
-              and latest_data.get("conclusion") in {"failure", "cancelled", "timed_out"}
-          )
-          has_successful_data = any(
-              r.get("status") == "completed" and r.get("conclusion") == "success"
-              for r in data_runs
-          )
-          latest_successful_data = next(
-              (
-                  r for r in data_runs
-                  if r.get("status") == "completed" and r.get("conclusion") == "success"
-              ),
-              None,
-          )
+          def failed(r):
+              return bool(r and r.get("status") == "completed" and r.get("conclusion") in {"failure", "cancelled", "timed_out"})
+
+          latest_failure = None
+          for r in [latest_cycle, latest_data]:
+              if failed(r) and (latest_failure is None or r.get("updated_at", "") > latest_failure.get("updated_at", "")):
+                  latest_failure = r
+
+          has_successful_data = any(r.get("status") == "completed" and r.get("conclusion") == "success" for r in data_runs)
 
           achieved = False
-          goal_path = "research/results/strategy_hunter_goal.json"
           try:
-              with open(goal_path, encoding="utf-8") as f:
+              with open("research/results/strategy_hunter_goal.json", encoding="utf-8") as f:
                   goal = json.load(f)
-              achieved = (
-                  goal.get("status") == "achieved"
-                  and goal.get("all_gates_passed") is True
-              )
+              achieved = goal.get("status") == "achieved" and goal.get("all_gates_passed") is True
           except Exception:
               pass
 
-          recovery_stale = bool(
-              (failed_cycle or failed_data)
-              and (
-                  latest_recovery is None
-                  or latest_recovery.get("created_at", "") < max(
-                      (latest_cycle or {}).get("updated_at", ""),
-                      (latest_data or {}).get("updated_at", "")
-                  )
-              )
-          )
-
           if achieved:
-              action = "none"
-              reason = "goal_achieved"
+              action, reason = "none", "goal_achieved"
           elif active_cycle:
-              action = "none"
-              reason = "research_cycle_active"
-          elif active_recovery:
-              action = "none"
-              reason = "recovery_active"
+              action, reason = "none", "research_cycle_active"
           elif active_data:
-              action = "none"
-              reason = "data_refresh_active"
-          elif recovery_stale:
-              action = "start_recovery"
-              reason = "failed_workflow_needs_deterministic_recovery"
+              action, reason = "none", "data_refresh_active"
+          elif active_recovery:
+              action, reason = "none", "recovery_active"
+          elif latest_failure:
+              action, reason = "start_recovery", "failed_research_run"
           elif not has_successful_data:
-              action = "start_data"
-              reason = "no_successful_dataset_available"
+              action, reason = "start_data", "no_successful_dataset_available"
           else:
-              action = "start_cycle"
-              reason = "mission_not_achieved_and_prerequisites_ready"
+              action, reason = "start_cycle", "mission_active"
 
-          print("goal_achieved:", achieved)
-          print("active_cycle:", active_cycle)
-          print("active_data:", active_data)
-          print("active_heal:", active_heal)
-          print("has_successful_data:", has_successful_data)
-          print("latest_successful_data:", latest_successful_data.get("id") if latest_successful_data else None)
-          print("latest_cycle:", latest_cycle.get("id") if latest_cycle else None)
-          print("latest_cycle_conclusion:", latest_cycle.get("conclusion") if latest_cycle else None)
-          print("latest_data:", latest_data.get("id") if latest_data else None)
-          print("latest_data_conclusion:", latest_data.get("conclusion") if latest_data else None)
-          print("latest_heal:", latest_heal.get("id") if latest_heal else None)
-          print("latest_heal_conclusion:", latest_heal.get("conclusion") if latest_heal else None)
           print("decision:", action, reason)
+          print("latest_failure:", latest_failure.get("id") if latest_failure else None)
+          print("latest_cycle:", latest_cycle.get("id") if latest_cycle else None)
+          print("latest_data:", latest_data.get("id") if latest_data else None)
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
-              f.write(f"action={action}\n")
-              f.write(f"reason={reason}\n")
+              f.write(f"action={action}\nreason={reason}\n")
           PY
 
-      - name: Start deterministic recovery
+      - name: Start recovery engine
         if: steps.decision.outputs.action == 'start_recovery'
         env:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
