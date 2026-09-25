@@ -1,0 +1,97 @@
+name: leverage-recovery-engine
+
+run-name: Leverage recovery engine
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Recovery reason"
+        required: false
+        default: "supervisor"
+  workflow_run:
+    workflows:
+      - "strategy-hunter-cycle"
+      - "strategy-hunter-data-full"
+    types: [completed]
+    branches: [main]
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: leverage-recovery-engine
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Diagnose and choose deterministic recovery
+        id: decision
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess
+          repo=os.environ["GITHUB_REPOSITORY"]
+
+          def api(path):
+              return json.loads(subprocess.check_output(["gh","api",path], text=True))
+
+          def runs(wf):
+              return api(f"repos/{repo}/actions/workflows/{wf}/runs?branch=main&per_page=20").get("workflow_runs", [])
+
+          cycle=runs("strategy-hunter-cycle.yml")
+          data=runs("strategy-hunter-data-full.yml")
+
+          active_cycle=any(x.get("status") in {"queued","in_progress"} for x in cycle)
+          active_data=any(x.get("status") in {"queued","in_progress"} for x in data)
+
+          def failed(x):
+              return x and x.get("status")=="completed" and x.get("conclusion") in {"failure","cancelled","timed_out"}
+
+          latest_cycle=cycle[0] if cycle else None
+          latest_data=data[0] if data else None
+
+          if active_cycle or active_data:
+              action="none"
+              reason="research_already_running"
+          elif failed(latest_data) and (not latest_cycle or latest_data.get("updated_at","") >= latest_cycle.get("updated_at","")):
+              action="retry_data"
+              reason="latest_data_failure"
+          elif failed(latest_cycle):
+              action="retry_cycle"
+              reason="latest_cycle_failure"
+          else:
+              action="none"
+              reason="no_failed_research_run"
+
+          print("RECOVERY_ACTION:",action)
+          print("RECOVERY_REASON:",reason)
+          print("LATEST_DATA:", latest_data.get("id") if latest_data else None)
+          print("LATEST_CYCLE:", latest_cycle.get("id") if latest_cycle else None)
+
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              f.write(f"action={action}\nreason={reason}\n")
+          PY
+
+      - name: Retry data refresh
+        if: steps.decision.outputs.action == 'retry_data'
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: gh workflow run strategy-hunter-data-full.yml --ref main
+
+      - name: Retry Strategy Hunter
+        if: steps.decision.outputs.action == 'retry_cycle'
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: gh workflow run strategy-hunter-cycle.yml --ref main
+
+      - name: Recovery result
+        run: echo "Deterministic recovery decision completed."
