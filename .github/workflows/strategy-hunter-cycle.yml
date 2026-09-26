@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: read
+  actions: write
   contents: write
 
 concurrency:
@@ -115,7 +115,7 @@ jobs:
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+41898282+github-actions[bot]@users.noreply.github.com"
           git add research/results/
           git add control_plane/mission_state.json 2>/dev/null || true
           if git diff --cached --quiet; then
@@ -150,3 +150,25 @@ jobs:
 
           echo "Unable to publish research evidence after 3 attempts."
           exit 1
+
+      - name: Continue Strategy Hunter mission
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("research/results/strategy_hunter_goal.json")
+          if not p.exists():
+              raise SystemExit(1)
+          d = json.loads(p.read_text(encoding="utf-8"))
+          raise SystemExit(0 if d.get("status") == "achieved" and d.get("all_gates_passed") is True else 1)
+          PY
+          then
+            echo "Goal achieved. Strategy Hunter will stop."
+          else
+            echo "Goal not achieved. Starting the next research cycle."
+            gh workflow run strategy-hunter-cycle.yml --ref main
+          fi
