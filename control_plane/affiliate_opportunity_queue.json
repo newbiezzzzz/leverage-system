@@ -1,8 +1,8 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-09-25T19:29:23.575926+00:00",
-  "input_generated_at": "2026-09-25T19:19:32.373600+00:00",
+  "generated_at": "2026-09-26T18:41:36.486604+00:00",
+  "input_generated_at": "2026-09-26T18:38:11.940656+00:00",
   "record_count": 65,
   "cluster_count": 65,
   "opportunity_count": 50,
@@ -33,19 +33,19 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575489+00:00",
+      "created_at": "2026-09-26T18:41:36.486097+00:00",
       "rank": 1
     },
     {
-      "id": "opp-37d9d4a0b3c69eef",
+      "id": "opp-2bfc65a743b25321",
       "project": "affiliate-project",
-      "problem": "Best hybrid car to date",
-      "normalized_problem": "best hybrid car to date",
+      "problem": "Anyone familiar with car loan interest?",
+      "normalized_problem": "anyone familiar with car loan interest",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
         "buyer_intent": 2,
-        "problem_strength": 2,
+        "problem_strength": 1,
         "content_potential": 3,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
@@ -56,25 +56,25 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpkwr6/best_hybrid_car_to_date/",
-          "excerpt": "Im thinking of changing my car and after doing research for months, I come to a conclusion that a hybrid car is the best way to go. Wanted to try EV but the problem is I can&#39;t install home charger as i live in a condo. So the question is which is the best hybrid car to date? In terms of reliability and ownership cost. Most people said avoid continentals hybrids (BMW, Merc) and go for Japanese hybrids like Toyota. I&#39;m thinking of buying from 2nd hand market that 3-4 is years old and budge"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqlpbb/anyone_familiar_with_car_loan_interest/",
+          "excerpt": "Hi, first time car buyer here, need some clarification with car loan Last time I applied for a car, was given rate of 2.71%, i chose variable rate with reducing balance But during signing the LOU, it was stated there 2.71% + 2.75(effective interest rate) total of 5.46% of interest rate Kinda shocked tbh, no expectating these numbers, kinda expected the calculation is onto 2.71% then there will be up and down a little or more based on OPR May I know if this is normal? Another one, since nowadays "
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574939+00:00",
+      "created_at": "2026-09-26T18:41:36.485493+00:00",
       "rank": 2
     },
     {
-      "id": "opp-48b7755284cb6ef2",
+      "id": "opp-5096d259d03db045",
       "project": "affiliate-project",
-      "problem": "Buying new car",
-      "normalized_problem": "buying new car",
+      "problem": "Car rental help",
+      "normalized_problem": "car rental help",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 3,
-        "problem_strength": 1,
+        "buyer_intent": 1,
+        "problem_strength": 2,
         "content_potential": 3,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
@@ -85,53 +85,24 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpn36y/buying_new_car/",
-          "excerpt": "Hi guys, nak minta opinion sikit. Currently I’m using Axia G, already 6 years. Now thinking to upgrade, considering between S70 Prime or Produa Traz. Just me and wife for now, and we’re expecting a baby soon. So main priority is comfort, family practicality and hopefully something that’s comfortable for long-distance travel also. I already have an Ativa as second car, so this one will mainly be for me, wife and baby. For those who have driven/own S70 Prime or Traz, which one do you think suits m"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqh9hk/car_rental_help/",
+          "excerpt": "Am going to KL. Will arrive at klia2 but return flight is from subang. Any good and cheap car rental service that i can use? Considering pickup and return location is not the same &#32; submitted by &#32; /u/KingHusni [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574915+00:00",
+      "created_at": "2026-09-26T18:41:36.485580+00:00",
       "rank": 3
     },
     {
-      "id": "opp-90a55aec25e0a8a3",
+      "id": "opp-91f20e0c4e248551",
       "project": "affiliate-project",
-      "problem": "Do Car Brands BUY Back Problematic Cars In Malaysia - dsf.my",
-      "normalized_problem": "do car brands buy back problematic cars in malaysia dsf my",
+      "problem": "How in the everrempitfuck...",
+      "normalized_problem": "how in the everrempitfuck",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 2,
-        "content_potential": 2,
-        "source_strength": 0.75,
-        "freshness_factor": 0.55,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google News automotive Malaysia",
-          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPZHpGa20yTlc2TjdoWkh1d0NvR2dfcGcxTzFWM053NVVwb25ycl82NDlhNFZDOU1DaDhPX2dGLWhiSDhZYUI2OGp1enFYdG0zMWVKUkhkLVRINnU4TGJHeWo2bFFWMWU4Y0dvZ3Bac2kyd3laUnFWclZMeHllNjNaZTI3WjdWUQ?oc=5",
-          "excerpt": "Do Car Brands BUY Back Problematic Cars In Malaysia &nbsp;&nbsp; dsf.my"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575768+00:00",
-      "rank": 4
-    },
-    {
-      "id": "opp-e46a69629bc39767",
-      "project": "affiliate-project",
-      "problem": "Is it normal or poor fuel consumption?",
-      "normalized_problem": "is it normal or poor fuel consumption",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
+        "buyer_intent": 1,
         "problem_strength": 1,
         "content_potential": 3,
         "source_strength": 1.0,
@@ -143,13 +114,42 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpot4d/is_it_normal_or_poor_fuel_consumption/",
-          "excerpt": "Hi everyone. I have a 2016 Proton Saga FLX PLUS 1.3 CVT. Recently I conducted fuel consumption measurement of the car. I refilled RM 30 worth of fuel (RON 95) at 15.07 liters when the fuel level at one bar. After some mostly city driving, when the fuel level down again at the same one bar, I manage to get around 130-140 km of distance according to build in trip counter. Is this normal fuel consumption of this model &amp; age of the car or is it poor? Thanks. &#32; submitted by &#32; /u/Hilmi_Noo"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqmihq/how_in_the_everrempitfuck/",
+          "excerpt": "&#32; submitted by &#32; /u/QorstSynthion [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574874+00:00",
+      "created_at": "2026-09-26T18:41:36.485462+00:00",
+      "rank": 4
+    },
+    {
+      "id": "opp-e72fe72df96ef592",
+      "project": "affiliate-project",
+      "problem": "Is the Satria Neo 1.6 auto a good option?",
+      "normalized_problem": "is the satria neo 1 6 auto a good option",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wqekry/is_the_satria_neo_16_auto_a_good_option/",
+          "excerpt": "I like the looks and price wise they aren’t that bad too. I’m a student so I’m looking for a cheap and good condition stylish car. I’m not a gearhead but I have friends and family that are and have told me that it ain’t a bad option. They can be a little biased too but the only downside they cautioned me about is the carry space. I’m just wondering if they’re reliable or headache-inducing. Any advice? &#32; submitted by &#32; /u/BrnrAcct139 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485601+00:00",
       "rank": 5
     },
     {
@@ -178,8 +178,37 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574797+00:00",
+      "created_at": "2026-09-26T18:41:36.485683+00:00",
       "rank": 6
+    },
+    {
+      "id": "opp-4c23547af5e1a667",
+      "project": "affiliate-project",
+      "problem": "Jaecoo just hit a NEW world record: Car spoiled 5mins after pick up 💀",
+      "normalized_problem": "jaecoo just hit a new world record car spoiled 5mins after pick up",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wqlljh/jaecoo_just_hit_a_new_world_record_car_spoiled/",
+          "excerpt": "Normal???? Anyone can help? &#32; submitted by &#32; /u/FreelancerOnDEMAND [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485515+00:00",
+      "rank": 7
     },
     {
       "id": "opp-760b200e4dfdcc4a",
@@ -207,8 +236,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575734+00:00",
-      "rank": 7
+      "created_at": "2026-09-26T18:41:36.486352+00:00",
+      "rank": 8
     },
     {
       "id": "opp-e29f719f061ff2cd",
@@ -236,8 +265,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575580+00:00",
-      "rank": 8
+      "created_at": "2026-09-26T18:41:36.486179+00:00",
+      "rank": 9
     },
     {
       "id": "opp-b39666cf0ca2d258",
@@ -265,20 +294,20 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575626+00:00",
-      "rank": 9
+      "created_at": "2026-09-26T18:41:36.486231+00:00",
+      "rank": 10
     },
     {
-      "id": "opp-06e1450f8b4b98c9",
+      "id": "opp-54642d12396dc896",
       "project": "affiliate-project",
-      "problem": "Mazda 3 1.5NA or BYD Atto3 or something else? Around 140k?",
-      "normalized_problem": "mazda 3 1 5na or byd atto3 or something else around 140k",
+      "problem": "Malas nak drive through traffic",
+      "normalized_problem": "malas nak drive through traffic",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 3,
+        "buyer_intent": 1,
         "problem_strength": 1,
-        "content_potential": 4,
+        "content_potential": 3,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
@@ -288,14 +317,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wosplc/mazda_3_15na_or_byd_atto3_or_something_else/",
-          "excerpt": "Hi all, planning to get my first car however I&#39;m not sure what is a good choice. My planned budget is around 140k as that is well within my basic annual salary. Was looking at Mazda 3 1.5 and BYD Atto 3, both seems like decent drives, but I need some advice from EV drivers, if I&#39;m not staying landed, is it worth the hassle to look for charging stations from time to time? I do appreciate any better/good alternatives that I should be aware of within that price range. Not specifically looki"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqolsf/malas_nak_drive_through_traffic/",
+          "excerpt": "So call tow truck to drive lorh. /s Edit : I know I dumb enough to blew my axia but not dumb enough to know they&#39;re transporting the vehicle to another location. Possible show room. Possible for an event. I can clearly see no number place. &#32; submitted by &#32; /u/Every_Reality_9721 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575177+00:00",
-      "rank": 10
+      "created_at": "2026-09-26T18:41:36.485391+00:00",
+      "rank": 11
     },
     {
       "id": "opp-a585323e4567b9f9",
@@ -323,36 +352,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574817+00:00",
-      "rank": 11
-    },
-    {
-      "id": "opp-27e230cebf97fa23",
-      "project": "affiliate-project",
-      "problem": "New s70 specs",
-      "normalized_problem": "new s70 specs",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 3,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpixs6/new_s70_specs/",
-          "excerpt": "Hello ppl. I just wanted your thoughts and impressions on the new s70. I currently drive a viva and i was thinking of changing to this car. Do you think its a good buy? I usually commute to school and its like 8km normally but i like to go to the city on the weekends and thats like 30 to 40km. Hence on the basis of this, do you guys think the s70 is a good buy in terms of Price Fuel consumption Car specs P.s which type of s70 do u think is a better buy the lite or the prime version? &#32; submit"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574970+00:00",
+      "created_at": "2026-09-26T18:41:36.485703+00:00",
       "rank": 12
     },
     {
@@ -381,18 +381,18 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575341+00:00",
+      "created_at": "2026-09-26T18:41:36.485933+00:00",
       "rank": 13
     },
     {
-      "id": "opp-eb499641bcc9ddbb",
+      "id": "opp-9b7bcdcc17431fbd",
       "project": "affiliate-project",
-      "problem": "Perodua AV and X",
-      "normalized_problem": "perodua av and x",
+      "problem": "Options for car loan",
+      "normalized_problem": "options for car loan",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 3,
+        "buyer_intent": 2,
         "problem_strength": 1,
         "content_potential": 3,
         "source_strength": 1.0,
@@ -404,20 +404,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wox4fh/perodua_av_and_x/",
-          "excerpt": "Thinking of buying a Perodua, are their AV that much different than their X variant. Heard it&#39;s pretty much the same only AV can fold their side mirrors automatically. Also is their Eco Idle actually worth it, or just annoying. Been driving a manual triton for years and today I got on a grab ride and get confused why my driver kept stalling at every intersection in his new myvi, then saw that he got an automatic, only now realizing about the eco idle thing &#32; submitted by &#32; /u/Novel-I"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqmcnx/options_for_car_loan/",
+          "excerpt": "I am selling my car but my buyer seems to not able to secure a bank loan. Is there any other option? &#32; submitted by &#32; /u/eternallas [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575106+00:00",
+      "created_at": "2026-09-26T18:41:36.485476+00:00",
       "rank": 14
     },
     {
-      "id": "opp-0298a88b1d8ae15e",
+      "id": "opp-a0e447d1e423a1c8",
       "project": "affiliate-project",
-      "problem": "Perodua Ativa Tyre Suggestions",
-      "normalized_problem": "perodua ativa tyre suggestions",
+      "problem": "Perodua Axia 2023 uphill problem",
+      "normalized_problem": "perodua axia 2023 uphill problem",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -433,72 +433,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wot1jm/perodua_ativa_tyre_suggestions/",
-          "excerpt": "Hello everyone it’s me again, after going through a harsh lesson about my brake pad, Today I wanna ask about what tyre brand should i get for my car (ativa AV) now front tyre 2mm / back tire 4mm checked with service centre. my budget 300-400, i dont wanna cheap out of quality and safety so should i get the original brand the car came with? Which is bridgestone turanza or there’s a better brand out there? Thank you! &#32; submitted by &#32; /u/zheesol [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqicg5/perodua_axia_2023_uphill_problem/",
+          "excerpt": "Hi, I drive an Axia 2023 and currently realising an issue where on a steep inclined my car refuses to accelerate even when i press on the accelerator hard. Basically moving like a snail. Not to mention, the low speed jerk that occurs quite commonly. Was wondering is anyone facing the same issue? Also wanting to find out what could possibly be the issue, is it engine related or gear box? No way its just engine power, cuz then its such a dangerous design. &#32; submitted by &#32; /u/flightlesstrai"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575158+00:00",
+      "created_at": "2026-09-26T18:41:36.485567+00:00",
       "rank": 15
-    },
-    {
-      "id": "opp-4e6facdfdd47d046",
-      "project": "affiliate-project",
-      "problem": "Satria Neo player",
-      "normalized_problem": "satria neo player",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpmon3/satria_neo_player/",
-          "excerpt": "Which is much more worth it for the engine in case it kaput and why Overhaul, bore up to 1.8 cc Mivec conversion, engine only or full halfcut and also may someone suggest CamPro workshop in klang area &#32; submitted by &#32; /u/twinstackz [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574926+00:00",
-      "rank": 16
-    },
-    {
-      "id": "opp-d6c4b0eb636cd027",
-      "project": "affiliate-project",
-      "problem": "Should i trade in old bmw for a slightly newer one",
-      "normalized_problem": "should i trade in old bmw for a slightly newer one",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wp7lon/should_i_trade_in_old_bmw_for_a_slightly_newer_one/",
-          "excerpt": "I have a 2005 bmw 320i e90 and is hoping i could sell/trade in to get a new car. I saw a 2012 bmw 328i sport 2.0 for 32k online and is certified with complete 180⁰ point check which shows it has minor scratches Is it a good idea to trade this old car for a slight newer car? Or is it just trash vs garbage &#32; submitted by &#32; /u/Orukuro-San [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575013+00:00",
-      "rank": 17
     },
     {
       "id": "opp-babbfa917c147599",
@@ -526,20 +468,78 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574776+00:00",
+      "created_at": "2026-09-26T18:41:36.485668+00:00",
+      "rank": 16
+    },
+    {
+      "id": "opp-c43513164cbc42b5",
+      "project": "affiliate-project",
+      "problem": "Vario 125 or Vario 160",
+      "normalized_problem": "vario 125 or vario 160",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wqbwhs/vario_125_or_vario_160/",
+          "excerpt": "It’s my first time buying a motorcycle. If there is anyone here who own the above models, please kindly enlighten me. My main purpose is to commute to office daily, around 30km-ish. And since I’m planning to pay by cash, I can save about 3K+ if I buy the Vario 125. But I wanna know if there’s a big difference between the two. Thank you in advance! &#32; submitted by &#32; /u/Feeling_Tomato15 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485634+00:00",
+      "rank": 17
+    },
+    {
+      "id": "opp-b496e8489949fbc0",
+      "project": "affiliate-project",
+      "problem": "You ever see a car that just has practically zero redeeming qualities to it",
+      "normalized_problem": "you ever see a car that just has practically zero redeeming qualities to it",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 3,
+        "problem_strength": 1,
+        "content_potential": 4,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wqmj3r/you_ever_see_a_car_that_just_has_practically_zero/",
+          "excerpt": "Neta V might actually be onr the worst cars you can buy in this country The car is expensive at sticker price (almost 100k, but 30k used which is still bafflingly pricey), super underpowered for an ev, quality sucks, design is very bland and ugly (still have no idea whether theyre trying to make an suv, mpv or a sedan), the interior is objectively bad (it just has a giant ass screen, these thing wont last long) and the best part? It scored ZERO in crash safety Its just so hilarious how bafflingl"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485446+00:00",
       "rank": 18
     },
     {
-      "id": "opp-78e673731cd3c112",
+      "id": "opp-1f65e282998b65e5",
       "project": "affiliate-project",
-      "problem": "Tayar Iriz",
-      "normalized_problem": "tayar iriz",
+      "problem": "[Market Research] How do Malaysian car owners currently approach professional detailing?",
+      "normalized_problem": "market research how do malaysian car owners currently approach professional detailing",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 2,
+        "buyer_intent": 1,
         "problem_strength": 2,
-        "content_potential": 3,
+        "content_potential": 4,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
@@ -549,20 +549,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wp1yy1/tayar_iriz/",
-          "excerpt": "Need some recommendations for my Iriz. I usually commute from Lipis to KL every weekend because I work in Lipis. Also, the access road to my office is unpavrd and full of gravel (it gets worse after heavy rain). Iriz 1.6 2024. &#32; submitted by &#32; /u/pwettytomato [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqqxkd/market_research_how_do_malaysian_car_owners/",
+          "excerpt": "I&#39;m conducting a short, independent market-research survey looking at how Malaysian vehicle owners maintain their cars, what they expect from professional detailing services, and what they consider reasonable pricing. It takes around 3–5 minutes. I&#39;m particularly interested in hearing from people who regularly care for their vehicles or have previously used professional detailing services. https://forms.gle/rZfePP3PUmW2LS6N8 &#32; submitted by &#32; /u/maximusthe775th [link] &#32; [comme"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575079+00:00",
+      "created_at": "2026-09-26T18:41:36.485349+00:00",
       "rank": 19
     },
     {
-      "id": "opp-e328eb07070b93d7",
+      "id": "opp-06768fe36e1f31c3",
       "project": "affiliate-project",
-      "problem": "egypt vs angola",
-      "normalized_problem": "egypt vs angola",
+      "problem": "england vs spain",
+      "normalized_problem": "england vs spain",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -579,19 +579,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "egypt vs angola"
+          "excerpt": "england vs spain"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575190+00:00",
+      "created_at": "2026-09-26T18:41:36.485774+00:00",
       "rank": 20
     },
     {
-      "id": "opp-62cdd7bb35aa06b0",
+      "id": "opp-7ee65b2eaaf22757",
       "project": "affiliate-project",
-      "problem": "italy vs belgium",
-      "normalized_problem": "italy vs belgium",
+      "problem": "south africa vs guinea",
+      "normalized_problem": "south africa vs guinea",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -608,77 +608,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "italy vs belgium"
+          "excerpt": "south africa vs guinea"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575218+00:00",
+      "created_at": "2026-09-26T18:41:36.485843+00:00",
       "rank": 21
     },
     {
-      "id": "opp-c43d28c3085be09b",
+      "id": "opp-71b36cb41e854bde",
       "project": "affiliate-project",
-      "problem": "pasal nak buka nut tayar",
-      "normalized_problem": "pasal nak buka nut tayar",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wowsim/pasal_nak_buka_nut_tayar/",
-          "excerpt": "Ni nak kena pakai tools apa? Ni first time aku tengok nuts jenis macam ni *Btw sorry geng rim kotor sampai macamtu sekali sebab kereta dah sadai 2bln &#32; submitted by &#32; /u/Lopsided-Fun4784 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575119+00:00",
-      "rank": 22
-    },
-    {
-      "id": "opp-c27641a1343f92c2",
-      "project": "affiliate-project",
-      "problem": "this ok?",
-      "normalized_problem": "this ok",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpoitb/this_ok/",
-          "excerpt": "Hey guys, need some opinions here. Yesterday was my first time changing my tyres. The stock tyres had a pretty good run with around 65k km on them. Both front tyres were already makan dalam , and the mechanic said the camber was negative. For context, I do drive quite a lot on roads with potholes and some unpaved roads. The mechanic advised me to change the camber nuts. I have little to no knowledge about tyres/alignment, so I just agreed after he showed me the readings on the screen. So… was I "
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574888+00:00",
-      "rank": 23
-    },
-    {
-      "id": "opp-7aac25b17f406af5",
-      "project": "affiliate-project",
-      "problem": "türkiye vs france",
-      "normalized_problem": "t rkiye vs france",
+      "problem": "tvs",
+      "normalized_problem": "tvs",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -695,19 +637,77 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "türkiye vs france"
+          "excerpt": "tvs"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575205+00:00",
+      "created_at": "2026-09-26T18:41:36.485868+00:00",
+      "rank": 22
+    },
+    {
+      "id": "opp-8a87ea705a025a78",
+      "project": "affiliate-project",
+      "problem": "tvs live",
+      "normalized_problem": "tvs live",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "tvs live"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485856+00:00",
+      "rank": 23
+    },
+    {
+      "id": "opp-f56f77845bed2885",
+      "project": "affiliate-project",
+      "problem": "Capturing Car Culture: Bufori",
+      "normalized_problem": "capturing car culture bufori",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wqtur0/capturing_car_culture_bufori/",
+          "excerpt": "&#32; submitted by &#32; /u/Priximus [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485303+00:00",
       "rank": 24
     },
     {
-      "id": "opp-b074229e753167c1",
+      "id": "opp-2f65f5a24dacd41e",
       "project": "affiliate-project",
-      "problem": "7 years old Mazda CX-5 highway mileage",
-      "normalized_problem": "7 years old mazda cx 5 highway mileage",
+      "problem": "FP rider's mad. Was I wrong?",
+      "normalized_problem": "fp rider s mad was i wrong",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -723,20 +723,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1woyh5z/7_years_old_mazda_cx5_highway_mileage/",
-          "excerpt": "19.3 km/L for a 100km highway trip, averaging 85/h, not going at highway speed. My average total 70%city + highway usage is around 12 km/L. Kind of happy to see such efficiency even after 7 years. &#32; submitted by &#32; /u/Killshot91 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqrjvs/fp_riders_mad_was_i_wrong/",
+          "excerpt": "If yes, my apologies to Mr. FP rider. &#32; submitted by &#32; /u/kuhamoba [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575094+00:00",
+      "created_at": "2026-09-26T18:41:36.485326+00:00",
       "rank": 25
     },
     {
-      "id": "opp-11aaaeda129732a1",
+      "id": "opp-cb54ba4f348b5e47",
       "project": "affiliate-project",
-      "problem": "Hey I am so tensed from past 5 days please help me !!!!",
-      "normalized_problem": "hey i am so tensed from past 5 days please help me",
+      "problem": "Neon Smoke, 2025. 155 × 58 cm. Acrylic on Canvas",
+      "normalized_problem": "neon smoke 2025 155 58 cm acrylic on canvas",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -752,20 +752,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wp5zu6/hey_i_am_so_tensed_from_past_5_days_please_help_me/",
-          "excerpt": "&#32; submitted by &#32; /u/Ok-Investigator4300 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqn6sn/neon_smoke_2025_155_58_cm_acrylic_on_canvas/",
+          "excerpt": "Hey everyone, I&#39;ve painted this during my time in art school, the painting was prepared for my final year exhibition. This painting was by far one of my favourite paintings that I&#39;ve done. It was based on the Nissan S13 180sx, I wanted to make this painting because the car was heavily used on the drifting scene due its capabilities, especially its chassis. It inspired me to create the painting, the flows, drips and brush strokes maintained its movements and speed. The colours were bright"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575066+00:00",
+      "created_at": "2026-09-26T18:41:36.485413+00:00",
       "rank": 26
     },
     {
-      "id": "opp-eb8484ae9d7049a5",
+      "id": "opp-625eea781ccb228b",
       "project": "affiliate-project",
-      "problem": "I would have shamed the license plate unfortunately too blur",
-      "normalized_problem": "i would have shamed the license plate unfortunately too blur",
+      "problem": "Planning to get this b48 7spd DCT 2019 model",
+      "normalized_problem": "planning to get this b48 7spd dct 2019 model",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -781,43 +781,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wp6mos/i_would_have_shamed_the_license_plate/",
-          "excerpt": "X50 tail gates me, almost bumper to bumper close while I’m already going above speed limit, then almost crashes into Axia, then break checks me after I flash him to watch out because man almost caused an accident. Should I have flashed him? No. But this dude has a massive ego trip driving a X50 🤦 Dude, this is a public road man, have some bloody patience. If you wanna drive like a lunatic do it in Sepang. &#32; submitted by &#32; /u/Yao_Productions [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqk0kd/planning_to_get_this_b48_7spd_dct_2019_model/",
+          "excerpt": "Apart from leaky water, what else should i take note? Seller changed water thermostat housing this year recently &#32; submitted by &#32; /u/No-Zookeepergame-475 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575048+00:00",
+      "created_at": "2026-09-26T18:41:36.485552+00:00",
       "rank": 27
-    },
-    {
-      "id": "opp-b77bba79da0492c7",
-      "project": "affiliate-project",
-      "problem": "Number plate style.",
-      "normalized_problem": "number plate style",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wouc8u/number_plate_style/",
-          "excerpt": "Ok please can anyone tell me this is ok? Legal? My vision is 20/20 and even within 2 meter I can barely make out the letters. &#32; submitted by &#32; /u/zax7077 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575144+00:00",
-      "rank": 28
     },
     {
       "id": "opp-e89929eb0aee9657",
@@ -845,14 +816,43 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574858+00:00",
+      "created_at": "2026-09-26T18:41:36.485740+00:00",
+      "rank": 28
+    },
+    {
+      "id": "opp-571cfe1a11e0dffb",
+      "project": "affiliate-project",
+      "problem": "Saw This Unicorn On The Highway Back Home 🫪",
+      "normalized_problem": "saw this unicorn on the highway back home",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wqxsiu/saw_this_unicorn_on_the_highway_back_home/",
+          "excerpt": "Never seen one up close driving before. Ones I&#39;ve seen are either static event displays or Levins. Truly bucket list experience and definitely checked off. 🥲 Should&#39;ve chased it in my &quot;Evo&quot;, jk. XD &#32; submitted by &#32; /u/Niko_Wildes [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485259+00:00",
       "rank": 29
     },
     {
-      "id": "opp-587d3c3cee6100c0",
+      "id": "opp-93b7c0fee3b14874",
       "project": "affiliate-project",
-      "problem": "Suggestions plz",
-      "normalized_problem": "suggestions plz",
+      "problem": "Should i get a 2016 bmw 330e?",
+      "normalized_problem": "should i get a 2016 bmw 330e",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -868,20 +868,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wougl4/suggestions_plz/",
-          "excerpt": "I bought a ambient light from tiktok shop, but I found it really hard to installing on my car, can your guys suggest shops in KL that can do this orrr is anyone here willing to help me? &#32; submitted by &#32; /u/Acceptable-Hippo1307 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqpqvq/should_i_get_a_2016_bmw_330e/",
+          "excerpt": "Saw one going quite affordable so i was wondering about the realibility, i dont really do long drives and i keep seeing people saying they are still happy with theyre car &#32; submitted by &#32; /u/Orukuro-San [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575130+00:00",
+      "created_at": "2026-09-26T18:41:36.485367+00:00",
       "rank": 30
     },
     {
-      "id": "opp-4cacb48785637f37",
+      "id": "opp-51e9a957c246f989",
       "project": "affiliate-project",
-      "problem": "Thought some of you might be interested (not my post, not my car)",
-      "normalized_problem": "thought some of you might be interested not my post not my car",
+      "problem": "Unicorn Of The Day 🦄",
+      "normalized_problem": "unicorn of the day",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -897,20 +897,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpjmde/thought_some_of_you_might_be_interested_not_my/",
-          "excerpt": "owner number at the end &#32; submitted by &#32; /u/charming_cabbage [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqefub/unicorn_of_the_day/",
+          "excerpt": "Spotted in Bangsar. Truly blessed to see it rolling and grumbling 🦅 Apparently the owner was invited/stopped by at the grand opening of Yonny Suancai Fish Bangsar (figured as the car was parked in front of the entrance of the restaurant). But hey....could be the owner of the restaurant himself 🫪 &#32; submitted by &#32; /u/Cranium-Delirium [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574958+00:00",
+      "created_at": "2026-09-26T18:41:36.485619+00:00",
       "rank": 31
     },
     {
-      "id": "opp-d3a6226deb6a668b",
+      "id": "opp-9c38221762bd1cc1",
       "project": "affiliate-project",
-      "problem": "Thoughts on the new BMW X5 G65?",
-      "normalized_problem": "thoughts on the new bmw x5 g65",
+      "problem": "[WWP 1770] Drunk BMW driver tried to run my friend off the road",
+      "normalized_problem": "wwp 1770 drunk bmw driver tried to run my friend off the road",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -926,13 +926,13 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wpo696/thoughts_on_the_new_bmw_x5_g65/",
-          "excerpt": "Opinions for this car by my fellow Malaysian redditors? Serious discussions only &#32; submitted by &#32; /u/15033335 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wqlkl2/wwp_1770_drunk_bmw_driver_tried_to_run_my_friend/",
+          "excerpt": "&#32; submitted by &#32; /u/YourSteakBuddy [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574902+00:00",
+      "created_at": "2026-09-26T18:41:36.485536+00:00",
       "rank": 32
     },
     {
@@ -961,7 +961,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574732+00:00",
+      "created_at": "2026-09-26T18:41:36.485652+00:00",
       "rank": 33
     },
     {
@@ -990,7 +990,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.574837+00:00",
+      "created_at": "2026-09-26T18:41:36.485717+00:00",
       "rank": 34
     },
     {
@@ -1019,7 +1019,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575466+00:00",
+      "created_at": "2026-09-26T18:41:36.486074+00:00",
       "rank": 35
     },
     {
@@ -1048,7 +1048,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575362+00:00",
+      "created_at": "2026-09-26T18:41:36.485957+00:00",
       "rank": 36
     },
     {
@@ -1077,7 +1077,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575821+00:00",
+      "created_at": "2026-09-26T18:41:36.486461+00:00",
       "rank": 37
     },
     {
@@ -1106,7 +1106,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575854+00:00",
+      "created_at": "2026-09-26T18:41:36.486506+00:00",
       "rank": 38
     },
     {
@@ -1135,7 +1135,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575803+00:00",
+      "created_at": "2026-09-26T18:41:36.486440+00:00",
       "rank": 39
     },
     {
@@ -1164,7 +1164,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575440+00:00",
+      "created_at": "2026-09-26T18:41:36.486045+00:00",
       "rank": 40
     },
     {
@@ -1193,8 +1193,37 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575397+00:00",
+      "created_at": "2026-09-26T18:41:36.485997+00:00",
       "rank": 41
+    },
+    {
+      "id": "opp-e4f96241ce349f76",
+      "project": "affiliate-project",
+      "problem": "Puspakom issues a reminder that mandatory VTA labelling must be present on all CBU vehicles - Paul Tan's Automotive News",
+      "normalized_problem": "puspakom issues a reminder that mandatory vta labelling must be present on all cbu vehicles paul tan s automotive news",
+      "opportunity_score": 91.8,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1,
+        "source_strength": 0.75,
+        "freshness_factor": 0.55,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUFpzd01RTXVoTHJRUGhCcHRIREp6U3FfWXZvODVnVlZ1RkxYQ283anJkMUJMc2k4QkQwQ0VZUW1FenhQV2JPQ0ZSbzJBbUh6RzJPS24zQlktOTZ5M3Bvel9BczdkTDV4Tlp5bTY4U3ZUUnZobXVuRTV5akxCeUVfZmpDQXk3UGpoRGVBV2pXVzRoNTZ5MzdhaTRvYnZ0VjI1ekRwTlZGdzJqd3ZmbFBKWnp0d2dZdThUaUZZTUh5dTU?oc=5",
+          "excerpt": "Puspakom issues a reminder that mandatory VTA labelling must be present on all CBU vehicles &nbsp;&nbsp; Paul Tan's Automotive News"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.486486+00:00",
+      "rank": 42
     },
     {
       "id": "opp-da9bd9ef21f08c20",
@@ -1222,8 +1251,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575694+00:00",
-      "rank": 42
+      "created_at": "2026-09-26T18:41:36.486310+00:00",
+      "rank": 43
     },
     {
       "id": "opp-db5e22678c13826c",
@@ -1251,8 +1280,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575319+00:00",
-      "rank": 43
+      "created_at": "2026-09-26T18:41:36.485909+00:00",
+      "rank": 44
     },
     {
       "id": "opp-b9401fe0d3a9b180",
@@ -1280,43 +1309,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575642+00:00",
-      "rank": 44
-    },
-    {
-      "id": "opp-1b94a7dccd20d372",
-      "project": "affiliate-project",
-      "problem": "asian games 2026",
-      "normalized_problem": "asian games 2026",
-      "opportunity_score": 80.5,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "asian games 2026"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575293+00:00",
+      "created_at": "2026-09-26T18:41:36.486250+00:00",
       "rank": 45
     },
     {
-      "id": "opp-99e1ff400202a2d6",
+      "id": "opp-103b58481e19b855",
       "project": "affiliate-project",
-      "problem": "badminton",
-      "normalized_problem": "badminton",
+      "problem": "aircraft pilot",
+      "normalized_problem": "aircraft pilot",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1333,42 +1333,13 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "badminton"
+          "excerpt": "aircraft pilot"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575281+00:00",
+      "created_at": "2026-09-26T18:41:36.485789+00:00",
       "rank": 46
-    },
-    {
-      "id": "opp-b3845dc45765e087",
-      "project": "affiliate-project",
-      "problem": "bahrain gp",
-      "normalized_problem": "bahrain gp",
-      "opportunity_score": 80.5,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "bahrain gp"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575239+00:00",
-      "rank": 47
     },
     {
       "id": "opp-60965168ce762e94",
@@ -1396,14 +1367,43 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575270+00:00",
+      "created_at": "2026-09-26T18:41:36.485801+00:00",
+      "rank": 47
+    },
+    {
+      "id": "opp-16a5922c18378eaa",
+      "project": "affiliate-project",
+      "problem": "kecederaan",
+      "normalized_problem": "kecederaan",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "kecederaan"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-09-26T18:41:36.485829+00:00",
       "rank": 48
     },
     {
-      "id": "opp-341cf9022a3e6469",
+      "id": "opp-4ba7f52fe91ebab4",
       "project": "affiliate-project",
-      "problem": "indonesia",
-      "normalized_problem": "indonesia",
+      "problem": "pasukan bola sepak kebangsaan thailand",
+      "normalized_problem": "pasukan bola sepak kebangsaan thailand",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1420,19 +1420,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "indonesia"
+          "excerpt": "pasukan bola sepak kebangsaan thailand"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575260+00:00",
+      "created_at": "2026-09-26T18:41:36.485816+00:00",
       "rank": 49
     },
     {
-      "id": "opp-241c1e30ed886aa4",
+      "id": "opp-bb0347a468d97e98",
       "project": "affiliate-project",
-      "problem": "iphone",
-      "normalized_problem": "iphone",
+      "problem": "you",
+      "normalized_problem": "you",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1449,12 +1449,12 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "iphone"
+          "excerpt": "you"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-09-25T19:29:23.575249+00:00",
+      "created_at": "2026-09-26T18:41:36.485880+00:00",
       "rank": 50
     }
   ],
