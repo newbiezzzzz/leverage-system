@@ -124,5 +124,13 @@ jobs:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-cycle.yml --ref main
 
+      - name: Verify continuation trigger
+        if: steps.decision.outputs.action == 'start_cycle'
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          echo "Strategy Hunter continuation requested."
+          echo "Supervisor will re-check on the 5-minute schedule and after workflow completion."
+
       - name: Supervisor completed
         run: echo "Leverage supervisor decision completed."
