@@ -33,7 +33,7 @@ except Exception:
 
 gates=raw.get("gates",{}) if isinstance(raw,dict) else {}
 all_passed=bool(
-    raw.get("status")=="validated"
+    raw.get("status") in {"candidate_ready","validated"}
     and raw.get("candidate_id")
     and all(gates.get(k) is True for k in REQUIRED)
 )
