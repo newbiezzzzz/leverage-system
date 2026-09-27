@@ -1,11 +1,339 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-09-26T18:38:11.940656+00:00",
+  "generated_at": "2026-09-27T19:02:00.566117+00:00",
   "scope": "Automotive / car problem-solving / buying decisions",
   "record_count": 65,
   "source_errors": [],
   "records": [
+    {
+      "id": "r-62307372f5e4a449",
+      "project": "affiliate-project",
+      "problem": "Workshop that can modify car seat to be comfortable",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "I have a 2024 Honda City (GN2) and the driver seat is too stiff for me. Would like suggestions for shops within the Klang Valley/Kota Kemuning that are able to modify the cushioning/foam to be comfortable. I don&#39;t want to change the seat or just put on a cushion cover, so suggestions are welcome. &#32; submitted by &#32; /u/CorollaSE [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrmvha/workshop_that_can_modify_car_seat_to_be/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-27T15:20:26+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603147+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-685a7963ea9f3e47",
+      "project": "affiliate-project",
+      "problem": "Proton service center near kl/selangor",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi proton users, Can anyone suggest a good enough service center near kl, or selangor. I don’t mind going far if they have good services. Been researching for days but almost all of them have mixed reviews… &#32; submitted by &#32; /u/Large_Ad6301 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrmjvo/proton_service_center_near_klselangor/",
+      "demand_signal": {
+        "keyword_hits": [
+          "review",
+          "service"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 2,
+      "freshness": "2026-09-27T15:07:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603248+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-0fca3f259c3767ae",
+      "project": "affiliate-project",
+      "problem": "AMA: Malaysian motorsport photographer covering F1 and FIA WEC",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi r/kereta , with F1 coming back to Sepang soon, there&#39;s been a lot of hype around F1 in Malaysia lately, so I thought I&#39;d do an AMA. A short intro: I&#39;m Wan, an editorial motorsport photographer from KL, and one of the few Malaysian accredited photographers who are covering F1 and FIA WEC. I started out shooting MotoGP from the grandstands and smaller racing events at Sepang with a secondhand Canon 7D Mark II I bought for RM2,000, and worked my way up from there. Ask me anything about shooting F1, photography, or even F1 sport in general. I&#39;m also running a small workshop tomo",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrkndb/ama_malaysian_motorsport_photographer_covering_f1/",
+      "demand_signal": {
+        "keyword_hits": [
+          "kereta"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-09-27T13:46:36+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603389+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-dbf30a3af5824fbf",
+      "project": "affiliate-project",
+      "problem": "Scratched door. How to repair?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Scratched my car door today because I misjudged a corner. I&#39;m thinking of sending it to the closest authorised repair shop but I&#39;m wondering if I can get it cheaper if I go to an independent workshop instead. But I don&#39;t know any good ones in Ipoh, so I&#39;m tempted to just go to the nearest workshop here. Any advice? Also, how much do you think it&#39;ll cost? &#32; submitted by &#32; /u/HJSDGCE [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrjxet/scratched_door_how_to_repair/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 3,
+      "product_potential": 2,
+      "freshness": "2026-09-27T13:13:45+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603460+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-a0676f05e7a067b6",
+      "project": "affiliate-project",
+      "problem": "What was your experience selling a niche car?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "As a niche car owner, what was your experience when you had to get rid of it? By niche car, I mean something that isn&#39;t common on the road. E.g big displacement engines with high road tax, one-of-a-kind vehicles, etc. Something that only a few hundred units get registered annually. Something that isn&#39;t resale-value friendly. Something that drinks fuel. Higher maintenance. Etc etc etc. The reason for asking is because I intend to buy one of these examples. After all, I love the car, but I&#39;m a little concerned about the inconvenience when I have to get rid of the car in the future. W",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrgpgx/what_was_your_experience_selling_a_niche_car/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy",
+          "car",
+          "maintenance"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 2,
+      "freshness": "2026-09-27T10:22:07+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603582+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-349516a72b0639c5",
+      "project": "affiliate-project",
+      "problem": "what car is ok? second and anything cheaper than new saga",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "thinking about getting renault captur &#32; submitted by &#32; /u/Crazy_Tangerine_7460 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrfi8i/what_car_is_ok_second_and_anything_cheaper_than/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-27T09:09:07+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603620+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-f0c8f5afa56eb07e",
+      "project": "affiliate-project",
+      "problem": "[Weekly] What did you do to your car/bike?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi all, First of all, welcome to the weekly post of &quot;What did you do&quot;! I believe this sub is big enough, and we can sufficiently start a weekly post for those who wants to comment about what they did over the past week, and not needing to open a post to talk about it. This is the place where you can talk about: Where did you n your sayang (the car) go last month? (road trip reports?) What you spent on your car (shopee LED, install HUD, glow in dark paintjob) Minor car questions (repairs, recommendations, accidents, DIY) Looking forward to everyone&#39;s participation! &#32; submitted",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrfd1y/weekly_what_did_you_do_to_your_carbike/",
+      "demand_signal": {
+        "keyword_hits": [
+          "beli",
+          "car",
+          "recommend"
+        ],
+        "buyer_intent": 3,
+        "problem_strength": 2,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 3,
+      "content_potential": 3,
+      "product_potential": 2,
+      "freshness": "2026-09-27T09:00:38+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603691+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-1640ecb46f06fa56",
+      "project": "affiliate-project",
+      "problem": "S70 Premium or Alza",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "I&#39;m planning to buy a car that is perfect for long journeys (JB-KL, JB-Pahang, JB-Terengganu), have large space, and can do high speed comfortably. There are two choices that came into my mind, Alza and S70, since both of them within my monthly budget. Any owners of these cars can give some opinions? &#32; submitted by &#32; /u/Wakjawa [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wreye2/s70_premium_or_alza/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy",
+          "car"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-09-27T08:35:19+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603739+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-a6de34dd132e8ee1",
+      "project": "affiliate-project",
+      "problem": "Proton Tiara Leaflet",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Found this rare gem of an untouched Proton Tiara leaflet and wanted to share it. This car is way older than me and I’ve never seen one in real life. What happened to this car? &#32; submitted by &#32; /u/BBNU_kid [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wre06c/proton_tiara_leaflet/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-27T07:37:24+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603787+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-60e1aeec3173c7f0",
+      "project": "affiliate-project",
+      "problem": "Spotted Axia hybird",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Damn gang, Axia Hybrid 🙈 &#32; submitted by &#32; /u/Loose_Ad5143 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrc9rl/spotted_axia_hybird/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-27T05:55:56+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603824+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-0d0b1051c0810aca",
+      "project": "affiliate-project",
+      "problem": "Just got saman by police because they said its easier to get insurance claim",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hello! Asking for my sister. Today she got into a minor accident near NKVE Highway, heading towards KL. The road was slippery due to heavy rain the night before and there was dirt/sand and she lost control. It was a turn corner bridge. Thankfully, she is not hurt and the car was not completely destroyed. No other car was involved as well. We got tow truck to bring the car to police station (Bukit Jelutong), beside highway and Petronas. My sister told us that police gave her saman (RM300) because they claimed it would make the insurance claim easier. My question is, why does she have to pay “sa",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wrbeld/just_got_saman_by_police_because_they_said_its/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-27T05:06:28+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.603942+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-cb903f1a3f21aadd",
+      "project": "affiliate-project",
+      "problem": "Is Grab Premium worth taking for someone who likes cars?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Good day folks, a couple of friends and I are planning to use Grab Premium occasionally because we enjoy experiencing different cars. We`ve taken Plus a number of times and have gotten normal models like City GM6 but even rarer models like the Corolla Cross and Xtrail. Is it worth it taking a Premium someday? I know the cars you can expect on Premium are Toyota Camry and Honda Accord, which we like very much. For those who have used Premium before, any details on the cars are appreciated. Mercedes and BMW are accepted models but are they very rare compared to Japanese D segments? Grab`s websit",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wraewr/is_grab_premium_worth_taking_for_someone_who/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "worth"
+        ],
+        "buyer_intent": 3,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 3,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-09-27T04:11:43+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.604029+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-622cb5eb456fce29",
+      "project": "affiliate-project",
+      "problem": "“Tidakkah anda rasa bersalah memotong Q.” Does it even work?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "&#32; submitted by &#32; /u/Pristine-Unit1034 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wr864m/tidakkah_anda_rasa_bersalah_memotong_q_does_it/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-09-27T02:13:47+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:01:59.604067+00:00",
+      "freshness_status": "fresh"
+    },
     {
       "id": "r-228a2e0b6ffc674f",
       "project": "affiliate-project",
@@ -26,7 +354,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T18:28:18+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.808910+00:00",
+      "collected_at": "2026-09-27T19:01:59.604132+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -51,7 +379,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T15:49:15+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.808968+00:00",
+      "collected_at": "2026-09-27T19:01:59.604161+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -74,7 +402,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T14:12:28+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809008+00:00",
+      "collected_at": "2026-09-27T19:01:59.604191+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -100,7 +428,7 @@
       "product_potential": 2,
       "freshness": "2026-09-26T13:44:56+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809089+00:00",
+      "collected_at": "2026-09-27T19:01:59.604270+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -125,7 +453,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T12:50:23+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809135+00:00",
+      "collected_at": "2026-09-27T19:01:59.604315+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -148,7 +476,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T11:52:41+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809185+00:00",
+      "collected_at": "2026-09-27T19:01:59.604359+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -173,7 +501,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T10:30:47+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809275+00:00",
+      "collected_at": "2026-09-27T19:01:59.604445+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -199,7 +527,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T09:49:45+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809366+00:00",
+      "collected_at": "2026-09-27T19:01:59.604554+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -222,7 +550,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T09:48:35+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809395+00:00",
+      "collected_at": "2026-09-27T19:01:59.604591+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -248,7 +576,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T09:38:28+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809431+00:00",
+      "collected_at": "2026-09-27T19:01:59.604625+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -274,7 +602,7 @@
       "product_potential": 1,
       "freshness": "2026-09-26T08:56:47+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809526+00:00",
+      "collected_at": "2026-09-27T19:01:59.604721+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -300,359 +628,16 @@
       "product_potential": 1,
       "freshness": "2026-09-26T08:49:52+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809573+00:00",
+      "collected_at": "2026-09-27T19:01:59.604762+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-3daa224626502d22",
+      "id": "r-0bde7f661a4cf246",
       "project": "affiliate-project",
-      "problem": "[WWP 1770] Drunk BMW driver tried to run my friend off the road",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "&#32; submitted by &#32; /u/YourSteakBuddy [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqlkl2/wwp_1770_drunk_bmw_driver_tried_to_run_my_friend/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-26T08:48:09+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809629+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-49b15855f2e92f69",
-      "project": "affiliate-project",
-      "problem": "Planning to get this b48 7spd DCT 2019 model",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Apart from leaky water, what else should i take note? Seller changed water thermostat housing this year recently &#32; submitted by &#32; /u/No-Zookeepergame-475 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqk0kd/planning_to_get_this_b48_7spd_dct_2019_model/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-26T07:10:07+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809671+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-ecffe4d69b20ac95",
-      "project": "affiliate-project",
-      "problem": "Perodua Axia 2023 uphill problem",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi, I drive an Axia 2023 and currently realising an issue where on a steep inclined my car refuses to accelerate even when i press on the accelerator hard. Basically moving like a snail. Not to mention, the low speed jerk that occurs quite commonly. Was wondering is anyone facing the same issue? Also wanting to find out what could possibly be the issue, is it engine related or gear box? No way its just engine power, cuz then its such a dangerous design. &#32; submitted by &#32; /u/flightlesstrainplane [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqicg5/perodua_axia_2023_uphill_problem/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car",
-          "problem"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 3,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 3,
-      "product_potential": 3,
-      "freshness": "2026-09-26T05:32:48+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809731+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-345680b878fc971a",
-      "project": "affiliate-project",
-      "problem": "Car rental help",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Am going to KL. Will arrive at klia2 but return flight is from subang. Any good and cheap car rental service that i can use? Considering pickup and return location is not the same &#32; submitted by &#32; /u/KingHusni [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqh9hk/car_rental_help/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car",
-          "service"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 3,
-      "product_potential": 2,
-      "freshness": "2026-09-26T04:32:57+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809769+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-cd4e6910c5ed0a0f",
-      "project": "affiliate-project",
-      "problem": "Is the Satria Neo 1.6 auto a good option?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "I like the looks and price wise they aren’t that bad too. I’m a student so I’m looking for a cheap and good condition stylish car. I’m not a gearhead but I have friends and family that are and have told me that it ain’t a bad option. They can be a little biased too but the only downside they cautioned me about is the carry space. I’m just wondering if they’re reliable or headache-inducing. Any advice? &#32; submitted by &#32; /u/BrnrAcct139 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqekry/is_the_satria_neo_16_auto_a_good_option/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-26T02:10:51+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809841+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-11bfcf00ce9bbcdd",
-      "project": "affiliate-project",
-      "problem": "Unicorn Of The Day 🦄",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Spotted in Bangsar. Truly blessed to see it rolling and grumbling 🦅 Apparently the owner was invited/stopped by at the grand opening of Yonny Suancai Fish Bangsar (figured as the car was parked in front of the entrance of the restaurant). But hey....could be the owner of the restaurant himself 🫪 &#32; submitted by &#32; /u/Cranium-Delirium [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqefub/unicorn_of_the_day/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-26T02:03:59+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809901+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-ce9383b2c7ca78a1",
-      "project": "affiliate-project",
-      "problem": "Vario 125 or Vario 160",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "It’s my first time buying a motorcycle. If there is anyone here who own the above models, please kindly enlighten me. My main purpose is to commute to office daily, around 30km-ish. And since I’m planning to pay by cash, I can save about 3K+ if I buy the Vario 125. But I wanna know if there’s a big difference between the two. Thank you in advance! &#32; submitted by &#32; /u/Feeling_Tomato15 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wqbwhs/vario_125_or_vario_160/",
-      "demand_signal": {
-        "keyword_hits": [
-          "buy"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-26T00:00:24+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.809963+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-90e3f921ccfea57a",
-      "project": "affiliate-project",
-      "problem": "menukar coolant dari air paip ke genuine coolant pada kereta lama",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi semua. Saya perlukan pendapat. Saya ada satu kereta lama dari ayah saya. Kereta proton saga model megavalve. Saya nk pulihkan kereta tu utk bawak pegi universiti. Skrg coolant kereta tu pakai air paip. Jadi, saya perlukan adakah perlu saya tukar air paip kepada coolant yg betul supaya kereta tu boleh tahan lebih lama. Atau ada efek lain berlaku pada kereta tu kalau saya pakai coolant. &#32; submitted by &#32; /u/InfamousDish9375 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wpxsko/menukar_coolant_dari_air_paip_ke_genuine_coolant/",
-      "demand_signal": {
-        "keyword_hits": [
-          "kereta"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-25T14:27:43+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.810024+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-61c908c17d08b90b",
-      "project": "affiliate-project",
-      "problem": "Sucks that this happens almost every week.",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "You’re only supposed to turn when it shows the green arrow, and not when it’s solid green. Hated all these kind of Ah-Beng drivers. 😡 &#32; submitted by &#32; /u/fudge_bear [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wpvwmu/sucks_that_this_happens_almost_every_week/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-09-25T13:08:13+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.810069+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-f5dd71294a745971",
-      "project": "affiliate-project",
-      "problem": "Is this real Toyo CR1 tyre ?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "The price is bloody cheap, even without vouchers it sells at RM180 when locals here only sells for RM220 per tyre. Please advice if fake tyres do exist ? TIA! https://my.shp.ee/uVuVjWEg &#32; submitted by &#32; /u/Miserable-Mark-7836 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wpvmjm/is_this_real_toyo_cr1_tyre/",
-      "demand_signal": {
-        "keyword_hits": [
-          "tyre"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 2,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 2,
-      "product_potential": 2,
-      "freshness": "2026-09-25T12:56:09+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.810117+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-4dcec4b6ccae097f",
-      "project": "affiliate-project",
-      "problem": "My puckup truck always slides dangerously in the wet. Tyre recommendations please.",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "I talking total deathwish on wheels the moment it starts to rain. I wanna make it home alive. What tyres and a good shop to get them from. Im in KL hartamas area &#32; submitted by &#32; /u/beansandpeasandegg [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wpstwz/my_puckup_truck_always_slides_dangerously_in_the/",
-      "demand_signal": {
-        "keyword_hits": [
-          "recommend",
-          "tyre"
-        ],
-        "buyer_intent": 2,
-        "problem_strength": 2,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 3,
-      "product_potential": 2,
-      "freshness": "2026-09-25T10:32:14+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.810162+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-abcedd466d033709",
-      "project": "affiliate-project",
-      "problem": "typical s70 users",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "all that risk just to have the same speed as the car in the fast lane 🫩🤦 &#32; submitted by &#32; /u/ChickenRice9000 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wpsseg/typical_s70_users/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-25T10:29:40+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.810201+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-afb55712718364ce",
-      "project": "affiliate-project",
-      "problem": "Police investigation report stuck at \"under investigation\" for 4 weeks - what should I do?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "&#32; submitted by &#32; /u/meursault_06 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1wprp9z/police_investigation_report_stuck_at_under/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-09-25T09:23:51+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:10.810235+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-06787ccd8528d871",
-      "project": "affiliate-project",
-      "problem": "英格兰 - 西班牙",
+      "problem": "norwegia vs portugal",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "英格兰 - 西班牙",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-26T18:20:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345250+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-813804c90c755c5b",
-      "project": "affiliate-project",
-      "problem": "england vs spain",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "england vs spain",
+      "evidence": "norwegia vs portugal",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -664,110 +649,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-26T15:50:00+00:00",
+      "freshness": "2026-09-27T18:20:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345301+00:00",
+      "collected_at": "2026-09-27T19:02:00.111425+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-58d64ed05959dbe3",
+      "id": "r-3415376e46cb460d",
       "project": "affiliate-project",
-      "problem": "aircraft pilot",
+      "problem": "norway vs portugal",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "aircraft pilot",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-26T15:50:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345334+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-9e7b9299d5558968",
-      "project": "affiliate-project",
-      "problem": "chatgpt",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "chatgpt",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-26T15:30:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345361+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-7e2f620866022e5e",
-      "project": "affiliate-project",
-      "problem": "pasukan bola sepak kebangsaan thailand",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "pasukan bola sepak kebangsaan thailand",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-26T14:50:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345392+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-f9ca041f31f9fec2",
-      "project": "affiliate-project",
-      "problem": "kecederaan",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "kecederaan",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-09-26T14:10:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345417+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-af166480b7f01cb3",
-      "project": "affiliate-project",
-      "problem": "south africa vs guinea",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "south africa vs guinea",
+      "evidence": "norway vs portugal",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -779,18 +672,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-26T13:20:00+00:00",
+      "freshness": "2026-09-27T17:50:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345445+00:00",
+      "collected_at": "2026-09-27T19:02:00.111514+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-e9da66b01355d1d6",
+      "id": "r-011602f8741a4219",
       "project": "affiliate-project",
-      "problem": "tvs live",
+      "problem": "germany vs greece",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "tvs live",
+      "evidence": "germany vs greece",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -802,18 +695,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-26T13:10:00+00:00",
+      "freshness": "2026-09-27T17:50:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345470+00:00",
+      "collected_at": "2026-09-27T19:02:00.111553+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-760ba8399b5a8a3b",
+      "id": "r-5c8cf0382a7e3598",
       "project": "affiliate-project",
-      "problem": "tvs",
+      "problem": "portugal vs norway",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "tvs",
+      "evidence": "portugal vs norway",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -825,18 +718,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-26T12:30:00+00:00",
+      "freshness": "2026-09-27T17:10:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345493+00:00",
+      "collected_at": "2026-09-27T19:02:00.111589+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-17edb8d4b4dc6abe",
+      "id": "r-3e88b75b6d549aa0",
       "project": "affiliate-project",
-      "problem": "you",
+      "problem": "mexx meerdink",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "you",
+      "evidence": "mexx meerdink",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -848,9 +741,124 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-26T12:30:00+00:00",
+      "freshness": "2026-09-27T17:10:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.345515+00:00",
+      "collected_at": "2026-09-27T19:02:00.111620+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-03bb4b817d099bdd",
+      "project": "affiliate-project",
+      "problem": "austria vs kosovo",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "austria vs kosovo",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-27T15:50:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.111648+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-c71b830cf58f595f",
+      "project": "affiliate-project",
+      "problem": "denmark vs wales",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "denmark vs wales",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-27T15:40:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.111675+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-7447372d7d9ecf2d",
+      "project": "affiliate-project",
+      "problem": "serbia vs netherlands",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "serbia vs netherlands",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-27T15:20:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.111700+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-d3f4ed2a15822e8a",
+      "project": "affiliate-project",
+      "problem": "chelsea vs arsenal",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "chelsea vs arsenal",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-27T15:20:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.111725+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-ea58993d04801ad9",
+      "project": "affiliate-project",
+      "problem": "pelajar",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "pelajar",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-09-27T12:10:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.111748+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -876,7 +884,7 @@
       "product_potential": 1,
       "freshness": "2026-02-05T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.938851+00:00",
+      "collected_at": "2026-09-27T19:02:00.564314+00:00",
       "freshness_status": "stale"
     },
     {
@@ -902,7 +910,7 @@
       "product_potential": 2,
       "freshness": "2026-08-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.938912+00:00",
+      "collected_at": "2026-09-27T19:02:00.564376+00:00",
       "freshness_status": "stale"
     },
     {
@@ -927,7 +935,7 @@
       "product_potential": 1,
       "freshness": "2026-04-17T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.938965+00:00",
+      "collected_at": "2026-09-27T19:02:00.564430+00:00",
       "freshness_status": "stale"
     },
     {
@@ -950,7 +958,7 @@
       "product_potential": 1,
       "freshness": "2026-04-30T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939006+00:00",
+      "collected_at": "2026-09-27T19:02:00.564501+00:00",
       "freshness_status": "stale"
     },
     {
@@ -975,16 +983,16 @@
       "product_potential": 2,
       "freshness": "2026-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939054+00:00",
+      "collected_at": "2026-09-27T19:02:00.564555+00:00",
       "freshness_status": "stale"
     },
     {
-      "id": "r-e3613e8e99d32ed7",
+      "id": "r-1ab8ff7f0fcf92f8",
       "project": "affiliate-project",
-      "problem": "Dispute over Chinese EV giant’s plant exposes Malaysia’s auto hub dilemma - CNA",
+      "problem": "Dispute over Chinese EV giant’s plant exposes Malaysia’s auto hub dilemma - channelnewsasia.com",
       "source": "Google News automotive Malaysia",
       "source_kind": "market",
-      "evidence": "Dispute over Chinese EV giant’s plant exposes Malaysia’s auto hub dilemma &nbsp;&nbsp; CNA",
+      "evidence": "Dispute over Chinese EV giant’s plant exposes Malaysia’s auto hub dilemma &nbsp;&nbsp; channelnewsasia.com",
       "evidence_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQRlByWjg2V29FbV92c3RoeW9LTUI4ZjdrNGh5cnF6Ml9TQkdEZEc2bkNwRzB0ZzNQZUdMT3pMOGc1Vy0zZmlvUjVyX3pOWk1fVndLNUtKZWZEclhqVUNoLVZyQmJnbjRGSEVfVWp2LVJ2MUZqQy14MEltN0stS0IzN0M1dEhYRnV1YjFlanFNZHotdkM5UUdsczZTbVVkM1B2aTVVbUFQT0hYQmM?oc=5",
       "demand_signal": {
         "keyword_hits": [],
@@ -998,7 +1006,7 @@
       "product_potential": 1,
       "freshness": "2026-04-08T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939098+00:00",
+      "collected_at": "2026-09-27T19:02:00.564605+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1023,7 +1031,7 @@
       "product_potential": 2,
       "freshness": "2025-12-04T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939147+00:00",
+      "collected_at": "2026-09-27T19:02:00.564656+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1048,7 +1056,7 @@
       "product_potential": 1,
       "freshness": "2026-03-30T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939204+00:00",
+      "collected_at": "2026-09-27T19:02:00.564713+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1074,7 +1082,7 @@
       "product_potential": 2,
       "freshness": "2024-04-02T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939250+00:00",
+      "collected_at": "2026-09-27T19:02:00.564758+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1097,7 +1105,7 @@
       "product_potential": 1,
       "freshness": "2026-07-28T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939297+00:00",
+      "collected_at": "2026-09-27T19:02:00.564805+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1120,9 +1128,9 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-01-28T04:08:27+00:00",
+      "freshness": "2026-01-28T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939351+00:00",
+      "collected_at": "2026-09-27T19:02:00.564860+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1147,7 +1155,7 @@
       "product_potential": 2,
       "freshness": "2026-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939402+00:00",
+      "collected_at": "2026-09-27T19:02:00.564910+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1172,7 +1180,7 @@
       "product_potential": 1,
       "freshness": "2026-06-24T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939451+00:00",
+      "collected_at": "2026-09-27T19:02:00.564958+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1197,7 +1205,7 @@
       "product_potential": 2,
       "freshness": "2026-03-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939498+00:00",
+      "collected_at": "2026-09-27T19:02:00.565005+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1222,7 +1230,7 @@
       "product_potential": 1,
       "freshness": "2025-06-21T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939535+00:00",
+      "collected_at": "2026-09-27T19:02:00.565042+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1247,7 +1255,7 @@
       "product_potential": 1,
       "freshness": "2025-06-23T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939572+00:00",
+      "collected_at": "2026-09-27T19:02:00.565079+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1270,7 +1278,7 @@
       "product_potential": 1,
       "freshness": "2026-05-27T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939659+00:00",
+      "collected_at": "2026-09-27T19:02:00.565114+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1295,7 +1303,32 @@
       "product_potential": 1,
       "freshness": "2024-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939706+00:00",
+      "collected_at": "2026-09-27T19:02:00.565153+00:00",
+      "freshness_status": "stale"
+    },
+    {
+      "id": "r-37884d460edcb9dd",
+      "project": "affiliate-project",
+      "problem": "Free rides unlikely to cut car dependency, say experts - Free Malaysia Today",
+      "source": "Google News automotive Malaysia",
+      "source_kind": "market",
+      "evidence": "Free rides unlikely to cut car dependency, say experts &nbsp;&nbsp; Free Malaysia Today",
+      "evidence_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWm1UVFdpYTMxQnBqcDZuT0VpNkFXOHhNU3RuRjFFUWxPS1dUMTl4Y1NqbGIxX21PZXFfNXhTZ2ZqZkF2WGxYVFhBVXpXSzNFeWFweDItWTF5VEMxdy0xc3RtejljYW9iRmNKTEFIdUZ2TlcwbkZPY3pDY1BnaXlIbXh0RERmajJKVTlRMnpaUjNSOEo2M2EtSkR0cHdkcmJfZGtmZ0VwN3JCamhfeE5JZU1qMzQ?oc=5",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-04-01T07:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.565190+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1318,7 +1351,7 @@
       "product_potential": 1,
       "freshness": "2026-05-22T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939745+00:00",
+      "collected_at": "2026-09-27T19:02:00.565228+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1344,7 +1377,7 @@
       "product_potential": 2,
       "freshness": "2025-12-28T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939788+00:00",
+      "collected_at": "2026-09-27T19:02:00.565269+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1369,32 +1402,7 @@
       "product_potential": 1,
       "freshness": "2024-07-29T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939821+00:00",
-      "freshness_status": "stale"
-    },
-    {
-      "id": "r-37884d460edcb9dd",
-      "project": "affiliate-project",
-      "problem": "Free rides unlikely to cut car dependency, say experts - Free Malaysia Today",
-      "source": "Google News automotive Malaysia",
-      "source_kind": "market",
-      "evidence": "Free rides unlikely to cut car dependency, say experts &nbsp;&nbsp; Free Malaysia Today",
-      "evidence_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWm1UVFdpYTMxQnBqcDZuT0VpNkFXOHhNU3RuRjFFUWxPS1dUMTl4Y1NqbGIxX21PZXFfNXhTZ2ZqZkF2WGxYVFhBVXpXSzNFeWFweDItWTF5VEMxdy0xc3RtejljYW9iRmNKTEFIdUZ2TlcwbkZPY3pDY1BnaXlIbXh0RERmajJKVTlRMnpaUjNSOEo2M2EtSkR0cHdkcmJfZGtmZ0VwN3JCamhfeE5JZU1qMzQ?oc=5",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-04-01T07:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939858+00:00",
+      "collected_at": "2026-09-27T19:02:00.565305+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1419,7 +1427,7 @@
       "product_potential": 1,
       "freshness": "2025-01-27T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939894+00:00",
+      "collected_at": "2026-09-27T19:02:00.565345+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1442,7 +1450,7 @@
       "product_potential": 2,
       "freshness": "2024-03-22T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939930+00:00",
+      "collected_at": "2026-09-27T19:02:00.565382+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1465,57 +1473,7 @@
       "product_potential": 2,
       "freshness": "2024-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.939968+00:00",
-      "freshness_status": "stale"
-    },
-    {
-      "id": "r-eec818c56ede83bc",
-      "project": "affiliate-project",
-      "problem": "Puspakom issues a reminder that mandatory VTA labelling must be present on all CBU vehicles - Paul Tan's Automotive News",
-      "source": "Google News automotive Malaysia",
-      "source_kind": "market",
-      "evidence": "Puspakom issues a reminder that mandatory VTA labelling must be present on all CBU vehicles &nbsp;&nbsp; Paul Tan's Automotive News",
-      "evidence_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUFpzd01RTXVoTHJRUGhCcHRIREp6U3FfWXZvODVnVlZ1RkxYQ283anJkMUJMc2k4QkQwQ0VZUW1FenhQV2JPQ0ZSbzJBbUh6RzJPS24zQlktOTZ5M3Bvel9BczdkTDV4Tlp5bTY4U3ZUUnZobXVuRTV5akxCeUVfZmpDQXk3UGpoRGVBV2pXVzRoNTZ5MzdhaTRvYnZ0VjI1ekRwTlZGdzJqd3ZmbFBKWnp0d2dZdThUaUZZTUh5dTU?oc=5",
-      "demand_signal": {
-        "keyword_hits": [
-          "automotive"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 2,
-      "freshness": "2026-05-29T07:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.940012+00:00",
-      "freshness_status": "stale"
-    },
-    {
-      "id": "r-f31c72369b1ffc97",
-      "project": "affiliate-project",
-      "problem": "Honda Malaysia recalls 87,490 cars over fuel pump issue - Zigwheels",
-      "source": "Google News automotive Malaysia",
-      "source_kind": "market",
-      "evidence": "Honda Malaysia recalls 87,490 cars over fuel pump issue &nbsp;&nbsp; Zigwheels",
-      "evidence_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVUstc0VpOHp5UFBTbEdIWV9saTlyN1VZRGp0cHIzdExmRlZFb0NuSnNkMHhpejlNdzRwa0ZtN2tEazhtSFRLYzdmSXdsYXByTkt6c2ZtZng1RTBjMUFOeEJpSW1jOHBuNmpFdVpDY0RtQ0gwclhKVk92VEkxTDZILXZ2eTIxc1c5M1RjSkZOZnFQQdIBmgFBVV95cUxOQzlJemVNay0zQ3NfRXY0TDJCejRBdVNjaVE4OEtmdW5OOEttenNZdkRlRURJRkVkRDA4b01COUphOWFLVlZaZkdKSmhVQldEd0U5RWE4OGRjU2p0X0k4ajY3djVKUnFmVWZseURNeVRPWE16a0ZwT3UyOWhZaEFRdmVhMEtkMkNBUndsWUdRVms4dHJTUi1xN1pn?oc=5",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 2,
-      "freshness": "2025-06-11T07:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-09-26T18:38:11.940046+00:00",
+      "collected_at": "2026-09-27T19:02:00.565420+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1540,17 +1498,67 @@
       "product_potential": 1,
       "freshness": "2019-02-27T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.940081+00:00",
+      "collected_at": "2026-09-27T19:02:00.565456+00:00",
       "freshness_status": "stale"
     },
     {
-      "id": "r-083730ca6331cbac",
+      "id": "r-eec818c56ede83bc",
       "project": "affiliate-project",
-      "problem": "Is \"Adjusting\" Used-Car Mileage Really Normal In Malaysia? - Carz Automedia Malaysia",
+      "problem": "Puspakom issues a reminder that mandatory VTA labelling must be present on all CBU vehicles - Paul Tan's Automotive News",
       "source": "Google News automotive Malaysia",
       "source_kind": "market",
-      "evidence": "Is \"Adjusting\" Used-Car Mileage Really Normal In Malaysia? &nbsp;&nbsp; Carz Automedia Malaysia",
-      "evidence_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPOVVXQ1NQR2RCTGJHelpFZ3NQUU1tcUxsb3dzVGtfYXlhVkxfdmZWMWhaSHpjTUFtNTNnWk41UklSM3BsdHo5SGpka20yVnUybkRtVllOSURpQXEyNzkyZDBUOWVDd2hZYldtd2RNR1RwZXc3V24tcldoY0dsTVpvQU42UDFSSzFnc2lvQ1FrT0Y?oc=5",
+      "evidence": "Puspakom issues a reminder that mandatory VTA labelling must be present on all CBU vehicles &nbsp;&nbsp; Paul Tan's Automotive News",
+      "evidence_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUFpzd01RTXVoTHJRUGhCcHRIREp6U3FfWXZvODVnVlZ1RkxYQ283anJkMUJMc2k4QkQwQ0VZUW1FenhQV2JPQ0ZSbzJBbUh6RzJPS24zQlktOTZ5M3Bvel9BczdkTDV4Tlp5bTY4U3ZUUnZobXVuRTV5akxCeUVfZmpDQXk3UGpoRGVBV2pXVzRoNTZ5MzdhaTRvYnZ0VjI1ekRwTlZGdzJqd3ZmbFBKWnp0d2dZdThUaUZZTUh5dTU?oc=5",
+      "demand_signal": {
+        "keyword_hits": [
+          "automotive"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 2,
+      "freshness": "2026-05-29T07:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.565523+00:00",
+      "freshness_status": "stale"
+    },
+    {
+      "id": "r-f31c72369b1ffc97",
+      "project": "affiliate-project",
+      "problem": "Honda Malaysia recalls 87,490 cars over fuel pump issue - Zigwheels",
+      "source": "Google News automotive Malaysia",
+      "source_kind": "market",
+      "evidence": "Honda Malaysia recalls 87,490 cars over fuel pump issue &nbsp;&nbsp; Zigwheels",
+      "evidence_url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNVUstc0VpOHp5UFBTbEdIWV9saTlyN1VZRGp0cHIzdExmRlZFb0NuSnNkMHhpejlNdzRwa0ZtN2tEazhtSFRLYzdmSXdsYXByTkt6c2ZtZng1RTBjMUFOeEJpSW1jOHBuNmpFdVpDY0RtQ0gwclhKVk92VEkxTDZILXZ2eTIxc1c5M1RjSkZOZnFQQdIBmgFBVV95cUxOQzlJemVNay0zQ3NfRXY0TDJCejRBdVNjaVE4OEtmdW5OOEttenNZdkRlRURJRkVkRDA4b01COUphOWFLVlZaZkdKSmhVQldEd0U5RWE4OGRjU2p0X0k4ajY3djVKUnFmVWZseURNeVRPWE16a0ZwT3UyOWhZaEFRdmVhMEtkMkNBUndsWUdRVms4dHJTUi1xN1pn?oc=5",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 2,
+      "freshness": "2025-06-11T07:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-09-27T19:02:00.565560+00:00",
+      "freshness_status": "stale"
+    },
+    {
+      "id": "r-e215a77cb75595be",
+      "project": "affiliate-project",
+      "problem": "Why are Malaysian streets treated like free car parks? - Free Malaysia Today",
+      "source": "Google News automotive Malaysia",
+      "source_kind": "market",
+      "evidence": "Why are Malaysian streets treated like free car parks? &nbsp;&nbsp; Free Malaysia Today",
+      "evidence_url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPZ001YnVzZXRFNlN5NG9PaU5fZkdtdE5feXNOblJ2M2FZMWloZ2xkaGVNM2ppdDlJSS1HSzM4ay1QZWxqN05XdVZxN2EzQVp1MU1IQThscUxnNVEyYVdFaWtUNWIxalk4UWtoRUl4WFgxTzU1eGR1Q045aUk0bVBwc2VmUGhoQjg1ZHpsa1BRNS1kQ0dQanZsa1B1dWZlRFNIUmxfdzVTNEk2RURaeWJKdENNSy1MQQ?oc=5",
       "demand_signal": {
         "keyword_hits": [
           "car"
@@ -1563,9 +1571,9 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-09-09T07:00:00+00:00",
+      "freshness": "2025-08-09T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.940118+00:00",
+      "collected_at": "2026-09-27T19:02:00.565598+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1588,7 +1596,7 @@
       "product_potential": 1,
       "freshness": "2024-01-30T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-09-26T18:38:11.940153+00:00",
+      "collected_at": "2026-09-27T19:02:00.565634+00:00",
       "freshness_status": "stale"
     }
   ],
