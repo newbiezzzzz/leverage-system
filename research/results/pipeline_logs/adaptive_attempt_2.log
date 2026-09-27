@@ -8828,30 +8828,20 @@
   frames["close"][sym] = d["split_adj_close"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:102: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   frames["volume"][sym] = d["split_adj_volume"].reindex(index)
-/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  frames["open"][sym] = d["split_adj_open"].reindex(index)
-/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  frames["high"][sym] = d["split_adj_high"].reindex(index)
-/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:100: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  frames["low"][sym] = d["split_adj_low"].reindex(index)
-/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:101: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  frames["close"][sym] = d["split_adj_close"].reindex(index)
-/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:102: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
-  frames["volume"][sym] = d["split_adj_volume"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:134: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   "vol63": close.pct_change().rolling(63, min_periods=63).std(),
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:138: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   "one_day": close.pct_change(),
-/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:42: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:66: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol20=cp.pct_change().rolling(20,min_periods=20).std()
-/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:43: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:67: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol63=cp.pct_change().rolling(63,min_periods=63).std()
 Traceback (most recent call last):
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 119, in <module>
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 225, in <module>
     main()
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 77, in main
-    variants["relative_strength_20_bull"]=liquid&(rel20>=q80rel20)&(cp>ind["ma100"])&(breadth>=.55)
-                                                  ^^^^^^^^^^^^^^^
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 153, in main
+    variants[f"adaptive_r4_rel_p{int(pct*100)}_lb{lb}_{tname}_br{int(br_lo*100)}_{int(br_hi*100)}"]=liquid&(rel20>=q)&(mom>0)&(cp>t)&breadth.ge(br_lo,axis=0)&breadth.lt(br_hi,axis=0)
+                                                                                                            ^^^^^^^^
   File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/ops/common.py", line 76, in new_method
     return method(self, other)
            ^^^^^^^^^^^^^^^^^^^
