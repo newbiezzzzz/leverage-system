@@ -151,11 +151,16 @@ def extract_progress(details: dict, cycle: int):
             robust = int(df["robust_holdout"].sum()) if "robust_holdout" in df.columns else 0
         except Exception:
             pass
+    adaptive_memory = read_json(OUT / "adaptive_search_memory.json", {})
     previous = read_json(PROGRESS, {})
     payload = {
         "cycle": cycle,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "patterns_tested": patterns,
+        "adaptive_search_round": adaptive_memory.get("search_round"),
+        "adaptive_unique_variants": int(adaptive_memory.get("unique_variants_tested", 0)),
+        "adaptive_new_variants_this_cycle": int(adaptive_memory.get("new_variants_this_cycle", 0)),
+        "adaptive_focus_patterns": adaptive_memory.get("focus_patterns", []),
         "candidates": candidates,
         "robust_candidates": robust,
         "engine_sanity": read_json(OUT / "engine_sanity.json", {}).get("status") == "passed",
