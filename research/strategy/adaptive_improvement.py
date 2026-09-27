@@ -8,6 +8,7 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import sys
+import hashlib
 import numpy as np
 import pandas as pd
 
@@ -20,6 +21,29 @@ OUT.mkdir(parents=True,exist_ok=True)
 DEV_END=pd.Timestamp("2021-12-31")
 SEL_END=pd.Timestamp("2023-12-29")
 HORIZONS=(5,10,20,40)
+PROGRESS_PATH=OUT/"strategy_hunter_progress.json"
+MEMORY_PATH=OUT/"adaptive_search_memory.json"
+
+def current_cycle():
+    try:
+        state=json.loads(PROGRESS_PATH.read_text(encoding="utf-8"))
+        return int(state.get("cycle",0))+1
+    except Exception:
+        return 1
+
+def previous_focus():
+    p=OUT/"pattern_discovery.csv"
+    if not p.exists():
+        return []
+    try:
+        df=pd.read_csv(p)
+        if df.empty:
+            return []
+        d=df[df.period=="discovery"].groupby("pattern")["net_mean_vs_hurdle"].mean()
+        v=df[df.period=="validation"].groupby("pattern")["net_mean_vs_hurdle"].mean()
+        return [str(x) for x in d.add(v,fill_value=0.0).sort_values(ascending=False).head(4).index]
+    except Exception:
+        return []
 
 def eval_mask(name,mask,fwd,period):
     x=fwd.where(mask).loc[period].stack().dropna()
@@ -52,6 +76,10 @@ def main():
     breadth=((cp>ind["ma200"]) & liquid).sum(axis=1)/liquid.sum(axis=1).replace(0,np.nan)
 
     variants={}
+    cycle=current_cycle()
+    round_no=(cycle-1)%6
+    focus=previous_focus()
+
     # Momentum mutations
     for lb,mom in [(20,cp/cp.shift(20)-1),(40,cp/cp.shift(40)-1),(60,mom60),(90,cp/cp.shift(90)-1),(120,cp/cp.shift(120)-1)]:
         for threshold in (0.0,.03,.05,.10):
@@ -80,6 +108,64 @@ def main():
     variants["bottom10_reversal_bear"]=liquid&(mom5.le(q10,axis=0))&(cp>ind["ma200"])&breadth.le(.45,axis=0)&(ind["avg_dollar"]>=500_000)
     variants["slow_momentum_12_1_lowvol"]=liquid&(mom252>0)&(cp>ind["ma200"])&(vol20<=vol63)
     variants["slow_momentum_12_1_bull"]=liquid&(mom252>0)&(cp>ind["ma200"])&breadth.ge(.55,axis=0)
+
+    # Cycle-specific adaptive search regions. Each round explores a different
+    # parameter region; focus is derived from the previous cycle's results.
+    if round_no==0:
+        for lb in (30,45,60,90,120):
+            mom=cp/cp.shift(lb)-1
+            for th in (0.00,0.02,0.04,0.06,0.08,0.12):
+                for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma150",ind["ma150"]),("ma200",ind["ma200"])):
+                    variants[f"adaptive_r0_mom_{lb}_{int(th*100)}_{tname}"]=liquid&(mom>th)&(cp>t)
+    elif round_no==1:
+        for lb in (15,25,35,50,75,100,150):
+            mom=cp/cp.shift(lb)-1
+            for th in (-0.01,0.00,0.01,0.025,0.04,0.055,0.075):
+                for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])):
+                    variants[f"adaptive_r1_mom_{lb}_{int(round(th*1000))}_{tname}"]=liquid&(mom>th)&(cp>t)
+        for vv in (0.60,0.75,0.90,1.00,1.10,1.25):
+            variants[f"adaptive_r1_lowvol_{vv:g}"]=liquid&(mom60>0)&(cp>ind["ma100"])&(vol20<=vv*vol63)
+    elif round_no==2:
+        for b in (5,8,10,15,20,30,40,60):
+            prev=cp.shift(1).rolling(b,min_periods=b).max()
+            for vr in (0.90,1.10,1.30,1.50,1.80,2.20,3.00):
+                for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])):
+                    variants[f"adaptive_r2_break_{b}_vr{vr:g}_{tname}"]=liquid&(cp>prev)&(cp>t)&(vr20>=vr)
+                for contraction in (0.65,0.80,0.95,1.10):
+                    variants[f"adaptive_r2_break_{b}_vr{vr:g}_vc{contraction:g}"]=liquid&(cp>prev)&(cp>ind["ma100"])&(vr20>=vr)&(vol20<=contraction*vol63)
+    elif round_no==3:
+        for lb in (20,40,60,90,120):
+            mom=cp/cp.shift(lb)-1
+            for drop in (-0.02,-0.03,-0.04,-0.05,-0.06,-0.08,-0.10,-0.12):
+                for rebound_lb in (3,5,10):
+                    rebound=cp/cp.shift(rebound_lb)-1
+                    variants[f"adaptive_r3_pull_{lb}_{int(abs(drop)*100)}_r{rebound_lb}"]=liquid&(mom>0)&(mom5<=drop)&(rebound>0)&(cp>ind["ma100"])
+        for drop in (-0.03,-0.05,-0.07,-0.10,-0.15):
+            for vr in (0.80,1.00,1.25,1.50,2.00):
+                variants[f"adaptive_r3_rev_{int(abs(drop)*100)}_vr{vr:g}"]=liquid&(mom5<=drop)&(cp>ind["ma200"])&(vr20>=vr)&(ind["avg_dollar"]>=500_000)
+    elif round_no==4:
+        for pct in (0.70,0.75,0.80,0.85,0.90):
+            q=rel20.where(liquid).quantile(pct,axis=1)
+            for lb in (20,40,60,90):
+                mom=cp/cp.shift(lb)-1
+                for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])):
+                    for br_lo,br_hi in ((0.00,1.01),(0.45,1.01),(0.55,1.01),(0.00,0.45),(0.40,0.60)):
+                        variants[f"adaptive_r4_rel_p{int(pct*100)}_lb{lb}_{tname}_br{int(br_lo*100)}_{int(br_hi*100)}"]=liquid&(rel20>=q)&(mom>0)&(cp>t)&breadth.ge(br_lo,axis=0)&breadth.lt(br_hi,axis=0)
+    else:
+        for br in (0.35,0.45,0.50,0.55,0.65):
+            for vv in (0.70,0.85,1.00,1.20,1.50):
+                for mom_lb,mom_min in ((20,0.00),(40,0.02),(60,0.05),(90,0.08),(120,0.10)):
+                    mom=cp/cp.shift(mom_lb)-1
+                    variants[f"adaptive_r5_regime_br{int(br*100)}_v{vv:g}_m{mom_lb}_{int(mom_min*100)}"]=liquid&(mom>mom_min)&(cp>ind["ma100"])&breadth.ge(br,axis=0)&(vol20<=vv*vol63)
+        for drop in (-0.03,-0.05,-0.07,-0.10):
+            for br in (0.25,0.35,0.45):
+                for vr in (1.0,1.5,2.0):
+                    variants[f"adaptive_r5_weak_rev_{int(abs(drop)*100)}_br{int(br*100)}_vr{vr:g}"]=liquid&(mom5<=drop)&(cp>ind["ma200"])&breadth.le(br,axis=0)&(vr20>=vr)
+
+    # Keep the previous top families visible in the experiment record.
+    for fam in focus:
+        if fam in variants:
+            variants[f"focus_cycle{cycle}_{fam}"]=variants[fam]
 
     fwd={h:(cp.shift(-h)/op.shift(-1))-1 for h in HORIZONS}
     period_dev=fwd[5].index<=DEV_END
@@ -111,7 +197,26 @@ def main():
         out["robust_holdout"]= (out.holdout_net_mean>0) & (out.holdout_win_rate>=.50) & (out.holdout_observations>=200)
         out=out.sort_values(["robust_holdout","holdout_net_mean","selection_net_mean"],ascending=False).head(30)
     out.to_csv(OUT/"adaptive_candidates.csv",index=False)
-    report={"status":"tested","variants":len(variants),"candidate_count":int(len(out)),"robust_holdout_count":int(out.robust_holdout.sum()) if not out.empty else 0,"cost_hurdle":COST_HURDLE}
+    signatures=[hashlib.sha256(name.encode("utf-8")).hexdigest()[:16] for name in variants]
+    memory={}
+    try:
+        memory=json.loads(MEMORY_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        memory={}
+    seen=set(memory.get("tested_variant_signatures",[]))
+    before=len(seen)
+    seen.update(signatures)
+    memory.update({
+        "last_cycle":cycle,
+        "search_round":round_no,
+        "focus_patterns":focus,
+        "last_variant_count":len(variants),
+        "unique_variants_tested":len(seen),
+        "new_variants_this_cycle":len(seen)-before,
+        "tested_variant_signatures":sorted(seen)[-50000:],
+    })
+    MEMORY_PATH.write_text(json.dumps(memory,indent=2)+"\n",encoding="utf-8")
+    report={"status":"tested","cycle":cycle,"search_round":round_no,"focus_patterns":focus,"variants":len(variants),"new_unique_variants":len(seen)-before,"unique_variants_tested":len(seen),"candidate_count":int(len(out)),"robust_holdout_count":int(out.robust_holdout.sum()) if not out.empty else 0,"cost_hurdle":COST_HURDLE}
     (OUT/"specialist_adaptive.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,indent=2))
     if not out.empty: print(out.to_string(index=False))
