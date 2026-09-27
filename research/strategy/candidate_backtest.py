@@ -125,6 +125,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
     entry_price=None
     shares=0
     trades=[]
+    entry_fee=0.0
     equity=[]
     halted=False
     force_exit_next=False
@@ -159,11 +160,13 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
                     "exit_date":str(d.date()),
                     "symbol":pos,"entry_price":entry_price,
                     "exit_price":float(exit_px),"shares":int(shares),
-                    "net_pnl":float((exit_px-entry_price)*shares-f-trades[-1]["entry_fee"] if trades else (exit_px-entry_price)*shares-f),
+                    "entry_fee":float(entry_fee),
+                    "exit_fee":float(f),
+                    "gross_pnl":float((exit_px-entry_price)*shares),
+                    "net_pnl":float((exit_px-entry_price)*shares-entry_fee-f),
                     "exit_reason":reason
                 })
-                # Recompute exact P&L for the just-added trade without relying on prior state.
-                trades[-1]["entry_fee"]=trades[-1].get("entry_fee",0.0)
+                entry_fee=0.0
                 pos=None; entry_idx=None; entry_price=None; shares=0
 
         if pos is None and not halted:
@@ -180,9 +183,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
                         if value+f<=cash:
                             cash-=value+f
                             pos=sym; entry_idx=i; entry_price=float(px); shares=qty
-                            # store entry fee on the current trade stub
-                            trades.append({"entry_fee":float(f)})
-                            trades[-1].update({"strategy":name,"horizon_days":h,"entry_date":str(d.date()),"symbol":sym,"entry_price":float(px),"shares":int(qty)})
+                            entry_fee=float(f)
         eq=cash
         if pos is not None:
             px=cp.iloc[i][pos]
@@ -197,11 +198,18 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
         px=cp.iloc[-1][pos]
         if pd.notna(px):
             value=shares*float(px); f=fee(value); cash+=value-f
-            if trades and trades[-1].get("entry_fee") is not None:
-                trades[-1]["exit_date"]=str(dates[-1].date())
-                trades[-1]["exit_price"]=float(px)
-                trades[-1]["exit_reason"]="final_close"
-                trades[-1]["net_pnl"]=float((px-trades[-1]["entry_price"])*shares-trades[-1]["entry_fee"]-f)
+            if pos is not None:
+                trades.append({
+                    "strategy":name,"horizon_days":h,
+                    "entry_date":str(dates[entry_idx].date()),
+                    "exit_date":str(dates[-1].date()),
+                    "symbol":pos,"entry_price":entry_price,
+                    "exit_price":float(px),"shares":int(shares),
+                    "entry_fee":float(entry_fee),"exit_fee":float(f),
+                    "gross_pnl":float((px-entry_price)*shares),
+                    "net_pnl":float((px-entry_price)*shares-entry_fee-f),
+                    "exit_reason":"final_close"
+                )
     # Remove incomplete marker entries and rebuild trade count.
     clean=[t for t in trades if "entry_price" in t and "exit_price" in t]
     eq=pd.Series(dict(equity)).sort_index()
