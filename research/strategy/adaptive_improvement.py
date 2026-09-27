@@ -115,7 +115,7 @@ def main():
         for lb in (30,45,60,90,120):
             mom=cp/cp.shift(lb)-1
             for th in (0.00,0.02,0.04,0.06,0.08,0.12):
-                for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma150",ind["ma150"]),("ma200",ind["ma200"])):
+                for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])):
                     variants[f"adaptive_r0_mom_{lb}_{int(th*100)}_{tname}"]=liquid&(mom>th)&(cp>t)
     elif round_no==1:
         for lb in (15,25,35,50,75,100,150):
