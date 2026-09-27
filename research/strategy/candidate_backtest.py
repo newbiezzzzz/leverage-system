@@ -209,7 +209,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
                     "gross_pnl":float((px-entry_price)*shares),
                     "net_pnl":float((px-entry_price)*shares-entry_fee-f),
                     "exit_reason":"final_close"
-                )
+                })
     # Remove incomplete marker entries and rebuild trade count.
     clean=[t for t in trades if "entry_price" in t and "exit_price" in t]
     eq=pd.Series(dict(equity)).sort_index()
