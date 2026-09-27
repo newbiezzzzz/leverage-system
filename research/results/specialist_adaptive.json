@@ -1,6 +1,16 @@
 {
   "status": "tested",
-  "variants": 106,
+  "cycle": 402,
+  "search_round": 5,
+  "focus_patterns": [
+    "momentum_60_uptrend",
+    "slow_momentum_12_1",
+    "relative_strength_20",
+    "breakout_plus_volume"
+  ],
+  "variants": 267,
+  "new_unique_variants": 267,
+  "unique_variants_tested": 267,
   "candidate_count": 0,
   "robust_holdout_count": 0,
   "cost_hurdle": 0.010222315789473684

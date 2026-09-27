@@ -1,13 +1,18 @@
 {
-  "cycle": 401,
-  "updated_at": "2026-09-27T15:28:35Z",
+  "cycle": 402,
+  "updated_at": "2026-09-27T15:47:29Z",
   "patterns_tested": 10,
-  "adaptive_search_round": null,
-  "adaptive_unique_variants": 0,
-  "adaptive_new_variants_this_cycle": 0,
-  "adaptive_focus_patterns": [],
+  "adaptive_search_round": 5,
+  "adaptive_unique_variants": 267,
+  "adaptive_new_variants_this_cycle": 267,
+  "adaptive_focus_patterns": [
+    "momentum_60_uptrend",
+    "slow_momentum_12_1",
+    "relative_strength_20",
+    "breakout_plus_volume"
+  ],
   "candidates": 0,
   "robust_candidates": 0,
   "engine_sanity": true,
-  "last_cycle_status": "degraded"
+  "last_cycle_status": "completed"
 }
