@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-09-28T20:22:38Z",
-  "status": "degraded",
+  "updated_at": "2026-09-28T20:30:54Z",
+  "status": "completed",
   "stage": null,
   "attempt": 0,
   "error": null,
@@ -19,13 +19,29 @@
       "attempts": 1
     },
     "adaptive": {
-      "status": "degraded",
-      "attempts": 3,
-      "detail": "handled by recovery supervisor"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "status": "tested",
+        "cycle": 534,
+        "search_round": 5,
+        "focus_patterns": [
+          "momentum_60_uptrend",
+          "slow_momentum_12_1",
+          "relative_strength_20",
+          "breakout_plus_volume"
+        ],
+        "variants": 122,
+        "new_unique_variants": 0,
+        "unique_variants_tested": 1103,
+        "candidate_count": 0,
+        "robust_holdout_count": 0,
+        "cost_hurdle": 0.010222315789473684
+      }
     },
     "candidate_backtest": {
-      "status": "skipped",
-      "reason": "upstream_core_failure"
+      "status": "done",
+      "attempts": 1
     },
     "vectorbt": {
       "status": "skipped",
@@ -55,6 +71,6 @@
       "status": "skipped",
       "reason": "no_candidate_ready"
     },
-    "_cycle_status": "degraded"
+    "_cycle_status": "completed"
   }
 }
