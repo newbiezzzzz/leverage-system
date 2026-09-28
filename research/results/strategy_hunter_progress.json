@@ -1,10 +1,10 @@
 {
-  "cycle": 497,
-  "updated_at": "2026-09-28T13:14:07Z",
+  "cycle": 498,
+  "updated_at": "2026-09-28T13:20:06Z",
   "patterns_tested": 10,
-  "adaptive_search_round": 3,
-  "adaptive_unique_variants": 1047,
-  "adaptive_new_variants_this_cycle": 0,
+  "adaptive_search_round": 5,
+  "adaptive_unique_variants": 1063,
+  "adaptive_new_variants_this_cycle": 16,
   "adaptive_focus_patterns": [
     "momentum_60_uptrend",
     "slow_momentum_12_1",
@@ -14,5 +14,5 @@
   "candidates": 0,
   "robust_candidates": 0,
   "engine_sanity": true,
-  "last_cycle_status": "degraded"
+  "last_cycle_status": "completed"
 }
