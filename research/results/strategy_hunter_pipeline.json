@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T13:20:06Z",
+  "updated_at": "2026-09-28T13:28:29Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -23,17 +23,17 @@
       "attempts": 1,
       "result": {
         "status": "tested",
-        "cycle": 498,
-        "search_round": 5,
+        "cycle": 499,
+        "search_round": 6,
         "focus_patterns": [
           "momentum_60_uptrend",
           "slow_momentum_12_1",
           "relative_strength_20",
           "breakout_plus_volume"
         ],
-        "variants": 122,
-        "new_unique_variants": 16,
-        "unique_variants_tested": 1063,
+        "variants": 126,
+        "new_unique_variants": 20,
+        "unique_variants_tested": 1083,
         "candidate_count": 0,
         "robust_holdout_count": 0,
         "cost_hurdle": 0.010222315789473684
