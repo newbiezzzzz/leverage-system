@@ -1,6 +1,14 @@
 {
-  "updated_at": "2026-09-28T07:41:06Z",
-  "cycle": 472,
-  "items": [],
-  "next_action": "continue_research"
+  "updated_at": "2026-09-28T07:45:55Z",
+  "cycle": 473,
+  "items": [
+    {
+      "stage": "adaptive",
+      "tier": "core",
+      "attempts": 3,
+      "known_fix_applied": false,
+      "recoverable": true
+    }
+  ],
+  "next_action": "recover_and_continue"
 }
