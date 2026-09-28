@@ -4,6 +4,8 @@ run-name: Strategy Hunter cycle
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
 
 permissions:
   actions: write
@@ -154,7 +156,7 @@ jobs:
       - name: Continue Strategy Hunter mission
         if: success()
         env:
-          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           if python - <<'PY'
