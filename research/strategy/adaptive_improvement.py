@@ -77,7 +77,7 @@ def main():
 
     variants={}
     cycle=current_cycle()
-    round_no=(cycle-1)%6
+    round_no=(cycle-1)%12
     focus=previous_focus()
 
     # Momentum mutations
@@ -151,6 +151,70 @@ def main():
                 for tname,t in (("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])):
                     for br_lo,br_hi in ((0.00,1.01),(0.45,1.01),(0.55,1.01),(0.00,0.45),(0.40,0.60)):
                         variants[f"adaptive_r4_rel_p{int(pct*100)}_lb{lb}_{tname}_br{int(br_lo*100)}_{int(br_hi*100)}"]=liquid&(rel20>=q)&(mom>0)&(cp>t)&breadth.ge(br_lo,axis=0)&breadth.lt(br_hi,axis=0)
+    elif round_no==5:
+        # New family: volatility-state and mean-reversion combinations.
+        rsi7=100-(100/(1+(cp.pct_change().clip(lower=0).rolling(7).mean() /
+            (-cp.pct_change().clip(upper=0).rolling(7).mean()).replace(0,np.nan))))
+        for lb in (5,10,20):
+            for dd in (-0.03,-0.05,-0.08,-0.12):
+                variants[f"adaptive_r5_meanrev_dd{int(abs(dd)*100)}_lb{lb}"]=liquid&(cp/cp.shift(lb)-1<=dd)&(cp>ind["ma200"])&(mom20>0)
+        for ratio in (0.50,0.70,0.90,1.10):
+            variants[f"adaptive_r5_rsi_vol_{ratio:g}"]=liquid&(rsi7<35)&(cp>ind["ma100"])&(vol20<=ratio*vol63)
+
+    elif round_no==6:
+        # Volatility compression -> expansion.
+        vol5=cp.pct_change().rolling(5,min_periods=5).std()
+        for ratio in (0.40,0.55,0.70,0.85):
+            for lb in (5,10,20,40):
+                prev=cp.shift(1).rolling(lb,min_periods=lb).max()
+                variants[f"adaptive_r6_squeeze_{int(ratio*100)}_b{lb}"]=liquid&(vol5<=ratio*vol20)&(cp>prev)&(cp>ind["ma100"])
+        for ratio in (0.75,0.90,1.10,1.30):
+            variants[f"adaptive_r6_vol_expansion_{ratio:g}"]=liquid&(vol5>=ratio*vol20)&(mom20>0)&(cp>ind["ma100"])
+
+    elif round_no==7:
+        # Gap continuation/recovery family.
+        gap=(op/cp.shift(1))-1
+        for g in (0.02,0.04,0.06,0.08):
+            variants[f"adaptive_r7_gap_up_{int(g*100)}"]=liquid&(gap>=g)&(mom20>0)&(cp>ind["ma50"])
+            variants[f"adaptive_r7_gap_recover_{int(g*100)}"]=liquid&(gap<=-g)&(cp>ind["ma200"])&(mom5>0)
+        for vr in (1.2,1.5,2.0,3.0):
+            variants[f"adaptive_r7_gap_volume_{vr:g}"]=liquid&(gap>0.02)&(vr20>=vr)&(cp>ind["ma100"])
+
+    elif round_no==8:
+        # Cross-sectional multi-factor ranking.
+        score=(mom20.rank(axis=1,pct=True)+mom60.rank(axis=1,pct=True)+
+               rel20.rank(axis=1,pct=True)+(-vol20).rank(axis=1,pct=True))/4
+        for q in (0.70,0.80,0.90,0.95):
+            threshold=score.where(liquid).quantile(q,axis=1)
+            for tname,t in (("ma100",ind["ma100"]),("ma200",ind["ma200"])):
+                variants[f"adaptive_r8_multifactor_q{int(q*100)}_{tname}"]=liquid&(score>=threshold)&(cp>t)
+
+    elif round_no==9:
+        # Trend-transition family.
+        for fast,slow in ((10,30),(20,50),(30,100),(50,200)):
+            fma=cp.rolling(fast,min_periods=fast).mean()
+            sma=cp.rolling(slow,min_periods=slow).mean()
+            accel=fma/fma.shift(5)-1
+            variants[f"adaptive_r9_cross_{fast}_{slow}"]=liquid&(fma>sma)&(fma.shift(1)<=sma.shift(1))&(accel>0)
+            variants[f"adaptive_r9_cross_hold_{fast}_{slow}"]=liquid&(fma>sma)&(accel>0)&(mom20>0)
+
+    elif round_no==10:
+        # Relative-strength regime matrix with different market breadth states.
+        for br in (0.30,0.40,0.50,0.60,0.70):
+            for relq in (0.70,0.80,0.90):
+                q=rel20.where(liquid).quantile(relq,axis=1)
+                for lb in (20,40,60,90):
+                    mom=cp/cp.shift(lb)-1
+                    variants[f"adaptive_r10_regime_br{int(br*100)}_q{int(relq*100)}_m{lb}"]=liquid&(mom>0)&(cp>ind["ma100"])&breadth.ge(br,axis=0)&(rel20>=q)
+
+    elif round_no==11:
+        # Hybrid volatility + momentum + relative strength combinations.
+        for br in (0.35,0.45,0.55,0.65):
+            for vr in (0.70,0.90,1.10,1.40):
+                for relq in (0.70,0.80,0.90):
+                    q=rel20.where(liquid).quantile(relq,axis=1)
+                    variants[f"adaptive_r11_hybrid_br{int(br*100)}_v{vr:g}_q{int(relq*100)}"]=liquid&(mom60>0)&(cp>ind["ma100"])&breadth.ge(br,axis=0)&(vol20<=vr*vol63)&(rel20>=q)
+
     else:
         for br in (0.35,0.45,0.50,0.55,0.65):
             for vv in (0.70,0.85,1.00,1.20,1.50):
