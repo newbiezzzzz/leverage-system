@@ -1,20 +1,30 @@
 {
   "status": "tested",
-  "cycle": 477,
-  "search_round": 2,
+  "cycle": 478,
+  "search_round": 3,
   "focus_patterns": [
     "momentum_60_uptrend",
     "slow_momentum_12_1",
     "relative_strength_20",
     "breakout_plus_volume"
   ],
-  "variants": 498,
+  "variants": 251,
   "new_unique_variants": 0,
   "unique_variants_tested": 1047,
   "candidate_count": 0,
   "robust_holdout_count": 0,
   "cost_hurdle": 0.010222315789473684
 }
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["open"][sym] = d["split_adj_open"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["high"][sym] = d["split_adj_high"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:100: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["low"][sym] = d["split_adj_low"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:101: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["close"][sym] = d["split_adj_close"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:102: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["volume"][sym] = d["split_adj_volume"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   frames["open"][sym] = d["split_adj_open"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
