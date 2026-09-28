@@ -34,6 +34,7 @@ required = list(mission.get("achievement_gates", []))
 gates = qual.get("gates", {}) if isinstance(qual, dict) else {}
 
 passed = bool(sanity.get("status") == "passed")
+cycle_completed = cycle.get("status") == "completed"
 missing = []
 
 if not cycle_completed:
@@ -48,7 +49,6 @@ for gate in required:
     if gates.get(gate) is not True:
         missing.append(gate)
 
-cycle_completed = cycle.get("status") == "completed"
 achieved = bool(
     cycle_completed
     and qual.get("status") == "achieved"
