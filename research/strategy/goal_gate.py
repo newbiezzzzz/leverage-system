@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 MISSION = ROOT / "control_plane" / "leverage_mission.json"
 SANITY = ROOT / "research/results/engine_sanity.json"
 QUAL = ROOT / "research/results/strategy_hunter_candidate_qualification.json"
+CYCLE = ROOT / "research/results/research_cycle_state.json"
 GOAL = ROOT / "research/results/strategy_hunter_goal.json"
 
 
@@ -27,12 +28,16 @@ def read(path: Path, default=None):
 mission = read(MISSION, {})
 sanity = read(SANITY, {})
 qual = read(QUAL, {})
+cycle = read(CYCLE, {})
 
 required = list(mission.get("achievement_gates", []))
 gates = qual.get("gates", {}) if isinstance(qual, dict) else {}
 
 passed = bool(sanity.get("status") == "passed")
 missing = []
+
+if not cycle_completed:
+    missing.append("research_cycle_completed")
 
 if "engine_sanity" in required and not passed:
     missing.append("engine_sanity")
@@ -43,8 +48,10 @@ for gate in required:
     if gates.get(gate) is not True:
         missing.append(gate)
 
+cycle_completed = cycle.get("status") == "completed"
 achieved = bool(
-    qual.get("status") == "achieved"
+    cycle_completed
+    and qual.get("status") == "achieved"
     and qual.get("all_gates_passed") is True
     and not missing
 )
