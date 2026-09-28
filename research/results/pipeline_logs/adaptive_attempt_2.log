@@ -8847,7 +8847,7 @@
 /home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:67: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol63=cp.pct_change().rolling(63,min_periods=63).std()
 Traceback (most recent call last):
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 225, in <module>
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 289, in <module>
     main()
   File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 153, in main
     variants[f"adaptive_r4_rel_p{int(pct*100)}_lb{lb}_{tname}_br{int(br_lo*100)}_{int(br_hi*100)}"]=liquid&(rel20>=q)&(mom>0)&(cp>t)&breadth.ge(br_lo,axis=0)&breadth.lt(br_hi,axis=0)
