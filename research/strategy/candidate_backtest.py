@@ -259,7 +259,7 @@ def main():
                 results.append({"pattern":r.pattern,"horizon_days":int(r.horizon_days),**{k:v for k,v in bt.items() if k!="trades"}})
     res=pd.DataFrame(results)
     if not res.empty:
-        res["passes_risk_gate"]=(res.max_drawdown>=-MAX_DD)&(res.final_equity>STARTING_CASH)&(res.profit_factor>1.0)&(res.trades_per_month>=5)&(res.trades_per_month<=9)
+        res["passes_risk_gate"]=(res.max_drawdown>=-MAX_DD)&(res.final_equity>STARTING_CASH)&(res.profit_factor>1.0)&(res.trades_per_month>=10)&(res.trades_per_month<=20)
         res=res.sort_values(["passes_risk_gate","cagr","profit_factor"],ascending=False)
     else:
         res=pd.DataFrame(columns=["pattern","horizon_days","passes_risk_gate"])
