@@ -177,9 +177,9 @@ def main():
     core_failed = False
 
     for key, label, tier in STAGES:
-        if core_failed and tier == "core":
-            details[key] = {"status": "skipped", "reason": "upstream_core_failure"}
-            continue
+        # Core stages are independently recoverable. A failure in adaptive
+        # discovery must not prevent the independent candidate backtest from
+        # testing the patterns already produced by Pattern Hunter.
 
         # Optional research tools are activated only after the core engine has
         # produced a candidate. This keeps the loop focused and quota-efficient.
