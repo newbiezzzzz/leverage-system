@@ -8849,8 +8849,18 @@
 Traceback (most recent call last):
   File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 305, in <module>
     main()
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 237, in main
-    ma_name,ma=rng.choice([("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])])
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "numpy/random/_generator.pyx", line 855, in numpy.random._generator.Generator.choice
-ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 2 dimensions. The detected shape was (3, 2) + inhomogeneous part.
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 208, in main
+    variants[f"adaptive_r10_regime_br{int(br*100)}_q{int(relq*100)}_m{lb}"]=liquid&(mom>0)&(cp>ind["ma100"])&breadth.ge(br,axis=0)&(rel20>=q)
+                                                                                                                                    ^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/arraylike.py", line 60, in __ge__
+    return self._cmp_method(other, operator.ge)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/frame.py", line 7919, in _cmp_method
+    self, other = self._align_for_op(other, axis, flex=False, level=None)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/frame.py", line 8227, in _align_for_op
+    raise ValueError(
+ValueError: Operands are not aligned. Do `left, right = left.align(right, axis=1, copy=False)` before operating.
