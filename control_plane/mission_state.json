@@ -5,10 +5,10 @@
   "state": "RUNNING",
   "goal_achieved": false,
   "engine_sanity": true,
-  "cycle": 560,
+  "cycle": 561,
   "progress": {
-    "cycle": 560,
-    "updated_at": "2026-09-29T00:15:41Z",
+    "cycle": 561,
+    "updated_at": "2026-09-29T00:21:02Z",
     "patterns_tested": 10,
     "adaptive_search_round": 7,
     "adaptive_unique_variants": 1103,
@@ -22,12 +22,12 @@
     "candidates": 0,
     "robust_candidates": 0,
     "engine_sanity": true,
-    "last_cycle_status": "completed"
+    "last_cycle_status": "degraded"
   },
   "last_cycle": {
-    "cycle": 560,
-    "status": "completed",
-    "next_action": "continue_research",
+    "cycle": 561,
+    "status": "degraded",
+    "next_action": "recover_and_continue",
     "goal_achieved": false
   },
   "next_action": "continue_research",
