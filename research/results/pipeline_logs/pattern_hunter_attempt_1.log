@@ -8847,3 +8847,5 @@ No robust candidates yet.
   vol20 = close_df.pct_change().rolling(20, min_periods=20).std()
 /home/runner/work/leverage-system/leverage-system/research/strategy/pattern_discovery.py:40: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol63 = close_df.pct_change().rolling(63, min_periods=63).std()
+/home/runner/work/leverage-system/leverage-system/research/strategy/pattern_discovery.py:90: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  & wyckoff_spring.shift(1).fillna(False)
