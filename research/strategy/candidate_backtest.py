@@ -262,13 +262,14 @@ def main():
         discovery_rows=[]
         for name,mask in pats.items():
             score=score_table(name,cp,vp,ind)
-            fwd=cp.shift(-20)/op.shift(-1)-1
+            for h in HORIZONS:
+            fwd=cp.shift(-h)/op.shift(-1)-1
             dev=event_stats(mask,fwd,pd.Timestamp("2000-01-01"),DEV_END)
             sel=event_stats(mask,fwd,DEV_END,SEL_END)
             if dev and sel:
                 discovery_rows.append({
                     "pattern":name,
-                    "horizon_days":20,
+                    "horizon_days":h,
                     "dev_net_mean":dev["net_mean"],
                     "selection_net_mean":sel["net_mean"],
                     "selection_win_rate":sel["win_rate"],
@@ -285,7 +286,7 @@ def main():
             test_pool=test_pool.sort_values(
                 ["selection_net_mean","selection_win_rate"],
                 ascending=False
-            ).head(12).drop(columns=["abs_selection_score"],errors="ignore")
+            ).head(32).drop(columns=["abs_selection_score"],errors="ignore")
 
     results=[]
     if not test_pool.empty:
