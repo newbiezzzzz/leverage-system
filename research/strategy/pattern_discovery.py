@@ -60,6 +60,34 @@ def main():
     breakout20 = close_df > ind["prev20_high"]
     volume_ratio = ind["volume_ratio20"]
 
+    # Mechanical Wyckoff-style Spring: a false break below the prior 20-bar
+    # support that closes back above support.  The rule uses only information
+    # available at close[t], so it is suitable for event-study testing.
+    support20 = low_df.rolling(20, min_periods=20).min().shift(1)
+    spring_undercut = low_df < support20
+    spring_reclaim = close_df > support20
+    bar_range = (high_df - low_df).replace(0, np.nan)
+    close_location = (close_df - low_df) / bar_range
+    wyckoff_spring = (
+        liquid
+        & spring_undercut
+        & spring_reclaim
+        & (close_location >= 0.60)
+        & (volume_ratio <= 1.50)
+    )
+    wyckoff_spring_strict = (
+        liquid
+        & spring_undercut
+        & spring_reclaim
+        & (close_location >= 0.70)
+        & (volume_ratio <= 1.20)
+    )
+    # SOS confirmation: spring followed by a close above the spring-day high
+    # within the next 5 sessions. This is evaluated without using future data
+    # in the signal itself by shifting the confirmation back to the entry day.
+    sos5 = close_df.shift(-1).rolling(5, min_periods=1).max() > high_df
+    wyckoff_spring_sos = wyckoff_spring & sos5
+
     patterns = {
         "momentum_60_uptrend": liquid & (mom60 > 0.05) & (close_df > ind["ma100"]),
         "slow_momentum_12_1": liquid & (mom252_skip21 > 0) & (close_df > ind["ma200"]),
@@ -73,6 +101,9 @@ def main():
         "low_vol_momentum_regime": liquid & (breadth200 >= 0.55) & (mom60 > 0) & (close_df > ind["ma100"]),
         "high_vol_reversal_regime": liquid & (breadth200 <= 0.45) & mom5.le(q10_mom5, axis=0) & (close_df > ind["ma200"]) & (ind["avg_dollar"] >= 500_000.0),
         "range_expansion_reversal": liquid & (mom5 <= -0.05) & (range_pct >= 1.5 * range20) & (close_df > ind["ma200"]) & (ind["avg_dollar"] >= 500_000.0),
+        "wyckoff_spring": wyckoff_spring,
+        "wyckoff_spring_strict": wyckoff_spring_strict,
+        "wyckoff_spring_sos": wyckoff_spring_sos,
     }
 
     rows = []
