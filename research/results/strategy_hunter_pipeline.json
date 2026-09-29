@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29T12:04:03Z",
+  "updated_at": "2026-09-29T12:12:23Z",
   "status": "degraded",
   "stage": null,
   "attempt": 0,
@@ -24,8 +24,8 @@
       "detail": "handled by recovery supervisor"
     },
     "candidate_backtest": {
-      "status": "skipped",
-      "reason": "upstream_core_failure"
+      "status": "done",
+      "attempts": 1
     },
     "vectorbt": {
       "status": "skipped",
