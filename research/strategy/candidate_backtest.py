@@ -251,12 +251,53 @@ def main():
             rows.append({"pattern":name,"horizon_days":h,"dev_net_mean":dev["net_mean"],"selection_net_mean":sel["net_mean"],"selection_win_rate":sel["win_rate"],"selection_observations":sel["observations"],"cost_hurdle":hurdle})
     pool=pd.DataFrame(rows)
     pool.to_csv(OUT/"candidate_pool.csv",index=False)
+
+    # Never let the event-study gate hide all downstream evidence. If no
+    # pattern passes the preliminary cost filter, OOS-test the strongest
+    # development/selection patterns anyway. They remain NON-QUALIFYING unless
+    # the normal gates pass, but this gives the mission actual backtest
+    # evidence instead of an empty candidate result.
+    test_pool = pool.copy()
+    if test_pool.empty:
+        discovery_rows=[]
+        for name,mask in pats.items():
+            score=score_table(name,cp,vp,ind)
+            fwd=cp.shift(-20)/op.shift(-1)-1
+            dev=event_stats(mask,fwd,pd.Timestamp("2000-01-01"),DEV_END)
+            sel=event_stats(mask,fwd,DEV_END,SEL_END)
+            if dev and sel:
+                discovery_rows.append({
+                    "pattern":name,
+                    "horizon_days":20,
+                    "dev_net_mean":dev["net_mean"],
+                    "selection_net_mean":sel["net_mean"],
+                    "selection_win_rate":sel["win_rate"],
+                    "selection_observations":sel["observations"],
+                    "cost_hurdle":hurdle,
+                    "preliminary_gate_pass":False,
+                })
+        test_pool=pd.DataFrame(discovery_rows)
+        if not test_pool.empty:
+            test_pool["abs_selection_score"] = (
+                test_pool["selection_net_mean"].abs()
+                + test_pool["dev_net_mean"].clip(lower=0)
+            )
+            test_pool=test_pool.sort_values(
+                ["selection_net_mean","selection_win_rate"],
+                ascending=False
+            ).head(12).drop(columns=["abs_selection_score"],errors="ignore")
+
     results=[]
-    if not pool.empty:
-        for r in pool.itertuples():
+    if not test_pool.empty:
+        for r in test_pool.itertuples():
             bt=trade_oos(r.pattern,int(r.horizon_days),pats[r.pattern],score_table(r.pattern,cp,vp,ind),op,hp,lp,cp,vp,u,ind)
             if bt:
-                results.append({"pattern":r.pattern,"horizon_days":int(r.horizon_days),**{k:v for k,v in bt.items() if k!="trades"}})
+                results.append({
+                    "pattern":r.pattern,
+                    "horizon_days":int(r.horizon_days),
+                    "preliminary_gate_pass":bool(getattr(r,"preliminary_gate_pass",True)),
+                    **{k:v for k,v in bt.items() if k!="trades"}
+                })
     res=pd.DataFrame(results)
     if not res.empty:
         res["passes_risk_gate"]=(res.max_drawdown>=-MAX_DD)&(res.final_equity>STARTING_CASH)&(res.profit_factor>1.0)&(res.trades_per_month>=10)&(res.trades_per_month<=20)
