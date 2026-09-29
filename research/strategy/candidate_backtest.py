@@ -263,10 +263,10 @@ def main():
         for name,mask in pats.items():
             score=score_table(name,cp,vp,ind)
             for h in HORIZONS:
-            fwd=cp.shift(-h)/op.shift(-1)-1
-            dev=event_stats(mask,fwd,pd.Timestamp("2000-01-01"),DEV_END)
-            sel=event_stats(mask,fwd,DEV_END,SEL_END)
-            if dev and sel:
+                fwd=cp.shift(-h)/op.shift(-1)-1
+                dev=event_stats(mask,fwd,pd.Timestamp("2000-01-01"),DEV_END)
+                sel=event_stats(mask,fwd,DEV_END,SEL_END)
+                if dev and sel:
                 discovery_rows.append({
                     "pattern":name,
                     "horizon_days":h,
