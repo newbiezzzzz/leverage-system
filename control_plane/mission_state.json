@@ -5,12 +5,12 @@
   "state": "RUNNING",
   "goal_achieved": false,
   "engine_sanity": true,
-  "cycle": 573,
+  "cycle": 574,
   "progress": {
-    "cycle": 573,
-    "updated_at": "2026-09-29T02:10:32Z",
+    "cycle": 574,
+    "updated_at": "2026-09-29T02:16:04Z",
     "patterns_tested": 10,
-    "adaptive_search_round": 7,
+    "adaptive_search_round": 9,
     "adaptive_unique_variants": 1103,
     "adaptive_new_variants_this_cycle": 0,
     "adaptive_focus_patterns": [
@@ -22,12 +22,12 @@
     "candidates": 0,
     "robust_candidates": 0,
     "engine_sanity": true,
-    "last_cycle_status": "degraded"
+    "last_cycle_status": "completed"
   },
   "last_cycle": {
-    "cycle": 573,
-    "status": "degraded",
-    "next_action": "recover_and_continue",
+    "cycle": 574,
+    "status": "completed",
+    "next_action": "continue_research",
     "goal_achieved": false
   },
   "next_action": "continue_research",
