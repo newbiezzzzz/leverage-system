@@ -226,6 +226,22 @@ def main():
                 for vr in (1.0,1.5,2.0):
                     variants[f"adaptive_r5_weak_rev_{int(abs(drop)*100)}_br{int(br*100)}_vr{vr:g}"]=liquid&(mom5<=drop)&(cp>ind["ma200"])&breadth.le(br,axis=0)&(vr20>=vr)
 
+    # Frontier exploration after the fixed 12-round grid. The previous design
+    # repeated the same regions after round 11, allowing later cycles to add zero
+    # genuinely new variants.
+    if cycle > 12:
+        rng=np.random.default_rng(10000+cycle)
+        for j in range(48):
+            lb=int(rng.choice([10,15,20,30,45,60,75,90,120,150,180,240]))
+            th=float(rng.choice([-0.05,-0.02,0.0,0.02,0.04,0.06,0.08,0.12,0.18]))
+            ma_name,ma=rng.choice([("ma50",ind["ma50"]),("ma100",ind["ma100"]),("ma200",ind["ma200"])])
+            relq=float(rng.choice([0.60,0.70,0.80,0.90,0.95]))
+            q=rel20.where(liquid).quantile(relq,axis=1)
+            br=float(rng.choice([0.30,0.40,0.50,0.60,0.70]))
+            vr=float(rng.choice([0.60,0.80,1.00,1.20,1.50,2.00]))
+            mom=cp/cp.shift(lb)-1
+            variants[f"frontier_c{cycle}_v{j}_lb{lb}_th{int(th*100)}_{ma_name}_q{int(relq*100)}_br{int(br*100)}_vr{vr:g}"]=liquid&(mom>th)&(cp>ma)&(rel20>=q)&breadth.ge(br,axis=0)&(vol20<=vr*vol63)
+
     # Keep the previous top families visible in the experiment record.
     for fam in focus:
         if fam in variants:
