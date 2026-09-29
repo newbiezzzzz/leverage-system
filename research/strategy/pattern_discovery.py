@@ -82,11 +82,14 @@ def main():
         & (close_location >= 0.70)
         & (volume_ratio <= 1.20)
     )
-    # SOS confirmation: spring followed by a close above the spring-day high
-    # within the next 5 sessions. This is evaluated without using future data
-    # in the signal itself by shifting the confirmation back to the entry day.
-    sos5 = close_df.shift(-1).rolling(5, min_periods=1).max() > high_df
-    wyckoff_spring_sos = wyckoff_spring & sos5
+    # SOS confirmation: enter only when today's close breaks the prior day's
+    # spring high. The spring itself must have occurred on the prior session,
+    # so no future information is used.
+    wyckoff_spring_sos = (
+        liquid
+        & wyckoff_spring.shift(1).fillna(False)
+        & (close_df > high_df.shift(1))
+    )
 
     patterns = {
         "momentum_60_uptrend": liquid & (mom60 > 0.05) & (close_df > ind["ma100"]),
