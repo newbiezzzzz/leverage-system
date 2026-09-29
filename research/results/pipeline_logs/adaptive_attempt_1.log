@@ -1,14 +1,14 @@
 {
   "status": "tested",
-  "cycle": 558,
-  "search_round": 5,
+  "cycle": 559,
+  "search_round": 6,
   "focus_patterns": [
     "momentum_60_uptrend",
     "slow_momentum_12_1",
     "relative_strength_20",
     "breakout_plus_volume"
   ],
-  "variants": 122,
+  "variants": 126,
   "new_unique_variants": 0,
   "unique_variants_tested": 1103,
   "candidate_count": 0,
@@ -8863,7 +8863,5 @@
   vol20=cp.pct_change().rolling(20,min_periods=20).std()
 /home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:67: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol63=cp.pct_change().rolling(63,min_periods=63).std()
-/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:156: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  rsi7=100-(100/(1+(cp.pct_change().clip(lower=0).rolling(7).mean() /
-/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:157: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  (-cp.pct_change().clip(upper=0).rolling(7).mean()).replace(0,np.nan))))
+/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:166: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  vol5=cp.pct_change().rolling(5,min_periods=5).std()
