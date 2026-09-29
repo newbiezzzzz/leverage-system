@@ -285,15 +285,15 @@ def main():
                 sel=event_stats(mask,fwd,DEV_END,SEL_END)
                 if dev and sel:
                     discovery_rows.append({
-                    "pattern":name,
-                    "horizon_days":h,
-                    "dev_net_mean":dev["net_mean"],
-                    "selection_net_mean":sel["net_mean"],
-                    "selection_win_rate":sel["win_rate"],
-                    "selection_observations":sel["observations"],
-                    "cost_hurdle":hurdle,
-                    "preliminary_gate_pass":False,
-                })
+                        "pattern":name,
+                        "horizon_days":h,
+                        "dev_net_mean":dev["net_mean"],
+                        "selection_net_mean":sel["net_mean"],
+                        "selection_win_rate":sel["win_rate"],
+                        "selection_observations":sel["observations"],
+                        "cost_hurdle":hurdle,
+                        "preliminary_gate_pass":False,
+                    })
         test_pool=pd.DataFrame(discovery_rows)
         if not test_pool.empty:
             test_pool["abs_selection_score"] = (
