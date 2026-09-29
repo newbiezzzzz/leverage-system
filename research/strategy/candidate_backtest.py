@@ -72,6 +72,20 @@ def patterns(hp,lp,cp,vp,u,ind):
     q80=rel20.where(liquid).quantile(.80,axis=1)
     breadth=((cp>ind["ma200"])&liquid).sum(axis=1)/liquid.sum(axis=1).replace(0,np.nan)
     breakout=cp>ind["prev20_high"]
+
+    # Mechanical Wyckoff Spring variants. Support is the prior 20-bar low;
+    # entry requires a same-day reclaim, strong close location and bounded
+    # volume. The SOS variant enters on the next day's confirmation, avoiding
+    # any look-ahead.
+    support20=lp.rolling(20,min_periods=20).min().shift(1)
+    spring_undercut=lp<support20
+    spring_reclaim=cp>support20
+    bar_range=(hp-lp).replace(0,np.nan)
+    close_location=(cp-lp)/bar_range
+    wyckoff_spring=liquid&spring_undercut&spring_reclaim&(close_location>=0.60)&(vr<=1.50)
+    wyckoff_spring_strict=liquid&spring_undercut&spring_reclaim&(close_location>=0.70)&(vr<=1.20)
+    wyckoff_spring_sos=liquid&wyckoff_spring.shift(1).fillna(False)&(cp>hp.shift(1))
+
     return {
         "momentum_60_uptrend": liquid&(mom60>0.05)&(cp>ind["ma100"]),
         "slow_momentum_12_1": liquid&(mom252>0)&(cp>ind["ma200"]),
@@ -85,6 +99,9 @@ def patterns(hp,lp,cp,vp,u,ind):
         "low_vol_momentum_regime": liquid&(breadth>=0.55)&(mom60>0)&(cp>ind["ma100"]),
         "high_vol_reversal_regime": liquid&(breadth<=0.45)&mom5.le(q10,axis=0)&(cp>ind["ma200"])&(ind["avg_dollar"]>=500_000),
         "range_expansion_reversal": liquid&(mom5<=-0.05)&(range_pct>=1.5*range20)&(cp>ind["ma200"])&(ind["avg_dollar"]>=500_000),
+        "wyckoff_spring": wyckoff_spring,
+        "wyckoff_spring_strict": wyckoff_spring_strict,
+        "wyckoff_spring_sos": wyckoff_spring_sos,
     }
 
 
@@ -95,7 +112,7 @@ def score_table(name,cp,vp,ind):
     mom252=cp.shift(21)/cp.shift(273)-1
     market20=mom20.mean(axis=1)
     rel20=mom20.sub(market20,axis=0)
-    if "reversal" in name or "panic" in name or "pullback" in name or "range_expansion" in name or "bottom" in name:
+    if "reversal" in name or "panic" in name or "pullback" in name or "range_expansion" in name or "bottom" in name or "wyckoff_spring" in name:
         return -mom5
     if name=="relative_strength_20":
         return rel20
@@ -267,7 +284,7 @@ def main():
                 dev=event_stats(mask,fwd,pd.Timestamp("2000-01-01"),DEV_END)
                 sel=event_stats(mask,fwd,DEV_END,SEL_END)
                 if dev and sel:
-                discovery_rows.append({
+                    discovery_rows.append({
                     "pattern":name,
                     "horizon_days":h,
                     "dev_net_mean":dev["net_mean"],
