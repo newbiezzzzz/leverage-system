@@ -51,6 +51,7 @@ jobs:
           cycle = runs("strategy-hunter-cycle.yml")
           data = runs("strategy-hunter-data-full.yml")
           heal = runs("strategy-hunter-self-heal.lock.yml")
+          current_main = api(f"repos/{repo}/git/ref/heads/main").get("object", {}).get("sha")
 
           def active(items):
               return any(x.get("status") in {"queued", "in_progress"} for x in items)
@@ -86,7 +87,16 @@ jobs:
                   for h in heal
               )
 
-              if consecutive_failures < 2:
+              # A newer main commit means the failure episode has changed.
+              # Do not let an old self-heal record block testing the repaired code.
+              code_changed_after_failure = bool(
+                  current_main and target.get("head_sha") and
+                  current_main != target.get("head_sha")
+              )
+
+              if code_changed_after_failure:
+                  action, reason = "retry_cycle", "new_code_after_failed_run"
+              elif consecutive_failures < 2:
                   action = "retry_data" if target_name == "data" else "retry_cycle"
                   reason = f"first_failure_{target_name}"
               elif heal_after_target:
