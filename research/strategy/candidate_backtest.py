@@ -144,7 +144,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
     trades=[]
     entry_fee=0.0
     equity=[]
-    halted=False
+    risk_breach_count=0
     force_exit_next=False
     dates=cp.index
     for i in range(1,len(dates)):
@@ -186,7 +186,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
                 entry_fee=0.0
                 pos=None; entry_idx=None; entry_price=None; shares=0
 
-        if pos is None and not halted:
+        if pos is None:
             candidates=score.iloc[i].where(mask.iloc[i]).dropna()
             if not candidates.empty:
                 sym=candidates.sort_values(ascending=("reversal" in name or "panic" in name or "pullback" in name or "bottom" in name or "range_expansion" in name)).index[0]
@@ -208,7 +208,11 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
         peak=max(peak,float(eq))
         dd=eq/peak-1 if peak>0 else -1
         if dd<=-MAX_DD and pos is not None:
-            halted=True
+            # Research mode continues after a risk breach so trade frequency is
+            # measured over the full sample. The drawdown limit remains a hard
+            # qualification gate; this only prevents early test termination.
+            if not force_exit_next:
+                risk_breach_count += 1
             force_exit_next=True
         equity.append((d,float(eq)))
     if pos is not None and shares>0:
@@ -246,6 +250,7 @@ def trade_oos(name,h,mask,score,op,hp,lp,cp,vp,u,ind):
         "trade_count":len(clean),
         "trades_per_month":float(len(clean)/max(years*12,1)),
         "profit_factor":float(pf),
+        "risk_breach_count":int(risk_breach_count),
         "trades":clean,
     }
 
