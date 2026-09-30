@@ -1,0 +1,35 @@
+name: leverage-decision-governance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "control_plane/decision_state.json"
+      - "control_plane/leverage_mission.json"
+      - "control_plane/mission_state.json"
+      - "control_plane/decision_guard.py"
+      - "control_plane/AI_DECISION_GOVERNANCE.md"
+      - "LEVERAGE_CHATGPT_BOOTSTRAP.md"
+      - ".github/workflows/leverage-decision-governance.yml"
+  pull_request:
+    paths:
+      - "control_plane/decision_state.json"
+      - "control_plane/leverage_mission.json"
+      - "control_plane/mission_state.json"
+      - "control_plane/decision_guard.py"
+      - "control_plane/AI_DECISION_GOVERNANCE.md"
+      - "LEVERAGE_CHATGPT_BOOTSTRAP.md"
+      - ".github/workflows/leverage-decision-governance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate persistent decision state
+        run: python control_plane/decision_guard.py
