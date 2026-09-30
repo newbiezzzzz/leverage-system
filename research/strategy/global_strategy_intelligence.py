@@ -229,10 +229,18 @@ def main() -> None:
         except Exception:
             pass
 
+    # One broad query per regional edition keeps refreshes cheap while
+    # still sampling trading material from multiple markets/languages.
+    regional_query = (
+        '("trading strategy" OR "technical indicator" OR "quantitative trading" '
+        'OR "systematic trading" OR "momentum trading" OR "mean reversion" '
+        'OR "breakout trading" OR "price action" OR "volume trading" '
+        'OR "market regime" OR "Wyckoff" OR "Turtle trading" '
+        'OR "professional trader")'
+    )
     items: list[dict] = []
-    for theme, query in SEARCHES:
-        for gl in ("US", "GB", "SG", "MY", "JP", "HK"):
-            items.extend(_news_items(theme, query, gl))
+    for gl in ("US", "GB", "SG", "MY", "JP", "HK"):
+        items.extend(_news_items("global_trading_research", regional_query, gl))
 
     for idx, query in enumerate(ARXIV_QUERIES):
         if idx:
