@@ -4,6 +4,9 @@ run-name: Strategy Hunter cycle
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "research/strategy/**"
   schedule:
     - cron: "*/30 * * * *"
 permissions:
