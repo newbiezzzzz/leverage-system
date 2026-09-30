@@ -5,10 +5,10 @@
   "state": "RUNNING",
   "goal_achieved": false,
   "engine_sanity": true,
-  "cycle": 802,
+  "cycle": 803,
   "progress": {
-    "cycle": 802,
-    "updated_at": "2026-09-30T14:45:34Z",
+    "cycle": 803,
+    "updated_at": "2026-09-30T14:56:24Z",
     "patterns_tested": 13,
     "adaptive_search_round": 7,
     "adaptive_unique_variants": 1103,
@@ -25,11 +25,18 @@
     "last_cycle_status": "degraded"
   },
   "last_cycle": {
-    "cycle": 802,
+    "cycle": 803,
     "status": "degraded",
     "next_action": "recover_and_continue",
     "goal_achieved": false
   },
   "next_action": "continue_research",
-  "owner_action_required": false
+  "owner_action_required": false,
+  "decision_governance": {
+    "decision_id": "D001",
+    "status": "LOCKED",
+    "default_new_issue_action": "KEEP_OR_IMPROVE",
+    "replacement_requires_evidence": true,
+    "decision_drift": false
+  }
 }
