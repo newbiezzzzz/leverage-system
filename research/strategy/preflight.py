@@ -21,6 +21,8 @@ FILES = [
     ROOT / "research/strategy/candidate_qualification.py",
     ROOT / "research/strategy/candidate_backtest.py",
     ROOT / "research/strategy/strategy_lab_v3.py",
+    ROOT / "research/strategy/innovation_lab.py",
+    ROOT / "research/strategy/global_strategy_intelligence.py",
 ]
 for path in FILES:
     py_compile.compile(str(path), doraise=True)
@@ -48,6 +50,8 @@ for name in (
     "research.strategy.candidate_qualification",
     "research.strategy.candidate_backtest",
     "research.strategy.strategy_lab_v3",
+    "research.strategy.innovation_lab",
+    "research.strategy.global_strategy_intelligence",
 ):
     importlib.import_module(name)
 
