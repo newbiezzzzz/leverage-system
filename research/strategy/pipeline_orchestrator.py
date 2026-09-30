@@ -28,8 +28,12 @@ MAX_ATTEMPTS = 3
 STAGES = [
     ("baseline", "Baseline backtest", "core"),
     ("pattern_hunter", "Pattern Hunter", "core"),
-    ("adaptive", "Guided improvement", "core"),
-    ("candidate_backtest", "Risk-aware candidate backtest", "core"),
+    # Strategy Lab V3 is the primary search/selection engine.
+    ("strategy_lab", "Strategy Lab V3", "core"),
+    # Legacy adaptive/candidate stages remain available for evidence comparison,
+    # but cannot block the primary trading mission.
+    ("adaptive", "Legacy guided improvement", "advisory"),
+    ("candidate_backtest", "Legacy candidate backtest", "advisory"),
     ("vectorbt", "VectorBT", "optional"),
     ("lightgbm", "LightGBM", "optional"),
     ("symbolic", "Symbolic Regression", "optional"),
@@ -183,16 +187,22 @@ def main():
 
         # Optional research tools are activated only after the core engine has
         # produced a candidate. This keeps the loop focused and quota-efficient.
-        if tier == "optional":
-            candidate_file = OUT / "adaptive_candidates.csv"
+        if tier in {"optional", "advisory"}:
             candidate_count = 0
-            if candidate_file.exists():
-                try:
-                    import pandas as pd
-                    candidate_count = len(pd.read_csv(candidate_file))
-                except Exception:
-                    candidate_count = 0
-            if candidate_count == 0:
+            for candidate_file in (
+                OUT / "strategy_lab_selection.csv",
+                OUT / "adaptive_candidates.csv",
+            ):
+                if candidate_file.exists():
+                    try:
+                        import pandas as pd
+                        candidate_count += len(pd.read_csv(candidate_file))
+                    except Exception:
+                        pass
+            if candidate_count == 0 and tier == "advisory":
+                details[key] = {"status": "skipped", "reason": "primary_strategy_lab_has_no_selection_pool"}
+                continue
+            if candidate_count == 0 and tier == "optional":
                 details[key] = {"status": "skipped", "reason": "no_candidate_ready"}
                 continue
 
@@ -204,6 +214,8 @@ def main():
             if key == "adaptive"
             else "python research/strategy/candidate_backtest.py"
             if key == "candidate_backtest"
+            else "python research/strategy/strategy_lab_v3.py"
+            if key == "strategy_lab"
             else "python research/strategy/specialist_runner.py " + key
             if key not in {"baseline"}
             else "python research/strategy/baseline_research.py"
@@ -263,7 +275,10 @@ def main():
 
         write_status("running", key, attempts, details)
 
-    cycle_status = "degraded" if repair_items else "completed"
+    # Advisory/optional experiments cannot mark the primary research cycle as
+    # degraded. Only a core stage failure does.
+    core_repairs = [x for x in repair_items if x.get("tier") == "core"]
+    cycle_status = "degraded" if core_repairs else "completed"
     details["_cycle_status"] = cycle_status
     write_json(REPAIR, {
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
