@@ -674,8 +674,14 @@ def main():
 
     bt = pd.DataFrame(backtests)
     if not bt.empty:
+        # Selection order is fixed before holdout evaluation. Holdout is
+        # confirmatory and cannot be used to rank or cherry-pick a winner.
+        selection_order = selected.reset_index(drop=True)[["pattern", "horizon_days"]].copy()
+        selection_order["selection_rank"] = np.arange(1, len(selection_order) + 1)
+        bt = bt.merge(selection_order, on=["pattern", "horizon_days"], how="left")
         bt["research_candidate"] = (
-            bt["holdout_positive"]
+            bt["selection_rank"].eq(1)
+            & bt["holdout_positive"]
             & bt["profit_gate"]
             & bt["risk_gate"]
             & bt["frequency_gate"]
@@ -683,14 +689,11 @@ def main():
             & bt["selection_profit_factor"].gt(1.0)
         )
         bt["research_score"] = (
-            bt["holdout_total_return"].clip(lower=0)
-            * np.sqrt(bt["holdout_trade_count"].clip(lower=1))
-            * bt["holdout_profit_factor"].replace([np.inf, -np.inf], 0).clip(lower=0)
+            bt["selection_total_return"].clip(lower=0)
+            * np.sqrt(bt["selection_trade_count"].clip(lower=1))
+            * bt["selection_profit_factor"].replace([np.inf, -np.inf], 0).clip(lower=0)
         )
-        bt = bt.sort_values(
-            ["research_candidate", "research_score", "holdout_total_return", "holdout_profit_factor"],
-            ascending=[False, False, False, False],
-        )
+        bt = bt.sort_values(["selection_rank"], ascending=[True])
     bt.to_csv(OUT / "strategy_lab_backtests.csv", index=False)
 
     winners = bt[bt.research_candidate == True] if not bt.empty else pd.DataFrame()
@@ -748,10 +751,9 @@ def main():
         evidence["gates"]["robust_out_of_sample"] = True
         evidence["gates"]["drawdown_within_limit"] = bool(leader["holdout_max_drawdown"] >= -MAX_DD)
         evidence["gates"]["trade_frequency_feasible"] = bool(leader["frequency_gate"])
-        evidence["gates"]["broker_feasible_at_rm1000"] = bool(
-            leader["holdout_trade_count"] > 0 and
-            leader["holdout_max_drawdown"] >= -MAX_DD
-        )
+        # Broker feasibility is intentionally left as a separate gate. The
+        # lab's own accounting is not proof of Moomoo/Phillip Nova execution rules.
+        evidence["gates"]["broker_feasible_at_rm1000"] = False
         evidence["gates"]["independent_replication"] = bool(leader["independent_replication"])
 
     (OUT / "qualified_strategy_evidence.json").write_text(
