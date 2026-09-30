@@ -72,6 +72,9 @@ jobs:
           test -f research/data/data/shariah/shariah_snapshots.csv
           test -d research/data/data/ohlcv
 
+      - name: Refresh global trading intelligence
+        run: python research/strategy/global_strategy_intelligence.py
+
       - name: Execute recoverable research cycle
         run: python research/strategy/pipeline_orchestrator.py
 
