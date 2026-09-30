@@ -156,6 +156,13 @@ def extract_progress(details: dict, cycle: int):
     adaptive_memory = read_json(OUT / "adaptive_search_memory.json", {})
     lab = read_json(OUT / "strategy_lab_state.json", {})
     lab_progress = read_json(OUT / "strategy_hunter_progress.json", {})
+    gi = read_json(OUT / "global_strategy_intelligence.json", {})
+    discovery = lab_progress.get("discovery_layer", {})
+    if not isinstance(discovery, dict):
+        discovery = {}
+    discovery.setdefault("enabled", True)
+    discovery.setdefault("external_items", int(gi.get("source_count", 0)))
+    discovery.setdefault("external_hypotheses", int(len(gi.get("hypotheses", []))))
     payload = {
         "cycle": cycle,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -165,6 +172,9 @@ def extract_progress(details: dict, cycle: int):
         "strategy_lab_backtests": int(lab.get("backtests", lab_progress.get("strategy_lab_backtests", 0))),
         "strategy_lab_qualified_candidates": int(lab.get("qualified_candidates", lab_progress.get("strategy_lab_qualified_candidates", 0))),
         "strategy_lab_leader": lab.get("leader", lab_progress.get("strategy_lab_leader")),
+        "discovery_layer": discovery,
+        "global_intelligence_items": int(discovery.get("external_items", gi.get("source_count", 0))),
+        "global_intelligence_hypotheses": int(discovery.get("external_hypotheses", len(gi.get("hypotheses", [])))),
         # Legacy fields remain for dashboard compatibility but are no longer
         # presented as the authoritative source of research breadth.
         "adaptive_search_round": adaptive_memory.get("search_round"),
