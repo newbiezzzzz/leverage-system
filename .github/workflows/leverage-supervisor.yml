@@ -35,6 +35,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Enforce decision governance
+        run: python control_plane/decision_guard.py
+
       - name: Decide mission continuation
         id: decision
         env:
