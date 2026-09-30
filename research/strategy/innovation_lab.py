@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Mathematical / indicator / pattern discovery layer for Strategy Hunter.
 
+# Discovery layer v1: expandable beyond the fixed strategy library.
+
 Generates additional mechanically-defined strategy variants from primitive
 market series. It deliberately does not use holdout data to choose parameters.
 """
