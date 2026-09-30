@@ -8848,10 +8848,8 @@
   vol63=cp.pct_change().rolling(63,min_periods=63).std()
 /home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:137: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   sos=spring.shift(1).fillna(False)&(cp>hp.shift(1))&(vr20>=vr_min)
-/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:184: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  rsi7=100-(100/(1+(cp.pct_change().clip(lower=0).rolling(7).mean() /
-/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:185: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  (-cp.pct_change().clip(upper=0).rolling(7).mean()).replace(0,np.nan))))
+/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py:194: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  vol5=cp.pct_change().rolling(5,min_periods=5).std()
 Traceback (most recent call last):
   File "/home/runner/work/leverage-system/leverage-system/research/strategy/adaptive_improvement.py", line 333, in <module>
     main()
