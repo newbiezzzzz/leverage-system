@@ -716,7 +716,7 @@ def main():
     evidence = {
         "status": "candidate_ready" if leader is not None else "searching",
         "candidate_id": None,
-        "selected_by": "strategy_lab_v3_development_selection_only",
+        "selected_by": "strategy_lab_v3_plus_discovery_layer_development_selection_only",
         "lab_cycle": cycle,
         "gates": {
             "data_integrity": True,
@@ -786,7 +786,7 @@ def main():
         "strategy_lab_variants": int(len(variants)),
         "discovery_layer": {
             "enabled": True,
-            "innovation_variants": int(max(0, len(variants) - 500)),
+            "innovation_variants": int(sum(1 for v in variants.values() if str(v.get("family", "")).startswith("math_") or str(v.get("family", "")).startswith("interaction_") or str(v.get("family", "")).startswith("price_action"))),
             "external_items": int(gi.get("source_count", 0)),
             "external_hypotheses": int(len(gi.get("hypotheses", []))),
         },
