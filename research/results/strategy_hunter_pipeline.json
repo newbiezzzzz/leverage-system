@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-30T15:27:37Z",
+  "updated_at": "2026-09-30T15:39:06Z",
   "status": "degraded",
   "stage": null,
   "attempt": 0,
@@ -18,42 +18,38 @@
       "status": "done",
       "attempts": 1
     },
-    "adaptive": {
+    "strategy_lab": {
       "status": "degraded",
       "attempts": 3,
       "detail": "handled by recovery supervisor"
     },
-    "candidate_backtest": {
-      "status": "done",
-      "attempts": 1
-    },
     "vectorbt": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "lightgbm": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "symbolic": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "qlib": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "optuna": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "lean": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "chronos2": {
       "status": "skipped",
-      "reason": "no_candidate_ready"
+      "reason": "no_strategy_lab_selection_pool"
     },
     "_cycle_status": "degraded"
   }
