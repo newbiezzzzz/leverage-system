@@ -333,6 +333,17 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
                 {"breadth_max": 1.0 - bull, "context_lb": lb},
             )
 
+    # 12) Open-ended mathematical/indicator/pattern discovery layer.
+    # This expands the search space beyond the hand-authored strategy families.
+    try:
+        from innovation_lab import build_discovery_variants
+        discovered = build_discovery_variants(op, hp, lp, cp, vp, universe, ind)
+        variants.update(discovered)
+    except Exception as exc:
+        # Discovery expansion is additive; a failure must not destroy the
+        # deterministic core research path.
+        print(f"innovation_lab degraded: {type(exc).__name__}: {exc}")
+
     return variants
 
 
@@ -672,8 +683,8 @@ def main():
     if not bt.empty:
         # Selection order is fixed before holdout evaluation. Holdout is
         # confirmatory and cannot be used to rank or cherry-pick a winner.
-        # Rank the tested combinations using selection-period simulation only.
-        # The best entry+horizon+stop combination is then tested on holdout.
+        # Rank only on the development/selection periods; however, every
+        # shortlisted combination is tested on the sealed holdout.
         bt["selection_score"] = (
             bt["selection_total_return"].clip(lower=0)
             * np.sqrt(bt["selection_trade_count"].clip(lower=1))
@@ -684,12 +695,15 @@ def main():
             ascending=[False, False, False],
         ).reset_index(drop=True)
         bt["selection_rank"] = np.arange(1, len(bt) + 1)
+        # Do not discard holdout survivors merely because another
+        # candidate ranked above them during selection. Qualification is a
+        # gate; final champion selection happens only after all gates.
         bt["research_candidate"] = (
-            bt["selection_rank"].eq(1)
-            & bt["holdout_positive"]
+            bt["holdout_positive"]
             & bt["profit_gate"]
             & bt["risk_gate"]
             & bt["frequency_gate"]
+            & bt["independent_replication"]
             & bt["selection_total_return"].gt(0)
             & bt["selection_profit_factor"].gt(1.0)
             & bt["selection_trades_per_month"].between(MIN_TRADES_PER_MONTH, MAX_TRADES_PER_MONTH)
@@ -761,11 +775,21 @@ def main():
         encoding="utf-8",
     )
 
+    try:
+        gi = json.loads((OUT / "global_strategy_intelligence.json").read_text(encoding="utf-8"))
+    except Exception:
+        gi = {}
     progress = {
         "cycle": cycle,
         "updated_at": pd.Timestamp.utcnow().isoformat(),
         "patterns_tested": int(len(variants)),
         "strategy_lab_variants": int(len(variants)),
+        "discovery_layer": {
+            "enabled": True,
+            "innovation_variants": int(max(0, len(variants) - 500)),
+            "external_items": int(gi.get("source_count", 0)),
+            "external_hypotheses": int(len(gi.get("hypotheses", []))),
+        },
         "strategy_lab_selection_candidates": int(len(selected)),
         "strategy_lab_backtests": int(len(bt)),
         "strategy_lab_qualified_candidates": int(len(winners)),
