@@ -54,11 +54,11 @@ SEARCHES = [
 ]
 
 ARXIV_QUERIES = [
-    "all:"technical analysis" AND (cat:q-fin.TR OR cat:q-fin.PM)",
-    "all:"momentum" AND (cat:q-fin.TR OR cat:q-fin.PM)",
-    "all:"market regime" AND (cat:q-fin.TR OR cat:q-fin.ST)",
-    "all:"mean reversion" AND (cat:q-fin.TR OR cat:q-fin.PM)",
-    "all:"financial time series" AND (cat:q-fin.TR OR cat:stat.ML)",
+    'all:"technical analysis" AND (cat:q-fin.TR OR cat:q-fin.PM)',
+    'all:"momentum" AND (cat:q-fin.TR OR cat:q-fin.PM)',
+    'all:"market regime" AND (cat:q-fin.TR OR cat:q-fin.ST)',
+    'all:"mean reversion" AND (cat:q-fin.TR OR cat:q-fin.PM)',
+    'all:"financial time series" AND (cat:q-fin.TR OR cat:stat.ML)',
 ]
 
 
