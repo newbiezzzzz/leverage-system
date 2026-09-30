@@ -1,7 +1,7 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-09-30T15:45:03Z
+Fetched: 2026-09-30T15:56:47Z
 Items: 50
 
 ## Research hypotheses
@@ -23,7 +23,7 @@ Items: 50
 - [10 GitHub Repositories to Master Quant Trading - KDnuggets](https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5) — news / MY
 - [Opendoor Stock (OPEN) Opinions on Recent Price Action and Recovery Potential - Quiver Quantitative](https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5) — news / HK
 - [ServiceNow Stock (NOW) Opinions on Recent Price Action and Valuation Reset - Quiver Quantitative](https://news.google.com/rss/articles/CBMiqwFBVV95cUxQREc0bkRuRlduMjVSQUpzRC1pOUpnMzYzdThpbFFtRFVjS1ZPaEg4U0tEcVF0X1VUTlNsRnYzbjJYLURZSlIzNmxuekFwdVRjNjJHaXU1X19ST2FiREU0STVHaFlwNzNVSVRmZHpMMEpjRXRnV3hzTTNDRmM3QU1mYjFaUFR2WThCQURLLUxZbGZDeENfSjdOZkpBLWVGMHJDaEtDbFQ0V0liVDQ?oc=5) — news / HK
-- [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
+- [Gold Trading Strategy 2026: XAU/USD Guide - thinkmarkets.com](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
 - [Gold trading strategy 2026: How to trade XAUUSD effectively - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNWHJsTVJDVGx1VVNZN1F1eW4xTmh5QkxGamhhUFpFZUVVTmdSZVN3anpLSjFQdWlRS0pnTkxlN3pVbkt4cEphUUhFNEJLZnFOaENJMWpkMUtncktIRkdvdHhFUndXUHl5RVJTRk9XS1ZFdDlUVEpvV1FYQlEwclhiWm40YmNHNEphVEpfSVhGSzc?oc=5) — news / GB
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / HK
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - cnbc.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
