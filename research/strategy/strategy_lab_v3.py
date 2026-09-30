@@ -574,7 +574,7 @@ def main():
             .groupby("family", group_keys=False)
             .head(6)
             .sort_values(["selection_score", "selection_net_mean"], ascending=False)
-            .head(48)
+            .head(24)
         )
 
     selected.to_csv(OUT / "strategy_lab_selection.csv", index=False)
@@ -584,57 +584,57 @@ def main():
         name = r.pattern
         v = variants[name]
         v["horizon"] = int(r.horizon_days)
-        stop = 0.08
-        full = _backtest_window(
-            name, v, op, hp, lp, cp, vp,
-            pd.Timestamp("2014-01-01"), cp.index.max(),
-            stop_loss=stop,
-            starting_cash=STARTING_CASH,
-            universe=universe,
-        )
-        sel_bt = _backtest_window(
-            name, v, op, hp, lp, cp, vp,
-            DEV_END, SEL_END,
-            stop_loss=stop,
-            starting_cash=STARTING_CASH,
-            universe=universe,
-        )
-        hold_bt = _backtest_window(
-            name, v, op, hp, lp, cp, vp,
-            HOLDOUT_START, cp.index.max(),
-            stop_loss=stop,
-            starting_cash=STARTING_CASH,
-            universe=universe,
-        )
-        if not full or not sel_bt or not hold_bt:
-            continue
-
-        rep = _replicate_by_symbol_half(name, v, op, hp, lp, cp, vp, universe, stop)
-        rep_pass = False
-        rep_detail = None
-        if rep:
-            rep_pass = all(
-                x[1]["final_equity"] > STARTING_CASH
-                and x[1]["max_drawdown"] >= -MAX_DD
-                and x[1]["profit_factor"] > 1.0
-                for x in rep
+        for stop in STOP_LOSSES:
+            full = _backtest_window(
+                name, v, op, hp, lp, cp, vp,
+                pd.Timestamp("2014-01-01"), cp.index.max(),
+                stop_loss=stop,
+                starting_cash=STARTING_CASH,
+                universe=universe,
             )
-            rep_detail = [
-                {
-                    "half": x[0],
-                    "final_equity": x[1]["final_equity"],
-                    "max_drawdown": x[1]["max_drawdown"],
-                    "profit_factor": x[1]["profit_factor"],
-                    "trades_per_month": x[1]["trades_per_month"],
-                }
-                for x in rep
-            ]
+            sel_bt = _backtest_window(
+                name, v, op, hp, lp, cp, vp,
+                DEV_END, SEL_END,
+                stop_loss=stop,
+                starting_cash=STARTING_CASH,
+                universe=universe,
+            )
+            hold_bt = _backtest_window(
+                name, v, op, hp, lp, cp, vp,
+                HOLDOUT_START, cp.index.max(),
+                stop_loss=stop,
+                starting_cash=STARTING_CASH,
+                universe=universe,
+            )
+            if not full or not sel_bt or not hold_bt:
+                continue
 
-        backtests.append({
-            "pattern": name,
-            "family": r.family,
-            "horizon_days": int(r.horizon_days),
-            "stop_loss": stop,
+            rep = _replicate_by_symbol_half(name, v, op, hp, lp, cp, vp, universe, stop)
+            rep_pass = False
+            rep_detail = None
+            if rep:
+                rep_pass = all(
+                    x[1]["final_equity"] > STARTING_CASH
+                    and x[1]["max_drawdown"] >= -MAX_DD
+                    and x[1]["profit_factor"] > 1.0
+                    for x in rep
+                )
+                rep_detail = [
+                    {
+                        "half": x[0],
+                        "final_equity": x[1]["final_equity"],
+                        "max_drawdown": x[1]["max_drawdown"],
+                        "profit_factor": x[1]["profit_factor"],
+                        "trades_per_month": x[1]["trades_per_month"],
+                    }
+                    for x in rep
+                ]
+
+            backtests.append({
+                "pattern": name,
+                "family": r.family,
+                "horizon_days": int(r.horizon_days),
+                "stop_loss": stop,
             "params": r.params,
             "full_final_equity": full["final_equity"],
             "full_total_return": full["total_return"],
@@ -672,9 +672,18 @@ def main():
     if not bt.empty:
         # Selection order is fixed before holdout evaluation. Holdout is
         # confirmatory and cannot be used to rank or cherry-pick a winner.
-        selection_order = selected.reset_index(drop=True)[["pattern", "horizon_days"]].copy()
-        selection_order["selection_rank"] = np.arange(1, len(selection_order) + 1)
-        bt = bt.merge(selection_order, on=["pattern", "horizon_days"], how="left")
+        # Rank the tested combinations using selection-period simulation only.
+        # The best entry+horizon+stop combination is then tested on holdout.
+        bt["selection_score"] = (
+            bt["selection_total_return"].clip(lower=0)
+            * np.sqrt(bt["selection_trade_count"].clip(lower=1))
+            * bt["selection_profit_factor"].replace([np.inf, -np.inf], 0).clip(lower=0)
+        )
+        bt = bt.sort_values(
+            ["selection_score", "selection_total_return", "selection_profit_factor"],
+            ascending=[False, False, False],
+        ).reset_index(drop=True)
+        bt["selection_rank"] = np.arange(1, len(bt) + 1)
         bt["research_candidate"] = (
             bt["selection_rank"].eq(1)
             & bt["holdout_positive"]
@@ -683,13 +692,8 @@ def main():
             & bt["frequency_gate"]
             & bt["selection_total_return"].gt(0)
             & bt["selection_profit_factor"].gt(1.0)
+            & bt["selection_trades_per_month"].between(MIN_TRADES_PER_MONTH, MAX_TRADES_PER_MONTH)
         )
-        bt["research_score"] = (
-            bt["selection_total_return"].clip(lower=0)
-            * np.sqrt(bt["selection_trade_count"].clip(lower=1))
-            * bt["selection_profit_factor"].replace([np.inf, -np.inf], 0).clip(lower=0)
-        )
-        bt = bt.sort_values(["selection_rank"], ascending=[True])
     bt.to_csv(OUT / "strategy_lab_backtests.csv", index=False)
 
     winners = bt[bt.research_candidate == True] if not bt.empty else pd.DataFrame()
