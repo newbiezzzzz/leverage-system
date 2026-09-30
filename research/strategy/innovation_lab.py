@@ -8,6 +8,9 @@ market series. It deliberately does not use holdout data to choose parameters.
 """
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -195,5 +198,45 @@ def build_discovery_variants(op, hp, lp, cp, vp, universe, ind):
             "price_action_reversal",
             {"lower_wick_ratio_min": 0.20, "close_location_min": 0.60, "volume_ratio_max": 2.0, "shape": wick},
         )
+
+    # External research bridge: global intelligence hypotheses now generate
+    # explicitly tagged test variants. Sources influence discovery, never proof.
+    hypotheses_path = Path(__file__).resolve().parents[1] / "results" / "global_strategy_hypotheses.json"
+    try:
+        hypotheses = json.loads(hypotheses_path.read_text(encoding="utf-8"))
+    except Exception:
+        hypotheses = []
+    if isinstance(hypotheses, list):
+        external_themes = {str(h.get("theme")): h for h in hypotheses if isinstance(h, dict)}
+        # These recipes are deliberately simple: the external source creates
+        # a testable lead, while the quantitative engine determines whether it survives.
+        external_bases = {
+            "momentum": ("ext_momentum", liquid & (mom60 > 0) & (cp > ma100), mom60, "external_momentum"),
+            "breakout": ("ext_breakout", liquid & (cp > cp.shift(1).rolling(20, min_periods=20).max()) & (cp > ma100) & (vr20 >= 1.2), mom20, "external_breakout"),
+            "mean_reversion": ("ext_reversion", liquid & (ret <= -0.05) & (cp > ma200), -ret, "external_mean_reversion"),
+            "volume": ("ext_volume", liquid & (vr20 >= 1.5) & (mom20 > 0) & (cp > ma100), mom20, "external_volume"),
+            "volatility": ("ext_volatility", liquid & (vol20 <= 0.8 * vol63) & (mom20 > 0) & (cp > ma100), mom20, "external_volatility"),
+            "moving_average": ("ext_ma", liquid & (cp > ma100) & (ma50 > ma100) & (mom20 > 0), mom20, "external_moving_average"),
+            "oscillator": ("ext_oscillator", liquid & (_rsi(cp, 14) <= 30) & (cp > ma100), -_rsi(cp, 14), "external_oscillator"),
+            "price_action": ("ext_price_action", liquid & (close_location >= 0.75) & (body > 0) & (cp > ma100), close_location, "external_price_action"),
+            "wyckoff": ("ext_wyckoff", liquid & (cp > ma200) & (undercut <= -0.01) & (clv >= 0.70), clv, "external_wyckoff"),
+        }
+        # Only promote themes actually found by the external intelligence layer.
+        for theme, hypothesis in external_themes.items():
+            if theme not in external_bases:
+                continue
+            base_name, base_mask, base_score, family = external_bases[theme]
+            add(
+                f"{base_name}_sourced",
+                base_mask,
+                base_score,
+                family,
+                {
+                    "source": "global_strategy_intelligence",
+                    "hypothesis_id": hypothesis.get("hypothesis_id"),
+                    "source_count": hypothesis.get("source_count", 0),
+                    "hypothesis": hypothesis.get("hypothesis"),
+                },
+            )
 
     return variants
