@@ -315,7 +315,7 @@ def backtest(strategy, open_df, close_df, universe, ind):
     equity_rows = []
     trades = []
     peak_equity = STARTING_CASH
-    risk_halt = False
+    risk_breach_count = 0
     last_valid_i = {}
     for sym in close_df.columns:
         valid_idx = close_df[sym].dropna().index
@@ -409,17 +409,21 @@ def backtest(strategy, open_df, close_df, universe, ind):
         peak_equity = max(peak_equity, float(eq))
         account_dd = float(eq / peak_equity - 1.0) if peak_equity > 0 else -1.0
         if pos_sym is not None and account_dd <= -0.10:
+            # Research mode: exit the breached position, but DO NOT permanently
+            # halt the strategy. Permanent halting made trade-frequency results
+            # measure "time until first risk breach" rather than actual opportunity
+            # frequency. The 10% drawdown remains a strict downstream gate.
             pending_exit = True
             pending_entry = None
-            risk_halt = True
+            risk_breach_count += 1
         equity_rows.append((date, eq))
 
         # Signal at today's close, executed next trading day's open.
-        if pos_sym is not None and not risk_halt:
+        if pos_sym is not None:
             if should_exit(i, pos_sym, entry_i, entry_price, close_df, ind, strategy):
                 pending_exit = True
                 pending_entry = None
-        elif pos_sym is None and not risk_halt:
+        elif pos_sym is None:
             pending_entry = select_candidate(date, close_df, universe, ind, strategy)
 
     eq = pd.Series(dict(equity_rows)).sort_index()
@@ -476,6 +480,7 @@ def backtest(strategy, open_df, close_df, universe, ind):
         "max_drawdown": float(drawdown.min()),
         "trade_count": int(len(tdf)),
         "trades_per_month": float(len(tdf) / max(years * 12, 1)),
+        "risk_breach_count": int(risk_breach_count),
         "win_rate": win_rate,
         "profit_factor": profit_factor,
         "equity_volatility": float(eq.pct_change(fill_method=None).std() * np.sqrt(252)),
