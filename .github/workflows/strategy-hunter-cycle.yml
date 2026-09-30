@@ -73,6 +73,7 @@ jobs:
           test -d research/data/data/ohlcv
 
       - name: Refresh global trading intelligence
+        continue-on-error: true
         run: python research/strategy/global_strategy_intelligence.py
 
       - name: Execute recoverable research cycle
