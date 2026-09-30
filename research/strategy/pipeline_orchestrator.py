@@ -28,12 +28,10 @@ MAX_ATTEMPTS = 3
 STAGES = [
     ("baseline", "Baseline backtest", "core"),
     ("pattern_hunter", "Pattern Hunter", "core"),
-    # Strategy Lab V3 is the primary search/selection engine.
+    # Strategy Lab V3 is now the primary strategy-search and selection engine.
+    # The former adaptive/candidate path remains in the repository for reference
+    # but is no longer allowed to consume the main research cycle.
     ("strategy_lab", "Strategy Lab V3", "core"),
-    # Legacy adaptive/candidate stages remain available for evidence comparison,
-    # but cannot block the primary trading mission.
-    ("adaptive", "Legacy guided improvement", "advisory"),
-    ("candidate_backtest", "Legacy candidate backtest", "advisory"),
     ("vectorbt", "VectorBT", "optional"),
     ("lightgbm", "LightGBM", "optional"),
     ("symbolic", "Symbolic Regression", "optional"),
@@ -156,17 +154,25 @@ def extract_progress(details: dict, cycle: int):
         except Exception:
             pass
     adaptive_memory = read_json(OUT / "adaptive_search_memory.json", {})
-    previous = read_json(PROGRESS, {})
+    lab = read_json(OUT / "strategy_lab_state.json", {})
+    lab_progress = read_json(OUT / "strategy_hunter_progress.json", {})
     payload = {
         "cycle": cycle,
         "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "patterns_tested": patterns,
+        "patterns_tested": int(lab_progress.get("strategy_lab_variants", patterns)),
+        "strategy_lab_variants": int(lab.get("variants_tested", lab_progress.get("strategy_lab_variants", 0))),
+        "strategy_lab_selection_candidates": int(lab.get("selection_candidates", lab_progress.get("strategy_lab_selection_candidates", 0))),
+        "strategy_lab_backtests": int(lab.get("backtests", lab_progress.get("strategy_lab_backtests", 0))),
+        "strategy_lab_qualified_candidates": int(lab.get("qualified_candidates", lab_progress.get("strategy_lab_qualified_candidates", 0))),
+        "strategy_lab_leader": lab.get("leader", lab_progress.get("strategy_lab_leader")),
+        # Legacy fields remain for dashboard compatibility but are no longer
+        # presented as the authoritative source of research breadth.
         "adaptive_search_round": adaptive_memory.get("search_round"),
         "adaptive_unique_variants": int(adaptive_memory.get("unique_variants_tested", 0)),
         "adaptive_new_variants_this_cycle": int(adaptive_memory.get("new_variants_this_cycle", 0)),
         "adaptive_focus_patterns": adaptive_memory.get("focus_patterns", []),
-        "candidates": candidates,
-        "robust_candidates": robust,
+        "candidates": int(lab_progress.get("candidates", candidates)),
+        "robust_candidates": int(lab_progress.get("robust_candidates", robust)),
         "engine_sanity": read_json(OUT / "engine_sanity.json", {}).get("status") == "passed",
         "last_cycle_status": details.get("_cycle_status", "unknown"),
     }
@@ -187,23 +193,17 @@ def main():
 
         # Optional research tools are activated only after the core engine has
         # produced a candidate. This keeps the loop focused and quota-efficient.
-        if tier in {"optional", "advisory"}:
+        if tier == "optional":
             candidate_count = 0
-            for candidate_file in (
-                OUT / "strategy_lab_selection.csv",
-                OUT / "adaptive_candidates.csv",
-            ):
-                if candidate_file.exists():
-                    try:
-                        import pandas as pd
-                        candidate_count += len(pd.read_csv(candidate_file))
-                    except Exception:
-                        pass
-            if candidate_count == 0 and tier == "advisory":
-                details[key] = {"status": "skipped", "reason": "primary_strategy_lab_has_no_selection_pool"}
-                continue
-            if candidate_count == 0 and tier == "optional":
-                details[key] = {"status": "skipped", "reason": "no_candidate_ready"}
+            candidate_file = OUT / "strategy_lab_selection.csv"
+            if candidate_file.exists():
+                try:
+                    import pandas as pd
+                    candidate_count = len(pd.read_csv(candidate_file))
+                except Exception:
+                    candidate_count = 0
+            if candidate_count == 0:
+                details[key] = {"status": "skipped", "reason": "no_strategy_lab_selection_pool"}
                 continue
 
         write_status("running", key, 0, details)
