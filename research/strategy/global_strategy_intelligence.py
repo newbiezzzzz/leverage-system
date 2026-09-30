@@ -234,7 +234,9 @@ def main() -> None:
         for gl in ("US", "GB", "SG", "MY", "JP", "HK"):
             items.extend(_news_items(theme, query, gl))
 
-    for query in ARXIV_QUERIES:
+    for idx, query in enumerate(ARXIV_QUERIES):
+        if idx:
+            time.sleep(3)
         items.extend(_arxiv_items(query))
 
     dedup: dict[str, dict] = {}
