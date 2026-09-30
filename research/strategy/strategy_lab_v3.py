@@ -28,7 +28,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 STARTING_CASH = 1000.0
 CAPITAL_PCT = 0.95
 STOP_LOSSES = (0.04, 0.06, 0.08, 0.10)
-HORIZONS = (5, 10, 15, 20, 30, 40)
+HORIZONS = (5, 10, 20, 30)
 DEV_END = pd.Timestamp("2020-12-31")
 SEL_END = pd.Timestamp("2023-12-29")
 HOLDOUT_START = SEL_END + pd.Timedelta(days=1)
@@ -123,9 +123,9 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
         }
 
     # 1) Momentum across several time horizons and trend filters.
-    for lb, mom in ((20, mom20), (40, mom60 * 0 + mom60), (60, mom60), (90, mom90), (120, mom120), (180, mom180), (252, mom252)):
-        for threshold in (0.00, 0.03, 0.05, 0.08, 0.12):
-            for trend_name, trend in (("ma50", ind["ma50"]), ("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
+    for lb, mom in ((20, mom20), (40, mom60), (60, mom60), (90, mom90), (120, mom120)):
+        for threshold in (0.00, 0.03, 0.06, 0.10):
+            for trend_name, trend in (("ma50", ind["ma50"]), ("ma200", ind["ma200"])):
                 add(
                     f"momentum_lb{lb}_th{int(threshold*100)}_{trend_name}",
                     liquid & (mom > threshold) & (cp > trend),
@@ -155,9 +155,9 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
         )
 
     # 3) Breakout + volume + optional volatility contraction.
-    for b in (5, 10, 15, 20, 30, 40, 60):
+    for b in (5, 10, 20, 40, 60):
         prev = cp.shift(1).rolling(b, min_periods=b).max()
-        for vr in (1.0, 1.3, 1.5, 2.0, 3.0):
+        for vr in (1.0, 1.5, 2.0):
             for trend_name, trend in (("ma50", ind["ma50"]), ("ma100", ind["ma100"])):
                 add(
                     f"breakout_b{b}_vr{vr:g}_{trend_name}",
@@ -180,9 +180,9 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
                     )
 
     # 4) Pullback / dip-buy in established trends.
-    for lb, mom in ((20, mom20), (40, mom60), (60, mom60), (90, mom90), (120, mom120)):
-        for drop in (-0.03, -0.05, -0.08, -0.10, -0.12):
-            for trend_name, trend in (("ma50", ind["ma50"]), ("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
+    for lb, mom in ((20, mom20), (60, mom60), (120, mom120)):
+        for drop in (-0.03, -0.05, -0.08, -0.10):
+            for trend_name, trend in (("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
                 add(
                     f"pullback_lb{lb}_drop{int(abs(drop)*100)}_{trend_name}",
                     liquid
@@ -196,9 +196,9 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
                 )
 
     # 5) Short-term reversal, but only in longer-term uptrends.
-    for drop in (-0.03, -0.04, -0.05, -0.06, -0.08, -0.10):
+    for drop in (-0.04, -0.06, -0.08, -0.10):
         for trend_name, trend in (("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
-            for vr in (0.8, 1.0, 1.3, 1.5, 2.0):
+            for vr in (1.0, 1.5, 2.0):
                 add(
                     f"reversal_drop{int(abs(drop)*100)}_{trend_name}_vr{vr:g}",
                     liquid
@@ -212,10 +212,10 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
                 )
 
     # 6) Cross-sectional relative strength / loser reversal.
-    for relq in (0.70, 0.80, 0.90, 0.95):
+    for relq in (0.70, 0.80, 0.90):
         q = rel20.where(liquid).quantile(relq, axis=1)
-        for lb, mom in ((20, mom20), (60, mom60), (120, mom120)):
-            for trend_name, trend in (("ma50", ind["ma50"]), ("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
+        for lb, mom in ((20, mom20), (60, mom60)):
+            for trend_name, trend in (("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
                 add(
                     f"relstrength_q{int(relq*100)}_lb{lb}_{trend_name}",
                     liquid & (rel20 >= q) & (mom > 0) & (cp > trend),
@@ -236,7 +236,7 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
             )
 
     # 7) Volatility expansion / contraction.
-    for ratio in (0.50, 0.70, 0.90, 1.10, 1.30, 1.60):
+    for ratio in (0.60, 0.90, 1.20, 1.50):
         add(
             f"vol_regime_mom_{ratio:g}",
             liquid & (mom20 > 0) & (cp > ind["ma100"]) & (vol20 <= ratio * vol63),
@@ -254,7 +254,7 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
 
     # 8) Gap continuation / gap recovery.
     gap = op / cp.shift(1) - 1.0
-    for g in (0.02, 0.04, 0.06, 0.08):
+    for g in (0.02, 0.04, 0.06):
         add(
             f"gap_up_continuation_{int(g*100)}",
             liquid & (gap >= g) & (mom20 > 0) & (cp > ind["ma50"]),
@@ -286,14 +286,14 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
             )
 
     # 10) Wyckoff-style spring / SOS.
-    for lb in (10, 20, 30, 40):
+    for lb in (10, 20, 30):
         support = lp.rolling(lb, min_periods=lb).min().shift(1)
         undercut = lp / support - 1.0
         bar_range = (hp - lp).replace(0, np.nan)
         clv = (cp - lp) / bar_range
-        for depth in (-0.005, -0.01, -0.02, -0.03):
-            for clv_min in (0.55, 0.65, 0.75):
-                for vr_max in (1.0, 1.2, 1.5):
+        for depth in (-0.01, -0.02, -0.03):
+            for clv_min in (0.60, 0.70):
+                for vr_max in (1.2, 1.5):
                     add(
                         f"wyckoff_spring_lb{lb}_d{int(abs(depth)*1000)}_clv{int(clv_min*100)}_vr{vr_max:g}",
                         liquid
@@ -316,8 +316,8 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
             )
 
     # 11) Regime-aware momentum and reversal.
-    for bull in (0.40, 0.50, 0.60, 0.70):
-        for lb, mom in ((20, mom20), (60, mom60), (120, mom120)):
+    for bull in (0.40, 0.55, 0.70):
+        for lb, mom in ((20, mom20), (60, mom60)):
             add(
                 f"regime_bull{int(bull*100)}_mom{lb}",
                 liquid & breadth.ge(bull, axis=0) & (mom > 0) & (cp > ind["ma100"]),
@@ -537,8 +537,7 @@ def main():
             v["horizon"] = h
             dev = _stats(v["mask"], fwd[h], pd.Timestamp("2014-01-01"), DEV_END)
             sel = _stats(v["mask"], fwd[h], DEV_END, SEL_END)
-            hold = _stats(v["mask"], fwd[h], SEL_END, cp.index.max())
-            if not dev or not sel or not hold:
+            if not dev or not sel:
                 continue
             rows.append({
                 "pattern": name,
@@ -548,9 +547,6 @@ def main():
                 "selection_net_mean": sel["net_mean"],
                 "selection_win_rate": sel["win_rate"],
                 "selection_observations": sel["observations"],
-                "holdout_event_net_mean": hold["net_mean"],
-                "holdout_event_win_rate": hold["win_rate"],
-                "holdout_event_observations": hold["observations"],
                 "selection_stability": min(dev["net_mean"], sel["net_mean"]),
                 "params": json.dumps(v["params"], sort_keys=True),
             })
