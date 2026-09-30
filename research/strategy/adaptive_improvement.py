@@ -109,6 +109,34 @@ def main():
     variants["slow_momentum_12_1_lowvol"]=liquid&(mom252>0)&(cp>ind["ma200"])&(vol20<=vol63)
     variants["slow_momentum_12_1_bull"]=liquid&(mom252>0)&(cp>ind["ma200"])&breadth.ge(.55,axis=0)
 
+    # Dedicated Wyckoff Spring search. A spring is defined mechanically as
+    # an intrabar undercut of prior support followed by a close back above it.
+    # Variants sweep support depth, close location, and volume contraction.
+    for lb in (10, 20, 30):
+        support=lp.rolling(lb,min_periods=lb).min().shift(1)
+        undercut=(lp/support-1.0)
+        bar_range=(hp-lp).replace(0,np.nan)
+        clv=(cp-lp)/bar_range
+        for depth in (-0.005,-0.010,-0.020):
+            for clv_min in (0.55,0.65,0.75):
+                for vr_max in (0.90,1.20,1.50):
+                    variants[
+                        f"wyckoff_spring_lb{lb}_d{int(abs(depth)*1000)}_clv{int(clv_min*100)}_vr{vr_max:g}"
+                    ]=(
+                        liquid
+                        & (undercut<=depth)
+                        & (cp>support)
+                        & (clv>=clv_min)
+                        & (vr20<=vr_max)
+                    )
+        # Confirmed Spring -> Sign of Strength (SOS) variants. The spring
+        # must occur on the prior session; today's close must exceed the
+        # prior spring high, preventing look-ahead.
+        spring=(undercut<=-0.01)&(cp>support)&(clv>=0.65)&(vr20<=1.50)
+        for vr_min in (1.0,1.3,1.6):
+            sos=spring.shift(1).fillna(False)&(cp>hp.shift(1))&(vr20>=vr_min)
+            variants[f"wyckoff_spring_sos_lb{lb}_vr{vr_min:g}"]=liquid&sos
+
     # Cycle-specific adaptive search regions. Each round explores a different
     # parameter region; focus is derived from the previous cycle's results.
     if round_no==0:
