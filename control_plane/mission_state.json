@@ -5,16 +5,23 @@
   "state": "RUNNING",
   "goal_achieved": false,
   "engine_sanity": true,
-  "cycle": 806,
+  "cycle": 807,
   "progress": {
-    "cycle": 806,
-    "updated_at": "2026-09-30T15:39:06Z",
-    "patterns_tested": 13,
+    "cycle": 807,
+    "updated_at": "2026-09-30T15:56:17Z",
+    "patterns_tested": 0,
     "strategy_lab_variants": 0,
     "strategy_lab_selection_candidates": 0,
     "strategy_lab_backtests": 0,
     "strategy_lab_qualified_candidates": 0,
     "strategy_lab_leader": null,
+    "discovery_layer": {
+      "enabled": true,
+      "external_items": 50,
+      "external_hypotheses": 11
+    },
+    "global_intelligence_items": 50,
+    "global_intelligence_hypotheses": 11,
     "adaptive_search_round": 7,
     "adaptive_unique_variants": 1103,
     "adaptive_new_variants_this_cycle": 0,
@@ -30,7 +37,7 @@
     "last_cycle_status": "degraded"
   },
   "last_cycle": {
-    "cycle": 806,
+    "cycle": 807,
     "status": "degraded",
     "next_action": "recover_and_continue",
     "goal_achieved": false
