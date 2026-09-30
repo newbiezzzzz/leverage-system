@@ -28,9 +28,33 @@
   "state_history": [
     {
       "decision_id": "D001",
+      "action": "REVIEW_KEEP_IMPROVE",
+      "date": "2026-09-30",
+      "reason": "Current strategy direction retained because current failure evidence is confounded by a backtest shutdown flaw and stale adaptive evidence."
+    },
+    {
+      "decision_id": "D001",
       "action": "LOCK",
       "date": "2026-09-30",
       "reason": "Establish persistent anti-drift governance before further strategic changes."
+    }
+  ],
+  "reviews": [
+    {
+      "review_id": "R001",
+      "date": "2026-09-30",
+      "classification": "IMPROVE",
+      "current_direction": "KEEP",
+      "problem": "Strategy Hunter has produced no qualified candidate, while research cycles have repeatedly degraded at the adaptive stage.",
+      "evidence": [
+        "Backtest engine permanently set risk_halt after the first account drawdown breach, suppressing all later entries.",
+        "This caused observed trade frequencies such as 0.014–0.057 trades/month over the 2015-09/2026 sample to measure post-breach shutdown rather than unconstrained strategy opportunity frequency.",
+        "The 10% maximum drawdown gate remains enforced; removing the permanent research halt does not relax qualification.",
+        "Latest persistent state has 0 qualified candidates and 0 robust candidates, but this evidence was generated through the flawed testing behavior.",
+        "Adaptive search output is stale relative to mission cycles: adaptive_search_memory.json reports last_cycle 596 while mission progress reached cycle 803, so progress fields can under-report or misrepresent current adaptive activity."
+      ],
+      "action": "Fix research engine and evidence freshness first; rerun before considering any strategic replacement.",
+      "replacement_justified": false
     }
   ]
 }
