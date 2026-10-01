@@ -1,8 +1,8 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-01T10:07:49Z
-Items: 49
+Fetched: 2026-10-01T16:15:54Z
+Items: 50
 
 ## Research hypotheses
 - **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
@@ -24,9 +24,10 @@ Items: 49
 - [Dogecoin Swings 8.72%: Mean-Reversion of Crowded Trade - CoinMarketCap](https://news.google.com/rss/articles/CBMicEFVX3lxTFBzVjZmMzlqTFR1V0hNa1U3eXRsbjA1bkJJN3RMaWxpY283WlZsWDY5ckFfVmtwSDFPS1NNc3o1bVhaWGgtY202V2pEUGpmMms0c200cklIamMybmo5Umh2bFFzWXhUTU50SV9CTnIzTE0?oc=5) — news / HK
 - [Opendoor Stock (OPEN) Opinions on Recent Price Action and Recovery Potential - Quiver Quantitative](https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5) — news / HK
 - [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
-- [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
+- [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - CNBC](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
-- [Thirumalai Chemicals Share Price: price action and support - Univest](https://news.google.com/rss/articles/CBMimAFBVV95cUxOT3lFWkVwdktzMi1vakJnQzdGNndDMFVRanlCR2w1ZmVYV1NjNXZwOTZ5OHJOZlh1RTVlNm1CNHM3dURvWHVBTzJrcVVvblZ2eWdId3JySXUteDdmZUplcWtoV3VsT0hFNk1GcXlNNDZFZUJlOGdiM2NDRjNKdlp3WHE0MlVLWUZQSmI4bzdGb0lTd0Y4QlVuQQ?oc=5) — news / HK
+- [Thirumalai Chemicals Share Price: price action and support - Univest](https://news.google.com/rss/articles/CBMimAFBVV95cUxOT3lFWkVwdktzMi1vakJnQzdGNndDMFVRanlCR2w1ZmVYV1NjNXZwOTZ5OHJOZlh1RTVlNm1CNHM3dURvWHVBTzJrcVVvblZ2eWdId3JySXUteDdmZUplcWtoV3VsT0hFNk1GcXlNNDZFZUJlOGdiM2NDRjNKdlp3WHE0MlVLWUZQSmI4bzdGb0lTd0Y4QlVuQQ?oc=5) — news / MY
+- [Larry Domash of Systematic Trading and Curve Publishing Recently Featured on Close Up Radio - The National Law Review](https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGl1WmtTSFFDQVJXNGFXcDBpLVoxTk1lR0hUVENsMjFld3ZSNE14bm1XOTBueWdFd2M4NlR6cGp6ZnZNU2VDUVVWZUE0TDRzSTBoM0lmeThZZmdzY2ttMzFnTWwtQzZPSU14WHZmQTM1eUp6eW80dGk3WHdJQ29tXzM1a0V4Wm1HLUc1M2U2RENuTFU3bG9haG54R2hwM25HT1JDVWY5VmpXUlBpOHR2bkV3ekVZU2M?oc=5) — news / HK
 - [AI Says #2: $GC1! fluctuates: What's the read on price action? for COMEX:GC1! by RedKTrader - TradingView](https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFU2MTZvQUoyQjN2Z3BncWtuajdwdE4tUWZ1THhqR05PZXRwZUF0SlpHZmNsZFY5NWZPQktlOVFfd1FVbmtJOGp3d0JNdW05SC1Pckk1cE1aTlBYdWt5YjJuRjJyRjNMVTZxVTM0RDRiMk02MlZmNVdrTDdWcEpjMFJxWHppX2tCQ0UyOXM5U0RobWh2YjhwSFluTXJZa2NIeU5WU0loOEo?oc=5) — news / HK
 - [Optimal Liquidation with Support and Resistance Levels under Multi-Skew Brownian Motion](https://arxiv.org/abs/2609.35063v1) — arxiv / global
 - [On Detecting Multiple Simultaneous Change-points in High Dimensional Non-Stationary Time Series](https://arxiv.org/abs/2609.15479v1) — arxiv / global
@@ -57,4 +58,3 @@ Items: 49
 - [Tweedie's Formulae and Diffusion Generative Models Beyond Gaussian](https://arxiv.org/abs/2605.19391v1) — arxiv / global
 - [Amortized Neural Clustering of Time Series based on Statistical Features](https://arxiv.org/abs/2605.13128v1) — arxiv / global
 - [Visibility graphs can make money in financial markets](https://arxiv.org/abs/2605.01300v1) — arxiv / global
-- [Cross-Stock Predictability via LLM-Augmented Semantic Networks](https://arxiv.org/abs/2604.19476v2) — arxiv / global
