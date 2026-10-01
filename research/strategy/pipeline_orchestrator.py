@@ -28,10 +28,10 @@ MAX_ATTEMPTS = 3
 STAGES = [
     ("baseline", "Baseline backtest", "core"),
     ("pattern_hunter", "Pattern Hunter", "core"),
-    # Strategy Lab V3 is now the primary strategy-search and selection engine.
+    # Strategy Lab V4 is now the primary strategy-search and selection engine.
     # The former adaptive/candidate path remains in the repository for reference
     # but is no longer allowed to consume the main research cycle.
-    ("strategy_lab", "Strategy Lab V3", "core"),
+    ("strategy_lab", "Strategy Lab V4 (realistic execution)", "core"),
     ("vectorbt", "VectorBT", "optional"),
     ("lightgbm", "LightGBM", "optional"),
     ("symbolic", "Symbolic Regression", "optional"),
@@ -224,7 +224,7 @@ def main():
             if key == "adaptive"
             else "python research/strategy/candidate_backtest.py"
             if key == "candidate_backtest"
-            else "python research/strategy/strategy_lab_v3.py"
+            else "python research/strategy/strategy_lab_v4.py"
             if key == "strategy_lab"
             else "python research/strategy/specialist_runner.py " + key
             if key not in {"baseline"}
