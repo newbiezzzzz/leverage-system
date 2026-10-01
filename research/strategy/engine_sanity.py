@@ -40,7 +40,7 @@ def run():
 
     result = backtest(
         "sanity", variant, open_, high, low, close, volume, universe,
-        dates[35], dates[60], horizon_days=20, stop_loss=0.10,
+        dates[20], dates[70], horizon_days=20, stop_loss=0.10,
         lot_size=1, slippage_bps=0.0,
     )
     assert result and result["trades"], "sanity trade missing"
@@ -59,7 +59,7 @@ def run():
     close2.iloc[42,0] = 20.0
     result2 = backtest(
         "sanity_gap", variant, open2, high, low2, close2, volume, universe,
-        dates[35], dates[60], horizon_days=20, stop_loss=0.10,
+        dates[20], dates[70], horizon_days=20, stop_loss=0.10,
         lot_size=1, slippage_bps=0.0,
     )
     assert result2 and any(t["exit_reason"] == "stop_gap_open" for t in result2["trades"]), result2
