@@ -47,7 +47,7 @@ MAX_DD = 0.10
 MIN_TPM = 5.0
 MAX_TPM = 20.0
 RR_VALUES = (1.0, 1.5, 2.0, 3.0, 4.0)
-RISK_PCT = 0.01
+RISK_PCTS = (0.03, 0.04, 0.05, 0.06)
 
 
 def read_json(path, default):
@@ -326,15 +326,16 @@ def main():
             v = variants[name]
             # Test the same signal across explicit R-multiples and both stop sizes.
             # No RR is treated as inherently better; qualification remains evidence-based.
-            for rr in RR_VALUES:
-                for stop in (0.06, 0.10):
+            for risk_pct in RISK_PCTS:
+                for rr in RR_VALUES:
+                    for stop in (0.06, 0.10):
                     ev = evaluate_candidate(
                         name, v, op, hp, lp, cp, vp, universe, regime,
-                        int(r.horizon_days), stop, rr, RISK_PCT
+                        int(r.horizon_days), stop, rr, risk_pct
                     )
                     if ev:
                         results.append(ev)
-                        realistic_tests.append((name, int(r.horizon_days), stop, rr, RISK_PCT))
+                        realistic_tests.append((name, int(r.horizon_days), stop, rr, risk_pct))
 
     bt_df = pd.DataFrame([flatten(x) for x in results])
     bt_df.to_csv(BT_PATH, index=False)
@@ -391,7 +392,7 @@ def main():
             "lot_size": LOT_SIZE,
             "starting_cash": STARTING_CASH,
             "rr_values": list(RR_VALUES),
-            "risk_pct_per_trade": RISK_PCT,
+            "risk_pcts_per_trade": list(RISK_PCTS),
             "capital_pct": CAPITAL_PCT,
             "slippage_bps": SLIPPAGE_BPS,
             "cost_model": COST_MODEL,
@@ -415,7 +416,7 @@ def main():
         "patterns_tested": len(variants), "strategy_lab_variants": len(variants),
         "strategy_lab_selection_candidates": len(screen), "strategy_lab_backtests": len(realistic_tests),
         "rr_values_tested": list(RR_VALUES),
-        "risk_pct_per_trade": RISK_PCT,
+        "risk_pcts_per_trade": list(RISK_PCTS),
         "strategy_lab_qualified_candidates": len(qualified),
         "strategy_lab_leader": (
             {k: leader.get(k) for k in ("pattern","family","holdout_total_return","holdout_max_drawdown","holdout_trades_per_month","holdout_profit_factor")}
