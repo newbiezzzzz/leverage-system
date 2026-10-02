@@ -78,6 +78,7 @@ def backtest(
     starting_cash: float = STARTING_CASH,
     reward_r: float | None = None,
     risk_basis: str = "entry_stop",
+    risk_pct: float | None = None,
     lot_size: int = LOT_SIZE,
     slippage_bps: float = SLIPPAGE_BPS,
     max_participation: float = MAX_PARTICIPATION,
@@ -154,6 +155,9 @@ def backtest(
             "exit_fee": float(exit_fee),
             "gross_pnl": float((exec_price - entry_price) * shares),
             "net_pnl": float((exec_price - entry_price) * shares - entry_fee - exit_fee),
+            "planned_risk_per_share": float(entry_price * float(stop_loss)),
+            "planned_risk_value": float(shares * entry_price * float(stop_loss)),
+            "r_multiple_gross": float((exec_price - entry_price) * shares / max(shares * entry_price * float(stop_loss), 1e-12)),
             "exit_reason": reason,
             "signal_before_execution": bool(sig is not None and dates[exec_i] > sig),
         }
@@ -177,6 +181,11 @@ def backtest(
             return
         exec_px = px * (1.0 + slippage)
         max_value = min(cash * CAPITAL_PCT, av * float(max_participation) * exec_px)
+        if risk_pct is not None and float(risk_pct) > 0:
+            risk_budget = cash * float(risk_pct)
+            stop_distance = exec_px * float(stop_loss)
+            risk_qty = int(risk_budget / stop_distance) if stop_distance > 0 else 0
+            max_value = min(max_value, risk_qty * exec_px)
         lot = max(1, int(lot_size))
         qty = int(max_value / exec_px)
         qty = (qty // lot) * lot
@@ -278,6 +287,13 @@ def backtest(
     gp = float(net[net > 0].sum()) if not net.empty else 0.0
     gl = float(-net[net < 0].sum()) if not net.empty else 0.0
     pf = gp / gl if gl > 0 else (float("inf") if gp > 0 else 0.0)
+    rvals = pd.to_numeric(tdf["r_multiple_gross"], errors="coerce") if not tdf.empty else pd.Series(dtype=float)
+    winners_r = rvals[rvals > 0]
+    losers_r = rvals[rvals < 0]
+    avg_win_r = float(winners_r.mean()) if not winners_r.empty else 0.0
+    avg_loss_r = float(-losers_r.mean()) if not losers_r.empty else 0.0
+    realized_rr = float(avg_win_r / avg_loss_r) if avg_loss_r > 0 else (float("inf") if avg_win_r > 0 else 0.0)
+    expectancy_r = float(rvals.mean()) if not rvals.empty else 0.0
     months = max((eq.index[-1] - eq.index[0]).days / 30.4375, 1 / 30.4375)
     geom_monthly = (final_equity / starting_cash) ** (1.0 / months) - 1.0 if final_equity > 0 else -1.0
     monthly = eq.resample("ME").last().pct_change(fill_method=None).dropna()
@@ -314,6 +330,10 @@ def backtest(
         "trades_per_month": float(len(trades) / max(months, 1.0)),
         "win_rate": float((net > 0).mean()) if not net.empty else 0.0,
         "profit_factor": float(pf),
+        "avg_win_r": avg_win_r,
+        "avg_loss_r": avg_loss_r,
+        "realized_rr": realized_rr,
+        "expectancy_r": expectancy_r,
         "risk_breach_count": int(risk_breaches),
         "median_monthly_return": float(monthly.median()) if not monthly.empty else float("nan"),
         "positive_month_fraction": float((monthly > 0).mean()) if not monthly.empty else 0.0,
@@ -327,6 +347,7 @@ def backtest(
             "stop_model": "gap_open_or_intraday_stop",
             "reward_r": None if reward_r is None else float(reward_r),
             "risk_basis": risk_basis,
+            "risk_pct": None if risk_pct is None else float(risk_pct),
             "rr_enabled": bool(reward_r is not None and float(reward_r) > 0),
             "lot_size": int(lot_size),
             "slippage_bps_per_side": float(slippage_bps),
