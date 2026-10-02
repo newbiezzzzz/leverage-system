@@ -324,18 +324,17 @@ def main():
         for r in screened.itertuples(index=False):
             name = r.variant
             v = variants[name]
-            ev = evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, int(r.horizon_days), 0.06, 2.0, RISK_PCT)
-            if ev:
-                results.append(ev)
-                realistic_tests.append((name, int(r.horizon_days), 0.06, 2.0, RISK_PCT))
-            # Run the 10% stop variant only for candidates that survived the
-            # first realistic run. This doubles protection without doubling
-            # the entire candidate pool.
-            if ev and (ev["holdout"]["total_return"] > 0 or ev["holdout"]["profit_factor"] > 1):
-                ev2 = evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, int(r.horizon_days), 0.10, 2.0, RISK_PCT)
-                if ev2:
-                    results.append(ev2)
-                    realistic_tests.append((name, int(r.horizon_days), 0.10, 2.0, RISK_PCT))
+            # Test the same signal across explicit R-multiples and both stop sizes.
+            # No RR is treated as inherently better; qualification remains evidence-based.
+            for rr in RR_VALUES:
+                for stop in (0.06, 0.10):
+                    ev = evaluate_candidate(
+                        name, v, op, hp, lp, cp, vp, universe, regime,
+                        int(r.horizon_days), stop, rr, RISK_PCT
+                    )
+                    if ev:
+                        results.append(ev)
+                        realistic_tests.append((name, int(r.horizon_days), stop, rr, RISK_PCT))
 
     bt_df = pd.DataFrame([flatten(x) for x in results])
     bt_df.to_csv(BT_PATH, index=False)
@@ -391,6 +390,8 @@ def main():
             "historical_universe": True,
             "lot_size": LOT_SIZE,
             "starting_cash": STARTING_CASH,
+            "rr_values": list(RR_VALUES),
+            "risk_pct_per_trade": RISK_PCT,
             "capital_pct": CAPITAL_PCT,
             "slippage_bps": SLIPPAGE_BPS,
             "cost_model": COST_MODEL,
@@ -413,6 +414,8 @@ def main():
         "engine_version": "strategy_lab_v4_realistic",
         "patterns_tested": len(variants), "strategy_lab_variants": len(variants),
         "strategy_lab_selection_candidates": len(screen), "strategy_lab_backtests": len(realistic_tests),
+        "rr_values_tested": list(RR_VALUES),
+        "risk_pct_per_trade": RISK_PCT,
         "strategy_lab_qualified_candidates": len(qualified),
         "strategy_lab_leader": (
             {k: leader.get(k) for k in ("pattern","family","holdout_total_return","holdout_max_drawdown","holdout_trades_per_month","holdout_profit_factor")}
