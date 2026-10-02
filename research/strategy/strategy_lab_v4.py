@@ -249,7 +249,7 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
 
     stress = []
     for cm, slip in ((1.5, 20.0), (1.5, 0.0), (1.0, 20.0)):
-        r = backtest(name, v, op, hp, lp, cp, vp, universe, HOLDOUT_START, cp.index.max(), horizon, stop, lot_size=LOT_SIZE, slippage_bps=slip, cost_multiplier=cm, regime_series=regime)
+        r = backtest(name, v, op, hp, lp, cp, vp, universe, HOLDOUT_START, cp.index.max(), horizon, stop, lot_size=LOT_SIZE, reward_r=reward_r, risk_pct=risk_pct, slippage_bps=slip, cost_multiplier=cm, regime_series=regime)
         if r:
             stress.append({
                 "cost_multiplier": cm, "slippage_bps": slip, "final_equity": r["final_equity"],
