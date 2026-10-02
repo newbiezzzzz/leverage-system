@@ -76,6 +76,8 @@ def backtest(
     horizon_days: int,
     stop_loss: float,
     starting_cash: float = STARTING_CASH,
+    reward_r: float | None = None,
+    risk_basis: str = "entry_stop",
     lot_size: int = LOT_SIZE,
     slippage_bps: float = SLIPPAGE_BPS,
     max_participation: float = MAX_PARTICIPATION,
@@ -211,10 +213,18 @@ def backtest(
             opx = oa[i, position_j]
             low = la[i, position_j]
             stop_px = entry_price * (1.0 - float(stop_loss))
+            target_px = None
+            if reward_r is not None and float(reward_r) > 0:
+                risk_per_share = entry_price - stop_px
+                target_px = entry_price + float(reward_r) * risk_per_share
             if np.isfinite(opx) and opx > 0 and opx <= stop_px:
                 close_position(i, opx * (1.0 - slippage), "stop_gap_open")
+            elif reward_r is not None and target_px is not None and np.isfinite(opx) and opx >= target_px:
+                close_position(i, opx * (1.0 - slippage), "target_gap_open")
             elif np.isfinite(low) and low <= stop_px:
                 close_position(i, stop_px * (1.0 - slippage), "stop_intraday")
+            elif reward_r is not None and target_px is not None and np.isfinite(ha[i, position_j]) and ha[i, position_j] >= target_px:
+                close_position(i, target_px * (1.0 - slippage), "target_intraday")
 
         if position_j is not None and valid_end_by_col.get(position_j, i) < i:
             last = valid_end_by_col[position_j]
@@ -315,6 +325,9 @@ def backtest(
             "entry_execution": "open_t_plus_1",
             "exit_execution": "open_t_plus_1",
             "stop_model": "gap_open_or_intraday_stop",
+            "reward_r": None if reward_r is None else float(reward_r),
+            "risk_basis": risk_basis,
+            "rr_enabled": bool(reward_r is not None and float(reward_r) > 0),
             "lot_size": int(lot_size),
             "slippage_bps_per_side": float(slippage_bps),
             "max_participation": float(max_participation),
