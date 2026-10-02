@@ -46,6 +46,8 @@ MAX_SCREEN_TPM = 40.0
 MAX_DD = 0.10
 MIN_TPM = 5.0
 MAX_TPM = 20.0
+RR_VALUES = (1.0, 1.5, 2.0, 3.0, 4.0)
+RISK_PCT = 0.01
 
 
 def read_json(path, default):
@@ -187,7 +189,7 @@ def basic_pass(r):
     )
 
 
-def replicate(v, name, op, hp, lp, cp, vp, universe, regime, horizon, stop):
+def replicate(v, name, op, hp, lp, cp, vp, universe, regime, horizon, stop, reward_r, risk_pct):
     if cp.shape[1] < 20:
         return []
     left, right = [], []
@@ -202,7 +204,7 @@ def replicate(v, name, op, hp, lp, cp, vp, universe, regime, horizon, stop):
         excluded = [s for s in cp.columns if s not in group]
         if excluded:
             u.loc[:, excluded] = False
-        r = backtest(name, v, op, hp, lp, cp, vp, u, HOLDOUT_START, cp.index.max(), horizon, stop, lot_size=LOT_SIZE, regime_series=regime)
+        r = backtest(name, v, op, hp, lp, cp, vp, u, HOLDOUT_START, cp.index.max(), horizon, stop, lot_size=LOT_SIZE, reward_r=reward_r, risk_pct=risk_pct, regime_series=regime)
         if r:
             out.append({
                 "half": half,
@@ -216,7 +218,7 @@ def replicate(v, name, op, hp, lp, cp, vp, universe, regime, horizon, stop):
     return out
 
 
-def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, stop):
+def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, stop, reward_r, risk_pct):
     windows = [
         ("development", DEV_START, DEV_END),
         ("selection", SEL_START, SEL_END),
@@ -226,7 +228,7 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
     ]
     results = {}
     for label, a, b in windows:
-        r = backtest(name, v, op, hp, lp, cp, vp, universe, a, b, horizon, stop, lot_size=LOT_SIZE, regime_series=regime)
+        r = backtest(name, v, op, hp, lp, cp, vp, universe, a, b, horizon, stop, lot_size=LOT_SIZE, reward_r=reward_r, risk_pct=risk_pct, regime_series=regime)
         if r is None:
             return None
         results[label] = r
@@ -255,7 +257,7 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
                 "trades_per_month": r["trades_per_month"], "basic_pass": basic_pass(r),
             })
 
-    reps = replicate(v, name, op, hp, lp, cp, vp, universe, regime, horizon, stop)
+    reps = replicate(v, name, op, hp, lp, cp, vp, universe, regime, horizon, stop, reward_r, risk_pct)
     rep_pass = len(reps) == 2 and all(
         x["final_equity"] > STARTING_CASH and x["max_drawdown"] >= -MAX_DD and x["profit_factor"] > 1.0 for x in reps
     )
@@ -273,7 +275,7 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
     )
 
     return {
-        "pattern": name, "family": v["family"], "horizon_days": int(horizon), "stop_loss": float(stop),
+        "pattern": name, "family": v["family"], "horizon_days": int(horizon), "stop_loss": float(stop), "reward_r": float(reward_r), "risk_pct": float(risk_pct),
         "params": json.dumps(v["params"], sort_keys=True),
         "development": dev, "selection": sel, "validation": val, "holdout": hold, "full": full,
         "replication": reps, "replication_pass": rep_pass,
@@ -294,7 +296,7 @@ def flatten(r):
     }
     for pfx in ("development","selection","validation","holdout","full"):
         x = r[pfx]
-        for k in ("final_equity","total_return","cagr","geometric_monthly_return","max_drawdown","trade_count","trades_per_month","win_rate","profit_factor","risk_breach_count","median_monthly_return","positive_month_fraction"):
+        for k in ("final_equity","total_return","cagr","geometric_monthly_return","max_drawdown","trade_count","trades_per_month","win_rate","profit_factor","avg_win_r","avg_loss_r","realized_rr","expectancy_r","risk_breach_count","median_monthly_return","positive_month_fraction"):
             row[f"{pfx}_{k}"] = x.get(k)
     return row
 
@@ -322,18 +324,18 @@ def main():
         for r in screened.itertuples(index=False):
             name = r.variant
             v = variants[name]
-            ev = evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, int(r.horizon_days), 0.06)
+            ev = evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, int(r.horizon_days), 0.06, 2.0, RISK_PCT)
             if ev:
                 results.append(ev)
-                realistic_tests.append((name, int(r.horizon_days), 0.06))
+                realistic_tests.append((name, int(r.horizon_days), 0.06, 2.0, RISK_PCT))
             # Run the 10% stop variant only for candidates that survived the
             # first realistic run. This doubles protection without doubling
             # the entire candidate pool.
             if ev and (ev["holdout"]["total_return"] > 0 or ev["holdout"]["profit_factor"] > 1):
-                ev2 = evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, int(r.horizon_days), 0.10)
+                ev2 = evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, int(r.horizon_days), 0.10, 2.0, RISK_PCT)
                 if ev2:
                     results.append(ev2)
-                    realistic_tests.append((name, int(r.horizon_days), 0.10))
+                    realistic_tests.append((name, int(r.horizon_days), 0.10, 2.0, RISK_PCT))
 
     bt_df = pd.DataFrame([flatten(x) for x in results])
     bt_df.to_csv(BT_PATH, index=False)
