@@ -1,15 +1,15 @@
 # Strategy Hunter — Live Monitor
 
-Checked: 2026-10-03T01:57:23.612800+00:00
+Checked: 2026-10-03T07:36:10.441089+00:00
 
-Status: 🟡 RUNNING
-Run: #37088030078
+Status: ❌ FAILED
+Run: #37106829826
 Workflow: strategy-hunter-cycle
-Started: 2026-10-03T01:57:06Z
-Updated: 2026-10-03T01:57:13Z
+Started: 2026-10-03T07:35:06Z
+Updated: 2026-10-03T07:35:27Z
 
 ## Jobs
 
 | Job | Status | Current step |
 |---|---|---|
-| research | 🟡 in_progress | Install strategy dependencies |
+| research | ⚪ failure | — |
