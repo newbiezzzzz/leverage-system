@@ -8,7 +8,7 @@
   "cycle": 1013,
   "progress": {
     "cycle": 1013,
-    "updated_at": "2026-10-04T10:51:28Z",
+    "updated_at": "2026-10-04T13:57:31Z",
     "patterns_tested": 0,
     "strategy_lab_variants": 0,
     "strategy_lab_selection_candidates": 0,
@@ -49,6 +49,6 @@
     "status": "LOCKED",
     "default_new_issue_action": "KEEP_OR_IMPROVE",
     "replacement_requires_evidence": true,
-    "decision_drift": true
+    "decision_drift": false
   }
 }
