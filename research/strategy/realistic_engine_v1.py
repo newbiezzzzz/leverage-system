@@ -132,6 +132,7 @@ def backtest(
     first_idx, last_idx = int(idx[0]), int(idx[-1])
     entry_order_values: list[float] = []
     broker_lot_violations = 0
+    enforce_broker_lot = int(lot_size) == BROKER_LOT_SIZE
     slippage = float(slippage_bps) / 10_000.0
     reverse_rank = any(k in str(variant.get("family", "")) for k in ("reversal", "loser"))
 
@@ -206,7 +207,9 @@ def backtest(
         buy_fee = scaled_fee(value)
         if value + buy_fee > cash:
             return
-        if qty < BROKER_LOT_SIZE or qty % BROKER_LOT_SIZE != 0:
+        if enforce_broker_lot and (
+            qty < BROKER_LOT_SIZE or qty % BROKER_LOT_SIZE != 0
+        ):
             nonlocal broker_lot_violations
             broker_lot_violations += 1
             return
@@ -294,7 +297,8 @@ def backtest(
         return None
     eq = pd.Series(dict(equity_rows)).sort_index()
     broker_feasible_rm1000 = bool(
-        len(trades) > 0
+        enforce_broker_lot
+        and len(trades) > 0
         and broker_lot_violations == 0
         and all(
             int(t.get("shares", 0)) >= BROKER_LOT_SIZE
