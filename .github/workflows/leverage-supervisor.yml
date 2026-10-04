@@ -67,6 +67,23 @@ jobs:
           latest_cycle = cycle_runs[0] if cycle_runs else None
           latest_data = data_runs[0] if data_runs else None
 
+          # A Strategy Hunter run can exit successfully after publishing a
+          # degraded core-stage state. Treat that state as a recovery event;
+          # do not start a fresh cycle and hide the failed testing stage.
+          degraded_research = False
+          try:
+              with open("research/results/research_cycle_state.json", encoding="utf-8") as f:
+                  cycle_state = json.load(f)
+              degraded_research = cycle_state.get("status") == "degraded"
+          except Exception:
+              cycle_state = {}
+          try:
+              with open("research/results/strategy_hunter_pipeline.json", encoding="utf-8") as f:
+                  pipeline_state = json.load(f)
+              degraded_research = degraded_research or pipeline_state.get("status") == "degraded"
+          except Exception:
+              pipeline_state = {}
+
           def failed(r):
               return bool(r and r.get("status") == "completed" and r.get("conclusion") in {"failure", "cancelled", "timed_out"})
 
@@ -93,6 +110,8 @@ jobs:
               action, reason = "none", "data_refresh_active"
           elif active_recovery:
               action, reason = "none", "recovery_active"
+          elif degraded_research:
+              action, reason = "start_recovery", "published_degraded_research_state"
           elif latest_failure:
               action, reason = "start_recovery", "failed_research_run"
           elif not has_successful_data:
