@@ -8835,9 +8835,9 @@
 /home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:103: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol20 = cp.pct_change().rolling(20, min_periods=20).std()
 Traceback (most recent call last):
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py", line 476, in <module>
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py", line 480, in <module>
     main()
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py", line 312, in main
+  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py", line 316, in main
     variants = __import__("strategy_lab_v3").build_variants(op, hp, lp, cp, vp, universe, ind)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py", line 221, in build_variants
