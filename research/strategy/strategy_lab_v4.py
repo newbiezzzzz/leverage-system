@@ -33,21 +33,21 @@ VAL_START = pd.Timestamp("2023-01-01")
 VAL_END = pd.Timestamp("2024-12-31")
 HOLDOUT_START = pd.Timestamp("2025-01-01")
 
-SCREEN_HORIZONS = (5, 10, 20, 30)
+SCREEN_HORIZONS = (1, 2, 3, 5, 7, 10, 15, 20, 30)
 STOP_LOSSES = (0.06, 0.10)
 STRESS_COSTS = (1.0, 1.5)
 STRESS_SLIPPAGE = (0.0, 20.0)
 BATCH_PER_FAMILY = 4
 FOCUS_COUNT = 12
-TOP_REALISTIC_COUNT = 6
+REALISTIC_CANDIDATE_ROWS = 12
+MAX_FAMILY_REALISTIC = 2
 MIN_EVENTS = 50
-MIN_PF = 1.03
-MAX_SCREEN_TPM = 40.0
+MAX_SCREEN_TPM = 80.0
 MAX_DD = 0.10
 MIN_TPM = 5.0
 MAX_TPM = 20.0
-RR_VALUES = (0.50, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0)
-RISK_PCTS = (0.03, 0.04, 0.05, 0.06)
+RR_VALUES = (None, 0.50, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0)
+RISK_PCTS = (None, 0.03, 0.05, 0.06)
 
 
 def read_json(path, default):
@@ -158,7 +158,11 @@ def screen_candidates(variants, chosen, op, cp):
             sel = event_screen(core_mask, fwd[h], SEL_START, SEL_END)
             if not dev or not sel:
                 continue
-            if sel["observations"] < MIN_EVENTS or sel["trades_per_month"] > MAX_SCREEN_TPM:
+            if (
+                sel["observations"] < MIN_EVENTS
+                or dev["observations"] < MIN_EVENTS
+                or sel["trades_per_month"] > MAX_SCREEN_TPM
+            ):
                 continue
             rows.append({
                 "variant": name,
@@ -173,10 +177,98 @@ def screen_candidates(variants, chosen, op, cp):
                 "sel_win_rate": sel["win_rate"],
                 "sel_obs": sel["observations"],
                 "sel_tpm": sel["trades_per_month"],
-                "screen_score": float(max(0, sel["net_mean"]) * np.log1p(sel["observations"]) * min(max(sel["profit_factor"],0),10)),
+                "selection_stability": float(min(dev["net_mean"], sel["net_mean"])),
                 "params": json.dumps(v["params"], sort_keys=True),
             })
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    if df.empty:
+        return df
+
+    # Event-study screening ranks ideas; it does not qualify them. This keeps
+    # near-misses and independent strategy families alive for realistic testing.
+    def pct_rank(col, ascending=True):
+        return df[col].rank(pct=True, ascending=ascending, method="average").fillna(0.0)
+
+    df["dev_rank"] = pct_rank("dev_net_mean")
+    df["sel_rank"] = pct_rank("sel_net_mean")
+    df["pf_rank"] = pct_rank("sel_pf")
+    df["stability_rank"] = pct_rank("selection_stability")
+    target_tpm = (MIN_TPM + MAX_TPM) / 2.0
+    df["frequency_fit"] = np.exp(
+        -((df["sel_tpm"] - target_tpm).abs() / max(target_tpm, 1.0))
+    ).clip(0.0, 1.0)
+    df["screen_score"] = (
+        0.30 * df["dev_rank"]
+        + 0.35 * df["sel_rank"]
+        + 0.15 * df["pf_rank"]
+        + 0.10 * df["stability_rank"]
+        + 0.10 * df["frequency_fit"]
+    )
+    df["positive_selection_signal"] = (
+        (df["dev_net_mean"] > 0)
+        & (df["sel_net_mean"] > 0)
+        & (df["sel_pf"] > 1.0)
+    )
+    return df.sort_values(
+        ["screen_score", "positive_selection_signal", "sel_net_mean"],
+        ascending=[False, False, False],
+    ).reset_index(drop=True)
+
+
+def select_realistic_rows(screen: pd.DataFrame) -> pd.DataFrame:
+    """Select a diverse realistic-test slate without making the screen a gate."""
+    if screen.empty:
+        return screen.copy()
+
+    eligible = screen[
+        (screen["dev_obs"] >= MIN_EVENTS)
+        & (screen["sel_obs"] >= MIN_EVENTS)
+        & (screen["sel_tpm"] <= MAX_SCREEN_TPM)
+    ].copy()
+    if eligible.empty:
+        return screen.head(REALISTIC_CANDIDATE_ROWS).copy()
+
+    ordered = eligible.sort_values(
+        ["screen_score", "positive_selection_signal", "sel_net_mean", "sel_pf"],
+        ascending=[False, False, False, False],
+    ).reset_index(drop=True)
+
+    chosen, family_counts, seen = [], {}, set()
+
+    # First pass covers independent strategy families.
+    for _, row in ordered.iterrows():
+        fam = str(row["family"])
+        if fam in family_counts:
+            continue
+        key = (row["variant"], int(row["horizon_days"]))
+        if key in seen:
+            continue
+        chosen.append(row)
+        seen.add(key)
+        family_counts[fam] = 1
+        if len(chosen) >= REALISTIC_CANDIDATE_ROWS:
+            break
+
+    # Second pass allows stronger families to contribute one additional setting.
+    if len(chosen) < REALISTIC_CANDIDATE_ROWS:
+        for _, row in ordered.iterrows():
+            fam = str(row["family"])
+            key = (row["variant"], int(row["horizon_days"]))
+            if key in seen or family_counts.get(fam, 0) >= MAX_FAMILY_REALISTIC:
+                continue
+            chosen.append(row)
+            seen.add(key)
+            family_counts[fam] = family_counts.get(fam, 0) + 1
+            if len(chosen) >= REALISTIC_CANDIDATE_ROWS:
+                break
+
+    out = pd.DataFrame(chosen)
+    if out.empty:
+        return ordered.head(REALISTIC_CANDIDATE_ROWS).copy()
+    out["realistic_selection_reason"] = out["positive_selection_signal"].map(
+        lambda x: "positive_screen_signal" if bool(x) else "diversity_or_near_miss_exploration"
+    )
+    return out.reset_index(drop=True)
 
 
 def basic_pass(r):
@@ -236,10 +328,19 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
     # Small, local neighborhood around horizon/stop; enough to detect a magic
     # single setting without exploding the research workload.
     neighbors = []
-    for h, sl in ((max(5, horizon-10), stop), (min(30, horizon+10), stop), (horizon, 0.08 if stop == 0.10 else 0.10)):
+    for h, sl in (
+        (max(1, horizon - 2), stop),
+        (min(max(SCREEN_HORIZONS), horizon + 2), stop),
+        (horizon, 0.08 if stop == 0.10 else 0.10),
+    ):
         if h == horizon and sl == stop:
             continue
-        r = backtest(name, v, op, hp, lp, cp, vp, universe, HOLDOUT_START, cp.index.max(), h, sl, lot_size=LOT_SIZE, regime_series=regime)
+        r = backtest(
+            name, v, op, hp, lp, cp, vp, universe,
+            HOLDOUT_START, cp.index.max(), h, sl,
+            lot_size=LOT_SIZE, reward_r=reward_r, risk_pct=risk_pct,
+            regime_series=regime,
+        )
         if r:
             neighbors.append({
                 "horizon": h, "stop": sl, "basic_pass": basic_pass(r),
@@ -267,15 +368,30 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
     stress_pass = sum(x["basic_pass"] for x in stress)
 
     research_candidate = bool(
-        dev["total_return"] > 0 and sel["total_return"] > 0 and val["total_return"] > 0 and hold["total_return"] > 0
-        and val["profit_factor"] > 1.0 and hold["profit_factor"] > 1.0
-        and val["max_drawdown"] >= -MAX_DD and hold["max_drawdown"] >= -MAX_DD
+        dev["total_return"] > 0
+        and sel["total_return"] > 0
+        and val["total_return"] > 0
+        and hold["total_return"] > 0
+        and val["profit_factor"] > 1.0
+        and hold["profit_factor"] > 1.0
+        and val["max_drawdown"] >= -MAX_DD
+        and hold["max_drawdown"] >= -MAX_DD
+        and val["risk_breach_count"] == 0
+        and hold["risk_breach_count"] == 0
         and MIN_TPM <= hold["trades_per_month"] <= MAX_TPM
-        and rep_pass and neighbor_pass >= 2 and stress_pass >= 2
+        and hold.get("broker_feasible_rm1000", False)
+        and rep_pass
+        and neighbor_pass >= 2
+        and stress_pass >= 2
     )
 
     return {
-        "pattern": name, "family": v["family"], "horizon_days": int(horizon), "stop_loss": float(stop), "reward_r": float(reward_r), "risk_pct": float(risk_pct),
+        "pattern": name,
+        "family": v["family"],
+        "horizon_days": int(horizon),
+        "stop_loss": float(stop),
+        "reward_r": None if reward_r is None else float(reward_r),
+        "risk_pct": None if risk_pct is None else float(risk_pct),
         "params": json.dumps(v["params"], sort_keys=True),
         "development": dev, "selection": sel, "validation": val, "holdout": hold, "full": full,
         "replication": reps, "replication_pass": rep_pass,
@@ -290,9 +406,16 @@ def flatten(r):
     row = {
         "pattern": r["pattern"], "family": r["family"], "horizon_days": r["horizon_days"], "stop_loss": r["stop_loss"],
         "params": r["params"], "research_candidate": r["research_candidate"],
-        "replication_pass": r["replication_pass"], "neighbor_pass_count": r["neighbor_pass_count"],
-        "neighbor_test_count": r["neighbor_test_count"], "stress_pass_count": r["stress_pass_count"],
-        "stress_test_count": r["stress_test_count"], "sustained_20pct_monthly_flag": r["sustained_20pct_monthly_flag"],
+        "replication_pass": r["replication_pass"],
+        "neighbor_pass_count": r["neighbor_pass_count"],
+        "neighbor_test_count": r["neighbor_test_count"],
+        "stress_pass_count": r["stress_pass_count"],
+        "stress_test_count": r["stress_test_count"],
+        "sustained_20pct_monthly_flag": r["sustained_20pct_monthly_flag"],
+        "broker_feasible_rm1000": r.get("broker_feasible_rm1000", False),
+        "broker_lot_size": r.get("broker_lot_size"),
+        "min_entry_order_value": r.get("min_entry_order_value"),
+        "max_entry_order_value": r.get("max_entry_order_value"),
     }
     for pfx in ("development","selection","validation","holdout","full"):
         x = r[pfx]
@@ -318,13 +441,12 @@ def main():
 
     screen = screen_candidates(variants, chosen, op, cp)
     screen.to_csv(EVENT_PATH, index=False)
-    screen.to_csv(OUT / "strategy_lab_selection.csv", index=False)
 
     results = []
     realistic_tests = []
-    if not screen.empty:
-        screened = screen[(screen["dev_net_mean"] > 0) & (screen["sel_net_mean"] > 0) & (screen["sel_pf"] >= MIN_PF)].copy()
-        screened = screened.sort_values(["screen_score","sel_net_mean","sel_pf"], ascending=False).head(TOP_REALISTIC_COUNT)
+    screened = select_realistic_rows(screen)
+    screened.to_csv(OUT / "strategy_lab_selection.csv", index=False)
+    if not screened.empty:
         for r in screened.itertuples(index=False):
             name = r.variant
             v = variants[name]
@@ -332,7 +454,7 @@ def main():
             # No RR is treated as inherently better; qualification remains evidence-based.
             for risk_pct in RISK_PCTS:
                 for rr in RR_VALUES:
-                    for stop in (0.06, 0.10):
+                    for stop in STOP_LOSSES:
                         ev = evaluate_candidate(
                             name, v, op, hp, lp, cp, vp, universe, regime,
                             int(r.horizon_days), stop, rr, risk_pct
@@ -409,6 +531,11 @@ def main():
             "max_drawdown": MAX_DD,
             "holdout_used_for_ranking": False,
             "20pct_monthly_is_alert_not_goal_gate": True,
+            "screen_is_non_binding": True,
+            "realistic_candidate_rows": REALISTIC_CANDIDATE_ROWS,
+            "max_family_realistic": MAX_FAMILY_REALISTIC,
+            "screen_horizons": list(SCREEN_HORIZONS),
+            "broker_reference": "Moomoo MY Bursa equities; official fee schedule mirrored in realistic_engine_v1.py",
         },
     }
     write_json(SUMMARY_PATH, summary)
@@ -429,7 +556,9 @@ def main():
         "search_round": cycle,
         "realistic_search_space_coverage": state["search_space_coverage"],
         "realistic_exceptional_20pct_monthly_alerts": len(alerts),
-        "candidates": len(screen), "robust_candidates": len(qualified),
+        "candidates": int(len(screened)),
+        "screen_rows": int(len(screen)),
+        "robust_candidates": len(qualified),
         "engine_sanity": read_json(OUT / "engine_sanity.json", {}).get("status") == "passed",
         "last_cycle_status": "completed",
         "next_action": "deeper_validation" if leader else "continue_rotating_search",
@@ -449,7 +578,7 @@ def main():
             "robust_out_of_sample": bool(leader),
             "drawdown_within_limit": bool(leader and leader.get("holdout_max_drawdown", -1) >= -MAX_DD),
             "trade_frequency_feasible": bool(leader and MIN_TPM <= leader.get("holdout_trades_per_month",0) <= MAX_TPM),
-            "broker_feasible_at_rm1000": False,
+            "broker_feasible_at_rm1000": bool(leader and leader.get("broker_feasible_rm1000", False)),
             "historical_shariah_compliance": True,
             "independent_replication": bool(leader and leader.get("replication_pass")),
             "forward_paper_validation": False,
@@ -458,14 +587,44 @@ def main():
         "note": "Search continues; no result is labeled best automatically.",
     }
     if leader:
-        raw = f'{leader["pattern"]}:{leader["horizon_days"]}:{leader["stop_loss"]}'.encode()
+        raw = (
+            f'{leader["pattern"]}:{leader["horizon_days"]}:{leader["stop_loss"]}:'
+            f'{leader.get("reward_r")}:{leader.get("risk_pct")}'
+        ).encode()
         evidence["candidate_id"] = f'SH-{int(hashlib.sha256(raw).hexdigest()[:8],16)%1_000_000:06d}'
         evidence["strategy"] = {
-            "pattern": leader["pattern"], "family": leader["family"],
-            "horizon_days": int(leader["horizon_days"]), "stop_loss": float(leader["stop_loss"]),
+            "pattern": leader["pattern"],
+            "family": leader["family"],
+            "horizon_days": int(leader["horizon_days"]),
+            "stop_loss": float(leader["stop_loss"]),
+            "reward_r": None if pd.isna(leader.get("reward_r")) else float(leader["reward_r"]),
+            "risk_pct": None if pd.isna(leader.get("risk_pct")) else float(leader["risk_pct"]),
             "params": json.loads(leader["params"]),
         }
-        evidence["holdout"] = {k: leader.get(f"holdout_{k}") for k in ("final_equity","total_return","cagr","geometric_monthly_return","max_drawdown","trade_count","trades_per_month","win_rate","profit_factor","risk_breach_count","median_monthly_return","positive_month_fraction")}
+        evidence["holdout"] = {
+            k: leader.get(f"holdout_{k}")
+            for k in (
+                "final_equity","total_return","cagr","geometric_monthly_return",
+                "max_drawdown","trade_count","trades_per_month","win_rate",
+                "profit_factor","risk_breach_count","median_monthly_return",
+                "positive_month_fraction","broker_feasible_rm1000",
+            )
+        }
+        evidence["validation"] = {
+            k: leader.get(f"validation_{k}")
+            for k in (
+                "final_equity","total_return","cagr","max_drawdown",
+                "trade_count","trades_per_month","win_rate","profit_factor",
+                "risk_breach_count",
+            )
+        }
+        evidence["robustness"] = {
+            "replication_pass": bool(leader.get("replication_pass", False)),
+            "neighbor_pass_count": int(leader.get("neighbor_pass_count", 0)),
+            "neighbor_test_count": int(leader.get("neighbor_test_count", 0)),
+            "stress_pass_count": int(leader.get("stress_pass_count", 0)),
+            "stress_test_count": int(leader.get("stress_test_count", 0)),
+        }
     write_json(OUT / "qualified_strategy_evidence.json", evidence)
     write_json(OUT / "strategy_lab_state.json", {
         "status": summary["status"], "engine_version": summary["engine_version"], "cycle": cycle,
