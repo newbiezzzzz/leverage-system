@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "decision_id": "D002",
+  "decision_id": "D003",
   "updated_at": "2026-10-04",
   "status": "LOCKED",
   "north_star": "Build an autonomous, cloud-based, income-producing system with near-zero owner operating effort. Use a proven trading edge as the foundation, then expand into multiple compatible trading horizons, instruments, markets, and investment assets.",
   "current_approved_approach": {
     "track": "strategy_hunter",
-    "objective": "First identify and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework; do not prematurely optimize for a single instrument. After the core edge is proven, map and adapt it by market and holding horizon for the Owner's broader trading and investing roadmap. Owner-mentioned strategies and instruments are seeds, never the search boundary.",
-    "reason": "Owner explicitly clarified that trading is the near-term priority, the best strategy must be found first, and multi-instrument/multi-horizon trading plus broader investing comes after the core edge is proven.",
+    "objective": "Find and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework. For the current phase, Leverage must focus only on strategy discovery, testing, robustness and proof; future instrument, market, trading-horizon and investment expansion is deferred until this objective is achieved. Owner-mentioned strategies are seeds, never the search boundary.",
+    "reason": "Owner explicitly confirmed that Leverage must focus only on finding and proving the best strategy first. All multi-instrument, multi-horizon and investment expansion is deferred until the core strategy objective is achieved.",
     "status": "ACTIVE"
   },
   "decision_rules": {
@@ -49,6 +49,12 @@
       "action": "OWNER_CLARIFICATION_AND_ROADMAP_LOCK",
       "date": "2026-10-04",
       "reason": "Owner clarified the long-term trading/investing roadmap while explicitly keeping the current priority on finding and proving the best core strategy first."
+    },
+    {
+      "decision_id": "D003",
+      "action": "CURRENT_PHASE_ONLY",
+      "date": "2026-10-04",
+      "reason": "Owner explicitly narrowed current execution to strategy discovery and validation only; future expansion remains deferred."
     }
   ],
   "reviews": [
@@ -69,6 +75,15 @@
       "problem": "The prior mission wording was too narrow because it defined the target as a long-only stock strategy, while the Owner's actual roadmap includes FCPO scalping, intraday and swing trading across Malaysia/global Shariah-compliant markets, and longer-term investing.",
       "action": "Keep Strategy Hunter as the active track and the core-strategy-first phase, while persistently recording the later expansion roadmap. Do not dilute current validation gates by prematurely adding every asset class.",
       "replacement_justified": true
+    },
+    {
+      "review_id": "R003",
+      "date": "2026-10-04",
+      "classification": "FOCUS",
+      "current_direction": "KEEP_CORE_STRATEGY_ONLY",
+      "problem": "Future expansion could dilute the research effort before the core trading edge is proven.",
+      "action": "Freeze future expansion work until the core strategy achievement gates are passed.",
+      "replacement_justified": false
     }
   ]
 }
