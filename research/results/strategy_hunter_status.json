@@ -1,15 +1,15 @@
 {
-  "checked_at": "2026-10-04T00:45:40.791385+00:00",
-  "status": "queued",
-  "run_id": 37165927967,
-  "started_at": "2026-10-04T00:45:36Z",
-  "updated_at": "2026-10-04T00:45:36Z",
+  "checked_at": "2026-10-04T06:23:54.957077+00:00",
+  "status": "in_progress",
+  "run_id": 37182674839,
+  "started_at": "2026-10-04T06:23:42Z",
+  "updated_at": "2026-10-04T06:23:47Z",
   "jobs": [
     {
       "name": "research",
-      "status": "queued",
+      "status": "in_progress",
       "conclusion": "\u2014",
-      "current_step": "\u2014"
+      "current_step": "Install strategy dependencies"
     }
   ],
   "conclusion": "\u2014"
