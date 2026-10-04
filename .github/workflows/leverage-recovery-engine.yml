@@ -168,11 +168,15 @@ jobs:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-cycle.yml --ref main
 
-      - name: Escalate to AI repair
+      - name: Escalate to dual-agent AI repair
         if: steps.decision.outputs.action == 'ai_repair'
         env:
-          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
-        run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run leverage-ai-repair.yml --ref main \
+            -f target_run_id="${{ github.event.workflow_run.id || '' }}" \
+            -f cycle="${{ inputs.cycle || 'current' }}" \
+            -f stage="${{ inputs.stage || 'strategy_lab' }}"
 
       - name: Recovery result
         run: echo "Recovery level completed."
