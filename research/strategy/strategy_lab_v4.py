@@ -308,7 +308,11 @@ def main():
     regime = make_regime_series(cp, universe)
 
     state = read_json(STATE_PATH, {})
-    cycle = int(state.get("cycle", 0)) + 1
+    progress = read_json(OUT / "strategy_hunter_progress.json", {})
+    previous_cycle = int(progress.get("cycle", state.get("cycle", 0)))
+    # Preserve the cycle number while the prior core cycle is degraded. A new
+    # cycle number represents a successfully completed research iteration.
+    cycle = previous_cycle if str(progress.get("last_cycle_status", "")) == "degraded" else previous_cycle + 1
     variants = __import__("strategy_lab_v3").build_variants(op, hp, lp, cp, vp, universe, ind)
     chosen = select_batch(variants, state)
 
