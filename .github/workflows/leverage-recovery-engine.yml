@@ -62,6 +62,23 @@ jobs:
           latest_cycle = cycle[0] if cycle else None
           latest_data = data[0] if data else None
 
+          # Published degraded state is a real recovery signal even when the
+          # workflow conclusion is "success" because evidence publication uses
+          # if: always(). Treat the current core-stage repair queue as the
+          # authoritative failure episode.
+          published_degraded = False
+          repair_queue = {}
+          try:
+              with open("research/results/research_cycle_state.json", encoding="utf-8") as f:
+                  published_degraded = json.load(f).get("status") == "degraded"
+          except Exception:
+              pass
+          try:
+              with open("research/results/repair_queue.json", encoding="utf-8") as f:
+                  repair_queue = json.load(f)
+          except Exception:
+              repair_queue = {}
+
           target = None
           target_name = None
           if failed(latest_cycle):
@@ -71,6 +88,15 @@ jobs:
 
           if active(cycle) or active(data):
               action, reason = "none", "research_already_running"
+          elif published_degraded:
+              core_items = [x for x in repair_queue.get("items", []) if x.get("tier") == "core"]
+              attempts = max([int(x.get("attempts", 0)) for x in core_items] or [0])
+              if attempts >= 3:
+                  action, reason = "ai_repair", "degraded_core_after_three_retries"
+              else:
+                  action, reason = "retry_cycle", "degraded_core_retry"
+              print("published_degraded:", True)
+              print("core_retry_attempts:", attempts)
           elif target is None:
               action, reason = "none", "no_failed_research_run"
           else:
