@@ -51,6 +51,7 @@ jobs:
           cycle = runs("strategy-hunter-cycle.yml")
           data = runs("strategy-hunter-data-full.yml")
           heal = runs("strategy-hunter-self-heal.lock.yml")
+          ai_repair = runs("leverage-ai-repair.yml")
           current_main = api(f"repos/{repo}/git/ref/heads/main").get("object", {}).get("sha")
 
           def active(items):
@@ -100,8 +101,8 @@ jobs:
           if failed(latest_data) and (target is None or latest_data.get("updated_at", "") > target.get("updated_at", "")):
               target, target_name = latest_data, "data"
 
-          if active(cycle) or active(data):
-              action, reason = "none", "research_already_running"
+          if active(cycle) or active(data) or active(ai_repair):
+              action, reason = "none", "research_or_ai_repair_already_running"
           elif published_degraded:
               core_items = [x for x in repair_queue.get("items", []) if x.get("tier") == "core"]
               attempts = max([int(x.get("attempts", 0)) for x in core_items] or [0])
