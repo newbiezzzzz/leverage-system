@@ -32,6 +32,10 @@ jobs:
       - name: Install strategy dependencies
         run: pip install -r research/strategy/requirements.txt
 
+      - name: Compile Strategy Lab V4 before research
+        run: |
+          python -m py_compile             research/strategy/strategy_lab_v4.py             research/strategy/realistic_engine_v1.py             research/strategy/pipeline_orchestrator.py
+
       - name: Run deterministic preflight and engine sanity
         run: python research/strategy/preflight.py
 
