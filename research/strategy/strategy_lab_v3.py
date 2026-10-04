@@ -218,7 +218,7 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
             for trend_name, trend in (("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
                 add(
                     f"relstrength_q{int(relq*100)}_lb{lb}_{trend_name}",
-                    liquid & (rel20 >= q) & (mom > 0) & (cp > trend),
+                    liquid & rel20.ge(q, axis=0) & (mom > 0) & (cp > trend),
                     rel20,
                     "relative_strength",
                     {"relative_quantile": relq, "momentum_lb": lb, "trend": trend_name},
@@ -229,7 +229,7 @@ def build_variants(op, hp, lp, cp, vp, universe, ind):
         for trend_name, trend in (("ma50", ind["ma50"]), ("ma100", ind["ma100"]), ("ma200", ind["ma200"])):
             add(
                 f"loser_reversal_{name}_{trend_name}",
-                liquid & (mom5 <= q) & (cp > trend) & (ind["avg_dollar"] >= 500_000.0),
+                liquid & mom5.le(q, axis=0) & (cp > trend) & (ind["avg_dollar"] >= 500_000.0),
                 score,
                 "loser_reversal",
                 {"loser_quantile": quantile, "trend": trend_name},
