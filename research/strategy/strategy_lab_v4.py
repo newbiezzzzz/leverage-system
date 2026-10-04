@@ -330,7 +330,7 @@ def main():
                 for rr in RR_VALUES:
                     for stop in (0.06, 0.10):
                         ev = evaluate_candidate(
-                        name, v, op, hp, lp, cp, vp, universe, regime,
+                            name, v, op, hp, lp, cp, vp, universe, regime,
                             int(r.horizon_days), stop, rr, risk_pct
                         )
                         if ev:
