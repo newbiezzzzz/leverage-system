@@ -2,31 +2,33 @@
   "schema_version": 3,
   "mission": "Leverage",
   "active_track": "strategy_hunter",
-  "current_phase": "FOUNDATION_STRATEGY_DISCOVERY",
-  "objective": "First identify and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework; do not prematurely optimize for a single instrument. After the core edge is proven, map and adapt it by market and holding horizon for the Owner's broader trading and investing roadmap. Owner-mentioned strategies and instruments are seeds, never the search boundary.",
+  "current_phase": "CORE_STRATEGY_DISCOVERY_ONLY",
+  "objective": "Find and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework. For the current phase, Leverage must focus only on strategy discovery, testing, robustness and proof; future instrument, market, trading-horizon and investment expansion is deferred until this objective is achieved. Owner-mentioned strategies are seeds, never the search boundary.",
+  "current_scope": {
+    "only_active_work": "strategy discovery and validation",
+    "deferred_until_core_strategy_achieved": [
+      "FCPO scalping",
+      "Malaysia intraday",
+      "global Shariah-compliant intraday and swing trading",
+      "long swing and position trading",
+      "unit trusts",
+      "property",
+      "gold",
+      "other investments"
+    ],
+    "do_not_split_research_effort_into_future_asset_classes": true
+  },
   "long_term_roadmap": {
     "phase_1": "Find and prove the strongest core trading edge before expanding.",
     "phase_2": {
       "name": "SCALPING",
-      "primary_instrument": "FCPO",
-      "requirements": [
-        "instrument-specific microstructure/data",
-        "Shariah compliance verification",
-        "fees/slippage/margin realism",
-        "separate intraday risk controls"
-      ]
+      "primary_instrument": "FCPO"
     },
     "phase_3": {
       "name": "INTRADAY_AND_SHORT_SWING",
       "markets": [
         "Malaysia",
         "global markets"
-      ],
-      "requirements": [
-        "historical Shariah screening by market/date",
-        "market-specific execution costs",
-        "long and short eligibility where Shariah permits",
-        "timeframe-specific validation"
       ]
     },
     "phase_4": {
@@ -34,11 +36,6 @@
       "markets": [
         "Malaysia",
         "global markets"
-      ],
-      "requirements": [
-        "multi-year out-of-sample robustness",
-        "regime robustness",
-        "portfolio/capital scaling"
       ]
     },
     "phase_5": {
@@ -48,11 +45,6 @@
         "property",
         "gold",
         "other suitable investment opportunities"
-      ],
-      "requirements": [
-        "return/risk/cost/liquidity/tax analysis",
-        "Shariah compliance where applicable",
-        "separate investment framework from active trading"
       ]
     }
   },
