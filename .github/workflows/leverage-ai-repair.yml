@@ -27,247 +27,165 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  readiness:
+  dual_agent_repair:
     runs-on: ubuntu-latest
-    outputs:
-      codex_ready: ${{ steps.check.outputs.codex_ready }}
-      claude_ready: ${{ steps.check.outputs.claude_ready }}
+    timeout-minutes: 120
+    env:
+      # Prefer the existing Leverage Copilot credential; fall back to the
+      # built-in workflow token where repository policy allows Copilot CLI.
+      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN || github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      TARGET_RUN_ID: ${{ inputs.target_run_id }}
+      TARGET_CYCLE: ${{ inputs.cycle }}
+      TARGET_STAGE: ${{ inputs.stage }}
+
     steps:
-      - id: check
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CODEX_API_KEY: ${{ secrets.CODEX_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Verify Copilot authentication
         run: |
-          if [ -n "${OPENAI_API_KEY:-}" ] || [ -n "${CODEX_API_KEY:-}" ]; then
-            echo "codex_ready=true" >> "$GITHUB_OUTPUT"
+          set -euo pipefail
+          copilot --help >/dev/null
+          echo "Copilot CLI installed."
+          if [ -n "${COPILOT_GITHUB_TOKEN:-}" ]; then
+            echo "Copilot credential is available."
           else
-            echo "codex_ready=false" >> "$GITHUB_OUTPUT"
-          fi
-          if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
-            echo "claude_ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "claude_ready=false" >> "$GITHUB_OUTPUT"
+            echo "No Copilot credential is available."
+            exit 1
           fi
 
-  codex_repair:
-    needs: readiness
-    if: needs.readiness.outputs.codex_ready == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-      - name: Select Codex credential
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          CODEX_API_KEY: ${{ secrets.CODEX_API_KEY }}
-        run: |
-          if [ -n "${CODEX_API_KEY:-}" ]; then
-            echo "OPENAI_API_KEY_FOR_CODEX=${CODEX_API_KEY}" >> "$GITHUB_ENV"
-          else
-            echo "OPENAI_API_KEY_FOR_CODEX=${OPENAI_API_KEY}" >> "$GITHUB_ENV"
-          fi
-      - name: Run Codex repair worker
+      - name: Codex repair worker
         id: codex
-        uses: openai/codex-action@v1
-        with:
-          openai-api-key: ${{ env.OPENAI_API_KEY_FOR_CODEX }}
-          permission-profile: ":workspace"
-          output-file: codex-final.txt
-          prompt: |
-            You are Leverage's senior engineering repair worker.
-            Repair the current Strategy Hunter failure. This is NOT a request
-            to redesign the trading strategy or loosen any research gate.
-
-            Context:
-            - Repository: ${{ github.repository }}
-            - Target Actions run: ${{ inputs.target_run_id }}
-            - Research cycle: ${{ inputs.cycle }}
-            - Failed stage: ${{ inputs.stage }}
-
-            Investigate first. Inspect the current repository, persistent
-            research state, repair queue, workflow files, recent commits, and
-            the exact failing run/logs available through GitHub CLI.
-            Find the root cause, reproduce it narrowly, and make the smallest
-            safe code/workflow repair.
-
-            Hard requirements:
-            - Do not place live trades or orders.
-            - Do not weaken Shariah, cost, drawdown, trade-frequency,
-              lookahead, survivorship, or qualification gates.
-            - Do not fabricate successful test evidence.
-            - Preserve the intended meaning that a degraded core cycle is
-              recovered before a new cycle number is created.
-            - The repair must enable real Strategy Lab V4/RR backtests to run.
-            - Run targeted verification plus Python compilation/preflight.
-            - Modify source/workflow files only; do not commit or push.
-            - Leave the workspace with the proposed repair so a second agent
-              can independently review it.
-
-            At the end, summarize root cause, files changed, and verification
-            performed.
-      - name: Export Codex patch
-        run: |
-          git diff --binary > codex.patch
-          test -s codex.patch
-      - name: Upload Codex proposal
-        uses: actions/upload-artifact@v4
-        with:
-          name: codex-repair-proposal
-          path: |
-            codex.patch
-            codex-final.txt
-          retention-days: 3
-
-  claude_review:
-    needs: [readiness, codex_repair]
-    if: always() && needs.readiness.outputs.claude_ready == 'true' && (needs.codex_repair.result == 'success' || needs.codex_repair.result == 'skipped' || needs.codex_repair.result == 'failure')
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-      - name: Download Codex proposal
-        if: needs.codex_repair.result == 'success'
         continue-on-error: true
-        uses: actions/download-artifact@v5
-        with:
-          name: codex-repair-proposal
-          path: /tmp/codex
-      - name: Apply Codex proposal
+        env:
+          COPILOT_MODEL: gpt-5.3-codex
         run: |
-          if [ -s /tmp/codex/codex.patch ]; then
-            git apply --binary /tmp/codex/codex.patch
+          set -o pipefail
+          copilot             -p "You are Leverage's senior Codex repair worker.
+
+Repository: ${GITHUB_REPOSITORY}
+Target Actions run: ${TARGET_RUN_ID}
+Research cycle: ${TARGET_CYCLE}
+Failed stage: ${TARGET_STAGE}
+
+Investigate the actual Strategy Hunter failure before changing anything.
+Inspect the latest research state, repair queue, workflow files, recent
+commits, and relevant source. Use GitHub CLI/API when needed to inspect the
+target workflow run and logs.
+
+Your job is to restore autonomous Strategy Hunter testing, especially the
+Strategy Lab V4/RR execution path.
+
+Rules:
+- Do not place live trades or orders.
+- Do not weaken Shariah rules, cost assumptions, drawdown limits,
+  trade-frequency gates, data QA, lookahead protection, survivorship checks,
+  or candidate qualification.
+- Do not fabricate evidence or result files.
+- Preserve the rule that a degraded core cycle must be recovered before a new
+  cycle number is created.
+- Reproduce the failure narrowly when possible.
+- Make the smallest safe repair.
+- Run targeted checks, Python compilation, and Strategy Hunter preflight.
+- Do not commit or push changes. Leave the repaired workspace for Claude to
+  independently review.
+
+Report root cause, changes, and verification in your final response."             --model gpt-5.3-codex             --no-ask-user             --allow-tool='write,shell'             --secret-env-vars='COPILOT_GITHUB_TOKEN,GITHUB_TOKEN'             --output-format=text             2>&1 | tee codex-output.txt
+
+      - name: Claude independent review and repair
+        id: claude
+        continue-on-error: true
+        env:
+          COPILOT_MODEL: claude-sonnet-4.6
+        run: |
+          set -o pipefail
+          copilot             -p "You are Leverage's independent senior Claude engineering reviewer.
+
+Repository: ${GITHUB_REPOSITORY}
+Target Actions run: ${TARGET_RUN_ID}
+Research cycle: ${TARGET_CYCLE}
+Failed stage: ${TARGET_STAGE}
+
+A Codex worker has already investigated and may have changed the working tree.
+Do NOT trust its diagnosis automatically. Independently inspect the failure,
+the current working tree, repository evidence, and Strategy Hunter state.
+Correct, complete, or replace the Codex repair where necessary.
+
+The objective is to restore real Strategy Lab V4/RR backtesting and autonomous
+research continuation.
+
+Rules:
+- Do not place live trades or orders.
+- Never weaken Shariah, drawdown, cost, trade-frequency, data-integrity,
+  lookahead, survivorship, or candidate-qualification protections.
+- Never fabricate successful test evidence.
+- Preserve degraded-cycle recovery semantics.
+- Run targeted reproduction, Python compilation, Strategy Hunter preflight,
+  and relevant narrow tests.
+- Make only the smallest safe changes.
+- Do not commit or push changes.
+
+Review the Codex output at codex-output.txt when useful, but independently
+validate it. Finish with root cause, accepted/rejected changes, and
+verification evidence."             --model claude-sonnet-4.6             --no-ask-user             --allow-tool='write,shell'             --secret-env-vars='COPILOT_GITHUB_TOKEN,GITHUB_TOKEN'             --output-format=text             2>&1 | tee claude-output.txt
+
+      - name: Verify repaired workspace
+        run: |
+          set -euo pipefail
+          python -m py_compile             research/strategy/strategy_lab_v4.py             research/strategy/realistic_engine_v1.py             research/strategy/pipeline_orchestrator.py             research/strategy/preflight.py
+          pip install -r research/strategy/requirements.txt
+          python research/strategy/preflight.py
+
+      - name: Determine whether repair exists
+        id: diff
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No source changes were produced."
           else
-            echo "No Codex patch available; Claude will perform an independent repair."
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat
           fi
-      - name: Run Claude repair/review worker
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: |
-            --max-turns 40
-          prompt: |
-            You are Leverage's independent senior engineer and adversarial
-            reviewer. A Codex worker may have proposed a repair in the current
-            workspace.
 
-            Context:
-            - Repository: ${{ github.repository }}
-            - Target Actions run: ${{ inputs.target_run_id }}
-            - Research cycle: ${{ inputs.cycle }}
-            - Failed stage: ${{ inputs.stage }}
-
-            Independently inspect the root cause. Review any Codex changes
-            rather than trusting them. Correct, complete, or replace them when
-            necessary. The objective is to restore autonomous Strategy Hunter
-            testing, specifically the Strategy Lab V4/RR path.
-
-            Requirements:
-            - No live trading or orders.
-            - Never relax risk, Shariah, data integrity, cost, lookahead,
-              survivorship, or candidate qualification protections.
-            - Verify the actual failure mechanism before changing code.
-            - Run targeted reproduction, Python compilation, preflight, and any
-              relevant narrow tests.
-            - Do not create fake result files or claim a test passed without
-              executing it.
-            - Preserve the degraded-cycle recovery semantics.
-            - Make only the smallest safe changes.
-            - Do not commit or push; leave the repaired workspace for the
-              deterministic verification job.
-
-            Finish with a concise summary of the root cause, reviewed changes,
-            and verification evidence.
-      - name: Export final repaired patch
-        run: |
-          git diff --binary > repaired.patch
-          if [ ! -s repaired.patch ]; then
-            echo "Claude produced no source changes."
-          fi
-          git diff --stat
-      - name: Upload final repair
-        uses: actions/upload-artifact@v4
-        with:
-          name: claude-repaired-proposal
-          path: repaired.patch
-          if-no-files-found: ignore
-          retention-days: 3
-
-  verify_and_pr:
-    needs: [readiness, codex_repair, claude_review]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 35
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-      - name: Download final repair patch
-        if: needs.claude_review.result == 'success'
-        continue-on-error: true
-        uses: actions/download-artifact@v5
-        with:
-          name: claude-repaired-proposal
-          path: /tmp/claude
-      - name: Download Codex patch fallback
-        if: needs.claude_review.result != 'success' && needs.codex_repair.result == 'success'
-        continue-on-error: true
-        uses: actions/download-artifact@v5
-        with:
-          name: codex-repair-proposal
-          path: /tmp/codex
-      - name: Apply best available repair
-        run: |
-          if [ -s /tmp/claude/repaired.patch ]; then
-            git apply --binary /tmp/claude/repaired.patch
-          elif [ -s /tmp/codex/codex.patch ]; then
-            git apply --binary /tmp/codex/codex.patch
-          else
-            echo "No AI repair patch is available."
-            exit 2
-          fi
-      - name: Compile repaired Strategy Hunter
-        run: |
-          python -m py_compile             research/strategy/strategy_lab_v4.py             research/strategy/realistic_engine_v1.py             research/strategy/pipeline_orchestrator.py
-      - name: Install strategy dependencies
-        run: pip install -r research/strategy/requirements.txt
-      - name: Run repaired preflight
-        run: python research/strategy/preflight.py
-      - name: Create verified self-heal PR
+      - name: Create verified self-heal branch and PR
+        if: steps.diff.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if git diff --quiet; then
-            echo "Verification passed but no source changes remain."
-            exit 3
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           branch="leverage-self-heal/dual-agent-${GITHUB_RUN_ID}"
           git switch -c "$branch"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/strategy .github/workflows control_plane
           git commit -m "fix: dual-agent repair for Strategy Hunter"
           git push origin "$branch"
-          gh pr create             --repo "$GITHUB_REPOSITORY"             --base main             --head "$branch"             --title "[Leverage Self-Heal] Dual-agent Strategy Hunter repair"             --body "Automated repair produced by Codex and independently reviewed by Claude.
+          gh pr create             --repo "${GITHUB_REPOSITORY}"             --base main             --head "$branch"             --title "[Leverage Self-Heal] Codex + Claude Strategy Hunter repair"             --body "Automated dual-agent repair.
 
-          Target run: ${{ inputs.target_run_id }}
-          Cycle: ${{ inputs.cycle }}
-          Stage: ${{ inputs.stage }}
+Target run: ${TARGET_RUN_ID}
+Cycle: ${TARGET_CYCLE}
+Stage: ${TARGET_STAGE}
 
-          Verification: Python compilation, dependency installation, and Strategy Hunter preflight passed.
-          Deterministic Self-Heal Repair Gate must still pass before automatic merge."
+Codex investigated and proposed the first repair. Claude independently reviewed
+and corrected the working tree. Deterministic compilation and Strategy Hunter
+preflight passed before this PR was created.
 
-  no_agent_available:
-    needs: readiness
-    if: needs.readiness.outputs.codex_ready != 'true' && needs.readiness.outputs.claude_ready != 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Record missing AI worker credentials
+The normal Self-Heal Repair Gate must still pass before merge."
+
+      - name: Record agent result
+        if: always()
         run: |
-          echo "Neither Codex nor Claude credentials are configured."
-          echo "The AI repair workers are installed but cannot execute until an AI provider credential is configured in GitHub Actions."
+          echo "Codex exit: ${{ steps.codex.outcome }}"
+          echo "Claude exit: ${{ steps.claude.outcome }}"
+          if [ -f codex-output.txt ]; then
+            tail -80 codex-output.txt
+          fi
+          if [ -f claude-output.txt ]; then
+            tail -80 claude-output.txt
+          fi
