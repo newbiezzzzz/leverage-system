@@ -46,7 +46,7 @@ MAX_SCREEN_TPM = 40.0
 MAX_DD = 0.10
 MIN_TPM = 5.0
 MAX_TPM = 20.0
-RR_VALUES = (1.0, 1.5, 2.0, 3.0, 4.0)
+RR_VALUES = (0.50, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0)
 RISK_PCTS = (0.03, 0.04, 0.05, 0.06)
 
 
@@ -329,13 +329,13 @@ def main():
             for risk_pct in RISK_PCTS:
                 for rr in RR_VALUES:
                     for stop in (0.06, 0.10):
-                    ev = evaluate_candidate(
+                        ev = evaluate_candidate(
                         name, v, op, hp, lp, cp, vp, universe, regime,
-                        int(r.horizon_days), stop, rr, risk_pct
-                    )
-                    if ev:
-                        results.append(ev)
-                        realistic_tests.append((name, int(r.horizon_days), stop, rr, risk_pct))
+                            int(r.horizon_days), stop, rr, risk_pct
+                        )
+                        if ev:
+                            results.append(ev)
+                            realistic_tests.append((name, int(r.horizon_days), stop, rr, risk_pct))
 
     bt_df = pd.DataFrame([flatten(x) for x in results])
     bt_df.to_csv(BT_PATH, index=False)
