@@ -17587,7 +17587,7 @@
     {
       "strategy": "momentum",
       "entry_date": "2026-10-01",
-      "exit_date": "2026-10-01",
+      "exit_date": "2026-10-02",
       "symbol": "7498.KL",
       "entry_price": 1.0099999904632568,
       "exit_price": 1.0099999904632568,
@@ -17596,7 +17596,7 @@
       "entry_fee": 0.0,
       "exit_fee": 0.0,
       "net_pnl": 0.0,
-      "exit_reason": "final_close"
+      "exit_reason": "signal"
     }
   ],
   "trend": [
@@ -34455,6 +34455,20 @@
       "exit_fee": 0.0,
       "net_pnl": 0.019999980926513672,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "trend",
+      "entry_date": "2026-10-02",
+      "exit_date": "2026-10-02",
+      "symbol": "7498.KL",
+      "entry_price": 1.0099999904632568,
+      "exit_price": 1.0099999904632568,
+      "shares": 2,
+      "gross_pnl": 0.0,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": 0.0,
+      "exit_reason": "final_close"
     }
   ],
   "breakout": [
@@ -50655,6 +50669,20 @@
       "exit_fee": 0.0,
       "net_pnl": 24.359976768493112,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "breakout",
+      "entry_date": "2026-10-02",
+      "exit_date": "2026-10-02",
+      "symbol": "7498.KL",
+      "entry_price": 1.0099999904632568,
+      "exit_price": 1.0099999904632568,
+      "shares": 4751,
+      "gross_pnl": 0.0,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": 0.0,
+      "exit_reason": "final_close"
     }
   ],
   "shock_reaction": [
@@ -145111,6 +145139,20 @@
       "exit_fee": 0.0,
       "net_pnl": 1.984998106956438,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "breakout_volume",
+      "entry_date": "2026-10-02",
+      "exit_date": "2026-10-02",
+      "symbol": "7498.KL",
+      "entry_price": 1.0099999904632568,
+      "exit_price": 1.0099999904632568,
+      "shares": 388,
+      "gross_pnl": 0.0,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": 0.0,
+      "exit_reason": "final_close"
     }
   ],
   "high_volume_reversal": [
