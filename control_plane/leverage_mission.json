@@ -2,19 +2,56 @@
   "schema_version": 2,
   "mission": "Leverage",
   "active_track": "strategy_hunter",
-  "objective": "Find a repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk.",
+  "objective": "Continuously discover and validate the strongest repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk; owner-mentioned strategies are seeds, never the search boundary.",
   "constraints": {
     "starting_capital_rm": 1000,
     "one_active_position": true,
-    "planned_max_drawdown": 0.10,
-    "target_trades_per_month": [5, 20],
+    "planned_max_drawdown": 0.1,
+    "target_trades_per_month": [
+      5,
+      20
+    ],
     "shariah_required": true,
-    "execution_universe": ["Moomoo", "Phillip Nova"],
+    "execution_universe": [
+      "Moomoo",
+      "Phillip Nova"
+    ],
     "research_only_until_all_gates_pass": true,
     "live_money_movement": false,
     "costs_must_be_included": true,
     "survivorship_bias_must_be_tested": true,
-    "lookahead_bias_must_be_tested": true
+    "lookahead_bias_must_be_tested": true,
+    "strategy_discovery_policy": {
+      "owner_examples_are_nonbinding": true,
+      "open_ended_research": true,
+      "external_research_required": true,
+      "autonomous_hypothesis_generation": true,
+      "must_research_known_families": [
+        "EMA",
+        "SMA",
+        "Ichimoku",
+        "Donchian",
+        "RSI",
+        "MACD",
+        "Bollinger",
+        "Stochastic",
+        "ATR",
+        "ADX",
+        "OBV",
+        "price_action",
+        "breakout",
+        "momentum",
+        "mean_reversion",
+        "relative_strength",
+        "volatility",
+        "regime",
+        "Wyckoff"
+      ],
+      "must_allow_unknown_combinations": true,
+      "rr_must_be_discovered": true,
+      "timeframe_must_be_discovered_when_data_supports_it": true,
+      "never_declare_best_from_in_sample_or_single_search_winner": true
+    }
   },
   "achievement_gates": [
     "data_integrity",
