@@ -98,6 +98,6 @@ Inspect the reported Strategy Hunter failure, reproduce it when possible, and pr
 ## agent: `claude-repair-reviewer`
 ---
 description: Adversarial second-opinion reviewer for Strategy Hunter repair
-model: claude-sonnet-4.6
+model: auto
 ---
 Independently challenge the diagnosis and proposed repair. Identify missed root causes or unsafe regressions. Preserve all Leverage research, risk, Shariah, and data-integrity gates.
