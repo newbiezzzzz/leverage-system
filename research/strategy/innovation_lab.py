@@ -199,6 +199,110 @@ def build_discovery_variants(op, hp, lp, cp, vp, universe, ind):
             {"lower_wick_ratio_min": 0.20, "close_location_min": 0.60, "volume_ratio_max": 2.0, "shape": wick},
         )
 
+
+    # Explicitly research major indicator families mentioned by the Owner,
+    # while keeping them as members of the open research universe (not a boundary).
+    # Ichimoku: causal cloud/Tenkan/Kijun/Chikou-style signals.
+    for conv, base, span in ((9, 26, 52), (10, 30, 60), (20, 60, 120)):
+        tenkan = (hp.rolling(conv, min_periods=conv).max() + lp.rolling(conv, min_periods=conv).min()) / 2.0
+        kijun = (hp.rolling(base, min_periods=base).max() + lp.rolling(base, min_periods=base).min()) / 2.0
+        span_b = (hp.rolling(span, min_periods=span).max() + lp.rolling(span, min_periods=span).min()) / 2.0
+        span_a = (tenkan + kijun) / 2.0
+        cloud_top = pd.concat([span_a, span_b], axis=1).groupby(level=1, axis=1).max()
+        cloud_bottom = pd.concat([span_a, span_b], axis=1).groupby(level=1, axis=1).min()
+        chikou_confirm = cp > cp.shift(base)
+        tk_cross = (tenkan > kijun) & (tenkan.shift(1) <= kijun.shift(1))
+        for cloud_filter, label in (
+            ((cp > cloud_top), "above_cloud"),
+            ((cp > cloud_top) & chikou_confirm, "above_cloud_chikou"),
+            ((cp > cloud_top) & (tenkan > kijun), "above_cloud_tk"),
+        ):
+            add(
+                f"ichimoku_{conv}_{base}_{span}_{label}",
+                liquid & cloud_filter,
+                cp / cloud_top.replace(0, np.nan) - 1.0,
+                "ichimoku",
+                {"conversion": conv, "base": base, "span": span, "confirmation": label},
+            )
+        add(
+            f"ichimoku_{conv}_{base}_{span}_tk_cross",
+            liquid & tk_cross & (cp > cloud_top) & chikou_confirm,
+            cp / kijun.replace(0, np.nan) - 1.0,
+            "ichimoku",
+            {"conversion": conv, "base": base, "span": span, "confirmation": "tk_cross_cloud_chikou"},
+        )
+
+    # Donchian: breakout lengths and channel-position variants.
+    for n in (10, 20, 40, 55, 100):
+        upper = hp.shift(1).rolling(n, min_periods=n).max()
+        lower = lp.shift(1).rolling(n, min_periods=n).min()
+        mid = (upper + lower) / 2.0
+        width = (upper - lower) / cp.replace(0, np.nan)
+        for confirm, label in (
+            (cp > upper, "upper_break"),
+            ((cp > upper) & (vr20 >= 1.2), "upper_break_volume"),
+            ((cp > upper) & (cp > ma200), "upper_break_trend"),
+            ((cp > upper) & (cp > ma200) & (vr20 >= 1.2), "upper_break_trend_volume"),
+        ):
+            add(
+                f"donchian_{n}_{label}",
+                liquid & confirm,
+                cp / upper.replace(0, np.nan) - 1.0,
+                "donchian_breakout",
+                {"channel": n, "confirmation": label},
+            )
+        add(
+            f"donchian_{n}_mid_reclaim",
+            liquid & (cp > mid) & (cp.shift(1) <= mid.shift(1)) & (cp > ma100),
+            cp / mid.replace(0, np.nan) - 1.0,
+            "donchian_reclaim",
+            {"channel": n, "confirmation": "mid_reclaim"},
+        )
+
+    # EMA trend family: this is the user's example, but it is tested as one
+    # family among many rather than becoming the search boundary.
+    for fast, slow in ((5, 20), (9, 21), (10, 30), (20, 50), (50, 200)):
+        ema_f = cp.ewm(span=fast, adjust=False, min_periods=fast).mean()
+        ema_s = cp.ewm(span=slow, adjust=False, min_periods=slow).mean()
+        cross = (ema_f > ema_s) & (ema_f.shift(1) <= ema_s.shift(1))
+        add(
+            f"ema_{fast}_{slow}_cross",
+            liquid & cross & (cp > ema_s),
+            ema_f / ema_s.replace(0, np.nan) - 1.0,
+            "ema_trend",
+            {"fast": fast, "slow": slow, "entry": "fresh_cross"},
+        )
+        add(
+            f"ema_{fast}_{slow}_trend",
+            liquid & (ema_f > ema_s) & (cp > ema_s) & (mom20 > 0),
+            ema_f / ema_s.replace(0, np.nan) - 1.0,
+            "ema_trend",
+            {"fast": fast, "slow": slow, "entry": "trend_hold"},
+        )
+
+    # RSI should be tested as both mean-reversion and momentum/trend confirmation.
+    # (The earlier discovery layer already has RSI; these variants explicitly
+    # include cross/reclaim semantics rather than only static thresholds.)
+    for n in (7, 14, 21):
+        rsi = _rsi(cp, n)
+        for level in (20, 25, 30, 35, 40):
+            reclaim = (rsi > level) & (rsi.shift(1) <= level)
+            add(
+                f"rsi_{n}_reclaim_{level}_trend",
+                liquid & reclaim & (cp > ma100),
+                rsi,
+                "rsi_reclaim",
+                {"rsi": n, "level": level, "context": "ma100"},
+            )
+        for level in (50, 55, 60):
+            add(
+                f"rsi_{n}_momentum_{level}",
+                liquid & (rsi > level) & (rsi.shift(1) <= level) & (cp > ma200) & (mom20 > 0),
+                rsi,
+                "rsi_momentum",
+                {"rsi": n, "level": level, "context": "ma200"},
+            )
+
     # External research bridge: global intelligence hypotheses now generate
     # explicitly tagged test variants. Sources influence discovery, never proof.
     hypotheses_path = Path(__file__).resolve().parents[1] / "results" / "global_strategy_hypotheses.json"
