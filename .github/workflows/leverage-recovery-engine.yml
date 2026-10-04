@@ -90,7 +90,7 @@ jobs:
           heal_after_degraded = bool(
               published_degraded and degraded_updated_at and any(
                   h.get("created_at", "") >= degraded_updated_at
-                  for h in heal
+                  for h in ai_repair
               )
           )
 
