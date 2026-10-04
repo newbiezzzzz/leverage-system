@@ -1,0 +1,68 @@
+{
+  "engine_version": "realistic_engine_v1 + strategy_lab_v4",
+  "status": "searching",
+  "cycle": 1013,
+  "search_space_variants": 290,
+  "batch_variants": 120,
+  "screen_rows": 140,
+  "realistic_tests": 240,
+  "qualified_candidates": 0,
+  "search_space_coverage": 0.41379310344827586,
+  "exceptional_return_alerts": [],
+  "leader": null,
+  "rules": {
+    "signal_to_execution": "close_t_to_next_open",
+    "lookahead_protection": true,
+    "historical_universe": true,
+    "lot_size": 100,
+    "starting_cash": 1000.0,
+    "rr_values": [
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      4.0,
+      5.0,
+      6.0
+    ],
+    "risk_pcts_per_trade": [
+      0.03,
+      0.04,
+      0.05,
+      0.06
+    ],
+    "capital_pct": 0.95,
+    "slippage_bps": 10.0,
+    "cost_model": {
+      "commission_rate": 0.0003,
+      "platform_fee": 3.0,
+      "clearing_rate": 0.0003,
+      "stamp_per_1000": 1.0,
+      "sst_rate": 0.08
+    },
+    "development": [
+      "2015-01-01",
+      "2019-12-31"
+    ],
+    "selection": [
+      "2020-01-01",
+      "2022-12-31"
+    ],
+    "validation": [
+      "2023-01-01",
+      "2024-12-31"
+    ],
+    "sealed_holdout": [
+      "2025-01-01",
+      "2026-10-02"
+    ],
+    "min_trades_per_month": 5.0,
+    "max_trades_per_month": 20.0,
+    "max_drawdown": 0.1,
+    "holdout_used_for_ranking": false,
+    "20pct_monthly_is_alert_not_goal_gate": true
+  }
+}

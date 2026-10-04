@@ -1,7 +1,8 @@
 {
   "status": "searching",
   "candidate_id": null,
-  "selected_by": "development_and_selection_only",
+  "engine_version": "strategy_lab_v4_realistic",
+  "lab_cycle": 1013,
   "gates": {
     "data_integrity": true,
     "engine_sanity": true,
@@ -13,5 +14,7 @@
     "historical_shariah_compliance": true,
     "independent_replication": false,
     "forward_paper_validation": false
-  }
+  },
+  "exceptional_return_alerts": [],
+  "note": "Search continues; no result is labeled best automatically."
 }

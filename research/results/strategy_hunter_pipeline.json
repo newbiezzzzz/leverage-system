@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-04T13:57:31Z",
-  "status": "degraded",
+  "updated_at": "2026-10-04T14:47:29Z",
+  "status": "completed",
   "stage": null,
   "attempt": 0,
   "error": null,
@@ -19,38 +19,86 @@
       "attempts": 1
     },
     "strategy_lab": {
-      "status": "degraded",
-      "attempts": 3,
-      "detail": "handled by recovery supervisor"
+      "status": "done",
+      "attempts": 1
     },
     "vectorbt": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "VectorBT",
+        "status": "tested",
+        "added_value": true,
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 21.264s",
+        "version": "0.28.1"
+      }
     },
     "lightgbm": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "LightGBM",
+        "status": "tested",
+        "added_value": true,
+        "detail": "OOS 5-day-return correlation=0.1743; RMSE=0.1027; mean-only RMSE=0.1040",
+        "oos_correlation": 0.1743041783741369,
+        "oos_rmse": 0.10266125651932412,
+        "baseline_rmse": 0.10401190340932968
+      }
     },
     "symbolic": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Symbolic Regression",
+        "status": "tested",
+        "added_value": false,
+        "detail": "OOS 5-day formula correlation=nan; RMSE=0.0978; mean-only RMSE=0.0978; formula=sub(X1, X1)",
+        "oos_correlation": NaN,
+        "oos_rmse": 0.097839403167431,
+        "baseline_rmse": 0.09783776118864405,
+        "formula": "sub(X1, X1)"
+      }
     },
     "qlib": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "degraded",
+      "attempts": 1,
+      "detail": "handled by recovery supervisor"
     },
     "optuna": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Optuna",
+        "status": "tested",
+        "added_value": true,
+        "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
+        "best_discovery_mean": 0.0125012964452218,
+        "validation_mean": 0.0140489489801092,
+        "validation_win_rate": 0.4591752093278034,
+        "validation_observations": 63895
+      }
     },
     "lean": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "LEAN",
+        "status": "tested_cli",
+        "added_value": true,
+        "detail": "lean 1.0.229"
+      }
     },
     "chronos2": {
-      "status": "skipped",
-      "reason": "no_strategy_lab_selection_pool"
+      "status": "done",
+      "attempts": 1,
+      "result": {
+        "tool": "Chronos-2",
+        "status": "package_ready",
+        "added_value": true,
+        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
+      }
     },
-    "_cycle_status": "degraded"
+    "_cycle_status": "completed"
   }
 }
