@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "decision_id": "D001",
-  "updated_at": "2026-09-30",
+  "updated_at": "2026-10-04",
   "status": "LOCKED",
   "north_star": "Build an autonomous, cloud-based, income-producing system with near-zero owner operating effort. Optimize for actual verified income rather than task activity.",
   "current_approved_approach": {
     "track": "strategy_hunter",
-    "objective": "Find a repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk.",
+    "objective": "Continuously discover and validate the strongest repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk; owner-mentioned strategies are seeds, never the search boundary.",
     "reason": "This is the currently configured Leverage mission and remains the approved active track until evidence or an explicit Owner decision justifies a change.",
     "status": "ACTIVE"
   },
@@ -37,6 +37,12 @@
       "action": "LOCK",
       "date": "2026-09-30",
       "reason": "Establish persistent anti-drift governance before further strategic changes."
+    },
+    {
+      "decision_id": "D001",
+      "action": "ALIGN_GOVERNANCE",
+      "date": "2026-10-04",
+      "reason": "Synchronize the approved objective wording with the persistent Leverage mission objective so decision governance can execute the autonomous recovery path."
     }
   ],
   "reviews": [
