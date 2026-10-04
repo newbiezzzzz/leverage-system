@@ -113,7 +113,7 @@ jobs:
 
   claude_review:
     needs: [readiness, codex_repair]
-    if: always() && needs.readiness.outputs.claude_ready == 'true' && (needs.codex_repair.result == 'success' || needs.codex_repair.result == 'skipped')
+    if: always() && needs.readiness.outputs.claude_ready == 'true' && (needs.codex_repair.result == 'success' || needs.codex_repair.result == 'skipped' || needs.codex_repair.result == 'failure')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
