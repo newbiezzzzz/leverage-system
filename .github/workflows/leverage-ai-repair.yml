@@ -59,11 +59,21 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
+      - name: Select Codex credential
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CODEX_API_KEY: ${{ secrets.CODEX_API_KEY }}
+        run: |
+          if [ -n "${CODEX_API_KEY:-}" ]; then
+            echo "OPENAI_API_KEY_FOR_CODEX=${CODEX_API_KEY}" >> "$GITHUB_ENV"
+          else
+            echo "OPENAI_API_KEY_FOR_CODEX=${OPENAI_API_KEY}" >> "$GITHUB_ENV"
+          fi
       - name: Run Codex repair worker
         id: codex
         uses: openai/codex-action@v1
         with:
-          openai-api-key: ${{ secrets.CODEX_API_KEY || secrets.OPENAI_API_KEY }}
+          openai-api-key: ${{ env.OPENAI_API_KEY_FOR_CODEX }}
           permission-profile: ":workspace"
           output-file: codex-final.txt
           prompt: |
