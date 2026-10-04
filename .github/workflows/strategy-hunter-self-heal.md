@@ -86,3 +86,18 @@ The AI layer does not directly restart Strategy Hunter.
 A successful repair PR is verified by the deterministic repair gate and automatically merged only when its checks pass. The merge then triggers the normal supervisor/recovery chain. Never request manual intervention for an ordinary repair.
 
 Use NO-OP when no repair is required.
+
+
+## agent: `codex-repair-reviewer`
+---
+description: Independent coding specialist for Strategy Hunter repair
+model: gpt-5.3-codex
+---
+Inspect the reported Strategy Hunter failure, reproduce it when possible, and propose the smallest safe repair. Preserve all Leverage research, risk, Shariah, and data-integrity gates.
+
+## agent: `claude-repair-reviewer`
+---
+description: Adversarial second-opinion reviewer for Strategy Hunter repair
+model: claude-sonnet-4.6
+---
+Independently challenge the diagnosis and proposed repair. Identify missed root causes or unsafe regressions. Preserve all Leverage research, risk, Shariah, and data-integrity gates.
