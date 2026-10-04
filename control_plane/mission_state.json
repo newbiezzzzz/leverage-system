@@ -1,18 +1,18 @@
 {
   "mission": "Leverage",
   "active_track": "strategy_hunter",
-  "objective": "Find and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework. For the current phase, Leverage must focus only on strategy discovery, testing, robustness and proof; future instrument, market, trading-horizon and investment expansion is deferred until this objective is achieved. Owner-mentioned strategies are seeds, never the search boundary.",
+  "objective": "Continuously discover and validate the strongest repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk; owner-mentioned strategies are seeds, never the search boundary.",
   "state": "RUNNING",
   "goal_achieved": false,
   "engine_sanity": true,
-  "cycle": 1014,
+  "cycle": 1015,
   "progress": {
-    "cycle": 1014,
-    "updated_at": "2026-10-04T17:00:18Z",
+    "cycle": 1015,
+    "updated_at": "2026-10-04T18:36:53Z",
     "patterns_tested": 290,
     "strategy_lab_variants": 290,
-    "strategy_lab_selection_candidates": 621,
-    "strategy_lab_backtests": 864,
+    "strategy_lab_selection_candidates": 414,
+    "strategy_lab_backtests": 720,
     "strategy_lab_qualified_candidates": 0,
     "strategy_lab_leader": null,
     "discovery_layer": {
@@ -31,13 +31,13 @@
       "relative_strength_20",
       "breakout_plus_volume"
     ],
-    "candidates": 12,
+    "candidates": 414,
     "robust_candidates": 0,
     "engine_sanity": true,
     "last_cycle_status": "completed"
   },
   "last_cycle": {
-    "cycle": 1014,
+    "cycle": 1015,
     "status": "completed",
     "next_action": "recover_and_continue",
     "goal_achieved": false
@@ -45,7 +45,7 @@
   "next_action": "continue_research",
   "owner_action_required": false,
   "decision_governance": {
-    "decision_id": "D003",
+    "decision_id": "D001",
     "status": "LOCKED",
     "default_new_issue_action": "KEEP_OR_IMPROVE",
     "replacement_requires_evidence": true,
