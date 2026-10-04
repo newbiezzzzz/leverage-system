@@ -67,17 +67,31 @@ jobs:
           # if: always(). Treat the current core-stage repair queue as the
           # authoritative failure episode.
           published_degraded = False
+          degraded_updated_at = ""
           repair_queue = {}
           try:
               with open("research/results/research_cycle_state.json", encoding="utf-8") as f:
-                  published_degraded = json.load(f).get("status") == "degraded"
+                  cycle_state = json.load(f)
+              published_degraded = cycle_state.get("status") == "degraded"
+              degraded_updated_at = cycle_state.get("updated_at", "")
           except Exception:
-              pass
+              cycle_state = {}
           try:
               with open("research/results/repair_queue.json", encoding="utf-8") as f:
                   repair_queue = json.load(f)
           except Exception:
               repair_queue = {}
+
+          # Do not launch multiple AI healers for the same degraded episode.
+          # Once a self-heal run has started after this degraded state was
+          # published, let its PR/verification chain finish before escalating
+          # again.
+          heal_after_degraded = bool(
+              published_degraded and degraded_updated_at and any(
+                  h.get("created_at", "") >= degraded_updated_at
+                  for h in heal
+              )
+          )
 
           target = None
           target_name = None
@@ -91,12 +105,15 @@ jobs:
           elif published_degraded:
               core_items = [x for x in repair_queue.get("items", []) if x.get("tier") == "core"]
               attempts = max([int(x.get("attempts", 0)) for x in core_items] or [0])
-              if attempts >= 3:
+              if heal_after_degraded:
+                  action, reason = "none", "ai_repair_already_started_for_degraded_episode"
+              elif attempts >= 3:
                   action, reason = "ai_repair", "degraded_core_after_three_retries"
               else:
                   action, reason = "retry_cycle", "degraded_core_retry"
               print("published_degraded:", True)
               print("core_retry_attempts:", attempts)
+              print("heal_after_degraded:", heal_after_degraded)
           elif target is None:
               action, reason = "none", "no_failed_research_run"
           else:
