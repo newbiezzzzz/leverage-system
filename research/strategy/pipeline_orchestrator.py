@@ -61,7 +61,12 @@ def write_json(path: Path, payload) -> None:
 
 def cycle_number() -> int:
     p = read_json(PROGRESS, {})
-    return int(p.get("cycle", 0)) + 1
+    previous = int(p.get("cycle", 0))
+    # A degraded core cycle is still the same research cycle. Do not advance
+    # the cycle number until the intended core testing work actually completes.
+    if str(p.get("last_cycle_status", "")) == "degraded":
+        return previous
+    return previous + 1
 
 
 def write_status(status: str, stage: str | None, attempt: int, details: dict, error: str | None = None) -> None:
