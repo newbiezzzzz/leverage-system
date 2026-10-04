@@ -51,7 +51,7 @@ jobs:
           cycle = runs("strategy-hunter-cycle.yml")
           data = runs("strategy-hunter-data-full.yml")
           heal = runs("strategy-hunter-self-heal.lock.yml")
-          ai_repair = runs("leverage-ai-repair.yml")
+          ai_repair = runs("strategy-hunter-self-heal.lock.yml")
           current_main = api(f"repos/{repo}/git/ref/heads/main").get("object", {}).get("sha")
 
           def active(items):
@@ -169,15 +169,11 @@ jobs:
           GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: gh workflow run strategy-hunter-cycle.yml --ref main
 
-      - name: Escalate to dual-agent AI repair
+      - name: Escalate to AI repair
         if: steps.decision.outputs.action == 'ai_repair'
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run leverage-ai-repair.yml --ref main \
-            -f target_run_id="${{ github.event.workflow_run.id || '' }}" \
-            -f cycle="${{ inputs.cycle || 'current' }}" \
-            -f stage="${{ inputs.stage || 'strategy_lab' }}"
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: gh workflow run strategy-hunter-self-heal.lock.yml --ref main
 
       - name: Recovery result
         run: echo "Recovery level completed."
