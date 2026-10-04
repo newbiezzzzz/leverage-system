@@ -1,8 +1,61 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "mission": "Leverage",
   "active_track": "strategy_hunter",
-  "objective": "Continuously discover and validate the strongest repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk; owner-mentioned strategies are seeds, never the search boundary.",
+  "current_phase": "FOUNDATION_STRATEGY_DISCOVERY",
+  "objective": "First identify and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework; do not prematurely optimize for a single instrument. After the core edge is proven, map and adapt it by market and holding horizon for the Owner's broader trading and investing roadmap. Owner-mentioned strategies and instruments are seeds, never the search boundary.",
+  "long_term_roadmap": {
+    "phase_1": "Find and prove the strongest core trading edge before expanding.",
+    "phase_2": {
+      "name": "SCALPING",
+      "primary_instrument": "FCPO",
+      "requirements": [
+        "instrument-specific microstructure/data",
+        "Shariah compliance verification",
+        "fees/slippage/margin realism",
+        "separate intraday risk controls"
+      ]
+    },
+    "phase_3": {
+      "name": "INTRADAY_AND_SHORT_SWING",
+      "markets": [
+        "Malaysia",
+        "global markets"
+      ],
+      "requirements": [
+        "historical Shariah screening by market/date",
+        "market-specific execution costs",
+        "long and short eligibility where Shariah permits",
+        "timeframe-specific validation"
+      ]
+    },
+    "phase_4": {
+      "name": "LONG_SWING_AND_POSITION_TRADING",
+      "markets": [
+        "Malaysia",
+        "global markets"
+      ],
+      "requirements": [
+        "multi-year out-of-sample robustness",
+        "regime robustness",
+        "portfolio/capital scaling"
+      ]
+    },
+    "phase_5": {
+      "name": "INVESTING",
+      "asset_classes": [
+        "unit trusts",
+        "property",
+        "gold",
+        "other suitable investment opportunities"
+      ],
+      "requirements": [
+        "return/risk/cost/liquidity/tax analysis",
+        "Shariah compliance where applicable",
+        "separate investment framework from active trading"
+      ]
+    }
+  },
   "constraints": {
     "starting_capital_rm": 1000,
     "one_active_position": true,
@@ -23,34 +76,17 @@
     "lookahead_bias_must_be_tested": true,
     "strategy_discovery_policy": {
       "owner_examples_are_nonbinding": true,
+      "owner_instruments_are_nonbinding": true,
       "open_ended_research": true,
       "external_research_required": true,
       "autonomous_hypothesis_generation": true,
-      "must_research_known_families": [
-        "EMA",
-        "SMA",
-        "Ichimoku",
-        "Donchian",
-        "RSI",
-        "MACD",
-        "Bollinger",
-        "Stochastic",
-        "ATR",
-        "ADX",
-        "OBV",
-        "price_action",
-        "breakout",
-        "momentum",
-        "mean_reversion",
-        "relative_strength",
-        "volatility",
-        "regime",
-        "Wyckoff"
-      ],
+      "must_search_across_strategy_families": true,
       "must_allow_unknown_combinations": true,
       "rr_must_be_discovered": true,
       "timeframe_must_be_discovered_when_data_supports_it": true,
-      "never_declare_best_from_in_sample_or_single_search_winner": true
+      "instrument_and_horizon_must_be_treated_as_separate_validation_dimensions": true,
+      "never_declare_best_from_in_sample_or_single_search_winner": true,
+      "do_not_expand_to_live_multi_instrument_execution_until_core_strategy_gate_is_achieved": true
     }
   },
   "achievement_gates": [
