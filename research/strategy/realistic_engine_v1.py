@@ -30,6 +30,15 @@ MIN_AVG_DOLLAR_VOL = 100_000.0
 MAX_PARTICIPATION = 0.10
 SLIPPAGE_BPS = 10.0
 
+# Verified broker reference used for the RM1,000 feasibility gate.
+# Moomoo MY's current Bursa equity schedule uses 0.03% commission,
+# RM3/order platform fee, 0.03% clearing, RM1 per RM1,000 stamp duty, and
+# 8% SST on commission/platform/clearing. Bursa equity trades use 100-share
+# board lots on the supported path.
+BROKER_NAME = "Moomoo MY - Bursa Malaysia equities"
+BROKER_LOT_SIZE = 100
+BROKER_FEE_SOURCE = "https://www.moomoo.com/my/support/topic9_137"
+
 COST_MODEL = {
     "commission_rate": 0.0003,
     "platform_fee": 3.0,
@@ -121,6 +130,8 @@ def backtest(
     peak = float(starting_cash)
     risk_breaches = 0
     first_idx, last_idx = int(idx[0]), int(idx[-1])
+    entry_order_values: list[float] = []
+    broker_lot_violations = 0
     slippage = float(slippage_bps) / 10_000.0
     reverse_rank = any(k in str(variant.get("family", "")) for k in ("reversal", "loser"))
 
@@ -195,6 +206,11 @@ def backtest(
         buy_fee = scaled_fee(value)
         if value + buy_fee > cash:
             return
+        if qty < BROKER_LOT_SIZE or qty % BROKER_LOT_SIZE != 0:
+            nonlocal broker_lot_violations
+            broker_lot_violations += 1
+            return
+        entry_order_values.append(float(value))
         cash -= value + buy_fee
         position_j = j
         shares = qty
@@ -277,6 +293,17 @@ def backtest(
     if not equity_rows:
         return None
     eq = pd.Series(dict(equity_rows)).sort_index()
+    broker_feasible_rm1000 = bool(
+        len(trades) > 0
+        and broker_lot_violations == 0
+        and all(
+            int(t.get("shares", 0)) >= BROKER_LOT_SIZE
+            and int(t.get("shares", 0)) % BROKER_LOT_SIZE == 0
+            for t in trades
+        )
+    )
+    min_entry_order_value = float(min(entry_order_values)) if entry_order_values else None
+    max_entry_order_value = float(max(entry_order_values)) if entry_order_values else None
     final_equity = float(cash)
     total_return = final_equity / starting_cash - 1.0
     years = max((eq.index[-1] - eq.index[0]).days / 365.25, 1 / 365.25)
@@ -335,6 +362,12 @@ def backtest(
         "realized_rr": realized_rr,
         "expectancy_r": expectancy_r,
         "risk_breach_count": int(risk_breaches),
+        "broker_name": BROKER_NAME,
+        "broker_lot_size": BROKER_LOT_SIZE,
+        "broker_feasible_rm1000": broker_feasible_rm1000,
+        "broker_lot_violations": int(broker_lot_violations),
+        "min_entry_order_value": min_entry_order_value,
+        "max_entry_order_value": max_entry_order_value,
         "median_monthly_return": float(monthly.median()) if not monthly.empty else float("nan"),
         "positive_month_fraction": float((monthly > 0).mean()) if not monthly.empty else 0.0,
         "sustained_20pct_monthly_flag": bool(geom_monthly >= 0.20 and months >= 36),
