@@ -27,85 +27,78 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  dual_agent_repair:
+  repair:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      # Prefer the existing Leverage Copilot credential; fall back to the
-      # built-in workflow token where repository policy allows Copilot CLI.
-      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN || github.token }}
-      GITHUB_TOKEN: ${{ github.token }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
       TARGET_RUN_ID: ${{ inputs.target_run_id }}
       TARGET_CYCLE: ${{ inputs.cycle }}
       TARGET_STAGE: ${{ inputs.stage }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Install GitHub Copilot CLI
+      - name: Install Copilot CLI
         run: npm install -g @github/copilot
 
-      - name: Verify Copilot authentication
+      - name: Select authentication
         run: |
           set -euo pipefail
-          copilot --help >/dev/null
-          echo "Copilot CLI installed."
           if [ -n "${COPILOT_GITHUB_TOKEN:-}" ]; then
-            echo "Copilot credential is available."
+            echo "Using Leverage COPILOT_GITHUB_TOKEN."
           else
-            echo "No Copilot credential is available."
-            exit 1
+            echo "COPILOT_GITHUB_TOKEN is not configured; Copilot CLI will use GH_TOKEN/GITHUB_TOKEN."
           fi
 
-      - name: Codex repair worker
-        id: codex
-        continue-on-error: true
-        env:
-          COPILOT_MODEL: gpt-5.3-codex
+      - name: Write Codex repair brief
         run: |
-          set -o pipefail
-          copilot             -p "You are Leverage's senior Codex repair worker.
+          cat > /tmp/codex-brief.txt <<'EOF'
+You are Leverage's senior Codex engineering worker.
 
 Repository: ${GITHUB_REPOSITORY}
 Target Actions run: ${TARGET_RUN_ID}
 Research cycle: ${TARGET_CYCLE}
 Failed stage: ${TARGET_STAGE}
 
-Investigate the actual Strategy Hunter failure before changing anything.
-Inspect the latest research state, repair queue, workflow files, recent
-commits, and relevant source. Use GitHub CLI/API when needed to inspect the
-target workflow run and logs.
+Investigate the actual Strategy Hunter failure before editing. Inspect the
+persistent research state, repair queue, workflow files, recent commits, and
+the target GitHub Actions run/logs using gh when useful.
 
-Your job is to restore autonomous Strategy Hunter testing, especially the
-Strategy Lab V4/RR execution path.
+Primary objective: restore autonomous Strategy Hunter research and make real
+Strategy Lab V4/RR backtests execute.
 
 Rules:
 - Do not place live trades or orders.
-- Do not weaken Shariah rules, cost assumptions, drawdown limits,
-  trade-frequency gates, data QA, lookahead protection, survivorship checks,
-  or candidate qualification.
-- Do not fabricate evidence or result files.
-- Preserve the rule that a degraded core cycle must be recovered before a new
-  cycle number is created.
-- Reproduce the failure narrowly when possible.
+- Do not weaken Shariah, drawdown, cost, trade-frequency, data-integrity,
+  lookahead, survivorship, or candidate-qualification protections.
+- Do not fabricate result files or success evidence.
+- Preserve degraded-cycle recovery semantics.
+- Reproduce the failure narrowly where possible.
 - Make the smallest safe repair.
-- Run targeted checks, Python compilation, and Strategy Hunter preflight.
-- Do not commit or push changes. Leave the repaired workspace for Claude to
-  independently review.
+- Run targeted tests, Python compilation, and Strategy Hunter preflight.
+- Do not commit or push.
+- Leave the working tree containing the proposed repair for the Claude
+  reviewer.
 
-Report root cause, changes, and verification in your final response."             --model gpt-5.3-codex             --no-ask-user             --allow-tool='write,shell'             --secret-env-vars='COPILOT_GITHUB_TOKEN,GITHUB_TOKEN'             --output-format=text             2>&1 | tee codex-output.txt
+At the end, summarize root cause, files changed, and checks performed.
+EOF
 
-      - name: Claude independent review and repair
-        id: claude
+      - name: Run Codex model
         continue-on-error: true
         env:
-          COPILOT_MODEL: claude-sonnet-4.6
+          COPILOT_MODEL: gpt-5.3-codex
         run: |
-          set -o pipefail
-          copilot             -p "You are Leverage's independent senior Claude engineering reviewer.
+          copilot             -p "$(cat /tmp/codex-brief.txt)"             --model gpt-5.3-codex             --no-ask-user             --allow-tool='write,shell'             --secret-env-vars='COPILOT_GITHUB_TOKEN,GH_TOKEN'             --output-format=text             2>&1 | tee /tmp/codex-output.txt
+
+      - name: Write Claude review brief
+        run: |
+          cat > /tmp/claude-brief.txt <<'EOF'
+You are Leverage's independent Claude engineering reviewer.
 
 Repository: ${GITHUB_REPOSITORY}
 Target Actions run: ${TARGET_RUN_ID}
@@ -113,27 +106,33 @@ Research cycle: ${TARGET_CYCLE}
 Failed stage: ${TARGET_STAGE}
 
 A Codex worker has already investigated and may have changed the working tree.
-Do NOT trust its diagnosis automatically. Independently inspect the failure,
-the current working tree, repository evidence, and Strategy Hunter state.
-Correct, complete, or replace the Codex repair where necessary.
+Independently inspect the failure and the current code. Do not trust the Codex
+diagnosis without verification. Correct, complete, or replace it as required.
 
-The objective is to restore real Strategy Lab V4/RR backtesting and autonomous
+Primary objective: restore real Strategy Lab V4/RR backtesting and autonomous
 research continuation.
 
 Rules:
-- Do not place live trades or orders.
-- Never weaken Shariah, drawdown, cost, trade-frequency, data-integrity,
-  lookahead, survivorship, or candidate-qualification protections.
-- Never fabricate successful test evidence.
+- No live trades or orders.
+- Never weaken Shariah, risk, cost, trade-frequency, data-integrity,
+  lookahead, survivorship, or candidate gates.
+- Never fabricate evidence.
 - Preserve degraded-cycle recovery semantics.
 - Run targeted reproduction, Python compilation, Strategy Hunter preflight,
   and relevant narrow tests.
-- Make only the smallest safe changes.
-- Do not commit or push changes.
+- Make the smallest safe changes.
+- Do not commit or push.
 
-Review the Codex output at codex-output.txt when useful, but independently
-validate it. Finish with root cause, accepted/rejected changes, and
-verification evidence."             --model claude-sonnet-4.6             --no-ask-user             --allow-tool='write,shell'             --secret-env-vars='COPILOT_GITHUB_TOKEN,GITHUB_TOKEN'             --output-format=text             2>&1 | tee claude-output.txt
+Review /tmp/codex-output.txt when useful. Finish with root cause, reviewed
+changes, and verification evidence.
+EOF
+
+      - name: Run Claude model
+        continue-on-error: true
+        env:
+          COPILOT_MODEL: claude-sonnet-4.6
+        run: |
+          copilot             -p "$(cat /tmp/claude-brief.txt)"             --model claude-sonnet-4.6             --no-ask-user             --allow-tool='write,shell'             --secret-env-vars='COPILOT_GITHUB_TOKEN,GH_TOKEN'             --output-format=text             2>&1 | tee /tmp/claude-output.txt
 
       - name: Verify repaired workspace
         run: |
@@ -142,23 +141,17 @@ verification evidence."             --model claude-sonnet-4.6             --no-a
           pip install -r research/strategy/requirements.txt
           python research/strategy/preflight.py
 
-      - name: Determine whether repair exists
-        id: diff
-        run: |
-          if git diff --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No source changes were produced."
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            git diff --stat
-          fi
-
-      - name: Create verified self-heal branch and PR
-        if: steps.diff.outputs.changed == 'true'
+      - name: Create verified repair PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          git status --short
+          if git diff --quiet; then
+            echo "No AI repair changes were produced."
+            exit 10
+          fi
+
           branch="leverage-self-heal/dual-agent-${GITHUB_RUN_ID}"
           git switch -c "$branch"
           git config user.name "github-actions[bot]"
@@ -166,26 +159,23 @@ verification evidence."             --model claude-sonnet-4.6             --no-a
           git add research/strategy .github/workflows control_plane
           git commit -m "fix: dual-agent repair for Strategy Hunter"
           git push origin "$branch"
+
           gh pr create             --repo "${GITHUB_REPOSITORY}"             --base main             --head "$branch"             --title "[Leverage Self-Heal] Codex + Claude Strategy Hunter repair"             --body "Automated dual-agent repair.
 
 Target run: ${TARGET_RUN_ID}
 Cycle: ${TARGET_CYCLE}
 Stage: ${TARGET_STAGE}
 
-Codex investigated and proposed the first repair. Claude independently reviewed
-and corrected the working tree. Deterministic compilation and Strategy Hunter
-preflight passed before this PR was created.
+Codex investigated first. Claude independently reviewed the resulting
+workspace. Deterministic Python compilation and Strategy Hunter preflight
+passed before this PR was created.
 
-The normal Self-Heal Repair Gate must still pass before merge."
+The existing repair gate must still pass before merge."
 
-      - name: Record agent result
+      - name: Publish repair evidence
         if: always()
         run: |
-          echo "Codex exit: ${{ steps.codex.outcome }}"
-          echo "Claude exit: ${{ steps.claude.outcome }}"
-          if [ -f codex-output.txt ]; then
-            tail -80 codex-output.txt
-          fi
-          if [ -f claude-output.txt ]; then
-            tail -80 claude-output.txt
-          fi
+          echo "=== Codex ==="
+          test -f /tmp/codex-output.txt && tail -100 /tmp/codex-output.txt || true
+          echo "=== Claude ==="
+          test -f /tmp/claude-output.txt && tail -100 /tmp/claude-output.txt || true
