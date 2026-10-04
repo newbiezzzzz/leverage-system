@@ -1,13 +1,13 @@
 {
   "engine_version": "realistic_engine_v1 + strategy_lab_v4",
   "status": "searching",
-  "cycle": 1013,
+  "cycle": 1014,
   "search_space_variants": 290,
   "batch_variants": 120,
-  "screen_rows": 140,
-  "realistic_tests": 240,
+  "screen_rows": 621,
+  "realistic_tests": 864,
   "qualified_candidates": 0,
-  "search_space_coverage": 0.41379310344827586,
+  "search_space_coverage": 0.7862068965517242,
   "exceptional_return_alerts": [],
   "leader": null,
   "rules": {
@@ -17,20 +17,19 @@
     "lot_size": 100,
     "starting_cash": 1000.0,
     "rr_values": [
+      null,
       0.5,
       0.75,
       1.0,
       1.5,
       2.0,
-      2.5,
       3.0,
       4.0,
-      5.0,
       6.0
     ],
     "risk_pcts_per_trade": [
+      null,
       0.03,
-      0.04,
       0.05,
       0.06
     ],
@@ -63,6 +62,21 @@
     "max_trades_per_month": 20.0,
     "max_drawdown": 0.1,
     "holdout_used_for_ranking": false,
-    "20pct_monthly_is_alert_not_goal_gate": true
+    "20pct_monthly_is_alert_not_goal_gate": true,
+    "screen_is_non_binding": true,
+    "realistic_candidate_rows": 12,
+    "max_family_realistic": 2,
+    "screen_horizons": [
+      1,
+      2,
+      3,
+      5,
+      7,
+      10,
+      15,
+      20,
+      30
+    ],
+    "broker_reference": "Moomoo MY Bursa equities; official fee schedule mirrored in realistic_engine_v1.py"
   }
 }
