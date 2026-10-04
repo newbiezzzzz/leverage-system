@@ -1,5 +1,5 @@
 {
   "purpose": "supervisor wake-up after self-heal model correction",
-  "triggered_at": "2026-09-24T12:00:00Z",
-  "note": "Harmless control-plane change to trigger leverage-supervisor; no mission state change."
+  "triggered_at": "2026-10-04T10:35:00Z",
+  "note": "Supervisor wake-up after recovery routing fix: degraded core state must enter repair before any new research cycle."
 }
