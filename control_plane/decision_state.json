@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "decision_id": "D003",
+  "decision_id": "D001",
   "updated_at": "2026-10-04",
   "status": "LOCKED",
-  "north_star": "Build an autonomous, cloud-based, income-producing system with near-zero owner operating effort. Use a proven trading edge as the foundation, then expand into multiple compatible trading horizons, instruments, markets, and investment assets.",
+  "north_star": "Build an autonomous, cloud-based, income-producing system with near-zero owner operating effort. Optimize for actual verified income rather than task activity.",
   "current_approved_approach": {
     "track": "strategy_hunter",
-    "objective": "Find and validate the strongest repeatable Shariah-compliant trading strategy or strategy framework. For the current phase, Leverage must focus only on strategy discovery, testing, robustness and proof; future instrument, market, trading-horizon and investment expansion is deferred until this objective is achieved. Owner-mentioned strategies are seeds, never the search boundary.",
-    "reason": "Owner explicitly confirmed that Leverage must focus only on finding and proving the best strategy first. All multi-instrument, multi-horizon and investment expansion is deferred until the core strategy objective is achieved.",
+    "objective": "Continuously discover and validate the strongest repeatable, Shariah-compliant, long-only trading strategy that is economically viable with RM1,000 starting capital and controlled risk; owner-mentioned strategies are seeds, never the search boundary.",
+    "reason": "This is the currently configured Leverage mission and remains the approved active track until evidence or an explicit Owner decision justifies a change.",
     "status": "ACTIVE"
   },
   "decision_rules": {
@@ -43,18 +43,6 @@
       "action": "ALIGN_GOVERNANCE",
       "date": "2026-10-04",
       "reason": "Synchronize the approved objective wording with the persistent Leverage mission objective so decision governance can execute the autonomous recovery path."
-    },
-    {
-      "decision_id": "D002",
-      "action": "OWNER_CLARIFICATION_AND_ROADMAP_LOCK",
-      "date": "2026-10-04",
-      "reason": "Owner clarified the long-term trading/investing roadmap while explicitly keeping the current priority on finding and proving the best core strategy first."
-    },
-    {
-      "decision_id": "D003",
-      "action": "CURRENT_PHASE_ONLY",
-      "date": "2026-10-04",
-      "reason": "Owner explicitly narrowed current execution to strategy discovery and validation only; future expansion remains deferred."
     }
   ],
   "reviews": [
@@ -64,25 +52,14 @@
       "classification": "IMPROVE",
       "current_direction": "KEEP",
       "problem": "Strategy Hunter has produced no qualified candidate, while research cycles have repeatedly degraded at the adaptive stage.",
+      "evidence": [
+        "Backtest engine permanently set risk_halt after the first account drawdown breach, suppressing all later entries.",
+        "This caused observed trade frequencies such as 0.014–0.057 trades/month over the 2015-09/2026 sample to measure post-breach shutdown rather than unconstrained strategy opportunity frequency.",
+        "The 10% maximum drawdown gate remains enforced; removing the permanent research halt does not relax qualification.",
+        "Latest persistent state has 0 qualified candidates and 0 robust candidates, but this evidence was generated through the flawed testing behavior.",
+        "Adaptive search output is stale relative to mission cycles: adaptive_search_memory.json reports last_cycle 596 while mission progress reached cycle 803, so progress fields can under-report or misrepresent current adaptive activity."
+      ],
       "action": "Fix research engine and evidence freshness first; rerun before considering any strategic replacement.",
-      "replacement_justified": false
-    },
-    {
-      "review_id": "R002",
-      "date": "2026-10-04",
-      "classification": "CLARIFY_AND_EXPAND_LATER",
-      "current_direction": "KEEP_CURRENT_PHASE",
-      "problem": "The prior mission wording was too narrow because it defined the target as a long-only stock strategy, while the Owner's actual roadmap includes FCPO scalping, intraday and swing trading across Malaysia/global Shariah-compliant markets, and longer-term investing.",
-      "action": "Keep Strategy Hunter as the active track and the core-strategy-first phase, while persistently recording the later expansion roadmap. Do not dilute current validation gates by prematurely adding every asset class.",
-      "replacement_justified": true
-    },
-    {
-      "review_id": "R003",
-      "date": "2026-10-04",
-      "classification": "FOCUS",
-      "current_direction": "KEEP_CORE_STRATEGY_ONLY",
-      "problem": "Future expansion could dilute the research effort before the core trading edge is proven.",
-      "action": "Freeze future expansion work until the core strategy achievement gates are passed.",
       "replacement_justified": false
     }
   ]

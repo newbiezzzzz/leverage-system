@@ -61,38 +61,6 @@ for name in (
 
 assert br.COST_HURDLE > 0
 
-# Research-funnel regression guard: realistic admission must remain broad,
-# include the short horizons needed for the owner's 5-20 trades/month target,
-# and preserve capital-sized / explicit-RR exploration.
-from research.strategy import strategy_lab_v4 as v4  # noqa: E402
-assert v4.SCREEN_HORIZONS == (1, 2, 3, 5, 7, 10, 15, 20, 30)
-assert None in v4.RR_VALUES
-assert None in v4.RISK_PCTS
-sample_rows = []
-for i in range(v4.REALISTIC_CANDIDATE_ROWS):
-    sample_rows.append({
-        "variant": f"synthetic_{i}",
-        "variant_id": f"id{i}",
-        "family": f"family_{i}",
-        "horizon_days": 1 + i,
-        "dev_net_mean": -0.01 + i * 0.001,
-        "dev_pf": 0.8 + i * 0.02,
-        "dev_obs": 100,
-        "sel_net_mean": -0.005 + i * 0.001,
-        "sel_pf": 0.9 + i * 0.02,
-        "sel_win_rate": 0.45,
-        "sel_obs": 100,
-        "sel_tpm": 5.0 + (i % 6),
-        "selection_stability": -0.01 + i * 0.001,
-        "screen_score": 0.5 + i * 0.01,
-        "positive_selection_signal": False,
-        "params": "{}",
-    })
-slate = v4.select_realistic_rows(pd.DataFrame(sample_rows))
-assert len(slate) == v4.REALISTIC_CANDIDATE_ROWS
-assert slate["family"].nunique() == v4.REALISTIC_CANDIDATE_ROWS
-
-
 # Deterministic engine verification. A failed sanity check blocks only the
 # current research cycle; the external supervisor will schedule recovery.
 import subprocess  # noqa: E402

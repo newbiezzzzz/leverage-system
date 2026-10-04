@@ -556,9 +556,7 @@ def main():
         "search_round": cycle,
         "realistic_search_space_coverage": state["search_space_coverage"],
         "realistic_exceptional_20pct_monthly_alerts": len(alerts),
-        "candidates": int(len(screened)),
-        "screen_rows": int(len(screen)),
-        "robust_candidates": len(qualified),
+        "candidates": len(screen), "robust_candidates": len(qualified),
         "engine_sanity": read_json(OUT / "engine_sanity.json", {}).get("status") == "passed",
         "last_cycle_status": "completed",
         "next_action": "deeper_validation" if leader else "continue_rotating_search",
@@ -578,7 +576,7 @@ def main():
             "robust_out_of_sample": bool(leader),
             "drawdown_within_limit": bool(leader and leader.get("holdout_max_drawdown", -1) >= -MAX_DD),
             "trade_frequency_feasible": bool(leader and MIN_TPM <= leader.get("holdout_trades_per_month",0) <= MAX_TPM),
-            "broker_feasible_at_rm1000": bool(leader and leader.get("broker_feasible_rm1000", False)),
+            "broker_feasible_at_rm1000": False,
             "historical_shariah_compliance": True,
             "independent_replication": bool(leader and leader.get("replication_pass")),
             "forward_paper_validation": False,
@@ -587,44 +585,14 @@ def main():
         "note": "Search continues; no result is labeled best automatically.",
     }
     if leader:
-        raw = (
-            f'{leader["pattern"]}:{leader["horizon_days"]}:{leader["stop_loss"]}:'
-            f'{leader.get("reward_r")}:{leader.get("risk_pct")}'
-        ).encode()
+        raw = f'{leader["pattern"]}:{leader["horizon_days"]}:{leader["stop_loss"]}'.encode()
         evidence["candidate_id"] = f'SH-{int(hashlib.sha256(raw).hexdigest()[:8],16)%1_000_000:06d}'
         evidence["strategy"] = {
-            "pattern": leader["pattern"],
-            "family": leader["family"],
-            "horizon_days": int(leader["horizon_days"]),
-            "stop_loss": float(leader["stop_loss"]),
-            "reward_r": None if pd.isna(leader.get("reward_r")) else float(leader["reward_r"]),
-            "risk_pct": None if pd.isna(leader.get("risk_pct")) else float(leader["risk_pct"]),
+            "pattern": leader["pattern"], "family": leader["family"],
+            "horizon_days": int(leader["horizon_days"]), "stop_loss": float(leader["stop_loss"]),
             "params": json.loads(leader["params"]),
         }
-        evidence["holdout"] = {
-            k: leader.get(f"holdout_{k}")
-            for k in (
-                "final_equity","total_return","cagr","geometric_monthly_return",
-                "max_drawdown","trade_count","trades_per_month","win_rate",
-                "profit_factor","risk_breach_count","median_monthly_return",
-                "positive_month_fraction","broker_feasible_rm1000",
-            )
-        }
-        evidence["validation"] = {
-            k: leader.get(f"validation_{k}")
-            for k in (
-                "final_equity","total_return","cagr","max_drawdown",
-                "trade_count","trades_per_month","win_rate","profit_factor",
-                "risk_breach_count",
-            )
-        }
-        evidence["robustness"] = {
-            "replication_pass": bool(leader.get("replication_pass", False)),
-            "neighbor_pass_count": int(leader.get("neighbor_pass_count", 0)),
-            "neighbor_test_count": int(leader.get("neighbor_test_count", 0)),
-            "stress_pass_count": int(leader.get("stress_pass_count", 0)),
-            "stress_test_count": int(leader.get("stress_test_count", 0)),
-        }
+        evidence["holdout"] = {k: leader.get(f"holdout_{k}") for k in ("final_equity","total_return","cagr","geometric_monthly_return","max_drawdown","trade_count","trades_per_month","win_rate","profit_factor","risk_breach_count","median_monthly_return","positive_month_fraction")}
     write_json(OUT / "qualified_strategy_evidence.json", evidence)
     write_json(OUT / "strategy_lab_state.json", {
         "status": summary["status"], "engine_version": summary["engine_version"], "cycle": cycle,
