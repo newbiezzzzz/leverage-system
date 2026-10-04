@@ -11,7 +11,7 @@ permissions:
   pull-requests: read
 engine:
   id: copilot
-  model: gpt-5.3-codex
+  model: auto
   max-turns: 60
   harness:
     watchdog-timeout: 900
@@ -91,7 +91,7 @@ Use NO-OP when no repair is required.
 ## agent: `codex-repair-reviewer`
 ---
 description: Independent coding specialist for Strategy Hunter repair
-model: gpt-5.3-codex
+model: auto
 ---
 Inspect the reported Strategy Hunter failure, reproduce it when possible, and propose the smallest safe repair. Preserve all Leverage research, risk, Shariah, and data-integrity gates.
 
