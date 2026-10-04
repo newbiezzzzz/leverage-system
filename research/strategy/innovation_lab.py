@@ -208,8 +208,12 @@ def build_discovery_variants(op, hp, lp, cp, vp, universe, ind):
         kijun = (hp.rolling(base, min_periods=base).max() + lp.rolling(base, min_periods=base).min()) / 2.0
         span_b = (hp.rolling(span, min_periods=span).max() + lp.rolling(span, min_periods=span).min()) / 2.0
         span_a = (tenkan + kijun) / 2.0
-        cloud_top = pd.concat([span_a, span_b], axis=1).groupby(level=1, axis=1).max()
-        cloud_bottom = pd.concat([span_a, span_b], axis=1).groupby(level=1, axis=1).min()
+        # The plotted cloud is displaced forward; for a signal at t we only
+        # use the cloud values that were already known at t.
+        visible_a = span_a.shift(base)
+        visible_b = span_b.shift(base)
+        cloud_top = pd.DataFrame(np.maximum(visible_a.to_numpy(), visible_b.to_numpy()), index=cp.index, columns=cp.columns)
+        cloud_bottom = pd.DataFrame(np.minimum(visible_a.to_numpy(), visible_b.to_numpy()), index=cp.index, columns=cp.columns)
         chikou_confirm = cp > cp.shift(base)
         tk_cross = (tenkan > kijun) & (tenkan.shift(1) <= kijun.shift(1))
         for cloud_filter, label in (
@@ -301,6 +305,40 @@ def build_discovery_variants(op, hp, lp, cp, vp, universe, ind):
                 rsi,
                 "rsi_momentum",
                 {"rsi": n, "level": level, "context": "ma200"},
+            )
+
+
+    # Higher-timeframe discovery from the native daily dataset.
+    # This is real timeframe testing (not merely changing the holding horizon).
+    # Intraday timeframes are intentionally not fabricated when the repository
+    # does not contain native intraday bars.
+    for freq, label, ema_fast, ema_slow, channel in (
+        ("W-FRI", "weekly", 10, 30, 20),
+        ("ME", "monthly", 5, 10, 6),
+    ):
+        wk = cp.index.to_period(freq)
+        wclose = cp.groupby(wk).last()
+        whigh = hp.groupby(wk).max()
+        wlow = lp.groupby(wk).min()
+        wema_f = wclose.ewm(span=ema_fast, adjust=False, min_periods=ema_fast).mean()
+        wema_s = wclose.ewm(span=ema_slow, adjust=False, min_periods=ema_slow).mean()
+        wmom = wclose / wclose.shift(4 if label == "weekly" else 2) - 1.0
+        wupper = whigh.shift(1).rolling(channel, min_periods=channel).max()
+        cross = (wema_f > wema_s) & (wema_f.shift(1) <= wema_s.shift(1))
+        breakout = wclose > wupper
+        trend = (wclose > wema_s) & (wmom > 0)
+        for condition, score, suffix, params in (
+            (cross & trend, wema_f / wema_s.replace(0, np.nan) - 1.0, "ema_cross", {"ema_fast": ema_fast, "ema_slow": ema_slow}),
+            (breakout & trend, wclose / wupper.replace(0, np.nan) - 1.0, "donchian_breakout", {"channel": channel}),
+        ):
+            daily_mask = condition.reindex(wk).set_axis(cp.index)
+            daily_score = score.reindex(wk).set_axis(cp.index)
+            add(
+                f"{label}_{suffix}",
+                liquid & daily_mask,
+                daily_score,
+                f"{label}_{suffix}",
+                dict(params, timeframe=label, signal_bar="completed_higher_timeframe"),
             )
 
     # External research bridge: global intelligence hypotheses now generate
