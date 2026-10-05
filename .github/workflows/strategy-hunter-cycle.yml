@@ -166,6 +166,35 @@ jobs:
           echo "Unable to publish research evidence after 3 attempts."
           exit 1
 
+      - name: Autonomous continuation
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          goal = Path("research/results/strategy_hunter_goal.json")
+          achieved = False
+          if goal.exists():
+              try:
+                  data = json.loads(goal.read_text(encoding="utf-8"))
+                  achieved = data.get("status") == "achieved" and data.get("all_gates_passed") is True
+              except Exception:
+                  achieved = False
+          if achieved:
+              print("GOAL ACHIEVED: no continuation will be dispatched.")
+              raise SystemExit(0)
+          print("GOAL NOT ACHIEVED: dispatching the next Strategy Hunter cycle.")
+          PY
+          if gh workflow run strategy-hunter-cycle.yml --ref main; then
+            echo "NEXT CYCLE DISPATCHED"
+          else
+            echo "NEXT CYCLE DISPATCH FAILED"
+            exit 1
+          fi
+
       # Continuation is owned by the supervisor/recovery engine.
       # Do NOT dispatch another cycle from inside this run: a failed cycle must
       # first enter recovery/repair, otherwise recovery sees an active cycle
