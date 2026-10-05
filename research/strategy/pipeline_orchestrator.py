@@ -32,6 +32,7 @@ STAGES = [
     # The former adaptive/candidate path remains in the repository for reference
     # but is no longer allowed to consume the main research cycle.
     ("strategy_lab", "Strategy Lab V4 (realistic execution)", "core"),
+    ("failure_analysis", "Failure Analysis + Hypothesis Research", "core"),
     ("vectorbt", "VectorBT", "optional"),
     ("lightgbm", "LightGBM", "optional"),
     ("symbolic", "Symbolic Regression", "optional"),
@@ -231,6 +232,8 @@ def main():
             if key == "candidate_backtest"
             else "python research/strategy/strategy_lab_v4.py"
             if key == "strategy_lab"
+            else "python research/strategy/failure_analysis.py"
+            if key == "failure_analysis"
             else "python research/strategy/specialist_runner.py " + key
             if key not in {"baseline"}
             else "python research/strategy/baseline_research.py"
