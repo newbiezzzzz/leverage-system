@@ -1,0 +1,590 @@
+{
+  "status": "analyzed",
+  "cycle": 1029,
+  "tests_analyzed": 864,
+  "failed_tests": 864,
+  "failure_signatures": [
+    {
+      "failure_signature": "too_few_trades",
+      "count": 864,
+      "families": 8,
+      "mean_holdout_return": -0.27592698517272146,
+      "median_holdout_return": -0.25731977654028504,
+      "mean_holdout_pf": 0.44743182929371195,
+      "mean_holdout_dd": -0.5747722655679509,
+      "mean_holdout_tpm": 1.1645219194184433,
+      "replication_rate": 0.0
+    }
+  ],
+  "hypotheses": [
+    {
+      "hypothesis_id": "FH-a1e989bd3900",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "evidence_tests": 144,
+      "evidence_rate": 0.16666666666666666,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-798682982eed",
+      "failure_signature": "too_few_trades",
+      "family": "gap",
+      "evidence_tests": 144,
+      "evidence_rate": 0.16666666666666666,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-362f243ca029",
+      "failure_signature": "too_few_trades",
+      "family": "pullback",
+      "evidence_tests": 144,
+      "evidence_rate": 0.16666666666666666,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-21026787b8bf",
+      "failure_signature": "too_few_trades",
+      "family": "range_reversal",
+      "evidence_tests": 72,
+      "evidence_rate": 0.08333333333333333,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-325631a965cc",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "evidence_tests": 72,
+      "evidence_rate": 0.08333333333333333,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-ff12d3bb50d6",
+      "failure_signature": "too_few_trades",
+      "family": "trend_transition",
+      "evidence_tests": 144,
+      "evidence_rate": 0.16666666666666666,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-4f5969b4ad4f",
+      "failure_signature": "too_few_trades",
+      "family": "wyckoff_sos",
+      "evidence_tests": 72,
+      "evidence_rate": 0.08333333333333333,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "FH-027a433ab749",
+      "failure_signature": "too_few_trades",
+      "family": "wyckoff_spring",
+      "evidence_tests": 72,
+      "evidence_rate": 0.08333333333333333,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "priority": "high",
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-844b43c34cd3",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.06,
+      "reward_r": 6.0,
+      "risk_pct": 0.03,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.1787711966169094,
+      "holdout_pf": 1.5939566304906378,
+      "holdout_dd": -0.467580505592065,
+      "holdout_tpm": 0.8547191887675507,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-e8d7235f29d6",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": 1.5,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.2698773475101244,
+      "holdout_pf": 1.3129746624129872,
+      "holdout_dd": -0.9385464432594268,
+      "holdout_tpm": 0.997172386895476,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-5d9fef5152f4",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.06,
+      "reward_r": 4.0,
+      "risk_pct": 0.03,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.1281079924674391,
+      "holdout_pf": 1.435449117609352,
+      "holdout_dd": -0.4851371695776604,
+      "holdout_tpm": 0.8547191887675507,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-0c95d45ac715",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": 4.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.2157538540264381,
+      "holdout_pf": 1.2911264143622383,
+      "holdout_dd": -0.943961362670158,
+      "holdout_tpm": 0.8072347893915757,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-b937b2f45506",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.06,
+      "reward_r": 6.0,
+      "risk_pct": 0.06,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.4671757481179019,
+      "holdout_pf": 1.6673997923498138,
+      "holdout_dd": -0.9293791718987195,
+      "holdout_tpm": 0.9022035881435256,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-e23fe61f64e2",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.06,
+      "reward_r": 6.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.4671757481179019,
+      "holdout_pf": 1.6673997923498138,
+      "holdout_dd": -0.9293791718987195,
+      "holdout_tpm": 0.9022035881435256,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-0f95b8d561f4",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": 3.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.1189123519245332,
+      "holdout_pf": 1.1672324844219817,
+      "holdout_dd": -0.9232962102008776,
+      "holdout_tpm": 0.8072347893915757,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-e264a7b9f23a",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": 6.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.7058594406819727,
+      "holdout_pf": 2.2046117591759486,
+      "holdout_dd": -0.949287167044866,
+      "holdout_tpm": 0.7597503900156006,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-5b0e0a49063e",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.1,
+      "reward_r": 3.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.1316943652326556,
+      "holdout_pf": 0.7628434319483187,
+      "holdout_dd": -0.9535008167626424,
+      "holdout_tpm": 0.7597503900156006,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-85120d46f678",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": 2.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.0132130917719839,
+      "holdout_pf": 1.0201501972221985,
+      "holdout_dd": -0.9511574497095788,
+      "holdout_tpm": 0.8072347893915757,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-759292320d47",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.06,
+      "reward_r": 3.0,
+      "risk_pct": 0.03,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.0788734718603303,
+      "holdout_pf": 1.2700966872715016,
+      "holdout_dd": -0.5116399995226792,
+      "holdout_tpm": 0.8547191887675507,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-b797ce386c15",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.1,
+      "reward_r": 1.5,
+      "risk_pct": 0.06,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.1572251943436602,
+      "holdout_pf": 0.7231732829600821,
+      "holdout_dd": -0.5989911564362149,
+      "holdout_tpm": 0.9022035881435256,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-b5f389e8467e",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.1,
+      "reward_r": 4.0,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.2244999039617891,
+      "holdout_pf": 0.6359489605748146,
+      "holdout_dd": -0.76982076318428,
+      "holdout_tpm": 0.7122659906396256,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-f4efa8b46f93",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": 6.0,
+      "risk_pct": 0.05,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.2206061095368701,
+      "holdout_pf": 1.7764501593541644,
+      "holdout_dd": -0.4971458132674072,
+      "holdout_tpm": 0.7597503900156006,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-f3a123e40146",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.06,
+      "reward_r": null,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.3697802048506734,
+      "holdout_pf": 0.4585978194347213,
+      "holdout_dd": -0.9653335425308264,
+      "holdout_tpm": 0.9496879875195008,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-56beb26179d1",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.06,
+      "reward_r": null,
+      "risk_pct": 0.06,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.3697802048506734,
+      "holdout_pf": 0.4585978194347213,
+      "holdout_dd": -0.9653335425308264,
+      "holdout_tpm": 0.9496879875195008,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-3db3059d5fff",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.1,
+      "reward_r": 1.5,
+      "risk_pct": 0.05,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.2511280228267838,
+      "holdout_pf": 0.3075563868133297,
+      "holdout_dd": -0.600655832331384,
+      "holdout_tpm": 0.7122659906396256,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-05e9810f00b5",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma50_vc0.7",
+      "horizon_days": 20,
+      "stop_loss": 0.1,
+      "reward_r": 1.5,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.2091079697472275,
+      "holdout_pf": 0.6198571448965244,
+      "holdout_dd": -0.9620058936998134,
+      "holdout_tpm": 0.7597503900156006,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-326177bb1cf7",
+      "failure_signature": "too_few_trades",
+      "family": "breakout",
+      "pattern": "breakout_b60_vr1.5_ma100_vc0.7",
+      "horizon_days": 15,
+      "stop_loss": 0.1,
+      "reward_r": null,
+      "risk_pct": 0.05,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": 0.1667123787367821,
+      "holdout_pf": 1.7921049000013023,
+      "holdout_dd": -0.5017880840601973,
+      "holdout_tpm": 0.6647815912636506,
+      "status": "queued_for_next_cycle"
+    },
+    {
+      "hypothesis_id": "NM-4f6bcbf858ce",
+      "failure_signature": "too_few_trades",
+      "family": "reversal",
+      "pattern": "reversal_drop4_ma200_vr1.5",
+      "horizon_days": 30,
+      "stop_loss": 0.1,
+      "reward_r": 1.5,
+      "risk_pct": null,
+      "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
+      "proposed_improvements": [
+        "broaden entry confirmation",
+        "test adjacent horizons",
+        "test ranking/relative-strength selection",
+        "combine with a second independent trigger"
+      ],
+      "holdout_return": -0.2391143453845039,
+      "holdout_pf": 0.5876430729094605,
+      "holdout_dd": -0.9096405298609244,
+      "holdout_tpm": 0.8547191887675507,
+      "status": "queued_for_next_cycle"
+    }
+  ],
+  "next_cycle_policy": "test_failure_hypotheses before repeating failed parameter regions"
+}

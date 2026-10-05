@@ -28,6 +28,7 @@ innovation_lab degraded: ValueError: Invalid frequency: ME, failed to parse with
       4.0,
       6.0
     ],
+    "failure_feedback_variants_added": 0,
     "risk_pcts_per_trade": [
       null,
       0.03,
@@ -8951,3 +8952,5 @@ innovation_lab degraded: ValueError: Invalid frequency: ME, failed to parse with
   tr = pd.concat([hp - lp, (hp - cp.shift(1)).abs(), (lp - cp.shift(1)).abs()], keys=["a", "b", "c"], axis=1).groupby(level=1, axis=1).max()
 /home/runner/work/leverage-system/leverage-system/research/strategy/innovation_lab.py:119: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   tr = pd.concat([hp - lp, (hp - cp.shift(1)).abs(), (lp - cp.shift(1)).abs()], keys=["a", "b", "c"], axis=1).groupby(level=1, axis=1).max()
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py:445: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  vol20 = cp.pct_change().rolling(20, min_periods=20).std()
