@@ -1,5 +1,5 @@
 {
-  "cycle": 1018,
+  "cycle": 1019,
   "tested_variants": [
     "breakout_b60_vr2_ma50_vc0.7",
     "breakout_b60_vr2_ma100_vc0.7",
@@ -284,26 +284,32 @@
     "breakout_b5_vr2_ma50_vc0.7",
     "breakout_b5_vr2_ma50_vc0.9",
     "breakout_b60_vr1.5_ma100",
-    "breakout_b60_vr1.5_ma100_vc0.9"
+    "breakout_b60_vr1.5_ma100_vc0.9",
+    "breakout_b60_vr1.5_ma50",
+    "breakout_b60_vr1.5_ma50_vc0.9",
+    "breakout_b60_vr1_ma100",
+    "breakout_b60_vr1_ma50",
+    "breakout_b60_vr2_ma100",
+    "breakout_b60_vr2_ma50"
   ],
   "focus_variants": [
-    "breakout_b60_vr1.5_ma100_vc0.7",
-    "breakout_b60_vr1.5_ma50_vc0.7",
     "breakout_b60_vr2_ma50_vc0.7",
     "breakout_b60_vr2_ma100_vc0.7",
+    "breakout_b60_vr1.5_ma100_vc0.7",
+    "breakout_b60_vr1.5_ma50_vc0.7",
     "breakout_b60_vr1_ma50_vc0.7",
     "breakout_b60_vr1_ma100_vc0.7",
-    "breakout_b40_vr2_ma100_vc0.7",
-    "cross_50_200_fresh",
     "breakout_b60_vr2_ma50_vc0.9",
     "breakout_b40_vr1_ma100_vc0.7",
-    "breakout_b40_vr1.5_ma100_vc0.7",
-    "breakout_b40_vr2_ma50_vc0.7"
+    "breakout_b40_vr2_ma100_vc0.7",
+    "breakout_b60_vr1.5_ma50_vc0.9",
+    "cross_50_200_fresh",
+    "breakout_b40_vr1.5_ma100_vc0.7"
   ],
-  "last_batch_size": 120,
-  "last_screen_rows": 585,
-  "last_realistic_tests": 720,
+  "last_batch_size": 18,
+  "last_screen_rows": 117,
+  "last_realistic_tests": 288,
   "search_space_variants": 290,
-  "search_space_coverage": 0.9793103448275862,
+  "search_space_coverage": 1.0,
   "exceptional_return_alerts": []
 }
