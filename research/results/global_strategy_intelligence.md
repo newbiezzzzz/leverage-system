@@ -1,7 +1,7 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-05T06:40:46Z
+Fetched: 2026-10-05T13:39:55Z
 Items: 49
 
 ## Research hypotheses
@@ -25,9 +25,9 @@ Items: 49
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - CNBC](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
 - [(ZCH) Trading Strategy and Analysis (ZCH:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxPTlJGSzI4Wk1SdkU4bk95YzVjdG41aS1kR1p1bWlQLUV5ZzVVeFVsNFJEalFpTUYxUHlDZFZJcDZ1R21qRzNuWkJvZWNRU2xPQkMtY1dmV1ptSFV2NGdMclNhSzZ5czVfb3BxV3EyY0lsYXFtREJhMlpjU1dUOWxuaFUxb1VTNlN6LU1XbDJiYzFQci1Bb3c?oc=5) — news / HK
-- [(NFI.DB) Trading Strategy and Analysis (NFI.DB:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxNcHBxaGFQaGE5dGtzaU43Zm5DalpJcnpsVjg5eGFmUDFCWVNLV2RLbXdfN3daRWxVcno0Ti15b1JSYWdUSDAxN2dZd0lZRXJ4R2tPVGw1dnBvbWJsS0hfOGhoRWl0TG9BbzMwbGo1d1FVNjdRdm1KYk1abUNTdzQ0ZGl2alJKeVFSNDMzTjUzdDBlMVhRQzJlLQ?oc=5) — news / HK
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
-- [XRP Faces $1.54 Resistance Amid Mixed Price Action and Growing XRPL Activity - KuCoin](https://news.google.com/rss/articles/CBMirgFBVV95cUxPZk1MUmtxel9tOTlWNVhTaEpDSUczMXJreXFNZWpjSzhrSHQtcDNGNGsxczg4NlpVbFFoYTVHLWlHQ0ZVOUdyYWxFcXpUbTVZLXlFRUVBMllOVWltTEIzekxISkpIdU9HM3RHa1EtdnRTb01wSGpfX215SkZEMEg0RHo2T2t2LVBLV0pUcVpQb2RjbEU0QW9oa3JxZmFkWFJtWHBlX0F1MkRKbnNweVE?oc=5) — news / HK
+- [(CMGG) Trading Strategy and Analysis (CMGG:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxOWTVhU3lrYU5XajVkU2FzMmJfSGlZWElKU3AtejNrQWRPRDA2RkxQb1N4ZXZWTDM1b0NZT0o3dkpYX0xzU2podjhNRU5UNDZTTE5wNERHa1E5Zldjb0tjQkNyNTlkRkZYNUE0bngzT1BiVTJHQ3kxSk9ra0dZNmNXamg0RlBrZnBFUUtDRkNfbktHajF6VVM4?oc=5) — news / HK
+- [XRP Faces $1.54 Resistance Amid Mixed Price Action and Growing XRPL Activity - kucoin.com](https://news.google.com/rss/articles/CBMirgFBVV95cUxPZk1MUmtxel9tOTlWNVhTaEpDSUczMXJreXFNZWpjSzhrSHQtcDNGNGsxczg4NlpVbFFoYTVHLWlHQ0ZVOUdyYWxFcXpUbTVZLXlFRUVBMllOVWltTEIzekxISkpIdU9HM3RHa1EtdnRTb01wSGpfX215SkZEMEg0RHo2T2t2LVBLV0pUcVpQb2RjbEU0QW9oa3JxZmFkWFJtWHBlX0F1MkRKbnNweVE?oc=5) — news / HK
 - [Optimal Liquidation with Support and Resistance Levels under Multi-Skew Brownian Motion](https://arxiv.org/abs/2609.35063v1) — arxiv / global
 - [On Detecting Multiple Simultaneous Change-points in High Dimensional Non-Stationary Time Series](https://arxiv.org/abs/2609.15479v1) — arxiv / global
 - [WaVeFuse: Regime-Adaptive Equity Index Forecasting via Channel-Wise Wavelet Denoising and Vertical Attention Fusion](https://arxiv.org/abs/2609.14733v1) — arxiv / global

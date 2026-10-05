@@ -4,8 +4,8 @@
   "added_value": false,
   "detail": "OOS 5-day formula correlation=nan; RMSE=0.0978; mean-only RMSE=0.0978; formula=sub(X1, X1)",
   "oos_correlation": NaN,
-  "oos_rmse": 0.09779477602152352,
-  "baseline_rmse": 0.09779309430680472,
+  "oos_rmse": 0.097839403167431,
+  "baseline_rmse": 0.09783776118864405,
   "formula": "sub(X1, X1)"
 }
 /opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/numpy/lib/_function_base_impl.py:3065: RuntimeWarning: invalid value encountered in divide
