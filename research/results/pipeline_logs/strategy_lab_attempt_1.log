@@ -2,9 +2,9 @@ innovation_lab degraded: ValueError: Invalid frequency: ME, failed to parse with
 {
   "engine_version": "realistic_engine_v1 + strategy_lab_v4",
   "status": "searching",
-  "cycle": 1032,
-  "search_space_variants": 312,
-  "batch_variants": 32,
+  "cycle": 1033,
+  "search_space_variants": 311,
+  "batch_variants": 17,
   "screen_rows": 108,
   "realistic_tests": 144,
   "qualified_candidates": 0,
@@ -28,7 +28,7 @@ innovation_lab degraded: ValueError: Invalid frequency: ME, failed to parse with
       4.0,
       6.0
     ],
-    "failure_feedback_variants_added": 22,
+    "failure_feedback_variants_added": 21,
     "risk_pcts_per_trade": [
       null,
       0.03,
