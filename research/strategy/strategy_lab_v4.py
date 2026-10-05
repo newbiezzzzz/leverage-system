@@ -405,6 +405,7 @@ def evaluate_candidate(name, v, op, hp, lp, cp, vp, universe, regime, horizon, s
 def flatten(r):
     row = {
         "pattern": r["pattern"], "family": r["family"], "horizon_days": r["horizon_days"], "stop_loss": r["stop_loss"],
+        "reward_r": r.get("reward_r"), "risk_pct": r.get("risk_pct"),
         "params": r["params"], "research_candidate": r["research_candidate"],
         "replication_pass": r["replication_pass"],
         "neighbor_pass_count": r["neighbor_pass_count"],
@@ -437,6 +438,49 @@ def main():
     # cycle number represents a successfully completed research iteration.
     cycle = previous_cycle if str(progress.get("last_cycle_status", "")) == "degraded" else previous_cycle + 1
     variants = __import__("strategy_lab_v3").build_variants(op, hp, lp, cp, vp, universe, ind)
+
+    # Feed failure research into the next search instead of repeating failed regions.
+    failure_report = read_json(OUT / "failure_research_hypotheses.json", {})
+    queued = failure_report.get("hypotheses", []) if isinstance(failure_report, dict) else []
+    vol20 = cp.pct_change().rolling(20, min_periods=20).std()
+    vol63 = ind["vol63"]
+    mom20 = cp / cp.shift(20) - 1.0
+    added_feedback = 0
+    for h in queued[:40]:
+        base_name = h.get("pattern")
+        base = variants.get(base_name) if base_name else None
+        if base is None:
+            fam = h.get("family")
+            names = [n for n, v in variants.items() if v.get("family") == fam]
+            base = variants.get(names[0]) if names else None
+        if base is None:
+            continue
+        sig = str(h.get("failure_signature", ""))
+        mask = base["mask"].copy()
+        tag = str(h.get("hypothesis_id", added_feedback))
+        if sig == "drawdown_failure":
+            mask = mask & (cp > ind["ma100"]) & (vol20 <= vol63)
+        elif sig in {"negative_expectancy", "profit_factor_failure"}:
+            mask = mask & (cp > ind["ma100"]) & (ind["volume_ratio20"] >= 1.2)
+        elif sig == "too_many_trades":
+            mask = mask & (cp > ind["ma100"]) & (ind["volume_ratio20"] >= 1.5)
+        elif sig == "replication_failure":
+            mask = mask & (ind["avg_dollar"] >= 500_000.0) & (cp > ind["ma200"])
+        elif sig in {"holdout_failure", "robustness_failure"}:
+            mask = mask & (cp > ind["ma100"]) & (vol20 <= 1.2 * vol63)
+        elif sig == "too_few_trades":
+            mask = mask | ((cp > ind["ma100"]) & (mom20 > 0) & universe)
+        else:
+            continue
+        name = f"failurefix_{tag}_{sig}"
+        variants[name] = {
+            "mask": mask.fillna(False),
+            "score": base["score"],
+            "family": f"{base.get('family', 'unknown')}_failurefix",
+            "params": {"source_hypothesis": tag, "failure_signature": sig, "base_pattern": base_name},
+        }
+        added_feedback += 1
+
     chosen = select_batch(variants, state)
 
     screen = screen_candidates(variants, chosen, op, cp)
@@ -518,6 +562,7 @@ def main():
             "lot_size": LOT_SIZE,
             "starting_cash": STARTING_CASH,
             "rr_values": list(RR_VALUES),
+            "failure_feedback_variants_added": int(added_feedback),
             "risk_pcts_per_trade": list(RISK_PCTS),
             "capital_pct": CAPITAL_PCT,
             "slippage_bps": SLIPPAGE_BPS,
@@ -545,6 +590,7 @@ def main():
         "cycle": cycle, "updated_at": pd.Timestamp.utcnow().isoformat(),
         "engine_version": "strategy_lab_v4_realistic",
         "patterns_tested": len(variants), "strategy_lab_variants": len(variants),
+        "failure_feedback_variants_added": int(added_feedback),
         "strategy_lab_selection_candidates": len(screen), "strategy_lab_backtests": len(realistic_tests),
         "rr_values_tested": list(RR_VALUES),
         "risk_pcts_per_trade": list(RISK_PCTS),
