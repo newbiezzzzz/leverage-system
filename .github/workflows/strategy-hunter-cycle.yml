@@ -186,8 +186,18 @@ jobs:
           if achieved:
               print("GOAL ACHIEVED: no continuation will be dispatched.")
               raise SystemExit(0)
-          print("GOAL NOT ACHIEVED: dispatching the next Strategy Hunter cycle.")
+          print("GOAL NOT ACHIEVED: checking for an already queued/running cycle.")
           PY
+
+          CURRENT_RUN="${GITHUB_RUN_ID}"
+          ACTIVE_COUNT="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/strategy-hunter-cycle.yml/runs?branch=main&per_page=20" \
+            --jq "[.workflow_runs[] | select((.status == \"queued\" or .status == \"in_progress\" or .status == \"pending\") and (.id != (${GITHUB_RUN_ID} | tonumber)))] | length")"
+
+          if [ "$ACTIVE_COUNT" -gt 0 ]; then
+            echo "NEXT CYCLE ALREADY QUEUED/RUNNING: no duplicate dispatch."
+            exit 0
+          fi
+
           if gh workflow run strategy-hunter-cycle.yml --ref main; then
             echo "NEXT CYCLE DISPATCHED"
           else
