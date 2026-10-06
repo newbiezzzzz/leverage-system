@@ -1,8 +1,8 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-10-05T22:09:15.461975+00:00",
-  "input_generated_at": "2026-10-05T22:03:55.096679+00:00",
+  "generated_at": "2026-10-06T20:31:05.526585+00:00",
+  "input_generated_at": "2026-10-06T20:22:31.163755+00:00",
   "record_count": 65,
   "cluster_count": 65,
   "opportunity_count": 50,
@@ -33,14 +33,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461065+00:00",
+      "created_at": "2026-10-06T20:31:05.525540+00:00",
       "rank": 1
     },
     {
-      "id": "opp-f5e6990f40076e43",
+      "id": "opp-a6342fe227d4bb54",
       "project": "affiliate-project",
-      "problem": "Anwar walks abroad, we crawl in traffic at home: Malaysia’s car problem - aliran.com",
-      "normalized_problem": "anwar walks abroad we crawl in traffic at home malaysia s car problem aliran com",
+      "problem": "Anwar walks abroad, we crawl in traffic at home: Malaysia’s car problem - m.aliran.com",
+      "normalized_problem": "anwar walks abroad we crawl in traffic at home malaysia s car problem m aliran com",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -57,13 +57,42 @@
         {
           "source": "Google News automotive Malaysia",
           "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPR3kybk9DcGZWdWdQblBSY3E1Sm5IQjJDTGJ3RXlLMnhaaE5PeG1tcUVNc2Ftd0pPa3pLWnNXY1dBNk83Tk0wTDhGNEkzQkRySWxUbXJHdWdzTUNEOVlHelZpX0pqekx5WWtOQzhEa0l0SzlYZ1M0MHotRlZlclNMOEw4eVpWRWZpTFdxb2RLVFhfNjdjZW9LZ3RMNm9SXzFoNkNMUmNvODhwSFMzTzk2S0VHNA?oc=5",
-          "excerpt": "Anwar walks abroad, we crawl in traffic at home: Malaysia’s car problem &nbsp;&nbsp; aliran.com"
+          "excerpt": "Anwar walks abroad, we crawl in traffic at home: Malaysia’s car problem &nbsp;&nbsp; m.aliran.com"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461629+00:00",
+      "created_at": "2026-10-06T20:31:05.526082+00:00",
       "rank": 2
+    },
+    {
+      "id": "opp-570714717196d68f",
+      "project": "affiliate-project",
+      "problem": "Anybody went through this before?",
+      "normalized_problem": "anybody went through this before",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wzb2e8/anybody_went_through_this_before/",
+          "excerpt": "Recently got into an accident. A car decided to make a sharp turn into an exit from a far left lane and I’m on the right so I hit him from behind. But the point of the story wasn’t that, it got a little suspicious when I got out of the car. Another car came and talk to me. He claimed to be the brother of the car I hit but different parents so just… brader. He then said he will collect my police report tomorrow. I don’t need to pay a single cent. He will tow my car, make it brand new again. Showe"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525038+00:00",
+      "rank": 3
     },
     {
       "id": "opp-b44da6551bcebce1",
@@ -91,8 +120,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461031+00:00",
-      "rank": 3
+      "created_at": "2026-10-06T20:31:05.525494+00:00",
+      "rank": 4
     },
     {
       "id": "opp-0691adda55b6275c",
@@ -120,14 +149,43 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461117+00:00",
-      "rank": 4
+      "created_at": "2026-10-06T20:31:05.525610+00:00",
+      "rank": 5
     },
     {
-      "id": "opp-7b1ae0aafd2f6dee",
+      "id": "opp-8fc2f6e49fd2694d",
       "project": "affiliate-project",
-      "problem": "Can this be fixed?",
-      "normalized_problem": "can this be fixed",
+      "problem": "Chat, is this a cool design/concept in Malaysia?",
+      "normalized_problem": "chat is this a cool design concept in malaysia",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wyylj1/chat_is_this_a_cool_designconcept_in_malaysia/",
+          "excerpt": "I&#39;ve always wanted to own a car and design it myself in the style of Cell-Shading (Borderlands/JoJo style). However, I&#39;ve never seen a car that has done this design. Is there a reason? Too expensive? Illegal? Or does it just look bad. This is design 100% by me. Car is just images I found on the internet. &#32; submitted by &#32; /u/Either-Mousse192 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525284+00:00",
+      "rank": 6
+    },
+    {
+      "id": "opp-ca486ffab47e68b2",
+      "project": "affiliate-project",
+      "problem": "Chery’s new safety feature - Axle Eject System (AES)",
+      "normalized_problem": "chery s new safety feature axle eject system aes",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -143,14 +201,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxuewu/can_this_be_fixed/",
-          "excerpt": "Yesterday I stopped at Petronas to fill in some air on my tyres, and I noticed the back-left tyre was significantly lower pressure at 185kpa, and apparently there&#39;s this stapler bullet thing? I cant identify wth this is. It&#39;s a new tyre with 1500km on it. If it&#39;s a stapler I dont think I can cacing it. What should I do? Thanks. &#32; submitted by &#32; /u/LiteratureThis3744 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wyuyrq/cherys_new_safety_feature_axle_eject_system_aes/",
+          "excerpt": "AES will eject your axle when travelling through uneven roads, so that it doesn’t damage your tyres. &#32; submitted by &#32; /u/Disastrous_Image2644 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461129+00:00",
-      "rank": 5
+      "created_at": "2026-10-06T20:31:05.525327+00:00",
+      "rank": 7
     },
     {
       "id": "opp-02fe3103bb1845fe",
@@ -178,65 +236,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461018+00:00",
-      "rank": 6
-    },
-    {
-      "id": "opp-5cf640f9d8adfee8",
-      "project": "affiliate-project",
-      "problem": "Driving a pickup in KL",
-      "normalized_problem": "driving a pickup in kl",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxm9p2/driving_a_pickup_in_kl/",
-          "excerpt": "For those of you who have a pickup as your daily ride in the city, is parking in malls and multi-storey carparks ever a challenge? I used to own a hilux in Thailand and never had trouble parking anywhere even on narrow streets and multi storey parking lots because pickups form a large proportion of vehicles so locals make allowances for them. I&#39;m thinking of getting a pickup here but seeing how narrow parking bays are and how tight turning angles up and down ramps makes me wonder if i&#39;m "
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461142+00:00",
-      "rank": 7
-    },
-    {
-      "id": "opp-0776521a735f6031",
-      "project": "affiliate-project",
-      "problem": "Driving school cut short hours. How the hell I'm going to learn then?",
-      "normalized_problem": "driving school cut short hours how the hell i m going to learn then",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wyag68/driving_school_cut_short_hours_how_the_hell_im/",
-          "excerpt": "1.30pm kpp02, sit wait until 3.00 pm, instructor started teaching at 3.15 pm and ended 4 pm This is ridiculous. (Manual) &#32; submitted by &#32; /u/ToastedCaffeine [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.460948+00:00",
+      "created_at": "2026-10-06T20:31:05.525478+00:00",
       "rank": 8
     },
     {
@@ -265,7 +265,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461088+00:00",
+      "created_at": "2026-10-06T20:31:05.525570+00:00",
       "rank": 9
     },
     {
@@ -294,7 +294,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.460966+00:00",
+      "created_at": "2026-10-06T20:31:05.525417+00:00",
       "rank": 10
     },
     {
@@ -323,7 +323,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.460902+00:00",
+      "created_at": "2026-10-06T20:31:05.525400+00:00",
       "rank": 11
     },
     {
@@ -352,7 +352,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461846+00:00",
+      "created_at": "2026-10-06T20:31:05.526369+00:00",
       "rank": 12
     },
     {
@@ -381,7 +381,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461704+00:00",
+      "created_at": "2026-10-06T20:31:05.526159+00:00",
       "rank": 13
     },
     {
@@ -410,7 +410,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461725+00:00",
+      "created_at": "2026-10-06T20:31:05.526193+00:00",
       "rank": 14
     },
     {
@@ -439,7 +439,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461005+00:00",
+      "created_at": "2026-10-06T20:31:05.525459+00:00",
       "rank": 15
     },
     {
@@ -468,48 +468,48 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461100+00:00",
+      "created_at": "2026-10-06T20:31:05.525590+00:00",
       "rank": 16
     },
     {
-      "id": "opp-c65aaaa79095abae",
+      "id": "opp-9d828fede7a2d5bb",
       "project": "affiliate-project",
-      "problem": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature - AsiaOne",
-      "normalized_problem": "no car no problem singaporeans can now drive getgo cars into malaysia under new cross border feature asiaone",
+      "problem": "Scraped my car against the wall",
+      "normalized_problem": "scraped my car against the wall",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
         "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2,
-        "source_strength": 0.75,
-        "freshness_factor": 0.55,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
         "evidence_count": 1
       },
       "evidence": [
         {
-          "source": "Google News automotive Malaysia",
-          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOWFE5RC1hMHJ5cmNhSzVzeE9tWWhVRVMxbHlPRkd6bTJhdlZkcWppRnBLeUxVbW5IM3phWElPLTh1OENpdzNxdzRkV0FyeFdNZmJqdjhKRkVLMFFSOEN3a3haRlplcHM4dUk3ZF9lLVljQnhvQm1PZE9WQWhlVkZTOFRQNA?oc=5",
-          "excerpt": "No car, no problem: Singaporeans can now drive GetGo cars into Malaysia under new cross-border feature &nbsp;&nbsp; AsiaOne"
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wz2j8n/scraped_my_car_against_the_wall/",
+          "excerpt": "Hi guys, I just scratched my saga’s front bumper, how much will this set me back? I’m in the sungai besi area, would really appreciate any workshops in the area that can help with this. &#32; submitted by &#32; /u/YesMediumRare [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461528+00:00",
+      "created_at": "2026-10-06T20:31:05.525203+00:00",
       "rank": 17
     },
     {
-      "id": "opp-c7e55e41b589b31a",
+      "id": "opp-01bef74d23c27770",
       "project": "affiliate-project",
-      "problem": "S70 USB charging port not working",
-      "normalized_problem": "s70 usb charging port not working",
+      "problem": "Seeking opinion/feedback from 2026 Vios HEV owners",
+      "normalized_problem": "seeking opinion feedback from 2026 vios hev owners",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
+        "buyer_intent": 2,
+        "problem_strength": 2,
         "content_potential": 3,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
@@ -520,26 +520,26 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wx4r2z/s70_usb_charging_port_not_working/",
-          "excerpt": "As title. Any advice on how to go about this? The port worked fine until suddenly it’s not charging anymore. This is the USB A port at the armrest above the wireless charging pad (not the cigarettes port). Not sure if it matters but I reset the IHU but didn’t help &#32; submitted by &#32; /u/Odd_Conversation_379 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wyvaj4/seeking_opinionfeedback_from_2026_vios_hev_owners/",
+          "excerpt": "I have my heart pretty much set on getting the Vios HEV, especially now with their increased rebate. But I do find it odd that I haven&#39;t been able to find any proper review from actual owners. I&#39;m curious to know about real-life fuel consumption rate, your overall satisfaction with the car and if there&#39;s any gripes/issues you have with it. Before anyone says it, I&#39;m not interested in the Honda City or Proton S70. My option at the moment is either the Vios or none at all. &#32; su"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461240+00:00",
+      "created_at": "2026-10-06T20:31:05.525304+00:00",
       "rank": 18
     },
     {
-      "id": "opp-150ea1746a17d82e",
+      "id": "opp-77d5828e40f0bb3d",
       "project": "affiliate-project",
-      "problem": "Secondhand BMW E92 320I",
-      "normalized_problem": "secondhand bmw e92 320i",
+      "problem": "Was thinking to buy perodua aruz advance. Can u guys comment or advice",
+      "normalized_problem": "was thinking to buy perodua aruz advance can u guys comment or advice",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 3,
-        "content_potential": 4,
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
@@ -549,24 +549,24 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxds4f/secondhand_bmw_e92_320i/",
-          "excerpt": "I&#39;ve been really eyeing on the BMW E92 320i for awhile now, it is just so cheap (like 30k only) and I know first comes to mind is, expensive maintenance. I would really love to know just how expensive is the maintenance really, seems like some of the common engine issues for this N43 is the oil pump and timing chain failure which doesn&#39;t seem too expensive for the parts, I guess if I work on it myself it shouldn&#39;t be too expensive? Could anyone please share on this if you have one? &"
+          "url": "https://www.reddit.com/r/kereta/comments/1wz28sg/was_thinking_to_buy_perodua_aruz_advance_can_u/",
+          "excerpt": "&#32; submitted by &#32; /u/AlternativeMechanic7 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461212+00:00",
+      "created_at": "2026-10-06T20:31:05.525236+00:00",
       "rank": 19
     },
     {
-      "id": "opp-ef9c4e72f5e76111",
+      "id": "opp-6eb705fa3bc83442",
       "project": "affiliate-project",
-      "problem": "Where is a good priced motorcycle shop at JB?",
-      "normalized_problem": "where is a good priced motorcycle shop at jb",
+      "problem": "Your car is a smartphone on wheels. Here's who's listening",
+      "normalized_problem": "your car is a smartphone on wheels here s who s listening",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 4,
+        "buyer_intent": 2,
         "problem_strength": 1,
         "content_potential": 3,
         "source_strength": 1.0,
@@ -578,27 +578,27 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxgvw8/where_is_a_good_priced_motorcycle_shop_at_jb/",
-          "excerpt": "Tryna buy a LC or Y15 on cash/creditcard, but most are heavily marked up. Need some recommendation on shop. &#32; submitted by &#32; /u/Vackrich [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1wz07pz/your_car_is_a_smartphone_on_wheels_heres_whos/",
+          "excerpt": "It knows where you drive. It knows who you are. It can share this data and more with insurance companies, advertisers, etc... A connected car is a vehicle with built-in internet access — Wi-Fi, cellular, GPS — that lets it communicate constantly with its manufacturer and outside companies. Over 75% of vehicles sold globally have this connectity built-in. Will you buy a car with more or lesser tracking, if you have a choice? &#32; submitted by &#32; /u/jamesw [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461169+00:00",
+      "created_at": "2026-10-06T20:31:05.525260+00:00",
       "rank": 20
     },
     {
-      "id": "opp-6e9a10c792ffba2f",
+      "id": "opp-7c2f935caab963b0",
       "project": "affiliate-project",
-      "problem": "Which petrol brand do you guys usually go for?",
-      "normalized_problem": "which petrol brand do you guys usually go for",
+      "problem": "croatia vs spain",
+      "normalized_problem": "croatia vs spain",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
+        "buyer_intent": 2,
         "problem_strength": 1,
-        "content_potential": 3,
-        "source_strength": 1.0,
+        "content_potential": 1,
+        "source_strength": 0.9,
         "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
@@ -606,50 +606,50 @@
       },
       "evidence": [
         {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxkn9v/which_petrol_brand_do_you_guys_usually_go_for/",
-          "excerpt": "Just curious, how do you guys decide which petrol brand to use? I was digging through some 4yr old Reddit posts on this but wanted to get some newer opinions. Is there actually any difference in terms of performance, fuel consumption, engine feel, additives etc or even because of member perks/rewards or anything? Do you guys have a specific brand you stick to for a reason, or just pump at whichever station is nearest when the tank is empty. Just wanna understand what people actually consider whe"
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "croatia vs spain"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461155+00:00",
+      "created_at": "2026-10-06T20:31:05.525677+00:00",
       "rank": 21
     },
     {
-      "id": "opp-3efde94552ff874b",
+      "id": "opp-a2f03ac9277b7a9c",
       "project": "affiliate-project",
-      "problem": "Why \"Oil-Rich\" Malaysia Still Imports 50% of Its Fuel, And Why That’s a Problem Right Now - Carz Automedia Malaysia",
-      "normalized_problem": "why oil rich malaysia still imports 50 of its fuel and why that s a problem right now carz automedia malaysia",
+      "problem": "england vs czechia",
+      "normalized_problem": "england vs czechia",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2,
-        "source_strength": 0.75,
-        "freshness_factor": 0.55,
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
         "evidence_count": 1
       },
       "evidence": [
         {
-          "source": "Google News automotive Malaysia",
-          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTTk3Q3FlbDZzOXl1QWRpM25qQzA1ZDFRRndxYkRJZlpPTzlYeVpZZDV5WTBuNVY2ZUVQQ2pQSHBUamd4NFVOWi1KUG10ZmZ6VDJMYmstLXo3akRPNk9ReDN4c2Y4QzdldjNDSkhYdUtZY3ZvdFBXRGZlYzVoWjkwSmhMd2xNWU5PWW95SlB4dkJaUkZLcEEtc2I3N2lpaWdnLW1kVEx5amJRVXpBY3Bvb0FYRUlkdE0?oc=5",
-          "excerpt": "Why \"Oil-Rich\" Malaysia Still Imports 50% of Its Fuel, And Why That’s a Problem Right Now &nbsp;&nbsp; Carz Automedia Malaysia"
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "england vs czechia"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461650+00:00",
+      "created_at": "2026-10-06T20:31:05.525692+00:00",
       "rank": 22
     },
     {
-      "id": "opp-12b0f6ac8ed11316",
+      "id": "opp-0c9de6d7c5d79410",
       "project": "affiliate-project",
-      "problem": "[Weekly] What did you do to your car/bike?",
-      "normalized_problem": "weekly what did you do to your car bike",
+      "problem": "first car",
+      "normalized_problem": "first car",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -665,20 +665,20 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxb1x5/weekly_what_did_you_do_to_your_carbike/",
-          "excerpt": "Hi all, First of all, welcome to the weekly post of &quot;What did you do&quot;! I believe this sub is big enough, and we can sufficiently start a weekly post for those who wants to comment about what they did over the past week, and not needing to open a post to talk about it. This is the place where you can talk about: Where did you n your sayang (the car) go last month? (road trip reports?) What you spent on your car (shopee LED, install HUD, glow in dark paintjob) Minor car questions (repair"
+          "url": "https://www.reddit.com/r/kereta/comments/1wyslw7/first_car/",
+          "excerpt": "im a new driver planning to buy first car for maybe delivery gig to sustain student life, willing to a bit of diy repair. any recommendations ? im thinking viva or kancil, need more though and input about them. &#32; submitted by &#32; /u/zayy0765 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461226+00:00",
+      "created_at": "2026-10-06T20:31:05.525342+00:00",
       "rank": 23
     },
     {
-      "id": "opp-df9c4fa69cb5cf4f",
+      "id": "opp-d6c9466e152261ed",
       "project": "affiliate-project",
-      "problem": "france vs belgium",
-      "normalized_problem": "france vs belgium",
+      "problem": "kroasia vs spanyol",
+      "normalized_problem": "kroasia vs spanyol",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -695,26 +695,26 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "france vs belgium"
+          "excerpt": "kroasia vs spanyol"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461329+00:00",
+      "created_at": "2026-10-06T20:31:05.525630+00:00",
       "rank": 24
     },
     {
-      "id": "opp-cf1a9008984ea9e4",
+      "id": "opp-2dce1389fd4b3d80",
       "project": "affiliate-project",
-      "problem": "indonesia vs thailand fifa asean cup",
-      "normalized_problem": "indonesia vs thailand fifa asean cup",
-      "opportunity_score": 100.0,
+      "problem": "Anti Stock or Standard? Bro cant decide",
+      "normalized_problem": "anti stock or standard bro cant decide",
+      "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 2,
+        "buyer_intent": 1,
         "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
+        "content_potential": 2,
+        "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
@@ -722,28 +722,28 @@
       },
       "evidence": [
         {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "indonesia vs thailand fifa asean cup"
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wyr76d/anti_stock_or_standard_bro_cant_decide/",
+          "excerpt": "Peep the stickers &#32; submitted by &#32; /u/WokTheKok [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461350+00:00",
+      "created_at": "2026-10-06T20:31:05.525360+00:00",
       "rank": 25
     },
     {
-      "id": "opp-3e6b9fc169117204",
+      "id": "opp-b224b597f9ceb5f7",
       "project": "affiliate-project",
-      "problem": "italy vs türkiye",
-      "normalized_problem": "italy vs t rkiye",
-      "opportunity_score": 100.0,
+      "problem": "Car nearly stalling or engine lugging when I put little throttle at first gear",
+      "normalized_problem": "car nearly stalling or engine lugging when i put little throttle at first gear",
+      "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 2,
+        "buyer_intent": 1,
         "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
+        "content_potential": 2,
+        "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
@@ -751,28 +751,28 @@
       },
       "evidence": [
         {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "italy vs türkiye"
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wyovbv/car_nearly_stalling_or_engine_lugging_when_i_put/",
+          "excerpt": "&#32; submitted by &#32; /u/STANDARD_P0TAT0 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461316+00:00",
+      "created_at": "2026-10-06T20:31:05.525382+00:00",
       "rank": 26
     },
     {
-      "id": "opp-8d57ea759b7f2bca",
+      "id": "opp-048a3c0c95f27da5",
       "project": "affiliate-project",
-      "problem": "prancis vs belgia",
-      "normalized_problem": "prancis vs belgia",
-      "opportunity_score": 100.0,
+      "problem": "First Petron now Caltex?",
+      "normalized_problem": "first petron now caltex",
+      "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 2,
+        "buyer_intent": 1,
         "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
+        "content_potential": 2,
+        "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
         "source_count": 1,
@@ -780,131 +780,15 @@
       },
       "evidence": [
         {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "prancis vs belgia"
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wz89kt/first_petron_now_caltex/",
+          "excerpt": "Came across this after a day after the Petron incident &#32; submitted by &#32; /u/Useful-Front-7801 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461294+00:00",
+      "created_at": "2026-10-06T20:31:05.525105+00:00",
       "rank": 27
-    },
-    {
-      "id": "opp-9507082f657e8e38",
-      "project": "affiliate-project",
-      "problem": "romania vs sweden",
-      "normalized_problem": "romania vs sweden",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "romania vs sweden"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461304+00:00",
-      "rank": 28
-    },
-    {
-      "id": "opp-8bd38615913623dd",
-      "project": "affiliate-project",
-      "problem": "uae vs usa",
-      "normalized_problem": "uae vs usa",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "uae vs usa"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461339+00:00",
-      "rank": 29
-    },
-    {
-      "id": "opp-36fc7385504d02af",
-      "project": "affiliate-project",
-      "problem": "1000KMs in and I'm loving every second of it. Rolling picture is taken in Cameron Highlands, Malaysia",
-      "normalized_problem": "1000kms in and i m loving every second of it rolling picture is taken in cameron highlands malaysia",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxe6tk/1000kms_in_and_im_loving_every_second_of_it/",
-          "excerpt": "&#32; submitted by &#32; /u/Zeron_TTG [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461200+00:00",
-      "rank": 30
-    },
-    {
-      "id": "opp-35d7fa400df69366",
-      "project": "affiliate-project",
-      "problem": "Honda City 2024 CVT jerking at ~20km/h – normal?",
-      "normalized_problem": "honda city 2024 cvt jerking at 20km h normal",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wx4gjn/honda_city_2024_cvt_jerking_at_20kmh_normal/",
-          "excerpt": "Hi guys, need some advice. I’m driving a 2024 Honda City 1.5 V CVT. I just bought 2 months ago and its my first time driving a City. Recently noticed that when I release the accelerator and the car slows down, it feels smooth at &gt;20-30km/h, but once it reaches around 20km/h, there’s a noticeable jerk/sudden deceleration , almost like the car is braking by itself even though I’m not touching the brake. Also feel a slight jerk when accelerating from low speed (&lt;20km/h). High speed is fine th"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461256+00:00",
-      "rank": 31
     },
     {
       "id": "opp-40d2d4f50c5fe7e0",
@@ -932,8 +816,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.460988+00:00",
-      "rank": 32
+      "created_at": "2026-10-06T20:31:05.525436+00:00",
+      "rank": 28
     },
     {
       "id": "opp-59892ca459f1358e",
@@ -961,8 +845,37 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461043+00:00",
-      "rank": 33
+      "created_at": "2026-10-06T20:31:05.525509+00:00",
+      "rank": 29
+    },
+    {
+      "id": "opp-95d276f0f29f9b24",
+      "project": "affiliate-project",
+      "problem": "ODC caliper in axia",
+      "normalized_problem": "odc caliper in axia",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1wz5uub/odc_caliper_in_axia/",
+          "excerpt": "Has anyone changed their standard axia brakes into Honda ODC brake kit ? Does the brake pedal feel long or short ? &#32; submitted by &#32; /u/vdfgdg23 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525160+00:00",
+      "rank": 30
     },
     {
       "id": "opp-67e004cb89f97ffc",
@@ -990,8 +903,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461076+00:00",
-      "rank": 34
+      "created_at": "2026-10-06T20:31:05.525555+00:00",
+      "rank": 31
     },
     {
       "id": "opp-b3f8ccc4bde55765",
@@ -1019,66 +932,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461053+00:00",
-      "rank": 35
-    },
-    {
-      "id": "opp-77b8ee801977274c",
-      "project": "affiliate-project",
-      "problem": "matcha drink spilled on electric shifter",
-      "normalized_problem": "matcha drink spilled on electric shifter",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wx3feh/matcha_drink_spilled_on_electric_shifter/",
-          "excerpt": "need help guys. My Nissan Terra VE 2023 unit, I&#39;m just asking what&#39;s the best thing to do for the mean time, I&#39;m going to have my Nissan car checked on Monday, I spilled a drink on the shifter, any ideas on what could happen or what to do? It&#39;s an electric shifter. &#32; submitted by &#32; /u/Legal_Trouble7761 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461268+00:00",
-      "rank": 36
-    },
-    {
-      "id": "opp-bd925531b040b36c",
-      "project": "affiliate-project",
-      "problem": "nice or ugly?",
-      "normalized_problem": "nice or ugly",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1wxed53/nice_or_ugly/",
-          "excerpt": "is it just me or the crz only looks good when modded. some people might think it alrd looks good stock or maybe the design cannot be saved idk what do u think? &#32; submitted by &#32; /u/ChickenRice9000 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461180+00:00",
-      "rank": 37
+      "created_at": "2026-10-06T20:31:05.525523+00:00",
+      "rank": 32
     },
     {
       "id": "opp-4b017d28263eb80d",
@@ -1106,8 +961,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461403+00:00",
-      "rank": 38
+      "created_at": "2026-10-06T20:31:05.525822+00:00",
+      "rank": 33
     },
     {
       "id": "opp-891fbbcf5f5ce4fe",
@@ -1135,8 +990,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461570+00:00",
-      "rank": 39
+      "created_at": "2026-10-06T20:31:05.526003+00:00",
+      "rank": 34
     },
     {
       "id": "opp-fefc028971954f92",
@@ -1164,8 +1019,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461493+00:00",
-      "rank": 40
+      "created_at": "2026-10-06T20:31:05.525925+00:00",
+      "rank": 35
     },
     {
       "id": "opp-1d3d7ce7074e7450",
@@ -1193,8 +1048,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461893+00:00",
-      "rank": 41
+      "created_at": "2026-10-06T20:31:05.526435+00:00",
+      "rank": 36
     },
     {
       "id": "opp-27527b13a1303d44",
@@ -1222,8 +1077,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461923+00:00",
-      "rank": 42
+      "created_at": "2026-10-06T20:31:05.526479+00:00",
+      "rank": 37
     },
     {
       "id": "opp-5407d70172ce5845",
@@ -1251,14 +1106,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461908+00:00",
-      "rank": 43
+      "created_at": "2026-10-06T20:31:05.526456+00:00",
+      "rank": 38
     },
     {
-      "id": "opp-fa5ddb16dcc1eb6c",
+      "id": "opp-48b3b64e3361abc1",
       "project": "affiliate-project",
-      "problem": "Malaysia’s first EV costs under $20,000, but you don’t own the battery - ArenaEV - EV Arena",
-      "normalized_problem": "malaysia s first ev costs under 20 000 but you don t own the battery arenaev ev arena",
+      "problem": "Malaysia’s first EV costs under $20,000, but you don’t own the battery - ArenaEV - ArenaEV",
+      "normalized_problem": "malaysia s first ev costs under 20 000 but you don t own the battery arenaev arenaev",
       "opportunity_score": 91.8,
       "priority": "high",
       "signals": {
@@ -1275,13 +1130,13 @@
         {
           "source": "Google News automotive Malaysia",
           "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNWldFcWt3dm9maTA5OXlhcFBWX1NyNUdkbURPeE5CcXNpM1U2NHZUTVdEb3FyUmFhOWp6T1V6QVNjSWRuWjhGRE05ZmRxM3EtTGsyWEpfVkN2anljZmJYbVdtLWtGcDZqOTU3NDFOZkF5ZkJpR1VJVUlJa2Z6OEZrdy1TWlU4d3lqRmt4QjhNUDFIZTlBaWZPRm9hcldOU0pSeFZXYUFn0gGiAUFVX3lxTFA0am85cFdacm1hTFRDeVMzZFV3MENHRWU1b3RDbFpUUVBkZDRmOTJGRmUxT3lNWU9mYnBYUEtMSXp0eW9GRjR1d3lDd3VXT3dGWHduaG1MZ19SU3ZYLUxDWk1JbW5ldGV3d3BaWlhvelk4ZGdXOTNJRDczLUZrMW5QNkZpRDdoWDAtbEZPMkJCdzZXeUlnZzJNVjVJanZHS3JXQQ?oc=5",
-          "excerpt": "Malaysia’s first EV costs under $20,000, but you don’t own the battery - ArenaEV &nbsp;&nbsp; EV Arena"
+          "excerpt": "Malaysia’s first EV costs under $20,000, but you don’t own the battery - ArenaEV &nbsp;&nbsp; ArenaEV"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461593+00:00",
-      "rank": 44
+      "created_at": "2026-10-06T20:31:05.526031+00:00",
+      "rank": 39
     },
     {
       "id": "opp-2ad1e7630da69154",
@@ -1309,8 +1164,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461610+00:00",
-      "rank": 45
+      "created_at": "2026-10-06T20:31:05.526056+00:00",
+      "rank": 40
     },
     {
       "id": "opp-da9bd9ef21f08c20",
@@ -1338,8 +1193,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461810+00:00",
-      "rank": 46
+      "created_at": "2026-10-06T20:31:05.526295+00:00",
+      "rank": 41
     },
     {
       "id": "opp-db5e22678c13826c",
@@ -1367,8 +1222,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461455+00:00",
-      "rank": 47
+      "created_at": "2026-10-06T20:31:05.525871+00:00",
+      "rank": 42
     },
     {
       "id": "opp-b9401fe0d3a9b180",
@@ -1396,14 +1251,159 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461775+00:00",
+      "created_at": "2026-10-06T20:31:05.526316+00:00",
+      "rank": 43
+    },
+    {
+      "id": "opp-53d0c4e8e5a91531",
+      "project": "affiliate-project",
+      "problem": "british airways",
+      "normalized_problem": "british airways",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "british airways"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525706+00:00",
+      "rank": 44
+    },
+    {
+      "id": "opp-e152d866bc85450b",
+      "project": "affiliate-project",
+      "problem": "corruption",
+      "normalized_problem": "corruption",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "corruption"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525748+00:00",
+      "rank": 45
+    },
+    {
+      "id": "opp-840ee9db4c08b920",
+      "project": "affiliate-project",
+      "problem": "haze",
+      "normalized_problem": "haze",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "haze"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525735+00:00",
+      "rank": 46
+    },
+    {
+      "id": "opp-2d56255dce7fa9c0",
+      "project": "affiliate-project",
+      "problem": "kamil pooran",
+      "normalized_problem": "kamil pooran",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "kamil pooran"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525765+00:00",
+      "rank": 47
+    },
+    {
+      "id": "opp-7eaa4acc33e88089",
+      "project": "affiliate-project",
+      "problem": "lee zii jia",
+      "normalized_problem": "lee zii jia",
+      "opportunity_score": 80.5,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "lee zii jia"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-06T20:31:05.525662+00:00",
       "rank": 48
     },
     {
-      "id": "opp-20afbb285f7b8b4a",
+      "id": "opp-ac5eec78cc886113",
       "project": "affiliate-project",
-      "problem": "bella astillah",
-      "normalized_problem": "bella astillah",
+      "problem": "pekan antariksa dunia 2026",
+      "normalized_problem": "pekan antariksa dunia 2026",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1420,19 +1420,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "bella astillah"
+          "excerpt": "pekan antariksa dunia 2026"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461282+00:00",
+      "created_at": "2026-10-06T20:31:05.525722+00:00",
       "rank": 49
     },
     {
-      "id": "opp-db7e0ecaa6da93c8",
+      "id": "opp-e23a45900c673204",
       "project": "affiliate-project",
-      "problem": "mahkamah persekutuan malaysia",
-      "normalized_problem": "mahkamah persekutuan malaysia",
+      "problem": "runescape mmo",
+      "normalized_problem": "runescape mmo",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1449,12 +1449,12 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "mahkamah persekutuan malaysia"
+          "excerpt": "runescape mmo"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-05T22:09:15.461384+00:00",
+      "created_at": "2026-10-06T20:31:05.525647+00:00",
       "rank": 50
     }
   ],
