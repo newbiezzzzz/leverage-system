@@ -1,13 +1,13 @@
 {
   "engine_version": "realistic_engine_v1 + strategy_lab_v4",
   "status": "searching",
-  "cycle": 1053,
+  "cycle": 1054,
   "search_space_variants": 318,
   "batch_variants": 120,
-  "screen_rows": 432,
+  "screen_rows": 549,
   "realistic_tests": 864,
   "qualified_candidates": 0,
-  "search_space_coverage": 0.5660377358490566,
+  "search_space_coverage": 0.9056603773584906,
   "exceptional_return_alerts": [],
   "leader": null,
   "rules": {
@@ -57,7 +57,7 @@
     ],
     "sealed_holdout": [
       "2025-01-01",
-      "2026-10-02"
+      "2026-10-06"
     ],
     "min_trades_per_month": 5.0,
     "max_trades_per_month": 20.0,
