@@ -1,17 +1,27 @@
             strategy      start        end  final_equity  total_return      cagr  max_drawdown  trade_count  trades_per_month  risk_breach_count  win_rate  profit_factor  equity_volatility
-            momentum 2015-01-05 2026-10-06     11.574342     -0.988426 -0.315768     -0.998555         1258          8.921336               1260  0.372814       0.846619           3.055518
-               trend 2015-01-05 2026-10-06      3.110445     -0.996890 -0.388159     -0.999641         1206          8.552569               1208  0.375622       0.722001           2.368102
-            breakout 2015-01-05 2026-10-06   5051.090450      4.051090  0.147779     -0.966220         1158          8.212168               1156  0.418826       1.071274           5.708002
-      shock_reaction 2015-01-05 2026-10-06   1080.373087      0.080373  0.006600     -0.974967         1061          7.524275               1028  0.425071       1.007358           7.470557
-       slow_momentum 2015-01-05 2026-10-06    368.277785     -0.631722 -0.081495     -0.934898         1058          7.503000               1053  0.408318       0.960773           0.500560
-     volume_momentum 2015-01-05 2026-10-06     85.731222     -0.914269 -0.188647     -0.998961         1144          8.112884               1139  0.411713       0.932527           5.938957
-      trend_pullback 2015-01-05 2026-10-06     15.442673     -0.984557 -0.298771     -0.993838         1205          8.545477               1196  0.381743       0.724688           0.413973
-     active_reversal 2015-01-05 2026-10-06     79.380611     -0.920619 -0.193943     -0.981931         1079          7.651925               1070  0.406858       0.838346           5.560665
-     breakout_volume 2015-01-05 2026-10-06    412.543359     -0.587457 -0.072580     -0.990931         1200          8.510019               1201  0.398333       0.919086           4.232886
-high_volume_reversal 2015-01-05 2026-10-06     93.560380     -0.906440 -0.182590     -0.991140         1128          7.999418               1112  0.407801       0.865743           5.719586
-   downturn_reversal 2015-01-05 2026-10-06    456.682422     -0.543318 -0.064523     -0.779488          450          3.191257                434  0.406667       0.891476           0.349921
- relative_contrarian 2015-01-05 2026-10-06      1.620230     -0.998380 -0.421192     -0.999802         1145          8.119976               1136  0.372926       0.881276           1.751871
-     regime_adaptive 2015-01-05 2026-10-06    355.645005     -0.644355 -0.084219     -0.965804          889          6.304505                890  0.388076       0.943647           5.535247
+            momentum 2015-01-05 2026-10-02     11.904342     -0.988096 -0.314371     -0.998555         1257          8.922560               1259  0.373111       0.846663           3.056558
+               trend 2015-01-05 2026-10-02      3.050445     -0.996950 -0.389453     -0.999641         1205          8.553449               1207  0.375104       0.721985           2.368913
+            breakout 2015-01-05 2026-10-02   5051.090450      4.051090  0.147926     -0.966220         1158          8.219829               1156  0.418826       1.071274           5.709970
+      shock_reaction 2015-01-05 2026-10-02   1080.373087      0.080373  0.006607     -0.974967         1061          7.531294               1028  0.425071       1.007358           7.473133
+       slow_momentum 2015-01-05 2026-10-02    368.277785     -0.631722 -0.081568     -0.934898         1058          7.509999               1053  0.408318       0.960773           0.500732
+     volume_momentum 2015-01-05 2026-10-02     85.731222     -0.914269 -0.188805     -0.998961         1144          8.120452               1139  0.411713       0.932527           5.941005
+      trend_pullback 2015-01-05 2026-10-02     15.442673     -0.984557 -0.299003     -0.993838         1205          8.553449               1196  0.381743       0.724688           0.414116
+     active_reversal 2015-01-05 2026-10-02     79.380611     -0.920619 -0.194106     -0.981931         1079          7.659063               1070  0.406858       0.838346           5.562582
+     breakout_volume 2015-01-05 2026-10-02    412.543359     -0.587457 -0.072645     -0.990931         1200          8.517957               1201  0.398333       0.919086           4.234346
+high_volume_reversal 2015-01-05 2026-10-02     93.560380     -0.906440 -0.182744     -0.991140         1128          8.006880               1112  0.407801       0.865743           5.721558
+   downturn_reversal 2015-01-05 2026-10-02    456.682422     -0.543318 -0.064581     -0.779488          450          3.194234                434  0.406667       0.891476           0.350041
+ relative_contrarian 2015-01-05 2026-10-02      1.620230     -0.998380 -0.421487     -0.999802         1145          8.127551               1136  0.372926       0.881276           1.752475
+     regime_adaptive 2015-01-05 2026-10-02    355.645005     -0.644355 -0.084295     -0.965804          889          6.310387                890  0.388076       0.943647           5.537156
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["open"][sym] = d["split_adj_open"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["high"][sym] = d["split_adj_high"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:100: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["low"][sym] = d["split_adj_low"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:101: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["close"][sym] = d["split_adj_close"].reindex(index)
+/home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:102: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  frames["volume"][sym] = d["split_adj_volume"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   frames["open"][sym] = d["split_adj_open"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
