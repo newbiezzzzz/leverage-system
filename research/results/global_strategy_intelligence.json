@@ -1,8 +1,8 @@
 {
-  "status": "cached",
-  "fetched_at_epoch": 1791238906.7602227,
-  "fetched_at_utc": "2026-10-05T22:21:46Z",
-  "source_count": 50,
+  "status": "fresh",
+  "fetched_at_epoch": 1791262837.802933,
+  "fetched_at_utc": "2026-10-06T05:00:37Z",
+  "source_count": 10,
   "news_regions": [
     "US",
     "GB",
@@ -72,8 +72,8 @@
       "source_type": "news",
       "region": "MY",
       "theme": "global_trading_research",
-      "title": "10 GitHub Repositories to Master Quant Trading - KDnuggets",
-      "summary": "10 GitHub Repositories to Master Quant Trading KDnuggets",
+      "title": "10 GitHub Repositories to Master Quant Trading - kdnuggets.com",
+      "summary": "10 GitHub Repositories to Master Quant Trading kdnuggets.com",
       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
       "published": "Wed, 20 May 2026 07:00:00 GMT",
       "detected_themes": [
@@ -96,8 +96,8 @@
       "source_type": "news",
       "region": "MY",
       "theme": "global_trading_research",
-      "title": "Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets",
-      "summary": "Gold Trading Strategy 2026: XAU/USD Guide ThinkMarkets",
+      "title": "Gold Trading Strategy 2026: XAU/USD Guide - thinkmarkets.com",
+      "summary": "Gold Trading Strategy 2026: XAU/USD Guide thinkmarkets.com",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
       "published": "Tue, 03 Feb 2026 08:00:00 GMT",
       "detected_themes": [
@@ -151,755 +151,65 @@
       "detected_themes": [
         "moving_average"
       ]
-    },
-    {
-      "source_type": "news",
-      "region": "SG",
-      "theme": "global_trading_research",
-      "title": "XRP Faces $1.54 Resistance Amid Mixed Price Action and Growing XRPL Activity - KuCoin",
-      "summary": "XRP Faces $1.54 Resistance Amid Mixed Price Action and Growing XRPL Activity KuCoin",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZk1MUmtxel9tOTlWNVhTaEpDSUczMXJreXFNZWpjSzhrSHQtcDNGNGsxczg4NlpVbFFoYTVHLWlHQ0ZVOUdyYWxFcXpUbTVZLXlFRUVBMllOVWltTEIzekxISkpIdU9HM3RHa1EtdnRTb01wSGpfX215SkZEMEg0RHo2T2t2LVBLV0pUcVpQb2RjbEU0QW9oa3JxZmFkWFJtWHBlX0F1MkRKbnNweVE?oc=5",
-      "published": "Fri, 02 Oct 2026 14:34:56 GMT",
-      "detected_themes": [
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Optimal Liquidation with Support and Resistance Levels under Multi-Skew Brownian Motion",
-      "summary": "We solve the perpetual liquidation problem for a geometric multi-skew Brownian motion carrying local-time pushes upward at a support level and downward at a resistance level, a model of technical analysis that is Markov in the price alone. Three geometries arise, separated by a closed-form criterion: the continuation band lies below resistance, straddles it, or pins its upper edge there. Selling into resistance is a conclusion rather than an assumption. Identification is asymmetric: exercise behaviour determines the support parameters exactly, while the strength of resistance is recoverable only on an interval with a closed-form endpoint.",
-      "url": "https://arxiv.org/abs/2609.35063v1",
-      "published": "2026-09-28T12:54:40Z",
-      "detected_themes": [
-        "momentum",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "On Detecting Multiple Simultaneous Change-points in High Dimensional Non-Stationary Time Series",
-      "summary": "This paper studies the detection of multiple simultaneous (systematic) change points for high-dimensional nonstantionary economic and financial time series data. The analytic framework used is based on the standard and adaptive fused group lasso method, where the mixed L_{2,1} penalty is either uniform or re-weighted by data-dependent weights. This paper shows that, under appropriate conditions, this approach is L_2 consistent and, by adopting the data-dependent weights, could correctly select the change points with probability approaching unity (L_0 consis- tency). It quantifies the conditions on the interplay among the averaged minimum magnitude of structural changes, the number of change points and the number of observations for consistently discovering the change points. The performance of this approach is illustrated via an analysis of a large panel of U.S. economic and financial time series data over the past 50 years.",
-      "url": "https://arxiv.org/abs/2609.15479v1",
-      "published": "2026-09-14T12:36:06Z",
-      "detected_themes": [
-        "moving_average"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "WaVeFuse: Regime-Adaptive Equity Index Forecasting via Channel-Wise Wavelet Denoising and Vertical Attention Fusion",
-      "summary": "Hybrid Deep Learning for equity index forecasting is limited by three problems: propagation of OHLCV noise into derived technical indicators (TIs), channel-indiscriminate multi-scale decomposition that conflates heterogeneous frequency signatures, and static multi-branch fusion that cannot adapt to market regime shifts. WaVeFuse addresses these limitations through a unified dual-branch architecture. Symlet-4 wavelet denoising (level 2, MAD soft threshold) suppresses microstructure noise in OHLCV. Seven low-lag TIs computed from denoised prices are encoded by a causal channel-wise continuous wavelet transform (Morlet, 32 scales) into a per-timestep scale-space matrix. A CNN-BiLSTM branch captures temporal dynamics, while a dual-layer Transformer (heads=4, dk in {16, 32}) models inter-scale spectral dependencies, and their representations are integrated by a 2-token softmax gate Vertical Attention Fusion (VAF) that dynamically reweights branches as market regimes shift. Evaluated under walk-forward validation (WFV) on KOSPI, DAX, NYSE Composite, and Russell 2000 (2010-2023), WaVeFuse achieves R2 = 0.81-0.96 and directional accuracy 70.5-78.3%. It outperforms seven state-of-the-art models by 8.9-20.2% MAE across twelve dataset-period configurations. Diebold-Mariano statistics (4.62-10.38, p<0.001) confirm superiority over a well-tuned XGBoost benchmark across four indices. Ablation verifies component-wise contributions. Under realistic backtesting with 10 basis point transaction costs, WaVeFuse's directional strategy achieves a mean Sharpe ratio of 3.69 across four markets and limits maximum drawdown to 7.5% during the COVID-19 crash. With 152k parameters (0.68MB) and sub-1.3ms GPU inference, WaVeFuse delivers a computationally efficient, regime-robust framework suitable f",
-      "url": "https://arxiv.org/abs/2609.14733v1",
-      "published": "2026-09-13T18:50:33Z",
-      "detected_themes": [
-        "volatility",
-        "moving_average",
-        "market_regime",
-        "risk_management",
-        "machine_learning"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Public Opinion as an Option: Leveraging Prediction Markets to Hedge Exposure to Spot Crypto Volatility",
-      "summary": "This paper proposes an investment strategy through resource allocation into Kalshi Crypto Event Contracts in order to effectively hedge exposure to spot asset volatility. Using Bitcoin as a proof of concept, we treat corresponding Kalshi markets on the asset's future price as option contracts, and through construction of different portfolio allocations present a framework for which event contracts can be effectively utilized by retail investors in order to control risk framework without reducing underlying exposure to spot volatility. We showcase this information through analysis of three separate Kalshi event contracts, all relating to a different underlying market regime (i.e bullish, bearish, flat), and provide a comprehensive risk profile for each regime. Results show that a dynamic Kalshi/Bitcoin hedging strategy outperforms more simplistic portfolios across all regimes, supporting our initial hypothesis. We discuss further considerations which can erode profits in the future (i.e. fees), and provide direction for future research.",
-      "url": "https://arxiv.org/abs/2609.14267v1",
-      "published": "2026-09-13T04:01:16Z",
-      "detected_themes": [
-        "volatility",
-        "moving_average",
-        "market_regime",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "ViperQ: Order Flow Pattern Recognition via Auction Market Theory for Reinforcement Learning Trading",
-      "summary": "Reinforcement learning trading systems published in the academic literature overwhelmingly rely on price-aggregate state representations (OHLCV bars) or limit-order-book depth features, leaving microstructure pattern theories from the practitioner literature, namely Auction Market Theory and Market Profile, without a peer-reviewed computational instantiation. We present ViperQ, a reinforcement learning system whose state representation is built explicitly from Auction Market Theory primitives: Volume Point of Control, Value Area position, Low Volume Node flags, Cumulative Volume Delta divergence, and tape-velocity signatures, assembled into a 20-dimensional Z-normalised vector. Two Proximal Policy Optimisation agents are trained with a prospect theory-grounded asymmetric reward function that penalises losing holds at a magnitude consistent with Kahneman and Tversky's loss-aversion coefficient. Evaluated on a held-out twelve-month partition of institutional tick data the agents have never seen, ViperQ achieves +163.6% ROI on TSLA (-27.5% max drawdown, 27,019 trades) and +116.5% ROI on NVDA (-47.8% max drawdown, 12,892 trades) under zero leverage. The results establish Auction Market Theory features as a tractable structured input modality for sequential decision-making on financial time series and motivate further work on microstructure-aware policy learning.",
-      "url": "https://arxiv.org/abs/2609.13825v1",
-      "published": "2026-09-12T09:18:39Z",
-      "detected_themes": [
-        "volume",
-        "moving_average",
-        "oscillator",
-        "price_action",
-        "risk_management"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "VertiFuseX: Generalizable Financial Forecasting via Multi-Stream Temporal Fusion",
-      "summary": "Stock price prediction remains challenging due to the non-stationary and noisy nature of financial time series. Existing deep learning models often rely on rigid decision-level fusion, ad hoc hyperparameter tuning, and compressed final-layer outputs, causing information loss, overfitting, and limited cross-market generalization. We propose VertiFuseX, a hybrid LSTM architecture using penultimate-layer vertical fusion of multi-scale temporal representations. VertiFuseX stacks and reweights penultimate features from LSTM, Bi-LSTM, and St-LSTM branches, integrates a parallel DNN stream, and jointly optimizes all components via backpropagation under a fixed hyperparameter configuration. This preserves richer intermediate temporal information across scales. Evaluated on 15 years (2010-2024) of closing prices from 10 global equity indices using strict chronological out-of-sample testing with the final 365 trading days held out, VertiFuseX achieves 30-54% MAPE reductions and over 40% improvements in MAE and RMSE versus LSTM-based baselines, and outperforms seven state-of-the-art models across 33 metric-dataset comparisons. Ablation studies confirm penultimate-layer fusion drives these gains over final-layer fusion and decision-level ensembling. Gradient-based saliency analysis shows consistent emphasis on mid-range dependencies at lags 9-15 days. Economic validation via algorithmic trading simulation under extreme market regimes shows reduced maximum drawdowns and superior risk-adjusted returns. With 675k parameters, a 2.6 MB memory footprint, and 1.5 ms/sample inference latency, VertiFuseX offers a lightweight, interpretable, deployment-ready framework for robust financial forecasting.",
-      "url": "https://arxiv.org/abs/2609.12793v1",
-      "published": "2026-09-11T12:54:25Z",
-      "detected_themes": [
-        "moving_average",
-        "market_regime",
-        "risk_management",
-        "machine_learning"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Deep Hedging Under Realistic Market Frictions: A Regime-Conditional Empirical Study of Dynamic Option Hedging on Bitcoin Options",
-      "summary": "Classical option-hedging methods like Black-Scholes delta assume constant, free rebalancing, which real markets don't allow. Deep hedging trains a neural network to handle these frictions directly, and prior work reports strong results. But those comparisons usually pit deep hedging against a frictionless classical baseline on simulated price data. That's not a fair fight, and it leaves open whether the advantage is real. We test this using five years of actual BTC options data from Deribit (2020-2024), comparing Black-Scholes delta, Leland's cost-adjusted hedge, and the Whalley-Wilmott no-trade band against three deep hedging setups: an LSTM and a feedforward network, each trained with a CVaR loss and, in some runs, a penalty for trading too often. All six strategies face the same 5 basis point transaction cost. On 11,546 test episodes from September 2023 to December 2024, Whalley-Wilmott cuts transaction costs significantly versus hourly rebalancing, saving $1.79 per episode against plain BS delta (95% CI [-2.21, -1.39], p < 0.0001) by trading about eight times less often. Its P&L and tail-risk numbers are better too, though not quite significant at this sample size. None of the three deep hedging models beat any classical benchmark on any metric, and all kept trading almost every hour regardless of penalty weight, a twenty-fold range barely moved the needle. A calmer validation period shows Whalley-Wilmott's P&L edge shrinks or disappears there while its cost edge holds, so the result depends on market regime. We think the likely causes are a small training set and the lack of any built-in mechanism for sitting still in the architectures tested. Not a flashy result, but an honest one: a real-data check on a claim mostly supported by simulations so far.",
-      "url": "https://arxiv.org/abs/2608.29025v1",
-      "published": "2026-08-29T03:36:05Z",
-      "detected_themes": [
-        "moving_average",
-        "market_regime",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Tabular Deep Learning for Algorithmic Trading: Cross-Regime Bayesian Optimisation for Equity Signal Generation",
-      "summary": "Algorithmic trading now represents a market exceeding $20 billion, where even marginal gains in signal robustness can translate into economically significant returns. Existing evaluations of equity prediction models do not explicitly target regime robustness during hyperparameter selection. Five model classes are trained on daily observations from approximately 300 large-cap US equities over eleven years, with Bayesian optimisation configured to target trading performance across three statistically different market regimes. Regime-robust hyperparameter selection is associated with out-of-sample generalisation, as signal precision remains above the random baseline across all four quarters of the test period, and portfolio performance slowly degrades under simulated input noise before collapsing beyond a defined threshold. No individual tabular deep learning architecture outperforms gradient-boosted trees, but combining XGBoost and TabNet using rank aggregation produces a Hybrid ensemble with an annualised return of 51.26%, a Sharpe ratio of 2.44, and a statistically significant CAPM alpha of 0.423 (p = 0.011). A near-zero beta indicates this outperformance is driven by stock selection, not market exposure. Alternative data plays a secondary role once technical and fundamental features are accounted for, as well as contributing more strongly on the short side than the long, and varies by model class. An interactive application makes these results explorable in real time, with live data integration the remaining step toward practical deployment.",
-      "url": "https://arxiv.org/abs/2608.27076v1",
-      "published": "2026-08-27T13:01:32Z",
-      "detected_themes": [
-        "moving_average",
-        "market_regime",
-        "machine_learning"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Short-horizon mean reversion in cryptocurrency markets: a matched cross-market measurement",
-      "summary": "At 15-minute horizons, directional mean reversion is far stronger and more pervasive in cryptocurrency markets than in US equities: scored under one matched, strictly out-of-sample protocol, 90% of 183 Binance pairs carry significant directional reversal against 2.7% of 187 US stocks and ETFs, in every focal coin-year since 2021. The signal lives in signs, not magnitudes: lag-one return autocorrelation is near zero on the major coins, yet simply betting against the previous candle captures most of the effect. US-listed funds whose net asset value is a crypto or metal price inherit their underlying's reversal, including its absence, from their first months of trading; stocks merely correlated with the same underlyings inherit nothing: descriptive evidence that a wrapper's tape reads like the process it wraps, not the venue it prints on. On the originating tape, the reversal concentrates after moves driven by aggressive taker flow and grows with flow intensity, while the order-book depth a move consumes conditions nothing: a conditioning consistent with compensated liquidity provision, not a test that selects it. The gross edge peaks near 1.3 bp per trade against a 5 bp round-trip cost: large enough to detect, too small to clear benchmark spot capture costs. The contrast survives an artifact battery, an exact permutation null, and a frozen six-month holdout, with a class-mean AUC gap of +0.031 as designed and +0.011 (95% CI [+0.008, +0.014]) under the most conservative accounting, clear of zero either way.",
-      "url": "https://arxiv.org/abs/2608.21888v1",
-      "published": "2026-08-22T10:06:04Z",
-      "detected_themes": [
-        "mean_reversion",
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Velocity- and Regime-Aware Detection of Intraday Options Market Manipulation, with Explainable Attribution",
-      "summary": "Intraday market manipulation is hard to detect because its footprint is brief, buried in millions of quotes, and statistically similar to ordinary volatility. Detectors reach high recall only by flagging so many other days that measured precision collapses, producing alerts no regulator can act on. We show that this manipulation leaves a distinctive dynamic signature: a pump-and-crash pattern visible in the velocity of market state, rather than its level. We build a minute-level detection pipeline, strictly partitioned in time, based on smoothed state velocity: option-Delta velocity for index options and price velocity for equities. We explain every alert with SHAP attribution. We hold the test period strictly out-of-sample and fix all thresholds before evaluation. On the locked Indian BANKNIFTY index-options test, the plain autoencoder recovers 10 of 10 regulator-identified manipulation days. Conditioning detection on market regimes inferred by a hidden Markov model yields an instructive negative result. The regimes are descriptively distinct, but using them trades recall for precision. Under the closed-world assumption that unlabeled days are normal, precision remains near 25%. The same dynamic appears in thinly traded U.S. equities (SEC v. Patel). The shape of the signature survives the transfer; its velocity magnitude does not. A pump-reversal shape score ranks the complaint's alleged manipulation days with AUC 0.91 (ARQQ) and 0.81 (ACY). On the ARQQ worked example, the score peaks inside the complaint's documented minute window. Finally, exact SHAP attribution over every alert shows that unconfirmed alerts share the regulator-identified days' attribution profile (cosine similarity 0.99). The precision ceiling is consistent with incomplete enforcement labels rather ",
-      "url": "https://arxiv.org/abs/2608.05373v1",
-      "published": "2026-08-05T19:51:54Z",
-      "detected_themes": [
-        "mean_reversion",
-        "volatility",
-        "moving_average",
-        "market_regime",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Optimal Trading of Microstructure Mean Reversion",
-      "summary": "At the scale of seconds the observed mid carries a stationary, mean-reverting error around a latent efficient price. We build an order book whose own flow produces that error and solve for the trading rule that maximises the long-run average profit rate net of the bid-ask spread. In a liquid large-tick asset the spread is one tick or two, and it is exactly the parity of the mid on the half-tick grid: tight at a half-integer, open at an integer. One coordinate therefore carries the problem: the gap $G$ between the mid and the efficient price; the price is an exogenous Brownian martingale, and $G$ is observable. The mid is a pure jump process whose move intensities lean toward the efficient price. Under one balanced-response condition, which equalises the book's corrective drift across parities, mean reversion of $G$ is a theorem: its conditional mean and stationary covariance are exactly those of an Ornstein-Uhlenbeck process with reversion rate $\u03b1$ and stationary standard deviation $s_G$. Its paths are not: the mid jumps. Passage times are therefore evaluated on the Gaussian diffusion those two moments define, at an error we bound on the reward side and leave heuristic on the timing side. A symmetric band of half-width $\u03b8$ buys when the gap reaches $-\u03b8$, sells at $+\u03b8$, and holds inside; on the surrogate it is optimal among all admissible strategies, on the jump process itself that reduction remains a conjecture. With $\u03c6$ the tight-book half-spread, the optimal half-width and its profit rate are $\u03b8^*(\u03b8^*-\u03c6)=s_G^2$ and $R^*=\u03b1s_G\\sqrt{2/\u03c0}\\,e^{-\u03b8^{*2}/2s_G^2}$. Threshold times margin equals the stationary variance of the gap. Trading as soon as the gap covers the spread earns zero: all profit is the option value of waiting.",
-      "url": "https://arxiv.org/abs/2608.00885v1",
-      "published": "2026-08-01T22:23:23Z",
-      "detected_themes": [
-        "mean_reversion",
-        "volatility",
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Are Three Matrices All You Need To Beat the Market? Observable Matrix Dynamics for Portfolio Optimization",
-      "summary": "We present a simple framework for dynamic portfolio management that uses nothing but daily prices, trading volumes, and market capitalizations. Its state is three fixed-size matrices built from the price history: the distance matrix of the return correlations and the transition matrices of two Markov chains that rank the S\\&P 500 names monthly by trailing return and by trailing volatility. These three matrices rest on the price history alone, the same information Markowitz mean-variance optimization draws on, but they replace its expected-return vector and covariance matrix. Our method requires no matrix inversion, works on outlier-robust cross-sectional ranks, and is dynamic rather than single-period. Empirically the volatility rank is forecastable one step ahead while the return rank stays close to unforecastable. A portfolio built on the forecasts, a market-neutral momentum long-short blended with an opportunistic long-only sleeve, beats the market on two non-overlapping out-of-sample test sets, January 2022 to December 2024 and January 2025 to July 2026, at Sharpes of $1.06$ and $1.32$ against the market's $0.78$ and $1.14$, respectively, net of a five-basis-point trading cost and marked to market daily. It also outperforms the classical minimum-variance and maximum-diversification portfolios. Diversifying the long sleeve by residual distance adds a further edge on both periods, lifting the Sharpe to $1.08$ and $1.44$ and the annualized return from $18\\%$ to $20\\%$ and from $44\\%$ to $56\\%$, respectively. A convex information-leader overlay separately insures the market-neutral sleeve, buying convexity and a shallower drawdown at a small cost in return, the Sharpe unchanged.",
-      "url": "https://arxiv.org/abs/2607.27461v1",
-      "published": "2026-07-29T20:53:46Z",
-      "detected_themes": [
-        "momentum",
-        "volume",
-        "volatility",
-        "moving_average",
-        "oscillator",
-        "risk_management"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Herding, Momentum, and Reversal in China's A-Share Market: An Agent-Based Network Model with Information Diffusion",
-      "summary": "This study develops an agent-based financial market model to explain stock-price momentum and reversal through the joint effects of local herding and delayed information diffusion. Investors form heterogeneous Gaussian beliefs about the next-period price, choose among buying, selling, and remaining inactive, and revise their action probabilities in response to neighboring investors. The local interaction structure is represented by von Neumann and Moore lattices and is later replaced by Erd\u0151s--R\u00e9nyi and Watts--Strogatz networks for robustness. A separate information process updates investor beliefs through a finite-speed diffusion mechanism, allowing informational adjustment to be distinguished from behavioral imitation. The simulations show that stronger herding produces spatially clustered trading, larger price fluctuations, and more pronounced excess kurtosis in returns. Faster information diffusion reduces the time required for prices to approach the signal-implied value, whereas the combination of information diffusion and social reinforcement generates overshooting and subsequent reversal. An empirical application to China's A-share market compares conventional CSAD and LSV measures with a rolling tail-based herding indicator obtained after Johnson $S_U$ transformation. The indicators display similar time variation and rise during major market disruptions. These findings identify information delay, local social reinforcement, and the eventual decay of herding as complementary mechanisms behind momentum and reversal.",
-      "url": "https://arxiv.org/abs/2607.27063v1",
-      "published": "2026-07-29T15:53:27Z",
-      "detected_themes": [
-        "momentum",
-        "mean_reversion",
-        "moving_average"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Retail Trader's Ruin: An Anatomy of Popular Signal Failure",
-      "summary": "We test whether five widely promoted retail signal families - trend, oscillator, candlestick, volume, and calendar rules - deliver a positive, economically meaningful, net-of-cost, and survivable edge. Practical viability is the conjunction of three predeclared gates: statistical edge after multiplicity correction, economic viability after trading costs, and finite-bankroll survival under leverage. Exposure-matched benchmarks, stationary-bootstrap confidence intervals, hierarchical Benjamini-Yekutieli control, one-sided claim-exclusion tests, and equivalence tests distinguish positive evidence, statistically refuted materiality, and unresolved cases. Four of six candidates - oscillator, volume, calendar, and candlestick - are REFUTED, ruled out on statistical and/or economic materiality grounds; trend and a momentum calibration benchmark are INCONCLUSIVE, with confidence intervals too wide at this sample size to resolve the claim; none is SUPPORTED. Cross-sectional tests use point-in-time membership and delisting corrections. The momentum benchmark itself does not clear the statistical gate and is classified INCONCLUSIVE, not REFUTED - the critical validity signature that a genuinely uncertain positive control is never falsely falsified by this design. Under FINRA- and ESMA-anchored leverage and margin scenarios, survival is not the binding constraint for any tested family at the US headline scenario, though it becomes discriminating for trend and oscillator under the higher-leverage EU CFD scenario. The results reject specific promoted deployability claims where confidence bounds rule out the declared effect threshold and classify the remaining cases as unresolved rather than treating non-significance as proof.",
-      "url": "https://arxiv.org/abs/2607.20093v1",
-      "published": "2026-07-22T12:47:56Z",
-      "detected_themes": [
-        "momentum",
-        "volume",
-        "moving_average",
-        "oscillator",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Herding and Liquidity in Order-Book Markets. II. Fundamental Anchoring and the Resilience of Liquidity",
-      "summary": "An order-book market whose liquidity provision is anchored to a fundamental value carries a restoring force: the price mean-reverts to value and the book refills after a shock. We show this restoring force is a robust intrinsic stabiliser and identify it causally-dialling the anchor down removes the mean-reversion, and a leverage-driven fire-sale then self-sustains. Separately, we ask whether a stressed market transmits its liquidity stress to a coupled calmer one, and find that it cannot: across six transmission channels of increasing strength-cross-market herding, arbitrage flow, and market-maker withdrawal up to a funding-constrained population fire-sale and a leverage spiral-the receiver's stress is independent of whether its neighbour is stressed, at every anchor strength. Market-maker withdrawal thins the receiving book but does not ignite it. Our order parameter throughout is the one-sidedness of the book-liquidity stress rather than a directional price crash-so a liquidity crisis here means the sustained one-sidedness a failing anchor produces. A liquidity crisis in this model is a failure of fundamental anchoring, not of market making.",
-      "url": "https://arxiv.org/abs/2607.16970v1",
-      "published": "2026-07-18T21:10:15Z",
-      "detected_themes": [
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Herding and Liquidity in Order-Book Markets. I. A Robust Liquidity-Stress Crossover and its Reflexive Mechanism",
-      "summary": "Agent-based models of markets readily produce emergent instabilities, but telling a genuine collective effect apart from a parameter artefact takes discipline. We apply Bouchaud's phase-diagram method to a continuous-double-auction order-book model. The method is to map the full phase diagram, test its robustness to rule changes, and rule out degenerate and numerical origins before we call any feature a tipping point. The model has fundamental-anchored zero-intelligence liquidity and a mid-anchored chartist herding layer, controlled by the fraction $\\varphi$ and the strength $\u03ba$ of herders. A 7x6 grid (336 runs, each with a scrambled-sign null) locates an emergent liquidity-stress crossover. The order parameter, the fraction of events with a one-sided book, rises to about 0.34 at $(\\varphi,\u03ba)=(0.9,1.0)$, is zero across all 42 scrambled cells, and forms a smooth crossover rather than a discontinuous Dark Corner. The dry-up is rule-robust (it recurs under an order-flow-imbalance rule), horizon-robust (about 0.32-0.35 across a 16x range of momentum window), and has a monotone onset boundary $\\varphi^*(\u03ba) = \\{0.55, 0.45, 0.36\\}$. We then decompose the mechanism at a matched directional-bias amplitude (mean |p_buy - 0.5| about 0.269). Price-momentum herding carries a large, comparator-robust reflexive component (+0.29; buying begets buying), whereas the order-flow rule's component is about 0 and comparator-dependent. The RMS-mispricing gradient is a placement artefact, largest at $\u03ba=0$. A companion two-market analysis finds no directional cross-market contagion across a signal-only herding link.",
-      "url": "https://arxiv.org/abs/2607.08907v1",
-      "published": "2026-07-09T20:06:45Z",
-      "detected_themes": [
-        "momentum",
-        "moving_average"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Order Splitting and Liquidity Replenishment Are Jointly Necessary for the Square-Root Law of Market Impact:",
-      "summary": "Three quantitative predictions have been advanced for the square-root law (SRL) of market impact, $I/\u03c3_D = c\\,(Q/V_D)^\u03b4$ with $\u03b4\\approx 0.5$: GGPS ($\u03b4=\u03b2-1$), FGLW ($\u03b4=\u03b1-1$), and LOB walking ($\u03b4=1/(1+\u03b3)$). Using a minimal limit-order-book model populated by heterogeneous interacting agents and calibrated against the Tokyo Stock Exchange benchmark ($\\langle\u03b4\\rangle = 0.489$~\\citep{satoStrictUniversalitySquareRoot2025}), we test all three on identical simulated data and find that none matches the per-stock measured $\u03b4$: GGPS and FGLW over-predict by factors of two and four respectively, while LOB walking under-predicts. The model reproduces $\\langle\u03b4\\rangle = 0.539\\pm 0.048$ across 2000 independently parameterised stocks. To identify which mechanisms are causally responsible, we perform counterfactual ablation by selectively suppressing each component. Removing order splitting collapses $\u03b4$ from $0.549$ to $0.324$; removing liquidity replenishment by market makers drops it to $0.386$; perturbations that leave both intact (momentum trading, price limits, splitting rule, background liquidity) move $\u03b4$ by less than $10\\%$. Order splitting and liquidity replenishment are thus jointly identified as the necessary mechanisms for the SRL within this model, with the simulated SRL depending on neither the metaorder size tail nor the visible book shape in isolation.",
-      "url": "https://arxiv.org/abs/2607.04280v1",
-      "published": "2026-07-05T12:47:17Z",
-      "detected_themes": [
-        "momentum",
-        "moving_average"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "A Spectral Generalisation of the Variance Ratio: Eigenstructure of Long-Horizon Portfolio Covariance and a Multi-Memory Factor Model of U.S. Equity Returns",
-      "summary": "We propose a multivariate generalisation of the Lo-MacKinlay (1988) variance ratio that decomposes long-horizon equity-return dynamics into separate return-channel and volatility-channel memory components across the cross-section of asset returns. The framework identifies a parsimonious five-factor model - capturing persistent, antipersistent, and multi-scale memory in returns and volatility - that fits four U.S. portfolio panels (the Fama-French 49-industry universe, its pre/post-1998 halves, and the Fama-French 100 size x book-to-market sort) and a European replication (Fama-French Europe 25), recovering seven stylised facts of long-horizon equity dynamics simultaneously across all five panels. Three findings carry economic content. (i) The same five-factor decomposition fits all five panels, indicating a cross-sectional structure robust to industry vs. size-and-value sorts, to sub-periods, and to U.S. vs. developed-European markets. (ii) U.S. equity volatility memory underwent a regime transition in the late 1980s - not at the static 1998 split-half boundary - with the slowest component of the volatility cascade lengthening from approximately two to four years; a 1000-replicate rolling-window bootstrap localises the transition with strictly non-overlapping 90% confidence bands separating pre- and post-transition windows. (iii) The cross-sectional loadings driving return-channel long memory are economically distinct from those driving volatility-channel cascade memory: a cross-channel beta-inversion test finds no panel with the positive alignment a single shared loading predicts, rejecting the shared-loading hypothesis toward anti-alignment on the two largest panels at Bonferroni p = 0.0004. Characteristics that predict return-momentum patterns therefore need not pred",
-      "url": "https://arxiv.org/abs/2607.03858v1",
-      "published": "2026-07-04T12:57:40Z",
-      "detected_themes": [
-        "momentum",
-        "volatility",
-        "moving_average",
-        "oscillator",
-        "market_regime",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "End-to-End Parametric Portfolio Policies for Cross-Asset Futures Timing: When Do AI Models Beat Simple Rules?",
-      "summary": "Timing-based tilts across asset classes can drive much of the risk and return of a diversified cross-asset portfolio. The standard approach forecasts returns and then optimizes weights. We instead study an end-to-end AI-based policy that maps market states directly to portfolio weights, and we then ask when this one-step modeling approach outperforms simple rules-based strategies. We train these policies on the sixteen most liquid CME futures, where an edge is unlikely to be due to illiquidity, using a differentiable Sharpe ratio loss function, and we benchmark them against equal weighting, risk parity, and time-series momentum. The learned policies rank above the rules on the pooled cross-asset portfolio and in several sub-asset classes, but not uniformly. In gross terms, an LSTM and a transformer-based architecture perform comparably out-of-sample, but diverge when we consider transaction costs. The transformer generates the stronger learned policy, trades far less than the LSTM, and matches or exceeds equal weighting through moderate cost.",
-      "url": "https://arxiv.org/abs/2607.00475v1",
-      "published": "2026-07-01T05:49:41Z",
-      "detected_themes": [
-        "momentum",
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Regime-Conditional Distributional Comparison of Trading Strategies: A GAMLSS/ZAGA Framework Applied to the S&P 500",
-      "summary": "Conventional comparisons of algorithmic trading strategies reduce each performance metric to a single number over the full backtest horizon, thereby discarding information about how performance varies with market conditions. This paper proposes a distributional framework that addresses this shortcoming. A walk-forward backtest of 146 out-of-sample folds on the S&P 500 (2002--2025) is used to compute the Adjusted Information Ratio ($IR^{\\ast}$) for a polynomial Support Vector Machine strategy (SVMP) and a buy-and-hold benchmark (BH) in each fold. The resulting $IR^{\\ast}$ sequences are modelled jointly via a Generalised Additive Model for Location, Scale and Shape (GAMLSS) with a Zero-Adjusted Gamma (ZAGA) response, with distributional parameters conditioned on market regime covariates: realised volatility and cumulative market momentum. Strategy comparison is conducted through (i) regime-specific differences in expected $IR^{\\ast}$ ($\u0394E$) and its variance ($\u0394Var$), derived analytically from the fitted ZAGA parameters, and (ii) parametric bootstrap tests of three null hypotheses concerning $E(IR^{\\ast})$, $Var(IR^{\\ast})$, and their ratio, evaluated at six representative market regimes. The results demonstrate that the dominance relationship between SVMP and BH is conditional on market regime. The proposed GAMLSS/ZAGA framework constitutes a methodologically rigorous and practically interpretable alternative to conventional strategy evaluation.",
-      "url": "https://arxiv.org/abs/2606.31251v1",
-      "published": "2026-06-30T07:26:07Z",
-      "detected_themes": [
-        "momentum",
-        "volatility",
-        "market_regime",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "The Bounce Has No Direction: Sign, Magnitude, and the Microstructure of Equity Return Predictability",
-      "summary": "SPY's lag-1 return autocorrelation ($\\hat\u03c1(1)=-0.081$, $z=-7.4$) is among the most significant regularities in empirical equity finance, yet the standard variance-ratio (VR) test cannot determine whether it reflects directional reversal or magnitude shrinkage - phenomena with entirely different trading implications. We develop the Fourier-Residue Identity (FRI), which decomposes return autocorrelation into a sign ($k=2$) and a magnitude ($k=4$) channel, each independently testable and neither redundant. Applied to six US instruments over 1993--2026 and a 21-instrument cross-asset panel, the FRI delivers a sharp microstructure diagnosis. The lag-1 autocorrelation in SPY is driven entirely by magnitude: the FRI sign test is insignificant ($p=0.11$) while the full test achieves $p 1) rather than sampling noise (R_N->sqrt(2)). The cross-asset panel shows mean reversion confined to exchange-traded equities and sovereign bonds; credit ETFs, commodities, FX, and crypto are indistinguishable from random walks. All estimators pass 27 unit tests; Monte Carlo confirms correct 5% size under GARCH.",
-      "url": "https://arxiv.org/abs/2606.29591v1",
-      "published": "2026-06-28T20:22:00Z",
-      "detected_themes": [
-        "mean_reversion",
-        "volatility",
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Volatility Forecasting and Return Prediction under Market Regimes: Evidence from High-Frequency Chinese Equity Data",
-      "summary": "This study investigates whether regime-dependent volatility forecasting and machine-learning-based return prediction can be jointly integrated to improve both statistical forecasting performance and economic strategy outcomes in equity markets. Using high-frequency CSI 300 Index data from 2005 to 2023, a sequential twostage framework is developed. In the first stage, realized volatility is modeled using regime-augmented HARQ specifications combined with Markov-switching GJR-GARCH filtering to capture long-memory dynamics, asymmetry, and structural market regimes. In the second stage, volatility forecasts, regime indicators, and return-related predictors are incorporated into an XGBoost return-prediction model estimated through a strictly walk-forward out-of-sample procedure. The empirical results demonstrate that regime-aware volatility forecasting consistently outperforms baseline HARQ models across forecast evaluation metrics and is generally supported by formal forecast comparison tests. In contrast, return predictability remains weak, state-dependent, and concentrated primarily in low-volatility regimes. Although naive predictive trading strategies generally fail after accounting for realistic transaction costs, carefully designed implementations incorporating volatility scaling, low-volatility gating, threshold calibration, and turnover controls can improve defensive economic performance. The findings suggest that the practical value of predictive systems in financial markets may depend less on generating strong unconditional return forecasts and more on transforming weak state-dependent signals into economically robust portfolio allocation rules. Overall, the study contributes by integrating econometric volatility modeling, regime classification, machine-learning ",
-      "url": "https://arxiv.org/abs/2606.09478v1",
-      "published": "2026-06-08T13:36:57Z",
-      "detected_themes": [
-        "volatility",
-        "moving_average",
-        "market_regime",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Stock Investment: The p-index Approach",
-      "summary": "This paper has used European put option to construct the p-index risk measure to evaluate the performance of different investment strategies in China's SSE 50 index and the US SP500 index during 2018-2023. The p-index measures the insurance fee for each insured dollar to guarantee that the asset achieves at least a delta rate of return on a specified future date. It is found that with the fair price strategy, one-week and one-month holding periods can earn more, and among seven economic sectors, materials sector stocks generated highest annualized rates of return: 11.04% (one-week period), 11.93% (two-week period) and 10.18% (one-month period). With momentum and contrarian strategies of one-week holding period, the p-ratio-efficient-contrarian strategy produced the highest annualized rate of return (9.97%), followed by the p-index-inefficient-momentum strategy (9.01%) and the p-index-efficient-contrarian strategy (6.48%), the MCIRS method employing the p-index consistently delivered higher returns than its beta-based approach, and efficient (outperforming) stocks failed to sustain their momentum while inefficient (underperforming) stocks exhibited no mean reversion. It is also found that the p-index-efficient-contrarian strategy outperformed in low-sentiment (low-volume) regimes, while the p-index-inefficient-momentum strategy outperformed during high-sentiment (high-volume) periods. For the five hundred stocks of the US S&P 500 index during 2018-2023, it is found that efficient stocks sustained their momentum while inefficient stocks exhibited mean reversion. The p-index-efficient-momentum strategy produced the highest annualized rate of return (3.69%), followed by the p-ratio-inefficient-contrarian strategy (3.67%) and the beta-efficient-momentum strategy (3.48%).",
-      "url": "https://arxiv.org/abs/2606.08569v1",
-      "published": "2026-06-07T10:51:47Z",
-      "detected_themes": [
-        "momentum",
-        "mean_reversion",
-        "volume",
-        "oscillator",
-        "market_regime"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Zero-Copy Semantic Contagion: An In-Memory Streaming Architecture for Evolving Attention Graphs",
-      "summary": "Per-ticker forecasting models dominate financial time-series work yet remain blind to cross-company propagation: a foundry disruption in Taiwan does not register in a single-asset model until Apple's own price has already moved. To address this limitation, we introduce a heterogeneous Rust-Python streaming architecture that maps cross-company attention as a continuous-time graph driven directly from text. We show that on the ingestion side, a zero-copy Rust edge parses news records in $\\sim$100 ns and scans the target equity universe in $\\sim$1.2 $\u03bc$s. On the inference end, a multivariate Neural Hawkes Process featuring per-node continuous-time LSTM states and a bilinear latent projection propagates directed excitation, while an adaptive pruning rule bounds the computational cost of dynamic neighborhood updates. Combining these stages, we demonstrate an end-to-end processing latency of $\\sim$13 ms per incoming news record on a single commodity CPU. Evaluated on a one-month temporal holdout of the FNSPID corpus (638 articles across 47 tickers), the system delivers a $1.70\\times$ precision lift over random at the 90th-percentile next-day return threshold, and $3.36\\times$ over a same-sector baseline. Crucially, removing the graph topology collapses precision to zero, confirming that the dynamic attention network is the sole driver of cross-company signal in this architecture.",
-      "url": "https://arxiv.org/abs/2606.05733v1",
-      "published": "2026-06-04T05:48:56Z",
-      "detected_themes": [
-        "moving_average"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Polymarket-v1 Database",
-      "summary": "We introduce the Polymarket-v1 Database: the complete on-chain trade archive of Polymarket's first-generation CTF Exchange on Polygon, spanning 2022-11-21 to 2026-04-28 and covering the full contract lifecycle from first settlement to natural termination. The dataset comprises 1.20 billion trade records across 1.30 million markets with $61 billion in nominal volume. Its defining feature is 100% ground-truth aggressor direction derived from the blockchain settlement layer, a property unavailable in existing prediction market archives, which rely on heuristic inference. We use this truth-aligned archive to benchmark standard microstructure tools and document three findings. First, the tick rule and bulk volume classification achieve near-random aggregate accuracy (49.83% and 50.51%), but this masks a systematic, correctable price-level gradient driven by positive trade direction autocorrelation and concentrated market-making -- two structural features of prediction markets that violate the mean-reversion assumption embedded in classical classifiers. Second, these classification errors propagate into downstream metrics: inferred VPIN diverges substantially from ground-truth VPIN, and OFI estimates are directionally biased, with material consequences for Transaction Cost Analysis. Third, ground-truth microstructure quality predicts forecasting performance in ways that classification-based proxies cannot recover: True VPIN positively predicts Brier scores, while Gibbs spread negatively predicts them -- a selection effect reflecting that high-spread niche markets attract informed specialists rather than noise traders. Replacing ground-truth metrics with classified proxies attenuates both relationships, illustrating that measurement accuracy at the transaction level is a prere",
-      "url": "https://arxiv.org/abs/2606.04217v2",
-      "published": "2026-06-02T21:06:27Z",
-      "detected_themes": [
-        "volume",
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Dropout Universality: Scaling Laws and Optimal Scheduling at the Edge-of-Chaos",
-      "summary": "We ask whether the standard treatment of dropout as a static hyperparameter is optimal, or whether its utility can be improved by letting it vary over depth. We answer this by developing a mean-field theory of dropout near the edge of chaos, identifying distinct universality classes for smooth and kinked activations, together with their scaling exponents. The resulting propagation theory, constrained by maximizing the regularization delivered by dropout, motivates concentrating dropout near the input. Experiments on vision, speech and financial time series show gains most consistently in MLPs, with smaller gains in Transformers.",
-      "url": "https://arxiv.org/abs/2605.21648v3",
-      "published": "2026-05-20T19:00:02Z",
-      "detected_themes": [
-        "moving_average"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Tweedie's Formulae and Diffusion Generative Models Beyond Gaussian",
-      "summary": "Diffusion models have achieved remarkable success in generating samples from unknown data distributions. Most popular stochastic differential equation-based diffusion models perturb the target distribution by adding Gaussian noise, transforming it into a simple prior, and then use denoising score matching, a consequence of Tweedie's formula, to learn the score function and generate clean samples from noise. However, non-Gaussian diffusion models with state-dependent diffusion coefficient have been largely underexplored, as have the corresponding Tweedie's formulae. In this work, we extend Tweedie's formula to important non-Gaussian processes, including geometric Brownian motion (GBM), squared Bessel (BESQ) processes, and Cox-Ingersoll-Ross (CIR) processes, thereby yielding the corresponding denoising score-matching objectives. We then apply the derived formulae to image and financial time series generation using GBM- and CIR-based diffusion models, and to empirical Bayes estimation under the BESQ setting. The reported experimental results demonstrate the potential of non-Gaussian models.",
-      "url": "https://arxiv.org/abs/2605.19391v1",
-      "published": "2026-05-19T05:36:18Z",
-      "detected_themes": [
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Amortized Neural Clustering of Time Series based on Statistical Features",
-      "summary": "This paper introduces an algorithm-agnostic approach to feature-based time series clustering via amortized neural inference. By training neural networks to approximate the optimal partitioning rule from simulated data, the proposed framework reduces reliance on conventional clustering methods, such as $K$-means, $K$-medoids, or hierarchical clustering, and their associated objective functions and heuristics. Leveraging statistical features, such as autocorrelations and quantile autocorrelations, the approach learns a data-driven affinity structure from which clustering partitions can be recovered, without requiring explicit prior specification of cluster shapes or structures. In addition, one version of the method can automatically determine the number of clusters, avoiding ad-hoc selection procedures. Comprehensive empirical studies show that the proposed framework achieves competitive or superior clustering accuracy relative to traditional methods, even in challenging scenarios where competing techniques are provided with the true number of clusters. An application to financial time series of stock returns illustrates its practical utility. By reducing the need for algorithm selection and calibration, the proposed framework opens new possibilities for automated, adaptive, and data-driven clustering of temporal data across scientific and industrial domains.",
-      "url": "https://arxiv.org/abs/2605.13128v1",
-      "published": "2026-05-13T07:54:55Z",
-      "detected_themes": [
-        "moving_average",
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Visibility graphs can make money in financial markets",
-      "summary": "Traditional technical analysis indicators, although widely used by market participants, are often not sufficiently effective. We propose the Visibility Graphs Relative Strength Index (VGRSI), based on backward visibility relations in the price of a financial instrument. Rescaled to the 0--100 range, it can generate profitable trading signals. The performance of the indicator was evaluated using an automated trading strategy based on a 30-day optimisation window and a 7-day test window for three instruments representing different asset classes: DJI30, EUR/USD and XAU/USD over the 2024--2025 period (503 trading days). The strategy based on VGRSI signals generated a profit of USD~146,000 for DJI30, USD~69,000 for EUR/USD, and USD~125,000 for XAU/USD. This gives a total result of USD$\\sim$340,000, which corresponds to an average profit of USD$\\sim$676 per trading day, with a fixed investment of USD~1,000 to open a single trade. For all three assets, the strategy generated substantial profits while maintaining a moderate drawdown (10--18\\% relative to a portfolio value of USD~10,000), a relatively low trading intensity (3.3--4.8 trades per day) and high Sharpe ratio values (2.55--3.6). These results indicate that VGRSI constitutes a promising technical analysis tool that goes beyond the classical trend-following approach by exploiting the geometric properties of asset price fluctuations.",
-      "url": "https://arxiv.org/abs/2605.01300v1",
-      "published": "2026-05-02T07:21:08Z",
-      "detected_themes": [
-        "momentum",
-        "oscillator",
-        "risk_management"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Cross-Stock Predictability via LLM-Augmented Semantic Networks",
-      "summary": "Text-based financial networks are increasingly used to study cross-stock return predictability. A common approach constructs links from similarities in firms' disclosure embeddings, but such networks often contain spurious edges because textual proximity does not necessarily imply economic connection. We propose a two-stage framework that first builds a sparse candidate graph from 10-K embeddings and then uses a large language model to classify and filter candidate edges according to their economic relations. The refined graph is used to aggregate pair-level mean-reversion signals into stock-level trading signals with relation-aware and distance-based weights. In a backtest on S&P 500 constituents from 2011 to 2019, LLM-based edge filtering improves the long-short Sharpe ratio from 0.742 to 0.820 and reduces maximum drawdown from $-$10.47% to $-$7.85%. These results suggest that LLM-based reasoning can improve the economic fidelity of text-derived financial networks and strengthen cross-stock predictability.",
-      "url": "https://arxiv.org/abs/2604.19476v2",
-      "published": "2026-04-21T13:59:30Z",
-      "detected_themes": [
-        "moving_average",
-        "oscillator",
-        "risk_management"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "SBBTS: A Unified Schr\u00f6dinger-Bass Framework for Synthetic Financial Time Series",
-      "summary": "We study the problem of generating synthetic time series that reproduce both marginal distributions and temporal dynamics, a central challenge in financial machine learning. Existing approaches typically fail to jointly model drift and stochastic volatility, as diffusion-based methods fix the volatility while martingale transport models ignore drift. We introduce the Schr\u00f6dinger-Bass Bridge for Time Series (SBBTS), a unified framework that extends the Schr\u00f6dinger-Bass formulation to multi-step time series. The method constructs a diffusion process that jointly calibrates drift and volatility and admits a tractable decomposition into conditional transport problems, enabling efficient learning. Numerical experiments on the Heston model demonstrate that SBBTS accurately recovers stochastic volatility and correlation parameters that prior Schr\u00f6dingerBridge methods fail to capture. Applied to S&P 500 data, SBBTS-generated synthetic time series consistently improve downstream forecasting performance when used for data augmentation, yielding higher classification accuracy and Sharpe ratio compared to real-data-only training. These results show that SBBTS provides a practical and effective framework for realistic time series generation and data augmentation in financial applications.",
-      "url": "https://arxiv.org/abs/2604.07159v1",
-      "published": "2026-04-08T14:49:08Z",
-      "detected_themes": [
-        "volatility",
-        "oscillator",
-        "machine_learning"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Learning Nonlinear Regime Transitions via Semi-Parametric State-Space Models",
-      "summary": "We develop a semi-parametric state-space model for time-series data with latent regime transitions. Classical Markov-switching models use fixed parametric transition functions, such as logistic or probit links, which restrict flexibility when transitions depend on nonlinear and context-dependent effects. We replace this assumption with learned functions $f_0, f_1 \\in \\calH$, where $\\calH$ is either a reproducing kernel Hilbert space or a spline approximation space, and define transition probabilities as $p_{jk,t} = \\sigmoid(f(\\bx_{t-1}))$. The transition functions are estimated jointly with emission parameters using a generalized Expectation-Maximization algorithm. The E-step uses the standard forward-backward recursion, while the M-step reduces to a penalized regression problem with weights from smoothed occupation measures. We establish identifiability conditions and provide a consistency argument for the resulting estimators. Experiments on synthetic data show improved recovery of nonlinear transition dynamics compared to parametric baselines. An empirical study on financial time series demonstrates improved regime classification and earlier detection of transition events.",
-      "url": "https://arxiv.org/abs/2604.04963v1",
-      "published": "2026-04-03T22:32:24Z",
-      "detected_themes": [
-        "oscillator",
-        "market_regime"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Is an investor stolen their profits by mimic investors? Investigated by an agent-based model",
-      "summary": "Some investors say increasing investors with the same strategy decreasing their profits per an investor. On the other hand, some investors using technical analysis used to use same strategy and parameters with other investors, and say that it is better. Those argues are conflicted each other because one argues using with same strategy decreases profits but another argues it increase profits. However, those arguments have not been investigated yet. In this study, the agent-based artificial financial market model(ABAFMM) was built by adding \"additional agents\"(AAs) that includes additional fundamental agents (AFAs) and additional technical agents (ATAs) to the prior model. The AFAs(ATAs) trade obeying simple fundamental(technical) strategy having only the one parameter. We investigated earnings of AAs when AAs increased. We found that in the case with increasing AFAs, market prices are made stable that leads to decrease their profits. In the case with increasing ATAs, market prices are made unstable that leads to gain their profits more.",
-      "url": "https://arxiv.org/abs/2603.03671v1",
-      "published": "2026-03-04T02:56:29Z",
-      "detected_themes": [
-        "general"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "RAmmStein: Regime Adaptation in Mean-reverting Markets with Stein Thresholds -- Optimal Impulse Control in Concentrated AMMs",
-      "summary": "Concentrated liquidity provision in decentralized exchanges presents a fundamental Impulse Control problem. Liquidity Providers (LPs) face a non-trivial trade-off between maximizing fee accrual through tight price-range concentration and minimizing the friction costs of rebalancing, including gas fees and swap slippage. Existing methods typically employ heuristic or threshold strategies that fail to account for market dynamics. This paper formulates liquidity management as an optimal control problem and derives the corresponding Hamilton-Jacobi-Bellman quasi-variational inequality (HJB-QVI). We present an approximate solution RAmmStein, a Deep Reinforcement Learning method that incorporates the mean-reversion speed (theta) of an Ornstein-Uhlenbeck process among other features as input to the model. We demonstrate that the agent learns to separate the state space into regions of action and inaction. We further extend the framework with RAmmStein-Width, which jointly optimizes rebalancing timing and position width via a 6-action DDQN. We evaluate the framework using high-frequency 1Hz Coinbase trade data comprising over 6.8M trades on a realistic environment (10M TVL, 1% default width). Experimental results show that RAmmStein achieves a net ROI of 1.60%, the highest among all realistic (non-omniscient) strategies, while greedy strategies lose up to -8.4% to gas costs. Notably, the agent reduces rebalancing frequency by 85% compared to greedy rebalancing. RAmmStein-Width discovers extreme parsimony on its own, executing only 9 rebalances and $40 in gas, and degrades more slowly than all active strategies at elevated gas costs. Our results demonstrate that regime-aware laziness can significantly improve capital efficiency by preserving the returns that would otherwise be e",
-      "url": "https://arxiv.org/abs/2602.19419v2",
-      "published": "2026-02-23T01:25:16Z",
-      "detected_themes": [
-        "oscillator",
-        "market_regime"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "An Adaptive Multi Agent Bitcoin Trading System",
-      "summary": "This paper presents a Multi Agent Bitcoin Trading system that utilizes Large Language Models (LLMs) for alpha generation and portfolio management in the cryptocurrencies market. Unlike equities, cryptocurrencies exhibit extreme volatility and are heavily influenced by rapidly shifting market sentiments and regulatory announcements, making them difficult to model using static regression models or neural networks trained solely on historical data. The proposed framework overcomes this by structuring LLMs into specialised agents for technical analysis, sentiment evaluation, decision-making, and performance reflection. The agents improve over time via a novel verbal feedback mechanism where a Reflect agent provides daily and weekly natural-language critiques of trading decisions. These textual evaluations are then injected into future prompts of the agents, allowing them to adjust allocation logic without weight updates or finetuning. Back-testing on Bitcoin price data from July 2024 to April 2025 shows consistent outperformance across market regimes: the Quantitative agent delivered over 30\\% higher returns in bullish phases and 15\\% overall gains versus buy-and-hold, while the sentiment-driven agent turned sideways markets from a small loss into a gain of over 100\\%. Adding weekly feedback further improved total performance by 31\\% and reduced bearish losses by 10\\%. The results demonstrate that verbal feedback represents a new, scalable, and low-cost approach of tuning LLMs for financial goals.",
-      "url": "https://arxiv.org/abs/2510.08068v2",
-      "published": "2025-10-09T10:55:52Z",
-      "detected_themes": [
-        "volatility",
-        "moving_average",
-        "market_regime"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Technical Indicator Networks (TINs): An Interpretable Neural Architecture Modernizing Classic al Technical Analysis for Adaptive Algorithmic Trading",
-      "summary": "Deep neural networks (DNNs) have transformed fields such as computer vision and natural language processing by employing architectures aligned with domain-specific structural patterns. In algorithmic trading, however, there remains a lack of architectures that directly incorporate the logic of traditional technical indicators. This study introduces Technical Indicator Networks (TINs), a structured neural design that reformulates rule-based financial heuristics into trainable and interpretable modules. The architecture preserves the core mathematical definitions of conventional indicators while extending them to multidimensional data and supporting optimization through diverse learning paradigms, including reinforcement learning. Analytical transformations such as averaging, clipping, and ratio computation are expressed as vectorized layer operators, enabling transparent network construction and principled initialization. This formulation retains the clarity and interpretability of classical strategies while allowing adaptive adjustment and data-driven refinement. As a proof of concept, the framework is validated on the Dow Jones Industrial Average constituents using a Moving Average Convergence Divergence (MACD) TIN. Empirical results demonstrate improved risk-adjusted performance relative to traditional indicator-based strategies. Overall, the findings suggest that TINs provide a generalizable foundation for interpretable, adaptive, and extensible learning architectures in structured decision-making domains and indicate substantial commercial potential for upgrading trading platforms with cross-market visibility and enhanced decision-support capabilities.",
-      "url": "https://arxiv.org/abs/2507.20202v2",
-      "published": "2025-07-27T09:47:30Z",
-      "detected_themes": [
-        "moving_average",
-        "price_action"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "The PEAL Method: a mathematical framework to streamline securitization structuring",
-      "summary": "Securitization is a financial process where the cash flows of income-generating assets are sold to institutional investors as securities, liquidating illiquid assets. This practice presents persistent challenges due to the absence of a comprehensive mathematical framework for structuring asset-backed securities. While existing literature provides technical analysis of credit risk modeling, there remains a need for a definitive framework detailing the allocation of the inbound cash flows to the outbound positions. To fill this gap, we introduce the PEAL Method: a 10-step mathematical framework to streamline the securitization structuring across all time periods. The PEAL Method offers a rigorous and versatile approach, allowing practitioners to structure various types of securitizations, including those with complex vertical positions. By employing standardized equations, it facilitates the delineation of payment priorities and enhances risk characterization for both the asset and the liability sides throughout the securitization life cycle. In addition to its technical contributions, the PEAL Method aims to elevate industry standards by addressing longstanding challenges in securitization. By providing detailed information to investors and enabling transparent risk profile comparisons, it promotes market transparency and enables stronger regulatory oversight. In summary, the PEAL Method represents a significant advancement in securitization literature, offering a standardized framework for precision and efficiency in structuring transactions. Its adoption has the potential to drive innovation and enhance risk management practices in the securitization market.",
-      "url": "https://arxiv.org/abs/2404.05372v1",
-      "published": "2024-04-08T10:24:59Z",
-      "detected_themes": [
-        "moving_average",
-        "oscillator",
-        "risk_management"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Algorithmic Trading Using Continuous Action Space Deep Reinforcement Learning",
-      "summary": "Price movement prediction has always been one of the traders' concerns in financial market trading. In order to increase their profit, they can analyze the historical data and predict the price movement. The large size of the data and complex relations between them lead us to use algorithmic trading and artificial intelligence. This paper aims to offer an approach using Twin-Delayed DDPG (TD3) and the daily close price in order to achieve a trading strategy in the stock and cryptocurrency markets. Unlike previous studies using a discrete action space reinforcement learning algorithm, the TD3 is continuous, offering both position and the number of trading shares. Both the stock (Amazon) and cryptocurrency (Bitcoin) markets are addressed in this research to evaluate the performance of the proposed algorithm. The achieved strategy using the TD3 is compared with some algorithms using technical analysis, reinforcement learning, stochastic, and deterministic strategies through two standard metrics, Return and Sharpe ratio. The results indicate that employing both position and the number of trading shares can improve the performance of a trading system based on the mentioned metrics.",
-      "url": "https://arxiv.org/abs/2210.03469v1",
-      "published": "2022-10-07T11:42:31Z",
-      "detected_themes": [
-        "oscillator"
-      ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "A comparative study of the MACD-base trading strategies: evidence from the US stock market",
-      "summary": "In recent years, more and more investors use technical analysis methods in their own trading. Evaluating the effectiveness of technical analysis has become more feasible due to increasing computing capability and blooming public data, which indie investors can perform stock analysis and backtest their own trading strategy conveniently. The Moving Average Convergence Divergence (MACD) indicator is one of the popular technical indicators that are widely used in different strategies. In order to verify the MACD effectiveness, in this thesis, I use the MACD indicator with traditional parameters (12, 26, 9) to build various trading strategies. Then, I apply these strategies to stocks listed on three indices in the US stock market (i.e., Dow-Jones, Nasdaq, and S&P 500) and evaluate its performance in terms of win rate, profitability, Sharpe ratio, number of trades and maximum drawdown. The backtesting is programmed using Python, covering the period between 01/01/2015 and 28-08-2021. The result shows that the win-rate of the strategy with only the MACD indicator is less than 50%. However, the win-rate is improved for the trading strategies that combine the MACD indicator with other momentum indicators like the Money Flow Index (MFI) and the Relative Strength Index (RSI). Based on this result, I redesign the MACD mathematical formula by taking the trading volume and daily price volatility into consideration to derive a new indicator called VPVMA. The results show that the win-rate and risk-adjust performance of this new trading strategy have been improved significantly. In general, the findings suggest that while all the MACD trading strategies mentioned above can generate positive returns, the performance is not good without using other momentum indicators. Hence, the VPVMA in",
-      "url": "https://arxiv.org/abs/2206.12282v1",
-      "published": "2022-06-18T11:33:55Z",
-      "detected_themes": [
-        "momentum",
-        "volume",
-        "volatility",
-        "moving_average",
-        "oscillator",
-        "risk_management"
-      ]
     }
   ],
   "hypotheses": [
     {
-      "hypothesis_id": "GI-4df2e4a8bab0",
-      "theme": "moving_average",
-      "hypothesis": "Test trend-transition and moving-average slope/cross conditions.",
-      "source_count": 20,
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGl1WmtTSFFDQVJXNGFXcDBpLVoxTk1lR0hUVENsMjFld3ZSNE14bm1XOTBueWdFd2M4NlR6cGp6ZnZNU2VDUVVWZUE0TDRzSTBoM0lmeThZZmdzY2ttMzFnTWwtQzZPSU14WHZmQTM1eUp6eW80dGk3WHdJQ29tXzM1a0V4Wm1HLUc1M2U2RENuTFU3bG9haG54R2hwM25HT1JDVWY5VmpXUlBpOHR2bkV3ekVZU2M?oc=5",
-        "https://arxiv.org/abs/2609.15479v1",
-        "https://arxiv.org/abs/2609.14733v1",
-        "https://arxiv.org/abs/2609.14267v1",
-        "https://arxiv.org/abs/2609.13825v1",
-        "https://arxiv.org/abs/2609.12793v1",
-        "https://arxiv.org/abs/2608.29025v1",
-        "https://arxiv.org/abs/2608.27076v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-d6d33bc9edbd",
-      "theme": "oscillator",
-      "hypothesis": "Test oscillator thresholds and threshold-cross events conditioned on trend.",
-      "source_count": 20,
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMicEFVX3lxTFBzVjZmMzlqTFR1V0hNa1U3eXRsbjA1bkJJN3RMaWxpY283WlZsWDY5ckFfVmtwSDFPS1NNc3o1bVhaWGgtY202V2pEUGpmMms0c200cklIamMybmo5Umh2bFFzWXhUTU50SV9CTnIzTE0?oc=5",
-        "https://arxiv.org/abs/2609.13825v1",
-        "https://arxiv.org/abs/2608.21888v1",
-        "https://arxiv.org/abs/2608.00885v1",
-        "https://arxiv.org/abs/2607.27461v1",
-        "https://arxiv.org/abs/2607.20093v1",
-        "https://arxiv.org/abs/2607.16970v1",
-        "https://arxiv.org/abs/2607.03858v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-4cba4240dd12",
-      "theme": "momentum",
-      "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
-      "source_count": 14,
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5",
-        "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5",
-        "https://arxiv.org/abs/2609.35063v1",
-        "https://arxiv.org/abs/2607.27461v1",
-        "https://arxiv.org/abs/2607.27063v1",
-        "https://arxiv.org/abs/2607.20093v1",
-        "https://arxiv.org/abs/2607.08907v1",
-        "https://arxiv.org/abs/2607.04280v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-56c4e0a2f318",
-      "theme": "price_action",
-      "hypothesis": "Test repeatable price/volume bar structures rather than subjective chart patterns.",
-      "source_count": 14,
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMitAFBVV95cUxNUThjWUZWcGdxdm8wNnVwWTBCS3dsc2VYUjJidFNhWEc0R1Z1S2tGdnh3UWJFWXhZZEJWRTR0TUIwQ25QNHhSWEJ0ZTF3ZEhXTnR6REs0dzF4TzFuZVRhTTBOSHBkSVloQXdFLU5MWThQLXFZSUlLallXUDJqSUdkX2RRemR5MXlFWVZaQzlJMzBIN3VsVlJOSlJHeVl4dUZnTkd4MVhvRTJMY0JkTU1yTklIelo?oc=5",
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5",
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5",
-        "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZk1MUmtxel9tOTlWNVhTaEpDSUczMXJreXFNZWpjSzhrSHQtcDNGNGsxczg4NlpVbFFoYTVHLWlHQ0ZVOUdyYWxFcXpUbTVZLXlFRUVBMllOVWltTEIzekxISkpIdU9HM3RHa1EtdnRTb01wSGpfX215SkZEMEg0RHo2T2t2LVBLV0pUcVpQb2RjbEU0QW9oa3JxZmFkWFJtWHBlX0F1MkRKbnNweVE?oc=5",
-        "https://arxiv.org/abs/2609.35063v1",
-        "https://arxiv.org/abs/2609.14267v1",
-        "https://arxiv.org/abs/2609.13825v1",
-        "https://arxiv.org/abs/2608.29025v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-4e70c32d379a",
-      "theme": "market_regime",
-      "hypothesis": "Test separate entry logic by market breadth/volatility regime.",
-      "source_count": 13,
-      "source_urls": [
-        "https://arxiv.org/abs/2609.14733v1",
-        "https://arxiv.org/abs/2609.14267v1",
-        "https://arxiv.org/abs/2609.12793v1",
-        "https://arxiv.org/abs/2608.29025v1",
-        "https://arxiv.org/abs/2608.27076v1",
-        "https://arxiv.org/abs/2608.05373v1",
-        "https://arxiv.org/abs/2607.03858v1",
-        "https://arxiv.org/abs/2606.31251v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-c64d31c16f54",
-      "theme": "volatility",
-      "hypothesis": "Test volatility contraction/expansion as a state filter for entries.",
-      "source_count": 12,
-      "source_urls": [
-        "https://arxiv.org/abs/2609.14733v1",
-        "https://arxiv.org/abs/2609.14267v1",
-        "https://arxiv.org/abs/2608.05373v1",
-        "https://arxiv.org/abs/2608.00885v1",
-        "https://arxiv.org/abs/2607.27461v1",
-        "https://arxiv.org/abs/2607.03858v1",
-        "https://arxiv.org/abs/2606.31251v1",
-        "https://arxiv.org/abs/2606.29591v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-7065b988d53f",
-      "theme": "risk_management",
-      "hypothesis": "Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown.",
-      "source_count": 8,
-      "source_urls": [
-        "https://arxiv.org/abs/2609.14733v1",
-        "https://arxiv.org/abs/2609.13825v1",
-        "https://arxiv.org/abs/2609.12793v1",
-        "https://arxiv.org/abs/2607.27461v1",
-        "https://arxiv.org/abs/2605.01300v1",
-        "https://arxiv.org/abs/2604.19476v2",
-        "https://arxiv.org/abs/2404.05372v1",
-        "https://arxiv.org/abs/2206.12282v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-e787bffeeba6",
-      "theme": "mean_reversion",
-      "hypothesis": "Test short-horizon oversold reversal only when the longer-term trend remains positive.",
-      "source_count": 6,
-      "source_urls": [
-        "https://arxiv.org/abs/2608.21888v1",
-        "https://arxiv.org/abs/2608.05373v1",
-        "https://arxiv.org/abs/2608.00885v1",
-        "https://arxiv.org/abs/2607.27063v1",
-        "https://arxiv.org/abs/2606.29591v1",
-        "https://arxiv.org/abs/2606.08569v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-4eb9b39b62d2",
-      "theme": "volume",
-      "hypothesis": "Test whether abnormal volume confirms subsequent price continuation or reversal.",
-      "source_count": 6,
-      "source_urls": [
-        "https://arxiv.org/abs/2609.13825v1",
-        "https://arxiv.org/abs/2607.27461v1",
-        "https://arxiv.org/abs/2607.20093v1",
-        "https://arxiv.org/abs/2606.08569v1",
-        "https://arxiv.org/abs/2606.04217v2",
-        "https://arxiv.org/abs/2206.12282v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-ef18f86d97b3",
+      "hypothesis_id": "GI-e2a4e3dc8c57",
       "theme": "general",
       "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
-      "source_count": 4,
+      "source_count": 3,
       "source_urls": [
         "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
         "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
-        "https://arxiv.org/abs/2603.03671v1"
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5"
       ],
       "evidence_type": "idea_only",
       "backtest_required": true
     },
     {
-      "hypothesis_id": "GI-ee2a8ceb2995",
-      "theme": "machine_learning",
-      "hypothesis": "Treat ML/feature interactions as hypothesis generators, then validate on untouched data.",
-      "source_count": 4,
+      "hypothesis_id": "GI-de8aaf311dbf",
+      "theme": "price_action",
+      "hypothesis": "Test repeatable price/volume bar structures rather than subjective chart patterns.",
+      "source_count": 3,
       "source_urls": [
-        "https://arxiv.org/abs/2609.14733v1",
-        "https://arxiv.org/abs/2609.12793v1",
-        "https://arxiv.org/abs/2608.27076v1",
-        "https://arxiv.org/abs/2604.07159v1"
+        "https://news.google.com/rss/articles/CBMitAFBVV95cUxNUThjWUZWcGdxdm8wNnVwWTBCS3dsc2VYUjJidFNhWEc0R1Z1S2tGdnh3UWJFWXhZZEJWRTR0TUIwQ25QNHhSWEJ0ZTF3ZEhXTnR6REs0dzF4TzFuZVRhTTBOSHBkSVloQXdFLU5MWThQLXFZSUlLallXUDJqSUdkX2RRemR5MXlFWVZaQzlJMzBIN3VsVlJOSlJHeVl4dUZnTkd4MVhvRTJMY0JkTU1yTklIelo?oc=5",
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5",
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5"
+      ],
+      "evidence_type": "idea_only",
+      "backtest_required": true
+    },
+    {
+      "hypothesis_id": "GI-fad67a1fb563",
+      "theme": "momentum",
+      "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
+      "source_count": 2,
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5"
+      ],
+      "evidence_type": "idea_only",
+      "backtest_required": true
+    },
+    {
+      "hypothesis_id": "GI-b9ef719d6969",
+      "theme": "moving_average",
+      "hypothesis": "Test trend-transition and moving-average slope/cross conditions.",
+      "source_count": 1,
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGl1WmtTSFFDQVJXNGFXcDBpLVoxTk1lR0hUVENsMjFld3ZSNE14bm1XOTBueWdFd2M4NlR6cGp6ZnZNU2VDUVVWZUE0TDRzSTBoM0lmeThZZmdzY2ttMzFnTWwtQzZPSU14WHZmQTM1eUp6eW80dGk3WHdJQ29tXzM1a0V4Wm1HLUc1M2U2RENuTFU3bG9haG54R2hwM25HT1JDVWY5VmpXUlBpOHR2bkV3ekVZU2M?oc=5"
+      ],
+      "evidence_type": "idea_only",
+      "backtest_required": true
+    },
+    {
+      "hypothesis_id": "GI-ea0f6e849c3c",
+      "theme": "oscillator",
+      "hypothesis": "Test oscillator thresholds and threshold-cross events conditioned on trend.",
+      "source_count": 1,
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMicEFVX3lxTFBzVjZmMzlqTFR1V0hNa1U3eXRsbjA1bkJJN3RMaWxpY283WlZsWDY5ckFfVmtwSDFPS1NNc3o1bVhaWGgtY202V2pEUGpmMms0c200cklIamMybmo5Umh2bFFzWXhUTU50SV9CTnIzTE0?oc=5"
       ],
       "evidence_type": "idea_only",
       "backtest_required": true
