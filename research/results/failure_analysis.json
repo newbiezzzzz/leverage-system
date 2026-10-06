@@ -212,14 +212,14 @@
       "status": "queued_for_next_cycle"
     },
     {
-      "hypothesis_id": "NM-56beb26179d1",
+      "hypothesis_id": "NM-f3a123e40146",
       "failure_signature": "too_few_trades",
       "family": "reversal",
       "pattern": "reversal_drop4_ma200_vr1.5",
       "horizon_days": 30,
       "stop_loss": 0.06,
       "reward_r": null,
-      "risk_pct": 0.06,
+      "risk_pct": null,
       "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
       "proposed_improvements": [
         "broaden entry confirmation",
@@ -234,14 +234,14 @@
       "status": "queued_for_next_cycle"
     },
     {
-      "hypothesis_id": "NM-f3a123e40146",
+      "hypothesis_id": "NM-56beb26179d1",
       "failure_signature": "too_few_trades",
       "family": "reversal",
       "pattern": "reversal_drop4_ma200_vr1.5",
       "horizon_days": 30,
       "stop_loss": 0.06,
       "reward_r": null,
-      "risk_pct": null,
+      "risk_pct": 0.06,
       "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
       "proposed_improvements": [
         "broaden entry confirmation",
@@ -498,14 +498,14 @@
       "status": "queued_for_next_cycle"
     },
     {
-      "hypothesis_id": "NM-d237def91622",
+      "hypothesis_id": "NM-9b7c8d95d916",
       "failure_signature": "too_few_trades",
       "family": "reversal",
       "pattern": "reversal_drop4_ma200_vr1.5",
       "horizon_days": 30,
       "stop_loss": 0.06,
       "reward_r": 6.0,
-      "risk_pct": 0.06,
+      "risk_pct": null,
       "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
       "proposed_improvements": [
         "broaden entry confirmation",
@@ -520,14 +520,14 @@
       "status": "queued_for_next_cycle"
     },
     {
-      "hypothesis_id": "NM-9b7c8d95d916",
+      "hypothesis_id": "NM-d237def91622",
       "failure_signature": "too_few_trades",
       "family": "reversal",
       "pattern": "reversal_drop4_ma200_vr1.5",
       "horizon_days": 30,
       "stop_loss": 0.06,
       "reward_r": 6.0,
-      "risk_pct": null,
+      "risk_pct": 0.06,
       "question": "Does the signal contain a real edge but trigger too rarely for the RM1,000 operating target?",
       "proposed_improvements": [
         "broaden entry confirmation",
