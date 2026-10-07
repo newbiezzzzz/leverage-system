@@ -1,8 +1,8 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-07T06:35:20Z
-Items: 49
+Fetched: 2026-10-07T13:39:05Z
+Items: 50
 
 ## Research hypotheses
 - **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
@@ -13,8 +13,8 @@ Items: 49
 - **market_regime** — Test separate entry logic by market breadth/volatility regime. (11 sources)
 - **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (8 sources)
 - **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (7 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (6 sources)
 - **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (6 sources)
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (5 sources)
 - **machine_learning** — Treat ML/feature interactions as hypothesis generators, then validate on untouched data. (4 sources)
 
 ## Recent research/material
@@ -28,6 +28,7 @@ Items: 49
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - CNBC](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
+- [Dapo Willis Trading Strategy And Tips For Beginners - Traders Union](https://news.google.com/rss/articles/CBMiggFBVV95cUxNbXBrMzBkV05HWGZ4VTR1X0Z5eGVORG9HX0pzSkFuTmEzeDlTODFHZmxrNkZCOUFGOXhFbkVrc3p6SWtzZFBiLVp3UFJBUGUycnVpXzdJYnVBR3E5VHc0TlA4aUVxSnMzWWVzT2Yzd0xwMDdSeXdIZFBLRFBDdnJralZR?oc=5) — news / MY
 - [Exponential investors with weakly mean-reverting prices](https://arxiv.org/abs/2610.08631v1) — arxiv / global
 - [Scalable Regularized Vector Multiplicative Error Models for Positive-valued Financial Time Series](https://arxiv.org/abs/2610.08443v1) — arxiv / global
 - [Latent Continuum of Regimes in Limit Order Book Dynamics](https://arxiv.org/abs/2610.05740v2) — arxiv / global
@@ -57,4 +58,3 @@ Items: 49
 - [Polymarket-v1 Database](https://arxiv.org/abs/2606.04217v2) — arxiv / global
 - [Dropout Universality: Scaling Laws and Optimal Scheduling at the Edge-of-Chaos](https://arxiv.org/abs/2605.21648v3) — arxiv / global
 - [Tweedie's Formulae and Diffusion Generative Models Beyond Gaussian](https://arxiv.org/abs/2605.19391v1) — arxiv / global
-- [Amortized Neural Clustering of Time Series based on Statistical Features](https://arxiv.org/abs/2605.13128v1) — arxiv / global
