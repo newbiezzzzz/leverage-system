@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-07T02:56:21Z",
+  "updated_at": "2026-10-07T03:52:55Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.976s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 14.545s",
         "version": "0.28.1"
       }
     },
@@ -45,7 +45,7 @@
         "status": "tested",
         "added_value": true,
         "detail": "OOS 5-day-return correlation=0.1745; RMSE=0.1026; mean-only RMSE=0.1040",
-        "oos_correlation": 0.17454846688520018,
+        "oos_correlation": 0.17454846688520023,
         "oos_rmse": 0.10261016401657813,
         "baseline_rmse": 0.10396852445625805
       }
