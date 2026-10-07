@@ -1,5 +1,5 @@
 {
-  "cycle": 1068,
+  "cycle": 1069,
   "tested_variants": [
     "breakout_b60_vr2_ma50_vc0.7",
     "breakout_b60_vr2_ma100_vc0.7",
@@ -364,7 +364,14 @@
     "failurefix_NM-b91020360241_too_few_trades",
     "failurefix_NM-ccd725282872_too_few_trades",
     "failurefix_NM-ce970d2ea499_too_few_trades",
-    "failurefix_NM-eef5d061d1a4_too_few_trades"
+    "failurefix_NM-eef5d061d1a4_too_few_trades",
+    "failurefix_NM-293021d7eb6c_too_few_trades",
+    "failurefix_NM-2bfef8483c95_too_few_trades",
+    "failurefix_NM-48a9911f2707_too_few_trades",
+    "failurefix_NM-a7bb3675215b_too_few_trades",
+    "failurefix_NM-b8128061b960_too_few_trades",
+    "failurefix_NM-c92fe76c19f5_too_few_trades",
+    "failurefix_NM-fd6855da06de_too_few_trades"
   ],
   "focus_variants": [
     "breakout_b60_vr2_ma50_vc0.7",
@@ -380,10 +387,10 @@
     "breakout_b60_vr2_ma100_vc0.9",
     "breakout_b40_vr2_ma100_vc0.7"
   ],
-  "last_batch_size": 27,
+  "last_batch_size": 19,
   "last_screen_rows": 108,
   "last_realistic_tests": 144,
-  "search_space_variants": 314,
+  "search_space_variants": 311,
   "search_space_coverage": 1.0,
   "exceptional_return_alerts": []
 }
