@@ -1,36 +1,36 @@
 [
   {
-    "hypothesis_id": "GI-ac3934323c7b",
+    "hypothesis_id": "GI-08de363a6cb6",
     "theme": "moving_average",
     "hypothesis": "Test trend-transition and moving-average slope/cross conditions.",
     "source_count": 20,
     "source_urls": [
+      "https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGl1WmtTSFFDQVJXNGFXcDBpLVoxTk1lR0hUVENsMjFld3ZSNE14bm1XOTBueWdFd2M4NlR6cGp6ZnZNU2VDUVVWZUE0TDRzSTBoM0lmeThZZmdzY2ttMzFnTWwtQzZPSU14WHZmQTM1eUp6eW80dGk3WHdJQ29tXzM1a0V4Wm1HLUc1M2U2RENuTFU3bG9haG54R2hwM25HT1JDVWY5VmpXUlBpOHR2bkV3ekVZU2M?oc=5",
       "https://arxiv.org/abs/2610.08443v1",
       "https://arxiv.org/abs/2610.05740v2",
       "https://arxiv.org/abs/2609.15479v1",
       "https://arxiv.org/abs/2609.14733v1",
       "https://arxiv.org/abs/2609.14267v1",
       "https://arxiv.org/abs/2609.13825v1",
-      "https://arxiv.org/abs/2609.12793v1",
-      "https://arxiv.org/abs/2608.29025v1"
+      "https://arxiv.org/abs/2609.12793v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-22c4a1c75fb1",
+    "hypothesis_id": "GI-39d554e3f7a7",
     "theme": "oscillator",
     "hypothesis": "Test oscillator thresholds and threshold-cross events conditioned on trend.",
     "source_count": 20,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMicEFVX3lxTE1oVDM0WmpLR2lfZVM5NEV1eU1JMzV1dm1BbEpJcm9lNVlJLW9GN0YzMi02a1JaN0h4ek9mdW1MWHRQdXRDMnh6bTU3M3lOUDZLbDFWdmZJN0ZBbGlGenVzdmZqUGpCZEJKRVFWOUFFbzk?oc=5",
       "https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5",
       "https://arxiv.org/abs/2610.08631v1",
       "https://arxiv.org/abs/2609.13825v1",
       "https://arxiv.org/abs/2608.21888v1",
       "https://arxiv.org/abs/2608.00885v1",
       "https://arxiv.org/abs/2607.27461v1",
-      "https://arxiv.org/abs/2607.20093v1"
+      "https://arxiv.org/abs/2607.20093v1",
+      "https://arxiv.org/abs/2607.16970v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -144,6 +144,22 @@
     "backtest_required": true
   },
   {
+    "hypothesis_id": "GI-7b371cdbb439",
+    "theme": "general",
+    "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
+    "source_count": 6,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
+      "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
+      "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZVZOa1dkNjROS2NuS1Eycl9peTl2VEhWZm9WQlVyU1NUV2pLaWpoWThtQ01fQ1hqSnVZUV9CMDlaWkdYdGstQXItc0FKYnFGaW9BYnV6ZDZyNnd2Qmg1QklXZnBnN1NhN0dITVpJNFd6bHN1X19KT0RRRGFJTmRQbzltaXNqWTJkd1VkNk9MYjZSWkJ3UGc?oc=5",
+      "https://news.google.com/rss/articles/CBMiggFBVV95cUxNbXBrMzBkV05HWGZ4VTR1X0Z5eGVORG9HX0pzSkFuTmEzeDlTODFHZmxrNkZCOUFGOXhFbkVrc3p6SWtzZFBiLVp3UFJBUGUycnVpXzdJYnVBR3E5VHc0TlA4aUVxSnMzWWVzT2Yzd0xwMDdSeXdIZFBLRFBDdnJralZR?oc=5",
+      "https://arxiv.org/abs/2603.03671v1"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
     "hypothesis_id": "GI-4eb9b39b62d2",
     "theme": "volume",
     "hypothesis": "Test whether abnormal volume confirms subsequent price continuation or reversal.",
@@ -155,21 +171,6 @@
       "https://arxiv.org/abs/2606.08569v1",
       "https://arxiv.org/abs/2606.04217v2",
       "https://arxiv.org/abs/2206.12282v1"
-    ],
-    "evidence_type": "idea_only",
-    "backtest_required": true
-  },
-  {
-    "hypothesis_id": "GI-ea13e3040ff8",
-    "theme": "general",
-    "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
-    "source_count": 5,
-    "source_urls": [
-      "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
-      "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
-      "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
-      "https://news.google.com/rss/articles/CBMiggFBVV95cUxNbXBrMzBkV05HWGZ4VTR1X0Z5eGVORG9HX0pzSkFuTmEzeDlTODFHZmxrNkZCOUFGOXhFbkVrc3p6SWtzZFBiLVp3UFJBUGUycnVpXzdJYnVBR3E5VHc0TlA4aUVxSnMzWWVzT2Yzd0xwMDdSeXdIZFBLRFBDdnJralZR?oc=5",
-      "https://arxiv.org/abs/2603.03671v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
