@@ -1,9 +1,9 @@
 {
   "engine_version": "realistic_engine_v1 + strategy_lab_v4",
   "status": "searching",
-  "cycle": 1110,
-  "search_space_variants": 313,
-  "batch_variants": 27,
+  "cycle": 1111,
+  "search_space_variants": 311,
+  "batch_variants": 19,
   "screen_rows": 108,
   "realistic_tests": 144,
   "qualified_candidates": 0,
@@ -27,7 +27,7 @@
       4.0,
       6.0
     ],
-    "failure_feedback_variants_added": 23,
+    "failure_feedback_variants_added": 21,
     "risk_pcts_per_trade": [
       null,
       0.03,
