@@ -1,16 +1,21 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-09T04:01:12Z
-Items: 10
+Fetched: 2026-10-09T10:46:21Z
+Items: 49
 
 ## Research hypotheses
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (5 sources)
-- **momentum** — Test relative-strength/momentum entry conditioned on a longer-term trend. (2 sources)
-- **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (2 sources)
-- **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (1 sources)
-- **oscillator** — Test oscillator thresholds and threshold-cross events conditioned on trend. (1 sources)
-- **volatility** — Test volatility contraction/expansion as a state filter for entries. (1 sources)
+- **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
+- **oscillator** — Test oscillator thresholds and threshold-cross events conditioned on trend. (20 sources)
+- **momentum** — Test relative-strength/momentum entry conditioned on a longer-term trend. (14 sources)
+- **volatility** — Test volatility contraction/expansion as a state filter for entries. (14 sources)
+- **market_regime** — Test separate entry logic by market breadth/volatility regime. (12 sources)
+- **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (11 sources)
+- **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (8 sources)
+- **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (7 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (6 sources)
+- **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (6 sources)
+- **machine_learning** — Treat ML/feature interactions as hypothesis generators, then validate on untouched data. (4 sources)
 
 ## Recent research/material
 - [What Is Momentum Trading in Crypto? Strategy, Signals & Risks - Changelly](https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5) — news / HK
@@ -22,4 +27,34 @@ Items: 10
 - [AI for Trading: Can AI Suggest Which Stocks to Buy? - Britannica](https://news.google.com/rss/articles/CBMiZEFVX3lxTFBPSjBPbWhxbWZFdHNORGpBUENGWk5BT2FBZF80MUpQN2ZKTzZoWWhwQW4wLTJBOWVTYmZ2NTRUblloN3BMSjBqMVpoY1pPWHlONXhJU2l5bWpCN05oUG9OV01zMVU?oc=5) — news / HK
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [SPX6900 Volatility: Mean Reversion or Catalyst-Driven? - CoinMarketCap](https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5) — news / HK
-- [(ZFH) Trading Strategy and Analysis (ZFH:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxOVUVjUHJFZUhuMGhVbXJUWUFGNk5WWlRhbXRSREVMWWppNUVMYTA0WjJGbXh1amVPZ09BTE1XUWVvMzg2TjFWbjAzVGlNdUdoQ1VHVmR4dFdHVnF5ZVVkWjJWQU94UjFqWmx5dHN1ZmVSempTVlp1bmRSTXM4Vm5LWHpxTm82aDZwUFdLUmtETkdoa0U5S1E?oc=5) — news / HK
+- [(HBLK) Trading Strategy and Analysis (HBLK:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxPdk80c1RJdUQ0dkFjTkRfVmRZNVBiTjVQRjFjblFEYTBROTVpamZ2WmxJWHVLMFJUNnBmT2RZb21uVG1HUTlScnR6bEpqdHFtQTRhSWhPVTE2ZThMV2w5WEx0SmQxRmxXNmN3blRtclktQUNkMXpTWlFpYVNHWl9BSEpVcjZHdDA0bi10THI5NmpIbC1hVHgw?oc=5) — news / HK
+- [Diffusive Market Impact: A Consistent Microfoundation](https://arxiv.org/abs/2610.11691v1) — arxiv / global
+- [Exponential investors with weakly mean-reverting prices](https://arxiv.org/abs/2610.08631v1) — arxiv / global
+- [Scalable Regularized Vector Multiplicative Error Models for Positive-valued Financial Time Series](https://arxiv.org/abs/2610.08443v1) — arxiv / global
+- [Latent Continuum of Regimes in Limit Order Book Dynamics](https://arxiv.org/abs/2610.05740v2) — arxiv / global
+- [Optimal Liquidation with Support and Resistance Levels under Multi-Skew Brownian Motion](https://arxiv.org/abs/2609.35063v1) — arxiv / global
+- [On Detecting Multiple Simultaneous Change-points in High Dimensional Non-Stationary Time Series](https://arxiv.org/abs/2609.15479v1) — arxiv / global
+- [WaVeFuse: Regime-Adaptive Equity Index Forecasting via Channel-Wise Wavelet Denoising and Vertical Attention Fusion](https://arxiv.org/abs/2609.14733v1) — arxiv / global
+- [Public Opinion as an Option: Leveraging Prediction Markets to Hedge Exposure to Spot Crypto Volatility](https://arxiv.org/abs/2609.14267v1) — arxiv / global
+- [ViperQ: Order Flow Pattern Recognition via Auction Market Theory for Reinforcement Learning Trading](https://arxiv.org/abs/2609.13825v1) — arxiv / global
+- [VertiFuseX: Generalizable Financial Forecasting via Multi-Stream Temporal Fusion](https://arxiv.org/abs/2609.12793v1) — arxiv / global
+- [Deep Hedging Under Realistic Market Frictions: A Regime-Conditional Empirical Study of Dynamic Option Hedging on Bitcoin Options](https://arxiv.org/abs/2608.29025v1) — arxiv / global
+- [Tabular Deep Learning for Algorithmic Trading: Cross-Regime Bayesian Optimisation for Equity Signal Generation](https://arxiv.org/abs/2608.27076v1) — arxiv / global
+- [Short-horizon mean reversion in cryptocurrency markets: a matched cross-market measurement](https://arxiv.org/abs/2608.21888v1) — arxiv / global
+- [Velocity- and Regime-Aware Detection of Intraday Options Market Manipulation, with Explainable Attribution](https://arxiv.org/abs/2608.05373v1) — arxiv / global
+- [Optimal Trading of Microstructure Mean Reversion](https://arxiv.org/abs/2608.00885v1) — arxiv / global
+- [Are Three Matrices All You Need To Beat the Market? Observable Matrix Dynamics for Portfolio Optimization](https://arxiv.org/abs/2607.27461v1) — arxiv / global
+- [Herding, Momentum, and Reversal in China's A-Share Market: An Agent-Based Network Model with Information Diffusion](https://arxiv.org/abs/2607.27063v1) — arxiv / global
+- [Retail Trader's Ruin: An Anatomy of Popular Signal Failure](https://arxiv.org/abs/2607.20093v1) — arxiv / global
+- [Herding and Liquidity in Order-Book Markets. II. Fundamental Anchoring and the Resilience of Liquidity](https://arxiv.org/abs/2607.16970v1) — arxiv / global
+- [Herding and Liquidity in Order-Book Markets. I. A Robust Liquidity-Stress Crossover and its Reflexive Mechanism](https://arxiv.org/abs/2607.08907v1) — arxiv / global
+- [Order Splitting and Liquidity Replenishment Are Jointly Necessary for the Square-Root Law of Market Impact:](https://arxiv.org/abs/2607.04280v1) — arxiv / global
+- [A Spectral Generalisation of the Variance Ratio: Eigenstructure of Long-Horizon Portfolio Covariance and a Multi-Memory Factor Model of U.S. Equity Returns](https://arxiv.org/abs/2607.03858v1) — arxiv / global
+- [End-to-End Parametric Portfolio Policies for Cross-Asset Futures Timing: When Do AI Models Beat Simple Rules?](https://arxiv.org/abs/2607.00475v1) — arxiv / global
+- [Regime-Conditional Distributional Comparison of Trading Strategies: A GAMLSS/ZAGA Framework Applied to the S&P 500](https://arxiv.org/abs/2606.31251v1) — arxiv / global
+- [The Bounce Has No Direction: Sign, Magnitude, and the Microstructure of Equity Return Predictability](https://arxiv.org/abs/2606.29591v1) — arxiv / global
+- [Stock Investment: The p-index Approach](https://arxiv.org/abs/2606.08569v1) — arxiv / global
+- [Zero-Copy Semantic Contagion: An In-Memory Streaming Architecture for Evolving Attention Graphs](https://arxiv.org/abs/2606.05733v1) — arxiv / global
+- [Polymarket-v1 Database](https://arxiv.org/abs/2606.04217v2) — arxiv / global
+- [Dropout Universality: Scaling Laws and Optimal Scheduling at the Edge-of-Chaos](https://arxiv.org/abs/2605.21648v3) — arxiv / global
+- [Tweedie's Formulae and Diffusion Generative Models Beyond Gaussian](https://arxiv.org/abs/2605.19391v1) — arxiv / global
