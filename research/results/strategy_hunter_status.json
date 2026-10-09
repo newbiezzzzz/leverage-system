@@ -1,9 +1,16 @@
 {
-  "checked_at": "2026-10-09T19:45:11.442541+00:00",
-  "status": "pending",
-  "run_id": 37981604395,
-  "started_at": "2026-10-09T19:38:34Z",
-  "updated_at": "2026-10-09T19:38:35Z",
-  "jobs": [],
+  "checked_at": "2026-10-09T23:33:13.543471+00:00",
+  "status": "in_progress",
+  "run_id": 38002210710,
+  "started_at": "2026-10-09T23:00:22Z",
+  "updated_at": "2026-10-09T23:00:29Z",
+  "jobs": [
+    {
+      "name": "research",
+      "status": "in_progress",
+      "conclusion": "\u2014",
+      "current_step": "Execute recoverable research cycle"
+    }
+  ],
   "conclusion": "\u2014"
 }
