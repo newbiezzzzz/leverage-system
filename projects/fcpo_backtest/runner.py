@@ -122,7 +122,9 @@ def validate(s):
  if s["instrument"]!="FCPO":raise ValueError("Engine currently supports FCPO only.")
  if int(s["timeframe_minutes"]) not in {1,5,15,30}:raise ValueError("timeframe_minutes must be 1,5,15,30.")
  if s["direction"] not in {"long_only","short_only","both"}:raise ValueError("Invalid direction.")
- if s.get("status") in {"NEEDS_CLARIFICATION","NEEDS_RULE_EXTRACTION"}:raise ValueError("Strategy is not approved for execution; resolve rule extraction/clarification first.")\n if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")\n if s["exit"].get("trailing_stop") is not None:raise ValueError("Trailing stop is not implemented yet; remove it or use only after an explicit supported rule implementation.")
+ if s.get("status") in {"NEEDS_CLARIFICATION","NEEDS_RULE_EXTRACTION"}:raise ValueError("Strategy is not approved for execution; resolve rule extraction/clarification first.")
+  if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")
+  if s["exit"].get("trailing_stop") is not None:raise ValueError("Trailing stop is not implemented yet; remove it or use only after an explicit supported rule implementation.")
  sz=s["position_sizing"]
  if sz.get("mode") not in {"one_contract","fixed_contracts"}:raise ValueError("Only explicit integer contract sizing is supported.")
  q=sz.get("contracts",1)
@@ -183,7 +185,10 @@ def monthly(ts):
   n=[t["net_rm"] for t in items];out.append({"month":m,"trades":len(items),"wins":sum(x>0 for x in n),"losses":sum(x<0 for x in n),"win_rate_pct":round(sum(x>0 for x in n)/len(n)*100,2),"gross_rm":round(sum(t["gross_rm"] for t in items),2),"fees_rm":round(sum(t["fees_rm"] for t in items),2),"slippage_rm":round(sum(t["slippage_rm"] for t in items),2),"net_rm":round(sum(n),2)})
  return out
 def segment(bars,s,capital):
- t=backtest(bars,s,capital);return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":summary(t,capital),"monthly":monthly(t),"trades":t}
+ t=backtest(bars,s,capital);m=summary(t,capital)
+ months=max((bars[-1]["dt"]-bars[0]["dt"]).total_seconds()/(86400*30.4375),1/30.4375) if len(bars)>1 else 0
+ net=m["net_return_rm"];m["monthly_average_net_return_rm"]=round(net/months,2) if months else None;m["monthly_average_net_return_pct"]=round(net/capital/months*100,2) if months and capital else None
+ return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":m,"monthly":monthly(t),"trades":t}
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/fcpo/fcpo_1m.csv");p.add_argument("--strategy",default="projects/fcpo_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/fcpo_backtest");p.add_argument("--fee-per-side-rm",type=float);p.add_argument("--slippage-points",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-FCPO-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
  try:
@@ -191,7 +196,11 @@ def main():
   if a.fee_per_side_rm is not None:s["costs"]["fee_per_side_rm_per_contract"]=a.fee_per_side_rm
   if a.slippage_points is not None:s["costs"]["slippage_points_per_side"]=a.slippage_points
   q=validate(s);raw=load_bars(Path(a.input));note=Path("data/fcpo/DATA_SOURCE.md")
-  if not note.exists():raise ValueError("Missing data/fcpo/DATA_SOURCE.md provenance note.")\n  provenance=note.read_text(encoding="utf-8")\n  required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Contract months included:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]\n  missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]\n  if missing:raise ValueError("Incomplete data provenance fields: "+", ".join(missing))
+  if not note.exists():raise ValueError("Missing data/fcpo/DATA_SOURCE.md provenance note.")
+   provenance=note.read_text(encoding="utf-8")
+   required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Contract months included:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]
+   missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]
+   if missing:raise ValueError("Incomplete data provenance fields: "+", ".join(missing))
   tf=int(s["timeframe_minutes"]);bars=raw if tf==1 else aggregate(raw,tf)
   if len(bars)<100:raise ValueError(f"Only {len(bars)} usable {tf}m bars; at least 100 required for a diagnostic run.")
   capital=float(s.get("starting_capital_rm",1000))
