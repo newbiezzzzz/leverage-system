@@ -38,3 +38,22 @@ Report:
 - limitations, out-of-sample results, and whether one FCPO contract is feasible for the assumed account size
 
 Never describe a strategy as profitable from an in-sample result alone.
+
+## D. Machine-rule mapping used by the engine
+
+Indicator entries use `id`, `type`, optional `period`, `source`, and (for Bollinger Bands) `stddev`. Supported types: `sma`, `ema`, `rsi`, `atr`, `bollinger` / `bollinger_bands`.
+
+A condition is an object with `left`, `operator`, and `right`. An operand can be a number, `{"price":"close"}`, `{"constant":50}`, or `{"indicator":"rsi14","line":"value"}`. Supported operators are `gt`, `gte`, `lt`, `lte`, `eq`, `neq`, `crosses_above`, and `crosses_below`. Group conditions with `{"logic":"all","conditions":[...]}` for AND or `{"logic":"any","conditions":[...]}` for OR; groups may be nested.
+
+Example only (not a strategy recommendation): “Close crosses above EMA 20” maps to an EMA indicator with id `ema20`, type `ema`, period `20`, and an entry condition whose left operand is `{"price":"close"}`, operator is `crosses_above`, and right operand is `{"indicator":"ema20"}`.
+
+## E. Supported execution boundaries
+
+- Signal evaluated at completed bar close; market entry at the next bar open.
+- One position at a time; integer fixed contract count.
+- Conservative stop-first assumption if a candle touches both stop and target.
+- Supported exit modes are fixed stop/target, opposite signal, time exit, stop/target plus opposite signal, and stop/target plus time exit.
+- Trailing stops, partial exits, dynamic risk sizing, limit/stop queue modelling, and automatic futures-roll construction are not implemented. If the supplied strategy depends on one of these, report the gap and do not label the strategy faithfully tested.
+- Costs are mandatory. Store fee per side per contract and slippage points per side in the spec, with the source/basis recorded. A zero assumption must be explicit, not an omitted field.
+- The spec must identify the actual dated contract or continuous-series/roll method. “Must be documented” is a template placeholder, not a valid setting.
+

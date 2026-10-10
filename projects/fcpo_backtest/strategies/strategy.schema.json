@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Leverage FCPO User Strategy Specification",
+  "type": "object",
+  "required": ["strategy_id", "version", "instrument", "timeframe_minutes", "direction", "indicators", "entry", "exit", "position_sizing", "execution", "costs"],
+  "properties": {
+    "strategy_id": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+$"},
+    "version": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["NEEDS_RULE_EXTRACTION", "NEEDS_CLARIFICATION", "READY_FOR_BACKTEST", "TESTED"]},
+    "source_type": {"enum": ["user_text", "user_image", "user_text_or_image", "assumption_based_variant"]},
+    "source_description": {"type": "string"},
+    "interpretation_notes": {"type": "array", "items": {"type": "string"}},
+    "instrument": {"const": "FCPO"},
+    "contract_series": {"type": "string", "minLength": 1},
+    "timeframe_minutes": {"enum": [1, 5, 15, 30]},
+    "timezone": {"type": "string"},
+    "sessions": {"type": "array", "items": {"type": "string", "pattern": "^[0-2][0-9]:[0-5][0-9]-[0-2][0-9]:[0-5][0-9]$"}},
+    "direction": {"enum": ["long_only", "short_only", "both"]},
+    "indicators": {"type": "array", "items": {"type": "object", "required": ["id", "type"], "properties": {"id": {"type": "string"}, "type": {"enum": ["sma", "ema", "rsi", "atr", "bollinger", "bollinger_bands"]}, "period": {"type": "integer", "minimum": 1}, "source": {"enum": ["open", "high", "low", "close", "volume", "hl2", "hlc3", "ohlc4"]}, "stddev": {"type": "number", "exclusiveMinimum": 0}}, "additionalProperties": true}},
+    "entry": {"$ref": "#/$defs/conditionGroup"},
+    "short_entry": {"$ref": "#/$defs/conditionGroup"},
+    "exit": {"type": "object", "required": ["mode"], "properties": {"mode": {"enum": ["stop_and_target", "fixed_stop_target", "opposite_signal", "time_exit", "stop_target_or_signal", "stop_target_or_time"]}, "stop_points": {"type": ["number", "null"], "exclusiveMinimum": 0}, "target_points": {"type": ["number", "null"], "exclusiveMinimum": 0}, "target_r_multiple": {"type": ["number", "null"], "exclusiveMinimum": 0}, "time_exit_bars": {"type": ["integer", "null"], "minimum": 1}, "trailing_stop": {"type": ["object", "null"]}}, "additionalProperties": true},
+    "position_sizing": {"type": "object", "required": ["mode", "contracts"], "properties": {"mode": {"enum": ["one_contract", "fixed_contracts"]}, "contracts": {"type": "integer", "minimum": 1}}},
+    "execution": {"type": "object", "properties": {"signal_timing": {"const": "bar_close"}, "entry_timing": {"const": "next_bar_open"}, "intrabar_collision": {"const": "stop_first"}, "allow_lookahead": {"const": false}}},
+    "costs": {"type": "object", "required": ["fee_per_side_rm_per_contract", "slippage_points_per_side"], "properties": {"fee_per_side_rm_per_contract": {"type": "number", "minimum": 0}, "slippage_points_per_side": {"type": "number", "minimum": 0}, "source_or_basis": {"type": "string"}}},
+    "starting_capital_rm": {"type": "number", "exclusiveMinimum": 0}
+  },
+  "$defs": {
+    "operand": {"oneOf": [{"type": "number"}, {"type": "object", "properties": {"constant": {"type": "number"}, "price": {"enum": ["open", "high", "low", "close", "volume"]}, "indicator": {"type": "string"}, "line": {"enum": ["value", "middle", "upper", "lower"]}}, "minProperties": 1}]},
+    "condition": {"type": "object", "required": ["left", "operator", "right"], "properties": {"left": {"$ref": "#/$defs/operand"}, "operator": {"enum": ["gt", "gte", "lt", "lte", "eq", "neq", "crosses_above", "crosses_below"]}, "right": {"$ref": "#/$defs/operand"}}},
+    "conditionGroup": {"type": "object", "required": ["logic", "conditions"], "properties": {"logic": {"enum": ["all", "any"]}, "conditions": {"type": "array", "items": {"oneOf": [{"$ref": "#/$defs/condition"}, {"$ref": "#/$defs/conditionGroup"}]}}}}
+  },
+  "additionalProperties": true
+}

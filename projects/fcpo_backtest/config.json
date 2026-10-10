@@ -4,7 +4,11 @@
   "purpose": "Analyze user-supplied strategy rules or images, formalize them, and backtest faithfully",
   "status": "INTAKE_READY_ENGINE_VALIDATION_PENDING_DATA",
   "independent_from": "strategy_hunter",
-  "timeframes_minutes_supported": [5, 15, 30],
+  "timeframes_minutes_supported": [
+    5,
+    15,
+    30
+  ],
   "source_file": "data/fcpo/fcpo_1m.csv",
   "output_dir": "artifacts/fcpo_backtest",
   "strategy_specs_dir": "projects/fcpo_backtest/strategies",
@@ -20,17 +24,68 @@
   "must_preserve_user_rules": true,
   "must_separate_faithful_replication_from_variants": true,
   "required_metrics": [
-    "trades", "wins", "losses", "win_rate_pct", "monthly_net_return_rm",
-    "monthly_net_return_pct", "average_winner_rm", "average_loser_rm",
-    "profit_factor", "expectancy_rm_per_trade", "max_drawdown_rm",
-    "max_drawdown_pct", "largest_loss_rm", "losing_streak", "total_costs_rm"
+    "trades",
+    "wins",
+    "losses",
+    "win_rate_pct",
+    "monthly_net_return_rm",
+    "monthly_net_return_pct",
+    "average_winner_rm",
+    "average_loser_rm",
+    "profit_factor",
+    "expectancy_rm_per_trade",
+    "max_drawdown_rm",
+    "max_drawdown_pct",
+    "largest_loss_rm",
+    "losing_streak",
+    "total_costs_rm"
   ],
   "required_validation": [
-    "source_provenance", "data_integrity", "no_lookahead",
-    "fees_and_slippage", "development_validation_holdout",
-    "walk_forward", "parameter_stability", "contract_feasibility",
+    "source_provenance",
+    "data_integrity",
+    "no_lookahead",
+    "fees_and_slippage",
+    "development_validation_holdout",
+    "walk_forward",
+    "parameter_stability",
+    "contract_feasibility",
     "Shariah_review"
   ],
   "risk_gate_max_drawdown_pct": 10,
-  "notes": "The Owner supplies strategy details or an image. Leverage extracts rules, records interpretation/ambiguities, converts to a versioned machine-readable spec, and tests that strategy. No generic strategy may be substituted silently. No performance result may be generated from empty or synthetic data."
+  "notes": "The Owner supplies strategy details or an image. Leverage extracts rules, records interpretation/ambiguities, converts to a versioned machine-readable spec, and tests that strategy. No generic strategy may be substituted silently. No performance result may be generated from empty or synthetic data.",
+  "engine_status": "IMPLEMENTED_AWAITING_CI_VERIFICATION",
+  "supported_indicators": [
+    "sma",
+    "ema",
+    "rsi",
+    "atr",
+    "bollinger",
+    "bollinger_bands"
+  ],
+  "supported_condition_operators": [
+    "gt",
+    "gte",
+    "lt",
+    "lte",
+    "eq",
+    "neq",
+    "crosses_above",
+    "crosses_below"
+  ],
+  "supported_exit_modes": [
+    "stop_and_target",
+    "fixed_stop_target",
+    "opposite_signal",
+    "time_exit",
+    "stop_target_or_signal",
+    "stop_target_or_time"
+  ],
+  "unsupported_rules_must_fail": [
+    "trailing_stop",
+    "partial_exit",
+    "dynamic_risk_sizing",
+    "order_queue_simulation",
+    "automatic_contract_roll"
+  ],
+  "default_workflow_behavior": "validate_and_test_only_unless_strategy_path_is_explicitly_supplied"
 }

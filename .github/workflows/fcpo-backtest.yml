@@ -1,7 +1,18 @@
-name: FCPO Backtest Project
+name: FCPO User Strategy Backtest
 
 on:
   workflow_dispatch:
+    inputs:
+      strategy_path:
+        description: "Path to the prepared user strategy JSON (not the template)"
+        required: false
+        type: string
+        default: ""
+  pull_request:
+    paths:
+      - "projects/fcpo_backtest/**"
+      - "data/fcpo/**"
+      - ".github/workflows/fcpo-backtest.yml"
   push:
     paths:
       - "projects/fcpo_backtest/**"
@@ -12,46 +23,60 @@ permissions:
   contents: read
 
 concurrency:
-  group: fcpo-backtest-project
+  group: fcpo-user-strategy-backtest
   cancel-in-progress: false
 
 jobs:
-  fcpo-backtest:
+  validate-and-backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate project code
+      - name: Compile and run regression tests
         run: |
           python -m py_compile projects/fcpo_backtest/runner.py
           python -m unittest discover -s projects/fcpo_backtest/tests -v
-      - name: Run isolated FCPO project
-        id: backtest
-        continue-on-error: true
+          python -m json.tool projects/fcpo_backtest/config.json >/dev/null
+          python -m json.tool projects/fcpo_backtest/strategies/strategy_template.json >/dev/null
+          python -m json.tool projects/fcpo_backtest/strategies/strategy.schema.json >/dev/null
+      - name: Prepare blocked status when no strategy is submitted
+        if: ${{ github.event.inputs.strategy_path == '' || github.event.inputs.strategy_path == null }}
+        run: |
+          mkdir -p artifacts/fcpo_backtest
+          cat > artifacts/fcpo_backtest/latest_report.json <<'JSON'
+          {
+            "project": "P-FCPO-BACKTEST",
+            "status": "BLOCKED",
+            "reason": "No user strategy JSON was selected for this workflow run. Project tests passed; no performance backtest was attempted.",
+            "research_only": true,
+            "live_orders": false
+          }
+          JSON
+          echo "# FCPO user-strategy backtest" > artifacts/fcpo_backtest/latest_report.md
+          echo "" >> artifacts/fcpo_backtest/latest_report.md
+          echo "Status: BLOCKED — project validation only. Supply a completed strategy JSON and licensed/provenanced FCPO history to run a backtest." >> artifacts/fcpo_backtest/latest_report.md
+      - name: Run supplied strategy
+        if: ${{ github.event.inputs.strategy_path != '' && github.event.inputs.strategy_path != null }}
         env:
+          STRATEGY_PATH: ${{ github.event.inputs.strategy_path }}
           FCPO_FEE_PER_SIDE_RM: ${{ vars.FCPO_FEE_PER_SIDE_RM }}
           FCPO_SLIPPAGE_POINTS: ${{ vars.FCPO_SLIPPAGE_POINTS }}
         run: |
-          if [ -n "$FCPO_FEE_PER_SIDE_RM" ] && [ -n "$FCPO_SLIPPAGE_POINTS" ]; then
-            python projects/fcpo_backtest/runner.py --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest --fee-per-side-rm "$FCPO_FEE_PER_SIDE_RM" --slippage-points "$FCPO_SLIPPAGE_POINTS"
-          else
-            python projects/fcpo_backtest/runner.py --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest
-          fi
-      - name: Upload FCPO report
+          test -f "$STRATEGY_PATH" || { echo "::error::Strategy JSON path does not exist: $STRATEGY_PATH"; exit 1; }
+          ARGS=(--strategy "$STRATEGY_PATH" --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest)
+          if [ -n "$FCPO_FEE_PER_SIDE_RM" ]; then ARGS+=(--fee-per-side-rm "$FCPO_FEE_PER_SIDE_RM"); fi
+          if [ -n "$FCPO_SLIPPAGE_POINTS" ]; then ARGS+=(--slippage-points "$FCPO_SLIPPAGE_POINTS"); fi
+          python projects/fcpo_backtest/runner.py "${ARGS[@]}"
+      - name: Upload report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: fcpo-backtest-report
+          name: fcpo-user-strategy-report
           path: artifacts/fcpo_backtest/
           if-no-files-found: warn
           retention-days: 30
-      - name: Mark blocked/failed execution
-        if: steps.backtest.outcome == 'failure'
-        run: |
-          echo "::error::FCPO project did not complete. Inspect the generated report artifact and resolve its explicit blocker."
-          exit 1

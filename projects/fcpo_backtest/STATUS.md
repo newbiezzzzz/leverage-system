@@ -1,13 +1,13 @@
 # FCPO User-Strategy Backtesting — status
 
 - Project ID: P-FCPO-BACKTEST
-- Purpose: Owner provides strategy rules or a screenshot/photo; Leverage extracts the rules, records interpretation, creates a versioned strategy specification, and backtests that supplied strategy.
-- Explicitly not: an autonomous strategy-discovery project; not a replacement for Strategy Hunter.
-- Isolation: separate directory/workflow; no edits to Strategy Hunter mission state or current project configuration.
-- Intake guide: STRATEGY_INTAKE.md
-- Strategy template: strategies/strategy_template.json
-- Engine: initial runner is still a generic research scaffold and does not yet faithfully execute the full strategy-spec schema. Do not claim user-defined strategy testing is fully implemented until that engine gap is closed and tests pass.
-- Data: valid, licensed/provenanced FCPO intraday OHLCV is still required. No real strategy backtest results exist yet.
-- Costs: must use documented fees and slippage; unknowns must be labeled, not invented.
-- Safety: research-only, no broker integration, no live orders.
-- Next implementation: make the runner execute a user-supplied strategy JSON, support the needed indicator/condition and exit rules, validate trade accounting against fixtures, and emit monthly/trade-by-trade results.
+- Purpose: Owner supplies text or a screenshot/photo; Leverage extracts the exact rules, records ambiguity, creates a versioned JSON spec and backtests that strategy.
+- Isolation: separate `projects/fcpo_backtest/` directory and dedicated workflow. Strategy Hunter mission/state/workflows are out of scope and must remain untouched.
+- Engine: declarative strategy runner implemented on this feature branch. Supports SMA/EMA/RSI/ATR/Bollinger indicators, nested AND/OR conditions, explicit crossovers/crossunders, next-bar entries, long/short direction, fixed stop/target, opposite-signal/time exits, conservative stop-first collisions, explicit fees/slippage, integer contracts, monthly summaries and chronological 60/20/20 reports.
+- Regression suite: tests added for data validation, indicators, crossovers, missing costs, unsupported indicators, collision priority, next-bar execution, costs, monthly metrics, short-side PnL, integer contracts and look-ahead rejection. **Awaiting GitHub Actions result; do not call tests passed until verified.**
+- Unsupported rules: trailing stops, partial exits, dynamic risk sizing, order queue/fill simulation and automated contract rolling are not silently approximated; implement them before testing a spec that relies on them.
+- Data: no valid licensed/provenanced intraday FCPO dataset has been verified for this project. Runner checks the data file and required provenance fields. No real strategy performance results exist.
+- Costs: must be documented in the strategy JSON or explicitly overridden; no invented fee/slippage values.
+- Capital: RM1,000 starting capital; one FCPO contract may have stop risk exceeding capital and broker margin remains a separate required check.
+- Safety: research-only; no broker integration, live orders or movement of funds.
+- Next gates: CI passes; licensed/provenanced data acquired; user submits a strategy; ambiguities resolved; completed strategy spec generated; actual run and report audited.
