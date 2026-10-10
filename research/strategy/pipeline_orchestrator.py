@@ -25,6 +25,19 @@ REPAIR = OUT / "repair_queue.json"
 PROGRESS = OUT / "strategy_hunter_progress.json"
 
 MAX_ATTEMPTS = 3
+# Bound each subprocess so a hung research stage cannot monopolize the cycle.
+STAGE_TIMEOUT_SECONDS = {
+    "baseline_costs": 480, "baseline_nocosts": 480, "pattern_hunter": 480,
+    "strategy_lab": 1800, "failure_analysis": 240,
+    "vectorbt": 240, "lightgbm": 240, "symbolic": 240, "qlib": 240,
+    "optuna": 240, "lean": 240, "chronos2": 240,
+}
+MAX_ATTEMPTS_BY_STAGE = {
+    "baseline_costs": 2, "baseline_nocosts": 2, "pattern_hunter": 2,
+    "strategy_lab": 2, "failure_analysis": 2,
+    "vectorbt": 1, "lightgbm": 1, "symbolic": 1, "qlib": 1,
+    "optuna": 1, "lean": 1, "chronos2": 1,
+}
 STAGES = [
     ("baseline", "Baseline backtest", "core"),
     ("pattern_hunter", "Pattern Hunter", "core"),
@@ -125,18 +138,37 @@ def patch_known_failure(log: str) -> bool:
 
 def run_cmd(command: str, stage: str):
     last = ""
-    for attempt in range(1, MAX_ATTEMPTS + 1):
+    attempt_limit = MAX_ATTEMPTS_BY_STAGE.get(stage, MAX_ATTEMPTS)
+    timeout_seconds = STAGE_TIMEOUT_SECONDS.get(stage, 240)
+    for attempt in range(1, attempt_limit + 1):
         log_path = LOGS / f"{stage}_attempt_{attempt}.log"
-        proc = subprocess.run(command, shell=True, cwd=ROOT, capture_output=True, text=True, env=os.environ.copy())
-        last = (proc.stdout or "") + (proc.stderr or "")
+        try:
+            proc = subprocess.run(
+                command, shell=True, cwd=ROOT, capture_output=True, text=True,
+                env=os.environ.copy(), timeout=timeout_seconds,
+            )
+            last = (proc.stdout or "") + (proc.stderr or "")
+            return_code = proc.returncode
+        except subprocess.TimeoutExpired as exc:
+            stdout = exc.stdout or ""
+            stderr = exc.stderr or ""
+            if isinstance(stdout, bytes):
+                stdout = stdout.decode("utf-8", errors="replace")
+            if isinstance(stderr, bytes):
+                stderr = stderr.decode("utf-8", errors="replace")
+            last = (stdout or "") + (stderr or "") + (
+                f"\nTIMEOUT: stage={stage} exceeded {timeout_seconds}s; "
+                "process was terminated and recovery will retry."
+            )
+            return_code = 124
         log_path.write_text(last, encoding="utf-8")
-        if proc.returncode == 0:
+        if return_code == 0:
             return True, attempt, last
-        if patch_known_failure(last):
+        if return_code != 124 and patch_known_failure(last):
             continue
-        time.sleep(min(10 * attempt, 30))
-    return False, MAX_ATTEMPTS, last
-
+        if attempt < attempt_limit:
+            time.sleep(min(10 * attempt, 30))
+    return False, attempt_limit, last
 
 def extract_progress(details: dict, cycle: int):
     patterns = 0
@@ -203,9 +235,16 @@ def main():
     core_failed = False
 
     for key, label, tier in STAGES:
-        # Core stages are independently recoverable. A failure in adaptive
-        # discovery must not prevent the independent candidate backtest from
-        # testing the patterns already produced by Pattern Hunter.
+        # Do not label an old backtest file as evidence for this cycle.
+        if key == "failure_analysis" and details.get("strategy_lab", {}).get("status") != "done":
+            details[key] = {
+                "status": "skipped",
+                "reason": "strategy_lab_not_completed_this_cycle; stale evidence blocked",
+            }
+            write_status("running", key, 0, details)
+            continue
+
+        # Core stages are independently recoverable; optional stages remain advisory.
 
         # Optional research tools are activated only after the core engine has
         # produced a candidate. This keeps the loop focused and quota-efficient.
