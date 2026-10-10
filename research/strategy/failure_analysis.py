@@ -29,14 +29,24 @@ def load(path, default):
         return default
 
 
+def _number(r, key):
+    """Read finite numeric evidence; missing/NaN values fail closed."""
+    import math
+    try:
+        value = float(r.get(key))
+    except (TypeError, ValueError):
+        return None
+    return value if math.isfinite(value) else None
+
+
 def classify(r):
-    if bool(r.get("research_candidate", False)):
-        return "qualified"
-    dd = float(r.get("holdout_max_drawdown", 0) or 0)
-    tpm = float(r.get("holdout_trades_per_month", 0) or 0)
-    pf = float(r.get("holdout_profit_factor", 0) or 0)
-    ret = float(r.get("holdout_total_return", 0) or 0)
-    rep = bool(r.get("replication_pass", r.get("independent_replication", False)))
+    """Classify failure from selection data only; the holdout is sealed."""
+    tpm = _number(r, "selection_trades_per_month")
+    dd = _number(r, "selection_max_drawdown")
+    pf = _number(r, "selection_profit_factor")
+    ret = _number(r, "selection_total_return")
+    if any(v is None for v in (tpm, dd, pf, ret)):
+        return "insufficient_selection_evidence"
     if tpm < 5:
         return "too_few_trades"
     if tpm > 20:
@@ -47,12 +57,8 @@ def classify(r):
         return "negative_expectancy"
     if pf <= 1:
         return "profit_factor_failure"
-    if not rep:
-        return "replication_failure"
     if ret <= 0:
-        return "holdout_failure"
-    if not bool(r.get("frequency_gate", True)):
-        return "frequency_failure"
+        return "selection_failure"
     return "robustness_failure"
 
 
@@ -79,11 +85,11 @@ def main():
                 "holdout_total_return", "holdout_profit_factor"):
         if col not in failed:
             failed[col] = 0.0
+    # Rank near-misses exclusively on development/selection evidence.
+    # Holdout results must not influence which hypotheses are tested next.
     failed["near_miss_score"] = (
         failed["selection_total_return"].clip(lower=-1, upper=1)
         + 0.25 * failed["selection_profit_factor"].clip(lower=0, upper=3)
-        + 0.50 * failed["holdout_total_return"].clip(lower=-1, upper=1)
-        + 0.20 * failed["holdout_profit_factor"].clip(lower=0, upper=3)
     )
 
     sig_rows = []
@@ -92,12 +98,11 @@ def main():
             "failure_signature": sig,
             "count": int(len(g)),
             "families": int(g["family"].nunique()) if "family" in g else 0,
-            "mean_holdout_return": float(g["holdout_total_return"].mean()),
-            "median_holdout_return": float(g["holdout_total_return"].median()),
-            "mean_holdout_pf": float(g["holdout_profit_factor"].replace([np.inf, -np.inf], np.nan).mean()),
-            "mean_holdout_dd": float(g["holdout_max_drawdown"].mean()),
-            "mean_holdout_tpm": float(g["holdout_trades_per_month"].mean()),
-            "replication_rate": float(g["independent_replication"].astype(bool).mean()) if "independent_replication" in g else 0.0,
+            "mean_selection_return": float(g["selection_total_return"].mean()),
+            "median_selection_return": float(g["selection_total_return"].median()),
+            "mean_selection_pf": float(g["selection_profit_factor"].replace([np.inf, -np.inf], np.nan).mean()),
+            "mean_selection_dd": float(g["selection_max_drawdown"].mean()),
+            "mean_selection_tpm": float(g["selection_trades_per_month"].mean()),
         })
     sig_df = pd.DataFrame(sig_rows).sort_values("count", ascending=False)
     sig_df.to_csv(SIG_PATH, index=False)
@@ -178,10 +183,11 @@ def main():
             "risk_pct": None if pd.isna(r.get("risk_pct")) else float(r.get("risk_pct")),
             "question": base["question"],
             "proposed_improvements": base["improvement"],
-            "holdout_return": float(r.get("holdout_total_return", 0)),
-            "holdout_pf": float(r.get("holdout_profit_factor", 0)),
-            "holdout_dd": float(r.get("holdout_max_drawdown", 0)),
-            "holdout_tpm": float(r.get("holdout_trades_per_month", 0)),
+            "selection_return": float(r.get("selection_total_return", 0)),
+            "selection_pf": float(r.get("selection_profit_factor", 0)),
+            "selection_dd": float(r.get("selection_max_drawdown", 0)),
+            "selection_tpm": float(r.get("selection_trades_per_month", 0)),
+            "holdout_access": "sealed_not_used_for_hypothesis_selection",
             "status": "queued_for_next_cycle",
         })
 
@@ -200,7 +206,8 @@ def main():
         "failed_tests": int(len(failed)),
         "failure_signatures": sig_rows,
         "hypotheses": hypotheses,
-        "next_cycle_policy": "test_failure_hypotheses before repeating failed parameter regions",
+        "next_cycle_policy": "test failure hypotheses based only on development/selection data; never use sealed holdout metrics for search",
+        "holdout_policy": "sealed; not used to classify failures, rank near-misses, or generate next-cycle hypotheses",
     }
     REPORT_PATH.write_text(json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8")
     HYP_PATH.write_text(json.dumps(report, indent=2, default=str) + "\n", encoding="utf-8")
