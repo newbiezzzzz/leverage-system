@@ -31,12 +31,15 @@ jobs:
       - name: Run isolated FCPO project
         id: backtest
         continue-on-error: true
+        env:
+          FCPO_FEE_PER_SIDE_RM: ${{ vars.FCPO_FEE_PER_SIDE_RM }}
+          FCPO_SLIPPAGE_POINTS: ${{ vars.FCPO_SLIPPAGE_POINTS }}
         run: |
-          python projects/fcpo_backtest/runner.py \
-            --input data/fcpo/fcpo_1m.csv \
-            --output artifacts/fcpo_backtest \
-            --fee-per-side-rm "${{ vars.FCPO_FEE_PER_SIDE_RM }}" \
-            --slippage-points "${{ vars.FCPO_SLIPPAGE_POINTS }}"
+          if [ -n "$FCPO_FEE_PER_SIDE_RM" ] && [ -n "$FCPO_SLIPPAGE_POINTS" ]; then
+            python projects/fcpo_backtest/runner.py --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest --fee-per-side-rm "$FCPO_FEE_PER_SIDE_RM" --slippage-points "$FCPO_SLIPPAGE_POINTS"
+          else
+            python projects/fcpo_backtest/runner.py --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest
+          fi
       - name: Upload FCPO report
         if: always()
         uses: actions/upload-artifact@v4
