@@ -1,29 +1,36 @@
 {
   "project_id": "P-FCPO-BACKTEST",
-  "name": "FCPO Historical Backtesting",
-  "status": "BLOCKED_ON_VALID_DATA",
+  "name": "FCPO User-Strategy Backtesting",
+  "purpose": "Analyze user-supplied strategy rules or images, formalize them, and backtest faithfully",
+  "status": "INTAKE_READY_ENGINE_VALIDATION_PENDING_DATA",
   "independent_from": "strategy_hunter",
-  "timeframes_minutes": [5, 15, 30],
+  "timeframes_minutes_supported": [5, 15, 30],
   "source_file": "data/fcpo/fcpo_1m.csv",
   "output_dir": "artifacts/fcpo_backtest",
+  "strategy_specs_dir": "projects/fcpo_backtest/strategies",
+  "strategy_intake_guide": "projects/fcpo_backtest/STRATEGY_INTAKE.md",
   "starting_capital_rm": 1000,
   "fcpo_contract_size_metric_tons": 25,
   "tick_size": 1,
   "tick_value_rm_per_point_per_contract": 25,
   "research_only": true,
   "place_orders": false,
-  "strategy_families": ["trend_momentum", "mean_reversion", "volatility_breakout"],
+  "strategy_source": "owner_supplied_text_or_image",
+  "strategy_discovery_mode": false,
+  "must_preserve_user_rules": true,
+  "must_separate_faithful_replication_from_variants": true,
   "required_metrics": [
-    "trades", "wins", "losses", "win_rate_pct", "monthly_net_return_pct",
-    "average_winner_rm", "average_loser_rm", "profit_factor",
-    "expectancy_rm_per_trade", "max_drawdown_pct", "total_costs_rm"
+    "trades", "wins", "losses", "win_rate_pct", "monthly_net_return_rm",
+    "monthly_net_return_pct", "average_winner_rm", "average_loser_rm",
+    "profit_factor", "expectancy_rm_per_trade", "max_drawdown_rm",
+    "max_drawdown_pct", "largest_loss_rm", "losing_streak", "total_costs_rm"
   ],
   "required_validation": [
-    "source_provenance", "data_integrity", "next_bar_execution",
+    "source_provenance", "data_integrity", "no_lookahead",
     "fees_and_slippage", "development_validation_holdout",
-    "walk_forward", "parameter_stability", "independent_replication",
-    "Shariah_review", "broker_feasibility_at_RM1000"
+    "walk_forward", "parameter_stability", "contract_feasibility",
+    "Shariah_review"
   ],
   "risk_gate_max_drawdown_pct": 10,
-  "notes": "Cost inputs and execution assumptions must be documented before results can be interpreted. No performance result may be generated from an empty or synthetic dataset."
+  "notes": "The Owner supplies strategy details or an image. Leverage extracts rules, records interpretation/ambiguities, converts to a versioned machine-readable spec, and tests that strategy. No generic strategy may be substituted silently. No performance result may be generated from empty or synthetic data."
 }
