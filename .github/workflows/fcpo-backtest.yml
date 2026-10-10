@@ -2,8 +2,6 @@ name: FCPO Backtest Project
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "17 22 * * 1-5"
   push:
     paths:
       - "projects/fcpo_backtest/**"
@@ -28,6 +26,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Validate project code
+        run: |
+          python -m py_compile projects/fcpo_backtest/runner.py
+          python -m unittest discover -s projects/fcpo_backtest/tests -v
       - name: Run isolated FCPO project
         id: backtest
         continue-on-error: true
