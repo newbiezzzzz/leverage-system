@@ -81,10 +81,12 @@ def main():
 
     # Prefer near-misses for diagnosis, while retaining aggregate evidence
     # from every failed test.
+    # Missing selection metrics are unknown, not zero performance. Do not
+    # substitute holdout metrics to fill gaps.
     for col in ("selection_total_return", "selection_profit_factor",
-                "holdout_total_return", "holdout_profit_factor"):
+                "selection_max_drawdown", "selection_trades_per_month"):
         if col not in failed:
-            failed[col] = 0.0
+            failed[col] = np.nan
     # Rank near-misses exclusively on development/selection evidence.
     # Holdout results must not influence which hypotheses are tested next.
     failed["near_miss_score"] = (
