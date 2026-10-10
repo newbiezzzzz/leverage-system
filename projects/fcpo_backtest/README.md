@@ -33,4 +33,16 @@ Place licensed/provenanced 1-minute FCPO OHLCV at `data/fcpo/fcpo_1m.csv` with c
 - Output: `artifacts/fcpo_backtest/`
 
 ## Current status
-The isolated project structure and intake protocol exist. Valid FCPO history is still required before any real backtest result can be produced. The initial engine is a scaffold and must be expanded/validated to execute user-defined conditions faithfully before the first strategy is reported as tested.
+The isolated project now includes a declarative user-strategy runner, JSON schema, regression tests, and a workflow that validates the project without pretending a performance test ran. CI must pass before this engine is marked verified. Valid, licensed/provenanced FCPO history and a completed user strategy JSON with documented costs are still required before any real performance result can be produced.
+
+ 
+## Engine contract
+
+- Run a completed spec with: `python projects/fcpo_backtest/runner.py --strategy projects/fcpo_backtest/strategies/<strategy_id>.json --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest`.
+- Costs are declared in the strategy spec; optional CLI overrides are `--fee-per-side-rm` and `--slippage-points`.
+- Implemented indicators: SMA, EMA, RSI, ATR and Bollinger Bands. Conditions support nested AND/OR groups, price/indicator/constant operands, comparisons, crossovers and crossunders.
+- Implemented exits: fixed stop/target, opposite signal, time exit, stop/target plus opposite signal, and stop/target plus time exit. If stop and target are touched in one candle, stop is assumed first.
+- Signals are evaluated at bar close and entered at the next bar open; adverse slippage is charged explicitly per side. Integer contracts only; FCPO point value is RM25/point/contract.
+- Reports include full sample and chronological 60/20/20 development/validation/holdout results, trade ledger, monthly totals, win rate, gross/net return, costs, average winner/loser, PF, expectancy, largest loss, losing streak and drawdown in RM/%.
+- Not implemented: trailing stops, partial exits, dynamic risk-based sizing, order queue/fill modelling and automated contract rolling. Unsupported features must be rejected, never approximated silently.
+- GitHub Actions validates and tests by default. It runs a performance backtest only when a completed strategy JSON path is explicitly supplied. A blocked report is not a performance result.
