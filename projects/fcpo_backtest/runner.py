@@ -123,8 +123,8 @@ def validate(s):
  if int(s["timeframe_minutes"]) not in {1,5,15,30}:raise ValueError("timeframe_minutes must be 1,5,15,30.")
  if s["direction"] not in {"long_only","short_only","both"}:raise ValueError("Invalid direction.")
  if s.get("status") in {"NEEDS_CLARIFICATION","NEEDS_RULE_EXTRACTION"}:raise ValueError("Strategy is not approved for execution; resolve rule extraction/clarification first.")
-  if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")
-  if s["exit"].get("trailing_stop") is not None:raise ValueError("Trailing stop is not implemented yet; remove it or use only after an explicit supported rule implementation.")
+ if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")
+ if s["exit"].get("trailing_stop") is not None:raise ValueError("Trailing stop is not implemented yet; remove it or use only after an explicit supported rule implementation.")
  sz=s["position_sizing"]
  if sz.get("mode") not in {"one_contract","fixed_contracts"}:raise ValueError("Only explicit integer contract sizing is supported.")
  q=sz.get("contracts",1)
@@ -197,10 +197,10 @@ def main():
   if a.slippage_points is not None:s["costs"]["slippage_points_per_side"]=a.slippage_points
   q=validate(s);raw=load_bars(Path(a.input));note=Path("data/fcpo/DATA_SOURCE.md")
   if not note.exists():raise ValueError("Missing data/fcpo/DATA_SOURCE.md provenance note.")
-   provenance=note.read_text(encoding="utf-8")
-   required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Contract months included:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]
-   missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]
-   if missing:raise ValueError("Incomplete data provenance fields: "+", ".join(missing))
+  provenance=note.read_text(encoding="utf-8")
+  required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Contract months included:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]
+  missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]
+  if missing:raise ValueError("Incomplete data provenance fields: "+", ".join(missing))
   tf=int(s["timeframe_minutes"]);bars=raw if tf==1 else aggregate(raw,tf)
   if len(bars)<100:raise ValueError(f"Only {len(bars)} usable {tf}m bars; at least 100 required for a diagnostic run.")
   capital=float(s.get("starting_capital_rm",1000))
