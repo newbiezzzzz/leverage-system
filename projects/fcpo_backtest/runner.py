@@ -122,6 +122,7 @@ def validate(s):
  if s["instrument"]!="FCPO":raise ValueError("Engine currently supports FCPO only.")
  if int(s["timeframe_minutes"]) not in {1,5,15,30}:raise ValueError("timeframe_minutes must be 1,5,15,30.")
  if s["direction"] not in {"long_only","short_only","both"}:raise ValueError("Invalid direction.")
+ if not s.get("contract_series") or s["contract_series"].strip().lower() in {"must_be_documented","unknown","n/a"}:raise ValueError("Document the exact FCPO contract series and roll method before testing.")
  if s.get("status") in {"NEEDS_CLARIFICATION","NEEDS_RULE_EXTRACTION"}:raise ValueError("Strategy is not approved for execution; resolve rule extraction/clarification first.")
  if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")
  if s["exit"].get("trailing_stop") is not None:raise ValueError("Trailing stop is not implemented yet; remove it or use only after an explicit supported rule implementation.")
@@ -130,6 +131,7 @@ def validate(s):
  q=sz.get("contracts",1)
  if int(q)<1 or float(q)!=int(q):raise ValueError("FCPO contracts must be a positive integer.")
  if s["execution"].get("allow_lookahead",False):raise ValueError("Look-ahead prohibited.")
+ if s["execution"].get("intrabar_collision","stop_first")!="stop_first":raise ValueError("Only conservative stop-first intrabar collision handling is implemented.")
  if s["execution"].get("signal_timing","bar_close")!="bar_close" or s["execution"].get("entry_timing","next_bar_open")!="next_bar_open":raise ValueError("Only bar-close signals and next-bar-open entries are supported.")
  c=s["costs"]
  if c.get("fee_per_side_rm_per_contract") is None or c.get("slippage_points_per_side") is None:raise ValueError("Explicit fee and slippage assumptions are required.")
@@ -211,7 +213,8 @@ def main():
   if capital<=0:raise ValueError("starting_capital_rm must be positive.")
   risk=float(s["exit"].get("stop_points") or 0)*PV*q
   n=len(bars);a0=int(n*.6);b0=int(n*.8)
-  r.update({"status":"COMPLETED","strategy_id":s["strategy_id"],"strategy_version":s["version"],"strategy_sha256":hashlib.sha256(json.dumps(s,sort_keys=True).encode()).hexdigest(),"timeframe_minutes":tf,"instrument":"FCPO","contract_count":q,"starting_capital_rm":capital,"contract_stop_risk_rm":risk or None,"contract_stop_risk_pct_of_capital":round(risk/capital*100,2) if risk else None,"contract_feasibility":"RISK_EXCEEDS_CAPITAL" if risk>=capital else "BROKER_MARGIN_CHECK_REQUIRED","data":{"raw_rows":len(raw),"usable_bars":n,"first_bar":bars[0]["dt"].isoformat(),"last_bar":bars[-1]["dt"].isoformat()},"results":{"full_sample":segment(bars,s,capital),"development":segment(bars[:a0],s,capital) if a0>=100 else {"status":"INSUFFICIENT_DATA","bars":a0},"validation":segment(bars[a0:b0],s,capital) if b0-a0>=100 else {"status":"INSUFFICIENT_DATA","bars":b0-a0},"holdout":segment(bars[b0:],s,capital) if n-b0>=100 else {"status":"INSUFFICIENT_DATA","bars":n-b0}},"validation_note":"Chronological 60/20/20 split; do not tune on holdout."})
+  r.update({"status":"COMPLETED","strategy_id":s["strategy_id"],"strategy_version":s["version"],"strategy_sha256":hashlib.sha256(json.dumps(s,sort_keys=True).encode()).hexdigest(),"timeframe_minutes":tf,"instrument":"FCPO","contract_count":q,"starting_capital_rm":capital,"contract_stop_risk_rm":risk or None,"contract_stop_risk_pct_of_capital":round(risk/capital*100,2) if risk else None,"contract_stop_loss_including_costs_rm":round(risk+2*float(s["costs"]["fee_per_side_rm_per_contract"])*q+2*float(s["costs"]["slippage_points_per_side"])*PV*q,2) if risk else None,"contract_feasibility":"RISK_EXCEEDS_CAPITAL" if risk>=capital else "BROKER_MARGIN_CHECK_REQUIRED","data":{"raw_rows":len(raw),"usable_bars":n,"first_bar":bars[0]["dt"].isoformat(),"last_bar":bars[-1]["dt"].isoformat()},"results":{"full_sample":segment(bars,s,capital),"development":segment(bars[:a0],s,capital) if a0>=100 else {"status":"INSUFFICIENT_DATA","bars":a0},"validation":segment(bars[a0:b0],s,capital) if b0-a0>=100 else {"status":"INSUFFICIENT_DATA","bars":b0-a0},"holdout":segment(bars[b0:],s,capital) if n-b0>=100 else {"status":"INSUFFICIENT_DATA","bars":n-b0}},"validation_note":"Chronological 60/20/20 split; do not tune on holdout."})
+  if r["results"]["full_sample"]["metrics"]["trades"]==0:r["status"]="COMPLETED_NO_TRADES"
  except Exception as e:r["blocker"]=str(e)
  (o/"latest_report.json").write_text(json.dumps(r,indent=2),encoding="utf-8")
  (o/"latest_report.md").write_text("# FCPO user-strategy backtest\n\nStatus: "+r["status"]+"\n\n"+("Blocker: "+r["blocker"]+"\n\n" if "blocker" in r else "")+"Research only; no broker integration or live orders. Full ledger/monthly output is in latest_report.json.\n",encoding="utf-8")
