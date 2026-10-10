@@ -84,6 +84,7 @@ jobs:
         run: python research/strategy/global_strategy_intelligence.py
 
       - name: Execute recoverable research cycle
+        timeout-minutes: 150
         run: python research/strategy/pipeline_orchestrator.py
 
       - name: Build candidate qualification state
