@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-10T18:26:03Z",
-  "status": "completed",
-  "stage": null,
+  "updated_at": "2026-10-10T18:31:03Z",
+  "status": "running",
+  "stage": "strategy_lab",
   "attempt": 0,
   "error": null,
   "stages": {
@@ -17,92 +17,6 @@
     "pattern_hunter": {
       "status": "done",
       "attempts": 1
-    },
-    "strategy_lab": {
-      "status": "done",
-      "attempts": 1
-    },
-    "failure_analysis": {
-      "status": "done",
-      "attempts": 1
-    },
-    "vectorbt": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "VectorBT",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 20.036s",
-        "version": "0.28.1"
-      }
-    },
-    "lightgbm": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LightGBM",
-        "status": "tested",
-        "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1693; RMSE=0.1029; mean-only RMSE=0.1041",
-        "oos_correlation": 0.16926819104871593,
-        "oos_rmse": 0.10290295017076789,
-        "baseline_rmse": 0.10414844102377835
-      }
-    },
-    "symbolic": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Symbolic Regression",
-        "status": "tested",
-        "added_value": false,
-        "detail": "OOS 5-day formula correlation=nan; RMSE=0.0980; mean-only RMSE=0.0980; formula=sub(X1, X1)",
-        "oos_correlation": NaN,
-        "oos_rmse": 0.0979835727991907,
-        "baseline_rmse": 0.09798234302242331,
-        "formula": "sub(X1, X1)"
-      }
-    },
-    "qlib": {
-      "status": "degraded",
-      "attempts": 1,
-      "detail": "handled by recovery supervisor"
-    },
-    "optuna": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Optuna",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
-        "best_discovery_mean": 0.0124188169041337,
-        "validation_mean": 0.0184963660769516,
-        "validation_win_rate": 0.4717510575030364,
-        "validation_observations": 71631
-      }
-    },
-    "lean": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LEAN",
-        "status": "tested_cli",
-        "added_value": true,
-        "detail": "lean 1.0.229"
-      }
-    },
-    "chronos2": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Chronos-2",
-        "status": "package_ready",
-        "added_value": true,
-        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
-      }
-    },
-    "_cycle_status": "completed"
+    }
   }
 }
