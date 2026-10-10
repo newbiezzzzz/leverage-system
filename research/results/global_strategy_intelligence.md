@@ -1,7 +1,7 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-10T13:25:33Z
+Fetched: 2026-10-10T20:15:44Z
 Items: 50
 
 ## Research hypotheses
@@ -24,11 +24,11 @@ Items: 50
 - [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - CNBC](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
+- [(CBCX) Trading Strategy and Analysis (CBCX:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxOckd6aVlYRmkzVm5Qb0xGVUVvRjR3Vmp2T3dHSGhpRENOXzFPejd4T25RX0RDc0dGSlJ5dm9KTkYzS0x3c3A4eXVwNDlGbzhBUFYySkJTRGJBZ2RKNXdxSkhzajAzWWxXTm9jMUdSZzMxUkxnZ0psODhlb194Vk5lc1UwTUFubXhSMXNDMUp6bllHa3NrSVVV?oc=5) — news / HK
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [Larry Domash of Systematic Trading and Curve Publishing Recently Featured on Close Up Radio - The National Law Review](https://news.google.com/rss/articles/CBMitwFBVV95cUxOWGl1WmtTSFFDQVJXNGFXcDBpLVoxTk1lR0hUVENsMjFld3ZSNE14bm1XOTBueWdFd2M4NlR6cGp6ZnZNU2VDUVVWZUE0TDRzSTBoM0lmeThZZmdzY2ttMzFnTWwtQzZPSU14WHZmQTM1eUp6eW80dGk3WHdJQ29tXzM1a0V4Wm1HLUc1M2U2RENuTFU3bG9haG54R2hwM25HT1JDVWY5VmpXUlBpOHR2bkV3ekVZU2M?oc=5) — news / HK
 - [SPX6900 Volatility: Mean Reversion or Catalyst-Driven? - CoinMarketCap](https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5) — news / HK
 - [(AFN.DB.J) Trading Strategy and Analysis (AFN.DB.J:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimgFBVV95cUxORnNZMTU0OHEtdUFGN0thVEtwY0NEWVJ4YzlpZjMxZy04U20zamxHTFJiSmtYOU9qekxsbFRPT29fUU1fdTdmMy1nRWthY1lVclhxWGxHNEdLVFRoYXhKQnBTU09sMllRTTR6YzQ3amlJck04RDVJdEdUcWtyNzdFZGNGellYczNOX2FEcE1aWHVQQ2d5U1MxUnZn?oc=5) — news / HK
-- [(HLIT) Trading Strategy and Analysis (HLIT:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNdXlMVFFXcmpPMlhQSzQ1RmhGT2dwZTVWZnM4b3JRaDNXZTZnN0FVYkxFTXRvYlNmYmFmdjlCSE5Vb2VhRlBJOTBrcHNmOWRuYi16OUZyOTJFb2RuMzN5Mkg3TEtOU0hmVFZqajloZzVjX2Z1TWxUWDk4cGh3TGdzMll0X1lCUXczNEdwR0xMX05lN2pvdmVj?oc=5) — news / HK
 - [Diffusive Market Impact: A Consistent Microfoundation](https://arxiv.org/abs/2610.11691v1) — arxiv / global
 - [Exponential investors with weakly mean-reverting prices](https://arxiv.org/abs/2610.08631v1) — arxiv / global
 - [Scalable Regularized Vector Multiplicative Error Models for Positive-valued Financial Time Series](https://arxiv.org/abs/2610.08443v1) — arxiv / global
