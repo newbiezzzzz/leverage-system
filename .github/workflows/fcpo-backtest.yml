@@ -1,0 +1,52 @@
+name: FCPO Backtest Project
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 22 * * 1-5"
+  push:
+    paths:
+      - "projects/fcpo_backtest/**"
+      - "data/fcpo/**"
+      - ".github/workflows/fcpo-backtest.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fcpo-backtest-project
+  cancel-in-progress: false
+
+jobs:
+  fcpo-backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated FCPO project
+        id: backtest
+        continue-on-error: true
+        run: |
+          python projects/fcpo_backtest/runner.py \
+            --input data/fcpo/fcpo_1m.csv \
+            --output artifacts/fcpo_backtest \
+            --fee-per-side-rm "${{ vars.FCPO_FEE_PER_SIDE_RM }}" \
+            --slippage-points "${{ vars.FCPO_SLIPPAGE_POINTS }}"
+      - name: Upload FCPO report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fcpo-backtest-report
+          path: artifacts/fcpo_backtest/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Mark blocked/failed execution
+        if: steps.backtest.outcome == 'failure'
+        run: |
+          echo "::error::FCPO project did not complete. Inspect the generated report artifact and resolve its explicit blocker."
+          exit 1
