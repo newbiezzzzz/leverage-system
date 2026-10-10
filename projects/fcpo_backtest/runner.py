@@ -162,8 +162,8 @@ def backtest(bars,s,capital=1000):
    short=ev(s.get("short_entry",{}),i,bars,inds) if s["direction"] in {"short_only","both"} else False
    if long and short:raise ValueError("Both long and short rules fired simultaneously; clarify priority.")
    if long or short:
-    side="long" if long else "short";entry=bars[i+1]["open"]+(slip if side=="long" else -slip)
-    pos={"side":side,"entry":entry,"time":bars[i+1]["dt"],"entry_i":i+1,"stop":entry-sp if side=="long" else entry+sp if sp else None,"target":entry+tp if side=="long" else entry-tp if tp else None}
+    side="long" if long else "short";entry=bars[i+1]["open"]
+    pos={"side":side,"entry":entry,"time":bars[i+1]["dt"],"entry_i":i+1,"stop":(entry-sp if side=="long" else entry+sp) if sp else None,"target":(entry+tp if side=="long" else entry-tp) if tp else None}
  if pos:
   b=bars[-1];sign=1 if pos["side"]=="long" else -1;gross=(b["close"]-pos["entry"])*sign*PV*q;slip_rm=2*slip*PV*q;fees=2*fee
   trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":b["close"],"gross_rm":round(gross,2),"fees_rm":round(fees,2),"slippage_rm":round(slip_rm,2),"costs_rm":round(fees+slip_rm,2),"net_rm":round(gross-fees-slip_rm,2),"exit_reason":"end_of_data","bars_held":len(bars)-pos["entry_i"]})
