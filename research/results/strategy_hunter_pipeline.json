@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-10T22:34:58Z",
-  "status": "completed",
+  "updated_at": "2026-10-10T23:45:35Z",
+  "status": "degraded",
   "stage": null,
   "attempt": 0,
   "error": null,
@@ -19,12 +19,13 @@
       "attempts": 1
     },
     "strategy_lab": {
-      "status": "done",
-      "attempts": 1
+      "status": "degraded",
+      "attempts": 2,
+      "detail": "handled by recovery supervisor"
     },
     "failure_analysis": {
-      "status": "done",
-      "attempts": 1
+      "status": "skipped",
+      "reason": "strategy_lab_not_completed_this_cycle; stale evidence blocked"
     },
     "vectorbt": {
       "status": "done",
@@ -33,7 +34,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 13.125s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 21.314s",
         "version": "0.28.1"
       }
     },
@@ -45,7 +46,7 @@
         "status": "tested",
         "added_value": true,
         "detail": "OOS 5-day-return correlation=0.1693; RMSE=0.1029; mean-only RMSE=0.1041",
-        "oos_correlation": 0.16926819104871596,
+        "oos_correlation": 0.16926819104871593,
         "oos_rmse": 0.10290295017076789,
         "baseline_rmse": 0.10414844102377835
       }
@@ -103,6 +104,6 @@
         "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
       }
     },
-    "_cycle_status": "completed"
+    "_cycle_status": "degraded"
   }
 }
