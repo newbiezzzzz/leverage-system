@@ -12,7 +12,7 @@ def bars(closes):
     return out
 
 def spec(**kw):
-    s={"strategy_id":"test","version":1,"instrument":"FCPO","timeframe_minutes":5,"direction":"long_only",
+    s={"strategy_id":"test","version":1,"instrument":"FCPO","contract_series":"FCPO_CONTINUOUS_TEST_FIXTURE","timeframe_minutes":5,"direction":"long_only",
        "indicators":[{"id":"fast","type":"sma","period":2},{"id":"slow","type":"sma","period":3}],
        "entry":{"logic":"all","conditions":[{"left":{"indicator":"fast"},"operator":"crosses_above","right":{"indicator":"slow"}}]},
        "exit":{"mode":"stop_and_target","stop_points":2,"target_points":3},
@@ -77,6 +77,12 @@ class EngineTests(unittest.TestCase):
     def test_integer_contracts_required(self):
         s=spec(position_sizing={"mode":"fixed_contracts","contracts":1.5})
         with self.assertRaisesRegex(ValueError,"positive integer"):runner.validate(s)
+    def test_contract_series_placeholder_blocked(self):
+        s=spec();s["contract_series"]="must_be_documented"
+        with self.assertRaisesRegex(ValueError,"contract series"):runner.validate(s)
+    def test_nonconservative_collision_policy_blocked(self):
+        s=spec();s["execution"]["intrabar_collision"]="target_first"
+        with self.assertRaisesRegex(ValueError,"stop-first"):runner.validate(s)
     def test_lookahead_prohibited(self):
         s=spec(execution={"signal_timing":"bar_close","entry_timing":"next_bar_open","allow_lookahead":True})
         with self.assertRaisesRegex(ValueError,"Look-ahead"):runner.validate(s)
