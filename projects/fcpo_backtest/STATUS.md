@@ -1,12 +1,13 @@
-# FCPO Backtesting — initial status
+# FCPO User-Strategy Backtesting — status
 
 - Project ID: P-FCPO-BACKTEST
-- State: BLOCKED_ON_VALID_DATA
-- Isolation: implemented on branch project/fcpo-backtesting-isolated; existing Strategy Hunter files and mission state were not edited.
-- Data: no valid 1-minute FCPO data has been supplied to this project yet.
-- Results: none. No backtest performance metrics have been generated.
-- Engine: initial standard-library CSV validator and baseline long-only family comparison are present.
-- Timeframes: 5m, 15m, 30m aggregation from 1m input.
-- Costs: GitHub repository variables FCPO_FEE_PER_SIDE_RM and FCPO_SLIPPAGE_POINTS must be set to defensible values; zero or guessed costs must not be represented as real broker costs.
-- Remaining gates: obtain permitted source data, complete provenance, validate session/gap/contract-roll behavior, test engine against known fixtures, improve trade accounting and train/validation/holdout split, then compare strategy families.
-- Safety: research-only; no broker integration or live orders.
+- Purpose: Owner provides strategy rules or a screenshot/photo; Leverage extracts the rules, records interpretation, creates a versioned strategy specification, and backtests that supplied strategy.
+- Explicitly not: an autonomous strategy-discovery project; not a replacement for Strategy Hunter.
+- Isolation: separate directory/workflow; no edits to Strategy Hunter mission state or current project configuration.
+- Intake guide: STRATEGY_INTAKE.md
+- Strategy template: strategies/strategy_template.json
+- Engine: initial runner is still a generic research scaffold and does not yet faithfully execute the full strategy-spec schema. Do not claim user-defined strategy testing is fully implemented until that engine gap is closed and tests pass.
+- Data: valid, licensed/provenanced FCPO intraday OHLCV is still required. No real strategy backtest results exist yet.
+- Costs: must use documented fees and slippage; unknowns must be labeled, not invented.
+- Safety: research-only, no broker integration, no live orders.
+- Next implementation: make the runner execute a user-supplied strategy JSON, support the needed indicator/condition and exit rules, validate trade accounting against fixtures, and emit monthly/trade-by-trade results.
