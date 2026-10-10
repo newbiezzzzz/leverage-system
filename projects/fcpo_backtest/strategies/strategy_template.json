@@ -1,0 +1,54 @@
+{
+  "strategy_id": "user_strategy_001",
+  "version": 1,
+  "status": "NEEDS_RULE_EXTRACTION",
+  "source_type": "user_text_or_image",
+  "source_description": "",
+  "interpretation_notes": [],
+  "instrument": "FCPO",
+  "contract_series": "must_be_documented",
+  "timeframe_minutes": 5,
+  "timezone": "Asia/Kuala_Lumpur",
+  "sessions": ["10:30-12:30", "14:30-18:00", "21:00-23:30"],
+  "direction": "long_only",
+  "indicators": [],
+  "entry": {
+    "logic": "all",
+    "conditions": []
+  },
+  "exit": {
+    "mode": "stop_and_target",
+    "stop_points": null,
+    "target_points": null,
+    "target_r_multiple": null,
+    "opposite_signal": false,
+    "trailing_stop": null,
+    "time_exit_bars": null
+  },
+  "position_sizing": {
+    "mode": "one_contract",
+    "contracts": 1
+  },
+  "execution": {
+    "signal_timing": "bar_close",
+    "entry_timing": "next_bar_open",
+    "intrabar_collision": "stop_first",
+    "allow_lookahead": false
+  },
+  "costs": {
+    "fee_per_side_rm_per_contract": null,
+    "slippage_points_per_side": null,
+    "source_or_basis": ""
+  },
+  "validation": {
+    "development_fraction": 0.6,
+    "validation_fraction": 0.2,
+    "holdout_fraction": 0.2,
+    "walk_forward": true
+  },
+  "risk_gates": {
+    "max_drawdown_pct": 10,
+    "shariah_review_required": true,
+    "broker_margin_feasibility_required": true
+  }
+}
