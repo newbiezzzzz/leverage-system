@@ -1,41 +1,12 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-10-09T20:18:04.467691+00:00",
-  "input_generated_at": "2026-10-09T20:08:51.972831+00:00",
+  "generated_at": "2026-10-10T19:28:33.696272+00:00",
+  "input_generated_at": "2026-10-10T19:20:16.226287+00:00",
   "record_count": 65,
   "cluster_count": 65,
   "opportunity_count": 50,
   "opportunities": [
-    {
-      "id": "opp-175a24af3023013a",
-      "project": "affiliate-project",
-      "problem": "2016 320i B48, recurring oil leak after multiple repairs !!!!!!",
-      "normalized_problem": "2016 320i b48 recurring oil leak after multiple repairs",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x13vus/2016_320i_b48_recurring_oil_leak_after_multiple/",
-          "excerpt": "&#32; submitted by &#32; /u/Snoo_6157 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466820+00:00",
-      "rank": 1
-    },
     {
       "id": "opp-a6342fe227d4bb54",
       "project": "affiliate-project",
@@ -62,8 +33,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467286+00:00",
-      "rank": 2
+      "created_at": "2026-10-10T19:28:33.695958+00:00",
+      "rank": 1
     },
     {
       "id": "opp-ded94688c76c9347",
@@ -91,8 +62,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466601+00:00",
-      "rank": 3
+      "created_at": "2026-10-10T19:28:33.695487+00:00",
+      "rank": 2
     },
     {
       "id": "opp-1dcbe055dc76267e",
@@ -120,8 +91,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466739+00:00",
-      "rank": 4
+      "created_at": "2026-10-10T19:28:33.695577+00:00",
+      "rank": 3
     },
     {
       "id": "opp-2176dd8162188ed2",
@@ -149,14 +120,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466679+00:00",
-      "rank": 5
+      "created_at": "2026-10-10T19:28:33.695523+00:00",
+      "rank": 4
     },
     {
-      "id": "opp-8b687831a61e5d92",
+      "id": "opp-55acc4f8b36302a7",
       "project": "affiliate-project",
-      "problem": "Fixing dents and scratches at Proton 4s",
-      "normalized_problem": "fixing dents and scratches at proton 4s",
+      "problem": "I fcked up",
+      "normalized_problem": "i fcked up",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -172,26 +143,26 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x1achh/fixing_dents_and_scratches_at_proton_4s/",
-          "excerpt": "My proton saga has a few scratches and a major dent at the front part, plus the rear bumper is kinda loose. It&#39;s been a while but I wanted to get it fixed. Do you guys recommend getting it fixed at Proton 4s centres? Or is it better to get it fixed at other workshops? My car is 3 years old btw &#32; submitted by &#32; /u/Liam_Kong [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1x25xf3/i_fcked_up/",
+          "excerpt": "I drove my mom&#39;s car today, still a new driver and scratched the side on a pillar 😭 can anyone recommend any affordable car workshops for me to fix it, I&#39;m only 18 help😭😭😭 in malaysia Kuching area 🙏🏻 &#32; submitted by &#32; /u/Warm-Chance5697 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466754+00:00",
-      "rank": 6
+      "created_at": "2026-10-10T19:28:33.695348+00:00",
+      "rank": 5
     },
     {
-      "id": "opp-0de35ec7947507c8",
+      "id": "opp-0a1ed18dc1fa55c3",
       "project": "affiliate-project",
-      "problem": "Headlight repair myvi",
-      "normalized_problem": "headlight repair myvi",
+      "problem": "Livina issues.",
+      "normalized_problem": "livina issues",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
-        "buyer_intent": 1,
+        "buyer_intent": 2,
         "problem_strength": 2,
-        "content_potential": 4,
+        "content_potential": 3,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
@@ -201,14 +172,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x0mn9k/headlight_repair_myvi/",
-          "excerpt": "Hi abang2 akak2! Can I know how much the shop usually charge for labor if I already bought the spare headlamp on shopee? And maybe.. the charge for the dent as well? Car is myvi 1st gen. Damage on left side. Hit the hospital parking blindspot because I was anxious for my father fell down in the toilet (stroke).....😭🙏🏼 &#32; submitted by &#32; /u/flyingsquid_1864 [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1x2a5gq/livina_issues/",
+          "excerpt": "Hi kereta folks. Appreciate any input on these issues. My grand Livina seems to idle rough/misfire with airbag light blinking. Mechanic suggestion of changing spark &amp; coil plug with clock spring to resolve airbag blinking and horn issue does come to about 1,200. It seems a bit pricey. Any inputs on these matter above? Thank you &#32; submitted by &#32; /u/GoodRBH [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466859+00:00",
-      "rank": 7
+      "created_at": "2026-10-10T19:28:33.695310+00:00",
+      "rank": 6
     },
     {
       "id": "opp-cfd8caef3f80f07c",
@@ -236,8 +207,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466630+00:00",
-      "rank": 8
+      "created_at": "2026-10-10T19:28:33.695511+00:00",
+      "rank": 7
     },
     {
       "id": "opp-760b200e4dfdcc4a",
@@ -265,8 +236,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467532+00:00",
-      "rank": 9
+      "created_at": "2026-10-10T19:28:33.696152+00:00",
+      "rank": 8
     },
     {
       "id": "opp-e29f719f061ff2cd",
@@ -294,8 +265,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467335+00:00",
-      "rank": 10
+      "created_at": "2026-10-10T19:28:33.696000+00:00",
+      "rank": 9
     },
     {
       "id": "opp-b39666cf0ca2d258",
@@ -323,37 +294,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467360+00:00",
-      "rank": 11
-    },
-    {
-      "id": "opp-def030d4e67bd62d",
-      "project": "affiliate-project",
-      "problem": "Michelin tyres price confusion",
-      "normalized_problem": "michelin tyres price confusion",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 4,
-        "problem_strength": 2,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x16d25/michelin_tyres_price_confusion/",
-          "excerpt": "I am surveying some 18&quot; Michelin tyres and got some questions Pilot Sport 5 225/45 is RM200 cheaper per tyre compare to 225/40 Manufacturing date is only 2 weeks apart, load and speed rating is suitable for my car Seems weird to me since 225/45 have more rubber but cheaper Is it because 225/45 is a more common size so dealer bring in more compare to 225/40? Pilot Sport 5 vs Pilot Sport 4S Comparing 225/40 for both, PS4S being a UUHP is RM150 cheaper per tyre compare to PS5 which is a UHP Fo"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466786+00:00",
-      "rank": 12
+      "created_at": "2026-10-10T19:28:33.696020+00:00",
+      "rank": 10
     },
     {
       "id": "opp-798b5f4b6ac0f014",
@@ -381,8 +323,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466527+00:00",
-      "rank": 13
+      "created_at": "2026-10-10T19:28:33.695425+00:00",
+      "rank": 11
     },
     {
       "id": "opp-d6f433810be7d2e6",
@@ -410,8 +352,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466725+00:00",
-      "rank": 14
+      "created_at": "2026-10-10T19:28:33.695564+00:00",
+      "rank": 12
     },
     {
       "id": "opp-c65aaaa79095abae",
@@ -439,8 +381,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467189+00:00",
-      "rank": 15
+      "created_at": "2026-10-10T19:28:33.695881+00:00",
+      "rank": 13
     },
     {
       "id": "opp-0ea6b83924284f09",
@@ -468,20 +410,20 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466478+00:00",
-      "rank": 16
+      "created_at": "2026-10-10T19:28:33.695399+00:00",
+      "rank": 14
     },
     {
-      "id": "opp-eb7a4aab93b1d94b",
+      "id": "opp-1d02cbd0094874c6",
       "project": "affiliate-project",
-      "problem": "Satria",
-      "normalized_problem": "satria",
+      "problem": "Restoring Perodua Viva",
+      "normalized_problem": "restoring perodua viva",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
         "buyer_intent": 2,
         "problem_strength": 2,
-        "content_potential": 4,
+        "content_potential": 2,
         "source_strength": 1.0,
         "freshness_factor": 1.0,
         "recurrence": 1,
@@ -491,43 +433,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x0q3kk/satria/",
-          "excerpt": "Hi guys. I have an abandoned Satria 1.6 1996. It has been abandoned for about a year. Honestly it is still drivable but somebody cranked open the front and stole the battery so it is battery-less now. Tryna get rid of it as i have a new car now. I asked scrap bengkel and they quoted about RM500 for me to get rid of the car to them. I spent a couple of thousands on that car to get it running before abandoning it, so i still believe that the engine and all is okay. Cosmetic exterior wise there’s o"
+          "url": "https://www.reddit.com/r/kereta/comments/1x27cw5/restoring_perodua_viva/",
+          "excerpt": "15 years old Viva - running conditions - just. Receny replaced it’s A/C system. It’s idling timing is off and sometimes dies on me during idling. When at speed it’s ok. Desperately need a fresh paint of coat - original paint is peeling off. Should I try to fix the issue - timing issue and repaint - and keep it? Any good and reliable garage that you can recommend? Sell it TIA! &#32; submitted by &#32; /u/jimbofatso [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466846+00:00",
-      "rank": 17
-    },
-    {
-      "id": "opp-c48655bf454e7ef7",
-      "project": "affiliate-project",
-      "problem": "Secondhand W204",
-      "normalized_problem": "secondhand w204",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 2,
-        "content_potential": 3,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x0qi0s/secondhand_w204/",
-          "excerpt": "Hi everyone, I&#39;m considering buying a second hand w204. I&#39;ve researched the known issues but would like to hear from the owners on the road their experiences in terms if maintaining and its reliability. Since its a supercharged engine, has it caused any reliability issues? From what I&#39;ve seen, if some of the major stuff is fixed up, it&#39;s seems like a decent daily driver. Do let me know your thoughts on this. Yay or nay? Am I making a mistake wanting one of these cars? &#32; submi"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466833+00:00",
-      "rank": 18
+      "created_at": "2026-10-10T19:28:33.695338+00:00",
+      "rank": 15
     },
     {
       "id": "opp-e9315df86d8b8695",
@@ -555,8 +468,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466693+00:00",
-      "rank": 19
+      "created_at": "2026-10-10T19:28:33.695537+00:00",
+      "rank": 16
     },
     {
       "id": "opp-fd07a9ceebf7bba1",
@@ -584,8 +497,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466547+00:00",
-      "rank": 20
+      "created_at": "2026-10-10T19:28:33.695438+00:00",
+      "rank": 17
     },
     {
       "id": "opp-2aed98b1324736b6",
@@ -613,14 +526,101 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466410+00:00",
+      "created_at": "2026-10-10T19:28:33.695388+00:00",
+      "rank": 18
+    },
+    {
+      "id": "opp-05badfe93ecc3ec4",
+      "project": "affiliate-project",
+      "problem": "al-hilal vs al-ittihad",
+      "normalized_problem": "al hilal vs al ittihad",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "al-hilal vs al-ittihad"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695607+00:00",
+      "rank": 19
+    },
+    {
+      "id": "opp-2f17e5974b6a94d1",
+      "project": "affiliate-project",
+      "problem": "fc barcelona vs getafe cf standings",
+      "normalized_problem": "fc barcelona vs getafe cf standings",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 1,
+        "source_strength": 0.9,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google Trends automotive Malaysia",
+          "url": "https://trends.google.com/trending/rss?geo=MY",
+          "excerpt": "fc barcelona vs getafe cf standings"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695592+00:00",
+      "rank": 20
+    },
+    {
+      "id": "opp-dd8b274bcdb9c5c4",
+      "project": "affiliate-project",
+      "problem": "is this true?",
+      "normalized_problem": "is this true",
+      "opportunity_score": 100.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1x2djui/is_this_true/",
+          "excerpt": "came across this comment on tiktok. basically in the video this guy was saying how the polis fk8 can chase anything and this is what the comment said: &#32; submitted by &#32; /u/ChickenRice9000 [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695256+00:00",
       "rank": 21
     },
     {
-      "id": "opp-70f9fac1d1a6dcc5",
+      "id": "opp-3e5b55e95dc03acd",
       "project": "affiliate-project",
-      "problem": "al fateh vs al-ahli",
-      "normalized_problem": "al fateh vs al ahli",
+      "problem": "psg vs le mans",
+      "normalized_problem": "psg vs le mans",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -637,19 +637,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "al fateh vs al-ahli"
+          "excerpt": "psg vs le mans"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466989+00:00",
+      "created_at": "2026-10-10T19:28:33.695628+00:00",
       "rank": 22
     },
     {
-      "id": "opp-f272c25f33322843",
+      "id": "opp-03e122d5a4fd84e4",
       "project": "affiliate-project",
-      "problem": "al-nassr vs diriyah",
-      "normalized_problem": "al nassr vs diriyah",
+      "problem": "real madrid vs villarreal",
+      "normalized_problem": "real madrid vs villarreal",
       "opportunity_score": 100.0,
       "priority": "high",
       "signals": {
@@ -666,100 +666,13 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "al-nassr vs diriyah"
+          "excerpt": "real madrid vs villarreal"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466925+00:00",
+      "created_at": "2026-10-10T19:28:33.695639+00:00",
       "rank": 23
-    },
-    {
-      "id": "opp-9da07c01780c3ae0",
-      "project": "affiliate-project",
-      "problem": "dortmund vs werder",
-      "normalized_problem": "dortmund vs werder",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "dortmund vs werder"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466900+00:00",
-      "rank": 24
-    },
-    {
-      "id": "opp-2a52b4f0c36086ca",
-      "project": "affiliate-project",
-      "problem": "greece vs england",
-      "normalized_problem": "greece vs england",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "greece vs england"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466937+00:00",
-      "rank": 25
-    },
-    {
-      "id": "opp-9a25ca44146d9587",
-      "project": "affiliate-project",
-      "problem": "west ham vs qpr",
-      "normalized_problem": "west ham vs qpr",
-      "opportunity_score": 100.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1,
-        "source_strength": 0.9,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "Google Trends automotive Malaysia",
-          "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "west ham vs qpr"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466887+00:00",
-      "rank": 26
     },
     {
       "id": "opp-cc05dd4eb2d533c8",
@@ -787,8 +700,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466560+00:00",
-      "rank": 27
+      "created_at": "2026-10-10T19:28:33.695447+00:00",
+      "rank": 24
     },
     {
       "id": "opp-953e7452f7449d24",
@@ -816,14 +729,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466706+00:00",
-      "rank": 28
+      "created_at": "2026-10-10T19:28:33.695549+00:00",
+      "rank": 25
     },
     {
-      "id": "opp-16d0b8eb3aacf5de",
+      "id": "opp-01d1b79d0e2e535c",
       "project": "affiliate-project",
-      "problem": "Found the linglongs at my work",
-      "normalized_problem": "found the linglongs at my work",
+      "problem": "For 14 year old car not bad I guess",
+      "normalized_problem": "for 14 year old car not bad i guess",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -839,14 +752,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x14nqd/found_the_linglongs_at_my_work/",
-          "excerpt": "Didn&#39;t know they also sell truck tires too &#32; submitted by &#32; /u/A_06_Daniel [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1x2a4v5/for_14_year_old_car_not_bad_i_guess/",
+          "excerpt": "Prius 2012 74 for full tank than I topup 25 halfway through &#32; submitted by &#32; /u/Rimuru_04 [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466800+00:00",
-      "rank": 29
+      "created_at": "2026-10-10T19:28:33.695324+00:00",
+      "rank": 26
     },
     {
       "id": "opp-9fd7565f3743347b",
@@ -874,7 +787,94 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466496+00:00",
+      "created_at": "2026-10-10T19:28:33.695414+00:00",
+      "rank": 27
+    },
+    {
+      "id": "opp-98ec6431adf7adcb",
+      "project": "affiliate-project",
+      "problem": "Hell nahhhh😭😭😭💀",
+      "normalized_problem": "hell nahhhh",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1x24e00/hell_nahhhh/",
+          "excerpt": "&#32; submitted by &#32; /u/PistonPixel [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695360+00:00",
+      "rank": 28
+    },
+    {
+      "id": "opp-fc73aaaaee199c3f",
+      "project": "affiliate-project",
+      "problem": "Hit and run at Jalan Kuching - VLV1129",
+      "normalized_problem": "hit and run at jalan kuching vlv1129",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1x2az2a/hit_and_run_at_jalan_kuching_vlv1129/",
+          "excerpt": "Notice the black BYD Seal with massive front damage. Saw some carnage behind; one abang motor lying on the floor, lots of debris on the road and a few cars stopped with hazard lights on. Not sure if the black Seal was the offender but he was definitely in a rush to get away. Putting this video here in case anyone needs it. &#32; submitted by &#32; /u/pseudoteeth [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695297+00:00",
+      "rank": 29
+    },
+    {
+      "id": "opp-83edbb7bb2a9aa30",
+      "project": "affiliate-project",
+      "problem": "Interesting find in at a Honda dealer",
+      "normalized_problem": "interesting find in at a honda dealer",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1x22pxr/interesting_find_in_at_a_honda_dealer/",
+          "excerpt": "Apparently this is the first time for me seeing a 5th Gen Prelude. Did ask the SA at Sumber Auto and it&#39;s the boss&#39;s car on display. &#32; submitted by &#32; /u/seatux [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695375+00:00",
       "rank": 30
     },
     {
@@ -903,8 +903,37 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466572+00:00",
+      "created_at": "2026-10-10T19:28:33.695460+00:00",
       "rank": 31
+    },
+    {
+      "id": "opp-9e5ab4c0c43ebca1",
+      "project": "affiliate-project",
+      "problem": "Tell me what's wrong in this picture",
+      "normalized_problem": "tell me what s wrong in this picture",
+      "opportunity_score": 97.0,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 1.0,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "r/kereta",
+          "url": "https://www.reddit.com/r/kereta/comments/1x2b90h/tell_me_whats_wrong_in_this_picture/",
+          "excerpt": "&#32; submitted by &#32; /u/007smh [link] &#32; [comments]"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695282+00:00",
+      "rank": 32
     },
     {
       "id": "opp-e2d1e4792b508725",
@@ -932,43 +961,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466587+00:00",
-      "rank": 32
-    },
-    {
-      "id": "opp-7d310fde317674c9",
-      "project": "affiliate-project",
-      "problem": "White transit van stolen on berlington road this morning around 8:30am anyone driving around the leeson street areas, charlemont, donnybrook areas can you please keep a look and let me know if you see it. 07-LD-1689",
-      "normalized_problem": "white transit van stolen on berlington road this morning around 8 30am anyone driving around the leeson street areas charlemont donnybrook areas can you please keep a look and let me know if you see it 07 ld 1689",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x1h855/white_transit_van_stolen_on_berlington_road_this/",
-          "excerpt": "&#32; submitted by &#32; /u/indiabyrne1 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466664+00:00",
+      "created_at": "2026-10-10T19:28:33.695473+00:00",
       "rank": 33
     },
     {
-      "id": "opp-8eb225dbd6971c7b",
+      "id": "opp-070cac79fb900139",
       "project": "affiliate-project",
-      "problem": "awhh",
-      "normalized_problem": "awhh",
+      "problem": "What’s this scooter?",
+      "normalized_problem": "what s this scooter",
       "opportunity_score": 97.0,
       "priority": "high",
       "signals": {
@@ -984,43 +984,14 @@
       "evidence": [
         {
           "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x1r2sj/awhh/",
-          "excerpt": "very romantic &#32; submitted by &#32; /u/_miyuuul_ [link] &#32; [comments]"
+          "url": "https://www.reddit.com/r/kereta/comments/1x2jcvz/whats_this_scooter/",
+          "excerpt": "&#32; submitted by &#32; /u/Otherwisafe [link] &#32; [comments]"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466454+00:00",
+      "created_at": "2026-10-10T19:28:33.695211+00:00",
       "rank": 34
-    },
-    {
-      "id": "opp-f4703d3b7281f154",
-      "project": "affiliate-project",
-      "problem": "百万尊界V800刹车踏板连续踩断，这事真的洗不动",
-      "normalized_problem": "v800",
-      "opportunity_score": 97.0,
-      "priority": "high",
-      "signals": {
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2,
-        "source_strength": 1.0,
-        "freshness_factor": 1.0,
-        "recurrence": 1,
-        "source_count": 1,
-        "evidence_count": 1
-      },
-      "evidence": [
-        {
-          "source": "r/kereta",
-          "url": "https://www.reddit.com/r/kereta/comments/1x16o72/百万尊界v800刹车踏板连续踩断这事真的洗不动/",
-          "excerpt": "&#32; submitted by &#32; /u/Over-Science8571 [link] &#32; [comments]"
-        }
-      ],
-      "status": "candidate",
-      "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466772+00:00",
-      "rank": 35
     },
     {
       "id": "opp-4b017d28263eb80d",
@@ -1048,8 +1019,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467036+00:00",
-      "rank": 36
+      "created_at": "2026-10-10T19:28:33.695735+00:00",
+      "rank": 35
     },
     {
       "id": "opp-891fbbcf5f5ce4fe",
@@ -1077,8 +1048,8 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467217+00:00",
-      "rank": 37
+      "created_at": "2026-10-10T19:28:33.695903+00:00",
+      "rank": 36
     },
     {
       "id": "opp-fefc028971954f92",
@@ -1106,7 +1077,36 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467143+00:00",
+      "created_at": "2026-10-10T19:28:33.695842+00:00",
+      "rank": 37
+    },
+    {
+      "id": "opp-7dbfb649a59b5ae5",
+      "project": "affiliate-project",
+      "problem": "How computer software bugs led to F1’s Malaysia farce: ‘Totally unacceptable’ - The Athletic - The New York Times",
+      "normalized_problem": "how computer software bugs led to f1 s malaysia farce totally unacceptable the athletic the new york times",
+      "opportunity_score": 93.2,
+      "priority": "high",
+      "signals": {
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2,
+        "source_strength": 0.75,
+        "freshness_factor": 1.0,
+        "recurrence": 1,
+        "source_count": 1,
+        "evidence_count": 1
+      },
+      "evidence": [
+        {
+          "source": "Google News automotive Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQaGUzLTZkSzNvZnZFbmRwNS1ZWmZTRnpFZUVPSGVJakRZYXBCcjVPWEJKNU5COU5hc2RmRHZrSG1VbTZkMkJWRUxrelFXdDdpT1NvLUgxbmN5RlBEX3F2YldrcEVEY0RGT191dEg5ZVF0eEVUWXhVc3JFUkpMblBQTGozTURNRXBRVXVBWUxKSmpVZF9aS09HVUxXTQ?oc=5",
+          "excerpt": "How computer software bugs led to F1’s Malaysia farce: ‘Totally unacceptable’ - The Athletic &nbsp;&nbsp; The New York Times"
+        }
+      ],
+      "status": "candidate",
+      "next_stage": "B4 Product & Affiliate Engine",
+      "created_at": "2026-10-10T19:28:33.695771+00:00",
       "rank": 38
     },
     {
@@ -1135,7 +1135,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467574+00:00",
+      "created_at": "2026-10-10T19:28:33.696181+00:00",
       "rank": 39
     },
     {
@@ -1164,7 +1164,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467615+00:00",
+      "created_at": "2026-10-10T19:28:33.696237+00:00",
       "rank": 40
     },
     {
@@ -1193,7 +1193,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467592+00:00",
+      "created_at": "2026-10-10T19:28:33.696196+00:00",
       "rank": 41
     },
     {
@@ -1222,7 +1222,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467241+00:00",
+      "created_at": "2026-10-10T19:28:33.695923+00:00",
       "rank": 42
     },
     {
@@ -1251,7 +1251,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467263+00:00",
+      "created_at": "2026-10-10T19:28:33.695939+00:00",
       "rank": 43
     },
     {
@@ -1280,7 +1280,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467442+00:00",
+      "created_at": "2026-10-10T19:28:33.696085+00:00",
       "rank": 44
     },
     {
@@ -1309,7 +1309,7 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467079+00:00",
+      "created_at": "2026-10-10T19:28:33.695791+00:00",
       "rank": 45
     },
     {
@@ -1338,14 +1338,14 @@
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.467460+00:00",
+      "created_at": "2026-10-10T19:28:33.696102+00:00",
       "rank": 46
     },
     {
-      "id": "opp-ccd7b7d60748e82b",
+      "id": "opp-b5934217c7980c38",
       "project": "affiliate-project",
-      "problem": "bundesliga",
-      "normalized_problem": "bundesliga",
+      "problem": "bentancur",
+      "normalized_problem": "bentancur",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1362,19 +1362,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "bundesliga"
+          "excerpt": "bentancur"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466912+00:00",
+      "created_at": "2026-10-10T19:28:33.695649+00:00",
       "rank": 47
     },
     {
-      "id": "opp-1ecd41c03ef78bd6",
+      "id": "opp-6ea30ad2f93c5f2b",
       "project": "affiliate-project",
-      "problem": "chelsea",
-      "normalized_problem": "chelsea",
+      "problem": "carlos baleba",
+      "normalized_problem": "carlos baleba",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1391,19 +1391,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "chelsea"
+          "excerpt": "carlos baleba"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466947+00:00",
+      "created_at": "2026-10-10T19:28:33.695658+00:00",
       "rank": 48
     },
     {
-      "id": "opp-092f099c19db620b",
+      "id": "opp-eccb5e7851fd90c8",
       "project": "affiliate-project",
-      "problem": "syed saddiq",
-      "normalized_problem": "syed saddiq",
+      "problem": "epl standings",
+      "normalized_problem": "epl standings",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1420,19 +1420,19 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "syed saddiq"
+          "excerpt": "epl standings"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466872+00:00",
+      "created_at": "2026-10-10T19:28:33.695618+00:00",
       "rank": 49
     },
     {
-      "id": "opp-d3b08ad1d9a075e3",
+      "id": "opp-52981f78508cc222",
       "project": "affiliate-project",
-      "problem": "the witcher 3 wild hunt",
-      "normalized_problem": "the witcher 3 wild hunt",
+      "problem": "singapore f1 sprint race",
+      "normalized_problem": "singapore f1 sprint race",
       "opportunity_score": 80.5,
       "priority": "high",
       "signals": {
@@ -1449,12 +1449,12 @@
         {
           "source": "Google Trends automotive Malaysia",
           "url": "https://trends.google.com/trending/rss?geo=MY",
-          "excerpt": "the witcher 3 wild hunt"
+          "excerpt": "singapore f1 sprint race"
         }
       ],
       "status": "candidate",
       "next_stage": "B4 Product & Affiliate Engine",
-      "created_at": "2026-10-09T20:18:04.466975+00:00",
+      "created_at": "2026-10-10T19:28:33.695671+00:00",
       "rank": 50
     }
   ],
