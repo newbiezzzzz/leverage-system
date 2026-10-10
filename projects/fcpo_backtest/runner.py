@@ -177,18 +177,22 @@ def summary(ts,capital=1000):
  months=max((datetime.fromisoformat(ts[-1]["exit_time"])-datetime.fromisoformat(ts[0]["entry_time"])).total_seconds()/(86400*30.4375),1/30.4375) if ts else 0
  net=sum(n)
  return {"trades":len(ts),"wins":len(w),"losses":len(l),"win_rate_pct":round(len(w)/len(ts)*100,2) if ts else None,"gross_return_rm":round(sum(t["gross_rm"] for t in ts),2),"fees_rm":round(sum(t["fees_rm"] for t in ts),2),"slippage_rm":round(sum(t["slippage_rm"] for t in ts),2),"total_costs_rm":round(sum(t["costs_rm"] for t in ts),2),"net_return_rm":round(net,2),"monthly_average_net_return_rm":round(net/months,2) if months else None,"monthly_average_net_return_pct":round(net/capital/months*100,2) if months and capital else None,"average_winner_rm":round(sum(w)/len(w),2) if w else 0,"average_loser_rm":round(sum(l)/len(l),2) if l else 0,"profit_factor":round(sum(w)/abs(sum(l)),3) if l else (None if w else 0),"expectancy_rm_per_trade":round(net/len(ts),2) if ts else None,"max_drawdown_rm":round(dd,2),"max_drawdown_pct":round(ddpct,2),"largest_loss_rm":round(min(n),2) if n else None,"max_consecutive_losses":stmax}
-def monthly(ts):
+def monthly(ts,bars=None):
  d=defaultdict(list)
  for t in ts:d[t["entry_time"][:7]].append(t)
+ months=set(d)
+ if bars:
+  cur=bars[0]["dt"].year*12+bars[0]["dt"].month-1;last=bars[-1]["dt"].year*12+bars[-1]["dt"].month-1
+  for z in range(cur,last+1):months.add(f"{z//12:04d}-{z%12+1:02d}")
  out=[]
- for m,items in sorted(d.items()):
-  n=[t["net_rm"] for t in items];out.append({"month":m,"trades":len(items),"wins":sum(x>0 for x in n),"losses":sum(x<0 for x in n),"win_rate_pct":round(sum(x>0 for x in n)/len(n)*100,2),"gross_rm":round(sum(t["gross_rm"] for t in items),2),"fees_rm":round(sum(t["fees_rm"] for t in items),2),"slippage_rm":round(sum(t["slippage_rm"] for t in items),2),"net_rm":round(sum(n),2)})
+ for m in sorted(months):
+  items=d.get(m,[]);n=[t["net_rm"] for t in items];out.append({"month":m,"trades":len(items),"wins":sum(x>0 for x in n),"losses":sum(x<0 for x in n),"win_rate_pct":round(sum(x>0 for x in n)/len(n)*100,2) if n else None,"gross_rm":round(sum(t["gross_rm"] for t in items),2),"fees_rm":round(sum(t["fees_rm"] for t in items),2),"slippage_rm":round(sum(t["slippage_rm"] for t in items),2),"net_rm":round(sum(n),2)})
  return out
 def segment(bars,s,capital):
  t=backtest(bars,s,capital);m=summary(t,capital)
  months=max((bars[-1]["dt"]-bars[0]["dt"]).total_seconds()/(86400*30.4375),1/30.4375) if len(bars)>1 else 0
  net=m["net_return_rm"];m["monthly_average_net_return_rm"]=round(net/months,2) if months else None;m["monthly_average_net_return_pct"]=round(net/capital/months*100,2) if months and capital else None
- return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":m,"monthly":monthly(t),"trades":t}
+ return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":m,"monthly":monthly(t,bars),"trades":t}
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/fcpo/fcpo_1m.csv");p.add_argument("--strategy",default="projects/fcpo_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/fcpo_backtest");p.add_argument("--fee-per-side-rm",type=float);p.add_argument("--slippage-points",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-FCPO-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
  try:
@@ -199,7 +203,7 @@ def main():
   if not note.exists():raise ValueError("Missing data/fcpo/DATA_SOURCE.md provenance note.")
   provenance=note.read_text(encoding="utf-8")
   required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Contract months included:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]
-  missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]
+  missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.strip().lstrip("- ").startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]
   if missing:raise ValueError("Incomplete data provenance fields: "+", ".join(missing))
   tf=int(s["timeframe_minutes"]);bars=raw if tf==1 else aggregate(raw,tf)
   if len(bars)<100:raise ValueError(f"Only {len(bars)} usable {tf}m bars; at least 100 required for a diagnostic run.")
