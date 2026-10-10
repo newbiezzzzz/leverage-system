@@ -1,15 +1,15 @@
 # Strategy Hunter — Live Monitor
 
-Checked: 2026-10-10T15:07:11.218436+00:00
+Checked: 2026-10-10T19:15:04.037988+00:00
 
-Status: 🟡 RUNNING
-Run: #38059303350
+Status: ⚪ CANCELLED
+Run: #38075759776
 Workflow: strategy-hunter-cycle
-Started: 2026-10-10T14:21:47Z
-Updated: 2026-10-10T14:21:53Z
+Started: 2026-10-10T18:26:10Z
+Updated: 2026-10-10T19:04:49Z
 
 ## Jobs
 
 | Job | Status | Current step |
 |---|---|---|
-| research | 🟡 in_progress | Execute recoverable research cycle |
+| research | ⚪ cancelled | — |
