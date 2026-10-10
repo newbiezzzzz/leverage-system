@@ -1,5 +1,5 @@
 {
-  "cycle": 1145,
+  "cycle": 1146,
   "tested_variants": [
     "breakout_b60_vr2_ma50_vc0.7",
     "breakout_b60_vr2_ma100_vc0.7",
@@ -353,7 +353,20 @@
     "breakout_b60_vr1_ma100",
     "breakout_b60_vr1_ma50",
     "breakout_b60_vr2_ma100",
-    "breakout_b60_vr2_ma50"
+    "breakout_b60_vr2_ma50",
+    "failurefix_NM-34a1a8d69214_too_few_trades",
+    "failurefix_NM-9751b81e2183_too_few_trades",
+    "failurefix_NM-45f0002a6843_too_few_trades",
+    "failurefix_NM-48a9911f2707_too_few_trades",
+    "failurefix_NM-51e17b4ab8c7_too_few_trades",
+    "failurefix_NM-64537de16b75_too_few_trades",
+    "failurefix_NM-92ae61025373_too_few_trades",
+    "failurefix_NM-a7bb3675215b_too_few_trades",
+    "failurefix_NM-b225674f8530_too_few_trades",
+    "failurefix_NM-ce970d2ea499_too_few_trades",
+    "failurefix_NM-e2090e07db34_too_few_trades",
+    "failurefix_NM-eef5d061d1a4_too_few_trades",
+    "failurefix_NM-f041a6ae2611_too_few_trades"
   ],
   "focus_variants": [
     "breakout_b60_vr2_ma50_vc0.7",
@@ -362,17 +375,17 @@
     "breakout_b60_vr1.5_ma50_vc0.7",
     "breakout_b60_vr1_ma50_vc0.7",
     "breakout_b60_vr1_ma100_vc0.7",
-    "breakout_b40_vr2_ma100_vc0.7",
-    "breakout_b60_vr2_ma50_vc0.9",
     "breakout_b60_vr1_ma100_vc0.9",
+    "breakout_b60_vr2_ma50_vc0.9",
     "breakout_b40_vr1_ma100_vc0.7",
-    "breakout_b40_vr1.5_ma100_vc0.7",
-    "breakout_b60_vr1.5_ma50_vc0.9"
+    "breakout_b60_vr1.5_ma50_vc0.9",
+    "breakout_b40_vr2_ma100_vc0.7",
+    "breakout_b40_vr1.5_ma100_vc0.7"
   ],
-  "last_batch_size": 77,
-  "last_screen_rows": 288,
-  "last_realistic_tests": 576,
-  "search_space_variants": 316,
+  "last_batch_size": 25,
+  "last_screen_rows": 108,
+  "last_realistic_tests": 144,
+  "search_space_variants": 314,
   "search_space_coverage": 1.0,
   "exceptional_return_alerts": []
 }
