@@ -1,43 +1,36 @@
-# FCPO Backtesting Project (isolated)
+# FCPO User-Strategy Backtesting Project
 
 ## Purpose
-A standalone Leverage project for FCPO (Crude Palm Oil Futures) historical-data validation and research backtests on 5-minute, 15-minute, and 30-minute bars. It does not replace or write to the existing Strategy Hunter mission.
+This is a **user-supplied strategy testing bench**, not an autonomous strategy-discovery project. The Owner supplies a strategy in plain language, rules, a chart screenshot, or a photo of written rules. Leverage analyzes it, extracts the exact rules, flags ambiguities, converts it into a structured strategy specification, then runs a reproducible historical backtest.
 
-## Isolation contract
-- Own directory: `projects/fcpo_backtest/`
-- Own workflow: `.github/workflows/fcpo-backtest.yml`
-- Own input data: `data/fcpo/`
-- Own outputs: `artifacts/fcpo_backtest/`
-- Must not modify `control_plane/mission_state.json`, `control_plane/leverage_mission.json`, the current decision record, or Strategy Hunter output files.
-- Research only; never sends orders or touches broker credentials.
-- Workflow runs independently and does not cancel or supersede existing workflows.
+This project is separate from the existing Strategy Hunter. It must never alter Strategy Hunter's mission state, decision record, datasets, or workflow.
 
-## Current verified blocker
-The repository's existing `data/fcpo_ohlcv.csv` was previously inspected and contains only a header, no bars. Therefore this project must not publish performance metrics until real, traceable FCPO data is available.
+## Owner workflow
+1. **Submit strategy:** send a written explanation or image to ChatGPT. Include timeframe if known; missing details may be inferred only when clearly visible/defined.
+2. **Extract rules:** Leverage identifies instrument/contract, timeframe, session, indicators and parameters, exact entry conditions, exit conditions, stop loss, take profit/trailing rules, filters, position sizing, and long/short permissions.
+3. **Resolve ambiguity:** Leverage lists only the specific details that materially prevent faithful testing. If the image is unclear, ask for a clearer image or the missing rule; do not silently invent rules.
+4. **Create versioned spec:** save the interpreted rules in `strategies/<strategy_id>.json` with an explanation of how each visible/written rule maps to a machine rule. Preserve the original user description/image reference where available.
+5. **Data gate:** validate genuine FCPO historical data, its source/license, contract months/roll method, timezone, sessions, gaps, and coverage.
+6. **Backtest:** execute on the requested timeframe. If the user asks for comparisons, test 5m, 15m and 30m separately. Signals must not use future bars; execution occurs at the next tradable bar unless the user-defined rule explicitly specifies another executable timing.
+7. **Report:** show trades per month, wins/losses, win rate, gross/net RM return, monthly average net return, average winner/loser, profit factor, expectancy, maximum drawdown, fees, slippage, sample period, and trade-by-trade ledger.
+8. **Validation:** after an initial run, use chronological development/validation/holdout splits, walk-forward checks, and parameter stability where data permits. Report in-sample and out-of-sample separately.
 
-## Input format
-Place a CSV at `data/fcpo/fcpo_1m.csv` with columns:
-`timestamp,open,high,low,close,volume`
+## Rules of integrity
+- No fabricated or synthetic historical results. Empty data means BLOCKED, not zero-profit evidence.
+- Preserve the supplied strategy's intent. Do not silently replace it with a generic SMA strategy.
+- Separate **faithful replication** from **optional improvement variants**; never mix their results.
+- If an image is ambiguous, label the interpretation as an assumption and request the missing material detail before claiming an exact replication.
+- State whether each cost is sourced, configured, estimated, or unknown.
+- FCPO is a futures contract. A one-contract position may be infeasible for RM1,000 due to margin and risk. Report contract-level RM risk and broker/margin feasibility; do not assume fractional contracts.
+- No broker connection, live orders, or money movement. Research-only.
 
-Requirements:
-- Timestamp is ISO-8601 with an explicit timezone offset, or documented Malaysia time (Asia/Kuala_Lumpur).
-- Rows represent genuine FCPO contract data; record vendor/source, permitted use, contract month/continuous-roll method, timezone, and coverage in `data/fcpo/DATA_SOURCE.md`.
-- OHLC values must be positive, high >= open/close/low, low <= open/close/high; timestamps unique and increasing after normalization.
-- No synthetic, interpolated, proxy, or unrelated palm-oil data may be used as if it were FCPO.
+## Data
+Place licensed/provenanced 1-minute FCPO OHLCV at `data/fcpo/fcpo_1m.csv` with columns `timestamp,open,high,low,close,volume`. Fill in `data/fcpo/DATA_SOURCE.md`. Do not commit vendor data unless redistribution is permitted.
 
-## Planned research
-1. Validate source, schema, gaps, sessions, contract rolls, and coverage.
-2. Aggregate valid 1-minute bars into 5m/15m/30m bars without crossing session breaks.
-3. Compare trend/momentum, mean-reversion, and volatility-breakout hypotheses.
-4. Execute signals no earlier than the next bar; explicitly resolve stop/target collisions conservatively.
-5. Deduct commissions/fees and slippage using documented settings; report sensitivity if actual broker costs are unknown.
-6. Separate development, validation, and sealed holdout periods; run walk-forward and parameter-stability checks.
-7. Report trades/month, wins/losses, win rate, gross/net return, average winner/loser, profit factor, expectancy, costs, and maximum drawdown.
-8. Do not qualify a strategy without independent replication and the Leverage mission's risk, feasibility, and Shariah gates.
+## Strategy specifications
+- Template: `projects/fcpo_backtest/strategies/strategy_template.json`
+- Intake guide: `projects/fcpo_backtest/STRATEGY_INTAKE.md`
+- Output: `artifacts/fcpo_backtest/`
 
-## Run locally
-```bash
-python projects/fcpo_backtest/runner.py --input data/fcpo/fcpo_1m.csv --output artifacts/fcpo_backtest
-```
-
-If data is absent or empty, the runner emits a blocked status report and exits non-zero. That is not a backtest result.
+## Current status
+The isolated project structure and intake protocol exist. Valid FCPO history is still required before any real backtest result can be produced. The initial engine is a scaffold and must be expanded/validated to execute user-defined conditions faithfully before the first strategy is reported as tested.
