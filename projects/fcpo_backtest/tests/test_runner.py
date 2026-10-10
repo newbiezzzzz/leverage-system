@@ -46,13 +46,13 @@ class EngineTests(unittest.TestCase):
     def test_unsupported_indicator_fails(self):
         with self.assertRaisesRegex(ValueError,"Unsupported indicator"):runner.ind(bars([1,2,3]),{"id":"x","type":"made_up"})
     def test_stop_wins_when_stop_and_target_hit_same_bar(self):
-        b=bars([100,100,100,100,100,100])
+        b=bars([100,100,100,100,100,100]);b[2]["high"]=104;b[2]["low"]=97
         s=spec(indicators=[],entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":99}}]})
         t=runner.backtest(b,s)
         self.assertTrue(t)
         self.assertEqual(t[0]["exit_reason"],"stop")
     def test_next_bar_open_execution(self):
-        b=bars([10,10,12,12,12,12])
+        b=bars([8,10,12,12,12,12])
         s=spec(indicators=[],entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":10}}]})
         t=runner.backtest(b,s)
         self.assertEqual(t[0]["entry_price"],12.0)
