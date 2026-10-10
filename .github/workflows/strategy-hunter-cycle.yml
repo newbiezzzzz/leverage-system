@@ -36,6 +36,9 @@ jobs:
         run: |
           python -m py_compile             research/strategy/strategy_lab_v4.py             research/strategy/realistic_engine_v1.py             research/strategy/pipeline_orchestrator.py             research/strategy/failure_analysis.py
 
+      - name: Test holdout-isolation invariants
+        run: python -m unittest discover -s research/strategy -p 'test_failure_analysis.py' -v
+
       - name: Run deterministic preflight and engine sanity
         run: python research/strategy/preflight.py
 
