@@ -3,57 +3,57 @@
   "status": "tested",
   "added_value": true,
   "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
-  "best_discovery_mean": 0.0125012964452218,
-  "validation_mean": 0.0184950731166692,
-  "validation_win_rate": 0.4717436828144632,
-  "validation_observations": 71630
+  "best_discovery_mean": 0.0124188169041337,
+  "validation_mean": 0.0184963660769516,
+  "validation_win_rate": 0.4717510575030364,
+  "validation_observations": 71631
 }
-[I 2026-10-10 08:55:27,562] A new study created in memory with name: no-name-162aabf9-3908-4a04-98bd-792e96b2a68f
-[I 2026-10-10 08:55:27,563] Trial 0 finished with value: -0.0148967794404133 and parameters: {'pattern': 'wyckoff_spring', 'horizon': 40}. Best is trial 0 with value: -0.0148967794404133.
-[I 2026-10-10 08:55:27,564] Trial 1 finished with value: 0.0100537681623408 and parameters: {'pattern': 'relative_strength_20', 'horizon': 40}. Best is trial 1 with value: 0.0100537681623408.
-[I 2026-10-10 08:55:27,565] Trial 2 finished with value: 0.0041395012960024 and parameters: {'pattern': 'volatility_contraction_breakout', 'horizon': 40}. Best is trial 1 with value: 0.0100537681623408.
-[I 2026-10-10 08:55:27,566] Trial 3 finished with value: -0.0025724262555493 and parameters: {'pattern': 'reversal_bottom10', 'horizon': 20}. Best is trial 1 with value: 0.0100537681623408.
-[I 2026-10-10 08:55:27,567] Trial 4 finished with value: 0.0026693818163075 and parameters: {'pattern': 'pullback_in_uptrend', 'horizon': 10}. Best is trial 1 with value: 0.0100537681623408.
-[I 2026-10-10 08:55:27,568] Trial 5 finished with value: -0.0135249264030205 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 40}. Best is trial 1 with value: 0.0100537681623408.
-[I 2026-10-10 08:55:27,569] Trial 6 finished with value: 0.0117762754849475 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 40}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,570] Trial 7 finished with value: 0.0076003983219375 and parameters: {'pattern': 'relative_reversal_bottom20', 'horizon': 40}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,571] Trial 8 finished with value: 0.0031335893730241 and parameters: {'pattern': 'pullback_in_uptrend', 'horizon': 20}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,572] Trial 9 finished with value: 0.002450856887503 and parameters: {'pattern': 'relative_strength_20', 'horizon': 20}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,574] Trial 10 finished with value: -0.0070171982066906 and parameters: {'pattern': 'wyckoff_spring_strict', 'horizon': 5}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,576] Trial 11 finished with value: 0.0100537681623408 and parameters: {'pattern': 'relative_strength_20', 'horizon': 40}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,577] Trial 12 finished with value: 0.0117762754849475 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 40}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,579] Trial 13 finished with value: 0.0117762754849475 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 40}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,580] Trial 14 finished with value: 0.0036955355824903 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 10}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,582] Trial 15 finished with value: -0.0083634111709712 and parameters: {'pattern': 'wyckoff_spring_sos', 'horizon': 5}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,583] Trial 16 finished with value: 0.0067960126902374 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 20}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,585] Trial 17 finished with value: 0.001528080394706 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 5}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,586] Trial 18 finished with value: -0.0010634002887811 and parameters: {'pattern': 'range_expansion_reversal', 'horizon': 40}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,588] Trial 19 finished with value: -0.0008669574529554 and parameters: {'pattern': 'breakout_plus_volume', 'horizon': 10}. Best is trial 6 with value: 0.0117762754849475.
-[I 2026-10-10 08:55:27,589] Trial 20 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,591] Trial 21 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,592] Trial 22 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,594] Trial 23 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,595] Trial 24 finished with value: 0.0029492270165616 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 10}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,597] Trial 25 finished with value: 0.0058859560530767 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 20}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,598] Trial 26 finished with value: 0.0011661548553849 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 5}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,600] Trial 27 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,601] Trial 28 finished with value: -5.825807982958879e-05 and parameters: {'pattern': 'reversal_bottom10', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,603] Trial 29 finished with value: 0.0037182864309138 and parameters: {'pattern': 'breakout_plus_volume', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,605] Trial 30 finished with value: -0.0138953066106825 and parameters: {'pattern': 'wyckoff_spring_strict', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,606] Trial 31 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,608] Trial 32 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,609] Trial 33 finished with value: -0.0110142845470753 and parameters: {'pattern': 'wyckoff_spring_sos', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,611] Trial 34 finished with value: 0.0059421786958453 and parameters: {'pattern': 'pullback_in_uptrend', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,612] Trial 35 finished with value: -0.0148967794404133 and parameters: {'pattern': 'wyckoff_spring', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,614] Trial 36 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,616] Trial 37 finished with value: 0.0041395012960024 and parameters: {'pattern': 'volatility_contraction_breakout', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,617] Trial 38 finished with value: 0.0013471119056548 and parameters: {'pattern': 'volatility_contraction_breakout', 'horizon': 10}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,619] Trial 39 finished with value: 0.0009161742474102 and parameters: {'pattern': 'breakout_plus_volume', 'horizon': 20}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,620] Trial 40 finished with value: -0.0066425241421226 and parameters: {'pattern': 'wyckoff_spring', 'horizon': 5}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,622] Trial 41 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,624] Trial 42 finished with value: 0.0125012964452218 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,625] Trial 43 finished with value: -0.0230812595133665 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 20}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,627] Trial 44 finished with value: -0.0222475226015024 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 10}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,628] Trial 45 finished with value: -0.0007142661806946 and parameters: {'pattern': 'reversal_bottom10', 'horizon': 5}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,630] Trial 46 finished with value: -0.0066057792948366 and parameters: {'pattern': 'range_expansion_reversal', 'horizon': 10}. Best is trial 20 with value: 0.0125012964452218.
-[I 2026-10-10 08:55:27,631] Trial 47 finished with value: -0.0135249264030205 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 40}. Best is trial 20 with value: 0.0125012964452218.
+[I 2026-10-10 09:45:08,069] A new study created in memory with name: no-name-24f2f841-e5dd-4b41-8c1e-3a61fbc697bd
+[I 2026-10-10 09:45:08,071] Trial 0 finished with value: -0.0237421424875579 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 20}. Best is trial 0 with value: -0.0237421424875579.
+[I 2026-10-10 09:45:08,072] Trial 1 finished with value: -0.0001585203873984 and parameters: {'pattern': 'volatility_contraction_breakout', 'horizon': 5}. Best is trial 1 with value: -0.0001585203873984.
+[I 2026-10-10 09:45:08,073] Trial 2 finished with value: -0.0073410257749486 and parameters: {'pattern': 'wyckoff_spring_strict', 'horizon': 20}. Best is trial 1 with value: -0.0001585203873984.
+[I 2026-10-10 09:45:08,074] Trial 3 finished with value: 0.0014609270064697 and parameters: {'pattern': 'pullback_in_uptrend', 'horizon': 5}. Best is trial 3 with value: 0.0014609270064697.
+[I 2026-10-10 09:45:08,075] Trial 4 finished with value: -0.0019353641148356 and parameters: {'pattern': 'reversal_bottom10', 'horizon': 10}. Best is trial 3 with value: 0.0014609270064697.
+[I 2026-10-10 09:45:08,076] Trial 5 finished with value: -0.0009973715923065 and parameters: {'pattern': 'breakout_plus_volume', 'horizon': 10}. Best is trial 3 with value: 0.0014609270064697.
+[I 2026-10-10 09:45:08,077] Trial 6 finished with value: 0.003644724359592 and parameters: {'pattern': 'breakout_plus_volume', 'horizon': 40}. Best is trial 6 with value: 0.003644724359592.
+[I 2026-10-10 09:45:08,078] Trial 7 finished with value: 0.0101788851998345 and parameters: {'pattern': 'relative_strength_20', 'horizon': 40}. Best is trial 7 with value: 0.0101788851998345.
+[I 2026-10-10 09:45:08,079] Trial 8 finished with value: 0.0066357644223146 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 20}. Best is trial 7 with value: 0.0101788851998345.
+[I 2026-10-10 09:45:08,080] Trial 9 finished with value: 0.0028689173179571 and parameters: {'pattern': 'pullback_in_uptrend', 'horizon': 20}. Best is trial 7 with value: 0.0101788851998345.
+[I 2026-10-10 09:45:08,082] Trial 10 finished with value: -0.0019595547439001 and parameters: {'pattern': 'range_expansion_reversal', 'horizon': 40}. Best is trial 7 with value: 0.0101788851998345.
+[I 2026-10-10 09:45:08,083] Trial 11 finished with value: 0.0115979383299189 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 40}. Best is trial 11 with value: 0.0115979383299189.
+[I 2026-10-10 09:45:08,085] Trial 12 finished with value: 0.0101788851998345 and parameters: {'pattern': 'relative_strength_20', 'horizon': 40}. Best is trial 11 with value: 0.0115979383299189.
+[I 2026-10-10 09:45:08,086] Trial 13 finished with value: 0.0115979383299189 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 40}. Best is trial 11 with value: 0.0115979383299189.
+[I 2026-10-10 09:45:08,088] Trial 14 finished with value: 0.0115979383299189 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 40}. Best is trial 11 with value: 0.0115979383299189.
+[I 2026-10-10 09:45:08,089] Trial 15 finished with value: 0.0014910551908042 and parameters: {'pattern': 'momentum_60_uptrend', 'horizon': 5}. Best is trial 11 with value: 0.0115979383299189.
+[I 2026-10-10 09:45:08,091] Trial 16 finished with value: -0.0147743653672227 and parameters: {'pattern': 'wyckoff_spring', 'horizon': 40}. Best is trial 11 with value: 0.0115979383299189.
+[I 2026-10-10 09:45:08,092] Trial 17 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,093] Trial 18 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,095] Trial 19 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,096] Trial 20 finished with value: 0.0011471564499625 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 5}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,098] Trial 21 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,099] Trial 22 finished with value: 0.0028966348061616 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 10}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,101] Trial 23 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,102] Trial 24 finished with value: -0.0110279816626806 and parameters: {'pattern': 'wyckoff_spring_sos', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,104] Trial 25 finished with value: 0.0071051278663747 and parameters: {'pattern': 'relative_reversal_bottom20', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,105] Trial 26 finished with value: 0.0057603551778117 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 20}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,107] Trial 27 finished with value: -0.0001541592526736 and parameters: {'pattern': 'reversal_bottom10', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,108] Trial 28 finished with value: -0.0137139150043021 and parameters: {'pattern': 'wyckoff_spring_strict', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,110] Trial 29 finished with value: -0.0228080778047367 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 10}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,111] Trial 30 finished with value: -0.0131705629296209 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,113] Trial 31 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,114] Trial 32 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,116] Trial 33 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,117] Trial 34 finished with value: 0.0041395012960024 and parameters: {'pattern': 'volatility_contraction_breakout', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,119] Trial 35 finished with value: 0.0057122464841918 and parameters: {'pattern': 'pullback_in_uptrend', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,120] Trial 36 finished with value: -0.0066345013031396 and parameters: {'pattern': 'range_expansion_reversal', 'horizon': 10}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,122] Trial 37 finished with value: -0.0069320022976093 and parameters: {'pattern': 'wyckoff_spring_sos', 'horizon': 20}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,124] Trial 38 finished with value: -0.0145378921754304 and parameters: {'pattern': 'panic_reversal_volume', 'horizon': 5}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,125] Trial 39 finished with value: -0.0065789054503091 and parameters: {'pattern': 'wyckoff_spring', 'horizon': 5}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,127] Trial 40 finished with value: -0.0016340214326086 and parameters: {'pattern': 'breakout_plus_volume', 'horizon': 5}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,128] Trial 41 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,130] Trial 42 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,131] Trial 43 finished with value: 0.0030094083025342 and parameters: {'pattern': 'relative_reversal_bottom20', 'horizon': 20}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,133] Trial 44 finished with value: -0.0097728765785851 and parameters: {'pattern': 'wyckoff_spring_sos', 'horizon': 10}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,134] Trial 45 finished with value: -0.0075830642263723 and parameters: {'pattern': 'wyckoff_spring_strict', 'horizon': 10}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,136] Trial 46 finished with value: 0.0124188169041337 and parameters: {'pattern': 'slow_momentum_12_1', 'horizon': 40}. Best is trial 17 with value: 0.0124188169041337.
+[I 2026-10-10 09:45:08,137] Trial 47 finished with value: 0.0042365975394188 and parameters: {'pattern': 'volatility_contraction_breakout', 'horizon': 20}. Best is trial 17 with value: 0.0124188169041337.

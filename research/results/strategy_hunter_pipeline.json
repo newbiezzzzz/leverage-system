@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T08:56:42Z",
+  "updated_at": "2026-10-10T09:46:20Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.724s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.547s",
         "version": "0.28.1"
       }
     },
@@ -44,10 +44,10 @@
         "tool": "LightGBM",
         "status": "tested",
         "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1693; RMSE=0.1029; mean-only RMSE=0.1042",
-        "oos_correlation": 0.16933588231266752,
-        "oos_rmse": 0.10291921136561402,
-        "baseline_rmse": 0.10416719612238118
+        "detail": "OOS 5-day-return correlation=0.1693; RMSE=0.1029; mean-only RMSE=0.1041",
+        "oos_correlation": 0.16926819104871593,
+        "oos_rmse": 0.10290295017076789,
+        "baseline_rmse": 0.10414844102377835
       }
     },
     "symbolic": {
@@ -59,8 +59,8 @@
         "added_value": false,
         "detail": "OOS 5-day formula correlation=nan; RMSE=0.0980; mean-only RMSE=0.0980; formula=sub(X1, X1)",
         "oos_correlation": NaN,
-        "oos_rmse": 0.0979940809951734,
-        "baseline_rmse": 0.09799283811875178,
+        "oos_rmse": 0.0979835727991907,
+        "baseline_rmse": 0.09798234302242331,
         "formula": "sub(X1, X1)"
       }
     },
@@ -77,10 +77,10 @@
         "status": "tested",
         "added_value": true,
         "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
-        "best_discovery_mean": 0.0125012964452218,
-        "validation_mean": 0.0184950731166692,
-        "validation_win_rate": 0.4717436828144632,
-        "validation_observations": 71630
+        "best_discovery_mean": 0.0124188169041337,
+        "validation_mean": 0.0184963660769516,
+        "validation_win_rate": 0.4717510575030364,
+        "validation_observations": 71631
       }
     },
     "lean": {
