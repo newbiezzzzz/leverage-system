@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-10T21:25:43Z",
-  "status": "degraded",
+  "updated_at": "2026-10-10T21:57:54Z",
+  "status": "completed",
   "stage": null,
   "attempt": 0,
   "error": null,
@@ -19,13 +19,12 @@
       "attempts": 1
     },
     "strategy_lab": {
-      "status": "degraded",
-      "attempts": 2,
-      "detail": "handled by recovery supervisor"
+      "status": "done",
+      "attempts": 1
     },
     "failure_analysis": {
-      "status": "skipped",
-      "reason": "strategy_lab_not_completed_this_cycle; stale evidence blocked"
+      "status": "done",
+      "attempts": 1
     },
     "vectorbt": {
       "status": "done",
@@ -34,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 21.098s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.775s",
         "version": "0.28.1"
       }
     },
@@ -104,6 +103,6 @@
         "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
       }
     },
-    "_cycle_status": "degraded"
+    "_cycle_status": "completed"
   }
 }
