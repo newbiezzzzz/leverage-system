@@ -8834,24 +8834,41 @@
   "one_day": close.pct_change(),
 /home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:103: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   vol20 = cp.pct_change().rolling(20, min_periods=20).std()
-Traceback (most recent call last):
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py", line 480, in <module>
-    main()
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py", line 316, in main
-    variants = __import__("strategy_lab_v3").build_variants(op, hp, lp, cp, vp, universe, ind)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py", line 221, in build_variants
-    liquid & (rel20 >= q) & (mom > 0) & (cp > trend),
-              ^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/ops/common.py", line 76, in new_method
-    return method(self, other)
-           ^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/arraylike.py", line 60, in __ge__
-    return self._cmp_method(other, operator.ge)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/frame.py", line 7919, in _cmp_method
-    self, other = self._align_for_op(other, axis, flex=False, level=None)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/pandas/core/frame.py", line 8227, in _align_for_op
-    raise ValueError(
-ValueError: Operands are not aligned. Do `left, right = left.align(right, axis=1, copy=False)` before operating.
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:312: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  liquid & spring.shift(1).fillna(False) & (cp > hp.shift(1)) & (vr20 >= vr_min),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v3.py:119: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  "mask": mask.fillna(False),
+/home/runner/work/leverage-system/leverage-system/research/strategy/innovation_lab.py:59: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = cp.pct_change()
+/home/runner/work/leverage-system/leverage-system/research/strategy/innovation_lab.py:119: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+  tr = pd.concat([hp - lp, (hp - cp.shift(1)).abs(), (lp - cp.shift(1)).abs()], keys=["a", "b", "c"], axis=1).groupby(level=1, axis=1).max()
+/home/runner/work/leverage-system/leverage-system/research/strategy/innovation_lab.py:119: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+  tr = pd.concat([hp - lp, (hp - cp.shift(1)).abs(), (lp - cp.shift(1)).abs()], keys=["a", "b", "c"], axis=1).groupby(level=1, axis=1).max()
+/home/runner/work/leverage-system/leverage-system/research/strategy/innovation_lab.py:119: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+  tr = pd.concat([hp - lp, (hp - cp.shift(1)).abs(), (lp - cp.shift(1)).abs()], keys=["a", "b", "c"], axis=1).groupby(level=1, axis=1).max()
+/home/runner/work/leverage-system/leverage-system/research/strategy/strategy_lab_v4.py:445: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  vol20 = cp.pct_change().rolling(20, min_periods=20).std()
+
+TIMEOUT: stage=strategy_lab exceeded 1800s; process was terminated and recovery will retry.
