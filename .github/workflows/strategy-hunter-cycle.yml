@@ -8,14 +8,15 @@ on:
     paths:
       - "research/strategy/**"
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "0 */3 * * *"
 permissions:
   actions: write
   contents: write
 
 concurrency:
   group: strategy-hunter-research-cycle
-  cancel-in-progress: false
+  # A new cycle supersedes a stale/hung run; per-stage and job timeouts bound runtime.
+  cancel-in-progress: true
 
 jobs:
   research:
