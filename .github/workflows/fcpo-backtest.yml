@@ -8,6 +8,11 @@ on:
         required: false
         type: string
         default: ""
+  pull_request:
+    paths:
+      - "projects/fcpo_backtest/**"
+      - "data/fcpo/**"
+      - ".github/workflows/fcpo-backtest.yml"
   push:
     paths:
       - "projects/fcpo_backtest/**"
