@@ -124,6 +124,7 @@ def validate(s):
  if s.get("market_type") not in {"spot","usdt_perpetual"}:raise ValueError("market_type must be spot or usdt_perpetual.")
  if int(s["timeframe_minutes"]) not in {1,5,15,30,60,240,1440}:raise ValueError("timeframe_minutes must be 1,5,15,30,60,240,1440.")
  if s["direction"] not in {"long_only","short_only","both"}:raise ValueError("Invalid direction.")
+ if s["market_type"]=="spot" and s["direction"] in {"short_only","both"}:raise ValueError("Spot BTCUSDT cannot execute short trades; use long_only or explicitly select a derivatives market model.")
 
  if s.get("status") in {"NEEDS_CLARIFICATION","NEEDS_RULE_EXTRACTION"}:raise ValueError("Strategy is not approved for execution; resolve rule extraction/clarification first.")
  if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")
