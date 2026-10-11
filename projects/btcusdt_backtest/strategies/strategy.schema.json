@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Leverage BTCUSDT User Strategy Specification",
   "type": "object",
-  "required": ["strategy_id", "version", "instrument", "timeframe_minutes", "direction", "indicators", "entry", "exit", "position_sizing", "execution", "costs"],
+  "required": ["strategy_id", "version", "instrument", "market_type", "timeframe_minutes", "direction", "indicators", "entry", "exit", "position_sizing", "execution", "costs"],
   "properties": {
     "strategy_id": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+$"},
     "version": {"type": "integer", "minimum": 1},
@@ -20,7 +20,7 @@
     "entry": {"$ref": "#/$defs/conditionGroup"},
     "short_entry": {"$ref": "#/$defs/conditionGroup"},
     "exit": {"type": "object", "required": ["mode"], "properties": {"mode": {"enum": ["stop_and_target", "fixed_stop_target", "opposite_signal", "time_exit", "stop_target_or_signal", "stop_target_or_time"]}, "stop_points": {"type": ["number", "null"], "exclusiveMinimum": 0}, "target_points": {"type": ["number", "null"], "exclusiveMinimum": 0}, "target_r_multiple": {"type": ["number", "null"], "exclusiveMinimum": 0}, "time_exit_bars": {"type": ["integer", "null"], "minimum": 1}, "trailing_stop": {"type": ["object", "null"]}}, "additionalProperties": true},
-    "position_sizing": {"type": "object", "required": ["mode", "contracts"], "properties": {"mode": {"enum": ["fixed_quantity", "fixed_contracts"]}, "quantity": {"type": "number", "exclusiveMinimum": 0}, "contracts": {"type": "number", "exclusiveMinimum": 0}}},
+    "position_sizing": {"type": "object", "required": ["mode", "quantity"], "properties": {"mode": {"enum": ["fixed_quantity", "fixed_contracts"]}, "quantity": {"type": "number", "exclusiveMinimum": 0}, "contracts": {"type": "number", "exclusiveMinimum": 0}}},
     "execution": {"type": "object", "properties": {"signal_timing": {"const": "bar_close"}, "entry_timing": {"const": "next_bar_open"}, "intrabar_collision": {"const": "stop_first"}, "allow_lookahead": {"const": false}}},
     "costs": {"type": "object", "required": ["fee_rate_per_side", "slippage_bps_per_side"], "properties": {"fee_rate_per_side": {"type": "number", "minimum": 0, "exclusiveMaximum": 1}, "slippage_bps_per_side": {"type": "number", "minimum": 0}, "source_or_basis": {"type": "string"}}},
     "starting_capital_usdt": {"type": "number", "exclusiveMinimum": 0}
