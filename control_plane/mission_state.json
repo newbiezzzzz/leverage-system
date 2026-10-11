@@ -8,10 +8,10 @@
   "cycle": 1170,
   "progress": {
     "cycle": 1170,
-    "updated_at": "2026-10-10T23:45:35Z",
+    "updated_at": "2026-10-11T01:17:12Z",
     "patterns_tested": 311,
     "strategy_lab_variants": 311,
-    "strategy_lab_selection_candidates": 297,
+    "strategy_lab_selection_candidates": 495,
     "strategy_lab_backtests": 864,
     "strategy_lab_qualified_candidates": 0,
     "strategy_lab_leader": null,
@@ -31,7 +31,7 @@
       "relative_strength_20",
       "breakout_plus_volume"
     ],
-    "candidates": 297,
+    "candidates": 495,
     "robust_candidates": 0,
     "engine_sanity": true,
     "last_cycle_status": "degraded"
