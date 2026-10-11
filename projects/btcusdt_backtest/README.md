@@ -40,3 +40,6 @@ Fees are a fraction of traded notional per side; slippage is basis points per si
 python projects/btcusdt_backtest/runner.py --strategy projects/btcusdt_backtest/strategies/strategy_template.json --input data/btcusdt/btcusdt_1m.csv --output artifacts/btcusdt_backtest
 ```
 A performance run requires a completed strategy JSON, valid CSV, and complete data-provenance note.
+
+
+Historical acquisition is validated by a separate GitHub Actions run; do not treat a planned download as retrieved until its report artifact confirms row count and coverage.
