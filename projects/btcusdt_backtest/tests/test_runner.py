@@ -41,7 +41,7 @@ class EngineTests(unittest.TestCase):
         c={"left":{"indicator":"a"},"operator":"crosses_above","right":{"indicator":"b"}}
         self.assertFalse(runner.cond(c,3,b,inds));self.assertTrue(runner.cond(c,4,b,inds))
     def test_missing_costs_block(self):
-        s=spec();s["costs"]["slippage_points_per_side"]=None
+        s=spec();s["costs"]["slippage_bps_per_side"]=None
         with self.assertRaisesRegex(ValueError,"fee-rate and slippage-bps"):runner.validate(s)
     def test_unsupported_indicator_fails(self):
         with self.assertRaisesRegex(ValueError,"Unsupported indicator"):runner.ind(bars([1,2,3]),{"id":"x","type":"made_up"})
