@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T18:37:05Z",
+  "updated_at": "2026-10-11T19:48:07Z",
   "cycle": 1176,
   "items": [
     {
@@ -11,6 +11,13 @@
     },
     {
       "stage": "qlib",
+      "tier": "optional",
+      "attempts": 1,
+      "known_fix_applied": false,
+      "recoverable": true
+    },
+    {
+      "stage": "chronos2",
       "tier": "optional",
       "attempts": 1,
       "known_fix_applied": false,
