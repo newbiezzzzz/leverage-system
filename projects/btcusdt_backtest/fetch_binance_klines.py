@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Fetch Binance public BTCUSDT 1m klines and normalize them for Leverage backtests.
 
+One-time acquisition run marker; keep this comment unchanged unless intentionally retriggering.
+
 Downloads monthly archives for complete months and daily archives for partial months.
 The resulting CSV is research data; consult the source terms before redistribution.
 """
