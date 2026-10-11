@@ -1,7 +1,7 @@
 {
   "project_id": "P-BTCUSDT-BACKTEST",
   "name": "BTCUSDT User-Strategy Backtesting",
-  "purpose": "Analyze user-supplied strategy rules or images, fousdtalize them, and backtest faithfully",
+  "purpose": "Analyze user-supplied strategy rules or images, formalize them, and backtest faithfully",
   "status": "INTAKE_READY_ENGINE_VALIDATION_PENDING_DATA",
   "independent_from": "strategy_hunter",
   "timeframes_minutes_supported": [1, 5, 15, 30, 60, 240, 1440],
