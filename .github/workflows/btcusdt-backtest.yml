@@ -58,7 +58,7 @@ jobs:
           python -m json.tool projects/btcusdt_backtest/strategies/strategy_template.json >/dev/null
           python -m json.tool projects/btcusdt_backtest/strategies/strategy.schema.json >/dev/null
       - name: Download historical BTCUSDT data
-        if: ${{ (github.event_name == 'workflow_dispatch' && inputs.download_history) || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'pivot/fcpo-to-btcusdt-backtest') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.download_history }}
         env:
           MARKET_TYPE: ${{ inputs.market_type || 'spot' }}
         run: |
@@ -111,7 +111,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Upload retrieved historical data
-        if: ${{ always() && ((github.event_name == 'workflow_dispatch' && inputs.download_history) || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'pivot/fcpo-to-btcusdt-backtest')) }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.download_history }}
         uses: actions/upload-artifact@v4
         with:
           name: btcusdt-historical-data
