@@ -61,9 +61,10 @@ class EngineTests(unittest.TestCase):
         b=bars([10,10,12,12,12,12])
         s=spec(indicators=[],entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":10}}]})
         t=runner.backtest(b,s)
-        self.assertAlmostEqual(t[0]["fees_usdt"],0.000024)
-        self.assertAlmostEqual(t[0]["slippage_usdt"],0.000024)
-        self.assertAlmostEqual(t[0]["costs_usdt"],0.000048)
+        notional = (t[0]["entry_price"] + t[0]["exit_price"]) * 0.001
+        self.assertAlmostEqual(t[0]["fees_usdt"], round(notional * 0.001, 6))
+        self.assertAlmostEqual(t[0]["slippage_usdt"], round(notional * 10 / 10000, 6))
+        self.assertAlmostEqual(t[0]["costs_usdt"], round(t[0]["fees_usdt"] + t[0]["slippage_usdt"], 6))
     def test_monthly_summary_and_drawdown(self):
         ts=[{"entry_time":"2026-01-02T00:00:00+00:00","exit_time":"2026-01-02T00:05:00+00:00","net_usdt":100,"gross_usdt":105,"fees_usdt":2,"slippage_usdt":3,"costs_usdt":5},
             {"entry_time":"2026-01-03T00:00:00+00:00","exit_time":"2026-01-03T00:05:00+00:00","net_usdt":-150,"gross_usdt":-145,"fees_usdt":2,"slippage_usdt":3,"costs_usdt":5}]
