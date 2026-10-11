@@ -71,7 +71,7 @@ jobs:
           print(f"Retrieved {r['rows']} candles from {r['first_candle_utc']} through {r['last_candle_utc']}; gaps={r['missing_minute_intervals']}")
           PY
       - name: Prepare blocked status when no strategy is submitted
-        if: ${{ github.event.inputs.strategy_path == '' || github.event.inputs.strategy_path == null }}
+        if: ${{ !((github.event_name == 'workflow_dispatch' && inputs.strategy_path != '') || hashFiles('projects/btcusdt_backtest/strategies/active_strategy.json') != '') }}
         run: |
           mkdir -p artifacts/btcusdt_backtest
           cat > artifacts/btcusdt_backtest/latest_report.json <<'JSON'
@@ -87,7 +87,7 @@ jobs:
           echo "" >> artifacts/btcusdt_backtest/latest_report.md
           echo "Status: BLOCKED — no user strategy submitted. Data acquisition status is in download_report.json." >> artifacts/btcusdt_backtest/latest_report.md
       - name: Run supplied strategy
-        if: ${{ github.event.inputs.strategy_path != '' && github.event.inputs.strategy_path != null }}
+        if: ${{ (github.event_name == 'workflow_dispatch' && inputs.strategy_path != '') || hashFiles('projects/btcusdt_backtest/strategies/active_strategy.json') != '' }}
         env:
           STRATEGY_PATH: ${{ github.event.inputs.strategy_path }}
           MARKET_TYPE: ${{ inputs.market_type }}
