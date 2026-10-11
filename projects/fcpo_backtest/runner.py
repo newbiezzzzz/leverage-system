@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Declarative isolated FCPO strategy backtester; standard library only."""
+"""Declarative isolated BTCUSDT user-strategy backtester; standard library only."""
 import argparse,csv,hashlib,json,math,sys
 from collections import defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
-REQ={"timestamp","open","high","low","close","volume"}; PV=25.0
-SESSIONS=((630,750),(870,1080),(1260,1410))
+REQ={"timestamp","open","high","low","close","volume"}
+SESSIONS=()
 
 def dtparse(s):
  d=datetime.fromisoformat(s.strip().replace("Z","+00:00"))
  if d.tzinfo is None: raise ValueError("Timestamp requires an explicit timezone offset.")
  return d.astimezone(timezone.utc)
 def load_bars(path):
- if not path.exists() or not path.stat().st_size: raise ValueError("Missing/empty FCPO data: "+str(path))
+ if not path.exists() or not path.stat().st_size: raise ValueError("Missing/empty BTCUSDT data: "+str(path))
  out=[]
  with path.open(newline="",encoding="utf-8-sig") as f:
   r=csv.DictReader(f)
@@ -31,22 +31,23 @@ def load_bars(path):
  return out
 def lm(d): return (d.hour*60+d.minute+480)%1440
 def in_session(d,sessions=None):
+ if not sessions:return True
  m=lm(d)
- if sessions:
-  for s in sessions:
-   a,b=s.split("-"); a=int(a[:2])*60+int(a[3:]); b=int(b[:2])*60+int(b[3:])
-   if a<=m<b:return True
-  return False
- return any(a<=m<b for a,b in SESSIONS)
+ for s in sessions:
+  a,b=s.split("-"); a=int(a[:2])*60+int(a[3:]); b=int(b[:2])*60+int(b[3:])
+  if a<=m<b:return True
+ return False
 def aggregate(rows,n):
+ if n==1:return list(rows)
  groups={}
  for r in rows:
-  m=lm(r["dt"]); si=next((i for i,(a,b) in enumerate(SESSIONS) if a<=m<b),None)
-  if si is None:continue
-  groups.setdefault((r["dt"].date(),si,(m-SESSIONS[si][0])//n),[]).append(r)
+  epoch=int(r["dt"].timestamp()); bucket=epoch//(n*60)
+  groups.setdefault(bucket,[]).append(r)
  out=[]
- for _,c in sorted(groups.items(),key=lambda kv:kv[1][0]["dt"]):
-  if len(c)==n:out.append({"dt":c[0]["dt"],"open":c[0]["open"],"high":max(x["high"] for x in c),"low":min(x["low"] for x in c),"close":c[-1]["close"],"volume":sum(x["volume"] for x in c)})
+ for _,c in sorted(groups.items()):
+  c=sorted(c,key=lambda x:x["dt"])
+  if len(c)==n and all((c[i]["dt"]-c[i-1]["dt"]).total_seconds()==60 for i in range(1,len(c))):
+   out.append({"dt":c[0]["dt"],"open":c[0]["open"],"high":max(x["high"] for x in c),"low":min(x["low"] for x in c),"close":c[-1]["close"],"volume":sum(x["volume"] for x in c)})
  return out
 def sma(v,n):
  o=[None]*len(v)
@@ -119,23 +120,24 @@ def ev(g,i,bars,inds):
 def validate(s):
  for k in ("strategy_id","version","instrument","timeframe_minutes","direction","indicators","entry","exit","position_sizing","execution","costs"):
   if k not in s:raise ValueError("Strategy spec missing "+k)
- if s["instrument"]!="FCPO":raise ValueError("Engine currently supports FCPO only.")
- if int(s["timeframe_minutes"]) not in {1,5,15,30}:raise ValueError("timeframe_minutes must be 1,5,15,30.")
+ if s["instrument"]!="BTCUSDT":raise ValueError("Engine currently supports BTCUSDT only.")
+ if s.get("market_type") not in {"spot","usdt_perpetual"}:raise ValueError("market_type must be spot or usdt_perpetual.")
+ if int(s["timeframe_minutes"]) not in {1,5,15,30,60,240,1440}:raise ValueError("timeframe_minutes must be 1,5,15,30,60,240,1440.")
  if s["direction"] not in {"long_only","short_only","both"}:raise ValueError("Invalid direction.")
- if not s.get("contract_series") or s["contract_series"].strip().lower() in {"must_be_documented","unknown","n/a"}:raise ValueError("Document the exact FCPO contract series and roll method before testing.")
+
  if s.get("status") in {"NEEDS_CLARIFICATION","NEEDS_RULE_EXTRACTION"}:raise ValueError("Strategy is not approved for execution; resolve rule extraction/clarification first.")
  if not s["entry"].get("conditions"):raise ValueError("Entry conditions are empty; do not backtest an unconfigured template.")
  if s["exit"].get("trailing_stop") is not None:raise ValueError("Trailing stop is not implemented yet; remove it or use only after an explicit supported rule implementation.")
  sz=s["position_sizing"]
- if sz.get("mode") not in {"one_contract","fixed_contracts"}:raise ValueError("Only explicit integer contract sizing is supported.")
- q=sz.get("contracts",1)
- if int(q)<1 or float(q)!=int(q):raise ValueError("FCPO contracts must be a positive integer.")
+ if sz.get("mode") not in {"fixed_quantity","fixed_contracts"}:raise ValueError("Only explicit fixed BTC quantity sizing is supported.")
+ q=float(sz.get("quantity",sz.get("contracts",0)))
+ if not math.isfinite(q) or q<=0:raise ValueError("BTC quantity must be positive and finite.")
  if s["execution"].get("allow_lookahead",False):raise ValueError("Look-ahead prohibited.")
  if s["execution"].get("intrabar_collision","stop_first")!="stop_first":raise ValueError("Only conservative stop-first intrabar collision handling is implemented.")
  if s["execution"].get("signal_timing","bar_close")!="bar_close" or s["execution"].get("entry_timing","next_bar_open")!="next_bar_open":raise ValueError("Only bar-close signals and next-bar-open entries are supported.")
  c=s["costs"]
- if c.get("fee_per_side_rm_per_contract") is None or c.get("slippage_points_per_side") is None:raise ValueError("Explicit fee and slippage assumptions are required.")
- if float(c["fee_per_side_rm_per_contract"])<0 or float(c["slippage_points_per_side"])<0:raise ValueError("Fees/slippage cannot be negative.")
+ if c.get("fee_rate_per_side") is None or c.get("slippage_bps_per_side") is None:raise ValueError("Explicit fee-rate and slippage-bps assumptions are required.")
+ if not 0<=float(c["fee_rate_per_side"])<1 or float(c["slippage_bps_per_side"])<0:raise ValueError("Fee rate must be in [0,1) and slippage cannot be negative.")
  ex=s["exit"];mode=ex.get("mode")
  if mode not in {"stop_and_target","fixed_stop_target","opposite_signal","time_exit","stop_target_or_signal","stop_target_or_time"}:raise ValueError("Unsupported exit mode "+str(mode))
  if mode in {"stop_and_target","fixed_stop_target","stop_target_or_signal","stop_target_or_time"} and (float(ex.get("stop_points") or 0)<=0 or (float(ex.get("target_points") or 0)<=0 and float(ex.get("target_r_multiple") or 0)<=0)):raise ValueError("Stop and target points/R multiple must be positive.")
@@ -145,7 +147,7 @@ def validate(s):
  return int(q)
 def calc_inds(bars,s):return {x["id"]:ind(bars,x) for x in s["indicators"]}
 def backtest(bars,s,capital=1000):
- q=validate(s);inds=calc_inds(bars,s);cost=s["costs"];fee=float(cost["fee_per_side_rm_per_contract"])*q;slip=float(cost["slippage_points_per_side"])
+ q=validate(s);inds=calc_inds(bars,s);cost=s["costs"];fee_rate=float(cost["fee_rate_per_side"]);slip_rate=float(cost["slippage_bps_per_side"])/10000
  ex=s["exit"];mode=ex["mode"];sp=float(ex.get("stop_points") or 0);tp=float(ex.get("target_points") or sp*float(ex.get("target_r_multiple") or 0));trades=[];pos=None
  for i in range(len(bars)-1):
   b=bars[i]
@@ -159,7 +161,7 @@ def backtest(bars,s,capital=1000):
     if opposite:xp=b["close"];reason="opposite_signal"
    if xp is None and mode in {"time_exit","stop_target_or_time"} and i-pos["entry_i"]+1>=int(ex["time_exit_bars"]):xp=b["close"];reason="time_exit"
    if xp is not None:
-    sign=1 if pos["side"]=="long" else -1;gross=(xp-pos["entry"])*sign*PV*q;slip_rm=2*slip*PV*q;fees=2*fee
+    sign=1 if pos["side"]=="long" else -1;gross=(xp-pos["entry"])*sign*q;fees=(pos["entry"]+xp)*q*fee_rate;slip_rm=(pos["entry"]+xp)*q*slip_rate
     trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":round(xp,4),"gross_rm":round(gross,2),"fees_rm":round(fees,2),"slippage_rm":round(slip_rm,2),"costs_rm":round(fees+slip_rm,2),"net_rm":round(gross-fees-slip_rm,2),"exit_reason":reason,"bars_held":i-pos["entry_i"]+1});pos=None
   if pos is None and in_session(b["dt"],s.get("sessions")):
    long=ev(s["entry"],i,bars,inds) if s["direction"] in {"long_only","both"} else False
@@ -169,7 +171,7 @@ def backtest(bars,s,capital=1000):
     side="long" if long else "short";entry=bars[i+1]["open"]
     pos={"side":side,"entry":entry,"time":bars[i+1]["dt"],"entry_i":i+1,"stop":(entry-sp if side=="long" else entry+sp) if sp else None,"target":(entry+tp if side=="long" else entry-tp) if tp else None}
  if pos:
-  b=bars[-1];sign=1 if pos["side"]=="long" else -1;gross=(b["close"]-pos["entry"])*sign*PV*q;slip_rm=2*slip*PV*q;fees=2*fee
+  b=bars[-1];sign=1 if pos["side"]=="long" else -1;gross=(b["close"]-pos["entry"])*sign*q;fees=(pos["entry"]+b["close"])*q*fee_rate;slip_rm=(pos["entry"]+b["close"])*q*slip_rate
   trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":b["close"],"gross_rm":round(gross,2),"fees_rm":round(fees,2),"slippage_rm":round(slip_rm,2),"costs_rm":round(fees+slip_rm,2),"net_rm":round(gross-fees-slip_rm,2),"exit_reason":"end_of_data","bars_held":len(bars)-pos["entry_i"]})
  return trades
 def summary(ts,capital=1000):
@@ -196,27 +198,27 @@ def segment(bars,s,capital):
  net=m["net_return_rm"];m["monthly_average_net_return_rm"]=round(net/months,2) if months else None;m["monthly_average_net_return_pct"]=round(net/capital/months*100,2) if months and capital else None
  return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":m,"monthly":monthly(t,bars),"trades":t}
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/fcpo/fcpo_1m.csv");p.add_argument("--strategy",default="projects/fcpo_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/fcpo_backtest");p.add_argument("--fee-per-side-rm",type=float);p.add_argument("--slippage-points",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-FCPO-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/btcusdt/btcusdt_1m.csv");p.add_argument("--strategy",default="projects/fcpo_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/btcusdt_backtest");p.add_argument("--fee-rate-per-side",type=float);p.add_argument("--slippage-bps",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-BTCUSDT-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
  try:
   s=json.loads(Path(a.strategy).read_text(encoding="utf-8"))
-  if a.fee_per_side_rm is not None:s["costs"]["fee_per_side_rm_per_contract"]=a.fee_per_side_rm
-  if a.slippage_points is not None:s["costs"]["slippage_points_per_side"]=a.slippage_points
-  q=validate(s);raw=load_bars(Path(a.input));note=Path("data/fcpo/DATA_SOURCE.md")
+  if a.fee_rate_per_side is not None:s["costs"]["fee_rate_per_side"]=a.fee_rate_per_side
+  if a.slippage_bps is not None:s["costs"]["slippage_bps_per_side"]=a.slippage_bps
+  q=validate(s);raw=load_bars(Path(a.input));note=Path("data/btcusdt/DATA_SOURCE.md")
   if not note.exists():raise ValueError("Missing data/fcpo/DATA_SOURCE.md provenance note.")
   provenance=note.read_text(encoding="utf-8")
-  required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Contract months included:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]
+  required=["Provider/source URL:","Date retrieved:","License/terms permitting this use:","Instrument/symbol:","Market type:","Raw timeframe:","First and last timestamps:","Timestamp timezone:","Session convention:","File checksum (SHA-256):"]
   missing=[line for line in required if not any(x.strip() and not x.strip().startswith("#") and x.strip().lstrip("- ").startswith(line) and x.split(":",1)[1].strip() for x in provenance.splitlines())]
   if missing:raise ValueError("Incomplete data provenance fields: "+", ".join(missing))
   tf=int(s["timeframe_minutes"]);bars=raw if tf==1 else aggregate(raw,tf)
   if len(bars)<100:raise ValueError(f"Only {len(bars)} usable {tf}m bars; at least 100 required for a diagnostic run.")
-  capital=float(s.get("starting_capital_rm",1000))
+  capital=float(s.get("starting_capital_usdt",1000))
   if capital<=0:raise ValueError("starting_capital_rm must be positive.")
-  risk=float(s["exit"].get("stop_points") or 0)*PV*q
+  risk=float(s["exit"].get("stop_points") or 0)*q
   n=len(bars);a0=int(n*.6);b0=int(n*.8)
-  r.update({"status":"COMPLETED","strategy_id":s["strategy_id"],"strategy_version":s["version"],"strategy_sha256":hashlib.sha256(json.dumps(s,sort_keys=True).encode()).hexdigest(),"timeframe_minutes":tf,"instrument":"FCPO","contract_count":q,"starting_capital_rm":capital,"contract_stop_risk_rm":risk or None,"contract_stop_risk_pct_of_capital":round(risk/capital*100,2) if risk else None,"contract_stop_loss_including_costs_rm":round(risk+2*float(s["costs"]["fee_per_side_rm_per_contract"])*q+2*float(s["costs"]["slippage_points_per_side"])*PV*q,2) if risk else None,"contract_feasibility":"RISK_EXCEEDS_CAPITAL" if risk>=capital else "BROKER_MARGIN_CHECK_REQUIRED","data":{"raw_rows":len(raw),"usable_bars":n,"first_bar":bars[0]["dt"].isoformat(),"last_bar":bars[-1]["dt"].isoformat()},"results":{"full_sample":segment(bars,s,capital),"development":segment(bars[:a0],s,capital) if a0>=100 else {"status":"INSUFFICIENT_DATA","bars":a0},"validation":segment(bars[a0:b0],s,capital) if b0-a0>=100 else {"status":"INSUFFICIENT_DATA","bars":b0-a0},"holdout":segment(bars[b0:],s,capital) if n-b0>=100 else {"status":"INSUFFICIENT_DATA","bars":n-b0}},"validation_note":"Chronological 60/20/20 split; do not tune on holdout."})
+  r.update({"status":"COMPLETED","strategy_id":s["strategy_id"],"strategy_version":s["version"],"strategy_sha256":hashlib.sha256(json.dumps(s,sort_keys=True).encode()).hexdigest(),"timeframe_minutes":tf,"instrument":"BTCUSDT","market_type":s["market_type"],"quantity_btc":q,"starting_capital_usdt":capital,"stop_risk_usdt":risk or None,"stop_risk_pct_of_capital":round(risk/capital*100,2) if risk else None,"market_feasibility":"RISK_EXCEEDS_CAPITAL" if risk>=capital else "SPOT_OR_FUTURES_MARGIN_AND_MIN_NOTIONAL_CHECK_REQUIRED","data":{"raw_rows":len(raw),"usable_bars":n,"first_bar":bars[0]["dt"].isoformat(),"last_bar":bars[-1]["dt"].isoformat()},"results":{"full_sample":segment(bars,s,capital),"development":segment(bars[:a0],s,capital) if a0>=100 else {"status":"INSUFFICIENT_DATA","bars":a0},"validation":segment(bars[a0:b0],s,capital) if b0-a0>=100 else {"status":"INSUFFICIENT_DATA","bars":b0-a0},"holdout":segment(bars[b0:],s,capital) if n-b0>=100 else {"status":"INSUFFICIENT_DATA","bars":n-b0}},"validation_note":"Chronological 60/20/20 split; do not tune on holdout."})
   if r["results"]["full_sample"]["metrics"]["trades"]==0:r["status"]="COMPLETED_NO_TRADES"
  except Exception as e:r["blocker"]=str(e)
  (o/"latest_report.json").write_text(json.dumps(r,indent=2),encoding="utf-8")
- (o/"latest_report.md").write_text("# FCPO user-strategy backtest\n\nStatus: "+r["status"]+"\n\n"+("Blocker: "+r["blocker"]+"\n\n" if "blocker" in r else "")+"Research only; no broker integration or live orders. Full ledger/monthly output is in latest_report.json.\n",encoding="utf-8")
+ (o/"latest_report.md").write_text(" # BTCUSDT user-strategy backtest\n\nStatus: "+r["status"]+"\n\n"+("Blocker: "+r["blocker"]+"\n\n" if "blocker" in r else "")+"Research only; no broker integration or live orders. Full ledger/monthly output is in latest_report.json.\n",encoding="utf-8")
  print(json.dumps({k:v for k,v in r.items() if k!="results"},indent=2));return 2 if r["status"]=="BLOCKED" else 0
 if __name__=="__main__":sys.exit(main())
