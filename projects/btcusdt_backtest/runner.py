@@ -198,7 +198,7 @@ def segment(bars,s,capital):
  net=m["net_return_usdt"];m["monthly_average_net_return_usdt"]=round(net/months,2) if months else None;m["monthly_average_net_return_pct"]=round(net/capital/months*100,2) if months and capital else None
  return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":m,"monthly":monthly(t,bars),"trades":t}
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/btcusdt/btcusdt_1m.csv");p.add_argument("--strategy",default="projects/fcpo_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/btcusdt_backtest");p.add_argument("--fee-rate-per-side",type=float);p.add_argument("--slippage-bps",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-BTCUSDT-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/btcusdt/btcusdt_1m.csv");p.add_argument("--strategy",default="projects/btcusdt_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/btcusdt_backtest");p.add_argument("--fee-rate-per-side",type=float);p.add_argument("--slippage-bps",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-BTCUSDT-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
  try:
   s=json.loads(Path(a.strategy).read_text(encoding="utf-8"))
   if a.fee_rate_per_side is not None:s["costs"]["fee_rate_per_side"]=a.fee_rate_per_side
