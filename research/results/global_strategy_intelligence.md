@@ -1,7 +1,7 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-11T09:23:10Z
+Fetched: 2026-10-11T09:46:24Z
 Items: 50
 
 ## Research hypotheses

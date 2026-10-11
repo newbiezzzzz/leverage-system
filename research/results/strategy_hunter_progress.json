@@ -1,10 +1,10 @@
 {
   "cycle": 1172,
-  "updated_at": "2026-10-11T09:22:25Z",
+  "updated_at": "2026-10-11T10:05:25Z",
   "patterns_tested": 311,
   "strategy_lab_variants": 311,
-  "strategy_lab_selection_candidates": 594,
-  "strategy_lab_backtests": 864,
+  "strategy_lab_selection_candidates": 189,
+  "strategy_lab_backtests": 288,
   "strategy_lab_qualified_candidates": 0,
   "strategy_lab_leader": null,
   "discovery_layer": {
@@ -23,8 +23,8 @@
     "relative_strength_20",
     "breakout_plus_volume"
   ],
-  "candidates": 594,
+  "candidates": 189,
   "robust_candidates": 0,
   "engine_sanity": true,
-  "last_cycle_status": "degraded"
+  "last_cycle_status": "completed"
 }
