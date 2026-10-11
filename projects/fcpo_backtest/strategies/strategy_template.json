@@ -5,11 +5,11 @@
   "source_type": "user_text_or_image",
   "source_description": "",
   "interpretation_notes": [],
-  "instrument": "FCPO",
-  "contract_series": "must_be_documented",
+  "instrument": "BTCUSDT",
+  "market_type": "spot",
   "timeframe_minutes": 5,
   "timezone": "Asia/Kuala_Lumpur",
-  "sessions": ["10:30-12:30", "14:30-18:00", "21:00-23:30"],
+  "sessions": [],
   "direction": "long_only",
   "indicators": [],
   "entry": {
@@ -26,8 +26,8 @@
     "time_exit_bars": null
   },
   "position_sizing": {
-    "mode": "one_contract",
-    "contracts": 1
+    "mode": "fixed_quantity",
+    "quantity": 0.001
   },
   "execution": {
     "signal_timing": "bar_close",
@@ -36,8 +36,8 @@
     "allow_lookahead": false
   },
   "costs": {
-    "fee_per_side_rm_per_contract": null,
-    "slippage_points_per_side": null,
+    "fee_rate_per_side": null,
+    "slippage_bps_per_side": null,
     "source_or_basis": ""
   },
   "validation": {
