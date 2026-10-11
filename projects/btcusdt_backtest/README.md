@@ -42,4 +42,4 @@ python projects/btcusdt_backtest/runner.py --strategy projects/btcusdt_backtest/
 A performance run requires a completed strategy JSON, valid CSV, and complete data-provenance note.
 
 
-Historical acquisition is validated by a separate GitHub Actions run; do not treat a planned download as retrieved until its report artifact confirms row count and coverage.
+Historical acquisition is validated by a separate GitHub Actions run; do not treat a planned download as retrieved until its report artifact confirms row count and coverage.\n
