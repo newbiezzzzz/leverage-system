@@ -137,6 +137,23 @@ def main():
     mp = Path(args.metadata)
     mp.parent.mkdir(parents=True, exist_ok=True)
     mp.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    source_note = Path("data/btcusdt/DATA_SOURCE.md")
+    source_note.parent.mkdir(parents=True, exist_ok=True)
+    note = (
+        "# BTCUSDT historical data provenance\n\n"
+        + "Provider/source URL: " + meta["source_url"] + "\n"
+        + "Date retrieved: " + datetime.now(timezone.utc).isoformat() + "\n"
+        + "License/terms permitting this use: Binance public data archive; private research copy. Verify applicable terms before redistribution or commercial reuse.\n"
+        + "Instrument/symbol: " + args.symbol + "\n"
+        + "Market type: " + args.market_type + "\n"
+        + "Raw timeframe: 1m\n"
+        + "First and last timestamps: " + meta["first_candle_utc"] + " to " + meta["last_candle_utc"] + "\n"
+        + "Timestamp timezone: UTC\n"
+        + "Session convention: 24/7\n"
+        + "File checksum (SHA-256): " + digest + "\n"
+        + "Data file: " + str(out) + "\n"
+    )
+    source_note.write_text(note, encoding="utf-8")
     print(json.dumps(meta, indent=2))
     if gaps:
         print("WARNING: Missing minute intervals detected. The backtester will not fabricate candles.")
