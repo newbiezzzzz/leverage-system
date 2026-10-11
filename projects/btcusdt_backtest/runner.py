@@ -163,7 +163,7 @@ def backtest(bars,s,capital=1000):
    if xp is None and mode in {"time_exit","stop_target_or_time"} and i-pos["entry_i"]+1>=int(ex["time_exit_bars"]):xp=b["close"];reason="time_exit"
    if xp is not None:
     sign=1 if pos["side"]=="long" else -1;gross=(xp-pos["entry"])*sign*q;fees=(pos["entry"]+xp)*q*fee_rate;slip_usdt=(pos["entry"]+xp)*q*slip_rate
-    trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":round(xp,4),"gross_usdt":round(gross,2),"fees_usdt":round(fees,2),"slippage_usdt":round(slip_usdt,2),"costs_usdt":round(fees+slip_usdt,2),"net_usdt":round(gross-fees-slip_usdt,2),"exit_reason":reason,"bars_held":i-pos["entry_i"]+1});pos=None
+    trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":round(xp,4),"gross_usdt":round(gross,6),"fees_usdt":round(fees,6),"slippage_usdt":round(slip_usdt,6),"costs_usdt":round(fees+slip_usdt,6),"net_usdt":round(gross-fees-slip_usdt,6),"exit_reason":reason,"bars_held":i-pos["entry_i"]+1});pos=None
   if pos is None and in_session(b["dt"],s.get("sessions")):
    long=ev(s["entry"],i,bars,inds) if s["direction"] in {"long_only","both"} else False
    short=ev(s.get("short_entry",{}),i,bars,inds) if s["direction"] in {"short_only","both"} else False
@@ -173,7 +173,7 @@ def backtest(bars,s,capital=1000):
     pos={"side":side,"entry":entry,"time":bars[i+1]["dt"],"entry_i":i+1,"stop":(entry-sp if side=="long" else entry+sp) if sp else None,"target":(entry+tp if side=="long" else entry-tp) if tp else None}
  if pos:
   b=bars[-1];sign=1 if pos["side"]=="long" else -1;gross=(b["close"]-pos["entry"])*sign*q;fees=(pos["entry"]+b["close"])*q*fee_rate;slip_usdt=(pos["entry"]+b["close"])*q*slip_rate
-  trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":b["close"],"gross_usdt":round(gross,2),"fees_usdt":round(fees,2),"slippage_usdt":round(slip_usdt,2),"costs_usdt":round(fees+slip_usdt,2),"net_usdt":round(gross-fees-slip_usdt,2),"exit_reason":"end_of_data","bars_held":len(bars)-pos["entry_i"]})
+  trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":b["close"],"gross_usdt":round(gross,6),"fees_usdt":round(fees,6),"slippage_usdt":round(slip_usdt,6),"costs_usdt":round(fees+slip_usdt,6),"net_usdt":round(gross-fees-slip_usdt,6),"exit_reason":"end_of_data","bars_held":len(bars)-pos["entry_i"]})
  return trades
 def summary(ts,capital=1000):
  n=[t["net_usdt"] for t in ts];w=[x for x in n if x>0];l=[x for x in n if x<0];eq=peak=capital;dd=ddpct=0;streak=stmax=0
