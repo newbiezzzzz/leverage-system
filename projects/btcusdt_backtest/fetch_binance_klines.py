@@ -50,6 +50,9 @@ def rows_from_csv(rows, start_ms, end_ms):
             continue
         try:
             ms = int(row[0])
+            # Binance archives can use microsecond timestamps for newer data; normalize to milliseconds.
+            if ms >= 100_000_000_000_000:
+                ms //= 1000
             vals = [float(row[i]) for i in range(1, 6)]
         except (ValueError, TypeError):
             # Some archive files include a header row.
