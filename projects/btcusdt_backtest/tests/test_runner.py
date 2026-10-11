@@ -12,7 +12,7 @@ def bars(closes):
     return out
 
 def spec(**kw):
-    s={"strategy_id":"test","version":1,"instrument":"BTCUSDT","contract_series":"BTCUSDT_CONTINUOUS_TEST_FIXTURE","timeframe_minutes":5,"direction":"long_only",
+    s={"strategy_id":"test","version":1,"instrument":"BTCUSDT","market_type":"spot","timeframe_minutes":5,"direction":"long_only",
        "indicators":[{"id":"fast","type":"sma","period":2},{"id":"slow","type":"sma","period":3}],
        "entry":{"logic":"all","conditions":[{"left":{"indicator":"fast"},"operator":"crosses_above","right":{"indicator":"slow"}}]},
        "exit":{"mode":"stop_and_target","stop_points":2,"target_points":3},
@@ -42,7 +42,7 @@ class EngineTests(unittest.TestCase):
         self.assertFalse(runner.cond(c,3,b,inds));self.assertTrue(runner.cond(c,4,b,inds))
     def test_missing_costs_block(self):
         s=spec();s["costs"]["slippage_points_per_side"]=None
-        with self.assertRaisesRegex(ValueError,"fee and slippage"):runner.validate(s)
+        with self.assertRaisesRegex(ValueError,"fee-rate and slippage-bps"):runner.validate(s)
     def test_unsupported_indicator_fails(self):
         with self.assertRaisesRegex(ValueError,"Unsupported indicator"):runner.ind(bars([1,2,3]),{"id":"x","type":"made_up"})
     def test_stop_wins_when_stop_and_target_hit_same_bar(self):
@@ -61,9 +61,9 @@ class EngineTests(unittest.TestCase):
         b=bars([10,10,12,12,12,12])
         s=spec(indicators=[],entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":10}}]})
         t=runner.backtest(b,s)
-        self.assertAlmostEqual(t[0]["fees_usdt"],0.024)
-        self.assertAlmostEqual(t[0]["slippage_usdt"],0.024)
-        self.assertAlmostEqual(t[0]["costs_usdt"],0.048)
+        self.assertAlmostEqual(t[0]["fees_usdt"],0.000024)
+        self.assertAlmostEqual(t[0]["slippage_usdt"],0.000024)
+        self.assertAlmostEqual(t[0]["costs_usdt"],0.000048)
     def test_monthly_summary_and_drawdown(self):
         ts=[{"entry_time":"2026-01-02T00:00:00+00:00","exit_time":"2026-01-02T00:05:00+00:00","net_usdt":100,"gross_usdt":105,"fees_usdt":2,"slippage_usdt":3,"costs_usdt":5},
             {"entry_time":"2026-01-03T00:00:00+00:00","exit_time":"2026-01-03T00:05:00+00:00","net_usdt":-150,"gross_usdt":-145,"fees_usdt":2,"slippage_usdt":3,"costs_usdt":5}]
@@ -74,9 +74,9 @@ class EngineTests(unittest.TestCase):
         s=spec(direction="short_only",indicators=[],short_entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":99}}]})
         t=runner.backtest(b,s)
         self.assertGreater(t[0]["gross_usdt"],0)
-    def test_integer_contracts_required(self):
-        s=spec(position_sizing={"mode":"fixed_contracts","contracts":1.5})
-        with self.assertRaisesRegex(ValueError,"positive integer"):runner.validate(s)
+    def test_fractional_btc_quantity_supported(self):
+        s=spec(position_sizing={"mode":"fixed_quantity","quantity":0.0015})
+        self.assertAlmostEqual(runner.validate(s),0.0015)
     def test_market_type_required(self):
         s=spec();s.pop("market_type")
         with self.assertRaisesRegex(ValueError,"market_type"):runner.validate(s)
