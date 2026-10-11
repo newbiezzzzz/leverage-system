@@ -71,7 +71,7 @@ class EngineTests(unittest.TestCase):
         sm=runner.summary(ts,1000);self.assertEqual(sm["max_drawdown_usdt"],150);self.assertEqual(sm["max_consecutive_losses"],1)
     def test_short_profit_direction(self):
         b=bars([100,100,100,95,95,95])
-        s=spec(direction="short_only",indicators=[],short_entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":99}}]})
+        s=spec(market_type="usdt_perpetual",direction="short_only",indicators=[],short_entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":99}}]})
         t=runner.backtest(b,s)
         self.assertGreater(t[0]["gross_usdt"],0)
     def test_fractional_btc_quantity_supported(self):
