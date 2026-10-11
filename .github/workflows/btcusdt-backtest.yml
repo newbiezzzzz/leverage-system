@@ -1,0 +1,82 @@
+name: BTCUSDT User Strategy Backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      strategy_path:
+        description: "Path to the prepared user strategy JSON (not the template)"
+        required: false
+        type: string
+        default: ""
+  pull_request:
+    paths:
+      - "projects/btcusdt_backtest/**"
+      - "data/btcusdt/**"
+      - ".github/workflows/btcusdt-backtest.yml"
+  push:
+    paths:
+      - "projects/btcusdt_backtest/**"
+      - "data/btcusdt/**"
+      - ".github/workflows/btcusdt-backtest.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: btcusdt-user-strategy-backtest
+  cancel-in-progress: false
+
+jobs:
+  validate-and-backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and run regression tests
+        run: |
+          python -m py_compile projects/btcusdt_backtest/runner.py
+          python -m unittest discover -s projects/btcusdt_backtest/tests -v
+          python -m json.tool projects/btcusdt_backtest/config.json >/dev/null
+          python -m json.tool projects/btcusdt_backtest/strategies/strategy_template.json >/dev/null
+          python -m json.tool projects/btcusdt_backtest/strategies/strategy.schema.json >/dev/null
+      - name: Prepare blocked status when no strategy is submitted
+        if: ${{ github.event.inputs.strategy_path == '' || github.event.inputs.strategy_path == null }}
+        run: |
+          mkdir -p artifacts/btcusdt_backtest
+          cat > artifacts/btcusdt_backtest/latest_report.json <<'JSON'
+          {
+            "project": "P-BTCUSDT-BACKTEST",
+            "status": "BLOCKED",
+            "reason": "No user strategy JSON was selected for this workflow run. Project tests passed; no performance backtest was attempted.",
+            "research_only": true,
+            "live_orders": false
+          }
+          JSON
+          echo "# BTCUSDT user-strategy backtest" > artifacts/btcusdt_backtest/latest_report.md
+          echo "" >> artifacts/btcusdt_backtest/latest_report.md
+          echo "Status: BLOCKED — validation only. Supply a completed strategy JSON and licensed/provenanced BTCUSDT history to run a backtest." >> artifacts/btcusdt_backtest/latest_report.md
+      - name: Run supplied strategy
+        if: ${{ github.event.inputs.strategy_path != '' && github.event.inputs.strategy_path != null }}
+        env:
+          STRATEGY_PATH: ${{ github.event.inputs.strategy_path }}
+          BTCUSDT_FEE_RATE_PER_SIDE: ${{ vars.BTCUSDT_FEE_RATE_PER_SIDE }}
+          BTCUSDT_SLIPPAGE_BPS: ${{ vars.BTCUSDT_SLIPPAGE_BPS }}
+        run: |
+          test -f "$STRATEGY_PATH" || { echo "::error::Strategy JSON path does not exist: $STRATEGY_PATH"; exit 1; }
+          ARGS=(--strategy "$STRATEGY_PATH" --input data/btcusdt/btcusdt_1m.csv --output artifacts/btcusdt_backtest)
+          if [ -n "$BTCUSDT_FEE_RATE_PER_SIDE" ]; then ARGS+=(--fee-rate-per-side "$BTCUSDT_FEE_RATE_PER_SIDE"); fi
+          if [ -n "$BTCUSDT_SLIPPAGE_BPS" ]; then ARGS+=(--slippage-bps "$BTCUSDT_SLIPPAGE_BPS"); fi
+          python projects/btcusdt_backtest/runner.py "${ARGS[@]}"
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: btcusdt-user-strategy-report
+          path: artifacts/btcusdt_backtest/
+          if-no-files-found: warn
+          retention-days: 30
