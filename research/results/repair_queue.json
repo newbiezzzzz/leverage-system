@@ -1,7 +1,14 @@
 {
-  "updated_at": "2026-10-12T09:12:34Z",
-  "cycle": 1181,
+  "updated_at": "2026-10-12T10:21:08Z",
+  "cycle": 1182,
   "items": [
+    {
+      "stage": "strategy_lab",
+      "tier": "core",
+      "attempts": 2,
+      "known_fix_applied": false,
+      "recoverable": true
+    },
     {
       "stage": "qlib",
       "tier": "optional",
