@@ -36,7 +36,13 @@ def main():
   if a.fee_rate_per_side is not None:spec["costs"]["fee_rate_per_side"]=a.fee_rate_per_side
   if a.slippage_bps is not None:spec["costs"]["slippage_bps_per_side"]=a.slippage_bps
   qty=runner.validate(spec);provenance=validate_provenance(Path("data/btcusdt/DATA_SOURCE.md"))
-  raw=runner.load_bars(Path(a.input));tf=int(spec["timeframe_minutes"]);bars=raw if tf==1 else runner.aggregate(raw,tf)
+  raw=runner.load_bars(Path(a.input));tf=int(spec["timeframe_minutes"])
+  download_report_path=Path("data/btcusdt/download_report.json")
+  download_meta=json.loads(download_report_path.read_text(encoding="utf-8")) if download_report_path.exists() else {}
+  source_interval=download_meta.get("timeframe","1m")
+  if tf==1440 and source_interval=="1d":bars=raw
+  elif tf==1:bars=raw
+  else:bars=runner.aggregate(raw,tf)
   start_date=datetime.fromisoformat(spec.get("sweep",{}).get("analysis_start_date","2024-01-01"))
   start_date=start_date.replace(tzinfo=timezone.utc) if start_date.tzinfo is None else start_date
   ai=next((i for i,b in enumerate(bars) if b["dt"]>=start_date),None)
@@ -46,6 +52,11 @@ def main():
   if len(bars)<201:raise ValueError("Need at least 201 daily bars for EMA200 warm-up.")
   data_hash=hashlib.sha256(Path(a.input).read_bytes()).hexdigest()
   if data_hash not in provenance:raise ValueError("DATA_SOURCE.md SHA-256 does not match input CSV.")
+  if download_meta.get("csv_path") and Path(download_meta["csv_path"]).name!=Path(a.input).name:
+   raise ValueError("download_report.json describes a different BTCUSDT input file.")
+  source_gap_events=int(download_meta.get("missing_interval_events",download_meta.get("missing_minute_intervals",0)) or 0)
+  expected_daily=(bars[-1]["dt"].date()-bars[0]["dt"].date()).days+1
+  daily_bar_gap_count=max(0,expected_daily-len(bars)) if source_interval=="1d" else None
   capital=float(spec.get("starting_capital_usdt",1000));dev_end=ai+int(count*.60);val_end=ai+int(count*.80)
   grid=spec.get("sweep",{});stops=sorted({float(x) for x in grid.get("stop_loss_pct_values",[5])});rrs=sorted({float(x) for x in grid.get("target_r_multiple_values",[2])})
   if not stops or any(x<=0 or x>=100 for x in stops):raise ValueError("Stop-loss percentages must be between 0 and 100.")
@@ -73,12 +84,18 @@ def main():
     "validation_trades":v["trades"],"validation_net_usdt":v["net_return_usdt"],"validation_win_rate_pct":v["win_rate_pct"],"validation_profit_factor":v["profit_factor"],"validation_max_drawdown_pct":v["max_drawdown_pct"]})
   write_csv(out/"variant_comparison.csv",sorted(compare,key=lambda x:(x["stop_loss_pct"],x["reward_r"])))
   write_csv(out/"monthly_reference.csv",full["monthly"]);write_csv(out/"trades_reference.csv",full["trades"])
-  report.update({"status":"COMPLETED" if full["metrics"]["trades"] else "COMPLETED_NO_TRADES","strategy_id":spec["strategy_id"],"strategy_version":spec["version"],
+  report_status="COMPLETED" if full["metrics"]["trades"] else "COMPLETED_NO_TRADES"
+  if source_gap_events or (daily_bar_gap_count or 0):
+   report_status += "_WITH_DATA_GAPS"
+  report.update({"status":report_status,"strategy_id":spec["strategy_id"],"strategy_version":spec["version"],
    "strategy_sha256":hashlib.sha256(json.dumps(spec,sort_keys=True).encode()).hexdigest(),
-   "data":{"source":"Binance public spot klines","sha256":data_hash,"raw_1m_rows":len(raw),"usable_bars_after_resample":len(bars),"warmup_first_bar_utc":bars[0]["dt"].isoformat(),
+   "data":{"source":"Binance public spot klines","source_timeframe":source_interval,"sha256":data_hash,"raw_rows":len(raw),"usable_daily_bars":len(bars),
+    "download_status":download_meta.get("status"),"download_gap_events":source_gap_events,"download_missing_intervals_total":download_meta.get("missing_intervals_total"),
+    "missing_daily_bars_in_observed_date_span":daily_bar_gap_count,"warmup_first_bar_utc":bars[0]["dt"].isoformat(),
     "analysis_start_utc":bars[ai]["dt"].isoformat(),"analysis_end_utc":bars[-1]["dt"].isoformat(),"analysis_daily_bars":count,"development_end_utc":bars[dev_end-1]["dt"].isoformat(),
     "validation_end_utc":bars[val_end-1]["dt"].isoformat(),"holdout_start_utc":bars[val_end]["dt"].isoformat(),"holdout_end_utc":bars[-1]["dt"].isoformat()},
    "assumptions":{"interpretation":"Enter on daily EMA50 cross above EMA200 close; fill at next daily open.","unspecified_by_image":["stop-loss distance","numeric reward-to-risk","position size","spot vs perpetual"],
+    "drawdown_basis":"Closed-trade realized equity only; daily mark-to-market drawdown during open positions is not measured by this engine.",
     "stop_loss_pct_grid":stops,"target_r_multiple_grid":rrs,"predeclared_reference_profile":base_profile,"fixed_quantity_btc":qty,"starting_capital_usdt":capital,"market_type":spec["market_type"],
     "timeframe_minutes":tf,"fee_rate_per_side":spec["costs"]["fee_rate_per_side"],"slippage_bps_per_side":spec["costs"]["slippage_bps_per_side"],"intrabar_policy":"stop-first",
     "holdout_policy":"Only predeclared reference is run on holdout; holdout never ranks parameter settings.","monthly_return_basis":"Realized net PnL divided by starting capital and analysis duration; quantity is fixed."},

@@ -69,7 +69,7 @@ class EngineTests(unittest.TestCase):
         ts=[{"entry_time":"2026-01-02T00:00:00+00:00","exit_time":"2026-01-02T00:05:00+00:00","net_usdt":100,"gross_usdt":105,"fees_usdt":2,"slippage_usdt":3,"costs_usdt":5},
             {"entry_time":"2026-01-03T00:00:00+00:00","exit_time":"2026-01-03T00:05:00+00:00","net_usdt":-150,"gross_usdt":-145,"fees_usdt":2,"slippage_usdt":3,"costs_usdt":5}]
         self.assertEqual(runner.monthly(ts)[0]["net_usdt"],-50)
-        sm=runner.summary(ts,1000);self.assertEqual(sm["max_drawdown_usdt"],150);self.assertEqual(sm["max_consecutive_losses"],1)
+        sm=runner.summary(ts,1000);self.assertEqual(sm["max_drawdown_usdt"],150);self.assertEqual(sm["max_consecutive_losses"],1);self.assertEqual(sm["largest_loss_usdt"],-150)
     def test_short_profit_direction(self):
         b=bars([100,100,100,95,95,95])
         s=spec(market_type="usdt_perpetual",direction="short_only",indicators=[],short_entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":99}}]})
