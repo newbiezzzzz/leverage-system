@@ -1,0 +1,65 @@
+{
+  "test_id": "BTCUSDT-TEST-002",
+  "title": "Volatility breakout with trend confirmation vs mean reversion with regime filters",
+  "instrument": "BTCUSDT",
+  "market_type": "spot",
+  "direction": "long_only",
+  "source_timeframe_minutes": 1,
+  "timeframes_minutes": [
+    15,
+    60,
+    240
+  ],
+  "analysis_start": "2024-01-01T00:00:00Z",
+  "warmup_start": "2023-01-01T00:00:00Z",
+  "starting_capital_usdt": 1000,
+  "position_size_btc": 0.005,
+  "fees": {
+    "fee_rate_per_side": 0.001,
+    "source_or_basis": "Explicit baseline assumption; verify actual exchange fee tier."
+  },
+  "slippage_bps_per_side": 10,
+  "intrabar_collision": "stop_first",
+  "split": {
+    "development_fraction": 0.6,
+    "validation_fraction": 0.2,
+    "holdout_fraction": 0.2
+  },
+  "breakout": {
+    "donchian_lookbacks": [
+      20,
+      55
+    ],
+    "stop_atr": 2,
+    "target_r_multiples": [
+      2,
+      3
+    ],
+    "baseline_lookback": 20,
+    "baseline_target_r": 2,
+    "entry_definition": "Close crosses above prior N-bar Donchian high; EMA50>EMA200; close>EMA50; ATR14 above its SMA20; volume>SMA20 volume.",
+    "exit_definition": "Stop at entry minus 2*ATR14 measured at signal close; target 2R or 3R; stop-first if both touch."
+  },
+  "mean_reversion": {
+    "rsi_thresholds": [
+      25,
+      30
+    ],
+    "stop_atr_multiples": [
+      2,
+      3
+    ],
+    "baseline_rsi": 30,
+    "baseline_stop_atr": 2,
+    "entry_definition": "Close crosses below Bollinger(20,2) lower band; RSI14<threshold; EMA50>EMA200; ATR14 <=1.5 times its 20-bar mean.",
+    "exit_definition": "Stop at entry minus configured ATR multiple; exit next open after close crosses above BB middle or max holding time 72 hours."
+  },
+  "qualification": {
+    "max_mark_to_market_drawdown_pct": 10,
+    "minimum_validation_trades": 20,
+    "minimum_holdout_trades": 10,
+    "positive_net_validation_and_holdout": true,
+    "profit_factor_above_1_in_validation_and_holdout": true
+  },
+  "holdout_policy": "Run holdout only for predeclared baseline configurations, never for the parameter grid."
+}

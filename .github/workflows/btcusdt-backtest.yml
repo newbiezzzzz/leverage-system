@@ -52,11 +52,12 @@ jobs:
           python-version: "3.12"
       - name: Compile and run regression tests
         run: |
-          python -m py_compile projects/btcusdt_backtest/runner.py projects/btcusdt_backtest/fetch_binance_klines.py projects/btcusdt_backtest/strategy_sweep.py
+          python -m py_compile projects/btcusdt_backtest/runner.py projects/btcusdt_backtest/fetch_binance_klines.py projects/btcusdt_backtest/strategy_sweep.py projects/btcusdt_backtest/strategy_research_test2.py
           python -m unittest discover -s projects/btcusdt_backtest/tests -v
           python -m json.tool projects/btcusdt_backtest/config.json >/dev/null
           python -m json.tool projects/btcusdt_backtest/strategies/strategy_template.json >/dev/null
           python -m json.tool projects/btcusdt_backtest/strategies/strategy.schema.json >/dev/null
+          python -m json.tool projects/btcusdt_backtest/strategies/strategy_test2.json >/dev/null
       - name: Download historical BTCUSDT data
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.download_history }}
         env:
@@ -119,6 +120,16 @@ jobs:
           else
             python projects/btcusdt_backtest/runner.py "${ARGS[@]}"
           fi
+      - name: Run second BTCUSDT strategy study
+        if: ${{ hashFiles('projects/btcusdt_backtest/strategy_research_test2.py') != '' }}
+        env:
+          BTCUSDT_FEE_RATE_PER_SIDE: ${{ vars.BTCUSDT_FEE_RATE_PER_SIDE }}
+          BTCUSDT_SLIPPAGE_BPS: ${{ vars.BTCUSDT_SLIPPAGE_BPS }}
+        run: |
+          if [ ! -f data/btcusdt/btcusdt_1m.csv ]; then
+            python projects/btcusdt_backtest/fetch_binance_klines.py --market-type spot --interval 1m --start-date 2023-01-01 --output data/btcusdt/btcusdt_1m.csv --metadata data/btcusdt/download_report.json
+          fi
+          python projects/btcusdt_backtest/strategy_research_test2.py --input data/btcusdt/btcusdt_1m.csv --config projects/btcusdt_backtest/strategies/strategy_test2.json --output artifacts/btcusdt_test2
       - name: Upload backtest report
         if: always()
         uses: actions/upload-artifact@v4
@@ -126,6 +137,7 @@ jobs:
           name: btcusdt-user-strategy-report
           path: |
             artifacts/btcusdt_backtest/
+            artifacts/btcusdt_test2/
             data/btcusdt/download_report.json
             data/btcusdt/DATA_SOURCE.md
           if-no-files-found: warn

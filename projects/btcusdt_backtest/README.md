@@ -50,3 +50,7 @@ The active strategy formalizes a daily long-only EMA50 cross-above EMA200 signal
 
 
 Daily-source note: the EMA50/EMA200 screenshot test uses raw 1-day Binance candles instead of synthesizing 1-day bars from minutes. This prevents an isolated missing minute from making a daily bar incomplete; the source checksum and missing-daily-interval audit are recorded in the provenance report. The current runner's drawdown is measured on realized trade-close equity and does not include mark-to-market movement during open positions.
+
+
+## Test 2 — volatility breakout vs mean reversion
+This separate study uses BTCUSDT spot, evaluated on 15m, 1h and 4h bars. The breakout baseline is a close above the prior Donchian20 high with EMA50>EMA200, close>EMA50, ATR14 above its 20-bar mean, and volume above its 20-bar mean; stop is 2x ATR and target 2R. Mean reversion enters on a close cross below the Bollinger(20,2) lower band with RSI14<30, EMA50>EMA200 and ATR14 <= 1.5 times its 20-bar mean; stop is 2x ATR, exiting on a next-open fill after close crosses above the BB middle or a 72-hour limit. Parameter variations use development/validation only; holdout is run only for predeclared baselines. Both systems are spot long-only. Assumed costs are 0.10% fee per side and 10 bps slippage each way. Qualification requires positive net PnL, PF>1, enough trades and <=10% mark-to-market drawdown in validation and holdout. See strategy_test2.json and the Test 2 workflow artifact.
