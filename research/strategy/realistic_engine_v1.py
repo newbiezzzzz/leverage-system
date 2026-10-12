@@ -50,6 +50,81 @@ def fee(trade_value: float) -> float:
     return float(commission + COST_MODEL["platform_fee"] + clearing + stamp + sst)
 
 
+
+# Shared panels are immutable throughout a Strategy Lab process. Candidate
+# evaluation repeatedly calls backtest across windows, RR, stops, and stress
+# scenarios, so recomputing these full-history arrays per call is wasteful.
+_ENGINE_INPUT_REFS = None
+_ENGINE_DATA = {}
+_VARIANT_INPUT_REFS = None
+_VARIANT_ARRAYS = None
+_BASE_UNIVERSE_REF = None
+_BASE_UNIVERSE_ARRAY = None
+
+
+def _get_engine_data(op, hp, lp, cp, vp):
+    """Compute expensive panel-wide arrays once per input dataset per process."""
+    global _ENGINE_INPUT_REFS, _ENGINE_DATA
+    global _VARIANT_INPUT_REFS, _VARIANT_ARRAYS
+    global _BASE_UNIVERSE_REF, _BASE_UNIVERSE_ARRAY
+    refs = (op, hp, lp, cp, vp)
+    if _ENGINE_INPUT_REFS is not None and all(a is b for a, b in zip(_ENGINE_INPUT_REFS, refs)):
+        return _ENGINE_DATA
+
+    oa, ha, la, ca, va = (
+        op.to_numpy(dtype=float),
+        hp.to_numpy(dtype=float),
+        lp.to_numpy(dtype=float),
+        cp.to_numpy(dtype=float),
+        vp.to_numpy(dtype=float),
+    )
+    avg_volume20 = vp.shift(1).rolling(20, min_periods=20).mean().to_numpy(dtype=float)
+    avg_dollar20 = (cp * vp).shift(1).rolling(20, min_periods=20).mean().to_numpy(dtype=float)
+    valid_end_by_col = {}
+    for j in range(ca.shape[1]):
+        valid = np.flatnonzero(np.isfinite(ca[:, j]))
+        if len(valid):
+            valid_end_by_col[j] = int(valid[-1])
+
+    _ENGINE_INPUT_REFS = refs
+    _ENGINE_DATA = {
+        "oa": oa, "ha": ha, "la": la, "ca": ca, "va": va,
+        "avg_volume20": avg_volume20,
+        "avg_dollar20": avg_dollar20,
+        "valid_end_by_col": valid_end_by_col,
+    }
+    _VARIANT_INPUT_REFS = None
+    _VARIANT_ARRAYS = None
+    _BASE_UNIVERSE_REF = None
+    _BASE_UNIVERSE_ARRAY = None
+    return _ENGINE_DATA
+
+
+def _get_variant_arrays(variant, dates, columns):
+    """Cache the active signal/score matrices; the same candidate is tested many times."""
+    global _VARIANT_INPUT_REFS, _VARIANT_ARRAYS
+    refs = (variant["mask"], variant["score"])
+    if _VARIANT_INPUT_REFS is None or not all(a is b for a, b in zip(_VARIANT_INPUT_REFS, refs)):
+        mask = refs[0].reindex(index=dates, columns=columns, fill_value=False).to_numpy(dtype=bool)
+        score = refs[1].reindex(index=dates, columns=columns).to_numpy(dtype=float)
+        _VARIANT_INPUT_REFS = refs
+        _VARIANT_ARRAYS = (mask, score)
+    return _VARIANT_ARRAYS
+
+
+def _get_universe_array(universe, dates, columns):
+    """Cache the base universe; replication subsets are intentionally not retained."""
+    global _BASE_UNIVERSE_REF, _BASE_UNIVERSE_ARRAY
+    if _BASE_UNIVERSE_REF is None:
+        _BASE_UNIVERSE_REF = universe
+        _BASE_UNIVERSE_ARRAY = universe.reindex(
+            index=dates, columns=columns, fill_value=False
+        ).to_numpy(dtype=bool)
+    if universe is _BASE_UNIVERSE_REF:
+        return _BASE_UNIVERSE_ARRAY
+    return universe.reindex(index=dates, columns=columns, fill_value=False).to_numpy(dtype=bool)
+
+
 def _choose_idx(scores: np.ndarray, eligible: np.ndarray, reverse: bool) -> int | None:
     if not eligible.any():
         return None
@@ -91,21 +166,13 @@ def backtest(
         return None
 
     cols = list(cp.columns)
-    n = len(cols)
-    sym_to_idx = {str(s): i for i, s in enumerate(cols)}
-    oa, ha, la, ca, va = (
-        op.to_numpy(dtype=float),
-        hp.to_numpy(dtype=float),
-        lp.to_numpy(dtype=float),
-        cp.to_numpy(dtype=float),
-        vp.to_numpy(dtype=float),
-    )
-    mask = variant["mask"].reindex(index=dates, columns=cp.columns, fill_value=False).to_numpy(dtype=bool)
-    score = variant["score"].reindex(index=dates, columns=cp.columns).to_numpy(dtype=float)
-    ua = universe.reindex(index=dates, columns=cp.columns, fill_value=False).to_numpy(dtype=bool)
-
-    avg_volume20 = vp.shift(1).rolling(20, min_periods=20).mean().to_numpy(dtype=float)
-    avg_dollar20 = (cp * vp).shift(1).rolling(20, min_periods=20).mean().to_numpy(dtype=float)
+    common = _get_engine_data(op, hp, lp, cp, vp)
+    oa, ha, la, ca, va = (common[k] for k in ("oa", "ha", "la", "ca", "va"))
+    mask, score = _get_variant_arrays(variant, dates, cp.columns)
+    ua = _get_universe_array(universe, dates, cp.columns)
+    avg_volume20 = common["avg_volume20"]
+    avg_dollar20 = common["avg_dollar20"]
+    valid_end_by_col = common["valid_end_by_col"]
 
     cash = float(starting_cash)
     position_j: int | None = None
@@ -123,12 +190,6 @@ def backtest(
     first_idx, last_idx = int(idx[0]), int(idx[-1])
     slippage = float(slippage_bps) / 10_000.0
     reverse_rank = any(k in str(variant.get("family", "")) for k in ("reversal", "loser"))
-
-    valid_end_by_col: dict[int, int] = {}
-    for j in range(n):
-        valid = np.flatnonzero(np.isfinite(ca[:, j]))
-        if len(valid):
-            valid_end_by_col[j] = int(valid[-1])
 
     def scaled_fee(value: float) -> float:
         return fee(value) * float(cost_multiplier)

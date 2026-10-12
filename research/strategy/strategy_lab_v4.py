@@ -24,6 +24,8 @@ STATE_PATH = OUT / "strategy_lab_v4_state.json"
 EVENT_PATH = OUT / "strategy_lab_v4_event_screen.csv"
 BT_PATH = OUT / "strategy_lab_v4_backtests.csv"
 SUMMARY_PATH = OUT / "strategy_lab_v4_summary.json"
+CHECKPOINT_PATH = OUT / "strategy_lab_v4_checkpoint.json"
+CHECKPOINT_EVERY = 8
 
 DEV_START = pd.Timestamp("2015-01-01")
 DEV_END = pd.Timestamp("2019-12-31")
@@ -59,6 +61,68 @@ def read_json(path, default):
 
 def write_json(path, payload):
     path.write_text(json.dumps(payload, indent=2, default=str) + "\n", encoding="utf-8")
+
+
+
+def checkpoint_fingerprint(frames, cycle, slate):
+    """Bind resumable work to the exact data, candidate slate, and test settings."""
+    digest = hashlib.sha256()
+    settings = {
+        "cycle": int(cycle),
+        "rr_values": list(RR_VALUES),
+        "risk_pcts": list(RISK_PCTS),
+        "stop_losses": list(STOP_LOSSES),
+        "horizons": list(SCREEN_HORIZONS),
+        "lot_size": LOT_SIZE,
+        "starting_cash": STARTING_CASH,
+        "cost_model": COST_MODEL,
+        "slippage_bps": SLIPPAGE_BPS,
+    }
+    digest.update(json.dumps(settings, sort_keys=True, default=str).encode("utf-8"))
+    for frame in frames:
+        meta = {
+            "shape": list(frame.shape),
+            "columns": [str(c) for c in frame.columns],
+            "first_index": str(frame.index[0]) if len(frame.index) else "",
+            "last_index": str(frame.index[-1]) if len(frame.index) else "",
+        }
+        digest.update(json.dumps(meta, sort_keys=True).encode("utf-8"))
+        values = pd.util.hash_pandas_object(frame, index=True).to_numpy(dtype="uint64")
+        digest.update(values.tobytes())
+    if not slate.empty:
+        cols = [c for c in ("variant", "horizon_days", "params") if c in slate.columns]
+        digest.update(pd.util.hash_pandas_object(slate[cols], index=True).to_numpy(dtype="uint64").tobytes())
+    return digest.hexdigest()
+
+
+def candidate_config_key(name, horizon, stop, reward_r, risk_pct):
+    def number(value):
+        if value is None:
+            return None
+        try:
+            if pd.isna(value):
+                return None
+        except (TypeError, ValueError):
+            pass
+        return float(value)
+    return json.dumps(
+        [str(name), int(horizon), float(stop), number(reward_r), number(risk_pct)],
+        separators=(",", ":"),
+    )
+
+
+def save_checkpoint(cycle, fingerprint, rows, completed_keys):
+    payload = {
+        "cycle": int(cycle),
+        "fingerprint": fingerprint,
+        "updated_at": pd.Timestamp.utcnow().isoformat(),
+        "completed_count": len(completed_keys),
+        "completed_keys": sorted(completed_keys),
+        "rows": rows,
+    }
+    tmp = CHECKPOINT_PATH.with_suffix(".tmp")
+    tmp.write_text(json.dumps(payload, indent=2, default=str) + "\\n", encoding="utf-8")
+    tmp.replace(CHECKPOINT_PATH)
 
 
 def months_between(a, b):
@@ -486,10 +550,32 @@ def main():
     screen = screen_candidates(variants, chosen, op, cp)
     screen.to_csv(EVENT_PATH, index=False)
 
-    results = []
-    realistic_tests = []
     screened = select_realistic_rows(screen)
     screened.to_csv(OUT / "strategy_lab_selection.csv", index=False)
+    fingerprint = checkpoint_fingerprint(
+        (op, hp, lp, cp, vp, universe), cycle, screened
+    )
+    saved = read_json(CHECKPOINT_PATH, {})
+    if (
+        isinstance(saved, dict)
+        and saved.get("cycle") == cycle
+        and saved.get("fingerprint") == fingerprint
+        and isinstance(saved.get("rows"), list)
+        and isinstance(saved.get("completed_keys"), list)
+        and len(saved["rows"]) == len(saved["completed_keys"])
+    ):
+        results = [row for row in saved["rows"] if isinstance(row, dict)]
+        completed_keys = set(saved["completed_keys"])
+        if len(results) != len(completed_keys):
+            results, completed_keys = [], set()
+        else:
+            print(f"RESUME: reusing {len(completed_keys)} completed realistic tests from checkpoint.")
+    else:
+        results, completed_keys = [], set()
+    realistic_tests = list(completed_keys)
+    # Write a valid empty checkpoint before the first expensive evaluation.
+    save_checkpoint(cycle, fingerprint, results, completed_keys)
+
     if not screened.empty:
         for r in screened.itertuples(index=False):
             name = r.variant
@@ -499,15 +585,22 @@ def main():
             for risk_pct in RISK_PCTS:
                 for rr in RR_VALUES:
                     for stop in STOP_LOSSES:
+                        key = candidate_config_key(name, int(r.horizon_days), stop, rr, risk_pct)
+                        if key in completed_keys:
+                            continue
                         ev = evaluate_candidate(
                             name, v, op, hp, lp, cp, vp, universe, regime,
                             int(r.horizon_days), stop, rr, risk_pct
                         )
                         if ev:
-                            results.append(ev)
-                            realistic_tests.append((name, int(r.horizon_days), stop, rr, risk_pct))
+                            results.append(flatten(ev))
+                            realistic_tests.append(key)
+                            completed_keys.add(key)
+                            if len(completed_keys) % CHECKPOINT_EVERY == 0:
+                                save_checkpoint(cycle, fingerprint, results, completed_keys)
 
-    bt_df = pd.DataFrame([flatten(x) for x in results])
+    save_checkpoint(cycle, fingerprint, results, completed_keys)
+    bt_df = pd.DataFrame(results)
     bt_df.to_csv(BT_PATH, index=False)
 
     tested = list(dict.fromkeys(state.get("tested_variants", []) + chosen))
@@ -646,6 +739,9 @@ def main():
         "backtests": len(realistic_tests), "qualified_candidates": len(qualified),
         "leader": evidence.get("strategy"),
     })
+    # All result files and state have been published locally; completed work
+    # is no longer needed as an interruption checkpoint.
+    CHECKPOINT_PATH.unlink(missing_ok=True)
     print(json.dumps(summary, indent=2, default=str))
 
 
