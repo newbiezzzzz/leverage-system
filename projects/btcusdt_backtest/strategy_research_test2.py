@@ -149,6 +149,12 @@ def summarize(trades, bars, dd, dd_pct, adverse_dd, adverse_pct):
     }
 
 
+def can_afford_spot_long(cash_equity, entry_price, qty=QTY):
+    """Do not open a fixed-quantity spot position if its notional/costs exceed cash."""
+    required = float(entry_price) * float(qty) * (1.0 + FEE + SLIP)
+    return float(cash_equity) > required
+
+
 def is_qualified(validation, holdout):
     return (
         validation["trades"] >= 20 and holdout["trades"] >= 10
@@ -192,11 +198,13 @@ def simulate(bars, panel, family, config, start, end, timeframe_minutes):
         # Signal entries use the next candle's open and ATR known at signal close.
         if pos is None and pending_entry is not None:
             risk = float(pending_entry["atr"]) * float(pending_entry["stop_atr"])
-            if risk > 0:
-                entry = float(bar["open"])
+            entry = float(bar["open"])
+            available_cash = CAPITAL + realized
+            if risk > 0 and can_afford_spot_long(available_cash, entry):
                 target = entry + risk * float(pending_entry.get("target_r",0) or 0) if pending_entry.get("target_r") else None
                 pos = {"entry_price":entry, "entry_time":bar["dt"], "entry_index":i,
                        "stop_price":entry-risk, "target_price":target, "bars_held":0}
+            # A skipped order is no trade; never simulate opening spot on credit.
             pending_entry = None
 
         if pos is not None:
@@ -354,6 +362,7 @@ def run():
           "assumptions":{"quantity_btc":QTY,"starting_capital_usdt":CAPITAL,"fee_rate_per_side":FEE,"slippage_bps_per_side":SLIP_BPS,
             "execution":"Close signals; next-candle-open entry and signal-based exits.","intrabar_collision":"Stop first when stop and target both touched.",
             "market":"Spot long-only; no shorts, leverage, funding, liquidation or order-book impact.",
+            "spot_cash_feasibility":"A fixed 0.005 BTC entry is skipped when realized available capital cannot cover entry notional plus assumed entry fee and slippage; the simulator does not trade on credit.",
             "breakout":"Prior Donchian 20/55 close breakout; EMA50>EMA200, close>EMA50, ATR14 above its 20-bar mean and volume above its 20-bar mean; stop 2x ATR, target 2R/3R.",
             "mean_reversion":"Close crosses below Bollinger(20,2) lower band; RSI14<25/30; EMA50>EMA200; ATR14 <=1.5x its 20-bar mean; stop 2x/3x ATR; exit next open after close crosses above BB middle or after 72 hours.",
             "periods":"2023 history is warm-up only; performance starts 2024-01-01; chronological 60/20/20 development/validation/holdout.",

@@ -19,6 +19,11 @@ class Test2Rules(unittest.TestCase):
         self.assertEqual(upper[2], 11.0)
         self.assertGreater(bars[2]["close"], upper[2])
 
+    def test_spot_position_requires_cash_for_notional_and_entry_costs(self):
+        self.assertTrue(study.can_afford_spot_long(1000.0, 50000.0, qty=0.005))
+        self.assertFalse(study.can_afford_spot_long(200.0, 50000.0, qty=0.005))
+        self.assertFalse(study.can_afford_spot_long(250.0, 50000.0, qty=0.005))
+
     def test_qualification_requires_sample_and_edge_on_both_splits(self):
         good = {"trades": 25, "net_return_usdt": 15, "profit_factor": 1.25,
                 "max_drawdown_pct_mark_to_market": 8.0}
