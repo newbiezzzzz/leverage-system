@@ -121,7 +121,7 @@ def save_checkpoint(cycle, fingerprint, rows, completed_keys):
         "rows": rows,
     }
     tmp = CHECKPOINT_PATH.with_suffix(".tmp")
-    tmp.write_text(json.dumps(payload, indent=2, default=str) + "\\n", encoding="utf-8")
+    tmp.write_text(json.dumps(payload, indent=2, default=str) + "\n", encoding="utf-8")
     tmp.replace(CHECKPOINT_PATH)
 
 
