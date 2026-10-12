@@ -1,0 +1,14 @@
+{
+ "strategy_id":"btc_ema50_ema200_daily","version":1,"status":"READY_FOR_BACKTEST","source_type":"user_image",
+ "source_description":"User screenshot: ENTRY LONG; EMA50 cross EMA200; risk-to-reward ratio; daily timeframe. EMA50 marked red and EMA200 grey.",
+ "interpretation_notes":["Enter only on a fresh daily EMA50 crosses_above EMA200 event.","Signal is evaluated on bar close and executed at the next daily bar open.","The image does not specify stop-loss distance or numeric reward-to-risk, so those are explicitly assumption-based variations.","Predeclared reference: 5% entry-relative stop and 2R target; grid: 3%, 5%, 8% stops and 1R, 1.5R, 2R, 3R targets.","Spot and long-only are used; no shorting, leverage, funding, or liquidation is simulated.","Download includes 2023 candles for EMA warm-up; analysis begins 2024-01-01."],
+ "instrument":"BTCUSDT","market_type":"spot","timeframe_minutes":1440,"timezone":"UTC","sessions":[],"direction":"long_only",
+ "indicators":[{"id":"ema50","type":"ema","period":50,"source":"close"},{"id":"ema200","type":"ema","period":200,"source":"close"}],
+ "entry":{"logic":"all","conditions":[{"left":{"indicator":"ema50","line":"value"},"operator":"crosses_above","right":{"indicator":"ema200","line":"value"}}]},
+ "exit":{"mode":"stop_and_target","stop_points":null,"stop_loss_pct":5,"target_points":null,"target_r_multiple":2,"opposite_signal":false,"trailing_stop":null,"time_exit_bars":null},
+ "position_sizing":{"mode":"fixed_quantity","quantity":0.005},
+ "execution":{"signal_timing":"bar_close","entry_timing":"next_bar_open","intrabar_collision":"stop_first","allow_lookahead":false},
+ "costs":{"fee_rate_per_side":0.001,"slippage_bps_per_side":10,"source_or_basis":"Binance regular-user spot fee baseline 0.10% per side; 10 bps slippage is a modelling assumption, not measured fill."},
+ "starting_capital_usdt":1000,"risk_gates":{"max_drawdown_pct":10,"shariah_review_required":true,"broker_margin_feasibility_required":true},
+ "sweep":{"analysis_start_date":"2024-01-01","stop_loss_pct_values":[3,5,8],"target_r_multiple_values":[1,1.5,2,3],"baseline_stop_loss_pct":5,"baseline_target_r_multiple":2}
+}

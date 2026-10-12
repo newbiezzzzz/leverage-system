@@ -88,4 +88,23 @@ class EngineTests(unittest.TestCase):
         s=spec(execution={"signal_timing":"bar_close","entry_timing":"next_bar_open","allow_lookahead":True})
         with self.assertRaisesRegex(ValueError,"Look-ahead"):runner.validate(s)
 
+    def test_percentage_stop_and_r_multiple(self):
+        b=bars([8,10,10,10,10,10])
+        s=spec(indicators=[],entry={"logic":"all","conditions":[{"left":{"price":"close"},"operator":"gte","right":{"constant":10}}]})
+        s["exit"]={"mode":"stop_and_target","stop_points":None,"stop_loss_pct":10,"target_points":None,"target_r_multiple":2}
+        t=runner.backtest(b,s)
+        self.assertTrue(t)
+        self.assertEqual(t[0]["exit_reason"],"stop")
+        self.assertEqual(t[0]["exit_price"],9.0)
+
+    def test_segment_keeps_prior_ema_history_and_starts_fills_at_boundary(self):
+        b=bars([10,9,8,7,8,10,12,12,12,12,12,12])
+        s=spec(indicators=[{"id":"fast","type":"ema","period":3},{"id":"slow","type":"ema","period":5}],
+               entry={"logic":"all","conditions":[{"left":{"indicator":"fast"},"operator":"crosses_above","right":{"indicator":"slow"}}]},
+               exit={"mode":"stop_and_target","stop_points":50,"target_points":100})
+        t=runner.backtest(b,s,start_index=6,end_index=len(b))
+        self.assertTrue(t)
+        self.assertEqual(t[0]["entry_time"],b[6]["dt"].isoformat())
+        self.assertTrue(all(datetime.fromisoformat(x["entry_time"]) >= b[6]["dt"] for x in t))
+
 if __name__=="__main__":unittest.main()

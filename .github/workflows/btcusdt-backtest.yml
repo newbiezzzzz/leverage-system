@@ -52,7 +52,7 @@ jobs:
           python-version: "3.12"
       - name: Compile and run regression tests
         run: |
-          python -m py_compile projects/btcusdt_backtest/runner.py projects/btcusdt_backtest/fetch_binance_klines.py
+          python -m py_compile projects/btcusdt_backtest/runner.py projects/btcusdt_backtest/fetch_binance_klines.py projects/btcusdt_backtest/strategy_sweep.py
           python -m unittest discover -s projects/btcusdt_backtest/tests -v
           python -m json.tool projects/btcusdt_backtest/config.json >/dev/null
           python -m json.tool projects/btcusdt_backtest/strategies/strategy_template.json >/dev/null
@@ -62,7 +62,7 @@ jobs:
         env:
           MARKET_TYPE: ${{ inputs.market_type || 'spot' }}
         run: |
-          python projects/btcusdt_backtest/fetch_binance_klines.py --market-type "$MARKET_TYPE" --start-date 2024-01-01 --output data/btcusdt/btcusdt_1m.csv --metadata data/btcusdt/download_report.json
+          python projects/btcusdt_backtest/fetch_binance_klines.py --market-type "$MARKET_TYPE" --start-date 2023-01-01 --output data/btcusdt/btcusdt_1m.csv --metadata data/btcusdt/download_report.json
           python - <<'PY'
           import json
           r=json.load(open("data/btcusdt/download_report.json", encoding="utf-8"))
@@ -94,14 +94,20 @@ jobs:
           BTCUSDT_FEE_RATE_PER_SIDE: ${{ vars.BTCUSDT_FEE_RATE_PER_SIDE }}
           BTCUSDT_SLIPPAGE_BPS: ${{ vars.BTCUSDT_SLIPPAGE_BPS }}
         run: |
+          STRATEGY_PATH="${STRATEGY_PATH:-projects/btcusdt_backtest/strategies/active_strategy.json}"
+          MARKET_TYPE="${MARKET_TYPE:-spot}"
           test -f "$STRATEGY_PATH" || { echo "::error::Strategy JSON path does not exist: $STRATEGY_PATH"; exit 1; }
           if [ ! -f data/btcusdt/btcusdt_1m.csv ]; then
-            python projects/btcusdt_backtest/fetch_binance_klines.py --market-type "$MARKET_TYPE" --start-date 2024-01-01 --output data/btcusdt/btcusdt_1m.csv --metadata data/btcusdt/download_report.json
+            python projects/btcusdt_backtest/fetch_binance_klines.py --market-type "$MARKET_TYPE" --start-date 2023-01-01 --output data/btcusdt/btcusdt_1m.csv --metadata data/btcusdt/download_report.json
           fi
           ARGS=(--strategy "$STRATEGY_PATH" --input data/btcusdt/btcusdt_1m.csv --output artifacts/btcusdt_backtest)
           if [ -n "$BTCUSDT_FEE_RATE_PER_SIDE" ]; then ARGS+=(--fee-rate-per-side "$BTCUSDT_FEE_RATE_PER_SIDE"); fi
           if [ -n "$BTCUSDT_SLIPPAGE_BPS" ]; then ARGS+=(--slippage-bps "$BTCUSDT_SLIPPAGE_BPS"); fi
-          python projects/btcusdt_backtest/runner.py "${ARGS[@]}"
+          if [ "${STRATEGY_PATH##*/}" = "active_strategy.json" ]; then
+            python projects/btcusdt_backtest/strategy_sweep.py "${ARGS[@]}"
+          else
+            python projects/btcusdt_backtest/runner.py "${ARGS[@]}"
+          fi
       - name: Upload backtest report
         if: always()
         uses: actions/upload-artifact@v4

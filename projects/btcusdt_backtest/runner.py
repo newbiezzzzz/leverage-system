@@ -141,16 +141,25 @@ def validate(s):
  if not 0<=float(c["fee_rate_per_side"])<1 or float(c["slippage_bps_per_side"])<0:raise ValueError("Fee rate must be in [0,1) and slippage cannot be negative.")
  ex=s["exit"];mode=ex.get("mode")
  if mode not in {"stop_and_target","fixed_stop_target","opposite_signal","time_exit","stop_target_or_signal","stop_target_or_time"}:raise ValueError("Unsupported exit mode "+str(mode))
- if mode in {"stop_and_target","fixed_stop_target","stop_target_or_signal","stop_target_or_time"} and (float(ex.get("stop_points") or 0)<=0 or (float(ex.get("target_points") or 0)<=0 and float(ex.get("target_r_multiple") or 0)<=0)):raise ValueError("Stop and target points/R multiple must be positive.")
+ if mode in {"stop_and_target","fixed_stop_target","stop_target_or_signal","stop_target_or_time"}:
+  sp=float(ex.get("stop_points") or 0);slp=float(ex.get("stop_loss_pct") or 0)
+  tp=float(ex.get("target_points") or 0);rr=float(ex.get("target_r_multiple") or 0)
+  if sp<0 or slp<0 or slp>=100 or tp<0 or rr<0:raise ValueError("Stop and target settings must be positive; percentage stop must be below 100.")
+  if bool(sp>0)==bool(slp>0):raise ValueError("Specify exactly one positive stop_points or stop_loss_pct.")
+  if bool(tp>0)==bool(rr>0):raise ValueError("Specify exactly one positive target_points or target_r_multiple.")
  if mode in {"time_exit","stop_target_or_time"} and int(ex.get("time_exit_bars") or 0)<1:raise ValueError("time_exit_bars must be positive.")
  ids=[x.get("id") for x in s["indicators"]]
  if None in ids or len(ids)!=len(set(ids)):raise ValueError("Indicator ids must be present and unique.")
  return q
 def calc_inds(bars,s):return {x["id"]:ind(bars,x) for x in s["indicators"]}
-def backtest(bars,s,capital=1000):
+def backtest(bars,s,capital=1000,start_index=0,end_index=None):
  q=validate(s);inds=calc_inds(bars,s);cost=s["costs"];fee_rate=float(cost["fee_rate_per_side"]);slip_rate=float(cost["slippage_bps_per_side"])/10000
- ex=s["exit"];mode=ex["mode"];sp=float(ex.get("stop_points") or 0);tp=float(ex.get("target_points") or sp*float(ex.get("target_r_multiple") or 0));trades=[];pos=None
- for i in range(len(bars)-1):
+ ex=s["exit"];mode=ex["mode"];sp=float(ex.get("stop_points") or 0);slp=float(ex.get("stop_loss_pct") or 0)/100;tp=float(ex.get("target_points") or 0);rr=float(ex.get("target_r_multiple") or 0);trades=[];pos=None
+ start_index=int(start_index);end_index=len(bars) if end_index is None else int(end_index)
+ if start_index<0 or end_index>len(bars) or start_index>=end_index:raise ValueError("Invalid backtest segment indices.")
+ # Keep causal indicator history before a split, while starting each segment flat.
+ # A prior candle's crossover may fill at the first open inside the segment.
+ for i in range(max(0,start_index-1),end_index):
   b=bars[i]
   if pos:
    stop_hit=(b["low"]<=pos["stop"] if pos["side"]=="long" else b["high"]>=pos["stop"]) if pos["stop"] is not None else False
@@ -164,15 +173,19 @@ def backtest(bars,s,capital=1000):
    if xp is not None:
     sign=1 if pos["side"]=="long" else -1;gross=(xp-pos["entry"])*sign*q;fees=(pos["entry"]+xp)*q*fee_rate;slip_usdt=(pos["entry"]+xp)*q*slip_rate
     trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":round(xp,4),"gross_usdt":round(gross,6),"fees_usdt":round(fees,6),"slippage_usdt":round(slip_usdt,6),"costs_usdt":round(fees+slip_usdt,6),"net_usdt":round(gross-fees-slip_usdt,6),"exit_reason":reason,"bars_held":i-pos["entry_i"]+1});pos=None
-  if pos is None and in_session(b["dt"],s.get("sessions")):
+  if pos is None and i<end_index-1 and in_session(b["dt"],s.get("sessions")):
    long=ev(s["entry"],i,bars,inds) if s["direction"] in {"long_only","both"} else False
    short=ev(s.get("short_entry",{}),i,bars,inds) if s["direction"] in {"short_only","both"} else False
    if long and short:raise ValueError("Both long and short rules fired simultaneously; clarify priority.")
    if long or short:
     side="long" if long else "short";entry=bars[i+1]["open"]
-    pos={"side":side,"entry":entry,"time":bars[i+1]["dt"],"entry_i":i+1,"stop":(entry-sp if side=="long" else entry+sp) if sp else None,"target":(entry+tp if side=="long" else entry-tp) if tp else None}
+    risk_distance=sp if sp>0 else entry*slp
+    target_distance=tp if tp>0 else risk_distance*rr
+    stop=(entry-risk_distance if side=="long" else entry+risk_distance) if risk_distance>0 else None
+    target=(entry+target_distance if side=="long" else entry-target_distance) if target_distance>0 else None
+    pos={"side":side,"entry":entry,"time":bars[i+1]["dt"],"entry_i":i+1,"stop":stop,"target":target}
  if pos:
-  b=bars[-1];sign=1 if pos["side"]=="long" else -1;gross=(b["close"]-pos["entry"])*sign*q;fees=(pos["entry"]+b["close"])*q*fee_rate;slip_usdt=(pos["entry"]+b["close"])*q*slip_rate
+  b=bars[end_index-1];sign=1 if pos["side"]=="long" else -1;gross=(b["close"]-pos["entry"])*sign*q;fees=(pos["entry"]+b["close"])*q*fee_rate;slip_usdt=(pos["entry"]+b["close"])*q*slip_rate
   trades.append({"entry_time":pos["time"].isoformat(),"exit_time":b["dt"].isoformat(),"side":pos["side"],"contracts":q,"entry_price":round(pos["entry"],4),"exit_price":b["close"],"gross_usdt":round(gross,6),"fees_usdt":round(fees,6),"slippage_usdt":round(slip_usdt,6),"costs_usdt":round(fees+slip_usdt,6),"net_usdt":round(gross-fees-slip_usdt,6),"exit_reason":"end_of_data","bars_held":len(bars)-pos["entry_i"]})
  return trades
 def summary(ts,capital=1000):
@@ -193,11 +206,14 @@ def monthly(ts,bars=None):
  for m in sorted(months):
   items=d.get(m,[]);n=[t["net_usdt"] for t in items];out.append({"month":m,"trades":len(items),"wins":sum(x>0 for x in n),"losses":sum(x<0 for x in n),"win_rate_pct":round(sum(x>0 for x in n)/len(n)*100,2) if n else None,"gross_usdt":round(sum(t["gross_usdt"] for t in items),2),"fees_usdt":round(sum(t["fees_usdt"] for t in items),2),"slippage_usdt":round(sum(t["slippage_usdt"] for t in items),2),"net_usdt":round(sum(n),2)})
  return out
-def segment(bars,s,capital):
- t=backtest(bars,s,capital);m=summary(t,capital)
- months=max((bars[-1]["dt"]-bars[0]["dt"]).total_seconds()/(86400*30.4375),1/30.4375) if len(bars)>1 else 0
+def segment(bars,s,capital,start_index=0,end_index=None):
+ end_index=len(bars) if end_index is None else int(end_index)
+ start_index=int(start_index);sample=bars[start_index:end_index]
+ if not sample:raise ValueError("Segment contains no bars.")
+ t=backtest(bars,s,capital,start_index=start_index,end_index=end_index);m=summary(t,capital)
+ months=max((sample[-1]["dt"]-sample[0]["dt"]).total_seconds()/(86400*30.4375),1/30.4375) if len(sample)>1 else 0
  net=m["net_return_usdt"];m["monthly_average_net_return_usdt"]=round(net/months,2) if months else None;m["monthly_average_net_return_pct"]=round(net/capital/months*100,2) if months and capital else None
- return {"bars":len(bars),"start":bars[0]["dt"].isoformat() if bars else None,"end":bars[-1]["dt"].isoformat() if bars else None,"metrics":m,"monthly":monthly(t,bars),"trades":t}
+ return {"bars":len(sample),"start":sample[0]["dt"].isoformat(),"end":sample[-1]["dt"].isoformat(),"metrics":m,"monthly":monthly(t,sample),"trades":t}
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument("--input",default="data/btcusdt/btcusdt_1m.csv");p.add_argument("--strategy",default="projects/btcusdt_backtest/strategies/strategy_template.json");p.add_argument("--output",default="artifacts/btcusdt_backtest");p.add_argument("--fee-rate-per-side",type=float);p.add_argument("--slippage-bps",type=float);a=p.parse_args();o=Path(a.output);o.mkdir(parents=True,exist_ok=True);r={"project":"P-BTCUSDT-BACKTEST","status":"BLOCKED","research_only":True,"strategy_path":a.strategy}
  try:
