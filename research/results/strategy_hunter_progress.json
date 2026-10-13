@@ -1,9 +1,9 @@
 {
-  "cycle": 1246,
-  "updated_at": "2026-10-13T05:39:26Z",
-  "patterns_tested": 311,
-  "strategy_lab_variants": 311,
-  "strategy_lab_selection_candidates": 297,
+  "cycle": 1247,
+  "updated_at": "2026-10-13T05:57:08.547861+00:00",
+  "patterns_tested": 318,
+  "strategy_lab_variants": 318,
+  "strategy_lab_selection_candidates": 459,
   "strategy_lab_backtests": 864,
   "strategy_lab_qualified_candidates": 0,
   "strategy_lab_leader": null,
@@ -23,8 +23,31 @@
     "relative_strength_20",
     "breakout_plus_volume"
   ],
-  "candidates": 297,
+  "candidates": 459,
   "robust_candidates": 0,
   "engine_sanity": true,
-  "last_cycle_status": "completed"
+  "last_cycle_status": "completed",
+  "engine_version": "strategy_lab_v4_realistic",
+  "failure_feedback_variants_added": 28,
+  "rr_values_tested": [
+    null,
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    4.0,
+    6.0
+  ],
+  "risk_pcts_per_trade": [
+    null,
+    0.03,
+    0.05,
+    0.06
+  ],
+  "search_round": 1247,
+  "realistic_search_space_coverage": 0.5660377358490566,
+  "realistic_exceptional_20pct_monthly_alerts": 0,
+  "next_action": "continue_rotating_search"
 }
