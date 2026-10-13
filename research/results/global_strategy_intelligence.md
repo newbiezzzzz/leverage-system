@@ -1,8 +1,8 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-13T03:00:18Z
-Items: 51
+Fetched: 2026-10-13T09:02:28Z
+Items: 52
 
 ## Research hypotheses
 - **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
@@ -12,8 +12,8 @@ Items: 51
 - **market_regime** — Test separate entry logic by market breadth/volatility regime. (12 sources)
 - **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (12 sources)
 - **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (8 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (7 sources)
 - **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (7 sources)
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (6 sources)
 - **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (6 sources)
 - **machine_learning** — Treat ML/feature interactions as hypothesis generators, then validate on untouched data. (4 sources)
 
@@ -26,6 +26,7 @@ Items: 51
 - [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - CNBC](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
+- [(TLV) Trading Strategy and Analysis (TLV:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxQX1JNTFhDZnpYWUJOVzZiV3ZBNnY4NUNNekZDYngycWtZakFBenRXS0hkTGQydjN2VmMzNFVjQ1Y3eW9PTThRN0dLb0RzRlVjOTV1Z25fNWFHeTFaRTNyanBuaW1GMzdTTTV1UHNfZFN5QjFEbEthV0R4SXpCRnBobFo5UTVSX3BiZmVJdEdvcGoxWlhmUXc?oc=5) — news / SG
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [(BASE) Trading Strategy and Analysis (BASE:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxPZ3VZUW1ReUlTUkhBLWVHOWhIVzU0NXdZNTJGdVpPVHcybk1Xdm5xOHJVR3Z1VDRrcHd5U1RDTG5sZ1c1Ump0eDlxTC1CSi1PM25TOUtXa2REMENWcDB6QlYzS2dheFNyczdWSXJtTGJMNnA5V05jRy1YYzc1UVFKNElvNkNCUzlDM2YwN3VEVEZyNHRTUDQ4?oc=5) — news / HK
 - [(HMAX) Trading Strategy and Analysis (HMAX:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxPSjZFaWtJWERmb3VMZmNaX0hGRnZyNWdYQUQ5RWt3RWNvU21EU09BM0w3QXhib3d4UW12Nl9oODNaTVBRUW81czhjMmhwX0tNVzV5ZFhyYndQelBBSHE4WGZOWTdNVW1Ia2dJYUFNSEY5Y1AtelJjeTQ5ZXNubWJXUU9EQ3QwUWJBUTlxMHZybWRDaE93alpv?oc=5) — news / HK
@@ -57,4 +58,3 @@ Items: 51
 - [The Bounce Has No Direction: Sign, Magnitude, and the Microstructure of Equity Return Predictability](https://arxiv.org/abs/2606.29591v1) — arxiv / global
 - [Stock Investment: The p-index Approach](https://arxiv.org/abs/2606.08569v1) — arxiv / global
 - [Zero-Copy Semantic Contagion: An In-Memory Streaming Architecture for Evolving Attention Graphs](https://arxiv.org/abs/2606.05733v1) — arxiv / global
-- [Polymarket-v1 Database](https://arxiv.org/abs/2606.04217v2) — arxiv / global
