@@ -1,7 +1,7 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-14T09:42:01Z
+Fetched: 2026-10-14T15:46:39Z
 Items: 50
 
 ## Research hypotheses
@@ -19,12 +19,12 @@ Items: 50
 
 ## Recent research/material
 - [What Is Momentum Trading in Crypto? Strategy, Signals & Risks - Changelly](https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5) — news / HK
+- [10 GitHub Repositories to Master Quant Trading - KDnuggets](https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5) — news / SG
 - [Opendoor Stock (OPEN) Opinions on Recent Price Action and Recovery Potential - Quiver Quantitative](https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5) — news / HK
-- [(ESGG) Trading Strategy and Analysis (ESGG:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxPaHFXcnY1TERUSWM3SlBpUXc0ejRxcGd0VHMyeF9WdGN2T1U1MFVNZ3g2eGd2dGc4ajBnNVB5RUQzMWFMLXVlWEN4ajNZaGZ2ZkJIU0JKdll4bHJoM2I1SUVPQkU3aThBVUtPeFJwdnNjZXNaaG9MR0hKck9FVWhhc1V1OTBHRDFjQ0luRV9Lamc3cmp5akY4?oc=5) — news / HK
-- [(ZPW.U) Trading Strategy and Analysis (ZPW.U:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNWnJrRW5lcnZHX1VHUlZPUENNbVk1OFhqMTZZOWlnbG02bmh3OGNfcTBFNFpHMzdCYi11clpoRGNXcF9NS0VYbUxvc05CeFMzRjdMTEFzRG1PRHF2d0s2LU9BeFJuaUVsUzl0eWZfTE1EMEdGbHN1ZWZGRHdzSkFjYUhwYnBEbWw5WXQ3WDNNVXhtcTJscTZV?oc=5) — news / HK
+- [(NUSA) Trading Strategy and Analysis (NUSA:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNcEZodU1jNzZwV1F3RGh3UlZVUWp0bVhDLXRnVF8wUXA5ZWsyUjhTM2E3TUVvc0VnTU41TlpoSV9rTDlwRTAzWHJDTF8yaTB4d1BzcndCeUJLbGJpRS1Ub2tvanFJeFR1NWt3dzVqQlhXalRCTWpiMWkwLTR1UDA4SWJzaF9FaU9uUE9pbGZiU3dhc1RjTllN?oc=5) — news / HK
 - [(CPD) Trading Strategy and Analysis (CPD:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxOMjF0NG43Vi1LaFAyTVphY2lBUGo2WEs5dFJXLWxIV19mR3JmaW0tLTZuWmhLd3h6ZUFUcUJNSVZ1OWhTYWFaUzcxYlctREVLRnFBRnc2OW1jeWctOXk4bnAxWUdEZ2Q4VEdBSlJmdGhWWUpxejFOV0syZFZleVU2LVhpd0xSRGFLRVB0T29fUHNremhHVXc?oc=5) — news / HK
 - [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
-- [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
+- [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / HK
 - [Bullish CEO Tom Farley on bitcoin's price action and tokenized equities - CNBC](https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5) — news / HK
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [Tyler Technologies shares advance almost 6% after bullish price action and mixed momentum signals - Traders Union](https://news.google.com/rss/articles/CBMimgFBVV95cUxPR0x5V2RfV0FrMVo0Y0U3ZWh5UTE4VzVmc3JjVDJfUHhmbUV3bUo0YVN3ZlR2OS1STE5aZVZMTWRPcl96OHNyYmJkR21TUjB6RXhjOURUdlczcHVtSWVhdGJfODlJYXhwWTZLUGVHVzJSYXlkOU5ZREVfNFhQTnNEb2I1T190U2FPeGM2LVgzVVAtYk80VnJRWmd3?oc=5) — news / MY
