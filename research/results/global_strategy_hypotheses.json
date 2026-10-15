@@ -18,12 +18,12 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-a4516f4bc4dc",
+    "hypothesis_id": "GI-abe4a6c86799",
     "theme": "oscillator",
     "hypothesis": "Test oscillator thresholds and threshold-cross events conditioned on trend.",
     "source_count": 20,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5",
+      "https://news.google.com/rss/articles/CBMicEFVX3lxTE1OREluX2J1THVDVlpJX2RmMUlLWi1mUnlkTjBHOElNek5SX0padWdtWVAyRHBBaXc3QmNlY2phRk9fd2lyLWp4WjgwWVVDQTV4eE05QVhwb29Ddl9PVUpheFFfdUVZbWNhSWRTNUUySW0?oc=5",
       "https://arxiv.org/abs/2610.11691v2",
       "https://arxiv.org/abs/2610.08631v1",
       "https://arxiv.org/abs/2609.13825v1",
@@ -54,19 +54,19 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-c0c428fcfb61",
+    "hypothesis_id": "GI-77220e730a91",
     "theme": "volatility",
     "hypothesis": "Test volatility contraction/expansion as a state filter for entries.",
-    "source_count": 14,
+    "source_count": 13,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5",
       "https://arxiv.org/abs/2610.08443v1",
       "https://arxiv.org/abs/2610.05740v2",
       "https://arxiv.org/abs/2609.14733v1",
       "https://arxiv.org/abs/2609.14267v1",
       "https://arxiv.org/abs/2608.05373v1",
       "https://arxiv.org/abs/2608.00885v1",
-      "https://arxiv.org/abs/2607.27461v1"
+      "https://arxiv.org/abs/2607.27461v1",
+      "https://arxiv.org/abs/2607.03858v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -108,12 +108,12 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-c7fcc232ea98",
+    "hypothesis_id": "GI-81ef289ef959",
     "theme": "mean_reversion",
     "hypothesis": "Test short-horizon oversold reversal only when the longer-term trend remains positive.",
     "source_count": 8,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5",
+      "https://news.google.com/rss/articles/CBMicEFVX3lxTE1OREluX2J1THVDVlpJX2RmMUlLWi1mUnlkTjBHOElNek5SX0padWdtWVAyRHBBaXc3QmNlY2phRk9fd2lyLWp4WjgwWVVDQTV4eE05QVhwb29Ddl9PVUpheFFfdUVZbWNhSWRTNUUySW0?oc=5",
       "https://arxiv.org/abs/2610.08631v1",
       "https://arxiv.org/abs/2608.21888v1",
       "https://arxiv.org/abs/2608.05373v1",
