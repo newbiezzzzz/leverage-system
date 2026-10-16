@@ -2,9 +2,9 @@
   "tool": "Optuna",
   "status": "tested",
   "added_value": true,
-  "detail": "Discovery-selected pattern=momentum_60_uptrend, horizon=40d; held-out validation available=True",
-  "best_discovery_mean": 0.0115979383299189,
-  "validation_mean": 0.0179286946952777,
-  "validation_win_rate": 0.468439182960555,
-  "validation_observations": 61833
+  "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
+  "best_discovery_mean": 0.0124188169041337,
+  "validation_mean": 0.0186023621318438,
+  "validation_win_rate": 0.471612938960895,
+  "validation_observations": 72216
 }
