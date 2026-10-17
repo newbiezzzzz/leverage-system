@@ -1,8 +1,8 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-17T17:28:40Z
-Items: 52
+Fetched: 2026-10-17T23:43:03Z
+Items: 53
 
 ## Research hypotheses
 - **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
@@ -11,7 +11,7 @@ Items: 52
 - **volatility** — Test volatility contraction/expansion as a state filter for entries. (13 sources)
 - **market_regime** — Test separate entry logic by market breadth/volatility regime. (12 sources)
 - **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (11 sources)
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (9 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (10 sources)
 - **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (8 sources)
 - **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (7 sources)
 - **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (6 sources)
@@ -19,16 +19,17 @@ Items: 52
 
 ## Recent research/material
 - [What Is Momentum Trading in Crypto? Strategy, Signals & Risks - Changelly](https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5) — news / HK
-- [10 GitHub Repositories to Master Quant Trading - KDnuggets](https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5) — news / SG
+- [10 GitHub Repositories to Master Quant Trading - KDnuggets](https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5) — news / MY
 - [Opendoor Stock (OPEN) Opinions on Recent Price Action and Recovery Potential - Quiver Quantitative](https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5) — news / HK
 - [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
 - [Trader Gu Jingci: 10.15 Bitcoin/Ethereum Trading Strategy and Market Analysis - Bitget](https://news.google.com/rss/articles/CBMiXkFVX3lxTE95Smt0NS1sRW1fTWVLMUJtdmdUODJ4VjBqTmZaOEtkWjJla2M2TkozeWVFZlBJblU0QXpsOXo3U3NkSEJXQWZtSnZtUm9iZDJIVEZWRVBmVUNydjRFRGfSAWNBVV95cUxNeGFPWXlKT1JjZ3ZxNjIweHY0Z1Q4MkNPdnk5bUtrOEpURG04WmRjbkFDWHFUTTZCNEN3emtwM3VRVVVhaFRFZTBkMXMxOEZNSDB4SnJZNm5oQVQ2WHVBczg5Zm8?oc=5) — news / HK
 - [Polkadot (DOT) Drops 5% Amid Mean Reversion and Macro Pressure - CoinMarketCap](https://news.google.com/rss/articles/CBMicEFVX3lxTE1OREluX2J1THVDVlpJX2RmMUlLWi1mUnlkTjBHOElNek5SX0padWdtWVAyRHBBaXc3QmNlY2phRk9fd2lyLWp4WjgwWVVDQTV4eE05QVhwb29Ddl9PVUpheFFfdUVZbWNhSWRTNUUySW0?oc=5) — news / HK
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
 - [(TA) Trading Strategy and Analysis (TA:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilAFBVV95cUxOX1hMb2JDbmVGV21aLVp3c3lDWnpPRTVqd0xhQ1U5dnNMeTdWQnhuTlJCSlVOWEJkY19zVWl1bUZLMFpxU0E0bnNzNGxXSU5XdGY4eDdrLWl5ZlphaU9nc2sxeGlfZm5tcUFQRklCejY4T2NTRE0zbWt1OEs0NkpoRzBlejNldUZ0TUd0SFdmM3pzUGhn?oc=5) — news / HK
-- [(NSCE) Trading Strategy and Analysis (NSCE:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNUlJXdkdyalVEcWNuUnZpbDhNQmpkX2ZrZ2JBem4wS243ZUprR3AzZ1B2bDhLeTZUZUM3UFJUMndoYjZCR2k3TmJscXlBSTBsdU1MVkxwdDNfdlIxVW01SXJLRjBYeTNoTU1pNUxFYjNGLWhOZXNxTWtvNHpsOUFMeUd3cW5qeFYzbHhGcTl5WjgwYkprNGRZ?oc=5) — news / HK
-- [(PAGF) Trading Strategy and Analysis (PAGF:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNdUtoYVByc1ZLYV83Qm9fWnM2bUxHTDNqSW9ZNUtFeno1MFJMMndfZXpxejI2VnYyU2dhUXlIME1ub3J0ZHVZTWlqUW85LTBpLXB6MEhHMDFUYnNjelRuLWdqM0Nya19tQWRQNlRQYXRrLXM1RXlSWHp4bFdLc0p3cTJfWDdkdHFaMDdsbzVYbGFvZkRSLWZj?oc=5) — news / HK
-- [(CRT.UN) Trading Strategy and Analysis (CRT.UN:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxOeEtSQldtWXJxU3dYVzNJTm9tYnBnVFpmYnQzLXhXZEE0TlFudkp4amdYR0h2TU5Sc3U5S2pIbk53VUpQblFqRHhVVFlhS1FwdFkzU2hmRUxMSm40Rm5ycFBzaTNnb1BsVHBDa3U5cWFQQnVERUd0akFfZm9wbE5YdU1LSjdtbGZ2UzlSX1ljS21OSzNBWjZwdA?oc=5) — news / MY
+- [(SVR) Trading Strategy and Analysis (SVR:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxNdjg0ZVV6NUlXNm1uWk9oRl9xOGdfekhocExzdmNnR3EzUnVzUXdFTjl2OVozeVBoN2VTc0c1Q0ZwRXdUTV9OdGZ3ZlNxczNYQ2tPYUJUb1R4OEw2ak5qZlNkbnRmZlJ3eGpKSXRKSHBkUmwxYVltVG45dkY1ejRvaXhOTEUzZS1pWjlVc3ZQck9tNkJaenc?oc=5) — news / HK
+- [(NSCE) Trading Strategy and Analysis (NSCE:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNUlJXdkdyalVEcWNuUnZpbDhNQmpkX2ZrZ2JBem4wS243ZUprR3AzZ1B2bDhLeTZUZUM3UFJUMndoYjZCR2k3TmJscXlBSTBsdU1MVkxwdDNfdlIxVW01SXJLRjBYeTNoTU1pNUxFYjNGLWhOZXNxTWtvNHpsOUFMeUd3cW5qeFYzbHhGcTl5WjgwYkprNGRZ?oc=5) — news / GB
+- [(KEG.UN) Trading Strategy and Analysis (KEG.UN:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxNQ0NTOFZxVkRIc1RkOXotX0hLWGd3dzFDcWlUc2FNOHNXRzhTTG9XdUtwUG9mYmZOTGR1bTQtYzh3ek1UejVhbG5tRDlBTzlKNTI1Z3RBbEROemwwbW1NRzRPZnJTb3hZaEF6TUM5dmJFR1VjQUJXRjA1LTNtUzdxZDFyUmxKZU40UlI3QnJVYlJkaEVEM19EeA?oc=5) — news / HK
+- [(HUBL.U) Trading Strategy and Analysis (HUBL.U:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxNOXRQRnNfQ0tyTnJyQncyVmtWLVNBclhadGloNVpFNFNodGpfclVReW5saXZPR3d1MnFXS1NHZnI5aWlfOEZMb3FOdEw3c3dpNmVjQzAzLTFERjdjM21vWUFOWDdrQUdZWV9LcTNUc3ltU3RudmJDUUNmWEpfX0R5SEtLd0hsU0xtdE93TEVxMHpUbDBJd3F2bg?oc=5) — news / SG
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [Tyler Technologies shares advance almost 6% after bullish price action and mixed momentum signals - Traders Union](https://news.google.com/rss/articles/CBMimgFBVV95cUxPR0x5V2RfV0FrMVo0Y0U3ZWh5UTE4VzVmc3JjVDJfUHhmbUV3bUo0YVN3ZlR2OS1STE5aZVZMTWRPcl96OHNyYmJkR21TUjB6RXhjOURUdlczcHVtSWVhdGJfODlJYXhwWTZLUGVHVzJSYXlkOU5ZREVfNFhQTnNEb2I1T190U2FPeGM2LVgzVVAtYk80VnJRWmd3?oc=5) — news / MY
 - [Diffusive Market Impact: A Consistent Microfoundation](https://arxiv.org/abs/2610.11691v2) — arxiv / global
@@ -57,4 +58,3 @@ Items: 52
 - [Regime-Conditional Distributional Comparison of Trading Strategies: A GAMLSS/ZAGA Framework Applied to the S&P 500](https://arxiv.org/abs/2606.31251v1) — arxiv / global
 - [The Bounce Has No Direction: Sign, Magnitude, and the Microstructure of Equity Return Predictability](https://arxiv.org/abs/2606.29591v1) — arxiv / global
 - [Stock Investment: The p-index Approach](https://arxiv.org/abs/2606.08569v1) — arxiv / global
-- [Zero-Copy Semantic Contagion: An In-Memory Streaming Architecture for Evolving Attention Graphs](https://arxiv.org/abs/2606.05733v1) — arxiv / global
