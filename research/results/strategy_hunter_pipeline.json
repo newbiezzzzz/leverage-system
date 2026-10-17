@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T07:12:18Z",
+  "updated_at": "2026-10-17T07:32:53Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.030s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.484s",
         "version": "0.28.1"
       }
     },
@@ -44,10 +44,10 @@
         "tool": "LightGBM",
         "status": "tested",
         "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1691; RMSE=0.1032; mean-only RMSE=0.1044",
-        "oos_correlation": 0.1691369812764052,
-        "oos_rmse": 0.10316971073069137,
-        "baseline_rmse": 0.10441958385100177
+        "detail": "OOS 5-day-return correlation=0.1690; RMSE=0.1031; mean-only RMSE=0.1044",
+        "oos_correlation": 0.16902341696322476,
+        "oos_rmse": 0.1031391159339795,
+        "baseline_rmse": 0.1043853939631208
       }
     },
     "symbolic": {
@@ -57,10 +57,10 @@
         "tool": "Symbolic Regression",
         "status": "tested",
         "added_value": false,
-        "detail": "OOS 5-day formula correlation=nan; RMSE=0.0981; mean-only RMSE=0.0981; formula=sub(X1, X1)",
+        "detail": "OOS 5-day formula correlation=nan; RMSE=0.0980; mean-only RMSE=0.0980; formula=sub(X1, X1)",
         "oos_correlation": NaN,
-        "oos_rmse": 0.09807064660938102,
-        "baseline_rmse": 0.09806864739536973,
+        "oos_rmse": 0.09804245117913347,
+        "baseline_rmse": 0.09804046484664831,
         "formula": "sub(X1, X1)"
       }
     },
@@ -78,9 +78,9 @@
         "added_value": true,
         "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
         "best_discovery_mean": 0.0124188169041337,
-        "validation_mean": 0.0186023621318438,
-        "validation_win_rate": 0.471612938960895,
-        "validation_observations": 72216
+        "validation_mean": 0.0185967137396868,
+        "validation_win_rate": 0.471566441893632,
+        "validation_observations": 72221
       }
     },
     "lean": {
