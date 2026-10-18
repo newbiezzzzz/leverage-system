@@ -36,12 +36,22 @@ jobs:
           cp -R dashboard/. _site/
           cp -R website/p001/. _site/p001/
           printf '%s\n' "${GITHUB_SHA}" > _site/deployment-commit.txt
-      - name: Verify redesigned dashboard is in artifact
+      - name: Verify master and all project dashboards in artifact
         run: |
-          test -f _site/projects.html
-          grep -q "PROJECT 001 · DIGITAL PRODUCTS" _site/projects.html
-          grep -q "P001-DP01" _site/projects.html
-          grep -q "P-002" _site/projects.html
+          test -f _site/index.html
+          test -f _site/master.html
+          test -f _site/live-status.js
+          test -f _site/project-strategy-hunter.html
+          test -f _site/project-btcusdt.html
+          test -f _site/project-fcpo.html
+          test -f _site/project-fabrication-tools.html
+          grep -q "Master Dashboard" _site/master.html
+          grep -q "Strategy Hunter" _site/project-strategy-hunter.html
+          grep -q "BTCUSDT" _site/project-btcusdt.html
+          grep -q "FCPO" _site/project-fcpo.html
+          grep -q "Fabrication Tool Network" _site/project-fabrication-tools.html
+          grep -q "live-status.js" _site/master.html
+          grep -q "P-002" _site/master.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
