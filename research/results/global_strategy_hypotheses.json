@@ -90,37 +90,37 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-566bf125ec77",
+    "hypothesis_id": "GI-631e686afacf",
     "theme": "price_action",
     "hypothesis": "Test repeatable price/volume bar structures rather than subjective chart patterns.",
-    "source_count": 11,
+    "source_count": 10,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMiswFBVV95cUxOSFNuc2NlOUhjOW5xVW5mQTIyT0NsbHd3UlZBSTh0THpSNjJDRHB3eUl5T0dSZUVlMEhrTU9WTFlGOE1ycl9DWG5SaUhac2d5SlA4LWtuRlIwYVZPOGFqNElWSFlxVmNJMC02Y0xnYTRBZm91eHBVanBPeHg1VDNoM3Y2dWRWaXB1WTBBbDdITmhtNHoyLXpXeHdyWW5ZbkV5U3Q1MG82SFNFUWo5d3JueXlxNA?oc=5",
       "https://news.google.com/rss/articles/CBMimgFBVV95cUxPR0x5V2RfV0FrMVo0Y0U3ZWh5UTE4VzVmc3JjVDJfUHhmbUV3bUo0YVN3ZlR2OS1STE5aZVZMTWRPcl96OHNyYmJkR21TUjB6RXhjOURUdlczcHVtSWVhdGJfODlJYXhwWTZLUGVHVzJSYXlkOU5ZREVfNFhQTnNEb2I1T190U2FPeGM2LVgzVVAtYk80VnJRWmd3?oc=5",
       "https://arxiv.org/abs/2609.35063v1",
       "https://arxiv.org/abs/2609.14267v1",
       "https://arxiv.org/abs/2609.13825v1",
       "https://arxiv.org/abs/2608.29025v1",
       "https://arxiv.org/abs/2608.05373v1",
-      "https://arxiv.org/abs/2607.20093v1"
+      "https://arxiv.org/abs/2607.20093v1",
+      "https://arxiv.org/abs/2607.03858v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-3f4f1aac2f25",
+    "hypothesis_id": "GI-647568bca9d8",
     "theme": "general",
     "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
-    "source_count": 10,
+    "source_count": 8,
     "source_urls": [
       "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
       "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
       "https://news.google.com/rss/articles/CBMiXkFVX3lxTE95Smt0NS1sRW1fTWVLMUJtdmdUODJ4VjBqTmZaOEtkWjJla2M2TkozeWVFZlBJblU0QXpsOXo3U3NkSEJXQWZtSnZtUm9iZDJIVEZWRVBmVUNydjRFRGfSAWNBVV95cUxNeGFPWXlKT1JjZ3ZxNjIweHY0Z1Q4MkNPdnk5bUtrOEpURG04WmRjbkFDWHFUTTZCNEN3emtwM3VRVVVhaFRFZTBkMXMxOEZNSDB4SnJZNm5oQVQ2WHVBczg5Zm8?oc=5",
       "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNTV0Y2FlbWlrMXlhcEVPdnBYVHFnMnRSZXQ5aEpSU2ZJU0xudlV4SExjQXNoZzB6Qkd2ZDhhb2dxTnQzb0FCX2s1bVJrdGJONHJFaklRbzhlTUpBMF9Ub0VYZUdJS3FYSmt2cHVhTlVWc2NidnRVcXY2M192R3VtNW9IbXdiNjNjUUQ0dGxmS2Z3THNzLVVB?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxOTFg1ZFEwenZYcGFIdXJwVG9KSEMyRVAwd092eEszUHV1TmR3VEFQYzYwbTJIeGhqYUlGOU1EUmRGbDc0WkpscXRtcVBYREFWN0JFUUFVMHZhMUR2U3ZCUEQzczNBajdKajEwWFBlbGdTV3E0N3lXN2JlTXlRTGVHQU9VTGl5Si1OeUpRTV9na0FiNXlPOXEzbA?oc=5",
       "https://news.google.com/rss/articles/CBMilAFBVV95cUxOX1hMb2JDbmVGV21aLVp3c3lDWnpPRTVqd0xhQ1U5dnNMeTdWQnhuTlJCSlVOWEJkY19zVWl1bUZLMFpxU0E0bnNzNGxXSU5XdGY4eDdrLWl5ZlphaU9nc2sxeGlfZm5tcUFQRklCejY4T2NTRE0zbWt1OEs0NkpoRzBlejNldUZ0TUd0SFdmM3pzUGhn?oc=5",
-      "https://news.google.com/rss/articles/CBMilgFBVV95cUxNdjg0ZVV6NUlXNm1uWk9oRl9xOGdfekhocExzdmNnR3EzUnVzUXdFTjl2OVozeVBoN2VTc0c1Q0ZwRXdUTV9OdGZ3ZlNxczNYQ2tPYUJUb1R4OEw2ak5qZlNkbnRmZlJ3eGpKSXRKSHBkUmwxYVltVG45dkY1ejRvaXhOTEUzZS1pWjlVc3ZQck9tNkJaenc?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUlJXdkdyalVEcWNuUnZpbDhNQmpkX2ZrZ2JBem4wS243ZUprR3AzZ1B2bDhLeTZUZUM3UFJUMndoYjZCR2k3TmJscXlBSTBsdU1MVkxwdDNfdlIxVW01SXJLRjBYeTNoTU1pNUxFYjNGLWhOZXNxTWtvNHpsOUFMeUd3cW5qeFYzbHhGcTl5WjgwYkprNGRZ?oc=5",
-      "https://news.google.com/rss/articles/CBMimAFBVV95cUxNQ0NTOFZxVkRIc1RkOXotX0hLWGd3dzFDcWlUc2FNOHNXRzhTTG9XdUtwUG9mYmZOTGR1bTQtYzh3ek1UejVhbG5tRDlBTzlKNTI1Z3RBbEROemwwbW1NRzRPZnJTb3hZaEF6TUM5dmJFR1VjQUJXRjA1LTNtUzdxZDFyUmxKZU40UlI3QnJVYlJkaEVEM19EeA?oc=5"
+      "https://arxiv.org/abs/2603.03671v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
