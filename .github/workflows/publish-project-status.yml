@@ -1,0 +1,83 @@
+name: Publish project backtest status for dashboards
+
+on:
+  workflow_run:
+    workflows:
+      - BTCUSDT User Strategy Backtest
+      - FCPO User Strategy Backtest
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: publish-project-status
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.head_branch == 'main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download reports from completed run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: "*report*"
+          path: ${{ runner.temp }}/project-reports
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          merge-multiple: false
+
+      - name: Publish latest report on the project-status branch
+        env:
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          set -euo pipefail
+          if [ "$WORKFLOW_NAME" = "BTCUSDT User Strategy Backtest" ]; then
+            PROJECT="btcusdt"
+            SEARCH_DIR="$RUNNER_TEMP/project-reports/btcusdt-user-strategy-report"
+          elif [ "$WORKFLOW_NAME" = "FCPO User Strategy Backtest" ]; then
+            PROJECT="fcpo"
+            SEARCH_DIR="$RUNNER_TEMP/project-reports/fcpo-user-strategy-report"
+          else
+            echo "Unsupported workflow: $WORKFLOW_NAME"
+            exit 1
+          fi
+
+          REPORT="$(find "$SEARCH_DIR" -type f -name latest_report.json -print -quit)"
+          if [ -z "$REPORT" ]; then
+            echo "::error::No latest_report.json found for $PROJECT in completed run $RUN_ID"
+            find "$RUNNER_TEMP/project-reports" -maxdepth 5 -type f | head -100
+            exit 1
+          fi
+
+          python -m json.tool "$REPORT" >/dev/null
+          mkdir -p "$RUNNER_TEMP/published"
+          cp "$REPORT" "$RUNNER_TEMP/published/$PROJECT.json"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin project-status; then
+            git checkout -B project-status origin/project-status
+          else
+            git checkout --orphan project-status
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+          mkdir -p status
+          cp "$RUNNER_TEMP/published/$PROJECT.json" "status/$PROJECT.json"
+          git add "status/$PROJECT.json"
+          if git diff --cached --quiet; then
+            echo "Report unchanged; nothing to publish."
+            exit 0
+          fi
+          git commit -m "Publish latest $PROJECT backtest status from run $RUN_ID"
+          git push origin project-status
