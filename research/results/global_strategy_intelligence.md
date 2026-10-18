@@ -1,18 +1,18 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-18T12:02:24Z
-Items: 53
+Fetched: 2026-10-18T18:08:39Z
+Items: 51
 
 ## Research hypotheses
 - **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
 - **oscillator** — Test oscillator thresholds and threshold-cross events conditioned on trend. (20 sources)
 - **momentum** — Test relative-strength/momentum entry conditioned on a longer-term trend. (14 sources)
-- **volatility** — Test volatility contraction/expansion as a state filter for entries. (14 sources)
+- **volatility** — Test volatility contraction/expansion as a state filter for entries. (13 sources)
 - **market_regime** — Test separate entry logic by market breadth/volatility regime. (12 sources)
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (10 sources)
 - **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (10 sources)
-- **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (9 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (9 sources)
+- **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (8 sources)
 - **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (7 sources)
 - **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (6 sources)
 - **machine_learning** — Treat ML/feature interactions as hypothesis generators, then validate on untouched data. (4 sources)
@@ -20,18 +20,16 @@ Items: 53
 ## Recent research/material
 - [What Is Momentum Trading in Crypto? Strategy, Signals & Risks - Changelly](https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5) — news / HK
 - [Bank of America caught between bearish price action and 15% Q2 growth outlook - Seeking Alpha](https://news.google.com/rss/articles/CBMitAFBVV95cUxNUThjWUZWcGdxdm8wNnVwWTBCS3dsc2VYUjJidFNhWEc0R1Z1S2tGdnh3UWJFWXhZZEJWRTR0TUIwQ25QNHhSWEJ0ZTF3ZEhXTnR6REs0dzF4TzFuZVRhTTBOSHBkSVloQXdFLU5MWThQLXFZSUlLallXUDJqSUdkX2RRemR5MXlFWVZaQzlJMzBIN3VsVlJOSlJHeVl4dUZnTkd4MVhvRTJMY0JkTU1yTklIelo?oc=5) — news / HK
-- [10 GitHub Repositories to Master Quant Trading - KDnuggets](https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5) — news / SG
+- [10 GitHub Repositories to Master Quant Trading - KDnuggets](https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5) — news / MY
 - [Gold Trading Strategy 2026: XAU/USD Guide - ThinkMarkets](https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5) — news / MY
 - [Trader Gu Jingci: 10.15 Bitcoin/Ethereum Trading Strategy and Market Analysis - Bitget](https://news.google.com/rss/articles/CBMiXkFVX3lxTE95Smt0NS1sRW1fTWVLMUJtdmdUODJ4VjBqTmZaOEtkWjJla2M2TkozeWVFZlBJblU0QXpsOXo3U3NkSEJXQWZtSnZtUm9iZDJIVEZWRVBmVUNydjRFRGfSAWNBVV95cUxNeGFPWXlKT1JjZ3ZxNjIweHY0Z1Q4MkNPdnk5bUtrOEpURG04WmRjbkFDWHFUTTZCNEN3emtwM3VRVVVhaFRFZTBkMXMxOEZNSDB4SnJZNm5oQVQ2WHVBczg5Zm8?oc=5) — news / HK
 - [Polkadot (DOT) Drops 5% Amid Mean Reversion and Macro Pressure - CoinMarketCap](https://news.google.com/rss/articles/CBMicEFVX3lxTE1OREluX2J1THVDVlpJX2RmMUlLWi1mUnlkTjBHOElNek5SX0padWdtWVAyRHBBaXc3QmNlY2phRk9fd2lyLWp4WjgwWVVDQTV4eE05QVhwb29Ddl9PVUpheFFfdUVZbWNhSWRTNUUySW0?oc=5) — news / HK
 - [JPMorgan Forms New Quant Group to Fend Off Market-Maker Rivals - Bloomberg.com](https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5) — news / SG
+- [(ICPB) Trading Strategy and Analysis (ICPB:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxQTWU1Vmh0MHA2Ny1nOGJna2FoSWVfeHlYZ24tUTVhQU5DMzktS1VhVmVGa2pHdVdvZG16M1V4aVMwVTV6WnlkSUlXeTBxS2dCMnpUSzhKbEhhWVZJZE5TWllkdzVVOEJzRjc2TzVjRFE2YnRSZjRKdFB2VS1UV1Z3LVBnZXREaVdMZXotSlZvaU5sZWN0ZEhF?oc=5) — news / HK
 - [(SOT.DB) Trading Strategy and Analysis (SOT.DB:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxPOUphaTczREJPMU9SLWVQZVNlTTFuYkdaWkUxUDlLdTZoZXZHMDl6ajNMeWhjVEx0bUlTNVF2Y0R5ekVDeEF0clR1b3FLMF9RV2ZTN3lIMFpIVVNtMTl4WEJZSUV3YkM0QU9UNnUyUlR5NzA0cUNjM1R6WkQ4OFZFS0NHT3NvaDFURXRPTjM5ZWZ6T0NVZHpEYw?oc=5) — news / HK
-- [(MAL) Trading Strategy and Analysis (MAL:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxNbTJYVFdZLU9qZHVJXzRTMWRYSE9DNGhqWk5wM0pZeVJnMzZMWTBNbS1CdVRkRU96OFZLTEFVWHBxTWx3SDNKeE10cS1sSUJGeGJwNTlINTNWV1dwU1ppcDBTd2tYMjRRQjRVN1NZby03V1pSUDJqXzlWc3RSQXJ1LWU1NUszUVM1Qk9FOWpOSFV4cDF3cWc?oc=5) — news / HK
-- [(ATSX) Trading Strategy and Analysis (ATSX:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNMVpsSkRVVlVPX3lQbmpPVVQ3NGZsODZUb3NnYnhiakRZaWZHN21QR3FjbTd1Y3lzRGE1MllvcHFRM0ltSE9MeHd2VlIxdk5XajhERzNEVHFDNm9sQjUzOEhmLU9RVkJUWDJ1ZTZfa3JzX2p4RnYtb084TzZVMERiWFhVemFNN0lmQjctX214WXh0RDB6Q19j?oc=5) — news / HK
-- [(XMY) Trading Strategy and Analysis (XMY:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxOejZFb3lZNjRndThqTkNYSTJsUThpaVNObkY2a3RYZzZuUVBkX1RIdUpEV3FWMTlDTFVTb21iY2VrZnZsUXVDak0wOThKdm1lQlJMYUJiOWRjd2U0TUlHZ3d1VW5hYVMwcm1VRFdfMTkzdWxaX3RzTHhRMU1hXzd3T3RtTWE2Ny1mREJOeHdnWjNia25qU2c?oc=5) — news / MY
+- [(XMY) Trading Strategy and Analysis (XMY:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxOejZFb3lZNjRndThqTkNYSTJsUThpaVNObkY2a3RYZzZuUVBkX1RIdUpEV3FWMTlDTFVTb21iY2VrZnZsUXVDak0wOThKdm1lQlJMYUJiOWRjd2U0TUlHZ3d1VW5hYVMwcm1VRFdfMTkzdWxaX3RzTHhRMU1hXzd3T3RtTWE2Ny1mREJOeHdnWjNia25qU2c?oc=5) — news / HK
 - [(ZLSU) Trading Strategy and Analysis (ZLSU:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxQNTV0Y2FlbWlrMXlhcEVPdnBYVHFnMnRSZXQ5aEpSU2ZJU0xudlV4SExjQXNoZzB6Qkd2ZDhhb2dxTnQzb0FCX2s1bVJrdGJONHJFaklRbzhlTUpBMF9Ub0VYZUdJS3FYSmt2cHVhTlVWc2NidnRVcXY2M192R3VtNW9IbXdiNjNjUUQ0dGxmS2Z3THNzLVVB?oc=5) — news / SG
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
-- [SPX6900 Volatility: Mean Reversion or Catalyst-Driven? - CoinMarketCap](https://news.google.com/rss/articles/CBMicEFVX3lxTE11NVFvaENSYUluUUE5dkYyNlFWWG50X2JYSjcxa213WW5abUhtWS0wRkZSV3Yzc3hIMzB4cTZGR3d2S2lHV1Q0dEg5ZWxpeFhaWEJ2cVdaaGIwQ1h2bW01QkFDb1djM2RjTm9UZGFnS1Y?oc=5) — news / MY
 - [Diffusive Market Impact: A Consistent Microfoundation](https://arxiv.org/abs/2610.11691v2) — arxiv / global
 - [Exponential investors with weakly mean-reverting prices](https://arxiv.org/abs/2610.08631v1) — arxiv / global
 - [Scalable Regularized Vector Multiplicative Error Models for Positive-valued Financial Time Series](https://arxiv.org/abs/2610.08443v1) — arxiv / global
@@ -58,3 +56,5 @@ Items: 53
 - [Regime-Conditional Distributional Comparison of Trading Strategies: A GAMLSS/ZAGA Framework Applied to the S&P 500](https://arxiv.org/abs/2606.31251v1) — arxiv / global
 - [The Bounce Has No Direction: Sign, Magnitude, and the Microstructure of Equity Return Predictability](https://arxiv.org/abs/2606.29591v1) — arxiv / global
 - [Stock Investment: The p-index Approach](https://arxiv.org/abs/2606.08569v1) — arxiv / global
+- [Zero-Copy Semantic Contagion: An In-Memory Streaming Architecture for Evolving Attention Graphs](https://arxiv.org/abs/2606.05733v1) — arxiv / global
+- [Polymarket-v1 Database](https://arxiv.org/abs/2606.04217v2) — arxiv / global
