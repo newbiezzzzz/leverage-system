@@ -41,6 +41,7 @@ jobs:
           test -f _site/index.html
           test -f _site/master.html
           test -f _site/live-status.js
+          node --check _site/live-status.js
           test -f _site/project-strategy-hunter.html
           test -f _site/project-btcusdt.html
           test -f _site/project-fcpo.html
