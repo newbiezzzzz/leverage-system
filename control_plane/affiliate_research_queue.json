@@ -1,11 +1,384 @@
 {
   "version": 1,
   "project": "affiliate-project",
-  "generated_at": "2026-10-19T20:37:46.179451+00:00",
+  "generated_at": "2026-10-20T19:21:37.047541+00:00",
   "scope": "Automotive / car problem-solving / buying decisions",
   "record_count": 65,
   "source_errors": [],
   "records": [
+    {
+      "id": "r-28891d6e6ed44130",
+      "project": "affiliate-project",
+      "problem": "Buy new tanky or shut the hole with adhesive? (Leak)",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Anyone know where to find spare rubber grummet for corolla tanky? Been going around Klang and was advised to changed entire tanky. Should i just use adhesive to tightly seal it? Reason not planning new tanky cause gonna overhaul engine 😬 &#32; submitted by &#32; /u/AbortionlordJr [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xazvb5/buy_new_tanky_or_shut_the_hole_with_adhesive_leak/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T18:20:58+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.008960+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-e490608d8e4ce4c8",
+      "project": "affiliate-project",
+      "problem": "Volkswagen GTI Roadster Vision Gran Turismo,",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "I accidentally came across this while surfing. Engine: 3.0-litre twin-turbo VR6 Power &amp; Torque: 503 bhp and up to 665 Nm of torque Performance: 0–100 km/h in 3.6 seconds Drivetrain: 4MOTION all-wheel drive (AWD) paired with a 7-speed DSG transmission Build: Carbon-fibre monocoque with an aggressive, roofless aerodynamic design Origin: Originally created digitally for the Gran Turismo 6 video game before Volkswagen built a physical full-scale concept. What do u guys think ? &#32; submitted by &#32; /u/keep_it_real_4554 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xav7lh/volkswagen_gti_roadster_vision_gran_turismo/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T15:29:37+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009081+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-01d337befb8c26e6",
+      "project": "affiliate-project",
+      "problem": "China car better than H or T?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Are u paying extra for the badge or is it actually worth it? &#32; submitted by &#32; /u/ChickenRice9000 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xat4iv/china_car_better_than_h_or_t/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "worth"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-10-20T14:08:02+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009130+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-d7930d878b238f77",
+      "project": "affiliate-project",
+      "problem": "Yamaha RS100, YB100, How was it?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "I&#39;m quite curious on these two. To me they seem kinda the same just one has a Reed valve and the other has rotary. If you had one of these, please tell me how it was from parts availability, ride experience and maintenance. I want to know how it was here in Malaysia cuz I&#39;m thinking of buying one someday. &#32; submitted by &#32; /u/Super-Bid8302 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xasi4a/yamaha_rs100_yb100_how_was_it/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy",
+          "maintenance"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 4
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 4,
+      "product_potential": 2,
+      "freshness": "2026-10-20T13:42:42+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009194+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-25bdcc6848588b85",
+      "project": "affiliate-project",
+      "problem": "Stock Car in Sepang",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi guys, need advice as per title. Is it possible to bring stock car into SIC just to drive around for fun? How much would it cost? &#32; submitted by &#32; /u/Suspicious-Safe-1987 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xasi3v/stock_car_in_sepang/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 3,
+      "product_potential": 1,
+      "freshness": "2026-10-20T13:42:41+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009238+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-b8fbbc63c6c98535",
+      "project": "affiliate-project",
+      "problem": "Bro gave zero f",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Genuine question, what happen if you dont pay parking saman other than the saman keep getting more expensive? Whats the end game? &#32; submitted by &#32; /u/serenityinthecloud [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xar8ai/bro_gave_zero_f/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T12:48:03+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009281+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-6a9d33db12b44e8e",
+      "project": "affiliate-project",
+      "problem": "Lexus RX 200T 2.0 2016 vs Toyota Harrier 2.0 Turbo 2019",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Hi guys, looking to get a car for my family of 4. Thought of getting the Harrier first due to its reliability but the interior isnt very impressive. Found the 2016 Rx 200T to be significantly more comfortable in the interior but I&#39;m wondering about the reliability and maintenance? how much more expensive would it be to maintain compared to the Harrier? thanks for any answers and comments &#32; submitted by &#32; /u/axtromania [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xams9c/lexus_rx_200t_20_2016_vs_toyota_harrier_20_turbo/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "maintenance"
+        ],
+        "buyer_intent": 3,
+        "problem_strength": 2,
+        "content_potential": 4
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 3,
+      "content_potential": 4,
+      "product_potential": 2,
+      "freshness": "2026-10-20T08:41:18+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009351+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-f6c5a16821a93e83",
+      "project": "affiliate-project",
+      "problem": "Need Advice on Car Loan. Too confused with the new rate.",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Is the below rate good? Amount: RM105,000.00 Interest: 4.53% Reducing Balance Fix Rate Monthly: RM1,185.70 HPLIFE: RM948.15 Tenure: 108 Months &#32; submitted by &#32; /u/OkSpellRich [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xamd49/need_advice_on_car_loan_too_confused_with_the_new/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T08:13:30+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009398+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-6daaffc95c754443",
+      "project": "affiliate-project",
+      "problem": "Engine oil recos for toyota wigo G variant",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "&#32; submitted by &#32; /u/Nat3828 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xam2xm/engine_oil_recos_for_toyota_wigo_g_variant/",
+      "demand_signal": {
+        "keyword_hits": [
+          "oil"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T07:55:09+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009430+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-64dd3b77674c18f3",
+      "project": "affiliate-project",
+      "problem": "Is 30k km mileage for a bike alot? Should I still get it?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "FYI I mean motorbike. Sportbike View Poll &#32; submitted by &#32; /u/Independent-Bite-628 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xal51u/is_30k_km_mileage_for_a_bike_alot_should_i_still/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T06:55:14+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009471+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-1215c278c97f69e6",
+      "project": "affiliate-project",
+      "problem": "Car start problem",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "So last two weeks, my car battery was faulty, SoH of 50%. I got it replaced even though the battery was installed just 1.5 years ago and it was Century brand, forgot the model but it was around RM375 when it was first installed. So that&#39;s that. A new battery was installed. Yokohama brand. So not long after the new battery was installed, it still has slow cranks if I go for short trips like below 3km or so. It behaves well during cold starts and long distances trip, however. Is this normal for a car battery? When the car still had the Century battery, I replaced the alternator and starter m",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xaj7tb/car_start_problem/",
+      "demand_signal": {
+        "keyword_hits": [
+          "battery",
+          "car",
+          "problem"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 3,
+        "content_potential": 4
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 4,
+      "product_potential": 3,
+      "freshness": "2026-10-20T04:59:34+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009586+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-c56e021ebdf700c8",
+      "project": "affiliate-project",
+      "problem": "KPDN seizes RON95 petrol samples from seven stations over water contamination complaints in Selangor",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "&#32; submitted by &#32; /u/stormy001 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xah99q/kpdn_seizes_ron95_petrol_samples_from_seven/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T03:14:01+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009629+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-18a15b102889e6af",
+      "project": "affiliate-project",
+      "problem": "Car with minor rattling sound - SC said need to take apart dashboard to check",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Current car is 3 years of age, it sometimes has a minor rattling/vibration sound around the dashboard area usually at higher speeds (but not always). I would say maybe 35% of the time it has a sound and the sound also don&#39;t last for the entirety of the drive. It doesn&#39;t in any way affect the driving (except irritates me). I told the official SC about it and they mentioned I need to leave the car there for 3 days for them to open up the whole front dashboard part to check. My worries are that: 1) Car is now outside of 3 years warranty and there might be huge cost 2) Plastic components m",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xagur9/car_with_minor_rattling_sound_sc_said_need_to/",
+      "demand_signal": {
+        "keyword_hits": [
+          "car"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T02:54:01+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009735+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-b93d9eb087f15aaa",
+      "project": "affiliate-project",
+      "problem": "Jpj bidding",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "Anyone facing problems with buying the catalog? Payment declined, all the way. &#32; submitted by &#32; /u/digbick_94 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xagnuy/jpj_bidding/",
+      "demand_signal": {
+        "keyword_hits": [
+          "buy",
+          "problem"
+        ],
+        "buyer_intent": 2,
+        "problem_strength": 2,
+        "content_potential": 3
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 2,
+      "content_potential": 3,
+      "product_potential": 2,
+      "freshness": "2026-10-20T02:44:16+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009771+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-52573943481296a6",
+      "project": "affiliate-project",
+      "problem": "This honestly looks like Myvi to me, do you guys agree?",
+      "source": "r/kereta",
+      "source_kind": "reddit",
+      "evidence": "But since myvi is essentially a sub-company of daihatsu and myvi first and second gen is based on daihatsu boon that it kinda makes sense. just want to identify whether it is mainly myvi or otherwise &#32; submitted by &#32; /u/Accomplished_Heron_5 [link] &#32; [comments]",
+      "evidence_url": "https://www.reddit.com/r/kereta/comments/1xaepfu/this_honestly_looks_like_myvi_to_me_do_you_guys/",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 1,
+      "freshness": "2026-10-20T01:09:44+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.009824+00:00",
+      "freshness_status": "fresh"
+    },
     {
       "id": "r-2325d4b03d19b450",
       "project": "affiliate-project",
@@ -28,7 +401,7 @@
       "product_potential": 1,
       "freshness": "2026-10-19T15:06:09+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.990515+00:00",
+      "collected_at": "2026-10-20T19:21:36.009878+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -53,7 +426,7 @@
       "product_potential": 1,
       "freshness": "2026-10-19T14:40:50+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.990600+00:00",
+      "collected_at": "2026-10-20T19:21:36.009934+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -81,7 +454,7 @@
       "product_potential": 1,
       "freshness": "2026-10-19T14:37:54+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.990749+00:00",
+      "collected_at": "2026-10-20T19:21:36.010083+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -107,7 +480,7 @@
       "product_potential": 2,
       "freshness": "2026-10-19T11:34:01+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.990837+00:00",
+      "collected_at": "2026-10-20T19:21:36.010154+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -132,7 +505,7 @@
       "product_potential": 1,
       "freshness": "2026-10-19T10:45:18+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.990892+00:00",
+      "collected_at": "2026-10-20T19:21:36.010203+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -158,7 +531,7 @@
       "product_potential": 1,
       "freshness": "2026-10-19T08:38:10+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.990967+00:00",
+      "collected_at": "2026-10-20T19:21:36.010264+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -183,7 +556,7 @@
       "product_potential": 1,
       "freshness": "2026-10-19T07:45:30+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991017+00:00",
+      "collected_at": "2026-10-20T19:21:36.010309+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -210,7 +583,7 @@
       "product_potential": 2,
       "freshness": "2026-10-19T06:34:06+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991091+00:00",
+      "collected_at": "2026-10-20T19:21:36.010370+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -235,7 +608,7 @@
       "product_potential": 2,
       "freshness": "2026-10-19T06:09:52+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991187+00:00",
+      "collected_at": "2026-10-20T19:21:36.010449+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -258,391 +631,85 @@
       "product_potential": 1,
       "freshness": "2026-10-19T02:33:23+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991222+00:00",
+      "collected_at": "2026-10-20T19:21:36.010475+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-823a0555ed7a35bf",
+      "id": "r-c8b616e3c5229b8d",
       "project": "affiliate-project",
-      "problem": "Is this no plate legal?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "I thought you can’t have any symbol &#32; submitted by &#32; /u/Tricky_Sky_7389 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x9kw5z/is_this_no_plate_legal/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-19T02:13:20+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991272+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-285025d4b6918014",
-      "project": "affiliate-project",
-      "problem": "Demo Car",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Saw a very interesting price and very low mileage (~1k km) for a 2025 car in mudah. Contacted the seller and he confirmed that it was a demo car. Need opinion on buying a demo car. Has anyone bought a demo car before? What should i be wary of before or during car viewing? This may potentially be my first car if all goes well. Also the car is EV, if that helps. Thank you in advance. &#32; submitted by &#32; /u/kokosong [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x9kvji/demo_car/",
-      "demand_signal": {
-        "keyword_hits": [
-          "buy",
-          "car"
-        ],
-        "buyer_intent": 3,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 3,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-10-19T02:12:25+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991335+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-4b143f8c91676205",
-      "project": "affiliate-project",
-      "problem": "Any idea - New model",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi all. Spotted this car yesterday with its logo covered at the airport parking. Anyone has any idea what model this is? Curious &#32; submitted by &#32; /u/rlllim [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x9jtqg/any_idea_new_model/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-19T01:18:57+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991377+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-00cd2adafe0569b7",
-      "project": "affiliate-project",
-      "problem": "Tips for highway riding on a 2-stroke?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Just got this fully stock Modenas Dinamik recently to use for my 70km round trip commute. Any tips for highway riding from the otais here? My mechanic neighbour told me to not keep the rpm at a single spot and I should vary it and blipping it every now and then for some fresh 2t oil. &#32; submitted by &#32; /u/Maybe-n0w [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x96w6n/tips_for_highway_riding_on_a_2stroke/",
-      "demand_signal": {
-        "keyword_hits": [
-          "oil"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-18T16:04:51+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991440+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-e74d6e1068a8253e",
-      "project": "affiliate-project",
-      "problem": "Malaysia Bus in Turbo mode but move like turtle",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Side note: Malaysia’s public transport and infrastructure always Best when it’s brand new, but years after years ZERO or minor maintenance (not regularly), please be careful when u ride, noticed something weird, stay away n run ! Always calm down and think how to escape Recent incidents: we took a bus in jb and the bus spoilt, cannot start the engine, engine come out smoke and plastic smell and STOP IN THE MIDDLE OF HIGHWAY!! &#32; submitted by &#32; /u/FreelancerOnDEMAND [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x94p7c/malaysia_bus_in_turbo_mode_but_move_like_turtle/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car",
-          "maintenance",
-          "oil"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 4
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 4,
-      "product_potential": 2,
-      "freshness": "2026-10-18T14:33:52+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991526+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-e9e83c4204acccf4",
-      "project": "affiliate-project",
-      "problem": "Proton Wira",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hey guys I have a 2001 Proton Wira Aeroback 1.3 MMC, honestly I keep the rest of the maintenance fine but I&#39;m at a loss of where to start with restoring the suspension... any ideas in general for a 21 year old car... it&#39;s running fine... oh I do have problems with the fuel &amp; temp display huhu &#32; submitted by &#32; /u/KingofHearts2seven [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x94bwe/proton_wira/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car",
-          "maintenance",
-          "problem"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 3,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 3,
-      "product_potential": 3,
-      "freshness": "2026-10-18T14:17:26+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991583+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-9219d83019f63545",
-      "project": "affiliate-project",
-      "problem": "Proton Saga 2019 carplay",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Tired of the stock player, suggest me media player that supports Apple Car Play or Google under rm2k. thenks &#32; submitted by &#32; /u/DurianTerbang [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x93tco/proton_saga_2019_carplay/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-18T13:54:55+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991623+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-c9148bd489b0f822",
-      "project": "affiliate-project",
-      "problem": "farewell x-trail.",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "replaced with a new corolla cross HEV. &#32; submitted by &#32; /u/SnooDoodles335 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8z0yk/farewell_xtrail/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-18T09:33:29+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991657+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-c65ad4ac0567a772",
-      "project": "affiliate-project",
-      "problem": "Tailgating biker honked and gestured rudely after I braked gently to merge",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "The rider of BRW4669 is apparently not a very civil individual... continued staring at me as he passed me on the coned-off road on the left , but hey. I did smile politely back at him as much as I would&#39;ve liked to flip him off. Deescalate, kan? You never know though, if I was really at fault, please do rip into me so I can be better next time, thanks :) --- Edit: Seems like many are caught up in &quot;brake to merge&quot; and are asking why . In a typical scenario on an empty road, you should in fact accelerate to match the speed limit of the freeway your on-ramp is connected to. Yet, whe",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8ytnl/tailgating_biker_honked_and_gestured_rudely_after/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-18T09:20:19+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991864+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-f0c8f5afa56eb07e",
-      "project": "affiliate-project",
-      "problem": "[Weekly] What did you do to your car/bike?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi all, First of all, welcome to the weekly post of &quot;What did you do&quot;! I believe this sub is big enough, and we can sufficiently start a weekly post for those who wants to comment about what they did over the past week, and not needing to open a post to talk about it. This is the place where you can talk about: Where did you n your sayang (the car) go last month? (road trip reports?) What you spent on your car (shopee LED, install HUD, glow in dark paintjob) Minor car questions (repairs, recommendations, accidents, DIY) Looking forward to everyone&#39;s participation! &#32; submitted",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8yig8/weekly_what_did_you_do_to_your_carbike/",
-      "demand_signal": {
-        "keyword_hits": [
-          "beli",
-          "car",
-          "recommend"
-        ],
-        "buyer_intent": 3,
-        "problem_strength": 2,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 3,
-      "content_potential": 3,
-      "product_potential": 2,
-      "freshness": "2026-10-18T09:00:36+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991946+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-f2d6a49ecfafe5f2",
-      "project": "affiliate-project",
-      "problem": "Whos break is having problem?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Unlimited horsepower, Limited braking distance lol &#32; submitted by &#32; /u/FreelancerOnDEMAND [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8xwbj/whos_break_is_having_problem/",
-      "demand_signal": {
-        "keyword_hits": [
-          "problem"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 2,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 2,
-      "freshness": "2026-10-18T08:20:41+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.991983+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-797369690ac68045",
-      "project": "affiliate-project",
-      "problem": "S70 lite or prime",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Test drive both of it . Kudos to proton, such a comfortable sedan . Any suggestions either lite or prime &#32; submitted by &#32; /u/DINSH01 [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8umue/s70_lite_or_prime/",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-18T05:03:29+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.992022+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-93b023cad2fc3cfa",
-      "project": "affiliate-project",
-      "problem": "Noisy exhaust",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "I have a slow car with loud exhaust (prev owner modify) . Had a look and the rear muffler doesnt look original. How much to change that? Im tired of loud noises already Car is proton wira 1.5 &#32; submitted by &#32; /u/GoldenSheepSheep [link] &#32; [comments]",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8uifu/noisy_exhaust/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 3,
-      "product_potential": 1,
-      "freshness": "2026-10-18T04:56:36+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.992068+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-267637c0099a378f",
-      "project": "affiliate-project",
-      "problem": "self accident claim insurance",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "hi guys, basically i got involved in an accident by myself (slippery road). car looks like a total loss and unfortunately i got sucked in by the third party tower and they have brought my car to a different workshop than agreed (not a panel workshop). i paid 1000 upfront bexause they said ada “total loss processing fee” which now that im thinking back doesnt rlly make sense to pay. can anyone give me some insught? the total i need to pay is 2500 to them for them to start working on my car and have the insurance evaluation done so the remaining is 1500 lah since i paid 1000 up front. a this poi",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8rl96/self_accident_claim_insurance/",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 2
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 2,
-      "product_potential": 1,
-      "freshness": "2026-10-18T02:13:44+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.992189+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-9c09abf0a3fc0222",
-      "project": "affiliate-project",
-      "problem": "Stick with an old Jap ICE car or buy an EV?",
-      "source": "r/kereta",
-      "source_kind": "reddit",
-      "evidence": "Hi yalls need everyones opinion: 28M earning 8.5k at a large and stable MNC, with 2-3 days per week of commute to KL which is a 3-4 hour journey in total per day for work. Outside of this its gym, groceries, malls, food hunting at 30 to 45 mins-away places. Live in landed. Currently driving a 2012 Honda City. Gets me from point A to B with little to no issues, though have had some more issues lately like A/C shutting off, some nuts and bearings breaking, windows not working/dropping, side mirror motor completely fried, etc. Have spent 4k in total for repairs just this year alone - part of it i",
-      "evidence_url": "https://www.reddit.com/r/kereta/comments/1x8pbx3/stick_with_an_old_jap_ice_car_or_buy_an_ev/",
-      "demand_signal": {
-        "keyword_hits": [
-          "buy",
-          "car"
-        ],
-        "buyer_intent": 3,
-        "problem_strength": 3,
-        "content_potential": 3
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 3,
-      "content_potential": 3,
-      "product_potential": 3,
-      "freshness": "2026-10-18T00:16:30+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:44.992345+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-51ec1bef367dbf27",
-      "project": "affiliate-project",
-      "problem": "getafe vs rayo",
+      "problem": "barcelona",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "getafe vs rayo",
+      "evidence": "barcelona",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-10-20T19:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.496821+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-321df0b6b4157760",
+      "project": "affiliate-project",
+      "problem": "ucl fixtures",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "ucl fixtures",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-10-20T19:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.496877+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-784ffc116853a59b",
+      "project": "affiliate-project",
+      "problem": "欧冠",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "欧冠",
+      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
+      "demand_signal": {
+        "keyword_hits": [],
+        "buyer_intent": 1,
+        "problem_strength": 1,
+        "content_potential": 1
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 1,
+      "product_potential": 1,
+      "freshness": "2026-10-20T18:50:00+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:36.496919+00:00",
+      "freshness_status": "fresh"
+    },
+    {
+      "id": "r-8da83fec4be2d871",
+      "project": "affiliate-project",
+      "problem": "vfb stuttgart vs atlético",
+      "source": "Google Trends automotive Malaysia",
+      "source_kind": "trend",
+      "evidence": "vfb stuttgart vs atlético",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -654,18 +721,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T19:40:00+00:00",
+      "freshness": "2026-10-20T18:40:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.593872+00:00",
+      "collected_at": "2026-10-20T19:21:36.496957+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-c39cdf7ae3b0d1f9",
+      "id": "r-d044a205123c7ecb",
       "project": "affiliate-project",
-      "problem": "spurs",
+      "problem": "paris saint-germain fc lwn fc barcelona",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "spurs",
+      "evidence": "paris saint-germain fc lwn fc barcelona",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -677,18 +744,18 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T19:00:00+00:00",
+      "freshness": "2026-10-20T18:30:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.593919+00:00",
+      "collected_at": "2026-10-20T19:21:36.496993+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-4fe9dd669143a10e",
+      "id": "r-ea2b5b68e126f2b3",
       "project": "affiliate-project",
-      "problem": "al-hilal vs al-hazem",
+      "problem": "man city vs aek",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "al-hilal vs al-hazem",
+      "evidence": "man city vs aek",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -700,18 +767,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T18:30:00+00:00",
+      "freshness": "2026-10-20T18:10:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.593955+00:00",
+      "collected_at": "2026-10-20T19:21:36.497023+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-c96be5d54c39c028",
+      "id": "r-7a4a6c6e4727a470",
       "project": "affiliate-project",
-      "problem": "spurs vs coventry",
+      "problem": "psg vs barca",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "spurs vs coventry",
+      "evidence": "psg vs barca",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -723,18 +790,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T18:10:00+00:00",
+      "freshness": "2026-10-20T18:10:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.593987+00:00",
+      "collected_at": "2026-10-20T19:21:36.497052+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-dcdebc7dcd6fa3ae",
+      "id": "r-2b77e974bbe45d8f",
       "project": "affiliate-project",
-      "problem": "trabzonspor vs beşiktaş",
+      "problem": "al-nassr vs neom",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "trabzonspor vs beşiktaş",
+      "evidence": "al-nassr vs neom",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -746,64 +813,18 @@
       "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T16:50:00+00:00",
+      "freshness": "2026-10-20T17:20:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.594028+00:00",
+      "collected_at": "2026-10-20T19:21:36.497081+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-002c906ce9750fab",
+      "id": "r-6fa67cfb0f1cf289",
       "project": "affiliate-project",
-      "problem": "monza vs cagliari",
+      "problem": "interpol",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "monza vs cagliari",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-10-19T16:10:00+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:45.594058+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-362d66b8dbb5b327",
-      "project": "affiliate-project",
-      "problem": "al-fayha vs al-ahli",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "al-fayha vs al-ahli",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 2,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 2,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-10-19T15:20:00+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:45.594087+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-418a1c03a51cbaa4",
-      "project": "affiliate-project",
-      "problem": "pingat emas",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "pingat emas",
+      "evidence": "interpol",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
@@ -815,55 +836,32 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T14:50:00+00:00",
+      "freshness": "2026-10-20T17:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.594115+00:00",
+      "collected_at": "2026-10-20T19:21:36.497108+00:00",
       "freshness_status": "fresh"
     },
     {
-      "id": "r-f226c7b785578af1",
+      "id": "r-b7e6e6823e87a402",
       "project": "affiliate-project",
-      "problem": "kim jong un",
+      "problem": "fenerbahçe vs slavia praha",
       "source": "Google Trends automotive Malaysia",
       "source_kind": "trend",
-      "evidence": "kim jong un",
+      "evidence": "fenerbahçe vs slavia praha",
       "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
       "demand_signal": {
         "keyword_hits": [],
-        "buyer_intent": 1,
+        "buyer_intent": 2,
         "problem_strength": 1,
         "content_potential": 1
       },
       "recurrence": "unknown",
-      "buyer_intent": 1,
+      "buyer_intent": 2,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-19T14:10:00+00:00",
+      "freshness": "2026-10-20T16:50:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:45.594142+00:00",
-      "freshness_status": "fresh"
-    },
-    {
-      "id": "r-4683b3234fa21ca9",
-      "project": "affiliate-project",
-      "problem": "puteri sarah liyana",
-      "source": "Google Trends automotive Malaysia",
-      "source_kind": "trend",
-      "evidence": "puteri sarah liyana",
-      "evidence_url": "https://trends.google.com/trending/rss?geo=MY",
-      "demand_signal": {
-        "keyword_hits": [],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-10-19T14:10:00+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:45.594170+00:00",
+      "collected_at": "2026-10-20T19:21:36.497142+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -886,9 +884,9 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-12T04:43:00+00:00",
+      "freshness": "2026-10-12T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177609+00:00",
+      "collected_at": "2026-10-20T19:21:37.045722+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -911,9 +909,9 @@
       "buyer_intent": 1,
       "content_potential": 1,
       "product_potential": 1,
-      "freshness": "2026-10-12T05:45:00+00:00",
+      "freshness": "2026-10-12T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177665+00:00",
+      "collected_at": "2026-10-20T19:21:37.045788+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -938,7 +936,7 @@
       "product_potential": 1,
       "freshness": "2026-10-14T14:36:10+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177714+00:00",
+      "collected_at": "2026-10-20T19:21:37.045843+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -963,7 +961,7 @@
       "product_potential": 2,
       "freshness": "2026-10-04T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177757+00:00",
+      "collected_at": "2026-10-20T19:21:37.045893+00:00",
       "freshness_status": "stale"
     },
     {
@@ -988,8 +986,8 @@
       "product_potential": 1,
       "freshness": "2026-10-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177855+00:00",
-      "freshness_status": "fresh"
+      "collected_at": "2026-10-20T19:21:37.045951+00:00",
+      "freshness_status": "stale"
     },
     {
       "id": "r-21d568f205ae4a3d",
@@ -1013,7 +1011,7 @@
       "product_potential": 2,
       "freshness": "2026-10-08T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177909+00:00",
+      "collected_at": "2026-10-20T19:21:37.046003+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -1038,7 +1036,7 @@
       "product_potential": 1,
       "freshness": "2026-10-04T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177949+00:00",
+      "collected_at": "2026-10-20T19:21:37.046046+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1064,32 +1062,7 @@
       "product_potential": 1,
       "freshness": "2026-02-05T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.177999+00:00",
-      "freshness_status": "stale"
-    },
-    {
-      "id": "r-b8571d58cda6572a",
-      "project": "affiliate-project",
-      "problem": "“Smelly Proton or Perodua with bad suspensions” – Foreigner says Malaysia offers the worst e-hailing cars - The Sun Malaysia",
-      "source": "Google News automotive Malaysia",
-      "source_kind": "market",
-      "evidence": "“Smelly Proton or Perodua with bad suspensions” – Foreigner says Malaysia offers the worst e-hailing cars &nbsp;&nbsp; The Sun Malaysia",
-      "evidence_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQSmVjLXphU3F1Rlg1NFM3ektTSllzNFNsWWdIcnE2OExDa0NzY21sUG1DLWlweWlYekFTRDJQT1pMNk0zeGJsdC05Y3VFbGdqejJSNmdOaVpJaU5NVXA4cG1DdmRsRE9jY1FnNGFjZTd2eGM5UmpIRnpyVV94YXROVw?oc=5",
-      "demand_signal": {
-        "keyword_hits": [
-          "car"
-        ],
-        "buyer_intent": 1,
-        "problem_strength": 1,
-        "content_potential": 1
-      },
-      "recurrence": "unknown",
-      "buyer_intent": 1,
-      "content_potential": 1,
-      "product_potential": 1,
-      "freshness": "2026-01-28T08:00:00+00:00",
-      "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178060+00:00",
+      "collected_at": "2026-10-20T19:21:37.046104+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1112,7 +1085,7 @@
       "product_potential": 1,
       "freshness": "2026-04-08T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178107+00:00",
+      "collected_at": "2026-10-20T19:21:37.046159+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1138,7 +1111,7 @@
       "product_potential": 2,
       "freshness": "2026-08-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178154+00:00",
+      "collected_at": "2026-10-20T19:21:37.046212+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1163,7 +1136,7 @@
       "product_potential": 1,
       "freshness": "2026-03-30T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178212+00:00",
+      "collected_at": "2026-10-20T19:21:37.046281+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1188,7 +1161,7 @@
       "product_potential": 2,
       "freshness": "2025-12-04T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178262+00:00",
+      "collected_at": "2026-10-20T19:21:37.046338+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1211,7 +1184,7 @@
       "product_potential": 1,
       "freshness": "2026-04-30T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178301+00:00",
+      "collected_at": "2026-10-20T19:21:37.046377+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1236,7 +1209,7 @@
       "product_potential": 2,
       "freshness": "2026-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178348+00:00",
+      "collected_at": "2026-10-20T19:21:37.046418+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1262,7 +1235,34 @@
       "product_potential": 2,
       "freshness": "2024-04-02T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178395+00:00",
+      "collected_at": "2026-10-20T19:21:37.046460+00:00",
+      "freshness_status": "stale"
+    },
+    {
+      "id": "r-af7277a5e361dbbd",
+      "project": "affiliate-project",
+      "problem": "Why \"Oil-Rich\" Malaysia Still Imports 50% of Its Fuel, And Why That’s a Problem Right Now - Carz Automedia Malaysia",
+      "source": "Google News automotive Malaysia",
+      "source_kind": "market",
+      "evidence": "Why \"Oil-Rich\" Malaysia Still Imports 50% of Its Fuel, And Why That’s a Problem Right Now &nbsp;&nbsp; Carz Automedia Malaysia",
+      "evidence_url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPTTk3Q3FlbDZzOXl1QWRpM25qQzA1ZDFRRndxYkRJZlpPTzlYeVpZZDV5WTBuNVY2ZUVQQ2pQSHBUamd4NFVOWi1KUG10ZmZ6VDJMYmstLXo3akRPNk9ReDN4c2Y4QzdldjNDSkhYdUtZY3ZvdFBXRGZlYzVoWjkwSmhMd2xNWU5PWW95SlB4dkJaUkZLcEEtc2I3N2lpaWdnLW1kVEx5amJRVXpBY3Bvb0FYRUlkdE0?oc=5",
+      "demand_signal": {
+        "keyword_hits": [
+          "car",
+          "oil",
+          "problem"
+        ],
+        "buyer_intent": 1,
+        "problem_strength": 2,
+        "content_potential": 2
+      },
+      "recurrence": "unknown",
+      "buyer_intent": 1,
+      "content_potential": 2,
+      "product_potential": 2,
+      "freshness": "2026-04-21T07:00:00+00:00",
+      "status": "new",
+      "collected_at": "2026-10-20T19:21:37.046520+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1285,7 +1285,7 @@
       "product_potential": 1,
       "freshness": "2026-07-28T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178442+00:00",
+      "collected_at": "2026-10-20T19:21:37.046566+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1310,7 +1310,7 @@
       "product_potential": 2,
       "freshness": "2026-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178492+00:00",
+      "collected_at": "2026-10-20T19:21:37.046612+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1335,7 +1335,7 @@
       "product_potential": 2,
       "freshness": "2026-03-31T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178540+00:00",
+      "collected_at": "2026-10-20T19:21:37.046657+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1360,7 +1360,7 @@
       "product_potential": 1,
       "freshness": "2026-06-24T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178589+00:00",
+      "collected_at": "2026-10-20T19:21:37.046702+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1385,7 +1385,7 @@
       "product_potential": 1,
       "freshness": "2026-04-01T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178625+00:00",
+      "collected_at": "2026-10-20T19:21:37.046739+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1408,7 +1408,7 @@
       "product_potential": 1,
       "freshness": "2026-05-27T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178657+00:00",
+      "collected_at": "2026-10-20T19:21:37.046772+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1434,7 +1434,7 @@
       "product_potential": 2,
       "freshness": "2026-01-20T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178702+00:00",
+      "collected_at": "2026-10-20T19:21:37.046819+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1457,7 +1457,7 @@
       "product_potential": 2,
       "freshness": "2026-10-12T01:06:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178739+00:00",
+      "collected_at": "2026-10-20T19:21:37.046856+00:00",
       "freshness_status": "fresh"
     },
     {
@@ -1482,7 +1482,7 @@
       "product_potential": 1,
       "freshness": "2024-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178775+00:00",
+      "collected_at": "2026-10-20T19:21:37.046893+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1505,7 +1505,7 @@
       "product_potential": 2,
       "freshness": "2024-03-22T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178828+00:00",
+      "collected_at": "2026-10-20T19:21:37.046927+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1530,7 +1530,7 @@
       "product_potential": 1,
       "freshness": "2025-06-21T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178866+00:00",
+      "collected_at": "2026-10-20T19:21:37.046961+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1553,7 +1553,7 @@
       "product_potential": 2,
       "freshness": "2024-05-06T07:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178904+00:00",
+      "collected_at": "2026-10-20T19:21:37.046997+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1578,7 +1578,7 @@
       "product_potential": 1,
       "freshness": "2025-01-21T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178951+00:00",
+      "collected_at": "2026-10-20T19:21:37.047042+00:00",
       "freshness_status": "stale"
     },
     {
@@ -1604,7 +1604,7 @@
       "product_potential": 2,
       "freshness": "2025-12-28T08:00:00+00:00",
       "status": "new",
-      "collected_at": "2026-10-19T20:37:46.178991+00:00",
+      "collected_at": "2026-10-20T19:21:37.047080+00:00",
       "freshness_status": "stale"
     }
   ],
