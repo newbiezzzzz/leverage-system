@@ -36,19 +36,19 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-5eea2c2d28fc",
+    "hypothesis_id": "GI-d7e60d10e06e",
     "theme": "momentum",
     "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
-    "source_count": 15,
+    "source_count": 14,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMib0FVX3lxTE4xNG1hMVpjQ3RQc09sRm14S2dvM25zNWw1STNCMEUxSThETk9JWjFxWk01WkdPTGhDVmVyOC01QzhhQzhoY2VJUWJEamF0ZmYtZHFkczY2TU03cXhxZXNlTmxGbFZoQ2lIR3ZDbUFrTQ?oc=5",
       "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5",
       "https://arxiv.org/abs/2610.22522v1",
       "https://arxiv.org/abs/2609.35063v1",
       "https://arxiv.org/abs/2607.27461v1",
       "https://arxiv.org/abs/2607.27063v1",
       "https://arxiv.org/abs/2607.20093v1",
-      "https://arxiv.org/abs/2607.08907v1"
+      "https://arxiv.org/abs/2607.08907v1",
+      "https://arxiv.org/abs/2607.04280v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -108,15 +108,15 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-b2e6b545ea12",
+    "hypothesis_id": "GI-fcc7a213c43b",
     "theme": "general",
     "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
     "source_count": 8,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQdERfaGNOekV2TXZFSGNoamJhMFZEbDR1cWZ2MnBVSVBMaXJmN1JiOWVSQzJqLXJtdWx6eGYtOHhCem9sdWYwai1lNmxhTTVjUGNnYXVXSV9TNGUxUDUydWJwR2FlczB4Ml9XeUVESDBPWkR4eGFIUEp1V09wbElFWlR3S0tvbHlYckNBTjFjU1pSRGxnY09j?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQeVBmci0wOFR6NlBnU3pySXU0XzM2Yk9OVGxjbVhkejdaZHdUX1dsX0R6VFFWQVVhdTZTQjhadFNvb0Y4RlR2VkF6QV95NjJ3UDRNQ05zVUVGWjVKN2hJTTNBX0R2aThscGtqZTFxNnNQbG4yVGxVWnhvZXBPcE9GQ1hqOWxCQWNyZEhySzVEYWlYdUpHc3lZ?oc=5",
+      "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
       "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
-      "https://news.google.com/rss/articles/CBMimAFBVV95cUxQNlFjS1pGOU1PX1gxZXVPYWVxLWRUVzRLTERkY0RNLTJ1eXFwbmxkWVNjT0J3TURHV3pmMlR5U1ZLSUJDcHhpSWNJZFRnMDZjejJZVXQtaXp1U205dFpkX3AyVk5UNjRwcXloLWpSOS1XVFlsTVZIM19oSXFqb3lhcmhiOHRWc1c3bE15NGhSb2otZ1VWd3gybg?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxNVkJnaTNNdnFyeHJKa1RQT2FqMURqWVM0eUR0akhNVzJQVlh3WkZGNy16c19MY0E1VURaa2ZEVzA3bUdDN0VQdVZla2FWM3ZzcUZDdFB1N3V3ZHdjQzA0X01fTXROMVdaSktwWk9zX0NZSUNRbGwwQkxTX1pKTEZQMV80WUdhZ0FSbklyOV9ZUFU0RXBYaEhR?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxPdnZjdHhuX2lxUGNkQzNWM2lkUUc4ZkYwaklfMXBUWElocDVLQ2NRY2tHMTB5QnpOazRMSWM1eGxRVnp2MWg5M2d6NkUyOTVRaTFSZnZQUnBvMmVxU0ZJeUlaQjF1VHdQeEdaQ1h4OWV2b1pqZVUwVnZtLTBnWGJTdHNweHEyQTNwcDlaZXdKOGdhRlVMZ0E?oc=5",
       "https://news.google.com/rss/articles/CBMilgFBVV95cUxNbHRqY2kyeElFVnh1cnVXXzRUZ0twcFdxaV94amVyN1JZS05mYXp5dXVWc1FrZDA2T0JKVWhmTWd5dEVpV05tMzdGbGtheFhSZUJwengzM3NPR000OUFZcHRwdXppdmVHMzRuQ0ZkMkhhb1dmaWNTNmRnb2RGenE4N2JyM1ZObEN5ZURuS0h5VzI5RU1xMUE?oc=5",
       "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
       "https://news.google.com/rss/articles/CBMiggFBVV95cUxNbXBrMzBkV05HWGZ4VTR1X0Z5eGVORG9HX0pzSkFuTmEzeDlTODFHZmxrNkZCOUFGOXhFbkVrc3p6SWtzZFBiLVp3UFJBUGUycnVpXzdJYnVBR3E5VHc0TlA4aUVxSnMzWWVzT2Yzd0xwMDdSeXdIZFBLRFBDdnJralZR?oc=5",
