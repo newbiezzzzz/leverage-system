@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-22T07:59:38Z",
+  "updated_at": "2026-10-22T08:22:28Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 17.799s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 21.254s",
         "version": "0.28.1"
       }
     },
@@ -44,10 +44,10 @@
         "tool": "LightGBM",
         "status": "tested",
         "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1690; RMSE=0.1031; mean-only RMSE=0.1043",
-        "oos_correlation": 0.16898733992125914,
-        "oos_rmse": 0.10307735576137042,
-        "baseline_rmse": 0.10431464551473527
+        "detail": "OOS 5-day-return correlation=0.1689; RMSE=0.1031; mean-only RMSE=0.1043",
+        "oos_correlation": 0.16885572769421545,
+        "oos_rmse": 0.10307700966447914,
+        "baseline_rmse": 0.10430977145088241
       }
     },
     "symbolic": {
@@ -59,8 +59,8 @@
         "added_value": false,
         "detail": "OOS 5-day formula correlation=nan; RMSE=0.0980; mean-only RMSE=0.0980; formula=sub(X1, X1)",
         "oos_correlation": NaN,
-        "oos_rmse": 0.09798249949789281,
-        "baseline_rmse": 0.09797898861159038,
+        "oos_rmse": 0.09798170050618348,
+        "baseline_rmse": 0.09797776045323202,
         "formula": "sub(X1, X1)"
       }
     },
@@ -78,9 +78,9 @@
         "added_value": true,
         "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
         "best_discovery_mean": 0.0124188169041337,
-        "validation_mean": 0.0185617017773758,
-        "validation_win_rate": 0.4713388083558397,
-        "validation_observations": 72572
+        "validation_mean": 0.0185636638967445,
+        "validation_win_rate": 0.4712882456526524,
+        "validation_observations": 72688
       }
     },
     "lean": {
