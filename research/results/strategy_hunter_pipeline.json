@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T07:48:15Z",
+  "updated_at": "2026-10-23T08:10:21Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.915s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 20.957s",
         "version": "0.28.1"
       }
     },
@@ -44,10 +44,10 @@
         "tool": "LightGBM",
         "status": "tested",
         "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1687; RMSE=0.1031; mean-only RMSE=0.1043",
-        "oos_correlation": 0.1686953886810256,
-        "oos_rmse": 0.10306181483641973,
-        "baseline_rmse": 0.10429008009006037
+        "detail": "OOS 5-day-return correlation=0.1686; RMSE=0.1031; mean-only RMSE=0.1043",
+        "oos_correlation": 0.16861476142521803,
+        "oos_rmse": 0.10307160751004003,
+        "baseline_rmse": 0.10429850867141027
       }
     },
     "symbolic": {
@@ -59,8 +59,8 @@
         "added_value": false,
         "detail": "OOS 5-day formula correlation=nan; RMSE=0.0979; mean-only RMSE=0.0979; formula=sub(X1, X1)",
         "oos_correlation": NaN,
-        "oos_rmse": 0.0979440033661252,
-        "baseline_rmse": 0.09794021152345576,
+        "oos_rmse": 0.097946090413442,
+        "baseline_rmse": 0.09794196167620757,
         "formula": "sub(X1, X1)"
       }
     },
@@ -78,9 +78,9 @@
         "added_value": true,
         "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
         "best_discovery_mean": 0.0124188169041337,
-        "validation_mean": 0.0185647019770591,
-        "validation_win_rate": 0.4712744882236407,
-        "validation_observations": 72688
+        "validation_mean": 0.0185367138115207,
+        "validation_win_rate": 0.4711489595494815,
+        "validation_observations": 72805
       }
     },
     "lean": {
