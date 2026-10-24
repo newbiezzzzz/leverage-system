@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-24T22:43:44Z",
-  "status": "completed",
-  "stage": null,
+  "updated_at": "2026-10-24T22:57:31Z",
+  "status": "running",
+  "stage": "chronos2",
   "attempt": 0,
   "error": null,
   "stages": {
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 15.396s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.479s",
         "version": "0.28.1"
       }
     },
@@ -45,7 +45,7 @@
         "status": "tested",
         "added_value": true,
         "detail": "OOS 5-day-return correlation=0.1687; RMSE=0.1030; mean-only RMSE=0.1043",
-        "oos_correlation": 0.16866979933964935,
+        "oos_correlation": 0.16866979933964937,
         "oos_rmse": 0.1030478128198526,
         "baseline_rmse": 0.10427453561792742
       }
@@ -92,17 +92,6 @@
         "added_value": true,
         "detail": "lean 1.0.230"
       }
-    },
-    "chronos2": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Chronos-2",
-        "status": "package_ready",
-        "added_value": true,
-        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
-      }
-    },
-    "_cycle_status": "completed"
+    }
   }
 }
