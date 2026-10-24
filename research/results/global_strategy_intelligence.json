@@ -1,7 +1,7 @@
 {
   "status": "fresh",
-  "fetched_at_epoch": 1792837122.6855855,
-  "fetched_at_utc": "2026-10-24T10:18:42Z",
+  "fetched_at_epoch": 1792837841.737797,
+  "fetched_at_utc": "2026-10-24T10:30:41Z",
   "source_count": 53,
   "news_regions": [
     "US",
@@ -145,10 +145,10 @@
       "source_type": "news",
       "region": "SG",
       "theme": "global_trading_research",
-      "title": "(RAY.B) Trading Strategy and Analysis (RAY.B:CA) - Stock Traders Daily",
-      "summary": "(RAY.B) Trading Strategy and Analysis (RAY.B:CA) Stock Traders Daily",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxObU50U2VYOWt1V0hGaVB3Z3pDRzZwR0E5dFJNWEE2dnJWZ3JmSVZtUm8wOUE0Z1NXdWd3UENzVEJhYmZScWFBeVdIaV8tRWNHcEw5T1lYMVgyUGhCMnhvTTRZYWg4eXoxSHRFTElpYmUxNjRrQlI0RnNFRmlTZ0ZXRjZsZkU5TV8yaVlWUWlwaVVDTjhTdDRN?oc=5",
-      "published": "Sat, 24 Oct 2026 04:15:07 GMT",
+      "title": "(QQQT.U) Trading Strategy and Analysis (QQQT.U:CA) - Stock Traders Daily",
+      "summary": "(QQQT.U) Trading Strategy and Analysis (QQQT.U:CA) Stock Traders Daily",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQWWpZN1RBOWRkWTZkakwzQVp3aW9oWFd2T0trc05UcmVqUU5zaTZULVlFbjJyU1hiQ1NMc3BNLWNMSkJLV2VmRTFTYzhjMkJmbWdILVNGaldfQjNNXzRLcEpJU3JNTlU5bXlMNHEzUUdpbHdTZWpxVHI2OVU5M2FoTDc1djU3X3hFeHMzQzZ6RGNRRHo4alNISQ?oc=5",
+      "published": "Sat, 24 Oct 2026 02:24:29 GMT",
       "detected_themes": [
         "general"
       ]
@@ -866,7 +866,7 @@
       "backtest_required": true
     },
     {
-      "hypothesis_id": "GI-8472e9ee68c0",
+      "hypothesis_id": "GI-6eeda73ba159",
       "theme": "general",
       "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
       "source_count": 10,
@@ -878,7 +878,7 @@
         "https://news.google.com/rss/articles/CBMimAFBVV95cUxOX1hDODUtOUloeGhYTUkwSFBfc3NUV3hKcVNrLWhXYV83VHZDTzlWNUxkTzJuRXlWV3p5VEEyMndMNGo3a0ZmXzlIc3Y3dE5JM0NzTEVWYnlaVGlyZFNpMWh4UFg1cXU2MkJQSThIaUJHakc4WWRxMTExYnU1cEhYdDN4NElvcGFmYW1EeDd2a205aFBrMGVqOA?oc=5",
         "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNldqUzVPeXZmaWRyYjBtX3pPV2NRNEN0SlR0bmZjVUhpNzllbnYzZFB6RVJla3ZTZXVEUWpTTWZzS0FzTHJDQzA0a05YSnFQTm9ZZDA5SnNpYjgzQ1QyNE10dUpoZUFnSVFkQ3dmODRhOEJLUjNEQ2ZaQnVrdFVQUmpUZHF1N2NPM1YtTHMtakpxM3ZNaUtJ?oc=5",
         "https://news.google.com/rss/articles/CBMilgFBVV95cUxNaUZBaTBEdVI2amtHc3E3andaZmw5SG5IZl90N0lnZGZtZ1YtQ2pKbmNrTjlPNFhLeHNpVHFGMmVta1dOXy1fT1pqSS1kRXJNbk5hZGpYWlF5ZTJXNHFBc3hMY1JadUgxc0c2WXk0a2EwWGd1Mmp3UVVVUV9nV1NrWFMzMGlDMEFsbVlkNHNXY0w0LW56TXc?oc=5",
-        "https://news.google.com/rss/articles/CBMilwFBVV95cUxObU50U2VYOWt1V0hGaVB3Z3pDRzZwR0E5dFJNWEE2dnJWZ3JmSVZtUm8wOUE0Z1NXdWd3UENzVEJhYmZScWFBeVdIaV8tRWNHcEw5T1lYMVgyUGhCMnhvTTRZYWg4eXoxSHRFTElpYmUxNjRrQlI0RnNFRmlTZ0ZXRjZsZkU5TV8yaVlWUWlwaVVDTjhTdDRN?oc=5"
+        "https://news.google.com/rss/articles/CBMimAFBVV95cUxQWWpZN1RBOWRkWTZkakwzQVp3aW9oWFd2T0trc05UcmVqUU5zaTZULVlFbjJyU1hiQ1NMc3BNLWNMSkJLV2VmRTFTYzhjMkJmbWdILVNGaldfQjNNXzRLcEpJU3JNTlU5bXlMNHEzUUdpbHdTZWpxVHI2OVU5M2FoTDc1djU3X3hFeHMzQzZ6RGNRRHo4alNISQ?oc=5"
       ],
       "evidence_type": "idea_only",
       "backtest_required": true

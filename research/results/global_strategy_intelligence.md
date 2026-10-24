@@ -1,7 +1,7 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-10-24T10:18:42Z
+Fetched: 2026-10-24T10:30:41Z
 Items: 53
 
 ## Research hypotheses
@@ -27,7 +27,7 @@ Items: 53
 - [(BPF.UN) Trading Strategy and Analysis (BPF.UN:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxOX1hDODUtOUloeGhYTUkwSFBfc3NUV3hKcVNrLWhXYV83VHZDTzlWNUxkTzJuRXlWV3p5VEEyMndMNGo3a0ZmXzlIc3Y3dE5JM0NzTEVWYnlaVGlyZFNpMWh4UFg1cXU2MkJQSThIaUJHakc4WWRxMTExYnU1cEhYdDN4NElvcGFmYW1EeDd2a205aFBrMGVqOA?oc=5) — news / HK
 - [(MSFH) Trading Strategy and Analysis (MSFH:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxQNldqUzVPeXZmaWRyYjBtX3pPV2NRNEN0SlR0bmZjVUhpNzllbnYzZFB6RVJla3ZTZXVEUWpTTWZzS0FzTHJDQzA0a05YSnFQTm9ZZDA5SnNpYjgzQ1QyNE10dUpoZUFnSVFkQ3dmODRhOEJLUjNEQ2ZaQnVrdFVQUmpUZHF1N2NPM1YtTHMtakpxM3ZNaUtJ?oc=5) — news / HK
 - [(QAH) Trading Strategy and Analysis (QAH:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxNaUZBaTBEdVI2amtHc3E3andaZmw5SG5IZl90N0lnZGZtZ1YtQ2pKbmNrTjlPNFhLeHNpVHFGMmVta1dOXy1fT1pqSS1kRXJNbk5hZGpYWlF5ZTJXNHFBc3hMY1JadUgxc0c2WXk0a2EwWGd1Mmp3UVVVUV9nV1NrWFMzMGlDMEFsbVlkNHNXY0w0LW56TXc?oc=5) — news / HK
-- [(RAY.B) Trading Strategy and Analysis (RAY.B:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxObU50U2VYOWt1V0hGaVB3Z3pDRzZwR0E5dFJNWEE2dnJWZ3JmSVZtUm8wOUE0Z1NXdWd3UENzVEJhYmZScWFBeVdIaV8tRWNHcEw5T1lYMVgyUGhCMnhvTTRZYWg4eXoxSHRFTElpYmUxNjRrQlI0RnNFRmlTZ0ZXRjZsZkU5TV8yaVlWUWlwaVVDTjhTdDRN?oc=5) — news / SG
+- [(QQQT.U) Trading Strategy and Analysis (QQQT.U:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxQWWpZN1RBOWRkWTZkakwzQVp3aW9oWFd2T0trc05UcmVqUU5zaTZULVlFbjJyU1hiQ1NMc3BNLWNMSkJLV2VmRTFTYzhjMkJmbWdILVNGaldfQjNNXzRLcEpJU3JNTlU5bXlMNHEzUUdpbHdTZWpxVHI2OVU5M2FoTDc1djU3X3hFeHMzQzZ6RGNRRHo4alNISQ?oc=5) — news / SG
 - [Dapo Willis Trading Strategy And Tips For Beginners - Traders Union](https://news.google.com/rss/articles/CBMiggFBVV95cUxNbXBrMzBkV05HWGZ4VTR1X0Z5eGVORG9HX0pzSkFuTmEzeDlTODFHZmxrNkZCOUFGOXhFbkVrc3p6SWtzZFBiLVp3UFJBUGUycnVpXzdJYnVBR3E5VHc0TlA4aUVxSnMzWWVzT2Yzd0xwMDdSeXdIZFBLRFBDdnJralZR?oc=5) — news / MY
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [AI Says #2: $GC1! fluctuates: What's the read on price action? for COMEX:GC1! by RedKTrader - TradingView](https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFU2MTZvQUoyQjN2Z3BncWtuajdwdE4tUWZ1THhqR05PZXRwZUF0SlpHZmNsZFY5NWZPQktlOVFfd1FVbmtJOGp3d0JNdW05SC1Pckk1cE1aTlBYdWt5YjJuRjJyRjNMVTZxVTM0RDRiMk02MlZmNVdrTDdWcEpjMFJxWHppX2tCQ0UyOXM5U0RobWh2YjhwSFluTXJZa2NIeU5WU0loOEo?oc=5) — news / HK
