@@ -5,13 +5,13 @@
   "state": "RUNNING",
   "goal_achieved": false,
   "engine_sanity": true,
-  "cycle": 2273,
+  "cycle": 2274,
   "progress": {
-    "cycle": 2273,
-    "updated_at": "2026-10-25T13:52:50Z",
+    "cycle": 2274,
+    "updated_at": "2026-10-25T14:12:48Z",
     "patterns_tested": 318,
     "strategy_lab_variants": 318,
-    "strategy_lab_selection_candidates": 459,
+    "strategy_lab_selection_candidates": 549,
     "strategy_lab_backtests": 864,
     "strategy_lab_qualified_candidates": 0,
     "strategy_lab_leader": null,
@@ -31,13 +31,13 @@
       "relative_strength_20",
       "breakout_plus_volume"
     ],
-    "candidates": 459,
+    "candidates": 549,
     "robust_candidates": 0,
     "engine_sanity": true,
     "last_cycle_status": "completed"
   },
   "last_cycle": {
-    "cycle": 2273,
+    "cycle": 2274,
     "status": "completed",
     "next_action": "recover_and_continue",
     "goal_achieved": false
