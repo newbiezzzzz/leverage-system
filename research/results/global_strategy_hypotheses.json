@@ -36,24 +36,6 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-2d4d50dcc47e",
-    "theme": "volatility",
-    "hypothesis": "Test volatility contraction/expansion as a state filter for entries.",
-    "source_count": 15,
-    "source_urls": [
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQRDVPWjNYUXhtWWo4UktJQmw4UWo2bFlfT0dCbGdxN29VeDEwQmlFekI0aW5xYm9lZXQ5SVBPamtmLWIyYVhBUElrMG82RVVGZk52R19KNVhzNXlnNjBjbmJqZGk2V0NINHdZQ0t4NkIxSmpkcFpBdnY2UERyMG9lYnF4dXBvTTFqRnVVTWhGZEFPSWxvM2Fz?oc=5",
-      "https://arxiv.org/abs/2610.22522v1",
-      "https://arxiv.org/abs/2610.08443v1",
-      "https://arxiv.org/abs/2610.05740v2",
-      "https://arxiv.org/abs/2609.14733v1",
-      "https://arxiv.org/abs/2609.14267v1",
-      "https://arxiv.org/abs/2608.05373v1",
-      "https://arxiv.org/abs/2608.00885v1"
-    ],
-    "evidence_type": "idea_only",
-    "backtest_required": true
-  },
-  {
     "hypothesis_id": "GI-d7e60d10e06e",
     "theme": "momentum",
     "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
@@ -67,6 +49,24 @@
       "https://arxiv.org/abs/2607.20093v1",
       "https://arxiv.org/abs/2607.08907v1",
       "https://arxiv.org/abs/2607.04280v1"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-f91f1b607411",
+    "theme": "volatility",
+    "hypothesis": "Test volatility contraction/expansion as a state filter for entries.",
+    "source_count": 14,
+    "source_urls": [
+      "https://arxiv.org/abs/2610.22522v1",
+      "https://arxiv.org/abs/2610.08443v1",
+      "https://arxiv.org/abs/2610.05740v2",
+      "https://arxiv.org/abs/2609.14733v1",
+      "https://arxiv.org/abs/2609.14267v1",
+      "https://arxiv.org/abs/2608.05373v1",
+      "https://arxiv.org/abs/2608.00885v1",
+      "https://arxiv.org/abs/2607.27461v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -144,16 +144,17 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-ab7251beefff",
+    "hypothesis_id": "GI-99c49ad5ef2e",
     "theme": "general",
     "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
-    "source_count": 6,
+    "source_count": 7,
     "source_urls": [
       "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
       "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
       "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxOSURtRHdhVUJNUlRLSktINjBVNFE4SlYxN09pLUxxWDhTQTAzMFBmNWtyS2pPX052RzM3cVRlWlRBellMMUxsODNRWmlSbGJmcFhqUGJHdzlKd19BVWJxSmljLXZobGRpRkRZdVpZWkZQQWhzMWRaZUhXT0s5LUpQcEVuZ1JpX2pJVWhQOVAtRkRsbHNIMVpJ?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxNVV9lOFVmQzR1TFVrYVNlNXhQZ3JOYkcwQk9jNUlXZ3lkNXBLcUxDaDRhTnlqUnlJWmY5WkdSS0Z0TlhuMFlxUDRsSGxDX0tzb2ZHWk9Ld2o3eVRRVmh3SklEZml1VUZkTkJ6c1NINW9tMXNvdUVTU1BLTE1xUGFKMmpULXVUNXlLdVIxTXRyY1hKWHdjZVpB?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxOSk5nVWF6ZjdaSXd0UUo5ZDJ0YUgxLTJjR2h2T1YwSkg0OW16cm1KdnlmRXF3aXloMm8zcmdLblRLclk2d0d4bUs0cVFTWlJhTmh6N2J3X1hlaVc0X2NTdmxYWjE4T2NVUWwyemJMWllRM202TUtaTWpEZGo2R1pIc1ByQmx1OUt3eDd1cTZHRGhabURFSFpV?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxPUl9RTlNJbjVubl9ZdVBER3prNTlGMVhocDNxcjVJODZnUk1FSnM2TjdHNktFb29pMW9MVUhtUzNXaHpMY2s3dnVXanJMZFB3TXVPTUJSWVhQQmNZNjhheGFDOWd1a25LaDJ5RkhCczNDeUZONzZCTERGUGMzSm9BVzhkTHpTbHFGN25qSHBkSC04R0tvT1IzRw?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxQUjczbG90NTRKakJYeVVlbFR3QURSckVsQVRmc3h3VVdsSU1XYWdBem1RNzM0ampqdUpRbzNyNzV1ajlibjZHSU1XYjAtVWgtc0ZjN0x1N1RhcEl1NTBBQTkzejB4QlNySWRDWEp5dEg3S1VXbmVyV21QdWlSYjlyYnV5d1J1TW5fTm9sbHA5WUFPYVpUQnc?oc=5",
       "https://arxiv.org/abs/2603.03671v1"
     ],
     "evidence_type": "idea_only",
