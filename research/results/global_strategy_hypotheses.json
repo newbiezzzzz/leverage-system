@@ -36,24 +36,6 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-bb51a452e56f",
-    "theme": "momentum",
-    "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
-    "source_count": 15,
-    "source_urls": [
-      "https://news.google.com/rss/articles/CBMid0FVX3lxTE1FVTRkdkhOanI2bXJEeVJRajB4REJrbV9nRmR5OVJKd05rMEMzRFdSUjZLMC1nRlBBMlB6YVgwRGJOYnAzZm5uam5HbzNpN2NqNTB0VnhaczJyNi1lSVpGZnlHRHhZeTJYZDFJbV9YTk1wTXJ6UG5J?oc=5",
-      "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yTG1Hd0xsSDNNbnhkYWhyeGRjcGloLVlhZW5sTzU4ZTlIVWRBSHhtVEhZQ3k2cUJZeXB6S3JpSnljbHlkTGIxNGNpcE9aV2x2a3B4LS13R3RnSFlYRjZjYkVzMC01NE5KM0kxNEEwOVhMSGh5X2h3cGx3?oc=5",
-      "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5",
-      "https://arxiv.org/abs/2610.36491v1",
-      "https://arxiv.org/abs/2610.22522v1",
-      "https://arxiv.org/abs/2609.35063v1",
-      "https://arxiv.org/abs/2607.27461v1",
-      "https://arxiv.org/abs/2607.27063v1"
-    ],
-    "evidence_type": "idea_only",
-    "backtest_required": true
-  },
-  {
     "hypothesis_id": "GI-a5f61c31fa0e",
     "theme": "volatility",
     "hypothesis": "Test volatility contraction/expansion as a state filter for entries.",
@@ -72,19 +54,19 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-238f3b977024",
-    "theme": "price_action",
-    "hypothesis": "Test repeatable price/volume bar structures rather than subjective chart patterns.",
+    "hypothesis_id": "GI-f2e3a094f3d4",
+    "theme": "momentum",
+    "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
     "source_count": 14,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMigwFBVV95cUxNNGh4ME5vLUU0REpReHYtLUtuTGN2ZnFzY281ZC1kS2IwMGF4VF8teFhabVlJd0FFMVRWbE5qbVhwN0w1YjZmeUVBMTNfWVEwUEQyUEV5MGRSc3g5VVhWSURscERSYnFKZXhYMWNZN2xmTVFSR3l1RHJ4bW95UTdEYXNUSQ?oc=5",
-      "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdm5oQUFrMFpSZ2hrZXpPSF96LXdHblFiLVJySm5FTU8zaG8xaXhQY1R4blhVTGtYOGNSSGpGbVNOZzRIRGYyZmNIa2Q1UEJGdkRTZTlLU09XQkNZX3IzNWRkelpPQm1QbnE4ZzBCdnhMQkR3UXNRT0FuU3dldHpzWW9IWlhEbEhpVVlrZXJOX29ZMllrTTBEb0FmN2RkV0RSckNMNXp3Z2R4dFNwUUdESDJyWQ?oc=5",
-      "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFU2MTZvQUoyQjN2Z3BncWtuajdwdE4tUWZ1THhqR05PZXRwZUF0SlpHZmNsZFY5NWZPQktlOVFfd1FVbmtJOGp3d0JNdW05SC1Pckk1cE1aTlBYdWt5YjJuRjJyRjNMVTZxVTM0RDRiMk02MlZmNVdrTDdWcEpjMFJxWHppX2tCQ0UyOXM5U0RobWh2YjhwSFluTXJZa2NIeU5WU0loOEo?oc=5",
+      "https://news.google.com/rss/articles/CBMiekFVX3lxTE1yTG1Hd0xsSDNNbnhkYWhyeGRjcGloLVlhZW5sTzU4ZTlIVWRBSHhtVEhZQ3k2cUJZeXB6S3JpSnljbHlkTGIxNGNpcE9aV2x2a3B4LS13R3RnSFlYRjZjYkVzMC01NE5KM0kxNEEwOVhMSGh5X2h3cGx3?oc=5",
+      "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5",
       "https://arxiv.org/abs/2610.36491v1",
       "https://arxiv.org/abs/2610.22522v1",
       "https://arxiv.org/abs/2609.35063v1",
-      "https://arxiv.org/abs/2609.14267v1",
-      "https://arxiv.org/abs/2609.13825v1"
+      "https://arxiv.org/abs/2607.27461v1",
+      "https://arxiv.org/abs/2607.27063v1",
+      "https://arxiv.org/abs/2607.20093v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -108,19 +90,37 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-e4b7777ad8b0",
+    "hypothesis_id": "GI-55078f2ca457",
+    "theme": "price_action",
+    "hypothesis": "Test repeatable price/volume bar structures rather than subjective chart patterns.",
+    "source_count": 12,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFU2MTZvQUoyQjN2Z3BncWtuajdwdE4tUWZ1THhqR05PZXRwZUF0SlpHZmNsZFY5NWZPQktlOVFfd1FVbmtJOGp3d0JNdW05SC1Pckk1cE1aTlBYdWt5YjJuRjJyRjNMVTZxVTM0RDRiMk02MlZmNVdrTDdWcEpjMFJxWHppX2tCQ0UyOXM5U0RobWh2YjhwSFluTXJZa2NIeU5WU0loOEo?oc=5",
+      "https://arxiv.org/abs/2610.36491v1",
+      "https://arxiv.org/abs/2610.22522v1",
+      "https://arxiv.org/abs/2609.35063v1",
+      "https://arxiv.org/abs/2609.14267v1",
+      "https://arxiv.org/abs/2609.13825v1",
+      "https://arxiv.org/abs/2608.29025v1",
+      "https://arxiv.org/abs/2608.05373v1"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-7ad75410f442",
     "theme": "general",
     "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
     "source_count": 9,
     "source_urls": [
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxObkVjMGFsSHU0QmMzR2ZNZk5NdXA3ODZMT05wN3l6cVVVd05CVHJZakp0VHJSTVpRTVNtRlRkN3RYVkE5WVkybTNyMExucklvWnE5NkpOUjRwbG9wN0pneEFUUFZ2TGJ5bHR4UmI3T0NYNkhFbjAtN2xROG05emU5YlBzMVNvek83eHczOWg0WVBxX3k5aVlV?oc=5",
-      "https://news.google.com/rss/articles/CBMimAFBVV95cUxORTVMSHd5SmxMX09JeFIyWktnU0w3V05Gbk84ZEV2S05LUG9aaUQ5UjhBLUNsdFV6TGtkcFBtWnBDeVRoVlZEM1lfNEF0TXpjV0hTWTRZaVdfU25uMGh5VnVmSmxqSjFWV1NuWjJrNGgzd3Nmb2E1V01RY1pBT3JOd0xqT1pnMHhKei1pY21XTXVhWkE0bTEyYQ?oc=5",
-      "https://news.google.com/rss/articles/CBMilgFBVV95cUxNUXViWmRQWjlrd01hMHByVm15bTNlVG9pd1ZEdTJnek5FSTVuN3M0dE5LcTJZakNtbW9mTXlCdy0wNjNJYWswODVaSGt0SXIwYVFKcXFLcnFmQk5aTVI4NGp3cDY0RVhXZ05Wb3dJTXBqR2piSFkxNGdpTERMVEloWUtPb2dOMC1CMEt3bDAyRUJ3c1p5ZWc?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQaG9fb3RIV3A1ZnZNbE1ESVlYUkltNTNReFBjYkMtdncwM1QyaURHZURZcFpEN1V0U3hGTTV4QzMtcTJPMEQ5RUc5T3ZmTHppSm54NDVzdmlxR3NqRi1kMnF0YUtxQWdQRS1BeTVzYnRJelVjN2p0MnlnMjlpY1pMWnNmZTFNVWk2LTNObnl2Z2s0VzFpQ1I0?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQX1VISUNsRFk2NjVib1VRNHFKNW05cTVqdThuUkxoNnFBMnIzQ25MbHBwV1NhY1JFbFdrbmZGaHdNb3RqZEtWanZLQ1E0SmpQdmwtdWc3LXVxQzZubVZGSHlPRDJSMFNJcXFseGpGelZRNlQyVnViMXhkQmlKZG1hdGlhNlYtalV3YkNYRURGQ2FsNFB4UEZB?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxNX2hmWmJRMFVKTXhvMEthRTdZX1Z3Q3JaYjViamdGcmNXMXhVM0xmYTdyYzU0Q0ZIVVAzc2ZfX1BmajNDOWtNV3RmRWRYT20ydENsZl80dkIwRTVHYTZJekVSaWY2UTJFeDQwLTdFbDBScjZvSnVXVk1IazI3cWpNb29iS19VRzlOMG9PdmhpbzgtT2RFWVdqSA?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxQSTczNFl2WVIwS2hadDVYODhYWThXeG9lcW91OWtvQlRTMmNUVGRvYnVsQS1jZjdFak03Q20yQk5iMDhVUWR3YTZOR2Fkb2hucEMtQ3k4RFNScEwzMl85R3dKWDJzS1piVFVnN1pQM3BHRUNsOWpaOFNCZUhCNVRtUzh3Y3NIa3JNRU13bFZDdzI2c3dXZE5DaQ?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxPc3NMUUNaQklTdm8wUWN4WVI2dkFXLXRwTGdVMHZsTmFIUklfWjNoRWRVM0FTd0FsTVY2RzdjM1piZ3dldDlwNkFocDk0NXMyNDNDcThoY1FmVTJ2UnhFWWFGcS1qV3pwOG13U1dHNjFkbzhTZFdiVmdsWjFRbmw3b3VyRzBidUYtbHVEX0ZyaDV3R2J5TGUw?oc=5",
       "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
       "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
-      "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcGlpMG8wcl9aZVhtNEUyOVR0X3JwaDV1c09yQ3NlMVlJTW9mV1JBbUdyM0dYTjlOVml3QzV3NlY0bS1kU0V6ejdRMkdrRlZlZWNnckJrRXhhNDNiTWtvaGdJWTFJdXRkTHVkQnhJdzNMN2tvWDFRSUhJQ0szRTAyLV9jakZ1NVlxX1BwYmcxa2pkRFlrSVFj?oc=5",
-      "https://news.google.com/rss/articles/CBMilgFBVV95cUxQRU9UcVhQSnBlcldHM0hMTVFNbVBMdERVdVV2UnpxcFZwRnNOSXozMlpuWmhPMzNlZXZRekk2cHZIN3VMRzdQUTFHTjFoYW13OEZPLUwtLTNJOVNZQmduVVB5TjlYUEFLUmtvdjNsQUtwV2RpekE1U1ExbkFvM2NNbm9sa0ZEU1BIYWltckZKcmhOTjR6d0E?oc=5"
+      "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMXFQVGZNTW1wSXdZclQ2LV8tT1pQcGlIV240T2Q4SDR6R0RuYXQ1NnlUaVhkTVltdG10bVV0NHZUMGtFQlBKdEk1VFVUeVlMX2FXUWZYNjZYRUNmYVloT2k3WW9zYjB0VmlhMDlKNnpNTVNNUm1EMld1S2tpVDlvd29mdHVzVWJ3a1ItRUd4RHM2TGdUV0RlbWE2X3QzbU5aX3p5djF4dzIzS3c1ZDJhRDl6cw?oc=5"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -186,6 +186,17 @@
       "https://arxiv.org/abs/2607.20093v1",
       "https://arxiv.org/abs/2606.08569v1",
       "https://arxiv.org/abs/2206.12282v1"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-0ac0275ec425",
+    "theme": "breakout",
+    "hypothesis": "Test range breakout with volume and volatility confirmation.",
+    "source_count": 1,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMiekFVX3lxTFBSdTlsUjIyd1NTR0l4dzNsU3hWQWt4X0JiTnFkUGtjZmtQNWRpTThaSlN5QlowZk1TV1FzeUFYb3pGdTV4WGptVm8xdlc3SHZQb1hBbExGQWczdlZ1bzgxSmQ5RXJYanQ4ZGJDRHVsQzFwd0k4TTRkbmF3?oc=5"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
