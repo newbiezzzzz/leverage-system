@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-10-29T02:35:31Z",
-  "cycle": 2567,
+  "updated_at": "2026-10-29T02:56:46Z",
+  "cycle": 2568,
   "items": [
-    {
-      "stage": "vectorbt",
-      "tier": "optional",
-      "attempts": 1,
-      "known_fix_applied": false,
-      "recoverable": true
-    },
-    {
-      "stage": "lightgbm",
-      "tier": "optional",
-      "attempts": 1,
-      "known_fix_applied": false,
-      "recoverable": true
-    },
     {
       "stage": "qlib",
       "tier": "optional",
