@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T02:06:51Z",
+  "updated_at": "2026-10-29T02:35:31Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -27,28 +27,14 @@
       "attempts": 1
     },
     "vectorbt": {
-      "status": "done",
+      "status": "degraded",
       "attempts": 1,
-      "result": {
-        "tool": "VectorBT",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 11.687s",
-        "version": "0.28.1"
-      }
+      "detail": "handled by recovery supervisor"
     },
     "lightgbm": {
-      "status": "done",
+      "status": "degraded",
       "attempts": 1,
-      "result": {
-        "tool": "LightGBM",
-        "status": "tested",
-        "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1694; RMSE=0.1030; mean-only RMSE=0.1042",
-        "oos_correlation": 0.16941469809789964,
-        "oos_rmse": 0.10295592390509116,
-        "baseline_rmse": 0.10420065362799201
-      }
+      "detail": "handled by recovery supervisor"
     },
     "symbolic": {
       "status": "done",

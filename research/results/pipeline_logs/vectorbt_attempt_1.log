@@ -1,7 +1,2 @@
-{
-  "tool": "VectorBT",
-  "status": "tested",
-  "added_value": true,
-  "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 11.687s",
-  "version": "0.28.1"
-}
+
+TIMEOUT: stage=vectorbt exceeded 240s; process was terminated and recovery will retry.
