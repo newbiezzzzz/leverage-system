@@ -2,9 +2,9 @@
   "tool": "Symbolic Regression",
   "status": "tested",
   "added_value": false,
-  "detail": "OOS 5-day formula correlation=nan; RMSE=0.0979; mean-only RMSE=0.0979; formula=sub(X1, X1)",
+  "detail": "OOS 5-day formula correlation=nan; RMSE=0.0978; mean-only RMSE=0.0978; formula=sub(X1, X1)",
   "oos_correlation": NaN,
-  "oos_rmse": 0.09786267748914573,
-  "baseline_rmse": 0.09785985036086947,
+  "oos_rmse": 0.09782085839816188,
+  "baseline_rmse": 0.09781796536605156,
   "formula": "sub(X1, X1)"
 }
