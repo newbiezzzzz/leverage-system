@@ -108,19 +108,19 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-e654185b621c",
+    "hypothesis_id": "GI-46e96e116419",
     "theme": "general",
     "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
     "source_count": 11,
     "source_urls": [
       "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
       "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
-      "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWlNzYnd4WG9OLVlkbElrcC1VVFI3bkY0emN2Q01PWXdKWERjVmdnd2s3aE9ackdVWll6THVWSXFJTGJBZ2Q5bTBQS3ViUTRzODdyUktySlZab0ZTellrYWlNQlJVamVKb29tYU1oM2lDN05GYUoyeFZlM2pIYVhrRDNxcHFMV0QtOHpPRlotSGZ2WHBaeHZBZ0taeF9DdzJ5c2xjVHBRelNUdw?oc=5",
       "https://news.google.com/rss/articles/CBMikAFBVV95cUxNWHJsTVJDVGx1VVNZN1F1eW4xTmh5QkxGamhhUFpFZUVVTmdSZVN3anpLSjFQdWlRS0pnTkxlN3pVbkt4cEphUUhFNEJLZnFOaENJMWpkMUtncktIRkdvdHhFUndXUHl5RVJTRk9XS1ZFdDlUVEpvV1FYQlEwclhiWm40YmNHNEphVEpfSVhGSzc?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxORTBfdm1lREVMV0NiV3BOUkNkdGlyUW1sZEdpMEFFcG82MWwwVVFqNVB4RDQ4bVBBd3pMT285RUt6VmdpS2RaazhtNzIxeVdrZEp1cHRNSWxmM3kxYmNwVTRnTEtDR2Z5STJwNGpnU0Q3RDRNZEt4WmQtRTBsckdMdUVkNFlpN2RZdlNQNE0tazg1WnhvUDFJbA?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxPbzBsNTNjRDZxRzRoV3hvZWRmSVBWdHVsLVJfSlk4aXRvblVSbXAyNkJwLVJZeE1BQnk5eHhzWGNBejRKSW1XMU40WHhKYU5KRkZpQ1ZObnlldVdDWGZhN2pUanVrMVdPUXUwTDl0LWFucC1KVVBRVkhjXzBsNHhXRXdOMTZneThQR1ZEc3psc1dLZFhpOEtN?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUm1nYURwblRZcC0xdWdqMmFqdEJTa3dVUmx6UTBaMnJDdGxOaExXLTJQSlRTZTFxdlRvNUphejVNWTRaaUhrWE9uMW1JaU9BT0hBNzVWOVFKdWVFb1dianVnT2Nia29YWXpDWFFrZkp1dUtNYUZXR2JDNUNsWFkwRnJWZkloXy1mb1NieHhyVVpmZGdmZWlj?oc=5",
       "https://news.google.com/rss/articles/CBMilwFBVV95cUxOT3BDbjk3SmctdmlyVHpzTndzOFdpaEVFOWdiUjZWYVZPSFBqWEJFTjRWWlpPMmtDa2Y4TE9tV2pEOVFRLWtyOV90Sk1MYTRNMms0UlBRR1dpOVpOdlNyd0F3NnMzdVZTelBZWkJVNDZrM2M4RkRoRzBsSG5iUlVlaTUwYk9NdTdpZzJWYXFJWXIzS1U5aW5V?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxOQmU0OVB2RWNlWTFieUxKVWZHZjBBU2JCS05JSXdUSDh6NFliR3hBUmVvMDNBMWNldkhxZUNBRzFUbGVsaG9TRUJVV3RkRnl3RFN4MF9nLXhUTnpqUVhtVWV1S3FkbzB1dW54eVU4a1AwQS1kN0ZDU1BlaFQtQzBvLU5wMmpRMDJaLTZ1d1BxR0JYTktDNG9V?oc=5",
-      "https://news.google.com/rss/articles/CBMilgFBVV95cUxNNVZFR01VYTJTaEdSWXBCc3RwZFBkaGxpUmJxYmpua3pGb1N2UjZxVWlZS3N2Y3NKa0YxaFVJam9YOEkxMkhrMUMyOWdMRTdnald6cS02LWhyYjhlQXNNblMtSVplSWVSdThUcHhMWndTZGhYRFVuUjFHVXlJbEVaTERxNElubC0tYUdjeW91NTJucDBOT0E?oc=5",
-      "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcU04eWxZdlF6dEU4dmJzT1dKaElYN29Lcno5NE1iX2U5Q1FFSmNfejM1SHVac01JX0FPeTJmelNSYll3d3RYVW94c2N1LXVqdnlrcENhajkwV0hkeGdRZHhvR0RmNlY1V2JzMlBhX3YyZTduWUZSN01tTkFOMmVxMXgtZHk2YjRGZ3FZeHVRcUw4M1BGVGRB?oc=5"
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxOQmU0OVB2RWNlWTFieUxKVWZHZjBBU2JCS05JSXdUSDh6NFliR3hBUmVvMDNBMWNldkhxZUNBRzFUbGVsaG9TRUJVV3RkRnl3RFN4MF9nLXhUTnpqUVhtVWV1S3FkbzB1dW54eVU4a1AwQS1kN0ZDU1BlaFQtQzBvLU5wMmpRMDJaLTZ1d1BxR0JYTktDNG9V?oc=5"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
