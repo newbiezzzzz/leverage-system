@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T15:29:48Z",
+  "updated_at": "2026-10-31T15:41:55Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 17.936s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 12.404s",
         "version": "0.28.1"
       }
     },
