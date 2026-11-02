@@ -1,1 +1,93 @@
-[]
+[
+  {
+    "hypothesis_id": "GI-3b4a39b2b434",
+    "theme": "general",
+    "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
+    "source_count": 9,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMifEFVX3lxTFA3aHNySk1VU09aZHNVVEpNcUhXa2gxSlRzcDhveGIySV93Yks4V0hXVU1JN0tNX1pKMzkwVHRrTVRLQkRRN3BtNFJza2FMQ09oUkZkVGZqTm5TNURqQXpSTFdxdkxUemZZeDJvZjlNTE1iODVDNFJ6clRjXzE?oc=5",
+      "https://news.google.com/rss/articles/CBMikAFBVV95cUxNM0YtbTVUMXg5UDI3eklDeHl0UGFxVHNCanhwTUsxcGZNbC1pcUcyTGVLeDYyMUk4Nlh4QnhzV2RaMHFVaDYzQzVGSmJXaWNzYTZBMjlVN2c0YzhBdjc4OWJHVkpwckI1U3dKeG5JbzAwNXB0V2FtMVpYZUFrM0xLSUJkUEFCZzRXZDhoVkdqSGE?oc=5",
+      "https://news.google.com/rss/articles/CBMikAFBVV95cUxNWHJsTVJDVGx1VVNZN1F1eW4xTmh5QkxGamhhUFpFZUVVTmdSZVN3anpLSjFQdWlRS0pnTkxlN3pVbkt4cEphUUhFNEJLZnFOaENJMWpkMUtncktIRkdvdHhFUndXUHl5RVJTRk9XS1ZFdDlUVEpvV1FYQlEwclhiWm40YmNHNEphVEpfSVhGSzc?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxPTkFCa01mSG83MHlkNU8tWFVoTWhjOGpqWDdYTktBRkk3RHZGSEZka3EyNExXZ1QwbGozRFJpdHktTmlLaDl6N1o5VnNwR3VENFVIcVIxM3BTU21Qa1lmRGRVeUR3WnN0OVREaXJXbS03dG5YWHh2NzlKd1M4Q1JEQV90OGU2b2xPMHA0b0tpOWxpZnJRZFE?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxOck55anZ1Q0JvY3FqdnJDd2tnNEZ0dXpfRDV6cTVEUG5xUmFtSno5UE8yRUgxbzJ4LVZ4MFBBSWk1NWdPczF2Z2Y0SFF6elp0aEkzc0RvLS1UdHktZ1dNRERkeDF1TWd1MTR5a0xrb0hMazUySjVWVzdCT0lUUjJkMWp4N19NR2hfZ2Jaakp0Z3hBSGF6c1E?oc=5",
+      "https://news.google.com/rss/articles/CBMilgFBVV95cUxQbnlfWjhTS0lwamljRGpWbDhlUlcwelhsMkM0SlRxeHNJUE54Q2laa1FsRjFsaFNMdUR1b0FlZlBfVTNRMVZsUkR1VzhZaDBWQVk4cUtrUFdHMWo0QjZ4OTN6eEczYll5dnJzNlktZ0duN0JERGRkaHczdU5rUWNDeFJWd1gxYlJXSzRuQXNMeGpmWUp0ZWc?oc=5",
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcjFDOGZTZjBVVEZpaG1NRE5lWDVDeS1mWXNEXzlxVGxCTjZpbkcyOGJLV3NhZEhqVGl2U1ZrVTkxeXJjWHB4b05HOVpGbmdBd2wxS1BaWmRxYWZ0Q2liNHVuRXZBOW9EV19vWjIxUEpUVDdOMGZ1ODNvOHFuVXVVSnZxSlVDMzJ5dVJsdHlCLVpnRlV2ekxR?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxObW43RnBSY1loOGlmclAtN3BKRWY5WlU3aThQeWhnOFRDYzlJYURfdjZ1NGxCYXFoVzRLbFJscV8xVmRUWnM1VnN1bGlEWFpHcERXUEpiekxQSXVXMXJLQzRFRGhYSmVDb2gxUk9wbXJKRWtYOHpwM0VrWEM1Mm4wMElmREN5ZTR0WlZuNk5Fel9UZE52UTNTMA?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-f19f8cd7cbb2",
+    "theme": "oscillator",
+    "hypothesis": "Test oscillator thresholds and threshold-cross events conditioned on trend.",
+    "source_count": 4,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOYjVyY3lKVVVQWjBZTjg5VWw1MGM4dk5tc2l3VUd0M2lyOWNMQml5eGI0TFVTLTZSajdtTVdha21GSnhZcnJCb2o0MDZwbldRQ1lKbkFmXzVrN3F2OUVWa1ZqQmg4UUZ4ZjZ1aVkxZXhKdUlLaWpFV3JBaWFZc3g4cDRBOUlHNG1fblo4eGRfaDRySWZ2MWRkSFh5YWpXR252cHpfaUYtMjJNZUNrRTk3Q1ZSNTZkTnU1QjBz?oc=5",
+      "https://news.google.com/rss/articles/CBMicEFVX3lxTE1OREluX2J1THVDVlpJX2RmMUlLWi1mUnlkTjBHOElNek5SX0padWdtWVAyRHBBaXc3QmNlY2phRk9fd2lyLWp4WjgwWVVDQTV4eE05QVhwb29Ddl9PVUpheFFfdUVZbWNhSWRTNUUySW0?oc=5",
+      "https://news.google.com/rss/articles/CBMikwFBVV95cUxQLVNvVjlsR2c4WXVlU1Vld29QdV9DdzJLaV9Db1RWMXExTFdhQUVBNXJIREtfOTlLSFVaNzdNRktpLXFKQzk2SVRWZ1Y3RHRHV3p0c21TMy1RbHQ0TG1FaEhFVnpxeEU4YWFaQ25jSjhMc2IzVXJrZ1RnNnlhQzE5NWx4bHUycm9JdW1xd3A4WXZQLWc?oc=5",
+      "https://news.google.com/rss/articles/CBMiZEFVX3lxTE95dWF5RjhFR1JmUVpDTkZtTTNsNFZ4UW1SSGVNczZDMXJjYnY1V1U3NnNod3FDeG0tZTNyQUEtVDR2MUE3WDd0OUtSTi1sbEh0eWI4Wi11aExINE9GVmNhcm5jWTk?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-fd165fcf7e99",
+    "theme": "mean_reversion",
+    "hypothesis": "Test short-horizon oversold reversal only when the longer-term trend remains positive.",
+    "source_count": 3,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMicEFVX3lxTE1OREluX2J1THVDVlpJX2RmMUlLWi1mUnlkTjBHOElNek5SX0padWdtWVAyRHBBaXc3QmNlY2phRk9fd2lyLWp4WjgwWVVDQTV4eE05QVhwb29Ddl9PVUpheFFfdUVZbWNhSWRTNUUySW0?oc=5",
+      "https://news.google.com/rss/articles/CBMikwFBVV95cUxQLVNvVjlsR2c4WXVlU1Vld29QdV9DdzJLaV9Db1RWMXExTFdhQUVBNXJIREtfOTlLSFVaNzdNRktpLXFKQzk2SVRWZ1Y3RHRHV3p0c21TMy1RbHQ0TG1FaEhFVnpxeEU4YWFaQ25jSjhMc2IzVXJrZ1RnNnlhQzE5NWx4bHUycm9JdW1xd3A4WXZQLWc?oc=5",
+      "https://news.google.com/rss/articles/CBMiZEFVX3lxTE95dWF5RjhFR1JmUVpDTkZtTTNsNFZ4UW1SSGVNczZDMXJjYnY1V1U3NnNod3FDeG0tZTNyQUEtVDR2MUE3WDd0OUtSTi1sbEh0eWI4Wi11aExINE9GVmNhcm5jWTk?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-b2a1cdff7050",
+    "theme": "momentum",
+    "hypothesis": "Test relative-strength/momentum entry conditioned on a longer-term trend.",
+    "source_count": 3,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMikwFBVV95cUxQLVNvVjlsR2c4WXVlU1Vld29QdV9DdzJLaV9Db1RWMXExTFdhQUVBNXJIREtfOTlLSFVaNzdNRktpLXFKQzk2SVRWZ1Y3RHRHV3p0c21TMy1RbHQ0TG1FaEhFVnpxeEU4YWFaQ25jSjhMc2IzVXJrZ1RnNnlhQzE5NWx4bHUycm9JdW1xd3A4WXZQLWc?oc=5",
+      "https://news.google.com/rss/articles/CBMid0FVX3lxTE1FVTRkdkhOanI2bXJEeVJRajB4REJrbV9nRmR5OVJKd05rMEMzRFdSUjZLMC1nRlBBMlB6YVgwRGJOYnAzZm5uam5HbzNpN2NqNTB0VnhaczJyNi1lSVpGZnlHRHhZeTJYZDFJbV9YTk1wTXJ6UG5J?oc=5",
+      "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-0ac0275ec425",
+    "theme": "breakout",
+    "hypothesis": "Test range breakout with volume and volatility confirmation.",
+    "source_count": 1,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMiekFVX3lxTFBSdTlsUjIyd1NTR0l4dzNsU3hWQWt4X0JiTnFkUGtjZmtQNWRpTThaSlN5QlowZk1TV1FzeUFYb3pGdTV4WGptVm8xdlc3SHZQb1hBbExGQWczdlZ1bzgxSmQ5RXJYanQ4ZGJDRHVsQzFwd0k4TTRkbmF3?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-2872c2776970",
+    "theme": "moving_average",
+    "hypothesis": "Test trend-transition and moving-average slope/cross conditions.",
+    "source_count": 1,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSTVwUXJjY1dzWmJvTVA0d2p1U29hQXY2NC1oZTlQUjA3cm9oVTlyZHNFQjdXR1M0Tld6SVBiRWZRdXdvMy1xVTFYdE1IeWY5bjRzekFfN2hoYkRxUmdJRV92MXRsZkRQSC1QVF8zTVNWWW1raHA2a21BT1VlYUJ6a3RYNERLVUNSeG9WbTdJSHQ0OW5QX3RyT1NmQkN5VnZUMWZJYnBEN21DdVZkVGktS3ZrZmZmR09BaWJ3QV9n?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-371e9a2368b5",
+    "theme": "price_action",
+    "hypothesis": "Test repeatable price/volume bar structures rather than subjective chart patterns.",
+    "source_count": 1,
+    "source_urls": [
+      "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFU2MTZvQUoyQjN2Z3BncWtuajdwdE4tUWZ1THhqR05PZXRwZUF0SlpHZmNsZFY5NWZPQktlOVFfd1FVbmtJOGp3d0JNdW05SC1Pckk1cE1aTlBYdWt5YjJuRjJyRjNMVTZxVTM0RDRiMk02MlZmNVdrTDdWcEpjMFJxWHppX2tCQ0UyOXM5U0RobWh2YjhwSFluTXJZa2NIeU5WU0loOEo?oc=5"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  }
+]

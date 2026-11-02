@@ -1,6 +1,6 @@
 {
   "tool": "Chronos-2",
-  "status": "unavailable",
-  "added_value": false,
-  "detail": "ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device\n\n\n[notice] A new release of pip is available: 26.2.1 -> 26.2.2\n[notice] To update, run: pip install --upgrade pip\n"
+  "status": "package_ready",
+  "added_value": true,
+  "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
 }
