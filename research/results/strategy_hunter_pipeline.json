@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T09:47:40Z",
+  "updated_at": "2026-11-02T10:03:56Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 12.481s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 15.170s",
         "version": "0.28.1"
       }
     },
@@ -44,10 +44,10 @@
         "tool": "LightGBM",
         "status": "tested",
         "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1748; RMSE=0.1052; mean-only RMSE=0.1066",
-        "oos_correlation": 0.1747629633615901,
-        "oos_rmse": 0.105218968675837,
-        "baseline_rmse": 0.10660768740202127
+        "detail": "OOS 5-day-return correlation=0.1685; RMSE=0.1030; mean-only RMSE=0.1042",
+        "oos_correlation": 0.16845212506534987,
+        "oos_rmse": 0.10298156239233833,
+        "baseline_rmse": 0.1042089288366364
       }
     },
     "symbolic": {
@@ -57,10 +57,10 @@
         "tool": "Symbolic Regression",
         "status": "tested",
         "added_value": false,
-        "detail": "OOS 5-day formula correlation=nan; RMSE=0.1281; mean-only RMSE=0.1281; formula=sub(X1, X1)",
+        "detail": "OOS 5-day formula correlation=nan; RMSE=0.0978; mean-only RMSE=0.0978; formula=sub(X1, X1)",
         "oos_correlation": NaN,
-        "oos_rmse": 0.12808733927763816,
-        "baseline_rmse": 0.12808335130855028,
+        "oos_rmse": 0.09780923335934705,
+        "baseline_rmse": 0.09780621110388897,
         "formula": "sub(X1, X1)"
       }
     },
@@ -77,10 +77,10 @@
         "status": "tested",
         "added_value": true,
         "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
-        "best_discovery_mean": 0.0124188861555523,
-        "validation_mean": 0.0185857154088589,
-        "validation_win_rate": 0.4711132306853794,
-        "validation_observations": 73390
+        "best_discovery_mean": 0.0124936020273181,
+        "validation_mean": 0.0185719066151886,
+        "validation_win_rate": 0.4710812392005333,
+        "validation_observations": 73499
       }
     },
     "lean": {
@@ -94,9 +94,14 @@
       }
     },
     "chronos2": {
-      "status": "degraded",
+      "status": "done",
       "attempts": 1,
-      "detail": "handled by recovery supervisor"
+      "result": {
+        "tool": "Chronos-2",
+        "status": "package_ready",
+        "added_value": true,
+        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
+      }
     },
     "_cycle_status": "completed"
   }
