@@ -1,8 +1,8 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-11-02T22:12:44Z
-Items: 54
+Fetched: 2026-11-03T04:16:36Z
+Items: 53
 
 ## Research hypotheses
 - **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
@@ -11,8 +11,8 @@ Items: 54
 - **volatility** — Test volatility contraction/expansion as a state filter for entries. (14 sources)
 - **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (13 sources)
 - **market_regime** — Test separate entry logic by market breadth/volatility regime. (12 sources)
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (9 sources)
 - **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (9 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (8 sources)
 - **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (7 sources)
 - **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (5 sources)
 - **machine_learning** — Treat ML/feature interactions as hypothesis generators, then validate on untouched data. (4 sources)
@@ -26,16 +26,15 @@ Items: 54
 - [Mean Reversion and Momentum - S&P Global](https://news.google.com/rss/articles/CBMikwFBVV95cUxQLVNvVjlsR2c4WXVlU1Vld29QdV9DdzJLaV9Db1RWMXExTFdhQUVBNXJIREtfOTlLSFVaNzdNRktpLXFKQzk2SVRWZ1Y3RHRHV3p0c21TMy1RbHQ0TG1FaEhFVnpxeEU4YWFaQ25jSjhMc2IzVXJrZ1RnNnlhQzE5NWx4bHUycm9JdW1xd3A4WXZQLWc?oc=5) — news / MY
 - [Mastering Price Action: Techniques for Beginner and Advanced Traders - Investopedia](https://news.google.com/rss/articles/CBMiY0FVX3lxTE1pemRESlJ4OUc3TTlkTkIxTEdJTHV6d2VNSmJaZFRTLTJxWmZNRWd3YkRwS3ZISHRwMHRVMjVOVG1UNUZHSGxVVFdhWFVFQ3FoUDNpWTdRZTFGV1VxUlFUWjNqVQ?oc=5) — news / MY
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
-- [(NVO) Trading Strategy and Analysis (NVO:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxNTDZuVjlVemlpSFNoZkNfZDVELTRycFVLS0RKRWdyZGttdWlUc3BpWDlfOUxDdkpwZ0lVU01MdklLMXpZVGRPOTdRbEgxakQ3UXVJOEVoTktiQWtfcVJGeGZXdUZubkFMbFN5TDJoMllqY0dsdi1zZmV5Z2FHZkE0ZEtEbmY4OGllYzdYYmNNUFNsZm1SZlE?oc=5) — news / HK
+- [(BNKU) Trading Strategy and Analysis (BNKU:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxNOV9ZZnlCLVNnRmtSQjNjemttQ3FJV3VSX3l4b0hDbWJEYTJGeFg1dDFJaHRUZ0owQlNjZHc3aVFNZ3hVdEp1SDVSejVpRDZTNDBqLUlzR1FhcTF0NlIxeG9meW1EN2hPZlJBOGNZX3czLXc0eTBsdGphaUtGWlFyRUU5eFk4UDlGeHBVblAyVVlSUjlweXZn?oc=5) — news / HK
 - [(SMVP) Trading Strategy and Analysis (SMVP:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxOd1ZQYmsxS2ZEbmVjQ21EaXFuLV9oU2YwYVBFNDJPcGEwQUFUSm83QmhnZEJSWVZENmx3QzRuMEZfVWlXbjU0V1hfQVhGMGtfT3AzYUlnTGhxalhIeG9oeXFWZVpiTVZvNHM2YnpBdWZUQXViU2QwYmJ3R245YTRzNkIzQ08zRUZrSjBldjR6dG5CUWlnZmpV?oc=5) — news / MY
 - [(NRGU) Trading Strategy and Analysis (NRGU:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxPaHJaZkNwMVVOT2FFYkx2TWlLbEloS2hWZFZrV05QcmxtRUxfNUZEMTZBNlc2TGJzQWRYSTB1SHlmVlotS2lBTmJidlVRT1hxdWlwazN5Yl9xNm1CbFZIMHdTTUk4QnJBZElPdi03ZTRaaDlMREdJWFJNQzZJbHd0M1hMeWpQZFUtWjROYmdUUlJiY3lrZWgw?oc=5) — news / MY
 - [(TQSM.U) Trading Strategy and Analysis (TQSM.U:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMimAFBVV95cUxOd0RYZWtFNFJWWnBGeWxQWnYwVVZleXBwbHNvRXUwS0ZjVmNDSC1Oa1IzamlLdF9yLVU4c1pkX1hmempXOW1JemJRX0hfM0wxeWQ5RW1zMG1nQUxtamN3M0t1ZW9XclZpSElxeXFMZE1aYWhaM0E1YkVFZlFMcDJxTHlqS3l5czJNcG5YTkdaOUVPUVVtVTZ2Sw?oc=5) — news / HK
-- [(ZWS) Trading Strategy and Analysis (ZWS:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxQOVhlaUxFSUE5X0Y3OTNKWDNQU2d1eVlQazJWOVI4ejYwc0xfM2xqZzlUbjFPZVd3U2RwZ2JxbnVYWHRld1NSVTRZQ0FhVWVSSk9WOEJWemgtWWd0b3pPS0ZfSHlYOXNiRDh1dWtrLUJYT0F4aTR2UXVtMXBRdDZvT1ZoemVLOGc5S0tpdDlmRjFvVFBpb1E?oc=5) — news / MY
 - [AI Says #2: $GC1! fluctuates: What's the read on price action? for COMEX:GC1! by RedKTrader - TradingView](https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWFU2MTZvQUoyQjN2Z3BncWtuajdwdE4tUWZ1THhqR05PZXRwZUF0SlpHZmNsZFY5NWZPQktlOVFfd1FVbmtJOGp3d0JNdW05SC1Pckk1cE1aTlBYdWt5YjJuRjJyRjNMVTZxVTM0RDRiMk02MlZmNVdrTDdWcEpjMFJxWHppX2tCQ0UyOXM5U0RobWh2YjhwSFluTXJZa2NIeU5WU0loOEo?oc=5) — news / HK
 - [Conditional Neural SDEs for Financial Time-Series Generation](https://arxiv.org/abs/2610.41405v1) — arxiv / global
 - [Simple Portfolios that Deliver Consistent Decent Returns](https://arxiv.org/abs/2610.36491v1) — arxiv / global
 - [Optimal Trading Filters and the Value of Predictive Signals](https://arxiv.org/abs/2610.24558v1) — arxiv / global
-- [Agentic AI in Automated Markets](https://arxiv.org/abs/2610.22522v1) — arxiv / global
+- [Agentic AI in Automated Markets](https://arxiv.org/abs/2610.22522v2) — arxiv / global
 - [Diffusive Market Impact: A Consistent Microfoundation](https://arxiv.org/abs/2610.11691v2) — arxiv / global
 - [Exponential investors with weakly mean-reverting prices](https://arxiv.org/abs/2610.08631v1) — arxiv / global
 - [Scalable Regularized Vector Multiplicative Error Models for Positive-valued Financial Time Series](https://arxiv.org/abs/2610.08443v1) — arxiv / global
@@ -58,3 +57,4 @@ Items: 54
 - [Herding and Liquidity in Order-Book Markets. I. A Robust Liquidity-Stress Crossover and its Reflexive Mechanism](https://arxiv.org/abs/2607.08907v1) — arxiv / global
 - [Order Splitting and Liquidity Replenishment Are Jointly Necessary for the Square-Root Law of Market Impact:](https://arxiv.org/abs/2607.04280v1) — arxiv / global
 - [A Spectral Generalisation of the Variance Ratio: Eigenstructure of Long-Horizon Portfolio Covariance and a Multi-Memory Factor Model of U.S. Equity Returns](https://arxiv.org/abs/2607.03858v1) — arxiv / global
+- [Regime-Conditional Distributional Comparison of Trading Strategies: A GAMLSS/ZAGA Framework Applied to the S&P 500](https://arxiv.org/abs/2606.31251v1) — arxiv / global
