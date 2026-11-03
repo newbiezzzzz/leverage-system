@@ -17709,6 +17709,20 @@
       "exit_fee": 0.0,
       "net_pnl": 0.0,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "momentum",
+      "entry_date": "2026-11-03",
+      "exit_date": "2026-11-03",
+      "symbol": "0223.KL",
+      "entry_price": 3.0,
+      "exit_price": 2.9800000190734863,
+      "shares": 2,
+      "gross_pnl": -0.039999961853027344,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": -0.039999961853027344,
+      "exit_reason": "final_close"
     }
   ],
   "trend": [
@@ -51401,16 +51415,16 @@
     {
       "strategy": "breakout",
       "entry_date": "2026-11-02",
-      "exit_date": "2026-11-02",
+      "exit_date": "2026-11-03",
       "symbol": "7245.KL",
       "entry_price": 1.1799999475479126,
-      "exit_price": 1.1399999856948853,
+      "exit_price": 1.149999976158142,
       "shares": 2810,
-      "gross_pnl": -112.39989280700684,
+      "gross_pnl": -84.29991960525513,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": -112.39989280700684,
-      "exit_reason": "final_close"
+      "net_pnl": -84.29991960525513,
+      "exit_reason": "signal"
     }
   ],
   "shock_reaction": [
@@ -67303,6 +67317,20 @@
       "exit_fee": 0.0,
       "net_pnl": 10.379990100860365,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "shock_reaction",
+      "entry_date": "2026-11-03",
+      "exit_date": "2026-11-03",
+      "symbol": "5286.KL",
+      "entry_price": 6.239999771118164,
+      "exit_price": 6.199999809265137,
+      "shares": 192,
+      "gross_pnl": -7.67999267578125,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": -7.67999267578125,
+      "exit_reason": "final_close"
     }
   ],
   "slow_momentum": [
@@ -82303,16 +82331,16 @@
     {
       "strategy": "slow_momentum",
       "entry_date": "2026-11-02",
-      "exit_date": "2026-11-02",
+      "exit_date": "2026-11-03",
       "symbol": "7854.KL",
       "entry_price": 2.650000095367432,
-      "exit_price": 2.6700000762939453,
+      "exit_price": 2.680000066757202,
       "shares": 91,
-      "gross_pnl": 1.8199982643127037,
+      "gross_pnl": 2.729997396469076,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": 1.8199982643127037,
-      "exit_reason": "final_close"
+      "net_pnl": 2.729997396469076,
+      "exit_reason": "signal"
     }
   ],
   "volume_momentum": [
@@ -98503,7 +98531,7 @@
     {
       "strategy": "volume_momentum",
       "entry_date": "2026-11-02",
-      "exit_date": "2026-11-02",
+      "exit_date": "2026-11-03",
       "symbol": "2658.KL",
       "entry_price": 19.700000762939453,
       "exit_price": 19.700000762939453,
@@ -98512,7 +98540,7 @@
       "entry_fee": 0.0,
       "exit_fee": 0.0,
       "net_pnl": 0.0,
-      "exit_reason": "final_close"
+      "exit_reason": "signal"
     }
   ],
   "trend_pullback": [
@@ -116019,16 +116047,16 @@
     {
       "strategy": "trend_pullback",
       "entry_date": "2026-11-02",
-      "exit_date": "2026-11-02",
+      "exit_date": "2026-11-03",
       "symbol": "7195.KL",
       "entry_price": 2.6600000858306885,
-      "exit_price": 2.650000095367432,
+      "exit_price": 2.630000114440918,
       "shares": 6,
-      "gross_pnl": -0.05999994277953835,
+      "gross_pnl": -0.17999982833862305,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": -0.05999994277953835,
-      "exit_reason": "final_close"
+      "net_pnl": -0.17999982833862305,
+      "exit_reason": "signal"
     }
   ],
   "active_reversal": [
@@ -131851,6 +131879,20 @@
       "exit_fee": 0.0,
       "net_pnl": -13.035001695156097,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "active_reversal",
+      "entry_date": "2026-11-03",
+      "exit_date": "2026-11-03",
+      "symbol": "7192.KL",
+      "entry_price": 0.5249999761581421,
+      "exit_price": 0.4950000047683716,
+      "shares": 59,
+      "gross_pnl": -1.76999831199646,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": -1.76999831199646,
+      "exit_reason": "final_close"
     }
   ],
   "breakout_volume": [
@@ -149203,16 +149245,16 @@
     {
       "strategy": "breakout_volume",
       "entry_date": "2026-11-02",
-      "exit_date": "2026-11-02",
+      "exit_date": "2026-11-03",
       "symbol": "7245.KL",
       "entry_price": 1.1799999475479126,
-      "exit_price": 1.1399999856948853,
+      "exit_price": 1.149999976158142,
       "shares": 35,
-      "gross_pnl": -1.399998664855957,
+      "gross_pnl": -1.0499989986419678,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": -1.399998664855957,
-      "exit_reason": "final_close"
+      "net_pnl": -1.0499989986419678,
+      "exit_reason": "signal"
     }
   ],
   "high_volume_reversal": [
@@ -165767,16 +165809,16 @@
     {
       "strategy": "high_volume_reversal",
       "entry_date": "2026-11-02",
-      "exit_date": "2026-11-02",
+      "exit_date": "2026-11-03",
       "symbol": "5327.KL",
       "entry_price": 2.789999961853028,
-      "exit_price": 2.880000114440918,
+      "exit_price": 2.990000009536743,
       "shares": 30,
-      "gross_pnl": 2.7000045776367054,
+      "gross_pnl": 6.000001430511461,
       "entry_fee": 0.0,
       "exit_fee": 0.0,
-      "net_pnl": 2.7000045776367054,
-      "exit_reason": "final_close"
+      "net_pnl": 6.000001430511461,
+      "exit_reason": "signal"
     }
   ],
   "downturn_reversal": [
@@ -188643,6 +188685,20 @@
       "exit_fee": 0.0,
       "net_pnl": 0.0,
       "exit_reason": "signal"
+    },
+    {
+      "strategy": "relative_contrarian",
+      "entry_date": "2026-11-03",
+      "exit_date": "2026-11-03",
+      "symbol": "7192.KL",
+      "entry_price": 0.5249999761581421,
+      "exit_price": 0.4950000047683716,
+      "shares": 3,
+      "gross_pnl": -0.08999991416931152,
+      "entry_fee": 0.0,
+      "exit_fee": 0.0,
+      "net_pnl": -0.08999991416931152,
+      "exit_reason": "final_close"
     }
   ],
   "regime_adaptive": [
