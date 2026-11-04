@@ -1,9 +1,16 @@
 {
-  "updated_at": "2026-11-04T06:58:31Z",
-  "cycle": 3096,
+  "updated_at": "2026-11-04T07:11:32Z",
+  "cycle": 3097,
   "items": [
     {
       "stage": "qlib",
+      "tier": "optional",
+      "attempts": 1,
+      "known_fix_applied": false,
+      "recoverable": true
+    },
+    {
+      "stage": "chronos2",
       "tier": "optional",
       "attempts": 1,
       "known_fix_applied": false,
