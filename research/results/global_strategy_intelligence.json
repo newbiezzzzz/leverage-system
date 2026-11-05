@@ -1,8 +1,8 @@
 {
-  "status": "cached",
-  "fetched_at_epoch": 1793834973.7247748,
-  "fetched_at_utc": "2026-11-04T23:29:33Z",
-  "source_count": 53,
+  "status": "fresh",
+  "fetched_at_epoch": 1793857486.383393,
+  "fetched_at_utc": "2026-11-05T05:44:46Z",
+  "source_count": 54,
   "news_regions": [
     "US",
     "GB",
@@ -48,6 +48,18 @@
       "source_type": "news",
       "region": "HK",
       "theme": "global_trading_research",
+      "title": "(SOBO) Trading Strategy and Analysis (SOBO:CA) - Stock Traders Daily",
+      "summary": "(SOBO) Trading Strategy and Analysis (SOBO:CA) Stock Traders Daily",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVEJzbEZoYVI0dVJROEFvR1Y2MDdhMG1LN0N4UnZaUGVWbmNFT1RXLXloTWxWYjhkUTEwNkpLZDlGMkJxbUNodEZ5Y0s0NWIzaHFaZW5sZV9HM3FqbXV0RzZxWEtwUjVJOXlOdnItSnZmc2ItRWl1amVpZkxLWk5HUFc1X3FSeTRRQmRDc1dBa3ZNY1MzbFJz?oc=5",
+      "published": "Wed, 04 Nov 2026 23:27:21 GMT",
+      "detected_themes": [
+        "general"
+      ]
+    },
+    {
+      "source_type": "news",
+      "region": "HK",
+      "theme": "global_trading_research",
       "title": "(CUBD) Trading Strategy and Analysis (CUBD:CA) - Stock Traders Daily",
       "summary": "(CUBD) Trading Strategy and Analysis (CUBD:CA) Stock Traders Daily",
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZlU4aS1UYmtRcGpITHB4dkIyandBZ3AtaEx0NVhoWVNqM2NiNGktZERNMlpjQnFHYmoxa0xrT2szcVMwWDZaWjRVSXctOW9OTmNIenJwcGJKOVN1MEcyV200aE0yLWtuSTBhYUVXeW9nc2RuYkwxaWFfT2I3ZmwzSGROWjFtaGZvMUVpV080TEVudUZ2UXMw?oc=5",
@@ -82,7 +94,7 @@
     },
     {
       "source_type": "news",
-      "region": "HK",
+      "region": "SG",
       "theme": "global_trading_research",
       "title": "(HUC) Trading Strategy and Analysis (HUC:CA) - Stock Traders Daily",
       "summary": "(HUC) Trading Strategy and Analysis (HUC:CA) Stock Traders Daily",
@@ -169,7 +181,7 @@
     },
     {
       "source_type": "news",
-      "region": "GB",
+      "region": "SG",
       "theme": "global_trading_research",
       "title": "Momentum trading and setback risk - Macrosynergy",
       "summary": "Momentum trading and setback risk Macrosynergy",
@@ -195,8 +207,22 @@
       "source_type": "arxiv",
       "region": "global",
       "theme": "quant_research",
+      "title": "Hard to Fool: A Bounded LLM Research Loop for Quantitative Finance, and What Two Dozen Campaigns Found",
+      "summary": "Agentic research loops that let a language model propose a change, run a fixed experiment and keep whatever improves the metric work well in machine learning. In trading research the same loop is a machine for producing false discoveries: a backtest that \"improves the metric\" is, by default, overfit, look-ahead, a multiple-comparisons artifact, cost-free, or market drift wearing a strategy. We describe Autonomous Quant Researcher, an open-source loop built on the opposite premise: the model proposes, and only trusted code decides. Proposals are strict declarative JSON over a fixed vocabulary, so there is no model-written code to sandbox. Evaluation runs on immutable chronological stores split into discovery, validation and a final holdout that can be opened exactly once, after a durable receipt is written. Acceptance is a conjunction of absolute gates (positive edge and net P&L after costs, a positive weekly-cluster bootstrap lower bound, survival at elevated costs, per-year stability and sample floors), never a single score. Duplicates are refused before they spend a trial, and every formulation, refusal, crash and result is kept in a hash-chained, append-only ledger. We report every campaign run to date, across 0DTE options priced from traded option bars, overnight SPX verticals, daily ETF rules, technical-analysis premises, Kalshi crypto binaries, earnings options, off-exchange volume and a pre-registered alternative-data campaign. Most hypotheses fail, and we report them. Two results survive their pre-registered bars. The clearest example of the loop working is a failure: a language-model survivor that passed discovery and validation with Sharpe ratios near 3 and fell to 0.26 on its single holdout use. The value of such a loop lies less in what it finds than in how ",
+      "url": "https://arxiv.org/abs/2611.06607v1",
+      "published": "2026-11-04T14:57:39Z",
+      "detected_themes": [
+        "volume",
+        "moving_average",
+        "machine_learning"
+      ]
+    },
+    {
+      "source_type": "arxiv",
+      "region": "global",
+      "theme": "quant_research",
       "title": "Mitigating Return Drag and Regime Whipsaws in Sector Rotation: An Asymmetric Downside-Aware Nested Clustered Optimization Framework",
-      "summary": "Hierarchical clustering and Nested Clustered Optimization (NCO) mitigate the mathematical ill-conditioning of classical Markowitz covariance matrices. However, two structural vulnerabilities persist in equity markets: (1) symmetric variance penalizes upside and downside return dispersion identically, inducing acute return drag against soaring momentum sectors; and (2) unconstrained Hidden Markov Models (HMM) exhibit hyper-active regime switching (whipsaw instability), incurring excessive turnover and transaction drag. We propose Asymmetric Downside-Risk Nested Clustered Optimization with Sticky Regime Dynamics (Asym-Sticky-NCO) for tactical sector rotation across all 11 S&P 500 GICS sectors. The framework substitutes symmetric covariance with the Bawa-Lindenberg downside semi-covariance matrix across both hierarchical tree clustering and two-stage allocation. Furthermore, we introduce a Sticky Gaussian HMM incorporating a diagonal self-transition persistence prior (\\k{appa}) and confidence-adaptive boundaries (\u03b4) to enforce macroeconomic persistence. Strictly non-anticipative walk-forward backtesting across 65 out-of-sample months (August 2020 to December 2025) demonstrates that the architecture elevates CAGR from 10.65% (Plain NCO) to 13.41% (+276 bps/year), delivers a 97.74% total return versus 72.99%, suppresses maximum drawdown to 14.22% (versus 23.93% for the S&P 500), and achieves a Calmar ratio of 0.94 (+38.2% over S&P 500; +84.3% over Baseline Regime-NCO). Crucially, sticky dynamics cut regime whipsaws by 75.0% (from 16 to 4 switches) and reduce monthly turnover from 60.78% to 30.48%, addressing core limitations of machine learning asset allocation.",
+      "summary": "Hierarchical clustering and Nested Clustered Optimization (NCO) mitigate the mathematical ill-conditioning of classical Markowitz covariance matrices. However, two structural vulnerabilities persist in equity markets: (1) symmetric variance penalizes upside and downside return dispersion identically, inducing acute return drag against soaring momentum sectors; and (2) unconstrained Hidden Markov Models (HMM) exhibit hyper-active regime switching (whipsaw instability), incurring excessive turnover and transaction drag. We propose Asymmetric Downside-Risk Nested Clustered Optimization with Sticky Regime Dynamics (Asym-Sticky-NCO) for tactical sector rotation across all 11 S&P 500 GICS sectors. The framework substitutes symmetric covariance with the Bawa-Lindenberg downside semi-covariance matrix across both hierarchical tree clustering and two-stage allocation. Furthermore, we introduce a Sticky Gaussian HMM incorporating a diagonal self-transition persistence prior (\\k{appa}) and confidence-adaptive boundaries (δ) to enforce macroeconomic persistence. Strictly non-anticipative walk-forward backtesting across 65 out-of-sample months (August 2020 to December 2025) demonstrates that the architecture elevates CAGR from 10.65% (Plain NCO) to 13.41% (+276 bps/year), delivers a 97.74% total return versus 72.99%, suppresses maximum drawdown to 14.22% (versus 23.93% for the S&P 500), and achieves a Calmar ratio of 0.94 (+38.2% over S&P 500; +84.3% over Baseline Regime-NCO). Crucially, sticky dynamics cut regime whipsaws by 75.0% (from 16 to 4 switches) and reduce monthly turnover from 60.78% to 30.48%, addressing core limitations of machine learning asset allocation.",
       "url": "https://arxiv.org/abs/2611.05310v1",
       "published": "2026-11-03T18:19:23Z",
       "detected_themes": [
@@ -257,7 +283,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Optimal Trading Filters and the Value of Predictive Signals",
-      "summary": "The value of a forecast depends on its accuracy, but also on its actionability. In trading, an investor must translate return forecasts into positions while accounting for trading costs and the lingering impact of earlier trades. We solve the stationary quadratic trading problem with transient price impact using tools from prediction theory: Wiener-Hopf factorization gives the optimal policy as the composition of a conditional forecast and an explicit causal linear filter. We recover the G\u00e2rleanu-Pedersen aim-portfolio under exponential resilience and derive fractional trading filters under power-law impact decay, requiring memory beyond finite-dimensional LQR control. At fixed positive risk penalty, signals of equal instantaneous predictive strength have equal frictionless Markowitz value. With trading costs, net attainable value is determined by the mean square of the friction-weighted conditional forecast. Under power-law impact with exposure bleeding, we find an intermediate optimal mean-reversion rate for Ornstein-Uhlenbeck signals.",
+      "summary": "The value of a forecast depends on its accuracy, but also on its actionability. In trading, an investor must translate return forecasts into positions while accounting for trading costs and the lingering impact of earlier trades. We solve the stationary quadratic trading problem with transient price impact using tools from prediction theory: Wiener-Hopf factorization gives the optimal policy as the composition of a conditional forecast and an explicit causal linear filter. We recover the Gârleanu-Pedersen aim-portfolio under exponential resilience and derive fractional trading filters under power-law impact decay, requiring memory beyond finite-dimensional LQR control. At fixed positive risk penalty, signals of equal instantaneous predictive strength have equal frictionless Markowitz value. With trading costs, net attainable value is determined by the mean square of the friction-weighted conditional forecast. Under power-law impact with exposure bleeding, we find an intermediate optimal mean-reversion rate for Ornstein-Uhlenbeck signals.",
       "url": "https://arxiv.org/abs/2610.24558v1",
       "published": "2026-10-17T08:29:14Z",
       "detected_themes": [
@@ -300,7 +326,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Exponential investors with weakly mean-reverting prices",
-      "summary": "We investigate a continuous-time financial market where the asset price exhibits weak (sublinear) mean reversion and has a nonzero drift. Complementing earlier work on strong (superlinear) mean reversion, we show that, for an investor maximizing expected exponential utility, the certainty equivalent grows as $O(T^{2\u03b2+1})$ where $0<\u03b2<1$ is the strength of mean reversion. An explicit asymptotically optimal strategy is also given.",
+      "summary": "We investigate a continuous-time financial market where the asset price exhibits weak (sublinear) mean reversion and has a nonzero drift. Complementing earlier work on strong (superlinear) mean reversion, we show that, for an investor maximizing expected exponential utility, the certainty equivalent grows as $O(T^{2β+1})$ where $0<β<1$ is the strength of mean reversion. An explicit asymptotically optimal strategy is also given.",
       "url": "https://arxiv.org/abs/2610.08631v1",
       "published": "2026-10-06T16:28:09Z",
       "detected_themes": [
@@ -485,7 +511,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Optimal Trading of Microstructure Mean Reversion",
-      "summary": "At the scale of seconds the observed mid carries a stationary, mean-reverting error around a latent efficient price. We build an order book whose own flow produces that error and solve for the trading rule that maximises the long-run average profit rate net of the bid-ask spread. In a liquid large-tick asset the spread is one tick or two, and it is exactly the parity of the mid on the half-tick grid: tight at a half-integer, open at an integer. One coordinate therefore carries the problem: the gap $G$ between the mid and the efficient price; the price is an exogenous Brownian martingale, and $G$ is observable. The mid is a pure jump process whose move intensities lean toward the efficient price. Under one balanced-response condition, which equalises the book's corrective drift across parities, mean reversion of $G$ is a theorem: its conditional mean and stationary covariance are exactly those of an Ornstein-Uhlenbeck process with reversion rate $\u03b1$ and stationary standard deviation $s_G$. Its paths are not: the mid jumps. Passage times are therefore evaluated on the Gaussian diffusion those two moments define, at an error we bound on the reward side and leave heuristic on the timing side. A symmetric band of half-width $\u03b8$ buys when the gap reaches $-\u03b8$, sells at $+\u03b8$, and holds inside; on the surrogate it is optimal among all admissible strategies, on the jump process itself that reduction remains a conjecture. With $\u03c6$ the tight-book half-spread, the optimal half-width and its profit rate are $\u03b8^*(\u03b8^*-\u03c6)=s_G^2$ and $R^*=\u03b1s_G\\sqrt{2/\u03c0}\\,e^{-\u03b8^{*2}/2s_G^2}$. Threshold times margin equals the stationary variance of the gap. Trading as soon as the gap covers the spread earns zero: all profit is the option value of waiting.",
+      "summary": "At the scale of seconds the observed mid carries a stationary, mean-reverting error around a latent efficient price. We build an order book whose own flow produces that error and solve for the trading rule that maximises the long-run average profit rate net of the bid-ask spread. In a liquid large-tick asset the spread is one tick or two, and it is exactly the parity of the mid on the half-tick grid: tight at a half-integer, open at an integer. One coordinate therefore carries the problem: the gap $G$ between the mid and the efficient price; the price is an exogenous Brownian martingale, and $G$ is observable. The mid is a pure jump process whose move intensities lean toward the efficient price. Under one balanced-response condition, which equalises the book's corrective drift across parities, mean reversion of $G$ is a theorem: its conditional mean and stationary covariance are exactly those of an Ornstein-Uhlenbeck process with reversion rate $α$ and stationary standard deviation $s_G$. Its paths are not: the mid jumps. Passage times are therefore evaluated on the Gaussian diffusion those two moments define, at an error we bound on the reward side and leave heuristic on the timing side. A symmetric band of half-width $θ$ buys when the gap reaches $-θ$, sells at $+θ$, and holds inside; on the surrogate it is optimal among all admissible strategies, on the jump process itself that reduction remains a conjecture. With $φ$ the tight-book half-spread, the optimal half-width and its profit rate are $θ^*(θ^*-φ)=s_G^2$ and $R^*=αs_G\\sqrt{2/π}\\,e^{-θ^{*2}/2s_G^2}$. Threshold times margin equals the stationary variance of the gap. Trading as soon as the gap covers the spread earns zero: all profit is the option value of waiting.",
       "url": "https://arxiv.org/abs/2608.00885v1",
       "published": "2026-08-01T22:23:23Z",
       "detected_themes": [
@@ -517,7 +543,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Herding, Momentum, and Reversal in China's A-Share Market: An Agent-Based Network Model with Information Diffusion",
-      "summary": "This study develops an agent-based financial market model to explain stock-price momentum and reversal through the joint effects of local herding and delayed information diffusion. Investors form heterogeneous Gaussian beliefs about the next-period price, choose among buying, selling, and remaining inactive, and revise their action probabilities in response to neighboring investors. The local interaction structure is represented by von Neumann and Moore lattices and is later replaced by Erd\u0151s--R\u00e9nyi and Watts--Strogatz networks for robustness. A separate information process updates investor beliefs through a finite-speed diffusion mechanism, allowing informational adjustment to be distinguished from behavioral imitation. The simulations show that stronger herding produces spatially clustered trading, larger price fluctuations, and more pronounced excess kurtosis in returns. Faster information diffusion reduces the time required for prices to approach the signal-implied value, whereas the combination of information diffusion and social reinforcement generates overshooting and subsequent reversal. An empirical application to China's A-share market compares conventional CSAD and LSV measures with a rolling tail-based herding indicator obtained after Johnson $S_U$ transformation. The indicators display similar time variation and rise during major market disruptions. These findings identify information delay, local social reinforcement, and the eventual decay of herding as complementary mechanisms behind momentum and reversal.",
+      "summary": "This study develops an agent-based financial market model to explain stock-price momentum and reversal through the joint effects of local herding and delayed information diffusion. Investors form heterogeneous Gaussian beliefs about the next-period price, choose among buying, selling, and remaining inactive, and revise their action probabilities in response to neighboring investors. The local interaction structure is represented by von Neumann and Moore lattices and is later replaced by Erdős--Rényi and Watts--Strogatz networks for robustness. A separate information process updates investor beliefs through a finite-speed diffusion mechanism, allowing informational adjustment to be distinguished from behavioral imitation. The simulations show that stronger herding produces spatially clustered trading, larger price fluctuations, and more pronounced excess kurtosis in returns. Faster information diffusion reduces the time required for prices to approach the signal-implied value, whereas the combination of information diffusion and social reinforcement generates overshooting and subsequent reversal. An empirical application to China's A-share market compares conventional CSAD and LSV measures with a rolling tail-based herding indicator obtained after Johnson $S_U$ transformation. The indicators display similar time variation and rise during major market disruptions. These findings identify information delay, local social reinforcement, and the eventual decay of herding as complementary mechanisms behind momentum and reversal.",
       "url": "https://arxiv.org/abs/2607.27063v1",
       "published": "2026-07-29T15:53:27Z",
       "detected_themes": [
@@ -560,7 +586,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Herding and Liquidity in Order-Book Markets. I. A Robust Liquidity-Stress Crossover and its Reflexive Mechanism",
-      "summary": "Agent-based models of markets readily produce emergent instabilities, but telling a genuine collective effect apart from a parameter artefact takes discipline. We apply Bouchaud's phase-diagram method to a continuous-double-auction order-book model. The method is to map the full phase diagram, test its robustness to rule changes, and rule out degenerate and numerical origins before we call any feature a tipping point. The model has fundamental-anchored zero-intelligence liquidity and a mid-anchored chartist herding layer, controlled by the fraction $\\varphi$ and the strength $\u03ba$ of herders. A 7x6 grid (336 runs, each with a scrambled-sign null) locates an emergent liquidity-stress crossover. The order parameter, the fraction of events with a one-sided book, rises to about 0.34 at $(\\varphi,\u03ba)=(0.9,1.0)$, is zero across all 42 scrambled cells, and forms a smooth crossover rather than a discontinuous Dark Corner. The dry-up is rule-robust (it recurs under an order-flow-imbalance rule), horizon-robust (about 0.32-0.35 across a 16x range of momentum window), and has a monotone onset boundary $\\varphi^*(\u03ba) = \\{0.55, 0.45, 0.36\\}$. We then decompose the mechanism at a matched directional-bias amplitude (mean |p_buy - 0.5| about 0.269). Price-momentum herding carries a large, comparator-robust reflexive component (+0.29; buying begets buying), whereas the order-flow rule's component is about 0 and comparator-dependent. The RMS-mispricing gradient is a placement artefact, largest at $\u03ba=0$. A companion two-market analysis finds no directional cross-market contagion across a signal-only herding link.",
+      "summary": "Agent-based models of markets readily produce emergent instabilities, but telling a genuine collective effect apart from a parameter artefact takes discipline. We apply Bouchaud's phase-diagram method to a continuous-double-auction order-book model. The method is to map the full phase diagram, test its robustness to rule changes, and rule out degenerate and numerical origins before we call any feature a tipping point. The model has fundamental-anchored zero-intelligence liquidity and a mid-anchored chartist herding layer, controlled by the fraction $\\varphi$ and the strength $κ$ of herders. A 7x6 grid (336 runs, each with a scrambled-sign null) locates an emergent liquidity-stress crossover. The order parameter, the fraction of events with a one-sided book, rises to about 0.34 at $(\\varphi,κ)=(0.9,1.0)$, is zero across all 42 scrambled cells, and forms a smooth crossover rather than a discontinuous Dark Corner. The dry-up is rule-robust (it recurs under an order-flow-imbalance rule), horizon-robust (about 0.32-0.35 across a 16x range of momentum window), and has a monotone onset boundary $\\varphi^*(κ) = \\{0.55, 0.45, 0.36\\}$. We then decompose the mechanism at a matched directional-bias amplitude (mean |p_buy - 0.5| about 0.269). Price-momentum herding carries a large, comparator-robust reflexive component (+0.29; buying begets buying), whereas the order-flow rule's component is about 0 and comparator-dependent. The RMS-mispricing gradient is a placement artefact, largest at $κ=0$. A companion two-market analysis finds no directional cross-market contagion across a signal-only herding link.",
       "url": "https://arxiv.org/abs/2607.08907v1",
       "published": "2026-07-09T20:06:45Z",
       "detected_themes": [
@@ -573,7 +599,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Regime-Conditional Distributional Comparison of Trading Strategies: A GAMLSS/ZAGA Framework Applied to the S&P 500",
-      "summary": "Conventional comparisons of algorithmic trading strategies reduce each performance metric to a single number over the full backtest horizon, thereby discarding information about how performance varies with market conditions. This paper proposes a distributional framework that addresses this shortcoming. A walk-forward backtest of 146 out-of-sample folds on the S&P 500 (2002--2025) is used to compute the Adjusted Information Ratio ($IR^{\\ast}$) for a polynomial Support Vector Machine strategy (SVMP) and a buy-and-hold benchmark (BH) in each fold. The resulting $IR^{\\ast}$ sequences are modelled jointly via a Generalised Additive Model for Location, Scale and Shape (GAMLSS) with a Zero-Adjusted Gamma (ZAGA) response, with distributional parameters conditioned on market regime covariates: realised volatility and cumulative market momentum. Strategy comparison is conducted through (i) regime-specific differences in expected $IR^{\\ast}$ ($\u0394E$) and its variance ($\u0394Var$), derived analytically from the fitted ZAGA parameters, and (ii) parametric bootstrap tests of three null hypotheses concerning $E(IR^{\\ast})$, $Var(IR^{\\ast})$, and their ratio, evaluated at six representative market regimes. The results demonstrate that the dominance relationship between SVMP and BH is conditional on market regime. The proposed GAMLSS/ZAGA framework constitutes a methodologically rigorous and practically interpretable alternative to conventional strategy evaluation.",
+      "summary": "Conventional comparisons of algorithmic trading strategies reduce each performance metric to a single number over the full backtest horizon, thereby discarding information about how performance varies with market conditions. This paper proposes a distributional framework that addresses this shortcoming. A walk-forward backtest of 146 out-of-sample folds on the S&P 500 (2002--2025) is used to compute the Adjusted Information Ratio ($IR^{\\ast}$) for a polynomial Support Vector Machine strategy (SVMP) and a buy-and-hold benchmark (BH) in each fold. The resulting $IR^{\\ast}$ sequences are modelled jointly via a Generalised Additive Model for Location, Scale and Shape (GAMLSS) with a Zero-Adjusted Gamma (ZAGA) response, with distributional parameters conditioned on market regime covariates: realised volatility and cumulative market momentum. Strategy comparison is conducted through (i) regime-specific differences in expected $IR^{\\ast}$ ($ΔE$) and its variance ($ΔVar$), derived analytically from the fitted ZAGA parameters, and (ii) parametric bootstrap tests of three null hypotheses concerning $E(IR^{\\ast})$, $Var(IR^{\\ast})$, and their ratio, evaluated at six representative market regimes. The results demonstrate that the dominance relationship between SVMP and BH is conditional on market regime. The proposed GAMLSS/ZAGA framework constitutes a methodologically rigorous and practically interpretable alternative to conventional strategy evaluation.",
       "url": "https://arxiv.org/abs/2606.31251v1",
       "published": "2026-06-30T07:26:07Z",
       "detected_themes": [
@@ -588,7 +614,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "The Bounce Has No Direction: Sign, Magnitude, and the Microstructure of Equity Return Predictability",
-      "summary": "SPY's lag-1 return autocorrelation ($\\hat\u03c1(1)=-0.081$, $z=-7.4$) is among the most significant regularities in empirical equity finance, yet the standard variance-ratio (VR) test cannot determine whether it reflects directional reversal or magnitude shrinkage - phenomena with entirely different trading implications. We develop the Fourier-Residue Identity (FRI), which decomposes return autocorrelation into a sign ($k=2$) and a magnitude ($k=4$) channel, each independently testable and neither redundant. Applied to six US instruments over 1993--2026 and a 21-instrument cross-asset panel, the FRI delivers a sharp microstructure diagnosis. The lag-1 autocorrelation in SPY is driven entirely by magnitude: the FRI sign test is insignificant ($p=0.11$) while the full test achieves $p 1) rather than sampling noise (R_N->sqrt(2)). The cross-asset panel shows mean reversion confined to exchange-traded equities and sovereign bonds; credit ETFs, commodities, FX, and crypto are indistinguishable from random walks. All estimators pass 27 unit tests; Monte Carlo confirms correct 5% size under GARCH.",
+      "summary": "SPY's lag-1 return autocorrelation ($\\hatρ(1)=-0.081$, $z=-7.4$) is among the most significant regularities in empirical equity finance, yet the standard variance-ratio (VR) test cannot determine whether it reflects directional reversal or magnitude shrinkage - phenomena with entirely different trading implications. We develop the Fourier-Residue Identity (FRI), which decomposes return autocorrelation into a sign ($k=2$) and a magnitude ($k=4$) channel, each independently testable and neither redundant. Applied to six US instruments over 1993--2026 and a 21-instrument cross-asset panel, the FRI delivers a sharp microstructure diagnosis. The lag-1 autocorrelation in SPY is driven entirely by magnitude: the FRI sign test is insignificant ($p=0.11$) while the full test achieves $p 1) rather than sampling noise (R_N->sqrt(2)). The cross-asset panel shows mean reversion confined to exchange-traded equities and sovereign bonds; credit ETFs, commodities, FX, and crypto are indistinguishable from random walks. All estimators pass 27 unit tests; Monte Carlo confirms correct 5% size under GARCH.",
       "url": "https://arxiv.org/abs/2606.29591v1",
       "published": "2026-06-28T20:22:00Z",
       "detected_themes": [
@@ -619,7 +645,7 @@
       "region": "global",
       "theme": "quant_research",
       "title": "Zero-Copy Semantic Contagion: An In-Memory Streaming Architecture for Evolving Attention Graphs",
-      "summary": "Per-ticker forecasting models dominate financial time-series work yet remain blind to cross-company propagation: a foundry disruption in Taiwan does not register in a single-asset model until Apple's own price has already moved. To address this limitation, we introduce a heterogeneous Rust-Python streaming architecture that maps cross-company attention as a continuous-time graph driven directly from text. We show that on the ingestion side, a zero-copy Rust edge parses news records in $\\sim$100 ns and scans the target equity universe in $\\sim$1.2 $\u03bc$s. On the inference end, a multivariate Neural Hawkes Process featuring per-node continuous-time LSTM states and a bilinear latent projection propagates directed excitation, while an adaptive pruning rule bounds the computational cost of dynamic neighborhood updates. Combining these stages, we demonstrate an end-to-end processing latency of $\\sim$13 ms per incoming news record on a single commodity CPU. Evaluated on a one-month temporal holdout of the FNSPID corpus (638 articles across 47 tickers), the system delivers a $1.70\\times$ precision lift over random at the 90th-percentile next-day return threshold, and $3.36\\times$ over a same-sector baseline. Crucially, removing the graph topology collapses precision to zero, confirming that the dynamic attention network is the sole driver of cross-company signal in this architecture.",
+      "summary": "Per-ticker forecasting models dominate financial time-series work yet remain blind to cross-company propagation: a foundry disruption in Taiwan does not register in a single-asset model until Apple's own price has already moved. To address this limitation, we introduce a heterogeneous Rust-Python streaming architecture that maps cross-company attention as a continuous-time graph driven directly from text. We show that on the ingestion side, a zero-copy Rust edge parses news records in $\\sim$100 ns and scans the target equity universe in $\\sim$1.2 $μ$s. On the inference end, a multivariate Neural Hawkes Process featuring per-node continuous-time LSTM states and a bilinear latent projection propagates directed excitation, while an adaptive pruning rule bounds the computational cost of dynamic neighborhood updates. Combining these stages, we demonstrate an end-to-end processing latency of $\\sim$13 ms per incoming news record on a single commodity CPU. Evaluated on a one-month temporal holdout of the FNSPID corpus (638 articles across 47 tickers), the system delivers a $1.70\\times$ precision lift over random at the 90th-percentile next-day return threshold, and $3.36\\times$ over a same-sector baseline. Crucially, removing the graph topology collapses precision to zero, confirming that the dynamic attention network is the sole driver of cross-company signal in this architecture.",
       "url": "https://arxiv.org/abs/2606.05733v1",
       "published": "2026-06-04T05:48:56Z",
       "detected_themes": [
@@ -745,35 +771,23 @@
         "oscillator",
         "risk_management"
       ]
-    },
-    {
-      "source_type": "arxiv",
-      "region": "global",
-      "theme": "quant_research",
-      "title": "Neural Network and Order Flow, Technical Analysis: Predicting short-term direction of futures contract",
-      "summary": "Predictions of short-term directional movement of the futures contract can be challenging as its pricing is often based on multiple complex dynamic conditions. This work presents a method for predicting the short-term directional movement of an underlying futures contract. We engineered a set of features from technical analysis, order flow, and order-book data. Then, Tabnet, a deep learning neural network, is trained using these features. We train our model on the Silver Futures Contract listed on Shanghai Futures Exchange and achieve an accuracy of 0.601 on predicting the directional change during the selected period.",
-      "url": "https://arxiv.org/abs/2203.12457v1",
-      "published": "2022-02-23T17:40:05Z",
-      "detected_themes": [
-        "machine_learning"
-      ]
     }
   ],
   "hypotheses": [
     {
-      "hypothesis_id": "GI-2cf097b2cbf7",
+      "hypothesis_id": "GI-9aa351d2e525",
       "theme": "moving_average",
       "hypothesis": "Test trend-transition and moving-average slope/cross conditions.",
       "source_count": 20,
       "source_urls": [
         "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSTVwUXJjY1dzWmJvTVA0d2p1U29hQXY2NC1oZTlQUjA3cm9oVTlyZHNFQjdXR1M0Tld6SVBiRWZRdXdvMy1xVTFYdE1IeWY5bjRzekFfN2hoYkRxUmdJRV92MXRsZkRQSC1QVF8zTVNWWW1raHA2a21BT1VlYUJ6a3RYNERLVUNSeG9WbTdJSHQ0OW5QX3RyT1NmQkN5VnZUMWZJYnBEN21DdVZkVGktS3ZrZmZmR09BaWJ3QV9n?oc=5",
+        "https://arxiv.org/abs/2611.06607v1",
         "https://arxiv.org/abs/2611.05310v1",
         "https://arxiv.org/abs/2611.03453v1",
         "https://arxiv.org/abs/2610.36491v1",
         "https://arxiv.org/abs/2610.22522v2",
         "https://arxiv.org/abs/2610.11691v2",
-        "https://arxiv.org/abs/2610.08443v1",
-        "https://arxiv.org/abs/2610.05740v2"
+        "https://arxiv.org/abs/2610.08443v1"
       ],
       "evidence_type": "idea_only",
       "backtest_required": true
@@ -905,11 +919,12 @@
       "backtest_required": true
     },
     {
-      "hypothesis_id": "GI-f1ed04753f53",
+      "hypothesis_id": "GI-e7eeb262058a",
       "theme": "general",
       "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
-      "source_count": 6,
+      "source_count": 7,
       "source_urls": [
+        "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVEJzbEZoYVI0dVJROEFvR1Y2MDdhMG1LN0N4UnZaUGVWbmNFT1RXLXloTWxWYjhkUTEwNkpLZDlGMkJxbUNodEZ5Y0s0NWIzaHFaZW5sZV9HM3FqbXV0RzZxWEtwUjVJOXlOdnItSnZmc2ItRWl1amVpZkxLWk5HUFc1X3FSeTRRQmRDc1dBa3ZNY1MzbFJz?oc=5",
         "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZlU4aS1UYmtRcGpITHB4dkIyandBZ3AtaEx0NVhoWVNqM2NiNGktZERNMlpjQnFHYmoxa0xrT2szcVMwWDZaWjRVSXctOW9OTmNIenJwcGJKOVN1MEcyV200aE0yLWtuSTBhYUVXeW9nc2RuYkwxaWFfT2I3ZmwzSGROWjFtaGZvMUVpV080TEVudUZ2UXMw?oc=5",
         "https://news.google.com/rss/articles/CBMilgFBVV95cUxOd29KWEZjWGlHaEhPQ1dfVFJhZmwwUlVSRkZyeDBrTVBSZ2c3V2t5dTJiN3pkVmFoWHdFdTBuTE8tMkROYjRnM2lld3h6RncyRnpRN0FDa3FvTUZhaGtnOGNQb0xRcXBOTzAxWjhScnJQb19ESEVnbW5JdlBqU1Vfald6SFdwWkZxbXVWUDQ1REZQb0hkZkE?oc=5",
         "https://news.google.com/rss/articles/CBMilwFBVV95cUxPNy0yUnJGbllaYm5CQi1URUxnMzZ0WEVJVjRkbEpLczBfc1ByaXN0ODFQbVhuNkJBQVlqTzY1cVBLd3Y3TWZ0cDNWY1NZN0JzN0F2LVJZOXhsT01IMENtZUNiNjNtVllRZXYtNzUwTEpwTmNONTlReVpvQXZCY1h5aC1ER1psQW11bm5ZcUx4R2pLc1RjWEZB?oc=5",
@@ -921,31 +936,32 @@
       "backtest_required": true
     },
     {
-      "hypothesis_id": "GI-667e2b6a72b3",
-      "theme": "machine_learning",
-      "hypothesis": "Treat ML/feature interactions as hypothesis generators, then validate on untouched data.",
-      "source_count": 5,
-      "source_urls": [
-        "https://arxiv.org/abs/2611.05310v1",
-        "https://arxiv.org/abs/2609.14733v1",
-        "https://arxiv.org/abs/2609.12793v1",
-        "https://arxiv.org/abs/2608.27076v1",
-        "https://arxiv.org/abs/2203.12457v1"
-      ],
-      "evidence_type": "idea_only",
-      "backtest_required": true
-    },
-    {
-      "hypothesis_id": "GI-4521544b8da1",
+      "hypothesis_id": "GI-f2ef0e997824",
       "theme": "volume",
       "hypothesis": "Test whether abnormal volume confirms subsequent price continuation or reversal.",
-      "source_count": 5,
+      "source_count": 6,
       "source_urls": [
+        "https://arxiv.org/abs/2611.06607v1",
         "https://arxiv.org/abs/2609.13825v1",
         "https://arxiv.org/abs/2607.27461v1",
         "https://arxiv.org/abs/2607.20093v1",
         "https://arxiv.org/abs/2606.08569v1",
         "https://arxiv.org/abs/2206.12282v1"
+      ],
+      "evidence_type": "idea_only",
+      "backtest_required": true
+    },
+    {
+      "hypothesis_id": "GI-298db3de60c9",
+      "theme": "machine_learning",
+      "hypothesis": "Treat ML/feature interactions as hypothesis generators, then validate on untouched data.",
+      "source_count": 5,
+      "source_urls": [
+        "https://arxiv.org/abs/2611.06607v1",
+        "https://arxiv.org/abs/2611.05310v1",
+        "https://arxiv.org/abs/2609.14733v1",
+        "https://arxiv.org/abs/2609.12793v1",
+        "https://arxiv.org/abs/2608.27076v1"
       ],
       "evidence_type": "idea_only",
       "backtest_required": true

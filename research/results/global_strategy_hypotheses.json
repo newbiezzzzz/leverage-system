@@ -1,18 +1,18 @@
 [
   {
-    "hypothesis_id": "GI-2cf097b2cbf7",
+    "hypothesis_id": "GI-9aa351d2e525",
     "theme": "moving_average",
     "hypothesis": "Test trend-transition and moving-average slope/cross conditions.",
     "source_count": 20,
     "source_urls": [
       "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSTVwUXJjY1dzWmJvTVA0d2p1U29hQXY2NC1oZTlQUjA3cm9oVTlyZHNFQjdXR1M0Tld6SVBiRWZRdXdvMy1xVTFYdE1IeWY5bjRzekFfN2hoYkRxUmdJRV92MXRsZkRQSC1QVF8zTVNWWW1raHA2a21BT1VlYUJ6a3RYNERLVUNSeG9WbTdJSHQ0OW5QX3RyT1NmQkN5VnZUMWZJYnBEN21DdVZkVGktS3ZrZmZmR09BaWJ3QV9n?oc=5",
+      "https://arxiv.org/abs/2611.06607v1",
       "https://arxiv.org/abs/2611.05310v1",
       "https://arxiv.org/abs/2611.03453v1",
       "https://arxiv.org/abs/2610.36491v1",
       "https://arxiv.org/abs/2610.22522v2",
       "https://arxiv.org/abs/2610.11691v2",
-      "https://arxiv.org/abs/2610.08443v1",
-      "https://arxiv.org/abs/2610.05740v2"
+      "https://arxiv.org/abs/2610.08443v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
@@ -144,11 +144,12 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-f1ed04753f53",
+    "hypothesis_id": "GI-e7eeb262058a",
     "theme": "general",
     "hypothesis": "Extract a testable rule from the source and require independent evidence before adoption.",
-    "source_count": 6,
+    "source_count": 7,
     "source_urls": [
+      "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVEJzbEZoYVI0dVJROEFvR1Y2MDdhMG1LN0N4UnZaUGVWbmNFT1RXLXloTWxWYjhkUTEwNkpLZDlGMkJxbUNodEZ5Y0s0NWIzaHFaZW5sZV9HM3FqbXV0RzZxWEtwUjVJOXlOdnItSnZmc2ItRWl1amVpZkxLWk5HUFc1X3FSeTRRQmRDc1dBa3ZNY1MzbFJz?oc=5",
       "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZlU4aS1UYmtRcGpITHB4dkIyandBZ3AtaEx0NVhoWVNqM2NiNGktZERNMlpjQnFHYmoxa0xrT2szcVMwWDZaWjRVSXctOW9OTmNIenJwcGJKOVN1MEcyV200aE0yLWtuSTBhYUVXeW9nc2RuYkwxaWFfT2I3ZmwzSGROWjFtaGZvMUVpV080TEVudUZ2UXMw?oc=5",
       "https://news.google.com/rss/articles/CBMilgFBVV95cUxOd29KWEZjWGlHaEhPQ1dfVFJhZmwwUlVSRkZyeDBrTVBSZ2c3V2t5dTJiN3pkVmFoWHdFdTBuTE8tMkROYjRnM2lld3h6RncyRnpRN0FDa3FvTUZhaGtnOGNQb0xRcXBOTzAxWjhScnJQb19ESEVnbW5JdlBqU1Vfald6SFdwWkZxbXVWUDQ1REZQb0hkZkE?oc=5",
       "https://news.google.com/rss/articles/CBMilwFBVV95cUxPNy0yUnJGbllaYm5CQi1URUxnMzZ0WEVJVjRkbEpLczBfc1ByaXN0ODFQbVhuNkJBQVlqTzY1cVBLd3Y3TWZ0cDNWY1NZN0JzN0F2LVJZOXhsT01IMENtZUNiNjNtVllRZXYtNzUwTEpwTmNONTlReVpvQXZCY1h5aC1ER1psQW11bm5ZcUx4R2pLc1RjWEZB?oc=5",
@@ -160,31 +161,32 @@
     "backtest_required": true
   },
   {
-    "hypothesis_id": "GI-667e2b6a72b3",
-    "theme": "machine_learning",
-    "hypothesis": "Treat ML/feature interactions as hypothesis generators, then validate on untouched data.",
-    "source_count": 5,
-    "source_urls": [
-      "https://arxiv.org/abs/2611.05310v1",
-      "https://arxiv.org/abs/2609.14733v1",
-      "https://arxiv.org/abs/2609.12793v1",
-      "https://arxiv.org/abs/2608.27076v1",
-      "https://arxiv.org/abs/2203.12457v1"
-    ],
-    "evidence_type": "idea_only",
-    "backtest_required": true
-  },
-  {
-    "hypothesis_id": "GI-4521544b8da1",
+    "hypothesis_id": "GI-f2ef0e997824",
     "theme": "volume",
     "hypothesis": "Test whether abnormal volume confirms subsequent price continuation or reversal.",
-    "source_count": 5,
+    "source_count": 6,
     "source_urls": [
+      "https://arxiv.org/abs/2611.06607v1",
       "https://arxiv.org/abs/2609.13825v1",
       "https://arxiv.org/abs/2607.27461v1",
       "https://arxiv.org/abs/2607.20093v1",
       "https://arxiv.org/abs/2606.08569v1",
       "https://arxiv.org/abs/2206.12282v1"
+    ],
+    "evidence_type": "idea_only",
+    "backtest_required": true
+  },
+  {
+    "hypothesis_id": "GI-298db3de60c9",
+    "theme": "machine_learning",
+    "hypothesis": "Treat ML/feature interactions as hypothesis generators, then validate on untouched data.",
+    "source_count": 5,
+    "source_urls": [
+      "https://arxiv.org/abs/2611.06607v1",
+      "https://arxiv.org/abs/2611.05310v1",
+      "https://arxiv.org/abs/2609.14733v1",
+      "https://arxiv.org/abs/2609.12793v1",
+      "https://arxiv.org/abs/2608.27076v1"
     ],
     "evidence_type": "idea_only",
     "backtest_required": true
