@@ -1,3 +1,17 @@
+            strategy      start        end  final_equity  total_return      cagr  max_drawdown  trade_count  trades_per_month  risk_breach_count  win_rate  profit_factor  equity_volatility
+            momentum 2015-01-05 2026-11-06      1.418933     -0.998581 -0.425395     -0.998587          111          0.781532                110  0.135135       0.221929           0.344465
+               trend 2015-01-05 2026-11-06      2.820210     -0.997180 -0.391060     -0.997180           81          0.570307                 81  0.086420       0.141378           0.280452
+            breakout 2015-01-05 2026-11-06      1.946760     -0.998053 -0.409834     -0.998240          117          0.823777                115  0.188034       0.318128           0.342589
+      shock_reaction 2015-01-05 2026-11-06      1.366564     -0.998633 -0.427218     -0.998699           96          0.675920                 95  0.125000       0.139172           0.319404
+       slow_momentum 2015-01-05 2026-11-06      3.687600     -0.996312 -0.377106     -0.996328          102          0.718164                102  0.068627       0.051185           0.252854
+     volume_momentum 2015-01-05 2026-11-06      2.341087     -0.997659 -0.400565     -0.997774          107          0.753369                105  0.112150       0.131273           0.282535
+      trend_pullback 2015-01-05 2026-11-06      0.806406     -0.999194 -0.452184     -0.999194           96          0.675920                 90  0.114583       0.177442           0.346647
+     active_reversal 2015-01-05 2026-11-06      7.090275     -0.992910 -0.341732     -0.993188          109          0.767450                108  0.211009       0.268666           0.241140
+     breakout_volume 2015-01-05 2026-11-06      0.427502     -0.999572 -0.480784     -0.999572           74          0.521021                 74  0.094595       0.053478           0.363817
+high_volume_reversal 2015-01-05 2026-11-06      7.752030     -0.992248 -0.336751     -0.992945          118          0.830818                113  0.203390       0.347082           0.238845
+   downturn_reversal 2015-01-05 2026-11-06      1.878960     -0.998121 -0.411599     -0.998368          109          0.767450                105  0.220183       0.360554           0.322808
+ relative_contrarian 2015-01-05 2026-11-06      2.410081     -0.997590 -0.399092     -0.997727           95          0.668879                 94  0.200000       0.267601           0.323884
+     regime_adaptive 2015-01-05 2026-11-06      4.106556     -0.995893 -0.371417     -0.996367          104          0.732246                104  0.221154       0.304186           0.298149
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:98: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
   frames["open"][sym] = d["split_adj_open"].reindex(index)
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:99: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
@@ -8802,5 +8816,3 @@
   "vol63": close.pct_change().rolling(63, min_periods=63).std(),
 /home/runner/work/leverage-system/leverage-system/research/strategy/baseline_research.py:138: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
   "one_day": close.pct_change(),
-
-TIMEOUT: stage=baseline_costs exceeded 480s; process was terminated and recovery will retry.

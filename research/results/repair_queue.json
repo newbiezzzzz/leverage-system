@@ -1,23 +1,9 @@
 {
-  "updated_at": "2026-11-06T06:36:09Z",
+  "updated_at": "2026-11-06T10:45:29Z",
   "cycle": 3247,
   "items": [
     {
-      "stage": "baseline",
-      "tier": "core",
-      "attempts": 2,
-      "known_fix_applied": false,
-      "recoverable": true
-    },
-    {
       "stage": "qlib",
-      "tier": "optional",
-      "attempts": 1,
-      "known_fix_applied": false,
-      "recoverable": true
-    },
-    {
-      "stage": "chronos2",
       "tier": "optional",
       "attempts": 1,
       "known_fix_applied": false,
