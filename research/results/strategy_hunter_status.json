@@ -1,16 +1,16 @@
 {
-  "checked_at": "2026-11-06T01:46:46.697840+00:00",
-  "status": "in_progress",
-  "run_id": 42146002099,
-  "started_at": "2026-11-06T01:46:08Z",
-  "updated_at": "2026-11-06T01:46:15Z",
+  "checked_at": "2026-11-06T08:31:58.217891+00:00",
+  "status": "completed",
+  "run_id": 42169531445,
+  "started_at": "2026-11-06T05:37:35Z",
+  "updated_at": "2026-11-06T06:36:23Z",
   "jobs": [
     {
       "name": "research",
-      "status": "in_progress",
-      "conclusion": "\u2014",
-      "current_step": "Refresh global trading intelligence"
+      "status": "completed",
+      "conclusion": "failure",
+      "current_step": "\u2014"
     }
   ],
-  "conclusion": "\u2014"
+  "conclusion": "failure"
 }
