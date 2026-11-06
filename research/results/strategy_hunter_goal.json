@@ -1,8 +1,9 @@
 {
-  "checked_at": "2026-11-06T05:37:28.638554+00:00",
+  "checked_at": "2026-11-06T06:36:10.451633+00:00",
   "status": "searching",
   "all_gates_passed": false,
   "missing_gates": [
+    "research_cycle_completed",
     "positive_after_costs",
     "robust_out_of_sample",
     "drawdown_within_limit",

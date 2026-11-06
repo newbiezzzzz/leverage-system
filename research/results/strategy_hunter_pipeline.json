@@ -1,18 +1,14 @@
 {
-  "updated_at": "2026-11-06T05:37:28Z",
-  "status": "completed",
+  "updated_at": "2026-11-06T06:36:09Z",
+  "status": "degraded",
   "stage": null,
   "attempt": 0,
   "error": null,
   "stages": {
     "baseline": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "strategies": 13,
-        "best_final_equity": 7.752029544504325,
-        "worst_max_drawdown": -1.00007373918545
-      }
+      "status": "degraded",
+      "attempts": 2,
+      "detail": "handled by recovery supervisor"
     },
     "pattern_hunter": {
       "status": "done",
@@ -33,7 +29,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 18.832s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 85.996s",
         "version": "0.28.1"
       }
     },
@@ -45,7 +41,7 @@
         "status": "tested",
         "added_value": true,
         "detail": "OOS 5-day-return correlation=0.1689; RMSE=0.1029; mean-only RMSE=0.1041",
-        "oos_correlation": 0.16886936057569127,
+        "oos_correlation": 0.16886936057569116,
         "oos_rmse": 0.10285613469535097,
         "baseline_rmse": 0.10409128648737472
       }
@@ -94,15 +90,10 @@
       }
     },
     "chronos2": {
-      "status": "done",
+      "status": "degraded",
       "attempts": 1,
-      "result": {
-        "tool": "Chronos-2",
-        "status": "package_ready",
-        "added_value": true,
-        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
-      }
+      "detail": "handled by recovery supervisor"
     },
-    "_cycle_status": "completed"
+    "_cycle_status": "degraded"
   }
 }
