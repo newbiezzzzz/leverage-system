@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-06T03:21:35Z",
+  "updated_at": "2026-11-06T03:39:15Z",
   "status": "completed",
   "stage": null,
   "attempt": 0,
@@ -33,7 +33,7 @@
         "tool": "VectorBT",
         "status": "tested",
         "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 19.463s",
+        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 15.827s",
         "version": "0.28.1"
       }
     },
@@ -45,7 +45,7 @@
         "status": "tested",
         "added_value": true,
         "detail": "OOS 5-day-return correlation=0.1689; RMSE=0.1029; mean-only RMSE=0.1041",
-        "oos_correlation": 0.16886936057569127,
+        "oos_correlation": 0.16886936057569116,
         "oos_rmse": 0.10285613469535097,
         "baseline_rmse": 0.10409128648737472
       }
@@ -76,11 +76,11 @@
         "tool": "Optuna",
         "status": "tested",
         "added_value": true,
-        "detail": "Discovery-selected pattern=momentum_60_uptrend, horizon=40d; held-out validation available=True",
-        "best_discovery_mean": 0.0119063802300547,
-        "validation_mean": 0.017929006260136,
-        "validation_win_rate": 0.4677870705601492,
-        "validation_observations": 63251
+        "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
+        "best_discovery_mean": 0.0126925088362574,
+        "validation_mean": 0.0184893534702363,
+        "validation_win_rate": 0.4708195476487498,
+        "validation_observations": 73748
       }
     },
     "lean": {
