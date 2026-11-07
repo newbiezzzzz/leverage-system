@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-07T00:23:25Z",
-  "status": "completed",
-  "stage": null,
+  "updated_at": "2026-11-07T00:40:53Z",
+  "status": "running",
+  "stage": "vectorbt",
   "attempt": 0,
   "error": null,
   "stages": {
@@ -25,84 +25,6 @@
     "failure_analysis": {
       "status": "done",
       "attempts": 1
-    },
-    "vectorbt": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "VectorBT",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Vectorized MA benchmark ran on 10 real OHLCV symbols in 11.651s",
-        "version": "0.28.1"
-      }
-    },
-    "lightgbm": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LightGBM",
-        "status": "tested",
-        "added_value": true,
-        "detail": "OOS 5-day-return correlation=0.1689; RMSE=0.1028; mean-only RMSE=0.1040",
-        "oos_correlation": 0.16888838185606778,
-        "oos_rmse": 0.10279521348818539,
-        "baseline_rmse": 0.1040298524119719
-      }
-    },
-    "symbolic": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Symbolic Regression",
-        "status": "tested",
-        "added_value": false,
-        "detail": "OOS 5-day formula correlation=nan; RMSE=0.0977; mean-only RMSE=0.0977; formula=sub(X1, X1)",
-        "oos_correlation": NaN,
-        "oos_rmse": 0.09766605322862916,
-        "baseline_rmse": 0.09766286521748366,
-        "formula": "sub(X1, X1)"
-      }
-    },
-    "qlib": {
-      "status": "degraded",
-      "attempts": 1,
-      "detail": "handled by recovery supervisor"
-    },
-    "optuna": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Optuna",
-        "status": "tested",
-        "added_value": true,
-        "detail": "Discovery-selected pattern=slow_momentum_12_1, horizon=40d; held-out validation available=True",
-        "best_discovery_mean": 0.0126401641372579,
-        "validation_mean": 0.0183863447949323,
-        "validation_win_rate": 0.4705731035323107,
-        "validation_observations": 73861
-      }
-    },
-    "lean": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "LEAN",
-        "status": "tested_cli",
-        "added_value": true,
-        "detail": "lean 1.0.233"
-      }
-    },
-    "chronos2": {
-      "status": "done",
-      "attempts": 1,
-      "result": {
-        "tool": "Chronos-2",
-        "status": "package_ready",
-        "added_value": true,
-        "detail": "Chronos2Pipeline import succeeded; model download/inference is deferred to avoid unnecessary 478MB model pull in the base pass."
-      }
-    },
-    "_cycle_status": "completed"
+    }
   }
 }
