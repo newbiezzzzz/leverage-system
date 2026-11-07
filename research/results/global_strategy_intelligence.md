@@ -1,17 +1,22 @@
 # Global Strategy Intelligence
 
 Status: fresh
-Fetched: 2026-11-07T05:01:14Z
-Items: 15
+Fetched: 2026-11-07T11:06:00Z
+Items: 55
 
 ## Research hypotheses
-- **general** — Extract a testable rule from the source and require independent evidence before adoption. (6 sources)
-- **momentum** — Test relative-strength/momentum entry conditioned on a longer-term trend. (4 sources)
-- **oscillator** — Test oscillator thresholds and threshold-cross events conditioned on trend. (3 sources)
-- **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (2 sources)
+- **moving_average** — Test trend-transition and moving-average slope/cross conditions. (20 sources)
+- **oscillator** — Test oscillator thresholds and threshold-cross events conditioned on trend. (20 sources)
+- **momentum** — Test relative-strength/momentum entry conditioned on a longer-term trend. (16 sources)
+- **volatility** — Test volatility contraction/expansion as a state filter for entries. (15 sources)
+- **market_regime** — Test separate entry logic by market breadth/volatility regime. (12 sources)
+- **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (11 sources)
+- **mean_reversion** — Test short-horizon oversold reversal only when the longer-term trend remains positive. (9 sources)
+- **risk_management** — Test whether adaptive stops/holding horizons improve net expectancy without increasing drawdown. (9 sources)
+- **general** — Extract a testable rule from the source and require independent evidence before adoption. (7 sources)
+- **volume** — Test whether abnormal volume confirms subsequent price continuation or reversal. (6 sources)
+- **machine_learning** — Treat ML/feature interactions as hypothesis generators, then validate on untouched data. (5 sources)
 - **breakout** — Test range breakout with volume and volatility confirmation. (1 sources)
-- **moving_average** — Test trend-transition and moving-average slope/cross conditions. (1 sources)
-- **price_action** — Test repeatable price/volume bar structures rather than subjective chart patterns. (1 sources)
 
 ## Recent research/material
 - [Quantitative Trading: Market Stabiliser or Risk Amplifier? - Nanyang Technological University - NTU Singapore](https://news.google.com/rss/articles/CBMiuwFBVV95cUxOYjVyY3lKVVVQWjBZTjg5VWw1MGM4dk5tc2l3VUd0M2lyOWNMQml5eGI0TFVTLTZSajdtTVdha21GSnhZcnJCb2o0MDZwbldRQ1lKbkFmXzVrN3F2OUVWa1ZqQmg4UUZ4ZjZ1aVkxZXhKdUlLaWpFV3JBaWFZc3g4cDRBOUlHNG1fblo4eGRfaDRySWZ2MWRkSFh5YWpXR252cHpfaUYtMjJNZUNrRTk3Q1ZSNTZkTnU1QjBz?oc=5) — news / MY
@@ -22,10 +27,35 @@ Items: 15
 - [Mastering Price Action: Techniques for Beginner and Advanced Traders - Investopedia](https://news.google.com/rss/articles/CBMiY0FVX3lxTE1pemRESlJ4OUc3TTlkTkIxTEdJTHV6d2VNSmJaZFRTLTJxWmZNRWd3YkRwS3ZISHRwMHRVMjVOVG1UNUZHSGxVVFdhWFVFQ3FoUDNpWTdRZTFGV1VxUlFUWjNqVQ?oc=5) — news / SG
 - [Unlock Success in Breakout Trading with Key Strategies - Investopedia](https://news.google.com/rss/articles/CBMiekFVX3lxTFBSdTlsUjIyd1NTR0l4dzNsU3hWQWt4X0JiTnFkUGtjZmtQNWRpTThaSlN5QlowZk1TV1FzeUFYb3pGdTV4WGptVm8xdlc3SHZQb1hBbExGQWczdlZ1bzgxSmQ5RXJYanQ4ZGJDRHVsQzFwd0k4TTRkbmF3?oc=5) — news / MY
 - [Momentum trading and setback risk - Macrosynergy](https://news.google.com/rss/articles/CBMid0FVX3lxTE1FVTRkdkhOanI2bXJEeVJRajB4REJrbV9nRmR5OVJKd05rMEMzRFdSUjZLMC1nRlBBMlB6YVgwRGJOYnAzZm5uam5HbzNpN2NqNTB0VnhaczJyNi1lSVpGZnlHRHhZeTJYZDFJbV9YTk1wTXJ6UG5J?oc=5) — news / GB
+- [(TNZ) Trading Strategy and Analysis (TNZ:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxPdkd6cHJHRkV5dmMzTTQteGViXzVwRmgxZGU3UktObEV2a2JVV3dFQjY4NlZ4VVR6VF9YOFNLNEh6TkdzeFdlWkpYZldPT2c1NUhfSTc5S1JGdzNEOVpBbU11SXZXUGVzWG5QZnVrY3NIVzBfUUxaN0ppeVBoTlFDSm1tV1Rvb2lXbWpObVlVaGU2NXN3Unc?oc=5) — news / HK
 - [(PPTA) Trading Strategy and Analysis (PPTA:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxOX2U0aFZrSVZ1STNRLWUzSlJxVnBJZXlaMVg5eFliNVVINmVhbXhPRFFZSHJDb0hkd3AySS1qS0FPSk5vZFhYeDY5MmdWRWtDdjRxZ2hHYjRtZVdzSjFkNXBHeWxCLVhqOXdEVjE3S01GMkt6c2JQTG5NNi1zXzBQV1RMWXFMdlRMRTA1V29ZSXAwM1cyaDlF?oc=5) — news / HK
 - [A Comprehensive Guide to Momentum Trading Strategies and Tips - Investopedia](https://news.google.com/rss/articles/CBMiekFVX3lxTE1yTG1Hd0xsSDNNbnhkYWhyeGRjcGloLVlhZW5sTzU4ZTlIVWRBSHhtVEhZQ3k2cUJZeXB6S3JpSnljbHlkTGIxNGNpcE9aV2x2a3B4LS13R3RnSFlYRjZjYkVzMC01NE5KM0kxNEEwOVhMSGh5X2h3cGx3?oc=5) — news / HK
 - [Momentum Trading and Managed Money Positioning in Energy: Relationships and Practical Applications - Oxford Institute for Energy Studies](https://news.google.com/rss/articles/CBMi1wFBVV95cUxPT2hjSEg3REF4SU82amRsN1FKYnZpN0djVE1sczZYbjNsX28xcnpuOHVEWW9IelNJZ2tGQXAtVlV4TTFUOVZ3VlZXMHU5TDB0UElvQjM0aWF3MlpVaC1URzd4R3BlMDdNb09ENUNBMzhnVTUyZWRJVjhVYXVYVW9IZDdMREp1QVdaSHZPQTZpRVQ0VzBTLUs3bjBjeERvR0dlemJic0VVU2tUTXFxenJCSm1aRV9ZVDRTbUprYXZDZ0JQbEU1OXNfRm1FYWJldENuWWhrM1J2RQ?oc=5) — news / HK
 - [(CGL) Trading Strategy and Analysis (CGL:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxNODlIUENnN1FfakJoT21EOUNYVDFVUHNFQ19ZV1RENjJnWm5uejlSZFlvTUhXbm1hcEJBaXNzSm1CTkVHMFpVSHV6NlJxdEZZZEdMTWVyQjZJUXhZT2dhd1VpeVNRLVg5dF9EQ0paNnRMdHpKV3VBVUpNU1hqejR1TC1xbkZJWG52Y2hELXZRTV9vUjM0N2c?oc=5) — news / HK
 - [(TTP) Trading Strategy and Analysis (TTP:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxQMUthZFdGc2dydkZVLUF4Tzd4M3R3VXdQNXlSTXZScDlvdFVTYlp3V0ZZa29NNlEzZER0UlNPdU5FUk10d3FfYk81TUwyVFZIbGhvSEg4U1JrS1Z5WW42V2NfVXBJSXNLcl9ReElhOHg3dEM2bElvSTFaa09NZ0lmdnZKTDM0a3kyTjlrRnNnWHI5QjQ1UUE?oc=5) — news / HK
-- [(ACX) Trading Strategy and Analysis (ACX:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxOckRfRk9tNWFqWFRReWxtY2pteUZjZ2xSX3VVeGhOblo5TVhpZGV3clptLWN1cVNrWW5DSW5xRl9CTHFldzY2U3Q3d2lmeVBmQ1dkeEp3bWZVUzZ2VkJZYngxQ2hVWnpIWmtBMFQxOHVZcmRoOVRJT3p0RDB1Y1RiX25BQUM3RG1YRktMQVowLVJrQ1UwS2c?oc=5) — news / HK
-- [(ZCON) Trading Strategy and Analysis (ZCON:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilwFBVV95cUxQSGgwcWxvQWNITy1sdHozS3JHclZFOHB5LWNUVW5wZkZzelVrSW5MOTE2WG1UeWN5cE0xLVNFbk5mM1VwZkRtQ0RDSTVWanhabG1VUkxLUElYUXFoSUtqM0x5bXlWSGRqdXdtdDAtT0pZeVVFcXppUHh6Y2hLdlJzeEE2MC0zeVBfc1F5dFNkYXVWV2hnemln?oc=5) — news / SG
+- [(ACX) Trading Strategy and Analysis (ACX:CA) - Stock Traders Daily](https://news.google.com/rss/articles/CBMilgFBVV95cUxOckRfRk9tNWFqWFRReWxtY2pteUZjZ2xSX3VVeGhOblo5TVhpZGV3clptLWN1cVNrWW5DSW5xRl9CTHFldzY2U3Q3d2lmeVBmQ1dkeEp3bWZVUzZ2VkJZYngxQ2hVWnpIWmtBMFQxOHVZcmRoOVRJT3p0RDB1Y1RiX25BQUM3RG1YRktMQVowLVJrQ1UwS2c?oc=5) — news / SG
+- [Hard to Fool: A Bounded LLM Research Loop for Quantitative Finance, and What Two Dozen Campaigns Found](https://arxiv.org/abs/2611.06607v1) — arxiv / global
+- [Mitigating Return Drag and Regime Whipsaws in Sector Rotation: An Asymmetric Downside-Aware Nested Clustered Optimization Framework](https://arxiv.org/abs/2611.05310v1) — arxiv / global
+- [Penalize the Common Trade: A Collision-Aware Layer for Learned Portfolios](https://arxiv.org/abs/2611.03453v1) — arxiv / global
+- [Conditional Neural SDEs for Financial Time-Series Generation](https://arxiv.org/abs/2610.41405v1) — arxiv / global
+- [Simple Portfolios that Deliver Consistent Decent Returns](https://arxiv.org/abs/2610.36491v1) — arxiv / global
+- [Optimal Trading Filters and the Value of Predictive Signals](https://arxiv.org/abs/2610.24558v1) — arxiv / global
+- [Agentic AI in Automated Markets](https://arxiv.org/abs/2610.22522v2) — arxiv / global
+- [Diffusive Market Impact: A Consistent Microfoundation](https://arxiv.org/abs/2610.11691v2) — arxiv / global
+- [Exponential investors with weakly mean-reverting prices](https://arxiv.org/abs/2610.08631v1) — arxiv / global
+- [GPU-accelerated Regularized Vector Multiplicative Error Models for Positive-valued Financial Time Series](https://arxiv.org/abs/2610.08443v2) — arxiv / global
+- [Latent Continuum of Regimes in Limit Order Book Dynamics](https://arxiv.org/abs/2610.05740v2) — arxiv / global
+- [Optimal Liquidation with Support and Resistance Levels under Multi-Skew Brownian Motion](https://arxiv.org/abs/2609.35063v1) — arxiv / global
+- [On Detecting Multiple Simultaneous Change-points in High Dimensional Non-Stationary Time Series](https://arxiv.org/abs/2609.15479v1) — arxiv / global
+- [WaVeFuse: Regime-Adaptive Equity Index Forecasting via Channel-Wise Wavelet Denoising and Vertical Attention Fusion](https://arxiv.org/abs/2609.14733v1) — arxiv / global
+- [Public Opinion as an Option: Leveraging Prediction Markets to Hedge Exposure to Spot Crypto Volatility](https://arxiv.org/abs/2609.14267v1) — arxiv / global
+- [ViperQ: Order Flow Pattern Recognition via Auction Market Theory for Reinforcement Learning Trading](https://arxiv.org/abs/2609.13825v1) — arxiv / global
+- [VertiFuseX: Generalizable Financial Forecasting via Multi-Stream Temporal Fusion](https://arxiv.org/abs/2609.12793v1) — arxiv / global
+- [Deep Hedging Under Realistic Market Frictions: A Regime-Conditional Empirical Study of Dynamic Option Hedging on Bitcoin Options](https://arxiv.org/abs/2608.29025v1) — arxiv / global
+- [Tabular Deep Learning for Algorithmic Trading: Cross-Regime Bayesian Optimisation for Equity Signal Generation](https://arxiv.org/abs/2608.27076v1) — arxiv / global
+- [Short-horizon mean reversion in cryptocurrency markets: a matched cross-market measurement](https://arxiv.org/abs/2608.21888v1) — arxiv / global
+- [Velocity- and Regime-Aware Detection of Intraday Options Market Manipulation, with Explainable Attribution](https://arxiv.org/abs/2608.05373v1) — arxiv / global
+- [Optimal Trading of Microstructure Mean Reversion](https://arxiv.org/abs/2608.00885v1) — arxiv / global
+- [Are Three Matrices All You Need To Beat the Market? Observable Matrix Dynamics for Portfolio Optimization](https://arxiv.org/abs/2607.27461v1) — arxiv / global
+- [Herding, Momentum, and Reversal in China's A-Share Market: An Agent-Based Network Model with Information Diffusion](https://arxiv.org/abs/2607.27063v1) — arxiv / global
+- [Retail Trader's Ruin: An Anatomy of Popular Signal Failure](https://arxiv.org/abs/2607.20093v1) — arxiv / global
